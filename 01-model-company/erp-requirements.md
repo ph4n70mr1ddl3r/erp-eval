@@ -30,7 +30,7 @@
 
 | Req ID | Requirement | Priority | Notes |
 |---|---|---|---|
-| INV-001 | Perpetual Inventory (all locations) | Must Have | 200 stores + 4 DCs + HQ |
+| INV-001 | Perpetual Inventory (all locations) | Must Have | 200 stores + 5 DCs + HQ |
 | INV-002 | Real-Time Inventory Visibility | Must Have | Across all locations |
 | INV-003 | Weighted Average Cost (WAC) | Must Have | Philippine standard |
 | INV-004 | ABC Classification | Must Have | Auto-classify by revenue contribution |
@@ -95,6 +95,9 @@
 | POS-013 | Real-Time Inventory Deduction | Must Have | Immediate sync to central inventory |
 | POS-014 | Promotional Pricing Auto-Apply | Must Have | No cashier intervention needed |
 | POS-015 | Gift Card / Store Credit | Should Have | Issuance and redemption |
+| POS-016 | Catch-Weight / Variable Measure at POS | Must Have | Weight-based (kg) and cut-to-length (m, board ft) selling — critical for lumber, wire, bulk nails |
+| POS-017 | Paint Mixing / Custom SKU at POS | Must Have | Generate custom SKU for tinted paint; link to base paint + colorant inventory |
+| POS-018 | Age-Restricted Product Prompts | Should Have | Mandatory prompt for solvents, cutting tools, etc.; requires cashier confirmation |
 
 ## R6. Ecommerce Integration
 
@@ -167,7 +170,40 @@
 | RPT-009 | Mobile Dashboard | Nice to Have | For executives on the go |
 | RPT-010 | Scheduled Report Distribution | Should Have | Auto-email weekly/monthly reports |
 
-## R11. Non-Functional Requirements
+## R11. Intercompany & Transfer Pricing
+
+| Req ID | Requirement | Priority | Notes |
+|---|---|---|---|
+| IC-001 | Intercompany AP/AR Automation | Must Have | Auto-generate IC invoices for leasing, distribution fees, ecommerce fulfillment |
+| IC-002 | Arm's-Length Transfer Pricing | Must Have | Configurable IC pricing rules per service/goods flow |
+| IC-003 | IC Elimination on Consolidation | Must Have | Automatic elimination of IC revenue, expense, receivable, payable during consolidation |
+| IC-004 | IC Settlement | Must Have | Net settlement between entities; bank transfer generation |
+| IC-005 | IC Reconciliation | Must Have | Monthly reconciliation of IC balances across entities |
+
+## R12. Document Management
+
+| Req ID | Requirement | Priority | Notes |
+|---|---|---|---|
+| DOC-001 | Electronic Document Storage | Must Have | Attach invoices, receipts, delivery receipts, LCs, customs docs to transactions |
+| DOC-002 | BIR-Compliant Invoice Format | Must Have | Registered sales invoices, official receipts per BIR requirements |
+| DOC-003 | Delivery Receipt Tracking | Must Have | DR linked to PO/transfer order and goods receipt |
+| DOC-004 | Import Document Management | Must Have | Store and track BL, customs declaration, LC, packing lists per import PO |
+| DOC-005 | Document Retention Policy | Must Have | 7-year retention per BIR; configurable per document type |
+| DOC-006 | Approval Workflow with Attachments | Should Have | Route documents (capex requests, vendor contracts) with file attachments for approval |
+
+## R13. Master Data Management
+
+| Req ID | Requirement | Priority | Notes |
+|---|---|---|---|
+| MDM-001 | Centralized Item Master | Must Have | Single source of truth for 55K SKUs; controlled creation/modification workflow |
+| MDM-002 | Item Attribute Management | Must Have | Rich attributes per category (e.g., tile: material, size, finish; lumber: species, dimensions) |
+| MDM-003 | Customer Data Quality | Must Have | Deduplication, validation rules for 600K+ customer records |
+| MDM-004 | Vendor Onboarding Workflow | Should Have | Structured vendor creation with approval, tax info (TIN), banking details |
+| MDM-005 | Pricing Master Governance | Must Have | Controlled price list creation/modification with approval workflow |
+| MDM-006 | Location Master | Must Have | Stores, DCs, HQ as distinct locations with address, tax registration, operating params |
+| MDM-007 | Hierarchical Category Structure | Must Have | Multi-level product category tree for reporting and merchandising |
+
+## R14. Non-Functional Requirements
 
 | Req ID | Requirement | Target |
 |---|---|---|
@@ -183,9 +219,10 @@
 | NFR-010 | Data Privacy | RA 10173 (Data Privacy Act) compliance |
 | NFR-011 | Deployment Model | Cloud-first with offline POS capability |
 | NFR-012 | Integration Architecture | API-first; support REST/webhook/file-based |
-| NFR-013 | Disaster Recovery | RPO ≤ 1 hour; RTO ≤ 4 hours for core; POS must operate offline 8+ hours |
+| NFR-013 | Disaster Recovery | RPO ≤ 1 hour; RTO ≤ 4 hours for core; POS must operate offline 8+ hours with automatic sync reconciliation upon reconnection |
+| NFR-015 | Batch Processing Windows | Month-end close, payroll runs, and bulk report generation must complete within defined off-peak windows (see Data Volumes doc) |
 | NFR-014 | Data Migration | Tools/process for migrating from legacy accounting, POS, payroll, and inventory data |
 
 ---
 
-*Document Version: 1.0 | Date: 2026-05-29*
+*Document Version: 1.1 | Date: 2026-05-29 | Added: R11 Intercompany, R12 Document Management, R13 Master Data Management; added POS-016/017/018, NFR-015; fixed INV-001 DC count*

@@ -342,6 +342,11 @@ The company operates through **5 legal entities** organized as follows:
 | Year 2 | ~5% | ~PHP 250M |
 | Year 3 | ~7% | ~PHP 350M |
 
+> **Note**: The volume table above shows ~PHP 157.5M/month based on 45,000 orders × PHP 3,500
+> AOV. This is slightly above the 3% target (~PHP 151M). The figures are intentionally left as
+> planning estimates; the AOV and/or order volume should be adjusted to hit the exact 3% target
+> during detailed business planning.
+
 ---
 
 ## 9. Customers & Sales

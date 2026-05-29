@@ -152,6 +152,14 @@
 - Internal audit and risk management functions
 - Listed company compliance (SEC, PSE reporting obligations)
 
+### IT & Systems (Publicly Known)
+- Wilcon has invested significantly in digital transformation in recent years
+- Their ecommerce platform (wilcon.com.ph) appears to be a custom-built solution with real-time inventory integration
+- POS systems across stores are networked for centralized data collection
+- SAP has been mentioned in Philippine IT industry circles as a potential enterprise platform for large Philippine retailers; however, Wilcon's specific ERP vendor has not been publicly disclosed
+- Strong investment in omnichannel technology (BOPIS, mobile app, real-time stock check) suggests a mid-to-upper-tier ERP backbone
+- The company's digital investments are a key pillar of their growth strategy per annual report commentary
+
 ---
 
 ## 8. Human Resources

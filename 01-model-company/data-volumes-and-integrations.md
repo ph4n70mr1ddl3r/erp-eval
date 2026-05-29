@@ -112,6 +112,75 @@
 | WMS ↔ ERP (inventory) | 1 minute | DC inventory inaccuracy |
 | Payment confirmation | 30 seconds | Failed order completion |
 
+## 5. Network Bandwidth Estimates
+
+### Per-Store Bandwidth (Minimum)
+
+| Data Flow | Estimated Volume | Frequency | Bandwidth Needed |
+|---|---|---|---|
+| POS → ERP (sales transactions) | ~4,700 txns/day × ~2 KB = ~9.4 MB/day | Real-time / 15-min batch | ~10 Kbps sustained |
+| ERP → POS (price/item/promo sync) | ~35,000 SKUs × ~1 KB = ~35 MB full; delta ~1 MB | Hourly (delta); nightly (full) | ~100 Kbps per sync burst |
+| Ecommerce inventory update | ~200 stores × ~5 KB = ~1 MB | Per-store: 5-min cycle | Shared with POS link |
+| System updates / patches | Varies | Weekly/monthly | Burst; ~50 MB per update |
+| **Minimum per-store link** | | | **2 Mbps** (stable, with headroom) |
+
+### Per-DC Bandwidth
+
+| Data Flow | Estimated Volume | Bandwidth Needed |
+|---|---|---|
+| WMS ↔ ERP (inventory, pick/ship) | ~1,000 transactions/day × ~5 KB | ~1 Mbps sustained |
+| RF gun traffic (150 devices/DC) | ~100 msgs/device/hour × ~1 KB | ~400 Kbps sustained |
+| Label printing, document sync | ~5 MB/hour | Burst |
+| **Minimum per-DC link** | | **10 Mbps** (stable) |
+
+### HQ / Corporate Bandwidth
+
+| Data Flow | Bandwidth Needed |
+|---|---|
+| Back-office users (~300 concurrent) | ~50 Mbps |
+| Report generation, batch processing | ~20 Mbps burst |
+| Ecommerce platform sync | ~10 Mbps |
+| **Minimum HQ link** | **100 Mbps** |
+
+### Total Estimated WAN Bandwidth
+
+| Site Type | Count | Per-Site BW | Aggregate |
+|---|---|---|---|
+| Stores | 200 | 2 Mbps | 400 Mbps |
+| DCs | 5 | 10 Mbps | 50 Mbps |
+| HQ | 1 | 100 Mbps | 100 Mbps |
+| **Total** | **206** | | **~550 Mbps** |
+
+> **Recommendation**: Each store should have a primary MPLS/fiber link (2 Mbps minimum)
+> plus a 4G/5G LTE failover for POS resilience. DCs should have redundant fiber connections.
+
+## 6. Batch Processing Windows
+
+| Process | Schedule | Estimated Duration | Window |
+|---|---|---|---|
+| POS transaction sync (batch mode fallback) | Every 15 minutes | 1–3 minutes | Ongoing |
+| Nightly inventory snapshot | Daily at 01:00 | 15–30 minutes | 01:00–03:00 |
+| Nightly price/promo sync to POS | Daily at 02:00 | 10–20 minutes | 02:00–04:00 |
+| Day-end close per store | Daily at 23:30 local | 5–10 minutes per store | 23:30–00:30 |
+| Week-on-week sales report generation | Weekly (Monday 06:00) | 10–20 minutes | 06:00–07:00 |
+| Month-end close | Last day of month + 5 working days | 2–4 hours for heavy jobs | 22:00–03:00 (off-peak) |
+| Payroll processing (5 entities) | Semi-monthly (14th & 28th) | 1–2 hours per entity | 20:00–23:00 |
+| VAT / tax report generation | Monthly (by 10th) | 30–60 minutes | Evening batch |
+| BIR eFPS tax filing file export | Monthly / Quarterly | < 30 minutes | On-demand |
+| Full inventory reindex / valuation | Monthly (1st) | 30–60 minutes | 01:00–03:00 |
+| Demand planning / forecast recalculation | Weekly (Sunday) | 1–3 hours | 00:00–04:00 |
+| Database backup | Daily at 03:00 | 1–2 hours | 03:00–05:00 |
+
+### Peak Load Calendar
+
+| Period | Activity | Additional Load |
+|---|---|---|
+| Month-end (last 3 days) | Close, accruals, reconciliation | +30% AP/AR processing, heavy reporting |
+| Bi-monthly sale events | Promotional pricing, traffic surge | +100% POS volume, +200% ecommerce |
+| Payroll dates (14th & 28th) | Payroll runs, bank file generation | Heavy HR/payroll module usage |
+| Q1 inventory count (Jan) | Annual wall-to-wall physical count | Heavy inventory module, RF gun usage |
+| Christmas season (Nov–Dec) | Peak retail period | Sustained +50% volume across all channels |
+
 ---
 
-*Document Version: 2.0 | Date: 2026-05-29 | Status: Revised — updated volumes per realism review*
+*Document Version: 2.1 | Date: 2026-05-29 | Added: network bandwidth estimates (Section 5), batch processing windows (Section 6)*

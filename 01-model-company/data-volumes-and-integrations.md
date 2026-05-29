@@ -11,28 +11,29 @@
 
 | Transaction Type | Daily Volume | Peak Factor | Peak Daily |
 |---|---|---|---|
-| POS Transactions | 66,667 | 2.0x (weekends/sales) | 133,334 |
-| POS Line Items | 266,667 | 2.0x | 533,334 |
-| Store Replenishment Orders | 117 | 1.5x | 176 |
-| Goods Receipts | 150 | 1.5x | 225 |
-| Purchase Orders Created | 33 | 2.0x (batch days) | 66 |
-| AP Invoices Processed | 183 | 2.0x (month-end) | 366 |
-| Ecommerce Orders | 167 | 3.0x (sale events) | 500 |
-| Customer Registrations | ~100 | — | ~300 |
+| POS Transactions | 93,333 | 2.0x (weekends/sales) | 186,666 |
+| POS Line Items | 373,333 | 2.0x | 746,666 |
+| Store Replenishment Orders | 167 | 1.5x | 250 |
+| Goods Receipts | 200 | 1.5x | 300 |
+| Purchase Orders Created | 40 | 2.0x (batch days) | 80 |
+| AP Invoices Processed | 217 | 2.0x (month-end) | 433 |
+| Ecommerce Orders | 1,500 | 3.0x (sale events) | 4,500 |
+| Customer Registrations | ~150 | — | ~450 |
 
 ### 1.2 Data Storage Estimates (Annual Growth)
 
 | Data Type | Annual Records | Est. Size |
 |---|---|---|
-| POS Transaction Headers | 24,000,000 | ~12 GB |
-| POS Transaction Lines | 96,000,000 | ~48 GB |
-| Inventory Movements | ~2,000,000 | ~4 GB |
-| Journal Entries + Lines | ~1,000,000 | ~2 GB |
-| Purchase Orders + Lines | ~192,000 | ~0.5 GB |
-| AP/AR Documents | ~1,200,000 | ~3 GB |
-| Master Data (all types) | ~600,000 | ~0.5 GB |
-| **Total Annual Increment** | | **~70 GB** |
-| **7-Year Retention** | | **~500 GB** (with compression) |
+| POS Transaction Headers | 33,600,000 | ~17 GB |
+| POS Transaction Lines | 134,400,000 | ~67 GB |
+| Inventory Movements | ~3,000,000 | ~6 GB |
+| Journal Entries + Lines | ~1,500,000 | ~3 GB |
+| Purchase Orders + Lines | ~233,000 | ~0.6 GB |
+| AP/AR Documents | ~1,440,000 | ~4 GB |
+| Ecommerce Orders + Lines | ~540,000 | ~1.5 GB |
+| Master Data (all types) | ~700,000 | ~0.7 GB |
+| **Total Annual Increment** | | **~100 GB** |
+| **7-Year Retention** | | **~700 GB** (with compression) |
 
 ---
 
@@ -44,7 +45,7 @@
 │                      INTEGRATION ARCHITECTURE                       │
 │                                                                     │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
-│  │ 200 POS  │  │ 4 WMS    │  │ Ecommerce │  │ Loyalty Engine   │   │
+│  │1,000 POS │  │ 5 WMS    │  │ Ecommerce │  │ Loyalty Engine   │   │
 │  │Terminals │  │Systems   │  │ Platform │  │ (CRM)            │   │
 │  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────────┬─────────┘   │
 │       │              │              │                  │             │
@@ -113,4 +114,4 @@
 
 ---
 
-*Document Version: 1.0 | Date: 2026-05-29*
+*Document Version: 2.0 | Date: 2026-05-29 | Status: Revised — updated volumes per realism review*

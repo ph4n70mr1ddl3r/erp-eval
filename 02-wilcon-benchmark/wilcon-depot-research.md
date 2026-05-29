@@ -203,22 +203,23 @@
 | **Store Format** | Depot + Express (2 formats) | Big-box only (1 format) |
 | **HQ** | Quezon City, Metro Manila | Davao City |
 | **Legal Entities** | 1 main (public) + subsidiaries | 5 legal entities |
-| **Active SKUs** | ~60,000+ (Depot format) | 20,000 |
-| **Annual Revenue** | ~PHP 33–35B | ~PHP 43B (projected at 200 stores) |
-| **Monthly POS Transactions** | ~1.5M (estimated) | 2M |
-| **Distribution Centers** | 3+ | 4 |
+| **Active SKUs** | ~60,000+ (Depot format) | 35,000 |
+| **Annual Revenue** | ~PHP 33–35B | ~PHP 60.5B (projected at 200 stores) |
+| **Monthly POS Transactions** | ~1.5M (estimated) | 2.8M |
+| **Distribution Centers** | 3+ | 5 |
 | **Ecommerce** | Full (BOPIS + delivery) | Full (BOPIS + delivery) |
 | **Loyalty Program** | Yes | Yes |
-| **Employees** | ~5,000–6,000 | ~6,700 |
-| **Monthly Trade POs** | ~500–800 (estimated) | 1,000 |
+| **Employees** | ~5,000–6,000 | ~8,050 |
+| **Monthly Trade POs** | ~500–800 (estimated) | 1,200 |
 | **Import Vendors** | ~40% | ~40% |
 
 ### Key Differences for ERP Planning
 1. **Model Company is larger** (200 stores vs ~100) — tests scalability
 2. **Model Company has 5 legal entities** — tests multi-entity/intercompany capabilities
 3. **Model Company is based in Davao** — tests provincial/regional operations focus
-4. **Model Company has fewer SKUs but more stores** — tests high-volume, multi-location inventory
+4. **Model Company has fewer SKUs but more stores** (35K vs 60K+) — tests high-volume, multi-location inventory with a curated assortment
 5. **Model Company is a clean-sheet design** — no legacy system constraints
+6. **Model Company has 5 DCs** (vs Wilcon's 3+) — higher DC-to-store ratio reflects larger store count and provincial coverage
 
 ---
 

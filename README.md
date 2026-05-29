@@ -21,14 +21,14 @@ erpplans/
 | Company Name | **BuildRight Depot Corp.** (theoretical) |
 | Format | Hardware / DIY / Home Improvement Big Box |
 | Stores | 200 |
-| Distribution Centers | 4 |
+| Distribution Centers | 5 |
 | Corporate HQ | Davao City, Philippines |
-| POS Machines per Store | 3 |
-| Monthly POS Transactions per Store | 10,000 |
+| POS Machines per Store | 5 |
+| Monthly POS Transactions per Store | 14,000 |
 | Avg Lines per Transaction | 4 |
-| Staff per Store | ~30 |
-| Active SKUs | 20,000 |
-| Monthly Trade Purchase Orders | 1,000 |
+| Staff per Store | ~35 |
+| Active SKUs | 35,000 |
+| Monthly Trade Purchase Orders | 1,200 |
 | Legal Entities | 5 |
 | Ecommerce | Yes (with BOPIS) |
 | Country | Philippines |

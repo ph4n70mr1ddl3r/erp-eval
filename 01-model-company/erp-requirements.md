@@ -39,7 +39,7 @@
 | INV-007 | Physical Inventory (Wall-to-Wall) | Must Have | Annual full count |
 | INV-008 | Lot & Serial Tracking | Should Have | For select high-value items |
 | INV-009 | Consignment Inventory | Should Have | Vendor-owned until sold |
-| INV-010 | Catch-Weight / Variable Measure | Should Have | Lumber (board feet), wire (meters) |
+| INV-010 | Catch-Weight / Variable Measure | Must Have | Lumber (board feet), wire (meters) — critical for big-box hardware retail |
 | INV-011 | Inventory Aging Analysis | Should Have | Identify slow-moving/dead stock |
 | INV-012 | Safety Stock & Reorder Point | Must Have | Per SKU, auto-calculated |
 | INV-013 | Batch/LOT Tracking for Paint | Should Have | Paint mixing, batch traceability |
@@ -80,7 +80,7 @@
 
 | Req ID | Requirement | Priority | Notes |
 |---|---|---|---|
-| POS-001 | 600 POS Terminals | Must Have | 3 per store × 200 stores |
+| POS-001 | 1,000 POS Terminals | Must Have | 5 per store × 200 stores |
 | POS-002 | Offline Mode | Must Have | Must sell during network outage |
 | POS-003 | Barcode Scanning | Must Have | 1D + 2D barcode support |
 | POS-004 | Multi-Tender | Must Have | Cash, card, e-wallet, split |
@@ -145,7 +145,7 @@
 | Req ID | Requirement | Priority | Notes |
 |---|---|---|---|
 | CRM-001 | Loyalty Points Engine | Must Have | Earn, redeem, expire |
-| CRM-002 | Customer Master (B2C) | Must Have | 500,000 members |
+| CRM-002 | Customer Master (B2C) | Must Have | 600,000 members |
 | CRM-003 | Trade Account Management (B2B) | Must Have | 5,000 accounts with credit limits |
 | CRM-004 | Corporate Account Management | Must Have | 200 accounts with negotiated pricing |
 | CRM-005 | Tiered Loyalty | Should Have | Bronze, Silver, Gold, Platinum |
@@ -175,7 +175,7 @@
 | NFR-002 | Back-Office Uptime | 99.5% |
 | NFR-003 | POS Transaction Speed | < 3 seconds |
 | NFR-004 | Report Generation | < 30 seconds (standard) |
-| NFR-005 | Concurrent Users | 800–1,000 |
+| NFR-005 | Concurrent Users | 1,000–1,500 |
 | NFR-006 | Data Retention | 7 years (BIR) |
 | NFR-007 | Security | Role-based access, audit trails, encryption |
 | NFR-008 | Scalability | Support growth to 300+ stores |
@@ -183,6 +183,8 @@
 | NFR-010 | Data Privacy | RA 10173 (Data Privacy Act) compliance |
 | NFR-011 | Deployment Model | Cloud-first with offline POS capability |
 | NFR-012 | Integration Architecture | API-first; support REST/webhook/file-based |
+| NFR-013 | Disaster Recovery | RPO ≤ 1 hour; RTO ≤ 4 hours for core; POS must operate offline 8+ hours |
+| NFR-014 | Data Migration | Tools/process for migrating from legacy accounting, POS, payroll, and inventory data |
 
 ---
 

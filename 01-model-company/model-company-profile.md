@@ -52,8 +52,8 @@ The company operates through **5 legal entities** organized as follows:
 | **Total Stores** | 200 |
 | **Store Format** | Big-box warehouse (selling area: 8,000–15,000 sqm each) |
 | **Total Selling Area** | ~1.6M – 3.0M sqm aggregate |
-| **Store Staff** | ~30 employees per store |
-| **Total Store-Level Headcount** | ~6,000 |
+| **Store Staff** | ~35 employees per store |
+| **Total Store-Level Headcount** | ~7,000 |
 
 #### Store Location Distribution (Philippines)
 
@@ -73,7 +73,7 @@ The company operates through **5 legal entities** organized as follows:
 - **Appliance Section**: Appliances and fixtures
 - **Tool & Hardware Wall**: Fasteners, hand tools, power tools
 - **Paint Mixing Station**: Custom tinting
-- **Checkout Area**: 3 POS terminals
+- **Checkout Area**: 5 POS terminals
 - **Receiving/Backroom**: Inbound goods staging
 - **Customer Service Counter**: Returns, special orders, BOPIS pickup
 
@@ -81,18 +81,23 @@ The company operates through **5 legal entities** organized as follows:
 
 | DC | Location | Size (sqm) | Role |
 |---|---|---|---|
-| **DC1 — Mindanao Hub** | Davao City (near HQ) | 25,000 | Primary DC; serves Mindanao stores |
-| **DC2 — Visayas Hub** | Cebu (Mandaue) | 20,000 | Serves Visayas stores |
-| **DC3 — South Luzon Hub** | Calamba, Laguna | 25,000 | Serves South Luzon & Metro Manila |
-| **DC4 — North Luzon Hub** | Clark, Pampanga | 15,000 | Serves North/Central Luzon |
+| **DC1 — Mindanao Hub** | Davao City (near HQ) | 35,000 | Primary DC; serves Mindanao stores |
+| **DC2 — Visayas Hub** | Cebu (Mandaue) | 30,000 | Serves Visayas stores |
+| **DC3 — South Luzon Hub** | Calamba, Laguna | 40,000 | Serves South Luzon (CALABARZON, Bicol) |
+| **DC4 — North/Central Luzon Hub** | Clark, Pampanga | 25,000 | Serves North/Central Luzon |
+| **DC5 — Metro Manila Hub** | Metro Manila (Valenzuela) | 30,000 | Serves NCR (Metro Manila) stores |
+
+> **Rationale**: A dedicated Metro Manila DC relieves the South Luzon hub from serving
+> the high-density 30-store NCR market, and the 5-DC footprint brings the DC-to-selling-area
+> ratio closer to the 8–12% industry norm for big-box retail.
 
 #### DC Operations
 - Cross-dock capable for fast-moving items
 - Full warehouse management (pick/pack/ship) for slower movers
 - Vendor managed inventory (VMI) for select suppliers
-- Each DC serves ~50 stores on average
+- Each DC serves ~40 stores on average (range: 20–60)
 - Replenishment cycles: 2–3x per week per store
-- DC headcount: ~80–120 per DC (~400 total)
+- DC headcount: ~120–160 per DC (~750 total)
 - Special handling areas: lumber, tiles, paint/chemicals
 
 ### 3.3 Corporate Headquarters
@@ -101,7 +106,7 @@ The company operates through **5 legal entities** organized as follows:
 |---|---|
 | **Location** | Davao City, Philippines |
 | **Office Size** | ~3,000 sqm |
-| **HQ Headcount** | ~250–300 |
+| **HQ Headcount** | ~300 |
 
 #### HQ Departments
 - **Executive Office**: CEO, CFO, COO, CIO, CMO
@@ -122,10 +127,10 @@ The company operates through **5 legal entities** organized as follows:
 
 | Category | Count |
 |---|---|
-| Store Personnel | 6,000 (200 stores × 30) |
-| Distribution Center Personnel | ~400 (4 DCs × ~100) |
+| Store Personnel | 7,000 (200 stores × 35) |
+| Distribution Center Personnel | ~750 (5 DCs × ~150) |
 | Corporate HQ Personnel | ~300 |
-| **Total Company Headcount** | **~6,700** |
+| **Total Company Headcount** | **~8,050** |
 
 ---
 
@@ -135,22 +140,25 @@ The company operates through **5 legal entities** organized as follows:
 
 | Parameter | Value |
 |---|---|
-| **POS Terminals per Store** | 3 |
-| **Total POS Terminals (all stores)** | 600 |
-| **Monthly Transactions per Store** | 10,000 |
-| **Total Monthly Transactions (all stores)** | 2,000,000 |
-| **Total Annual Transactions** | 24,000,000 |
+| **POS Terminals per Store** | 5 |
+| **Total POS Terminals (all stores)** | 1,000 |
+| **Monthly Transactions per Store** | 14,000 |
+| **Total Monthly Transactions (all stores)** | 2,800,000 |
+| **Total Annual Transactions** | 33,600,000 |
 | **Avg Lines per Transaction** | 4 |
-| **Total Monthly Line Items** | 8,000,000 |
-| **Total Annual Line Items** | 96,000,000 |
+| **Total Monthly Line Items** | 11,200,000 |
+| **Total Annual Line Items** | 134,400,000 |
 
 ### Transaction Types at POS
-- **Cash Sale** (~40%)
-- **Credit/Debit Card** (~35%)
+- **Cash Sale** (~42%)
+- **Credit/Debit Card** (~36%)
 - **E-Wallet (GCash, Maya)** (~15%)
 - **Corporate / Charge Account** (~5%)
-- **BOPIS Pickup** (~3%)
 - **Returns/Exchanges** (~2% return rate)
+
+> Note: BOPIS orders are placed and paid online; the in-store pickup is a fulfillment
+> confirmation rather than a POS tender transaction. BOPIS volume is tracked under
+> ecommerce (see Section 8).
 
 ### POS Functional Requirements
 - Offline capability (must continue selling during network outage)
@@ -175,26 +183,31 @@ The company operates through **5 legal entities** organized as follows:
 
 | Parameter | Value |
 |---|---|
-| **Active SKUs (at any time)** | 20,000 |
-| **Total SKU Master (including seasonal/discontinued)** | ~35,000 |
+| **Active SKUs (at any time)** | 35,000 |
+| **Total SKU Master (including seasonal/discontinued)** | ~55,000 |
 | **SKU growth rate** | ~5–8% annually |
+
+> **Note**: At 35,000 active SKUs across 8,000–15,000 sqm stores, the assortment density
+> averages ~2.3–4.4 SKUs per sqm — in line with big-box home improvement retail benchmarks.
+> This is leaner than Wilcon's 60,000+ SKU depth but reflects a curated assortment strategy
+> focused on faster turn.
 
 ### 6.2 Product Categories & Approximate SKU Distribution
 
 | Category | % of Active SKUs | ~SKU Count | Examples |
 |---|---|---|---|
-| **Lumber & Building Materials** | 15% | 3,000 | Plywood, cement, rebar, hollow blocks, lumber |
-| **Tiles & Flooring** | 10% | 2,000 | Ceramic tiles, vinyl, granite, adhesives, grout |
-| **Plumbing** | 12% | 2,400 | Pipes, fittings, faucets, toilets, water tanks |
-| **Electrical** | 10% | 2,000 | Wires, switches, breakers, conduit, panels |
-| **Paint & Finishes** | 8% | 1,600 | Interior/exterior paint, stains, varnishes, thinners |
-| **Hand Tools** | 10% | 2,000 | Hammers, saws, screwdrivers, wrenches, pliers |
-| **Power Tools** | 5% | 1,000 | Drills, grinders, saws, sanders, compressors |
-| **Hardware & Fasteners** | 15% | 3,000 | Nails, screws, bolts, hinges, locks, padlocks |
-| **Home Appliances** | 5% | 1,000 | Fans, aircons, water heaters, kitchen appliances |
-| **Home Décor & Furniture** | 5% | 1,000 | Lighting fixtures, shelving, storage, blinds |
-| **Garden & Outdoor** | 3% | 600 | Plants, pots, hoses, sprinklers, outdoor furniture |
-| **Safety & PPE** | 2% | 400 | Hard hats, gloves, masks, goggles, harnesses |
+| **Lumber & Building Materials** | 14% | 4,900 | Plywood, cement, rebar, hollow blocks, lumber |
+| **Tiles & Flooring** | 12% | 4,200 | Ceramic tiles, vinyl, granite, adhesives, grout |
+| **Plumbing** | 12% | 4,200 | Pipes, fittings, faucets, toilets, water tanks |
+| **Electrical** | 10% | 3,500 | Wires, switches, breakers, conduit, panels |
+| **Paint & Finishes** | 8% | 2,800 | Interior/exterior paint, stains, varnishes, thinners |
+| **Hand Tools** | 10% | 3,500 | Hammers, saws, screwdrivers, wrenches, pliers |
+| **Power Tools** | 5% | 1,750 | Drills, grinders, saws, sanders, compressors |
+| **Hardware & Fasteners** | 14% | 4,900 | Nails, screws, bolts, hinges, locks, padlocks |
+| **Home Appliances** | 5% | 1,750 | Fans, aircons, water heaters, kitchen appliances |
+| **Home Décor & Furniture** | 5% | 1,750 | Lighting fixtures, shelving, storage, blinds |
+| **Garden & Outdoor** | 3% | 1,050 | Plants, pots, hoses, sprinklers, outdoor furniture |
+| **Safety & PPE** | 2% | 700 | Hard hats, gloves, masks, goggles, harnesses |
 | **Seasonal / Promo Items** | — | ~500 | Christmas lights, flood control items, etc. |
 
 ### 6.3 Inventory Valuation
@@ -221,9 +234,9 @@ The company operates through **5 legal entities** organized as follows:
 | **Local (Philippine) Vendors** | ~600 (60%) |
 | **International / Import Vendors** | ~400 (40%) — China, Taiwan, Indonesia, Malaysia, Japan, Europe |
 | **Top 20 Vendors** | Account for ~45% of COGS |
-| **Vendor-Managed Inventory (VMI)** | ~200 SKUs from 10 key vendors |
-| **Monthly Trade Purchase Orders** | 1,000 |
-| **Annual Purchase Orders** | 12,000 |
+| **Vendor-Managed Inventory (VMI)** | ~300 SKUs from 12 key vendors |
+| **Monthly Trade Purchase Orders** | 1,200 |
+| **Annual Purchase Orders** | 14,400 |
 
 ### 6.6 Purchasing Parameters
 | Parameter | Value |
@@ -234,7 +247,7 @@ The company operates through **5 legal entities** organized as follows:
 | **Safety Stock Policy** | 1–2 weeks of demand for A-items; 2–4 weeks for B-items; minimal for C-items |
 | **ABC Classification** | A: top 20% SKUs = 80% revenue; B: next 30% = 15% revenue; C: bottom 50% = 5% revenue |
 | **Purchase Order Average Lines** | ~15 lines per PO |
-| **Monthly PO Lines** | ~15,000 |
+| **Monthly PO Lines** | ~18,000 |
 
 ---
 
@@ -243,7 +256,7 @@ The company operates through **5 legal entities** organized as follows:
 ### 7.1 Inbound Logistics (Vendor → DC)
 - ~70% of goods flow through DCs first (stocking items)
 - ~30% delivered direct-to-store (DSD) for bulky/fresh items (cement, lumber)
-- Import containers: ~40–60 TEUs/month across all import vendors
+- Import containers: ~50–70 TEUs/month across all import vendors
 - Customs brokerage managed in-house for imports
 - Payment terms: typically 30–60 days for local; LC/TT for imports
 
@@ -252,7 +265,7 @@ The company operates through **5 legal entities** organized as follows:
 - **Fleet**: Mix of owned (20%) and third-party (80%) trucks
 - **Vehicle Types**: 10-wheeler wing vans, 6-wheeler trucks, multi-drop routing
 - **Delivery Lead Time**: 1–3 days from DC order to store receipt
-- **Store Replenishment Orders**: ~3,000–4,000 per month (across all stores)
+- **Store Replenishment Orders**: ~4,500–5,500 per month (across all stores)
 
 ### 7.3 Store Receiving
 - Each store receives 2–3 trucks per week
@@ -261,7 +274,7 @@ The company operates through **5 legal entities** organized as follows:
 - Discrepancies flagged and resolved within 24 hours
 
 ### 7.4 Inter-DC Transfers
-- Occasional rebalancing transfers between DCs (~20–30/month)
+- Occasional rebalancing transfers between DCs (~30–40/month)
 - Transfer orders initiated by supply planning team
 - In-transit inventory visibility required
 
@@ -275,7 +288,7 @@ The company operates through **5 legal entities** organized as follows:
 |---|---|
 | **Channel** | Web (responsive) + Mobile App (iOS & Android) |
 | **URL** | buildright.com.ph (theoretical) |
-| **Catalog** | Full 20,000 SKU catalog online |
+| **Catalog** | Full 35,000 SKU catalog online |
 | **Product Content** | Photos, specifications, dimensions, how-to guides |
 | **Search & Navigation** | Category browse, keyword search, filter by specs |
 | **Customer Accounts** | Optional registration; guest checkout available |
@@ -290,7 +303,7 @@ The company operates through **5 legal entities** organized as follows:
 | **Process** | Customer places order online → store receives pick list → staff picks & stages → customer arrives with ID → release at customer service counter |
 | **Pick SLA** | Ready within 4 hours of order placement |
 | **Hold Period** | 5 days; auto-cancel and refund after |
-| **% of Total Sales** | Target 3–5% within Year 1 |
+| **% of Total Sales** | ~1.9% within Year 1 |
 
 ### 8.3 Home Delivery
 
@@ -312,13 +325,22 @@ The company operates through **5 legal entities** organized as follows:
 - Payment gateway integration (PayMongo, Dragonpay)
 
 ### 8.5 Projected Ecommerce Volume
+
 | Parameter | Monthly Estimate |
 |---|---|
-| Orders (BOPIS) | ~3,000 |
-| Orders (Delivery) | ~2,000 |
-| Total Ecommerce Orders | ~5,000 |
+| Orders (BOPIS) | ~27,000 |
+| Orders (Delivery) | ~18,000 |
+| Total Ecommerce Orders | ~45,000 |
 | Average Order Value | PHP 3,500 |
-| Ecommerce GMV | ~PHP 17.5M/month |
+| Ecommerce GMV | ~PHP 157.5M/month |
+
+#### Ecommerce Penetration Targets
+
+| Year | Target % of Revenue | Projected Monthly GMV |
+|---|---|---|
+| Year 1 | ~3% | ~PHP 150M |
+| Year 2 | ~5% | ~PHP 250M |
+| Year 3 | ~7% | ~PHP 350M |
 
 ---
 
@@ -336,7 +358,7 @@ The company operates through **5 legal entities** organized as follows:
 ### 9.2 Customer Data
 | Parameter | Value |
 |---|---|
-| **Registered Loyalty Members** | ~500,000 |
+| **Registered Loyalty Members** | ~600,000 |
 | **Trade Account Customers** | ~5,000 |
 | **Corporate Account Customers** | ~200 |
 | **Loyalty Program** | Points-based (1 point per PHP 100 spent); tiers: Bronze, Silver, Gold, Platinum |
@@ -357,14 +379,16 @@ The company operates through **5 legal entities** organized as follows:
 | Parameter | Estimate |
 |---|---|
 | **Average Transaction Value (ATV)** | PHP 1,800 |
-| **Monthly Transactions** | 2,000,000 |
-| **Monthly Gross Revenue** | ~PHP 3.6 Billion |
-| **Annual Gross Revenue** | ~PHP 43.2 Billion |
+| **Monthly Transactions** | 2,800,000 |
+| **Monthly Gross Revenue** | ~PHP 5.04 Billion |
+| **Annual Gross Revenue** | ~PHP 60.5 Billion |
 | **Average Gross Margin** | ~28–32% |
-| **Annual COGS** | ~PHP 29–31 Billion |
+| **Annual COGS** | ~PHP 41–43 Billion |
 | **EBITDA Margin** | ~10–12% |
 
-> Note: Revenue figures are theoretical projections for a 200-store chain of this format.
+> Note: Per-store annual revenue of ~PHP 302M is ~90% of Wilcon Depot's estimated
+> per-store revenue (PHP 330–350M), reflecting the more provincial footprint and leaner
+> SKU assortment. Revenue figures assume all 200 stores are mature.
 
 ---
 
@@ -382,7 +406,7 @@ The company operates through **5 legal entities** organized as follows:
 
 | Parameter | Value |
 |---|---|
-| **Monthly Vendor Invoices** | ~5,000–6,000 |
+| **Monthly Vendor Invoices** | ~6,000–7,000 |
 | **Payment Terms (Typical)** | Net 30, Net 60 |
 | **Payment Methods** | Check, bank transfer, LC (imports) |
 | **3-Way Match** | Required for all PO-based purchases (PO → GR → Invoice) |
@@ -397,7 +421,7 @@ The company operates through **5 legal entities** organized as follows:
 | **Credit Terms** | Net 30 for trade; Net 60–90 for corporate projects |
 | **Credit Limit Policy** | Per-account limit with periodic review |
 | **Collection** | Monthly statement; 30/60/90 aging follow-up |
-| **Monthly AR Invoice Count** | ~3,000 |
+| **Monthly AR Invoice Count** | ~3,500 |
 
 ### 10.4 Cash & Treasury
 - **Bank Accounts**: BDO, BPI, Metrobank, Chinabank — multi-entity
@@ -441,7 +465,7 @@ BuildRight Holdings, Inc.
 | Parameter | Value |
 |---|---|
 | **Payroll Frequency** | Semi-monthly (15th and 30th) |
-| **Total Employees** | ~6,700 |
+| **Total Employees** | ~8,050 |
 | **Payroll Entities** | 5 (one per legal entity) |
 | **Statutory Benefits** | SSS, PhilHealth, Pag-IBIG (HDMF) |
 | **13th Month Pay** | Mandatory (1/12 of annual basic salary, paid by Dec 24) |
@@ -458,7 +482,7 @@ BuildRight Holdings, Inc.
 - **Leave Types**: VL, SL, Maternity (105 days expanded), Paternity (7 days), Solo Parent (7 days), Bereavement, etc.
 
 ### 11.4 Recruitment & Onboarding
-- ~1,000–1,500 hires per year (including turnover replacement)
+- ~1,200–1,600 hires per year (including turnover replacement)
 - Turnover rate: ~15–20% annually (retail industry standard)
 - Onboarding includes POS training, safety orientation, product knowledge
 
@@ -466,17 +490,17 @@ BuildRight Holdings, Inc.
 
 ## 12. Store Operations
 
-### 12.1 Store Staffing Model (30 per store)
+### 12.1 Store Staffing Model (35 per store)
 
 | Role | Count | Notes |
 |---|---|---|
 | Store Manager | 1 | Overall P&L responsibility |
 | Assistant Store Manager | 1 | Operations and compliance |
 | Department Supervisors | 4 | Lumber, Plumbing/Electrical, Tiles, Tools/Hardware |
-| Sales Associates | 14 | Floor coverage, customer assistance |
-| Cashiers | 4 | Covers 3 POS + 1 float/relief |
+| Sales Associates | 16 | Floor coverage, customer assistance |
+| Cashiers | 6 | Covers 5 POS + 1 float/relief |
 | Receiving Clerk | 2 | Inbound goods processing |
-| Stockroom / Stock Associate | 2 | Replenishment, inventory counts |
+| Stockroom / Stock Associate | 3 | Replenishment, inventory counts |
 | Customer Service Rep | 1 | Returns, BOPIS pickup, special orders |
 | Maintenance / Utility | 1 | Store upkeep |
 
@@ -484,7 +508,7 @@ BuildRight Holdings, Inc.
 - **Opening Procedures**: Cash float, system login, store walkthrough
 - **Daily Operations**: Replenishment from backroom, price checks, customer service
 - **Receiving**: Match PO → Delivery Receipt → Goods Receipt in system
-- **Cycle Counting**: Daily count of assigned sections (~500 SKUs/day rolling)
+- **Cycle Counting**: Daily count of assigned sections (~700 SKUs/day rolling)
 - **Price Management**: Price changes applied centrally; RF guns for shelf label updates
 - **Promotions**: Managed centrally by merchandising; auto-applied at POS
 - **Returns**: Processed at customer service counter; restock or return-to-vendor
@@ -495,13 +519,17 @@ BuildRight Holdings, Inc.
 
 | KPI | Target |
 |---|---|
-| Sales per Store per Month | PHP 18M |
-| Sales per Sqm per Year | PHP 100,000 |
+| Sales per Store per Month | ~PHP 25M |
+| Sales per Sqm per Year | ~PHP 22,000–28,000 |
 | Gross Margin % | 28–32% |
 | Inventory Turns | 8–10x per year |
 | Shrinkage / Loss | < 1.5% of sales |
 | Customer Satisfaction Score | ≥ 85% |
 | On-time Replenishment | ≥ 95% |
+
+> **Sales/sqm benchmark**: At ~PHP 25,000/sqm/year, BuildRight aligns with Philippine
+> big-box home improvement retail norms. The previously stated PHP 100,000/sqm would
+> correspond to department store / mall formats, not warehouse retail.
 
 ---
 
@@ -558,7 +586,7 @@ BuildRight Holdings, Inc.
 | **Inventory Management** | Real-time perpetual inventory across all locations |
 | **Procurement** | Automated PO generation, 3-way match, vendor portal |
 | **Warehouse Management** | RF-directed putaway/pick, cycle count, lot/serial tracking |
-| **POS / Retail** | 600 terminals, offline capable, multi-tender, loyalty integration |
+| **POS / Retail** | 1,000 terminals, offline capable, multi-tender, loyalty integration |
 | **Ecommerce** | BOPIS + delivery, real-time inventory & price sync |
 | **Supply Chain Planning** | Demand forecasting, ROP/EOQ, replenishment planning |
 | **HR & Payroll** | Philippine statutory compliance (SSS, PhilHealth, Pag-IBIG, BIR) |
@@ -591,29 +619,29 @@ BuildRight Holdings, Inc.
 
 | Metric | Monthly | Annual |
 |---|---|---|
-| POS Transactions | 2,000,000 | 24,000,000 |
-| POS Line Items | 8,000,000 | 96,000,000 |
-| Purchase Orders | 1,000 | 12,000 |
-| Purchase Order Lines | 15,000 | 180,000 |
-| Store Replenishment Orders | ~3,500 | ~42,000 |
-| Goods Receipts (Inbound) | ~4,500 | ~54,000 |
-| Ecommerce Orders | ~5,000 | ~60,000 |
-| AR Invoices | ~3,000 | ~36,000 |
-| AP Invoices | ~5,500 | ~66,000 |
-| Journal Entries (Auto) | ~10,000 | ~120,000 |
+| POS Transactions | 2,800,000 | 33,600,000 |
+| POS Line Items | 11,200,000 | 134,400,000 |
+| Purchase Orders | 1,200 | 14,400 |
+| Purchase Order Lines | 18,000 | 216,000 |
+| Store Replenishment Orders | ~5,000 | ~60,000 |
+| Goods Receipts (Inbound) | ~6,000 | ~72,000 |
+| Ecommerce Orders | ~45,000 | ~540,000 |
+| AR Invoices | ~3,500 | ~42,000 |
+| AP Invoices | ~6,500 | ~78,000 |
+| Journal Entries (Auto) | ~12,000 | ~144,000 |
 | Payroll Runs | 10 (5 entities × 2) | 120 |
 
 ### 15.2 Master Data
 
 | Master | Records |
 |---|---|
-| Items / SKUs | 35,000 (20,000 active) |
-| Customers (B2C Loyalty) | 500,000 |
+| Items / SKUs | 55,000 (35,000 active) |
+| Customers (B2C Loyalty) | 600,000 |
 | Customers (B2B Trade) | 5,000 |
 | Customers (B2B Corporate) | 200 |
 | Vendors / Suppliers | 1,000 |
 | Locations (Stores + DCs + HQ) | 206 |
-| Employees | 6,700 |
+| Employees | ~8,050 |
 | Chart of Accounts | ~500–800 per entity |
 | GL Accounts (consolidated) | ~2,000–3,000 |
 
@@ -627,7 +655,7 @@ BuildRight Holdings, Inc.
 | Month-end close | Within 5 working days |
 | System uptime (POS) | 99.9% |
 | System uptime (back office) | 99.5% |
-| Concurrent users (peak) | ~800–1,000 |
+| Concurrent users (peak) | ~1,000–1,500 |
 | Data retention | 7 years (BIR requirement) |
 
 ---
@@ -647,7 +675,7 @@ BuildRight Holdings, Inc.
 | **Build-Operate-Transfer (BOT)** | If any government project sales |
 | **Customs / Tariff** | Import duty calculations, customs brokerage integration |
 | **Anti-Red Tape Authority (ARTA)** | Business permit renewal compliance |
-|**Bangko Sentral ng Pilipinas (BSP)**| Foreign exchange, cross-border payments |
+| **Bangko Sentral ng Pilipinas (BSP)** | Foreign exchange, cross-border payments |
 
 ---
 
@@ -655,14 +683,14 @@ BuildRight Holdings, Inc.
 
 1. **Multi-entity, multi-location readiness** out of the box
 2. **Philippine localization**: BIR, SSS, PhilHealth, Pag-IBIG compliance
-3. **High-volume POS**: 2M transactions/month across 600 terminals
-4. **Real-time inventory visibility** across 200 stores + 4 DCs
+3. **High-volume POS**: 2.8M transactions/month across 1,000 terminals
+4. **Real-time inventory visibility** across 200 stores + 5 DCs
 5. **Ecommerce integration**: Seamless BOPIS + delivery fulfillment
 6. **Scalability**: From 200 to potentially 300+ stores
 7. **Offline POS resilience**: Stores must sell during outages
 8. **Intercompany automation**: 5-entity consolidation
 9. **Supply chain optimization**: Demand planning, auto-replenishment
-10. **User adoption**: ~6,700 users across varying tech literacy levels
+10. **User adoption**: ~8,050 users across varying tech literacy levels
 
 ---
 
@@ -690,4 +718,4 @@ BuildRight Holdings, Inc.
 
 ---
 
-*Document Version: 1.0 | Date: 2026-05-29 | Status: Initial Draft*
+*Document Version: 2.0 | Date: 2026-05-29 | Status: Revised — adjusted volumes, SKUs, DCs, and POS per realism review*

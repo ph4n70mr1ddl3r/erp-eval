@@ -236,7 +236,9 @@
 | NFR-013 | Disaster Recovery | RPO ≤ 1 hour; RTO ≤ 4 hours for core; POS must operate offline 8+ hours with automatic sync reconciliation upon reconnection |
 | NFR-014 | Data Migration | Tools/process for migrating from legacy accounting, POS, payroll, and inventory data |
 | NFR-015 | Batch Processing Windows | Month-end close, payroll runs, and bulk report generation must complete within defined off-peak windows (see [Data Volumes §5](data-volumes-and-integrations.md#5-batch-processing-windows)) |
+| NFR-016 | Data Privacy Breach Response | Must Have | Automated breach register, NPC notification workflow, forensic audit trail, data subject notification capability per RA 10173 |
+| NFR-017 | LGU Business Permit Tracking per Location | Must Have | Per-location permit calendar, renewal alerting, permit document storage, and permit status dashboard for 200+ LGU jurisdictions |
 
 ---
 
-*Document Version: 1.4 | Date: 2026-05-30 | Added FIN-016–019, INV-016–018, PUR-013–015, POS-019, ECOM-011–012, CRM-008; expanded POS-015*
+*Document Version: 1.5 | Date: 2026-05-30 | Added NFR-016 (Data Privacy Breach Response per RA 10173), NFR-017 (LGU Business Permit Tracking per Location); previous: FIN-016–019, INV-016–018, PUR-013–015, POS-019, ECOM-011–012, CRM-008; expanded POS-015*

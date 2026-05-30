@@ -121,7 +121,7 @@ The company operates through **5 legal entities** organized as follows:
 - **Human Resources**: Recruitment, compensation, training, payroll (~16)
 - **Marketing**: Brand, promotions, ecommerce, digital, content (~23)
 - **Store Operations**: Regional managers, operations standards, facilities coordination (~23)
-- **Legal & Compliance**: Corporate secretary, regulatory (~5)
+- **Legal & Compliance**: Corporate secretary, regulatory, data protection officer (~7)
 - **Internal Audit**: (~5)
 - **Customer Service / Call Center**: (~30)
 
@@ -133,10 +133,10 @@ The company operates through **5 legal entities** organized as follows:
 |---|---|
 | Store Personnel | 7,000 (200 stores × 35) |
 | Distribution Center Personnel | ~750 (5 DCs × ~150) |
-| Corporate HQ Personnel | ~310 |
-| **Total Company Headcount** | **~8,060** |
+| Corporate HQ Personnel | ~320 |
+| **Total Company Headcount** | **~8,070** |
 
-> **Revenue per employee**: ~PHP 7.7M/year — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (35 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further.
+> **Revenue per employee**: ~PHP 7.7M/year (~PHP 62.3B ÷ ~8,070) — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (35 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further. HQ headcount of ~320 includes DPO (W53) and Regulatory Officer (W54) required for Philippine regulatory compliance.
 
 ---
 
@@ -421,7 +421,7 @@ The company operates through **5 legal entities** organized as follows:
 
 | Parameter | Value |
 |---|---|
-| **Monthly Vendor Invoices** | ~6,000–7,000 |
+| **Monthly Vendor Invoices** | ~6,000–7,000 (merchandise); ~8,500–9,500 total incl. non-PO recurring expenses (W7c) |
 | **Payment Terms (Typical)** | Net 30, Net 60 |
 | **Payment Methods** | Check, bank transfer, LC (imports) |
 | **3-Way Match** | Required for all PO-based purchases (PO → GR → Invoice) |
@@ -741,4 +741,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.7 | Date: 2026-05-30 | Wave 10: updated PO count to distinguish merchandise vs. total; updated HQ department headcounts for IT, HR, Marketing, Store Ops, and Supply Chain per W47–W52 additions; HQ headcount ~310 (from ~300), total ~8,060*
+*Document Version: 2.8 | Date: 2026-05-30 | Wave 11: expanded Legal & Compliance to ~7 (DPO + Regulatory Officer per W53/W54); HQ headcount ~320, total ~8,070; reconciled AP invoice volume to include non-PO recurring expenses*

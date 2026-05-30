@@ -63,6 +63,7 @@ Each workflow follows this format:
 - Vendor contract and pricing reference (W1.5)
 - Store communication / bulletin system (W1.8)
 - Product content coordination: when new SKUs are created or item attributes change (W1.7), Merchandise Planner or Marketing coordinates product content (photos, specifications, dimensions, how-to guides) for publishing to the ecommerce platform via PIM integration or manual upload
+- Sample / demo inventory management: system supports a 'Sample/Demo' inventory status for display items (tile gallery boards, appliance demo units, tool displays) tracked separately from saleable stock; samples excluded from available inventory and replenishment calculations but included in inventory valuation; quarterly review by Department Supervisor identifies samples for markdown sale, vendor return, or scrap; display refresh planned as part of W1 assortment review
 
 ### Staffing Implication
 5 Category Managers each handling ~2 categories per quarterly cycle = manageable at ~18 hours/category. The 3 Pricing Analysts handle data pulls and analysis in parallel. 10–12 Buyers handle vendor validation. Current team of ~40 in Merchandising is adequate.
@@ -247,6 +248,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Goods Receipt posting → inventory update (W3.7)
 - Putaway direction (zone, bin, velocity-based) (W3.8)
 - Cross-dock allocation to outbound orders (cross-dock variant)
+- DC forward-pick zone replenishment: system monitors forward-pick (fast-pick) location quantities in real-time; when quantity drops below minimum threshold, generates replenishment task (move from reserve/bulk storage to forward-pick); replenishment staff receives task on RF device, moves stock, scan-confirms at both locations; replenishment prioritized ahead of picking waves to avoid picker idle time (W3.8 post-putaway, integrated with W4 picking)
 
 ### Staffing Implication
 - Per DC: 3–4 Receiving Clerks (handling ~40 receipts/day in shifts, ~1.5–3 hrs each)
@@ -369,6 +371,8 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 1 | Announce closing; last customers checked out | Cashier | Store Manager | 15 min |
 | 2 | Run Z-report on each POS terminal (sales summary by tender type) | Cashier | Store Manager | 5 min/terminal |
 | 3 | Count physical cash in each drawer; compare to Z-report | Cashier | Store Manager | 10 min/terminal |
+| 3a | System auto-imports or Cashier retrieves electronic payment settlement reports from card acquirer and e-wallet providers (GCash, Maya) for the day; compares Z-report totals per tender type (credit/debit card, e-wallet) against settlement reports | System / Cashier | Store Manager | Automated + 5 min review |
+| 3b | If variance between Z-report electronic totals and settlement reports: Cashier flags discrepancy; Store Manager investigates (chargebacks, pending settlements, processing fees, failed transactions); system logs variance with tender type and amount | Cashier / Store Manager | Store Manager | 10 min if any |
 | 4 | Investigate and document any cash variance > PHP 200 | Store Manager | Store Manager | 10 min if any |
 | 5 | Prepare cash deposit (cash + checks); secure in safe | Cashier | Store Manager | 10 min |
 | 6 | Log out of POS; shut down terminals | Cashier | Store Manager | 5 min |
@@ -392,6 +396,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Age-restricted product prompts (W5b.9)
 - Z-report generation (W5c.2)
 - Cash reconciliation / variance reporting (W5c.3–4)
+- Electronic payment reconciliation: automated import of card acquirer and e-wallet settlement reports; comparison to Z-report by tender type; variance alerting (W5c.3a–b)
 - Daily sales dashboard (W5c.7)
 
 ### Staffing Implication
@@ -467,6 +472,8 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 7a | System identifies invoices eligible for early payment discount (e.g., 2/10 Net 30); displays discount amount, discount deadline, and annualized return on taking discount; Treasury Analyst includes discount opportunities in weekly cash flow planning (W30 step 8); AP Supervisor prioritizes discounted invoices in payment run when Treasury authorizes | System / AP Supervisor | CFO | 15 min/review |
 | 8 | AP Supervisor reviews AP aging weekly; prioritize payments by due date and vendor relationship | AP Supervisor | CFO | 2 hours/week |
 | 9 | Twice-weekly payment run: system generates payment file (checks, bank transfers) | AP Clerk | AP Supervisor | 1 hour/run |
+| 9a | System calculates Expanded Withholding Tax (EWT) per vendor invoice based on configured Alphanumeric Tax Code (ATC) in vendor master (e.g., WI010 for purchases of goods at 1%, WI020 for services at 2%, WC010 for rentals at 5%); net payment to vendor = invoice amount − EWT; system posts EWT to Withholding Tax Payable (liability); AP Clerk validates EWT computation before payment run | System / AP Clerk | AP Supervisor | Automated + 15 min validation/run |
+| 9b | Vendor credit memo processing: AP Clerk receives vendor credit note (mail, email, portal); selects source — RTV reference (W3.6a), rebate settlement (W27.9), price protection (W40.11), or manual entry; system attempts auto-match to original PO/invoice/RTV; AP Clerk posts credit memo: system reduces vendor balance and posts to GL (Dr. Accounts Payable / Cr. COGS or appropriate expense); if vendor has open invoices, system applies credit memo against oldest open invoice; if net vendor credit balance results, AP Clerk decides to request refund, apply to next invoice, or offset | AP Clerk | AP Supervisor | 10 min/credit memo |
 | 10 | Treasury reviews and approves payment batch; transmits to bank | Treasury Analyst | CFO | 30 min/run |
 | 11 | System posts payment; updates vendor balance | System | — | Automated |
 
@@ -481,6 +488,8 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Early payment discount detection: system identifies invoices eligible for discount, calculates annualized ROI, and highlights during payment run (W7.7a)
 - AP aging report (W7.8)
 - Payment file generation (bank formats) (W7.9–10)
+- Expanded Withholding Tax (EWT): auto-computation per ATC in vendor master, net payment calculation (invoice − EWT), EWT Payable tracking, BIR 1601-E file generation (W7.9a)
+- Vendor credit memo processing: credit note entry with source reference (RTV, rebate, price protection), auto-matching to original transactions, automatic application to open invoices, credit balance management (W7.9b)
 
 ### Staffing Implication
 - **8–10 AP Clerks**: 217 invoices/day × 5 min (logging) = ~18 hours for basic processing. With ~20% requiring manual resolution at 25 min each = ~20 additional hours. Total ~38 hours/day. With 8 clerks that's ~5 hours each. Reasonable with payment runs and other duties.
@@ -506,6 +515,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 1 | Customer purchase on trade/corporate account; invoice created at POS or by Sales Rep | Cashier / Sales Rep | Department Supervisor | Part of sale |
 | 2 | System posts AR invoice; updates customer balance | System | — | Automated |
 | 3 | System checks customer credit limit; blocks further sales if exceeded | System | AR Supervisor | Automated |
+| 3a | Credit hold override: if sales rep or Store Manager requests sale despite credit block, system prompts for authorizer and reason; override requires AR Supervisor approval for up to 110% of credit limit, Finance Manager approval for up to 130%; override logged with customer ID, authorizer, overridden amount, reason, and 24-hour validity; system counts overridden amount against credit exposure for monitoring | Sales Rep / AR Supervisor / Finance Manager | Finance Manager | 5 min/override |
 | 4 | AR Clerk sends monthly statement to each active account (1st of month) | AR Clerk | AR Supervisor | 4 hours/month (batch) |
 | 5 | AR Clerk reviews aging report weekly; flags accounts > 30 days past due | AR Clerk | AR Supervisor | 1 hour/week |
 | 6 | For 30-day overdue: AR Clerk contacts customer (phone/email) for follow-up | AR Clerk | AR Supervisor | 15 min/account |
@@ -517,6 +527,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 ### System Touchpoints
 - AR invoice creation from POS/sales order (W8.1–2)
 - Real-time credit limit check (W8.3)
+- Credit hold override with tiered authorization, audit trail, and automatic expiry (W8.3a)
 - Aging report generation (W8.5)
 - Customer statement generation (W8.4)
 - Payment application and matching (W8.9)
@@ -562,6 +573,8 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 14 | Generate consolidated financial statements (5 entities) | System / Chief Accountant | CFO | 30 min |
 | 15 | CFO reviews consolidated statements; queries variances | CFO | CFO | 1 hour |
 | 16 | Tax Accountant prepares VAT return (BIR 2550M) and withholding tax returns (1601-E, 1601-C) | Tax Accountant | CFO | 3 hours |
+| 16a | EWT remittance: Tax Accountant generates EWT remittance file (BIR 1601-E) from accumulated Withholding Tax Payable per vendor per ATC; reconciles to vendor remittance list; transmits to BIR via eFPS; system posts remittance (Dr. Withholding Tax Payable / Cr. Cash) | Tax Accountant | CFO | 1 hour |
+| 16b | Inventory net realizable value (NRV) review: Cost Accountant runs inventory aging report (days since last sale); for slow-moving items (> 180 days), system compares WAC to estimated NRV (clearance price × sell-through probability); Cost Accountant proposes write-down per SKU where NRV < cost; Controller approves write-downs > PHP 50,000; system posts Dr. Inventory Write-Down Expense / Cr. Inventory Provision (contra-asset); if item later sells above written-down value, system reverses provision on sale | Cost Accountant / Controller | Controller | 2 hours |
 | 17 | Final close: lock period in system | Controller | CFO | 15 min |
 
 **Target**: Close within 5 working days of month-end
@@ -589,6 +602,8 @@ Additional steps on top of month-end close (December):
 - Multi-entity financial statement generation (W9a.12–14)
 - Period lock / close controls (W9a.17)
 - BIR tax form generation (W9a.16)
+- EWT remittance file generation per BIR 1601-E with per-vendor per-ATC breakdown; eFPS transmission (W9a.16a)
+- Inventory NRV review: aging by days-since-last-sale, NRV calculator, write-down journal entry with approval, provision reversal on subsequent sale (W9a.16b)
 
 ### Staffing Implication
 - **Controller**: Owns the close process. 1 person sufficient with support.
@@ -792,6 +807,7 @@ Additional steps on top of month-end close (December):
 - Clearance pricing with POS flag and disclaimer enforcement (W13.9a)
 - Post-clearance inventory disposition tracking (W13.9b)
 - Digital coupon / online promo code management: creation of coupon codes with validity dates, usage limits, and channel restrictions (in-store, online, or both); redemption tracking across channels; synchronization with ecommerce platform (W13.2, W13.5)
+- Pricing conflict resolution rules: (1) If a regular price change (W40) occurs during an active promotion, the promo price is NOT automatically adjusted — promo overrides regular price for the promo period. (2) If a new promotion starts and the regular price has changed since the promo was set up, the system alerts the Pricing Analyst to recalculate the promo price from the new base. (3) If two promotions overlap for the same SKU, system applies the lower price (customer-friendly) and alerts Pricing Analyst to investigate. (4) Post-promotion: system reverts to the CURRENT regular price, not the price active when the promo was created
 
 ### Staffing Implication
 - **3 Pricing Analysts**: 6 major promos + 12 monthly cycles = ~18 events/year. Each event requires ~6–8 hours of setup + 30 min/day monitoring during the promo period + 2 hours post-analysis. With staggered events, 3 analysts can handle this alongside regular price maintenance.
@@ -951,14 +967,15 @@ Additional steps on top of month-end close (December):
 | 1 | Customer signs up for loyalty program (in-store, online, or via app) | Customer / CSR | Loyalty Manager | 3 min (in-store) |
 | 2 | System creates loyalty account with tier status (Bronze default); captures data privacy consent flag with purpose, date, and consent version per RA 10173 (Data Privacy Act) | System | — | Automated |
 | 3 | At each POS transaction, cashier scans loyalty card or enters mobile number | Cashier | — | 15 sec |
-| 4 | System calculates points earned (1 point per PHP 100 spent) and updates balance | System | — | Automated |
+| 4 | System calculates points earned (1 point per PHP 100 spent) and updates balance; per PFRS 15, system allocates transaction revenue between product revenue and loyalty deferred revenue based on relative standalone selling price of points (Dr. Cash or Accounts Receivable / Cr. Revenue for product portion, Cr. Deferred Revenue — Loyalty Points for points portion) | System | — | Automated |
 | 5 | Customer checks points balance via app, receipt, or in-store kiosk | Customer | — | Self-service |
 | 6 | At checkout, customer requests points redemption; cashier selects redemption option | Cashier | — | 30 sec |
-| 7 | System validates sufficient points; converts to peso value; applies as discount | System | — | Automated |
+| 7 | System validates sufficient points; converts to peso value; applies as discount; system recognizes deferred revenue proportionally for redeemed points (Dr. Deferred Revenue — Loyalty Points / Cr. Revenue) | System | — | Automated |
 | 8 | Monthly: Loyalty Manager reviews tier movement (upgrade/downgrade based on trailing 12-month spend) | System | Loyalty Manager | Automated + 1 hour review |
 | 9 | Monthly: generate loyalty program report (enrollment, active rate, points liability, redemption rate) | System | Loyalty Manager | 30 min |
 | 10 | Quarterly: Loyalty Manager plans double-points weekends and member-exclusive promos | Loyalty Manager | CMO | 2 hours/quarter |
-| 11 | Annual: points expiry batch run (points unused after 24 months expire) | System | Loyalty Manager | Automated |
+| 11 | Annual: points expiry batch run (points unused after 24 months expire); system recognizes breakage revenue from expired points (Dr. Deferred Revenue — Loyalty Points / Cr. Revenue) | System | Loyalty Manager | Automated |
+| 11a | Monthly: Cost Accountant estimates total loyalty liability (outstanding points × redemption value × expected redemption rate based on trailing 12-month actual redemption data); reconciles to deferred revenue balance on balance sheet; adjusts deferred revenue if estimate differs from recorded balance | Cost Accountant | Controller | 30 min/month |
 
 ### System Touchpoints
 - Loyalty enrollment (in-store, online, app) (W17.1–2)
@@ -967,7 +984,8 @@ Additional steps on top of month-end close (December):
 - Points redemption at POS as payment method (W17.6–7)
 - Tier auto-calculation based on trailing spend (W17.8)
 - Loyalty analytics dashboard (W17.9)
-- Scheduled points expiry (W17.11)
+- Scheduled points expiry with breakage revenue recognition (W17.11)
+- Loyalty deferred revenue: allocation at POS earning (PFRS 15), proportional recognition at redemption, breakage recognition at expiry, monthly liability estimation and reconciliation (W17.4, W17.7, W17.11, W17.11a)
 
 ### Staffing Implication
 - **1 Loyalty Manager** (within Marketing): Day-to-day program management is largely automated. Monthly reviews and quarterly promo planning = ~5 hours/month. One person within the 20-person Marketing team handles this alongside other duties.
@@ -1014,6 +1032,7 @@ Additional steps on top of month-end close (December):
 - DR capture and linking to PO for AP matching (W18.7, W18.9)
 - 3-way match including store-level GR (W18.9)
 - Real-time inventory visibility for DSD items (W18.6)
+- DSD GRNI follow-up: for DSD-related GRNI exceptions at month-end (W9a.2a), AP Clerk contacts the store Receiving Clerk who processed the original GR (W18.3) to confirm received quantities and resolve discrepancies with the vendor
 
 ### Staffing Implication
 - **2 Receiving Clerks per store** (already in staffing model): DSD adds 2–3 additional receiving events per week (~3–6 hours). Combined with DC replenishment receiving (2–3 trucks/week) and BOPIS, the 2 clerks in alternating shifts can handle the load. No additional headcount needed.
@@ -2032,10 +2051,32 @@ Shrinkage target: < 1.5% of sales (~PHP 75M/month at risk). Exception-based repo
 - Full price history with audit trail (W40.9)
 - Price change analytics (W40.10)
 - Integration with W13 (promotional pricing — regular and promo prices coexist with date ranges)
+- Price protection / retroactive cost adjustment: vendor announces retroactive cost reduction; system calculates credit due based on quantities purchased between effective date and now; generates vendor credit memo (W7.9b); revalues on-hand inventory to new cost if retroactive scope applies; posts difference as reduction in COGS (W40.11)
 
 ### Staffing Implication
 - **3 Pricing Analysts**: 200–500 changes/month × 5 min/SKU (entry) + 2–4 hours per vendor notice (analysis) = ~60–80 hours/month. With 3 analysts that's ~20–25 hours each. This is a core part of their role alongside promotional pricing (W13). Current team of 3 is adequate.
 - **Department Supervisors (stores)**: Shelf tag updates are the most labor-intensive step. With 10–25 price changes/day chain-wide, most stores see only a few changes per week. Shelf tag updates take ~30–60 min per batch. Absorbed into daily opening routine.
+
+---
+
+### Price Protection / Retroactive Cost Adjustment
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vendor announces retroactive price reduction (price protection) |
+| **Frequency** | Occasional — typically quarterly when commodity-linked vendors adjust prices |
+| **Volume** | ~10–20 price protection events/year; concentrated in lumber, cement, steel, paint categories |
+| **Owner** | Buyer |
+| **Participants** | Buyer, Category Manager, AP Clerk, Cost Accountant, Pricing Analyst |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 11 | Buyer receives vendor price protection notice: new lower cost with effective date (possibly retroactive); enters in system: vendor, SKU(s), old cost, new cost, effective date, scope (future only vs. retroactive) | Buyer | Category Manager | 15 min/event |
+| 12 | If retroactive: system calculates credit due based on quantities purchased between effective date and now; generates vendor credit memo per W7.9b | System | Cost Accountant | Automated |
+| 13 | If on-hand inventory exists at old cost: system revalues on-hand inventory to new cost; posts difference (Dr. Accounts Payable / Cr. COGS or Inventory) | System / Cost Accountant | Controller | Automated + 15 min review |
+| 14 | Buyer communicates new cost to Pricing Analyst for SRP review per standard W40 process | Buyer | Category Manager | Per W40 |
 
 ---
 
@@ -2336,6 +2377,44 @@ Shrinkage target: < 1.5% of sales (~PHP 75M/month at risk). Exception-based repo
 
 ---
 
+## W46. Kit / Bundle Assembly & Disassembly
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Kit demand (auto-assembly) or planned batch assembly schedule |
+| **Frequency** | ~200–400 kit assemblies/month across DCs; primarily tool sets, bathroom combo kits, paint starter kits |
+| **Volume** | ~50–100 active kit SKUs |
+| **Owner** | DC Supervisor |
+| **Participants** | Merchandise Planner (BOM setup), DC Assembly Staff, DC Supervisor |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Merchandise Planner defines kit Bill of Materials (BOM) in item master: kit SKU + component SKUs with quantities per unit; kit item type = 'Kit / Bundle' | Merchandise Planner | Category Manager | 15 min/kit |
+| 2 | Assembly triggered by: (a) demand-driven — system auto-generates assembly order when kit is ordered (ecommerce) or picked (store replenishment) but insufficient kit stock exists, or (b) planned batch — DC Supervisor schedules weekly assembly of popular kits based on forecast | System / DC Supervisor | DC Supervisor | 5 min |
+| 3 | System creates assembly order: lists required component quantities; checks component availability at DC; reserves components against assembly order | System | — | Automated |
+| 4 | If component shortage: DC Supervisor alerts Buyer for expedited replenishment or suggests substitution (with Merchandise Planner approval) | DC Supervisor | Supply Planning Manager | 10 min |
+| 5 | Assembly Staff picks components from DC bins per assembly order; scan-confirms each component | Assembly Staff | DC Supervisor | 10–30 min/kit |
+| 6 | Assembly Staff assembles kit (physical packaging, labeling, shrink-wrap); applies kit barcode label | Assembly Staff | DC Supervisor | 5–15 min/kit |
+| 7 | System consumes component inventory (decreases) and creates kit inventory (increases); kit cost = sum of component WAC at time of assembly | System | — | Automated |
+| 8 | Kit received into finished goods storage location in DC; available for picking and shipping | Assembly Staff | DC Supervisor | 5 min |
+| 9 | Kit disassembly (if components needed individually): DC Supervisor initiates disassembly order; system reverses process — consumes kit inventory, restores component inventory at original component WAC; disassembly labor posted to overhead | DC Supervisor | DC Manager | 10 min |
+
+### System Touchpoints
+- Kit BOM definition in item master with component quantities (W46.1)
+- Assembly order auto-generation triggered by demand or planned schedule (W46.2–3)
+- Component availability check and reservation against assembly order (W46.3)
+- Component consumption and kit creation with automatic costing (W46.5–7)
+- Kit disassembly with component restoration (W46.9)
+- Kit inventory tracked separately from components; kit excluded from ROP/replenishment (assembled on demand)
+
+### Staffing Implication
+- **DC Assembly Staff**: ~200–400 assemblies/month × 20 min average = ~70–130 hours/month. With 5 DCs, that's ~15–25 hours/DC/month. Absorbed by existing DC staff (within ~150/DC) as a scheduled weekly activity.
+- **Merchandise Planner**: ~50–100 active kits × initial setup + occasional BOM updates = ~4–6 hours/month. Absorbed.
+
+---
+
 ## Workflow-to-System Touchpoint Map
 
 Summary of which ERP modules support which workflows:
@@ -2343,20 +2422,20 @@ Summary of which ERP modules support which workflows:
 | ERP Module | Workflows Supported |
 |---|---|
 | **POS / Retail** | W5 (store selling, offline recovery), W12 (returns), W17 (loyalty at POS), W18 (DSD receiving), W23 (consignment sale), W28 (gift card/store credit), W29 (recall blocking), W33 (warranty claims), W38 (special order deposit) |
-| **Inventory Management** | W3 (GR posting), W4 (replenishment), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD GR), W20 (VMI stock), W22 (transfers), W23 (consignment tracking), W29 (recall quarantine), W37 (shrinkage tracking), W42 (annual physical inventory) |
+| **Inventory Management** | W3 (GR posting), W4 (replenishment), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD GR), W20 (VMI stock), W22 (transfers), W23 (consignment tracking), W29 (recall quarantine), W37 (shrinkage tracking), W42 (annual physical inventory), W46 (kit assembly/disassembly) |
 | **Procurement** | W2 (PO cycle), W3 (receiving vs. PO), W18 (DSD PO/GR), W20 (VMI ASN), W21 (capex PO), W36 (vendor onboarding), W38 (special order PO) |
-| **Warehouse Management** | W3 (putaway, cross-dock), W4 (pick/pack/ship), W19 (home delivery pick/pack), W22 (transfer pick), W42 (DC count) |
-| **Financials (GL/AP/AR)** | W7 (AP), W8 (AR), W9 (close), W14 (intercompany), W21 (capex & FA), W24 (credit approval), W25 (petty cash), W26 (budget), W27 (rebates), W28 (gift card liability), W30 (treasury & cash management), W39 (asset disposal), W42 (inventory adjustments) |
+| **Warehouse Management** | W3 (putaway, cross-dock, forward-pick replenishment), W4 (pick/pack/ship), W19 (home delivery pick/pack), W22 (transfer pick), W42 (DC count), W46 (kit assembly) |
+| **Financials (GL/AP/AR)** | W7 (AP, EWT, vendor credit memos), W8 (AR, credit hold override), W9 (close, NRV review), W14 (intercompany), W21 (capex & FA), W24 (credit approval), W25 (petty cash), W26 (budget), W27 (rebates), W28 (gift card liability), W30 (treasury & cash management), W39 (asset disposal), W42 (inventory adjustments) |
 | **Supply Chain Planning** | W2a (auto-replenishment), W4 (replenishment calculation), W22 (transfer planning), W27 (rebate accrual triggers), W31 (demand forecasting), W32 (seasonal buy planning) |
 | **HR & Payroll** | W10 (payroll), W15 (onboarding), W34 (shift scheduling), W43 (separation & offboarding) |
 | **Ecommerce** | W11 (BOPIS order flow), W12b (online returns), W19 (home delivery fulfillment) |
 | **CRM / Loyalty** | W17 (loyalty program), W24 (credit application), W41 (complaint management) |
-| **Pricing / Merchandising** | W13 (promotions), W27 (vendor rebates), W40 (regular price changes) |
-| **Master Data** | W1 (SKU lifecycle), W16 (new store/location creation), W20 (VMI item setup), W23 (consignment item setup), W36 (vendor onboarding), W38 (non-stock item creation) |
+| **Pricing / Merchandising** | W13 (promotions, pricing conflict rules), W27 (vendor rebates), W40 (regular price changes, price protection) |
+| **Master Data** | W1 (SKU lifecycle, sample/demo inventory), W16 (new store/location creation), W20 (VMI item setup), W23 (consignment item setup), W36 (vendor onboarding), W38 (non-stock item creation), W46 (kit BOM) |
 | **Reporting / Analytics** | W1 (assortment analysis), W9 (financial statements), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget), W26 (budget variance), W27 (rebate ROI), W28 (gift card liability), W29 (recall tracking), W30 (cash flow forecast), W31 (forecast accuracy), W35 (management reporting rhythm), W37 (shrinkage/exception reports), W40 (price change analytics), W41 (complaint analytics), W42 (physical inventory summary), W44 (vendor scorecards) |
 | **Loss Prevention** | W37 (POS exception monitoring, shrinkage tracking) |
 | **Store Lifecycle** | W16 (new store opening), W45 (store closure / relocation) |
 
 ---
 
-*Document Version: 6.0 | Date: 2026-05-30 | Wave 3 gap analysis: added W45 (Store Closure); expanded W5b (lot capture at POS), W7 (early payment discounts), W9a (FX revaluation, GRNI reconciliation), W10 (statutory recon, contractual workers), W14 (IC transfer pricing governance), W17 (consent management), W38 (special order GL treatment), W41 (DSAR handling), W11/W19 (ATP reservation)*
+*Document Version: 7.0 | Date: 2026-05-30 | Wave 4 gap analysis: added W46 (Kit Assembly), W40 price protection sub-section; expanded W1 (sample/demo inventory), W5c (multi-tender reconciliation), W7 (EWT, vendor credit memos), W8 (credit hold override), W9a (EWT remittance, NRV review), W13 (pricing conflict rules), W17 (loyalty deferred revenue PFRS 15), W18 (DSD GRNI follow-up), W3 (forward-pick zone replenishment)*

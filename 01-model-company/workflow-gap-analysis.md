@@ -32,10 +32,11 @@ A Wave 3 independent review subsequently identified **11 additional gaps** (see 
 | **D. Detail gaps in existing workflows** | 3 | ✅ All 3 resolved |
 | **E. Acknowledged non-blocking** | 2 | 🟡 Carried forward (implementation-phase) |
 | **F. Wave 3 gaps (Wave 3 review)** | 11 | ✅ All 11 resolved |
+| **G. Wave 4 gaps (Wave 4 review)** | 12 | ✅ All 12 resolved |
 
 | Metric | Value |
 |---|---|
-| Total workflows | **47** (W1–W45 + W2c + W3b + W5d) |
+| Total workflows | **48** (W1–W46 + W2c + W3b + W5d) |
 | Total requirements | **130+** |
 | Requirements fully covered | **~130 (99%)** |
 | Requirements partially covered | **~1 (1%)** (low-priority, implementation-phase) |
@@ -539,7 +540,7 @@ implementation, not gaps in the evaluation materials.
 
 ---
 
-*Document Version: 6.0 | Date: 2026-05-30 | All 14 + 11 Wave 3 gaps resolved; coverage now 99%; 2 non-blocking items carried forward for implementation phase*
+*Document Version: 7.0 | Date: 2026-05-30 | Wave 4: 12 additional gaps resolved (EWT, NRV, loyalty deferred revenue, multi-tender recon, kit assembly, credit memos, price protection, forward-pick replenishment, pricing conflicts, credit hold override, sample/demo inventory, DSD GRNI follow-up); total workflows now 48*
 
 ---
 

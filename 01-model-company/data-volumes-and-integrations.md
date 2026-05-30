@@ -17,7 +17,8 @@
 | POS Transactions | 93,333 | 2.0x (weekends/sales) | 186,666 |
 | POS Line Items | 373,333 | 2.0x | 746,666 |
 | Store Replenishment Orders | 167 | 1.5x | 250 |
-| Goods Receipts | 200 | 1.5x | 300 |
+| Goods Receipts (DC) | 200 | 1.5x | 300 |
+| DSD Goods Receipts (Store) | ~20 | 1.5x | ~30 |
 | Purchase Orders Created | 40 | 2.0x (batch days) | 80 |
 | AP Invoices Processed | 217 | 2.0x (month-end) | 433 |
 | Ecommerce Orders | 1,500 | 3.0x (sale events) | 4,500 |
@@ -144,4 +145,4 @@
 
 ---
 
-*Document Version: 3.1 | Date: 2026-05-30 | Reconciled ecommerce annual order count (42,900/mo × 12 = ~515,000)*
+*Document Version: 3.2 | Date: 2026-05-30 | Split Goods Receipts into DC and DSD lines in §1.1*

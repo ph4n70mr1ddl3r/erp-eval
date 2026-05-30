@@ -62,6 +62,7 @@ Each workflow follows this format:
 - Item master create/modify with approval workflow (W1.7)
 - Vendor contract and pricing reference (W1.5)
 - Store communication / bulletin system (W1.8)
+- Product content coordination: when new SKUs are created or item attributes change (W1.7), Merchandise Planner or Marketing coordinates product content (photos, specifications, dimensions, how-to guides) for publishing to the ecommerce platform via PIM integration or manual upload
 
 ### Staffing Implication
 5 Category Managers each handling ~2 categories per quarterly cycle = manageable at ~18 hours/category. The 3 Pricing Analysts handle data pulls and analysis in parallel. 10–12 Buyers handle vendor validation. Current team of ~40 in Merchandising is adequate.
@@ -90,7 +91,7 @@ Each workflow follows this format:
 | 4 | Buyer confirms or modifies PO quantities, delivery dates, and DC destinations | Buyer | Category Manager | 1–2 hours/day |
 | 5 | If PO total > PHP 50K: route to Category Manager for approval | Category Manager | Category Manager | 15 min/PO |
 | 6 | If PO total > PHP 500K: route to VP Merchandising for approval | VP Merchandising | VP Merchandising | 15 min/PO |
-| 7 | Approved PO transmitted to vendor (email, EDI, or vendor portal) | System / Buyer | Buyer | Automated |
+| 7 | Approved PO transmitted to vendor (email, EDI, or vendor portal); vendors with portal access can view PO details, confirm delivery dates, and submit invoices through the portal | System / Buyer | Buyer | Automated |
 | 8 | Buyer tracks open POs; follows up on overdue deliveries | Buyer | Buyer | 1 hour/day |
 
 **Total buyer effort**: ~3–5 hours/day for daily PO review and follow-up
@@ -135,10 +136,47 @@ Each workflow follows this format:
 - 3-way match: PO → Goods Receipt → Vendor Invoice (W2b.13)
 - FX rate capture at PO creation (budget rate), goods receipt (spot rate or BSR), and invoice (actual rate); automatic FX gain/loss posting (W2b.12–13)
 
+### W2c. Blanket / Contract Purchase Orders
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual supply agreement negotiation cycle |
+| **Frequency** | ~40–60 active contracts at any time; new contracts and renewals throughout the year |
+| **Volume** | Primarily with top 50 vendors (by spend); typically covers 20–60% of purchasing volume for staple categories (cement, paint, lumber, electrical cable, plumbing fittings) |
+| **Owner** | Buyer |
+| **Participants** | Buyer, Category Manager, VP Merchandising, Finance (budget), Vendor |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Buyer negotiates annual supply agreement with vendor: product range, pricing tiers, minimum/maximum commitment quantities, delivery schedule, payment terms, rebate structure | Buyer | Category Manager | 4–8 hours/vendor |
+| 2 | Category Manager approves contract terms; VP Merchandising approves if total contract value > PHP 5M | Category Manager / VP | VP Merchandising | 30 min |
+| 3 | Finance validates contract commitment against annual purchase budget | Controller | CFO | 30 min |
+| 4 | Buyer creates Blanket PO in system: vendor, SKU lines with contract price, validity period (typically 1 year), min/max commitment quantities, agreed delivery schedule or release parameters | Buyer | Category Manager | 30–60 min |
+| 5 | System enforces contract pricing on all release orders; alerts Buyer if release quantity would exceed maximum commitment | System | — | Automated |
+| 6 | Buyer or system creates Release Order against Blanket PO (per agreed schedule or triggered by ROP): specifies exact quantity and delivery date for this release | Buyer / System | Buyer | 10 min |
+| 7 | Release Order follows standard PO approval (W2a.5–6) if release value exceeds threshold; otherwise auto-approved within contract parameters | System | — | Automated |
+| 8 | Vendor ships per release order; standard receiving (W3) and AP matching (W7) apply | Vendor | Buyer | Per W3/W7 |
+| 9 | System tracks cumulative released quantity and value against contract commitment; Buyer monitors to ensure min-commit targets are met | System | Buyer | Automated |
+| 10 | Monthly: Buyer reviews contract utilization report; identifies contracts below minimum commitment pace (risk of penalty or unfavorable renegotiation) | Buyer | Category Manager | 1 hour/month |
+| 11 | Quarterly: Buyer and Category Manager evaluate contract performance vs. spot buying; decide renewal, renegotiation, or termination | Buyer + Category Manager | VP Merchandising | 2 hours/quarter |
+| 12 | At contract expiry: system alerts Buyer 60 days before; if not renewed, system blocks further release orders | System | — | Automated |
+
+**Contract coverage**: ~40–60 active blanket/contract POs at any time, representing ~45% of annual COGS (aligned with top-20 vendor concentration)
+
+### System Touchpoints
+- Blanket/contract PO creation with SKU lines, pricing tiers, validity dates, and commitment quantities (W2c.4)
+- Contract pricing enforcement on release orders (W2c.5)
+- Release order creation against blanket PO with quantity tracking (W2c.6–7)
+- Cumulative commitment tracking: released vs. minimum vs. maximum (W2c.9)
+- Contract utilization reporting (W2c.10)
+- Contract expiry alerting with release order blocking (W2c.12)
+- Integration with W27 (vendor rebates — rebates may be tied to contract commitment achievement)
+
 ### Staffing Implication
-- **10–12 Buyers**: ~60 POs/day ÷ ~15 min review each = 15 hours/day. With 10 buyers that's 1.5 hours each for PO work, plus follow-ups. Reasonable with other duties.
-- **1 Import Coordinator**: 20–30 active import POs at any time (45–90 day lead times). Each requires ~30 min/day tracking = 10–15 hours/week. One coordinator is sufficient.
-- **2–3 Treasury Analysts** (in Finance): Handle LC opening, payment runs, and reconciliation alongside other AP duties.
+- **Buyers**: 40–60 contracts ÷ 10–12 buyers = ~4–5 contracts each. Monthly review adds ~1 hour/buyer/month. Quarterly evaluation adds ~2 hours/buyer/quarter. Absorbed within existing team.
+- No incremental headcount beyond existing Buyer and Finance teams.
 
 ---
 
@@ -162,7 +200,7 @@ Each workflow follows this format:
 | 4 | Scan/verify each item against PO: SKU, quantity, lot/batch (if applicable) | Receiving Clerk | DC Supervisor | 20–40 min |
 | 5 | Quality check on sampled items (damage, correctness, expiry if applicable) | Quality Checker | DC Supervisor | 10–20 min |
 | 6 | If discrepancy (shortage, damage, wrong item): flag in system; notify Buyer | Receiving Clerk | DC Supervisor | 5 min |
-| 6a | If damaged goods: Receiving Clerk creates damage report with photos; initiates one of: (a) Return to Vendor (RTV) via Buyer, (b) scrap with DC Supervisor authorization, or (c) insurance claim for insured shipments | Receiving Clerk | DC Supervisor | 10 min |
+| 6a | If damaged goods: Receiving Clerk creates damage report with photos; initiates one of: (a) Return to Vendor (RTV) via Buyer, (b) scrap with DC Supervisor authorization, or (c) insurance claim for insured shipments. For insurance claims: Receiving Clerk documents damage with photos and notes on delivery receipt; Import Coordinator or DC Supervisor files claim with insurance provider within required notification window (typically 3–5 business days); system tracks claim status; upon settlement, Finance posts insurance recovery to income and reduces inventory loss | Receiving Clerk | DC Supervisor | 10 min |
 | 6b | Buyer reviews RTV request; coordinates with vendor for credit note or replacement shipment | Buyer | Category Manager | 15 min/occurrence |
 | 6c | If scrap authorized: DC Supervisor approves scrap disposition; system removes inventory and posts loss to damage/scrapping account | DC Supervisor | DC Manager | 5 min |
 | 7 | Confirm Goods Receipt in system; inventory increases in real-time | Receiving Clerk | DC Supervisor | 5 min |
@@ -178,6 +216,27 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 - After step 7, goods are moved directly to outbound staging area
 - Allocated to pending store replenishment orders
 - Loaded onto outbound trucks same day
+
+### W3b. Yard & Outdoor Inventory Management
+
+For lumber, building materials, and other bulky items stored in outdoor yard areas (present at all DCs and stores per the Lumber & Building Materials Yard zone):
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Goods received at yard gate (separate from indoor receiving); Receiving Clerk verifies against PO/TO using handheld | Receiving Clerk | DC Supervisor / Dept. Supervisor | 20–40 min |
+| 2 | System records receipt into yard zone (zone-level tracking, not individual bin); inventory tracked by yard zone (e.g., Yard-A: Lumber, Yard-B: Cement/Blocks, Yard-C: Steel/Rebar) | System | — | Automated |
+| 3 | For catch-weight items (lumber, rebar): associate measures and records actual length/piece count at receipt; system calculates quantity in board feet / linear meters / pieces | Receiving Clerk | Dept. Supervisor | 10–20 min |
+| 4 | Goods staged in designated yard zone; organized by SKU type and length/size for easy retrieval | Yard Staff | DC Supervisor | 15–30 min |
+| 5 | Physical counting: yard items counted by zone during cycle counts (W6) and annual physical inventory (W42); counted by piece/bundle rather than individual bin scan | Stock Associate | Dept. Supervisor | Per W6/W42 |
+| 6 | Weather damage discovered during daily yard walkthrough: Stock Associate reports damage (warped lumber, water-damaged cement, rusted rebar); DC Supervisor/Dept. Supervisor approves disposition (markdown, scrap, RTV, insurance claim) per W3.6a process | Stock Associate | DC Supervisor / Dept. Supervisor | 10 min |
+| 7 | Yard-to-sales-floor movement: when yard stock is needed indoors (e.g., small lumber pieces moved to indoor display), Stock Associate transfers items in system from yard zone to indoor location | Stock Associate | Dept. Supervisor | 10 min |
+
+### System Touchpoints (Yard)
+- Zone-level location master for yard areas (not bin-level) (W3b.2)
+- Catch-weight/variable-length receipt and tracking in yard zones (W3b.3)
+- Weather damage reporting and disposition (W3b.6)
+- Yard-to-indoor inventory transfer (W3b.7)
+- Yard inventory visible in real-time alongside indoor inventory (W3b.2)
 
 ### System Touchpoints
 - PO/TO lookup at receiving dock (W3.2)
@@ -284,6 +343,7 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 | 2 | If item is catch-weight (lumber, wire): Associate measures/cuts; generates weight/length label | Sales Associate | Department Supervisor | 3–5 min |
 | 3 | If paint mixing: Associate mixes paint per customer color choice; system creates custom SKU | Sales Associate | Department Supervisor | 5–10 min |
 | 4 | Customer brings items to checkout; Cashier scans barcodes | Cashier | Store Manager | ~2 min/txn |
+| 4a | If Cashier needs to override scanned price (customer price match, damaged-item discount, competitor price): system prompts for reason code; if override > 10% or > PHP 500: system requires manager swipe/card authorization; system logs override with cashier ID, authorizing manager ID, original price, override price, and reason code | Cashier / Store Manager | Store Manager | 1 min |
 | 5 | If loyalty member: Cashier scans loyalty card or asks for mobile number | Cashier | — | 15 sec |
 | 6 | System calculates totals: applies promos, quantity breaks, loyalty discounts | System | — | Automated |
 | 7 | Customer pays (cash, card, e-wallet, split tender) | Cashier | — | 30–60 sec |
@@ -323,6 +383,7 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 - Barcode scanning, multi-tender, loyalty at POS (W5b.4–9)
 - BIR-registered receipt format: receipts printed on BIR-authorized thermal paper with TIN, registered invoice number, and compliant layout (W5b.8)
 - Customer-facing display (pole display or second screen) showing scanned items, running total, and payment amount during checkout (W5b.4–7)
+- Price override with manager authorization threshold and audit trail (W5b.4a)
 - Catch-weight / variable measure selling with weight/length capture and auto-price calculation (W5b.2)
 - Custom SKU generation for paint mixing (W5b.3)
 - Age-restricted product prompts (W5b.9)
@@ -353,12 +414,13 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 |---|---|---|---|---|
 | 1 | System generates daily count assignment by section/aisle | System | — | Automated (nightly) |
 | 2 | Stock Associate retrieves count sheet on handheld/RF device | Stock Associate | Department Supervisor | — |
-| 3 | Physically count each SKU in assigned section; enter quantity into device | Stock Associate | Department Supervisor | 2–3 hours (700 SKUs ÷ ~10 sec each) |
+| 3 | Physically count each SKU in assigned section; enter quantity into device (3 Stock Associates each count ~233 SKUs/day, taking ~40 min each at ~10 sec/SKU) | Stock Associate | Department Supervisor | ~40 min per associate |
 | 4 | System compares physical count to system count; flags variances | System | — | Automated |
 | 5 | For flagged items: Stock Associate recounts (blind recount) | Stock Associate | Department Supervisor | 15–30 min |
 | 6 | If variance confirmed: Department Supervisor reviews and approves adjustment | Dept. Supervisor | Store Manager | 15 min |
 | 7 | If adjustment > PHP 10,000 or > 5% of SKU value: Store Manager approval required | Store Manager | Store Manager | 5 min each |
 | 8 | System posts inventory adjustment; audit trail recorded | System | — | Automated |
+| 8a | **In-store damage discovered during operations**: Stock Associate identifies damaged item on sales floor (customer drop, water damage, forklift damage, yard weather damage); creates damage report in system with photo and cause code; Department Supervisor reviews and approves disposition: (a) markdown and sell at reduced price, (b) scrap with supervisor authorization, (c) Return to Vendor per W3.6a process; system posts inventory adjustment and loss to damage/scrapping account | Stock Associate / Dept. Supervisor | Store Manager | 10 min |
 | 9 | Root cause analysis for recurring variances (theft, damage, receiving errors) | Dept. Supervisor | Store Manager | Weekly review |
 
 **Cycle**: 35,000 SKUs ÷ 700/day = 50 working days per full cycle (~10 weeks ≈ quarterly)
@@ -369,9 +431,10 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 - Variance detection and blind recount workflow (W6.4–5)
 - Inventory adjustment with tiered approval (W6.6–7)
 - Immutable audit trail for all adjustments (W6.8)
+- In-store damage discovery reporting with photo, cause code, and disposition workflow (W6.8a)
 
 ### Staffing Implication
-- **3 Stock Associates per store**: Each spends 2–3 hours/day on cycle counting, remainder on replenishment and receiving. The 700 SKU/day target requires focused effort. With 3 associates rotating, workload is distributed. Current count of 3 is adequate but has no slack for absenteeism.
+- **3 Stock Associates per store**: Each counts ~233 SKUs/day (~40 min), with remainder of time on replenishment, receiving, damage reporting, and BOPIS picking. Current count of 3 is adequate but has no slack for absenteeism.
 
 ---
 
@@ -389,7 +452,7 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | AP Clerk receives and scans/logs vendor invoice | AP Clerk | AP Supervisor | 5 min/invoice |
+| 1 | AP Clerk receives and scans/logs vendor invoice (via email, mail, or vendor portal submission) | AP Clerk | AP Supervisor | 5 min/invoice |
 | 2 | System attempts auto-match: PO → Goods Receipt → Invoice (3-way match) | System | — | Automated |
 | 3 | If matched (quantities and price within tolerance): auto-approve for payment | System | AP Supervisor | Automated |
 | 4 | If mismatch (price, quantity, or missing GR): route to AP Clerk for review | AP Clerk | AP Supervisor | 10 min/invoice |
@@ -406,7 +469,7 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 **Match rate target**: ≥ 80% auto-matched (no manual intervention)
 
 ### System Touchpoints
-- Invoice scanning / OCR / digital capture (W7.1)
+- Invoice scanning / OCR / digital capture from email, mail, or vendor portal (W7.1)
 - 3-way match engine (PO → GR → Invoice) (W7.2)
 - Auto-approval with tolerance thresholds (W7.3)
 - Exception routing and workflow (W7.4–6)
@@ -700,7 +763,9 @@ Additional steps on top of month-end close (December):
 | 7 | During promo: system auto-applies promotional pricing at POS (no cashier action) | System | — | Automated |
 | 8 | Pricing Analyst monitors promo performance daily (sell-through, margin impact) | Pricing Analyst | Category Manager | 30 min/day during promo |
 | 9 | After promo: system automatically reverts to regular price; flags unsold promo stock for clearance | System | — | Automated |
-| 10 | Pricing Analyst generates post-promo analysis (lift, cannibalization, margin erosion) | Pricing Analyst | Category Manager | 2 hours/promo |
+| 9a | **Clearance / Markdown Execution**: Pricing Analyst sets clearance price for flagged items (target: recover cost or minimize loss); system applies clearance flag and price at POS; POS displays clearance disclaimer ("Clearance — Final Sale — No Returns"); Department Supervisors move clearance items to designated clearance section or mark with red tags; clearance period typically 2–4 weeks | Pricing Analyst / Dept. Supervisor | Category Manager | 1–2 hours/promo |
+| 9b | Post-clearance: unsold items dispositioned per policy — (a) bulk liquidation to discount buyers, (b) donation to partner organizations, (c) scrap/recycle; system removes remaining clearance inventory and posts final loss | Buyer / Dept. Supervisor | Category Manager | 1 hour |
+| 10 | Pricing Analyst generates post-promo analysis (lift, cannibalization, margin erosion, clearance recovery rate) | Pricing Analyst | Category Manager | 2 hours/promo |
 
 ### System Touchpoints
 - Promotional price setup with date-effective pricing (W13.2)
@@ -710,6 +775,8 @@ Additional steps on top of month-end close (December):
 - Real-time promo performance dashboard (W13.8)
 - Automatic price reversion and clearance flagging (W13.9)
 - Post-promo analysis reporting (W13.10)
+- Clearance pricing with POS flag and disclaimer enforcement (W13.9a)
+- Post-clearance inventory disposition tracking (W13.9b)
 - Digital coupon / online promo code management: creation of coupon codes with validity dates, usage limits, and channel restrictions (in-store, online, or both); redemption tracking across channels; synchronization with ecommerce platform (W13.2, W13.5)
 
 ### Staffing Implication
@@ -997,6 +1064,7 @@ Additional steps on top of month-end close (December):
 | 5 | Vendor ships goods to DC or store per agreement | VMI Vendor | — | External |
 | 6 | Receiving Clerk processes Goods Receipt against ASN (standard receiving process) | Receiving Clerk | Dept. Supervisor / DC Supervisor | Per W3 or W18 |
 | 7 | Goods recorded as vendor-owned inventory in system (non-valuated until sold) | System | — | Automated |
+| 7a | At month-end close (W9): system accrues VMI liability for all VMI goods sold but not yet settled with vendor; Cost Accountant includes VMI accrual in monthly close entries | System / Cost Accountant | Controller | Automated + 15 min/month |
 | 8 | At POS: system records sell-through event per VMI SKU; ownership transfers at point of sale | System | — | Automated |
 | 9 | Monthly: system generates VMI sell-through report per vendor showing units sold × agreed price | System | Buyer | Automated |
 | 10 | Buyer reviews sell-through report; confirms settlement | Buyer | Category Manager | 1 hour/month/vendor |
@@ -1125,18 +1193,21 @@ Additional steps on top of month-end close (December):
 | 3 | Vendor delivers consignment goods; Receiving Clerk processes GR (standard receiving) | Receiving Clerk | Dept. Supervisor | Per W3/W18 |
 | 4 | System records consignment receipt as non-valuated inventory (vendor-owned) | System | — | Automated |
 | 5 | Consignment items displayed and sold on sales floor; POS scans barcode normally | Cashier | — | Part of sale |
-| 6 | At sale: system records sell-through event; ownership transfers from vendor to company to customer | System | — | Automated |
+| 6 | At sale: system records sell-through event; ownership transfers from vendor to company to customer; system posts GL entries: Dr. Cost of Goods Sold / Cr. Consignment Vendor Payable (at consignment cost); simultaneously Dr. Cash or Accounts Receivable / Cr. Revenue (at selling price) | System | — | Automated |
+| 6a | At month-end close (W9): system accrues consignment liability for all consignment goods sold but not yet settled with vendor; Finance reconciles consignment payable sub-ledger to GL | System / Cost Accountant | Controller | Automated + 30 min/month |
 | 7 | Monthly: system generates consignment sell-through report per vendor (units sold × consignment price) | System | Buyer | Automated |
 | 8 | Buyer reviews and confirms settlement report | Buyer | Category Manager | 1 hour/vendor/month |
-| 9 | AP Clerk processes consignment vendor payment based on confirmed sell-through | AP Clerk | AP Supervisor | Per W7 |
+| 9 | AP Clerk processes consignment vendor payment based on confirmed sell-through; system generates AP invoice from sell-through data: Dr. Consignment Vendor Payable / Cr. Cash (settles the accrued liability from step 6) | AP Clerk | AP Supervisor | Per W7 |
 | 10 | Quarterly: Buyer reviews consignment SKU performance; returns slow movers to vendor | Buyer | Category Manager | 2 hours/quarter |
 
 ### System Touchpoints
 - Consignment item flagging in item master (W23.2)
 - Non-valuated inventory receipt and tracking (W23.4)
-- Ownership transfer at point of sale (W23.6)
+- Ownership transfer at point of sale with automatic GL posting (Dr. COGS / Cr. Consignment Payable) (W23.6)
+- Period-end accrual for sold-but-unsettled consignment goods (W23.6a)
+- Consignment payable sub-ledger reconciliation to GL (W23.6a)
 - Consignment sell-through report generation (W23.7)
-- AP settlement from sell-through data (W23.9)
+- AP settlement from sell-through data with GL posting (Dr. Consignment Payable / Cr. Cash) (W23.9)
 
 ### Staffing Implication
 - Consignment management adds ~15–25 hours/month to Buyer workload (review + settlement). Spread across 10–12 buyers handling their respective vendor portfolios, this is ~2 hours/buyer/month. Absorbed within existing headcount.
@@ -1497,7 +1568,7 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 | 5 | Demand Planner reviews forecast accuracy metrics (MAPE, bias) by category; identifies systematic over/under-forecasting patterns | Demand Planner | Supply Planning Manager | 1 hour/week |
 | 6 | Adjusted forecast released to replenishment engine (W4.1, W2a.1); system uses forecast instead of simple min/max for forecasted SKUs | System | — | Automated |
 | 7 | Monthly: Demand Planner presents forecast vs. actual report to Category Managers; discusses upcoming demand shifts | Demand Planner | VP Merchandising | 1 hour/category/month |
-| 8 | Quarterly: Demand Planner recalibrates forecast model parameters (alpha, beta, gamma for exponential smoothing); updates seasonal indices based on latest year of data | Demand Planner | Supply Planning Manager | 4–6 hours/quarter |
+| 8 | Quarterly: Demand Planner recalibrates forecast model parameters (alpha, beta, gamma for exponential smoothing); updates seasonal indices based on latest year of data; reviews and updates safety stock parameters per SKU-location based on forecast error and demand variability changes (feeds into W2a.1 ROP/safety stock calculation) | Demand Planner | Supply Planning Manager | 4–6 hours/quarter |
 
 **Total Demand Planner effort**: ~8–12 hours/week + 4–6 hours/quarter for model recalibration
 
@@ -1510,6 +1581,7 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 - Forecast release to replenishment/MRP engine (W31.6)
 - Forecast vs. actual variance reporting by category (W31.7)
 - Model parameter maintenance and seasonal index recalculation (W31.8)
+- Safety stock parameter review and update linked to ROP calculation in W2a (W31.8)
 
 ### Staffing Implication
 - **1–2 Demand Planners** (within the 30-person Supply Chain team): This is a specialized analytical role. With 35,000 SKUs across 5 DCs, weekly review of forecast exceptions + monthly category reviews + quarterly recalibration requires a dedicated person. A 2nd demand planner provides coverage and can focus on new-item forecasting (no history) and promotional lift modeling.
@@ -1697,6 +1769,7 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 | 15 | Board pack preparation: consolidated financials, management discussion & analysis, KPI scorecard, risk register update | Controller + CFO | CEO | Quarterly |
 | 16 | Vendor performance scorecard review (W44) | Buyer | VP Merchandising | Quarterly |
 | 17 | Budget revision (if material changes warranted) (W26 step 13) | Controller | CFO | Quarterly |
+| 18 | **Document retention compliance review**: Controller verifies that all document types (invoices, receipts, delivery receipts, import docs, capex records) meet 7-year BIR retention requirements; confirms expired documents are archived and accessible; flags any gaps in document attachment compliance | Controller | CFO | Quarterly |
 
 ### Ad-Hoc
 
@@ -1754,6 +1827,7 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 - Vendor-specific configuration: payment terms, tolerance thresholds, approval tiers (W36.7)
 - Item-vendor mapping with cost, lead time, MOQ (W36.8)
 - Vendor portal provisioning (W36.9)
+- Vendor document tracking with expiry alerts: system tracks business permit, tax compliance certificate, and other regulatory document expiry dates; alerts Buyer and AP Clerk 30 days before expiry; vendor blocked from new POs if documents expired
 - Integration with vendor performance scorecard (W36.11 → W44)
 
 ### Staffing Implication
@@ -2207,4 +2281,4 @@ Summary of which ERP modules support which workflows:
 
 ---
 
-*Document Version: 4.0 | Date: 2026-05-30 | Added W31–W44 (demand forecasting, seasonal buy planning, warranty claims, shift scheduling, management reporting, vendor onboarding, loss prevention, special orders, fixed asset disposal, regular price changes, customer complaints, annual physical inventory, employee offboarding, vendor performance review); updated summary tables*
+*Document Version: 5.0 | Date: 2026-05-30 | Added W2c (Blanket/Contract POs), W3b (Yard Management); expanded W5b (Price Override), W6 (in-store damage, staffing clarity), W13 (clearance/markdown), W23 (consignment GL entries), W20 (VMI accrual), W31 (safety stock review), W35 (document retention review), W36 (vendor document expiry), W3.6a (insurance claims), W1 (product content), W2a (vendor portal), W7 (vendor portal)*

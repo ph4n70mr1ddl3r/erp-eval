@@ -257,8 +257,8 @@ The company operates through **5 legal entities** organized as follows:
 ## 7. Supply Chain & Logistics
 
 ### 7.1 Inbound Logistics (Vendor → DC)
-- ~70% of goods flow through DCs first (stocking items)
-- ~30% delivered direct-to-store (DSD) for bulky/fresh items (cement, lumber)
+- ~70% of goods **by value** flow through DCs first (stocking items)
+- ~30% of goods **by value** are delivered direct-to-store (DSD) for bulky/fresh items (cement, lumber, sand, gravel); this represents ~500–600 DSD receipts/month (~8–10% of receipt count) but includes high-value and heavy items that are uneconomical to double-handle through DCs
 - Import containers: ~50–70 TEUs/month across all import vendors
 - Customs brokerage managed in-house for imports
 - Payment terms: typically 30–60 days for local; LC/TT for imports
@@ -387,16 +387,16 @@ The company operates through **5 legal entities** organized as follows:
 | Parameter | Estimate |
 |---|---|
 | **Average Transaction Value (ATV)** | PHP 1,800 |
-| **Monthly Transactions** | 2,800,000 |
-| **Monthly Gross Revenue** | ~PHP 5.04 Billion |
+| **Monthly POS Transactions** | 2,800,000 |
+| **Monthly In-Store Revenue** | ~PHP 4.89 Billion (97%) |
+| **Monthly Ecommerce Revenue** | ~PHP 150 Million (3%) |
+| **Monthly Gross Revenue (Total)** | ~PHP 5.04 Billion |
 | **Annual Gross Revenue** | ~PHP 60.5 Billion |
 | **Average Gross Margin** | ~28–32% |
 | **Annual COGS** | ~PHP 41–43 Billion |
 | **EBITDA Margin** | ~10–12% |
 
-> Note: Per-store annual revenue of ~PHP 302M is ~90% of Wilcon Depot's estimated
-> per-store revenue (PHP 330–350M), reflecting the more provincial footprint and leaner
-> SKU assortment. Revenue figures assume all 200 stores are mature.
+> Note: Monthly gross revenue of ~PHP 5.04 Billion includes both in-store (PHP 4.89B, 97%) and ecommerce (PHP 150M, 3%). Per-store annual revenue of ~PHP 25M/month reflects in-store only. Per-store annual revenue of ~PHP 302M is ~90% of Wilcon Depot's estimated per-store revenue (PHP 330–350M), reflecting the more provincial footprint and leaner SKU assortment. Revenue figures assume all 200 stores are mature.
 
 ---
 
@@ -729,4 +729,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.3 | Date: 2026-05-30 | Added growth rate to §3.1; removed tilde from exact total headcount*
+*Document Version: 2.4 | Date: 2026-05-30 | Clarified DSD as value-based in §7.1; split revenue into in-store + ecommerce in §9.4*

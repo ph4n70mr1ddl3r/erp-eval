@@ -36,8 +36,9 @@ The company operates through **5 legal entities** organized as follows:
 
 ### Intercompany Relationships
 - BuildRight Depot, Inc. leases store/distribution center sites from BuildRight Property Management, Inc.
-- BuildRight Depot, Inc. pays warehousing/distribution fees to BuildRight Logistics, Inc.
-- BuildRight Digital Commerce, Inc. fulfills orders through BuildRight Depot stores (for BOPIS) and BuildRight Logistics DCs (for delivery).
+- BuildRight Depot, Inc. **owns all merchandise inventory** throughout the supply chain (at DCs and in stores), even though DCs are operated by BuildRight Logistics, Inc.
+- BuildRight Depot, Inc. pays warehousing/distribution fees to BuildRight Logistics, Inc. (monthly service fees, not per-transfer goods sales).
+- BuildRight Digital Commerce, Inc. operates the ecommerce platform and collects online payments, but revenue is recognized by BuildRight Depot, Inc. at fulfillment (pickup or delivery). Digital Commerce Inc. charges Depot Inc. a per-order fulfillment fee and remits collected payments monthly.
 - All intercompany transactions must be settled at arm's-length transfer pricing.
 - Consolidated financial reporting required for the group.
 
@@ -729,4 +730,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.4 | Date: 2026-05-30 | Clarified DSD as value-based in §7.1; split revenue into in-store + ecommerce in §9.4*
+*Document Version: 2.5 | Date: 2026-05-30 | Wave 7: clarified IC inventory ownership model in §2 — Depot Inc. owns all merchandise; Logistics Inc. provides warehousing services*

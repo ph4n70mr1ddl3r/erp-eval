@@ -24,6 +24,14 @@ inconsistencies, and 2 were acknowledged non-blocking items carried forward.
 
 A Wave 3 independent review subsequently identified **11 additional gaps** (see Section I below). All 11 have been resolved through targeted additions to existing workflows and one new workflow (W45).
 
+A Wave 4 independent review identified **12 additional gaps** (see Section J below). All 12 have been resolved.
+
+A Wave 5 independent review identified **15 additional gaps** (see Section K below). All 15 have been resolved.
+
+A Wave 6 independent review identified **10 remaining gaps** (see Section J below). All 10 have been resolved.
+
+A Wave 7 independent review identified **11 remaining gaps** (see `workflow-gap-analysis-wave7.md`). 3 HIGH priority (IC ownership model, trade pricing at POS, quantity break pricing), 4 MEDIUM, and 4 LOW. All 11 have been resolved.
+
 | Gap Category | Count | Status |
 |---|---|---|
 | **A. Requirements with insufficient workflow coverage** | 6 | ✅ All 6 resolved |
@@ -34,6 +42,8 @@ A Wave 3 independent review subsequently identified **11 additional gaps** (see 
 | **F. Wave 3 gaps (Wave 3 review)** | 11 | ✅ All 11 resolved |
 | **G. Wave 4 gaps (Wave 4 review)** | 12 | ✅ All 12 resolved |
 | **H. Wave 5 gaps (Wave 5 review)** | 15 | ✅ All 15 resolved |
+| **I. Wave 6 gaps (Wave 6 review)** | 10 | ✅ All 10 resolved |
+| **J. Wave 7 gaps (Wave 7 review)** | 11 | ✅ All 11 resolved |
 
 | Metric | Value |
 |---|---|
@@ -541,7 +551,7 @@ implementation, not gaps in the evaluation materials.
 
 ---
 
-*Document Version: 8.0 | Date: 2026-05-30 | Wave 5: 15 additional gaps resolved (ATV inconsistency, non-PO AP W7c, shelf-life/expiry management, ecommerce payment reconciliation, slow-mover operational review, negative inventory resolution, 3PL management, DC-to-DC multi-echelon sourcing, loyalty points manual adjustment, consignment return logistics, unclaimed deposit aging, split-tender refunds, void transaction process, store capex project tracking, customer deduplication); total workflows now 49*
+*Document Version: 10.0 | Date: 2026-05-30 | Wave 7: 11 additional gaps resolved (A1 IC ownership model, B1 trade/corporate pricing at POS, B2 quantity break pricing, B3 ecommerce IC settlement, B4 VMI/consignment at POS, B5 ROP parameter governance, B6 loyalty on ecommerce, C1 RTV logistics, C2 gift card online, C3 store cost allocation, D1 ecommerce VAT); total workflows unchanged at 49*
 
 ---
 
@@ -679,3 +689,151 @@ implementation, not gaps in the evaluation materials.
 | 🟡 **P2** | I9 (GRNI) | Add GRNI reconciliation to W9a | ✅ Done |
 | 🟡 **P2** | I10 (HR-002) | Add statutory reconciliation to W10 | ✅ Done |
 | 🟡 **P2** | I11 (W38 GL) | Add GL treatment to W38 | ✅ Done |
+
+---
+
+## J. Wave 6 Gap Analysis (Independent Review)
+
+> A fresh, independent gap analysis cross-referencing all 49 operational workflows
+> (`operational-workflows.md`) against the ERP requirements (`erp-requirements.md`),
+> company profile (`model-company-profile.md`), and data volumes
+> (`data-volumes-and-integrations.md`). This Wave 6 review targets gaps that
+> Waves 1–5 missed: numerical errors with staffing implications, operational edge cases,
+> and detail gaps in existing workflows.
+
+### Executive Summary
+
+Waves 1–5 resolved 52 gaps and achieved comprehensive coverage. This Wave 6 review
+identified **10 remaining gaps**: 1 numerical error with staffing impact, 6 business
+activities with no or insufficient workflow coverage, and 3 detail gaps. **All 10 gaps
+have been resolved.**
+
+| Gap Category | Count | Status |
+|---|---|---|
+| **A. Numerical error with staffing impact** | 1 | ✅ Resolved |
+| **B. Business activities without workflows** | 6 | ✅ All 6 resolved |
+| **C. Detail gaps in existing workflows** | 3 | ✅ All 3 resolved |
+
+| Metric | Before Wave 6 | After Resolution |
+|---|---|---|
+| Total workflows | 49 | **49** (no new workflow; additions are steps within existing) |
+| Cross-document errors | 0 claimed | **1 found → 0 remaining** |
+| Business activities without workflows | 0 claimed | **6 found → 0 remaining** |
+| Detail gaps | 0 claimed | **3 found → 0 remaining** |
+
+### Resolved Gaps
+
+#### J1. ✅ Resolved — W19 Home Delivery Staffing Arithmetic Error
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W19 staffing stated "~115 orders/day ÷ 5 DCs = ~23 orders/DC/day" and "~6 hours/day of additional DC labor." The calculation substituted the total for the per-DC figure. Correct: 17,200 orders/month ÷ 30 days ÷ 5 DCs = **~115 orders/DC/day**. At ~15 min pick+pack = **~29 hours/DC/day**, not ~6. |
+| **Impact** | Material capacity planning error. Each DC needs 3–4 dedicated pickers/packers for home delivery, not the ~1 implied. Within the existing ~150 DC headcount but a significant portion of pick/pack capacity. |
+| **Resolution** | ✅ Updated W19 staffing: corrected arithmetic to 115 orders/DC/day, ~29 hours/DC/day, 3–4 dedicated pickers/packers per DC. Updated DC staffing validation table. Added monitoring note for ecommerce growth. |
+
+#### J2. ✅ Resolved — Local Business Tax (LBT) Compliance Per LGU
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | FIN-008 (BIR Tax Return Generation), profile §10.5 |
+| **Gap** | No workflow described LBT calculation, payment, and tracking for 206 locations across different LGU jurisdictions. |
+| **Resolution** | ✅ Added step W9a.16c: system generates LBT payment schedule per location; Tax Accountant validates amounts per LGU rate schedules; processes payments; system posts per location; tracks payment status with overdue alerting. Added system touchpoints for per-location LBT calendar. |
+
+#### J3. ✅ Resolved — Customer Credit Memo / AR Adjustment
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | FIN-005 (AR for B2B) |
+| **Gap** | W7.9b added vendor credit memos but no equivalent for customer-side credit memos (pricing errors, volume adjustments, short deliveries, service failures not involving physical returns). |
+| **Resolution** | ✅ Added step W8.11: AR Clerk creates credit memo with reason code and source reference; tiered approval; auto-application to open invoices; GL posting (Dr. Revenue/Expense / Cr. AR). Added system touchpoints. |
+
+#### J4. ✅ Resolved — Vendor-Funded Promotional Settlement
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W13 covered promotional pricing and W27 covered vendor rebates, but vendor-funded promotions (vendor reimburses retailer for POS markdown) had no workflow. |
+| **Resolution** | ✅ Added vendor-funded promo settlement to W13 system touchpoints: system records vendor funding portion per POS transaction; accumulates vendor liability; monthly settlement report per vendor; AP credit memo generated per W7.9b. Distinguished from W27 rebates. |
+
+#### J5. ✅ Resolved — Home Delivery Return Reverse Logistics
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | ECOM-007 (Return Initiation Online) |
+| **Gap** | W12b covered online returns completed in-store. No workflow for bulky home delivery items requiring carrier pickup from customer. ~85–170 reverse logistics events/month. |
+| **Resolution** | ✅ Added step W19.12a: system schedules carrier pickup via 3PL; item returned to DC for inspection; refund processed upon inspection; disposition per existing workflows. Added system touchpoints to both W19 and W12. |
+
+#### J6. ✅ Resolved — Store Cash Deposit / Cash-in-Transit Logistics
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W5c covered counting cash. W30.1 mentioned armored car deposit in one sentence. No workflow described daily cash logistics for 200 stores depositing ~PHP 2.1B/month in cash. |
+| **Resolution** | ✅ Added steps W5c.5a–b: armored car pickup procedure with tamper-evident bags; deposit confirmation logging; delayed pickup exception handling. Added system touchpoints for cash-in-transit tracking to W5c and W30. |
+
+#### J7. ✅ Resolved — Confirmed Theft / Inventory Write-Off Process
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W37 monitored shrinkage and investigated theft but no formal write-off process for confirmed losses: police report, insurance claim, management approval, GL posting. |
+| **Resolution** | ✅ Added W37.11–16: confirmed theft/loss write-off process with documentation, police report filing, tiered approval per loss value, GL write-off posting (Dr. Inventory Loss / Cr. Inventory), insurance claim integration, quarterly shrinkage reporting link. Added system touchpoints. |
+
+#### J8. ✅ Resolved — Transfer Order Receipt Discrepancy Resolution
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W22.9 flagged discrepancies but didn't describe financial resolution: who bears the cost (source, destination, carrier)? |
+| **Resolution** | ✅ Added step W22.9a: source picking error → source absorbs loss; carrier damage → insurance claim; unexplained → destination writes off with tiered approval. GL posting paths specified per resolution. Added system touchpoints. |
+
+#### J9. ✅ Resolved — Intercompany Invoice from Transfer Order
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W14 described IC invoice generation and W22 described transfers, but the trigger linking TO receipt to IC invoice wasn't explicit. |
+| **Resolution** | ✅ Added cross-reference in W22 system touchpoints: for inter-entity transfers, system auto-generates IC invoice at configured transfer price upon receipt confirmation (W22.8 → W14.1). Added IC invoice trigger note. |
+
+#### J10. ✅ Resolved — WAC Recalculation Timing Clarification
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W9a.6 said "Run monthly inventory valuation (WAC)" which implied periodic recalculation. Philippine retail standard is perpetual WAC (moving average at each receipt). Month-end step is verification, not recalculation. |
+| **Resolution** | ✅ Updated W9a.6 to "Verify perpetual WAC calculations" and added step W9a.6a explaining perpetual methodology: new WAC = (prior value + receipt value) ÷ (prior qty + receipt qty) at each GR; month-end is reconciliation. Added WAC recalculation to W3 system touchpoints. |
+
+### Wave 6 Priority Matrix
+
+| Priority | Gap ID | Action | Status |
+|---|---|---|---|
+| 🔴 **P1** | J1 (W19 staffing) | Fix arithmetic; reassess DC staffing for home delivery | ✅ Done |
+| 🟡 **P2** | J2 (LBT) | Add LBT compliance step to W9a | ✅ Done |
+| 🟡 **P2** | J3 (Customer credit) | Add customer credit memo to W8 | ✅ Done |
+| 🟡 **P2** | J4 (Vendor-funded promo) | Add vendor-funded promo settlement to W13 | ✅ Done |
+| 🟡 **P2** | J5 (Reverse logistics) | Add reverse pickup to W19 + cross-ref W12 | ✅ Done |
+| 🟡 **P2** | J7 (Theft write-off) | Add theft write-off process to W37 | ✅ Done |
+| 🟢 **P3** | J6 (Cash-in-transit) | Add cash logistics steps to W5c | ✅ Done |
+| 🟢 **P3** | J8 (Transfer discrepancy) | Add financial resolution to W22.9a | ✅ Done |
+| 🟢 **P3** | J9 (IC from TO) | Add cross-reference W22 → W14 | ✅ Done |
+| 🟢 **P3** | J10 (WAC timing) | Clarify perpetual WAC in W9a.6 | ✅ Done |
+
+### What Changed from Previous Waves
+
+Previous waves focused on **coverage completeness** (does every requirement have a supporting
+workflow?) and **accounting depth** (GL postings, accruals, PFRS compliance). Wave 6 found
+fewer structural gaps and more **operational edge cases** (reverse logistics for bulky returns,
+vendor-funded promos, LBT compliance, cash-in-transit, theft write-off) and **numerical
+accuracy** (W19 staffing error).
+
+### Overall Assessment
+
+**The workflow documentation is comprehensive and ready for ERP vendor evaluation.**
+All 130+ requirements have supporting workflow coverage. The remaining non-blocking items
+(batch failure handling, integration monitoring, data migration) are operational concerns
+to be addressed during implementation design.
+
+### Coverage Statistics
+
+| Metric | v8.0 (Previous) | v9.0 (After Wave 6) |
+|---|---|---|
+| Total workflows | 49 | **49** |
+| Requirements fully covered | ~130 (99%) | **~130 (99%)** |
+| Requirements partially covered | ~1 (1%) | **~1 (1%)** |
+| Requirements not covered | 0 (0%) | **0 (0%)** |
+| Total gaps resolved (all waves) | 52 | **62** |
+| Non-blocking carried forward | 2 | 2 |

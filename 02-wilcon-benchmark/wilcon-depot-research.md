@@ -212,7 +212,7 @@
 | **HQ** | Quezon City, Metro Manila | Davao City |
 | **Legal Entities** | 1 main (public) + subsidiaries | 5 legal entities |
 | **Active SKUs** | ~60,000+ (Depot format) | 35,000 |
-| **Annual Revenue** | ~PHP 33–35B | ~PHP 60.5B (projected at 200 stores) |
+| **Annual Revenue** | ~PHP 33–35B | ~PHP 62.3B (projected at 200 stores) |
 | **Monthly POS Transactions** | ~1.5M (estimated) | 2.8M |
 | **Distribution Centers** | 3+ | 5 |
 | **Ecommerce** | Full (BOPIS + delivery) | Full (BOPIS + delivery) |

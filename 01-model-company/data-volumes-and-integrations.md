@@ -17,6 +17,7 @@
 | POS Transactions | 93,333 | 2.0x (weekends/sales) | 186,666 |
 | POS Line Items | 373,333 | 2.0x | 746,666 |
 | Store Replenishment Orders | 167 | 1.5x | 250 |
+> Note: Each physical delivery to a store fulfills 2–3 replenishment orders grouped into one shipment, reconciling to 2–3 deliveries/store/week from ~25 replenishment orders/store/month.
 | Goods Receipts (DC) | 200 | 1.5x | 300 |
 | DSD Goods Receipts (Store) | ~20 | 1.5x | ~30 |
 | Purchase Orders Created | 40–50 | 2.0x (batch days) | 80–100 |
@@ -37,7 +38,7 @@
 | Ecommerce Orders + Lines | ~515,000 | ~1.5 GB |
 | Master Data (all types) | ~700,000 | ~0.7 GB |
 | **Total Annual Increment** | | **~100 GB** |
-| **7-Year Retention** | | **~700 GB** (with compression) |
+| **7-Year Retention** | | **~700 GB** (uncompressed); ~500 GB with compression |
 
 ---
 
@@ -145,4 +146,4 @@
 
 ---
 
-*Document Version: 3.2 | Date: 2026-05-30 | Split Goods Receipts into DC and DSD lines in §1.1*
+*Document Version: 3.3 | Date: 2026-05-30 | Wave 8: fixed 7-year storage to show uncompressed vs compressed; added replenishment order consolidation note*

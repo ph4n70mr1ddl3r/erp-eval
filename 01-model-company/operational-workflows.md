@@ -70,6 +70,8 @@ Each workflow follows this format:
 ### Staffing Implication
 5 Category Managers each handling ~2 categories per quarterly cycle = manageable at ~18 hours/category. The 3 Pricing Analysts handle data pulls and analysis in parallel. 10–12 Buyers handle vendor validation. Current team of ~40 in Merchandising is adequate.
 
+> **Buyer staffing note**: At 800–1,000 active vendors ÷ 10–12 buyers = ~67–100 vendors per buyer, which is above the industry average of 30–50. This lean buying model is viable because (a) ~70% of vendors are replenished via auto-generated POs (W2a), reducing daily buyer intervention; (b) top 20 vendors (45% of COGS) are on blanket contracts (W2c) requiring less transactional management; and (c) VMI vendors (12) are largely self-managing. However, during seasonal planning cycles (W32), the team may be stretched. Consider expanding to 15–17 buyers if vendor management quality suffers.
+
 ---
 
 ## W2. Procurement — Purchase Order Cycle
@@ -286,7 +288,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | Field | Detail |
 |---|---|
 | **Trigger** | System generates replenishment suggestion based on min/max or demand forecast |
-| **Frequency** | 2–3 deliveries per store per week; ~5,000 store orders/month total |
+| **Frequency** | 2–3 physical deliveries per store per week; ~5,000 replenishment orders/month total (each delivery truck carries 2–3 orders consolidated for that store) |
 | **Volume** | ~167 orders/day across all DCs (~33 per DC/day); avg ~50 lines per order |
 | **Owner** | Supply Planner |
 | **Participants** | Supply Planner, DC Pick/Pack/Ship team, Truck Driver, Store Receiving Clerk, Store Manager |
@@ -2662,4 +2664,4 @@ Summary of which ERP modules support which workflows:
 
 ---
 
-*Document Version: 11.0 | Date: 2026-05-30 | Wave 8: resolved 10 gaps — A1 cross-store returns (W12c), A2 VAT-exempt/zero-rated sales (W24+W5b), A3 PO amendment/cancellation/close lifecycle (W2a), A4 consignment/VMI during physical count (W42), A5 customer-initiated inter-store transfer (W22), A6 mid-range store expenses (W25), A7 vendor lead time master data lifecycle (W36), B1 POS void authorization roles (W5b), B2 cross-entity employee transfer (W43), C1 catch-weight items during transfers (W22)*
+*Document Version: 11.1 | Date: 2026-05-30 | Wave 9: realism review — added replenishment order consolidation note (W4), buyer staffing note (W1), updated replenishment frequency to clarify orders vs deliveries*

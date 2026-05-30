@@ -136,6 +136,8 @@ The company operates through **5 legal entities** organized as follows:
 | Corporate HQ Personnel | ~300 |
 | **Total Company Headcount** | **8,050** |
 
+> **Revenue per employee**: ~PHP 7.7M/year — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (35 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further.
+
 ---
 
 ## 5. Point-of-Sale (POS) Operations
@@ -260,16 +262,18 @@ The company operates through **5 legal entities** organized as follows:
 ### 7.1 Inbound Logistics (Vendor → DC)
 - ~70% of goods **by value** flow through DCs first (stocking items)
 - ~30% of goods **by value** are delivered direct-to-store (DSD) for bulky/fresh items (cement, lumber, sand, gravel); this represents ~500–600 DSD receipts/month (~8–10% of receipt count) but includes high-value and heavy items that are uneconomical to double-handle through DCs
-- Import containers: ~50–70 TEUs/month across all import vendors
+- Import containers: ~400–600 TEUs/month across all import vendors
+
+> **TEU volume note**: At ~40% of COGS from imports (~PHP 1.4B/month import value), the average value per TEU for home improvement goods ranges from PHP 1.5M (tiles, cement, steel — heavy, low value-to-weight) to PHP 5M (power tools, appliances — lighter, higher value). Blended average of ~PHP 2.5–3.5M/TEU yields ~400–600 TEUs/month. This is consistent with Philippine home improvement import volumes at this revenue scale.
 - Customs brokerage managed in-house for imports
 - Payment terms: typically 30–60 days for local; LC/TT for imports
 
 ### 7.2 Outbound Logistics (DC → Store)
-- **Replenishment Frequency**: 2–3 deliveries per store per week
+- **Replenishment Frequency**: 2–3 deliveries per store per week (each delivery may contain 2–3 replenishment orders combined for efficiency)
 - **Fleet**: Mix of owned (20%) and third-party (80%) trucks
 - **Vehicle Types**: 10-wheeler wing vans, 6-wheeler trucks, multi-drop routing
 - **Delivery Lead Time**: 1–3 days from DC order to store receipt
-- **Store Replenishment Orders**: ~4,500–5,500 per month (across all stores)
+- **Store Replenishment Orders**: ~4,500–5,500 per month (across all stores); each delivery truck typically fulfills 2–3 replenishment orders (grouped by category or priority into a single shipment), reconciling to 2–3 physical deliveries per store per week
 
 ### 7.3 Store Receiving
 - Each store receives 2–3 trucks per week
@@ -395,7 +399,9 @@ The company operates through **5 legal entities** organized as follows:
 | **Annual Gross Revenue** | ~PHP 62.3 Billion |
 | **Average Gross Margin** | ~28–32% |
 | **Annual COGS** | ~PHP 42–45 Billion |
-| **EBITDA Margin** | ~10–12% |
+| **EBITDA Margin** | ~12–14% |
+
+> **EBITDA note**: BuildRight's EBITDA is benchmarked below Wilcon Depot's ~14–16% and well below Home Depot's ~17–18%, reflecting higher logistics costs from a 5-DC provincial footprint, newer stores still ramping, and a lean staffing model. As the store base matures beyond 200 stores, EBITDA should approach 14–15%.
 
 > Note: POS transactions (2,800,000 × PHP 1,800) = PHP 5.04B in-store revenue. Ecommerce adds PHP 150M. Total monthly revenue = PHP 5.19B. Ecommerce represents 2.9% of total, consistent with Year 1 penetration target of ~3%. Per-store monthly revenue of ~PHP 25.2M reflects in-store only (PHP 5.04B ÷ 200 stores). Per-store annual revenue of ~PHP 302M is ~90% of Wilcon Depot's estimated per-store revenue (PHP 330–350M), reflecting the more provincial footprint and leaner SKU assortment. Revenue figures assume all 200 stores are mature.
 
@@ -531,8 +537,12 @@ BuildRight Holdings, Inc.
 | Sales per Store per Month | ~PHP 25M |
 | Sales per Sqm per Year | ~PHP 22,000–28,000 |
 | Gross Margin % | 28–32% |
-| Inventory Turns | 8–10x per year |
+| Inventory Turns | 6–8x per year |
+
+> **Inventory turns note**: 6–8x is realistic for a Philippine big-box home improvement retailer with 35,000 curated SKUs. Home Depot (US) achieves ~5x with 30,000–40,000 SKUs, but faces less supply chain friction. Philippine island geography, port congestion, import lead times (45–90 days), and limited cold-chain/express logistics make 8–10x aspirational. The curated assortment (vs. Wilcon's 60,000+) and regional DC proximity to stores support the 6–8x target.
 | Shrinkage / Loss | < 1.5% of sales |
+
+> **Shrinkage note**: < 1.5% is aspirational for Philippine retail (industry average ~1.5–2.5%). Achieving this target requires mature loss prevention systems (exception-based reporting, CCTV integration, EAS tagging on high-value items) and sustained discipline across 200 stores. A realistic Year 1–3 range is 1.5–2.0%, trending toward < 1.5% as LP programs mature.
 | Customer Satisfaction Score | ≥ 85% |
 | On-time Replenishment | ≥ 95% |
 
@@ -730,4 +740,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.5 | Date: 2026-05-30 | Wave 7: clarified IC inventory ownership model in §2 — Depot Inc. owns all merchandise; Logistics Inc. provides warehousing services*
+*Document Version: 2.6 | Date: 2026-05-30 | Wave 8: realism review — revised EBITDA to 12–14% (from 10–12%), inventory turns to 6–8x (from 8–10x), import TEUs to 400–600/month (from 50–70), added replenishment order consolidation note, buyer staffing note, revenue-per-employee note, shrinkage aspiration note*

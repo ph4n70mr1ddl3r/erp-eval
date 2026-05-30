@@ -262,8 +262,33 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Yard-to-indoor inventory transfer (W3b.7)
 - Yard inventory visible in real-time alongside indoor inventory (W3b.2)
 
-### System Touchpoints
-- PO/TO lookup at receiving dock (W3.2)
+### W3c. DC Inbound Delivery Scheduling
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Purchase order confirmed with vendor or import shipment ETA confirmed |
+| **Frequency** | Daily; ~40 receipts/day per DC |
+| **Volume** | ~1,200 merchandise receipts/month + ~80–240 blanket releases + ~20–30 import containers + ~30–50 non-merchandise receipts per DC per month |
+| **Owner** | DC Receiving Supervisor |
+| **Participants** | Buyer, Import Coordinator, DC Receiving Supervisor, DC Dispatch, Vendor/Carrier |
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System generates inbound delivery forecast from open POs: PO number, vendor, expected delivery date (from PO promised date or import ETA), number of lines, estimated pallet/cube count, and dock door requirements (refrigerated none; hazardous materials for paint/chemicals; standard for general merchandise) | System | — | Automated (nightly) |
+| 2 | DC Receiving Supervisor reviews next 3-day inbound forecast each morning; identifies days with high receiving volume (> 50 receipts) or overlapping large deliveries; adjusts dock door assignments and staff scheduling | DC Receiving Supervisor | DC Manager | 15 min/day |
+| 3 | For domestic vendor deliveries: Buyer or system transmits delivery appointment to vendor with requested delivery date and time window (typically 8:00 AM – 4:00 PM, 2-hour windows); vendor confirms or proposes alternative; system logs appointment confirmation | Buyer / System | DC Receiving Supervisor | 5 min/PO |
+| 4 | For import containers: Import Coordinator books delivery appointment with DC once container is released from port; provides container number, commodity, estimated weight, and special handling requirements; DC Receiving Supervisor confirms appointment and assigns dock door | Import Coordinator | DC Receiving Supervisor | 10 min/container |
+| 5 | If vendor arrives without appointment: guard checks against open PO list; if valid PO exists, Receiving Supervisor accepts on a space-available basis (may result in extended wait time); if no valid PO, guard turns delivery away with Buyer notification | Guard / DC Receiving Supervisor | DC Manager | 5 min |
+| 6 | System maintains dock door utilization dashboard per DC: shows scheduled appointments, completed receipts, and available capacity by time slot; Receiving Supervisor uses dashboard to optimize dock assignments and avoid congestion | System | — | Automated |
+| 7 | Monthly: DC Receiving Supervisor reviews appointment compliance report — vendor on-time arrival %, no-show rate, unscheduled delivery rate; feeds into vendor scorecard (W44) and carrier performance review (W52) | DC Receiving Supervisor | DC Manager | 30 min/month |
+
+### System Touchpoints (DC Scheduling)
+- Inbound delivery forecast from open PO data with dock door requirements (W3c.1)
+- Delivery appointment booking with vendor confirmation tracking (W3c.3–4)
+- Dock door utilization dashboard with real-time capacity visibility (W3c.6)
+- Appointment compliance reporting feeding vendor scorecard (W3c.7)
+- Unscheduled delivery handling with PO validation at gate (W3c.5)
+- Integration with W3 (DC receiving — appointments feed step 1 guard check), W2a (auto-replenishment POs generate appointments), W2b (import container appointments), W18b (DSD scheduling — store equivalent), W44 (vendor scorecard — appointment compliance), W52 (carrier performance)
 - Barcode/RF scanning against PO (W3.4)
 - Discrepancy flagging and Buyer notification (W3.6)
 - Damage disposition workflow: RTV initiation, scrap authorization, insurance claim capture (W3.6a–c)
@@ -327,6 +352,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - FEFO (First Expired First Out) directed picking: for items with shelf-life tracking (paint, adhesives, chemicals, cement), WMS directs pickers to pick the earliest-expiring batch first; system sequences pick tasks by expiry date within the same SKU; ensures fresher stock remains in DC for later dispatch (W4.5)
 - Inventory ownership clarification: goods moving from DC to store in W4 are Depot Inc. inventory at both locations; DC facilities are operated by Logistics Inc. (which charges monthly warehousing/distribution fees per W14), but Depot Inc. owns the merchandise throughout; W4 transfer orders are intra-entity inventory movements (no per-TO IC invoice); IC invoicing applies only to inter-entity goods transfers (W22) or service fees (W14)
 - New store demand ramp-up (first 90 days): for newly opened stores (W16), auto-replenishment parameters (ROP, safety stock, min/max) derived from comparable store averages may not reflect actual local demand patterns during the ramp-up period; during the first 90 days post-opening, Supply Planner overrides auto-replenishment with manual review — (a) system flags all replenishment orders for new stores with "Ramp-Up" status requiring Planner confirmation (no auto-release), (b) Planner reviews suggested orders daily against early sell-through data and adjusts quantities based on actual demand velocity observed in the first weeks, (c) Store Manager provides daily feedback on fast-moving and slow-moving items via the W4b store-initiated replenishment request channel, (d) after 90 days, Demand Planner analyzes accumulated sales data to calculate store-specific ROP/safety stock parameters per W31.8; system transitions the store from "Ramp-Up" to standard auto-replenishment; parameters reviewed again at 180 days; this manual override period prevents both overstocking (tying up working capital in a new store) and stockouts (damaging customer first impressions)
+- Constrained allocation rule governance: when available supply is insufficient for all stores, system applies configurable allocation logic; Supply Planning Manager defines allocation method per SKU or category (equal distribution, rank by store revenue, prioritize A-stores, proportional to historical demand); allocation rules reviewed and approved by VP Supply Chain; rule changes logged with old method, new method, reason, approver, and effective date; monthly: Supply Planning Manager reviews allocation fairness dashboard showing per-store fill rate and allocation share; fairness disputes escalated by Store Managers through W4b channel feed into allocation rule review; quarterly: allocation methodology reviewed as part of W31.8 parameter governance cycle (W4.2)
 
 ### W4b. Store-Initiated Replenishment Request
 
@@ -572,7 +598,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Evaluated Receipt Settlement (ERS): for configured VMI vendors (W20) and select blanket PO vendors (W2c), system auto-generates vendor invoice from PO + Goods Receipt data without requiring vendor invoice submission; AP Clerk validates auto-generated invoice against PO and GR; if within tolerance, auto-approved for payment; reduces GRNI accumulation and manual invoice processing for high-volume, trusted vendor relationships
 
 ### Staffing Implication
-- **8–10 AP Clerks**: 217 invoices/day × 5 min (logging) = ~18 hours for basic processing. With ~20% requiring manual resolution at 25 min each = ~20 additional hours. Total ~38 hours/day. With 8 clerks that's ~5 hours each. Reasonable with payment runs, GRNI follow-up, and other duties.
+- **8–10 AP Clerks**: total ~285–320 invoices/day across merchandise (~217/day per W7) and non-PO (~67–100/day per W7c); at 5 min logging each = ~24–27 hours for basic processing; with ~20% requiring manual resolution at 25 min each = ~20 additional hours; total ~44–47 hours/day; with 8 clerks that's ~5.5–6 hours each; reasonable with payment runs, GRNI follow-up, vendor statement reconciliation (W7d), and other duties
 - **1 AP Supervisor**: Oversight, aging review, GRNI escalation management, escalations.
 - **2 Treasury Analysts**: Payment approval, bank file transmission, LC management. Shared with AR and other treasury duties.
 
@@ -598,6 +624,36 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 6 | Monthly: AP Supervisor reviews non-PO expense summary by cost center; flags locations with unusual expense patterns for management review | AP Supervisor | Controller | 1 hour/month |
 
 **Match rate target**: ≥ 70% auto-matched for recurring expenses (contract-based)
+
+### W7d. AP Vendor Statement Reconciliation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly vendor statement received (email, mail, or vendor portal) |
+| **Frequency** | Monthly for top 50 vendors (by spend); quarterly for remaining active vendors |
+| **Volume** | ~50 monthly reconciliations + ~750 quarterly reconciliations; top 50 = 45% of COGS |
+| **Owner** | AP Clerk |
+| **Participants** | AP Clerk, AP Supervisor, Buyer (for discrepancies) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Vendor submits monthly or quarterly statement showing all invoices, credit memos, and payments for the period; AP Clerk receives and logs statement in system | AP Clerk | AP Supervisor | 5 min/vendor |
+| 2 | System attempts auto-reconciliation: matches vendor statement line items to AP sub-ledger transactions (invoices, credit memos, payments) by invoice number, date, and amount | System | — | Automated |
+| 3 | System generates reconciliation summary: matched items, unmatched vendor lines (vendor shows invoice not in AP), unmatched AP lines (AP shows invoice not on vendor statement), and amount variances | System | — | Automated |
+| 4 | AP Clerk investigates unmatched items: (a) **unmatched vendor lines** — vendor invoice not yet received or not yet entered in AP; if invoice is valid and GR exists, AP Clerk enters invoice per W7; if no GR, flags for Buyer follow-up with vendor; (b) **unmatched AP lines** — payment made but vendor did not credit; AP Clerk provides payment reference (bank transfer date, amount) for vendor to apply; (c) **amount variances** — typically partial payments, discounts taken, or EWT deduction not reflected on vendor statement; AP Clerk explains variance with supporting documentation | AP Clerk | AP Supervisor | 15–30 min/vendor |
+| 5 | AP Clerk documents reconciliation result: matched amount, unmatched items with explanation, and net variance; flags reconciling items > PHP 50,000 or items > 60 days unresolved for AP Supervisor review | AP Clerk | AP Supervisor | 10 min/vendor |
+| 6 | Monthly: AP Supervisor reviews vendor reconciliation summary for top 50 vendors — total matched vs. unmatched, aging of reconciling items, recurring discrepancy patterns; escalating chronic discrepancies to Buyer for vendor relationship review per W44 | AP Supervisor | Controller | 1 hour/month |
+| 7 | Quarterly: AP Supervisor includes vendor reconciliation metrics in AP controls review (cross-reference CTL-42 in Internal Controls Matrix); unreconciled balances > 90 days escalated to Controller for potential write-off or accrual adjustment | AP Supervisor | Controller | 30 min/quarter |
+
+### System Touchpoints
+- Vendor statement import: AP Clerk uploads vendor statement (PDF, Excel, or EDI); system parses line items for auto-matching (W7d.1–2)
+- Auto-reconciliation engine: matches vendor statement lines to AP sub-ledger by invoice number, date, and amount with configurable tolerance (W7d.2)
+- Reconciliation summary dashboard: matched, unmatched (vendor-side), unmatched (AP-side), and variance items with drill-down (W7d.3)
+- Reconciliation documentation: auditor-ready log showing reconciliation result per vendor per period with aging of reconciling items (W7d.5)
+- Vendor reconciliation analytics: match rate, average reconciliation time, recurring discrepancy vendors, aging of unresolved items (W7d.6)
+- Integration with W7 (AP invoice processing), W7c (non-PO invoices), W44 (vendor performance — chronic reconciliation issues affect vendor scorecard)
 
 ---
 
@@ -627,6 +683,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 9 | Customer payment received; AR Clerk applies payment to open invoices | AR Clerk | AR Supervisor | 5 min/payment |
 | 10 | Monthly reconciliation of AR sub-ledger to GL | AR Clerk | AR Supervisor | 2 hours/month |
 11 | Customer credit memo: AR Clerk creates credit memo with reason code and source reference (pricing error, volume discount adjustment, short delivery, service failure, promotional adjustment); tiered approval (AR Supervisor ≤ PHP 10,000; Finance Manager ≤ PHP 50,000; CFO > PHP 50,000); system applies credit to oldest open invoice or creates credit balance; posts GL entry (Dr. Revenue or appropriate expense / Cr. Accounts Receivable); customer notified of credit | AR Clerk / AR Supervisor | Finance Manager | 10 min/credit memo |
+12 | **Customer account closure**: customer requests trade/corporate account closure; AR Clerk verifies zero outstanding balance — if balance outstanding, arranges final payment or collection per W8.6–8; system settles any open credit memos (applies to outstanding invoices or processes refund); loyalty points: if customer has unredeemed points, system offers redemption before closure or forfeits per W17 terms; AR Clerk deactivates account in system; account status changed to "Closed"; system retains transaction history for 7-year BIR retention; PII anonymized after retention period per RA 10173 and W53 data retention policy; account closure logged with reason, date, and AR Clerk ID | AR Clerk | AR Supervisor | 15 min/closure |
 
 ### System Touchpoints
 - AR invoice creation from POS/sales order (W8.1–2)
@@ -635,7 +692,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Aging report generation (W8.5)
 - Customer statement generation (W8.4)
 - Customer credit memo processing: reason code and source reference, tiered approval, auto-application to open invoices, GL posting (Dr. Revenue/Expense / Cr. AR), credit balance management (W8.11)
-- Dormant trade/corporate account management: system defines dormancy as zero transactions (sales or payments) for 6 consecutive months; monthly, system generates dormant account report listing all accounts meeting dormancy criteria; AR Clerk contacts dormant accounts via phone/email to confirm business status — (a) if customer confirms active but no current need: account remains active, no action; (b) if customer unresponsive after 2 contact attempts over 30 days: AR Supervisor places account on inactive status; system automatically reduces credit limit to PHP 0 (prevents new sales on account); account remains searchable for transaction history and reactivation; (c) if customer confirms business closure: AR Clerk processes formal account closure — verifies zero outstanding balance, archives account, removes from active AR aging; for reactivation of inactive accounts: customer contacts Sales Rep or AR Clerk; AR Clerk reopens account with updated business documents per W24 ( abbreviated credit assessment — if reactivation within 12 months, may reuse prior credit assessment with updated financials; if > 12 months, full W24 process required); AR Supervisor approves reactivation with new credit limit; annual: AR Supervisor reviews all dormant/inactive accounts and recommends write-off of any remaining immaterial balances (< PHP 5,000) with Finance Manager approval
+- Dormant trade/corporate account management: system defines dormancy as zero transactions (sales or payments) for 6 consecutive months; monthly, system generates dormant account report listing all accounts meeting dormancy criteria; AR Clerk contacts dormant accounts via phone/email to confirm business status — (a) if customer confirms active but no current need: account remains active, no action; (b) if customer unresponsive after 2 contact attempts over 30 days: AR Supervisor places account on inactive status; system automatically reduces credit limit to PHP 0 (prevents new sales on account); account remains searchable for transaction history and reactivation; (c) if customer confirms business closure: AR Clerk processes formal account closure per W8 step 12 — verifies zero outstanding balance, settles open credit memos, manages loyalty points disposition, deactivates account, retains transaction history for 7-year BIR retention period, anonymizes PII after retention period per RA 10173 (cross-reference W53); for reactivation of inactive accounts: customer contacts Sales Rep or AR Clerk; AR Clerk reopens account with updated business documents per W24 (abbreviated credit assessment — if reactivation within 12 months, may reuse prior credit assessment with updated financials; if > 12 months, full W24 process required); AR Supervisor approves reactivation with new credit limit; annual: AR Supervisor reviews all dormant/inactive accounts and recommends write-off of any remaining immaterial balances (< PHP 5,000) with Finance Manager approval
 - Payment application and matching (W8.9)
 - AR sub-ledger to GL reconciliation (W8.10)
 
@@ -772,6 +829,7 @@ Additional steps on top of month-end close (December):
 - Statutory remittance reconciliation: per-employee contribution schedule vs. remittance file vs. bank confirmation; discrepancy flagging (W10.11a)
 - Contractual/fixed-term worker management: contract date tracking, pro-rated benefit computation, end-of-contract settlement, regularization conversion (W10.11b)
 - Agency / manpower contractor worker management: for seasonal and peak-period staffing (Christmas season, bi-monthly sale events, new store openings), BuildRight engages licensed manpower agencies per DOLE Department Order No. 174 (Labor-Only Contracting rules); agency workers are NOT employees of BuildRight entities — they appear in the agency's payroll, not in BuildRight's W10 payroll run; system tracks agency worker headcount separately from regular headcount for workforce planning; Store Manager submits agency staffing request to HR with headcount, duration, and skill requirements; HR coordinates with approved agency partners; agency invoices are processed as non-PO service invoices per W7c with DOLE-compliant documentation (agency service agreement, worker deployment list, attendance records); agency workers are issued temporary POS and access badges with limited system permissions and defined expiry dates; system distinguishes agency hours from regular employee hours for labor cost reporting (agency cost is a contract service expense, not payroll); typical agency worker deployment: 2–5 per store during November–December peak, and 10–15 per new store opening (W16) for the first 2 weeks of operations
+- Agency worker access provisioning: Store Manager submits agency worker access request to IT via W48 helpdesk ticket, specifying worker name, agency, assignment duration, and required access level; IT creates temporary system account with predefined "Agency Worker" permission template (POS transaction processing only — no voids, no price overrides, no manager functions, no reports); access badge created with defined expiry date matching deployment end date; system auto-revokes access on expiry date; at end of deployment, Store Manager verifies badge return and IT confirms system deactivation; if deployment extended, Store Manager submits extension request before expiry; system logs all agency worker access with agency name, worker name, store, start/end dates, and permission level; monthly: IT generates agency worker access report showing active, expired, and unreturned badges; unreturned badges flagged for Store Manager follow-up (W10, cross-reference W71 access badge management)
 
 ### Statutory Compliance Calendar
 
@@ -1063,6 +1121,34 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 | 6 | If dispute reveals a systemic issue with the IC pricing rule: CFO initiates an early review of the applicable IC pricing rule (outside the annual cycle) and updates the system configuration | CFO | CEO | 1 hour |
 
 **Dispute SLA**: All IC disputes must be resolved within the same monthly close period. Unresolved disputes block the close for both entities.
+
+### IC Loan Lifecycle
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Subsidiary requires funding for working capital, capex, or seasonal cash flow needs beyond internal cash generation |
+| **Frequency** | As needed; typically 5–10 IC loan events/year |
+| **Owner** | CFO |
+| **Participants** | CFO, Treasury Analyst, Chief Accountant, borrowing entity Finance lead |
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Subsidiary Finance lead identifies funding need; submits IC loan request to CFO with amount, purpose, proposed repayment schedule, and cash flow justification | Entity Finance Lead | CFO | 30 min |
+| 2 | CFO approves IC loan; defines terms: principal, interest rate (at minimum the BIR-prescribed rate per RR 19-2020 for arm's-length compliance — currently 12% per annum or the applicable BIR rate), repayment schedule (lump sum or amortizing), and maturity date | CFO | CEO | 15 min |
+| 3 | Treasury Analyst executes inter-entity bank transfer; system posts IC loan entry (Dr. IC Loan Receivable in lending entity / Cr. Cash; Dr. Cash / Cr. IC Loan Payable in borrowing entity) | Treasury Analyst | CFO | 15 min |
+| 4 | System calculates monthly interest accrual per loan terms: Dr. IC Interest Receivable / Cr. IC Interest Income in lending entity; Dr. Interest Expense / Cr. IC Interest Payable in borrowing entity; interest accrual posts automatically at month-end as part of W9a close | System | Controller | Automated |
+| 5 | Monthly: Chief Accountant reconciles IC loan balances (principal + accrued interest) across lending and borrowing entities as part of W14 step 4 IC reconciliation | Chief Accountant | Controller | Part of W14 |
+| 6 | At repayment: Treasury Analyst executes repayment transfer; system posts principal repayment and any remaining accrued interest; IC loan balance reduced accordingly | Treasury Analyst | CFO | 15 min |
+| 7 | At maturity: if loan not yet repaid, system alerts CFO 30 days before maturity; CFO decides to extend, demand repayment, or convert to equity (with Board approval if applicable) | System / CFO | CEO | Automated + 15 min decision |
+| 8 | Annual: CFO reviews all IC loan balances and terms as part of W14 annual transfer pricing review; confirms arm's-length compliance; adjusts terms if regulatory rates change | CFO | CEO | Part of W14 annual review |
+
+### System Touchpoints (IC Loans)
+- IC loan record creation with principal, interest rate, repayment schedule, and maturity date (W14 IC Loans step 2)
+- Automatic monthly interest accrual with GL posting in both entities (W14 IC Loans step 4)
+- IC loan balance tracking with maturity alerting at 30 days (W14 IC Loans step 7)
+- IC loan reconciliation integrated into monthly W14 IC matching (W14 IC Loans step 5)
+- BIR arm's-length interest rate compliance: system validates that IC loan interest rate meets or exceeds BIR-prescribed minimum; flags loans below threshold for CFO review (W14 IC Loans step 2)
+- Integration with W9a (interest accrual in month-end close), W14 (IC reconciliation), W30 (cash transfer execution), W26 (budget — IC borrowing planned in annual budget)
 
 ### Annual IC Transfer Pricing Review (continued)
 
@@ -1960,6 +2046,7 @@ During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per
 - Multi-currency (PHP/USD) account management with FX conversion tracking (W30.10)
 - Petty cash reconciliation link: store-level petty cash replenishments (W25) are included in the daily cash position report (W30 step 3) as pending outflows; Treasury Analyst sees replenishment requests in the weekly cash flow forecast (W30 step 8); replenishment payments confirmed via bank transfer are auto-matched to store deposit accounts during bank reconciliation (W30 step 9); monthly petty cash replenishment totals per store are visible on the Treasury dashboard for monitoring unusual patterns (W30)
 - Store-level cash position tracking: system aggregates per-store daily cash deposits (W5c), petty cash replenishments (W25), and store disbursement requests (W25 store disbursement) into a consolidated store cash movement report; Treasury Analyst reviews as part of daily cycle to detect unusual cash patterns at individual stores (W30)
+- Bank account lifecycle management: Treasury Analyst maintains bank account register across all entities (~210 accounts: 200 store deposit accounts, 5 DC operating accounts, 5 entity main operating accounts, 5 USD import accounts, and additional payroll, savings, and investment accounts); new account opening triggered by new store (W16), new entity setup, or new banking relationship — Treasury Analyst submits account opening request to bank with Board Resolution (per entity), authorized signatory list, and business registration documents; signatory management: system tracks authorized signatories per account with signatory tier (single signatory, dual signatory, any-two-of-three); when a signatory changes role or separates (W43), Treasury Analyst updates bank signatory list within 10 business days — system alerts on signatory staleness (no update in > 12 months); account closure triggered by store closure (W45), account consolidation, or bank relationship termination — Treasury Analyst confirms zero balance, obtains bank closure confirmation, and deactivates account in system; system logs all account openings, signatory changes, and closures with full audit trail (W30)
 
 ### Staffing Implication
 - **2–3 Treasury Analysts**: Daily cash position (30 min) + sweep execution (30 min × 2/week) + weekly forecast (2 hours) + monthly bank reconciliation (1 day) + import payments + inter-entity transfers. This is a full-time role for 2 analysts with a 3rd covering during peaks (month-end, import payment seasons).
@@ -2593,7 +2680,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 
 > **Feasibility note**: Counting 35,000 SKUs per store with 35 staff in 2 days is infeasible for a full wall-to-wall count. BuildRight addresses this with a **tiered counting strategy**: (a) **A/B items** (~10,500 SKUs, 95% of inventory value) receive full physical count during the annual window; (b) **C items** (~24,500 SKUs) are validated by extrapolating from rolling cycle counts (W6) conducted throughout the year — the annual process confirms that cycle count accuracy for C-items meets the ≥ 97% threshold, rather than recounting every C-item. This reduces the per-store counting burden to ~10,500 SKUs ÷ 35 staff ÷ 2 days = ~150 SKUs/person/day, achievable at ~3 min/SKU including travel between locations. DCs, with higher item density and forklift-access racking, allocate 3–5 days for a full count of all SKUs.
 >
-> **C-item extrapolation methodology**: C-item inventory accuracy is validated using a statistical sampling approach — (a) throughout the year, W6 cycle counts cover all C-item SKUs at least once per quarter (per the quarterly cycle in W6); (b) each C-item's cycle count accuracy (physical vs. system quantity) is recorded per count event; (c) at year-end, Cost Accountant computes the aggregate C-item accuracy rate = (total C-item SKU-locations where physical matched system within tolerance) ÷ (total C-item SKU-locations counted during the year); (d) if aggregate accuracy ≥ 97%, C-items are considered validated and no additional count is required at year-end; (e) if aggregate accuracy < 97%, Cost Accountant identifies the worst-performing C-item categories (by variance rate) and adds them to the annual count scope; (f) sample size for interim confidence: to achieve 95% confidence that the true accuracy rate is within ±1% of the observed rate, a minimum of ~500 C-item SKU-locations must be cycle-counted per quarter per store (approximately 2% of C-item SKU-locations, achievable within W6 daily count volume of ~700 SKUs/day); (g) this methodology is reviewed and approved by Internal Audit annually as part of the W42 physical inventory observation.
+> **C-item extrapolation methodology**: C-item inventory accuracy is validated using a statistical sampling approach — (a) throughout the year, W6 cycle counts cover all C-item SKUs at least once per quarter (per the quarterly cycle in W6); (b) each C-item's cycle count accuracy (physical vs. system quantity) is recorded per count event; (c) at year-end, Cost Accountant computes the aggregate C-item accuracy rate = (total C-item SKU-locations where physical matched system within tolerance) ÷ (total C-item SKU-locations counted during the year); (d) if aggregate accuracy ≥ 97%, C-items are considered validated and no additional count is required at year-end; (e) if aggregate accuracy < 97%, Cost Accountant identifies the worst-performing C-item categories (by variance rate) and adds them to the annual count scope; (f) sample size for interim confidence: to achieve 95% confidence that the true accuracy rate is within ±1% of the observed rate, a minimum of ~500 C-item SKU-locations must be cycle-counted per quarter per store (approximately 2% of C-item SKU-locations, achievable within W6 daily count volume of ~700 SKUs/day); (g) this methodology is reviewed and approved by Internal Audit annually as part of the W42 physical inventory observation; (h) **below-threshold contingency**: if aggregate C-item accuracy falls below 97%, Cost Accountant quantifies the gap and identifies worst-performing C-item categories by variance rate; additional items added to the annual count scope in priority order (highest-variance categories counted first); if additional scope threatens the 2-day count window, Cost Accountant escalates to Controller with a proposed extended count schedule (up to 5 days with staggered zone freezing per W42 system freeze mitigation); Controller approves or denies extension; if extension denied, Cost Accountant counts the highest-risk C-items within the standard window and accepts a qualified inventory opinion for the remaining C-items — Controller discloses the qualification in the year-end close package (W9b); Internal Audit documents the below-threshold outcome and includes it in the W42 observation report.
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
@@ -2773,6 +2860,8 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 | 11 | Cost Accountant disposes store fixtures and fixed assets per W39 (disposal/retirement); capitalizes any leasehold improvement write-offs | Cost Accountant | Controller | Per W39 |
 | 12 | System deactivates store location master: location status set to "Closed"; no further transactions posted; location excluded from reports and dashboards | IT / Controller | CFO | Automated + 15 min |
 | 13 | Controller runs final store P&L and balance sheet reconciliation: all inventory cleared, all AP/AR settled, all assets disposed; final profit/loss on closure recognized | Controller | CFO | 1 day |
+| 13a | **Financial close-out checklist** — Controller and Store Manager verify the following location-specific commitments are resolved before final close: (a) petty cash float (PHP 20K) returned to Treasury via bank transfer or armored car; custodian reconciliation completed per W25; (b) gift cards / store credit vouchers issued by closing store — system reissuance to customer's nearest store location with customer notification; unredeemed store credit balance recognized as revenue upon closure; (c) pending special orders (W38) — customer deposits either fulfilled from alternative store/DC or refunded per W38.16 deposit refund process; (d) pending warranty claims (W33) — items at vendor for repair reassigned to customer's nearest store for pickup upon return; (e) pending backorders (W56) — allocation released or redirected to nearest store with customer notification; (f) store-specific vendor contracts (e.g., local maintenance, cleaning) — terminated per W62 with final payment; (g) store-specific service contracts — final invoice verified and paid | Controller / Store Manager / AR Clerk / AP Clerk | CFO | 1 day |
+| 13b | **LGU permit retirement**: Regulatory Officer notifies LGU Business Permit and Licensing Office (BPLO) of store closure; files closure notification with final local business tax payment (covering period up to closure date); obtains LGU closure acknowledgment; system updates location master with closure date and LGU retirement confirmation per W54; failure to retire LGU permit may result in continued LBT billing — Regulatory Officer confirms retirement within 30 days of closure | Regulatory Officer | Legal Head | 2–4 hours/location |
 | 14 | Post-closure: system retains closed store data for 7-year retention period (BIR); historical data accessible for reporting but location excluded from active operations | System | — | Automated |
 
 **Total closure cycle**: 2–3 months from decision to final close-out
@@ -2786,6 +2875,9 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 - Trade/AR account collection and reassignment (W45.8–9)
 - Final store financial close-out with closure P&L recognition (W45.13)
 - Closed location data retention with restricted access (W45.14)
+- Financial close-out checklist: petty cash return, gift card/store credit reissuance, special order deposit refund or fulfillment, warranty claim reassignment, backorder release, vendor contract termination per W62, final service invoice verification (W45.13a)
+- LGU permit retirement: closure notification to LGU BPLO, final LBT payment, LGU closure acknowledgment, location master update (W45.13b)
+- Integration with W25 (petty cash return), W28 (gift card reissuance), W33 (warranty reassignment), W38 (special order deposit refund), W54 (LGU permit retirement), W56 (backorder release), W62 (vendor contract termination)
 
 ### Staffing Implication
 - **Store Ops Director**: Leads closure process. ~20 hours per closure spread over 2–3 months.
@@ -3417,6 +3509,8 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 | 9 | Upon project completion: Sales Rep closes project record; system generates final project summary (total revenue, margin, items purchased, variance from initial estimate); AR Supervisor confirms all invoices settled | Sales Rep / AR Supervisor | Finance Manager | 1 hour/project |
 | 10 | Quarterly: Sales Rep and Category Manager review corporate account portfolio: account profitability, project win rate, competitive positioning, upsell opportunities | Sales Rep + Category Manager | VP Merchandising | 4 hours/quarter |
 
+> **Billing model note**: the workflow above uses monthly billing summaries as the standard billing method for corporate/project accounts, which is a deliberate simplification aligned with BuildRight's retail-oriented billing cycle. For large construction projects where customers require milestone-based or progress billing (e.g., foundation, framing, finishing phases), Sales Rep structures the project into billing milestones during W58 step 2 — each milestone has a target date and estimated value; system generates a milestone invoice when Sales Rep confirms milestone completion; retention amounts (standard 10% in Philippine construction practice) may be configured per project if contractually required — system tracks retained amount separately from invoiced amount and releases retention upon project completion sign-off; architect/engineer progress certification, if required, is captured as an approval step before milestone invoice generation; project change orders are processed as adjustments to the project record with Category Manager approval, updating the material requirement plan and billing milestones accordingly
+
 ### System Touchpoints
 - Corporate account master with project sub-accounts, project-specific pricing, and delivery preferences (W58.1–3)
 - Project record with timeline, material requirements, and billing milestones (W58.2)
@@ -3584,6 +3678,42 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 
 ### Staffing Implication
 - No incremental headcount. Contract management is distributed across Department Heads as part of their operational responsibility. Legal reviews add ~1–2 hours/contract — absorbed within Legal team.
+
+### W62b. 3PL / Delivery Partner Onboarding & Offboarding
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New delivery partner identified (new service area, capacity expansion, carrier diversification); or existing partner termination (performance failure, contract expiry, business exit) |
+| **Frequency** | ~5–10 new partner evaluations/year; ~2–3 offboardings/year |
+| **Volume** | Active partners: ~5–10 delivery partners (Lalamove, Transportify, own fleet surrogates, regional carriers, inter-island shipping lines) |
+| **Owner** | Fleet Manager / DC Dispatch Supervisor |
+| **Participants** | Fleet Manager, DC Dispatch, IT (API integration), Finance, Legal |
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Fleet Manager or DC Dispatch identifies need for new delivery partner: coverage gap, capacity constraint, cost benchmarking, or service quality issue with existing partner | Fleet Manager | Supply Chain Manager | 30 min |
+| 2 | Fleet Manager solicits proposals from 2–3 candidate partners; evaluates on: delivery coverage (zones, islands), rate card per zone/weight/tier, SLA terms (on-time %, damage rate), API integration capability (order creation, tracking, proof of delivery), insurance coverage, business permits, tax compliance | Fleet Manager | Supply Chain Manager | 4–8 hours |
+| 3 | IT evaluates API integration feasibility: order creation, real-time tracking, proof of delivery capture, webhook/callback for status updates; estimates integration timeline and cost | IT Team | CIO | 4 hours |
+| 4 | Legal reviews contract terms: liability for lost/damaged goods, data privacy (RA 10173 — delivery partner may access customer name, phone, address), insurance requirements, termination clause | Legal | Legal Head | 1–2 hours |
+| 5 | Approval per W62 tiered matrix (carrier contracts typically annual value ≤ PHP 2M → VP + CFO; > PHP 2M → CEO) | Approver | Approver | 15–30 min |
+| 6 | IT configures API integration in staging environment; conducts integration testing with carrier test environment; validates order creation, status callbacks, and proof of delivery flow; Fleet Manager and DC Dispatch conduct pilot with limited order volume for 1–2 weeks | IT Team / Fleet Manager | CIO | 1–2 weeks |
+| 7 | Go-live: IT activates API integration in production; DC Dispatch adds partner to carrier selection logic; system routes orders to new partner per configured zones and rates | IT Team / Fleet Manager | Supply Chain Manager | 1 day |
+| 8 | Monthly: Fleet Manager monitors new partner performance per W19.7 3PL management dashboard (on-time %, damage rate, cost per delivery, customer complaint rate); underperformance escalated per W44 vendor scorecard methodology | Fleet Manager | Supply Chain Manager | 30 min/month |
+| 9 | **Offboarding**: if partner termination required (performance, contract expiry, or business decision) — Fleet Manager coordinates with DC Dispatch to redirect order volume to alternative partners; IT deactivates API integration; system removes partner from carrier selection; Finance settles outstanding carrier invoices; Legal confirms data deletion per RA 10173 (partner must delete customer data collected during service); system archives partner record with termination date, reason, and performance history | Fleet Manager / IT / Finance / Legal | Supply Chain Manager | 1–2 weeks |
+
+### System Touchpoints (3PL Partners)
+- Carrier master record with rate cards per zone/weight/tier, SLA terms, API credentials, insurance details, and integration status (W62b.2, W62b.7)
+- API integration: order creation, real-time tracking, status callbacks, proof of delivery capture (W62b.3, W62b.6)
+- Carrier selection logic: automated carrier assignment by delivery zone, package weight, and cost (W62b.7)
+- Pilot order routing and monitoring dashboard (W62b.6)
+- Performance monitoring integrated into W19 3PL management dashboard and W44 vendor scorecard (W62b.8)
+- Partner deactivation: API disconnect, carrier removal, data deletion confirmation (W62b.9)
+- Integration with W19 (home delivery), W52 (fleet), W44 (vendor scorecard), W62 (non-PO contracts)
+
+### Staffing Implication (3PL Partners)
+- **Fleet Manager**: absorbs 3PL partner management within existing role; ~5–10 evaluations/year × 4–8 hours = ~20–80 hours/year; ~30 min/month ongoing monitoring per partner.
+- **IT**: API integration setup ~1–2 weeks per new partner; absorbed within existing IT team.
+- No incremental headcount.
 
 ---
 
@@ -4068,13 +4198,67 @@ BuildRight's 5-DC footprint spans the Philippine archipelago: DC1 Davao (Mindana
 - **Business user time**: data migration validation requires ~50–80 hours of business user effort per iteration (typically 2–3 iterations); parallel-run testing requires ~40–60 hours per cycle; UAT requires ~20–30 hours per wave; total business user effort across implementation: ~400–600 hours spread over 12–18 months
 - **This is a one-time implementation cost**, not steady-state headcount. Business users participate alongside their normal duties during implementation. Implementation project plan should allocate dedicated validation windows.
 
+---
+
+## W74. Employee Expense Reimbursement
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Employee incurs business expense not covered by petty cash (W25), purchase order (W2), or corporate card |
+| **Frequency** | ~300–500 expense claims/month across all locations; peaks at month-end and during travel periods |
+| **Volume** | Average claim value PHP 1,000–5,000; primarily travel, meals, training materials, field supplies, client entertainment |
+| **Owner** | Employee (claimant); Department Head (approval) |
+| **Participants** | Employee, Department Head / Store Manager, AP Clerk, Finance |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Employee submits expense claim in system (self-service portal or mobile app): expense date, category (travel, meals, supplies, training, entertainment, other), amount, business purpose, cost center, and receipt attachment (photo or PDF) | Employee | — | 10 min/claim |
+| 2 | System validates claim: (a) receipt amount matches claimed amount, (b) expense date within allowable claim window (typically 30 days from expense date), (c) expense category is valid for employee's role, (d) total monthly claims for employee do not exceed department expense budget allocation | System | — | Automated |
+| 3 | System routes claim for approval per tier: (a) ≤ PHP 5,000: immediate supervisor, (b) PHP 5,001–20,000: Department Head / Store Manager, (c) > PHP 20,000: VP / C-Suite; entertainment expenses always require Department Head approval regardless of amount | System | — | Automated routing |
+| 4 | Approver reviews claim: validates business purpose, checks receipt authenticity, confirms expense is within policy (meal per diem limits, travel class restrictions, entertainment pre-approval); approves, returns for correction, or rejects with reason | Approver | Finance Manager | 5 min/claim |
+| 5 | Approved claim routed to AP Clerk for processing; AP Clerk validates GL coding and cost center; posts expense to GL (Dr. Department Expense / Cr. Employee Payable) | AP Clerk | AP Supervisor | 5 min/claim |
+| 6 | Reimbursement: system includes approved expense reimbursement in the next semi-monthly payroll run (W10) as a separate line item on the payslip — not taxed as compensation if supported by receipts per BIR rules; alternatively, for large reimbursements (> PHP 20,000), AP Clerk processes via separate bank transfer per W7 payment run | Payroll Officer / AP Clerk | AP Supervisor | Per W10 / W7 |
+| 7 | Monthly: AP Supervisor generates expense report by department, category, and employee; Finance Manager reviews for policy compliance and unusual patterns; includes in department budget variance report per W26 | AP Supervisor | Finance Manager | 1 hour/month |
+
+### Expense Policy Parameters (Configurable in System)
+
+| Category | Limit | Notes |
+|---|---|---|
+| **Meal per diem** | PHP 500/day (local); PHP 1,000/day (provincial travel) | Receipt required for amounts exceeding per diem; per diem is non-taxable per BIR rules with supporting travel order |
+| **Travel — airfare** | Economy class for domestic; requires pre-approved travel order | Receipt required; booked through admin or approved booking platform |
+| **Travel — lodging** | PHP 2,000/night maximum (provincial); requires hotel receipt | Exceptions require VP approval |
+| **Transportation** | Taxi, grab, or shuttle receipts | Fuel claims only for authorized vehicle users per W52 |
+| **Client entertainment** | PHP 3,000/event maximum; requires pre-approval from Dept. Head | Must specify client name, attendees, and business purpose |
+| **Training materials** | Per approved training plan per W51 | Requires training enrollment confirmation |
+| **Claim window** | 30 days from expense date | Claims > 30 days require Finance Manager approval |
+| **Monthly claim limit** | PHP 20,000 per employee (standard) | Exceptions require VP approval |
+
+### System Touchpoints
+- Employee expense claim form in self-service portal (W74.1) with receipt photo upload, category selection, and business justification (W51 employee self-service portal)
+- Automated validation rules: receipt matching, claim window enforcement, monthly limit check (W74.2)
+- Tiered approval workflow with routing by amount and category (W74.3–4)
+- GL posting with cost center allocation (W74.5)
+- Payroll integration: approved reimbursements included in semi-monthly payroll as non-taxable line items (per BIR rules — reimbursement of substantiated business expenses is not compensation); alternatively processed via AP payment run for large amounts (W74.6)
+- Expense policy parameter configuration by category with limits and approval rules (W74 policy table)
+- Monthly expense reporting by department, category, and employee with budget variance integration (W74.7)
+- Integration with W7 (AP processing), W10 (payroll — reimbursement payment), W25 (petty cash — boundary: petty cash is for small operational expenses at location; employee expense claims are for individual employee-incurred business expenses), W26 (budget — expense tracking against department budgets), W51 (self-service portal)
+
+### Staffing Implication
+- **AP Clerk**: ~300–500 claims/month × 5 min each = ~25–42 hours/month. Absorbed within existing AP team (~8–10 clerks); ~3–5 hours/clerk/month.
+- **Department Heads / Store Managers**: ~5 min per claim × average 2–5 claims/approver/month = ~10–25 min/month. Absorbed.
+- No incremental headcount.
+
+---
+
 ### HQ Departments
 
 | Department | Roles | Count | Key Workflows | Validation |
 |---|---|---|---|---|
 | **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13, W20, W23, W27, W29, W32, W36, W40, W44, W68 | ✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight + rebate management + seasonal planning + vendor onboarding + price maintenance + product discontinuation lifecycle |
-| **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W8, W9, W14, W21, W24, W25, W26, W27, W28, W30, W39, W42, W59, W60, W70 | ✅ Stretched during close week; capex/credit/petty cash absorbed; treasury daily cycle manageable with 2–3 analysts; asset disposal and annual physical inventory absorbed; insurance lifecycle and emergency procurement review absorbed; credit/debit note reconciliation absorbed into month-end close and weekly AP/AR review |
-| **Supply Chain & Logistics** | Supply Planners, Demand Planners, Import Coordinator, Fleet Manager, DC Ops managers | ~31 | W3, W4, W4b, W19, W19b, W22, W22b, W31, W52, W56, W57, W66 | ✅ 2–3 planners handle replenishment + store-initiated requests + transfers + backorder fulfillment + promo allocation; home delivery and ship-from-store picked by DC/store staff; 1–2 dedicated demand planners handle forecasting; 1 Fleet Manager manages owned vehicles and 3PL relationships; Import Coordinator absorbs inter-island logistics |
+| **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W7d, W8, W9, W14, W21, W24, W25, W26, W27, W28, W30, W39, W42, W59, W60, W70, W74 | ✅ Stretched during close week; capex/credit/petty cash absorbed; treasury daily cycle manageable with 2–3 analysts; asset disposal and annual physical inventory absorbed; insurance lifecycle and emergency procurement review absorbed; credit/debit note reconciliation absorbed into month-end close and weekly AP/AR review; AP staffing validated for total ~285–320 invoices/day including merchandise and non-PO; vendor statement reconciliation (W7d) absorbed into monthly AP cycle; employee expense reimbursement (W74) adds ~25–42 hours/month absorbed across AP team |
+| **Supply Chain & Logistics** | Supply Planners, Demand Planners, Import Coordinator, Fleet Manager, DC Ops managers | ~31 | W3, W3c, W4, W4b, W19, W19b, W22, W22b, W31, W52, W56, W57, W62b, W66 | ✅ 2–3 planners handle replenishment + store-initiated requests + transfers + backorder fulfillment + promo allocation; home delivery and ship-from-store picked by DC/store staff; 1–2 dedicated demand planners handle forecasting; 1 Fleet Manager manages owned vehicles and 3PL relationships; Import Coordinator absorbs inter-island logistics; DC inbound scheduling (W3c) absorbed by DC Receiving Supervisor; 3PL partner onboarding (W62b) absorbed by Fleet Manager; allocation rule governance reviewed quarterly as part of W31.8 parameter cycle |
 | **HR & Payroll** | HR Head, Recruitment, Payroll, Training Officer, HR Assistants | ~16 | W10, W15, W51, W72 | ✅ 2–3 payroll officers + 2 recruiters + 1 Training Officer handle the volume; employee performance management absorbed by ~230 managers |
 | **Marketing** | Brand, Promo, Loyalty, Ecommerce, Digital, Content, CS Manager | ~24 | W13, W17, W50, W61, W65 | ✅ Loyalty is largely automated; promo work is cyclical; dedicated Content Manager + 2–3 Content Specialists for ecommerce product content; CS Manager owns customer satisfaction measurement; price match review absorbed by Pricing Analysts |
 | **Store Operations** | Director, Regional Managers, CS Manager, Ops Standards, Facilities Coordinator | ~23 | W5, W16, W29, W5d, W34, W37, W41, W47, W49, W67, W69, W71 | ✅ 4 Regional Managers × 50 stores each; oversee new openings and monthly store performance reviews; offline recovery is Store Mgr responsibility; shift scheduling and complaint handling absorbed; 2–3 LPOs recommended for loss prevention; 1 Facilities Coordinator manages store maintenance, disaster response, and physical security oversight; weekly price compliance audits absorbed by Dept. Supervisors and Stock Associates |
@@ -4130,7 +4314,7 @@ Summary of which ERP modules support which workflows:
 | **Master Data** | W1 (SKU lifecycle, sample/demo inventory, slow-mover review), W16 (new store/location creation, capex project tracking), W20 (VMI item setup), W23 (consignment item setup), W36 (vendor onboarding, lead time lifecycle), W38 (non-stock item creation, unclaimed deposit aging), W46 (kit BOM), W54 (LGU permit data per location), W64 (pilot SKU status flag), W68 (product discontinuation status lifecycle and archival) |
 | **Reporting / Analytics** | W1 (assortment analysis, competitive intelligence monitoring), W9 (financial statements), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget), W26 (budget variance), W27 (rebate ROI), W28 (gift card liability), W29 (recall tracking), W30 (cash flow forecast), W31 (forecast accuracy, ROP parameter governance), W35 (management reporting rhythm, store P&L occupancy cost allocation, store utility consumption benchmarking), W37 (shrinkage/exception reports), W40 (price change analytics, quantity break utilization), W41 (complaint analytics), W42 (physical inventory summary), W44 (vendor scorecards), W56 (backorder aging), W59 (insurance claims vs. premiums), W60 (emergency procurement frequency), W61 (price match analytics), W65 (CSAT/NPS trending), W66 (inter-island logistics cost) |
 | **Loss Prevention** | W37 (POS exception monitoring, shrinkage tracking, confirmed theft write-off, CCTV integration with POS timestamp correlation, loyalty fraud detection) |
-| **Store Lifecycle** | W16 (new store opening, go-live cutover plan, demand ramp-up first 90 days), W45 (store closure / relocation), W67 (monthly store performance review), W71 (store physical security & access control) |
+| **Store Lifecycle** | W16 (new store opening, go-live cutover plan, demand ramp-up first 90 days), W45 (store closure / relocation, financial close-out checklist, LGU permit retirement), W67 (monthly store performance review), W71 (store physical security & access control) |
 | **Facility Maintenance** | W47 (store & DC maintenance, work orders, preventive maintenance scheduling) |
 | **IT Operations** | W48 (helpdesk, incident management, change management, IT asset tracking) |
 | **Business Continuity** | W49 (natural disaster preparation, response, recovery, insurance claims) |
@@ -4141,8 +4325,8 @@ Summary of which ERP modules support which workflows:
 | **Regulatory Operations** | W54 (LGU business permit renewal per location, permit status dashboard, location master integration) |
 | **IT Disaster Recovery** | W55 (system failover, RTO/RPO enforcement, offline POS reconciliation, DR testing) |
 | **Customer Order Management** | W56 (backorder creation, allocation against incoming PO, customer notification, aging escalation) |
-| **Corporate Account Management** | W58 (project record, project-specific pricing, cumulative budget tracking, project billing, account portfolio analytics) |
-| **Vendor Contract Management** | W62 (non-PO service contract lifecycle, contract register, SLA tracking, auto-renewal management, invoice blocking) |
+| **Corporate Account Management** | W58 (project record, project-specific pricing, cumulative budget tracking, project billing, milestone/progress billing with retention amounts, change orders, account portfolio analytics) |
+| **Vendor Contract Management** | W62 (non-PO service contract lifecycle, contract register, SLA tracking, auto-renewal management, invoice blocking), W62b (3PL / delivery partner onboarding & offboarding, API integration, carrier master, pilot testing, performance monitoring, partner deactivation with data deletion) |
 | **Customer Experience** | W65 (CSAT/NPS measurement, survey platform integration, mystery shopping, satisfaction trending) |
 | **Store Operations Management** | W67 (monthly store performance review, store scorecard, action item tracking, Regional Manager review cadence) |
 | **Product Lifecycle** | W68 (product discontinuation lifecycle, last buy decision, clearance execution, system archival, vendor settlement) |
@@ -4154,4 +4338,4 @@ Summary of which ERP modules support which workflows:
 
 ---
 
-*Document Version: 15.0 | Date: 2026-05-30 | Wave 13: gap fill — added W71 (store physical security & access control), W72 (employee performance management), W73 (data migration validation & parallel-run testing); added DC RTV consolidation & vendor batch shipment to W3; added new store demand ramp-up (first 90 days) to W4; added dormant account management to W8; added loyalty points reversal on returns to W12; added IC invoice dispute resolution to W14; added tier downgrade proactive communication to W17; added ecommerce peak staffing cross-reference to W19; added vendor bank account change control and vendor master data change log to W36; added customer deposit refund to W38; added store utility consumption benchmarking to W35; added employee self-service portal to W51; added C-item extrapolation methodology to W42; added pricing conflict during discontinuation clearance to W68; added competitive intelligence monitoring to W1; updated all summary tables*
+*Document Version: 16.0 | Date: 2026-05-30 | Wave 14: gap fill — added W7d (AP vendor statement reconciliation), W3c (DC inbound delivery scheduling), W62b (3PL / delivery partner onboarding & offboarding), W74 (employee expense reimbursement); added IC loan lifecycle with interest accrual to W14; added customer account closure & data deletion to W8; added financial close-out checklist and LGU permit retirement to W45; added agency worker access provisioning to W10; added bank account lifecycle & signatory management to W30; added milestone/progress billing note to W58; added C-item accuracy below-threshold contingency to W42; added constrained allocation rule governance to W4; updated AP staffing for total ~285–320 invoices/day (merchandise + non-PO); updated all summary tables and workflow-to-system touchpoint map*

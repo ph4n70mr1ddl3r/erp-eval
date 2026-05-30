@@ -47,6 +47,7 @@ A Wave 8 independent review identified **10 remaining gaps** (see `workflow-gap-
 | **I. Wave 6 gaps (Wave 6 review)** | 10 | ✅ All 10 resolved |
 | **J. Wave 7 gaps (Wave 7 review)** | 11 | ✅ All 11 resolved |
 | **K. Wave 8 gaps (Wave 8 review)** | 10 | ✅ All 10 resolved |
+| **L. Wave 9 gaps (Wave 9 review)** | 9 | ✅ All 9 resolved |
 
 | Metric | Value |
 |---|---|
@@ -55,6 +56,7 @@ A Wave 8 independent review identified **10 remaining gaps** (see `workflow-gap-
 | Requirements fully covered | **~130 (99%)** |
 | Requirements partially covered | **~1 (1%)** (low-priority, implementation-phase) |
 | Requirements not covered | **0 (0%)** |
+| Total gaps resolved (all waves) | **92** |
 
 ---
 
@@ -554,7 +556,7 @@ implementation, not gaps in the evaluation materials.
 
 ---
 
-*Document Version: 11.0 | Date: 2026-05-30 | Wave 8: 10 gaps identified (A1 cross-store returns, A2 VAT-exempt sales, A3 PO amendment/cancellation, A4 consignment/VMI during physical count, A5 customer-initiated inter-store transfer, A6 mid-range store expenses, A7 vendor lead time maintenance, B1 POS void authorization, B2 cross-entity employee transfer, C1 catch-weight during transfers); open for resolution; total workflows unchanged at 49*
+*Document Version: 12.0 | Date: 2026-05-30 | Wave 9: 9 gaps identified (A1 ecommerce customer service, A2 GRNI aging/ERS, A3 goods-based IC model, B1 PO volume clarification, B2 loyalty economics, C1 business continuity operational fallback, C2 store-level budget tracking, D1 final pay computation, D2 vendor corrective action tiers); all 9 resolved; total workflows unchanged at 49*
 
 ---
 
@@ -832,11 +834,11 @@ to be addressed during implementation design.
 
 ### Coverage Statistics
 
-| Metric | v8.0 (Previous) | v9.0 (After Wave 6) |
-|---|---|---|
-| Total workflows | 49 | **49** |
-| Requirements fully covered | ~130 (99%) | **~130 (99%)** |
-| Requirements partially covered | ~1 (1%) | **~1 (1%)** |
-| Requirements not covered | 0 (0%) | **0 (0%)** |
-| Total gaps resolved (all waves) | 52 | **62** |
-| Non-blocking carried forward | 2 | 2 |
+| Metric | v8.0 (Previous) | v9.0 (After Wave 6) | v10.0 (After Wave 9) |
+|---|---|---|---|
+| Total workflows | 49 | **49** | **49** |
+| Requirements fully covered | ~130 (99%) | **~130 (99%)** | **~130 (99%)** |
+| Requirements partially covered | ~1 (1%) | **~1 (1%)** | **~1 (1%)** |
+| Requirements not covered | 0 (0%) | **0 (0%)** | **0 (0%)** |
+| Total gaps resolved (all waves) | 52 | **62** | **92** |
+| Non-blocking carried forward | 2 | 2 | 2 |

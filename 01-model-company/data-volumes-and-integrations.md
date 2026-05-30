@@ -19,7 +19,7 @@
 | Store Replenishment Orders | 167 | 1.5x | 250 |
 | Goods Receipts (DC) | 200 | 1.5x | 300 |
 | DSD Goods Receipts (Store) | ~20 | 1.5x | ~30 |
-| Purchase Orders Created | 40 | 2.0x (batch days) | 80 |
+| Purchase Orders Created | 40–50 | 2.0x (batch days) | 80–100 |
 | AP Invoices Processed | 217 | 2.0x (month-end) | 433 |
 | Ecommerce Orders | 1,500 | 3.0x (sale events) | 4,500 |
 | Customer Registrations | ~150 | — | ~450 |

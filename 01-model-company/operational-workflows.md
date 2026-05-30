@@ -80,7 +80,7 @@ Each workflow follows this format:
 |---|---|
 | **Trigger** | SKU hits reorder point (ROP) in system |
 | **Frequency** | Daily review; POs generated daily |
-| **Volume** | ~1,200 POs/month; ~18,000 PO lines/month |
+| **Volume** | ~1,200 merchandise POs/month (auto-replenishment + ad-hoc); ~18,000 PO lines/month; excludes ~80–240 blanket/contract release orders/month (W2c), ~20–30 import POs/month (W2b), and ~30–50 non-merchandise POs/month (capex, IT, supplies); total all types: ~1,400–1,600 POs/month
 | **Owner** | Buyer |
 | **Participants** | System (auto-suggest), Buyer, Category Manager (approval if > PHP 50K) |
 
@@ -527,10 +527,12 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Vendor credit memo processing: credit note entry with source reference (RTV, rebate, price protection), auto-matching to original transactions, automatic application to open invoices, credit balance management (W7.9b)
 - Non-PO / recurring expense invoice processing: 2-way match (invoice vs. contract or budget), store manager / department head approval routing, cost center allocation, utility and service bill capture (W7c.1–6)
 - Shelf-life / expiry date management: capture manufacturing date and shelf-life at GR for date-sensitive items; system tracks expiry per batch; FEFO (First Expired First Out) pick direction in DC; alerting for near-expiry items; periodic expiry review feeds into slow-mover disposition (W3, W4, W6)
+- GRNI aging management: AP Clerk runs weekly GRNI aging report showing all GRs without matching vendor invoices, grouped by aging bucket (0–30, 31–60, 61–90, 90+ days); items > 30 days flagged for Buyer follow-up with vendor; items > 60 days escalated to AP Supervisor for direct vendor contact; items > 90 days reviewed by Controller for potential permanent accrual or write-off; system tracks GRNI aging with vendor-level drill-down; weekly GRNI aging dashboard visible to AP Supervisor and Controller (W7, W9a.2a)
+- Evaluated Receipt Settlement (ERS): for configured VMI vendors (W20) and select blanket PO vendors (W2c), system auto-generates vendor invoice from PO + Goods Receipt data without requiring vendor invoice submission; AP Clerk validates auto-generated invoice against PO and GR; if within tolerance, auto-approved for payment; reduces GRNI accumulation and manual invoice processing for high-volume, trusted vendor relationships
 
 ### Staffing Implication
-- **8–10 AP Clerks**: 217 invoices/day × 5 min (logging) = ~18 hours for basic processing. With ~20% requiring manual resolution at 25 min each = ~20 additional hours. Total ~38 hours/day. With 8 clerks that's ~5 hours each. Reasonable with payment runs and other duties.
-- **1 AP Supervisor**: Oversight, aging review, escalations.
+- **8–10 AP Clerks**: 217 invoices/day × 5 min (logging) = ~18 hours for basic processing. With ~20% requiring manual resolution at 25 min each = ~20 additional hours. Total ~38 hours/day. With 8 clerks that's ~5 hours each. Reasonable with payment runs, GRNI follow-up, and other duties.
+- **1 AP Supervisor**: Oversight, aging review, GRNI escalation management, escalations.
 - **2 Treasury Analysts**: Payment approval, bank file transmission, LC management. Shared with AR and other treasury duties.
 
 ### W7c. Non-PO / Recurring Expense Invoice Processing
@@ -1063,6 +1065,18 @@ Additional steps on top of month-end close (December):
 | **Owner** | Marketing — Loyalty Manager |
 | **Participants** | Cashier (POS), Loyalty Manager, Customer Service, Marketing |
 
+### Loyalty Program Economics
+
+| Parameter | Value | Notes |
+|---|---|---|
+| Earn rate | 1 point per PHP 100 spent | Applied to transaction value after discounts, before VAT |
+| Redemption value | PHP 1.00 per point | Each point can be redeemed for PHP 1.00 discount at checkout |
+| PFRS 15 deferred revenue allocation | ~1.0% of qualifying transaction value | Estimated standalone selling price of points earned: (1 point × PHP 1.00) ÷ PHP 100 = 1%; actual allocation based on expected redemption rate |
+| Estimated monthly points earned | ~50M points (PHP 5B revenue ÷ PHP 100 × 1 point) | Before breakage adjustment |
+| Estimated monthly deferred revenue liability | ~PHP 50M (50M points × PHP 1.00 × 1% allocation) | Adjusted monthly by Cost Accountant per W17.11a |
+| Breakage (unredeemed expired points) | Recognized at 24-month expiry per W17.11 | Historically ~15–25% of points expire unredeemed |
+| Tier upgrade thresholds | Bronze: 0–PHP 50K/year; Silver: PHP 50K–150K; Gold: PHP 150K–300K; Platinum: > PHP 300K | Based on trailing 12-month spend |
+
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
@@ -1070,7 +1084,7 @@ Additional steps on top of month-end close (December):
 | 1 | Customer signs up for loyalty program (in-store, online, or via app) | Customer / CSR | Loyalty Manager | 3 min (in-store) |
 | 2 | System creates loyalty account with tier status (Bronze default); captures data privacy consent flag with purpose, date, and consent version per RA 10173 (Data Privacy Act) | System | — | Automated |
 | 3 | At each POS transaction, cashier scans loyalty card or enters mobile number | Cashier | — | 15 sec |
-| 4 | System calculates points earned (1 point per PHP 100 spent) and updates balance; per PFRS 15, system allocates transaction revenue between product revenue and loyalty deferred revenue based on relative standalone selling price of points (Dr. Cash or Accounts Receivable / Cr. Revenue for product portion, Cr. Deferred Revenue — Loyalty Points for points portion) | System | — | Automated |
+| 4 | System calculates points earned (1 point per PHP 100 spent on transaction value after discounts, before VAT) and updates balance; per PFRS 15, system allocates ~1.0% of transaction revenue to loyalty deferred revenue based on relative standalone selling price of points (Dr. Cash or Accounts Receivable / Cr. Revenue for product portion ~99%, Cr. Deferred Revenue — Loyalty Points for points portion ~1%); allocation rate configurable based on expected redemption rate | System | — | Automated |
 | 5 | Customer checks points balance via app, receipt, or in-store kiosk | Customer | — | Self-service |
 | 6 | At checkout, customer requests points redemption; cashier selects redemption option | Cashier | — | 30 sec |
 | 7 | System validates sufficient points; converts to peso value; applies as discount; system recognizes deferred revenue proportionally for redeemed points (Dr. Deferred Revenue — Loyalty Points / Cr. Revenue) | System | — | Automated |
@@ -1325,7 +1339,7 @@ Additional steps on top of month-end close (December):
 - Receiving against Transfer Order (W22.7)
 - Inventory update at both locations (W22.8)
 - Discrepancy handling with financial resolution: source error, carrier damage, or unexplained loss disposition (W22.9a)
-- Intercompany invoice trigger: for transfers between legal entities where the sending entity owns the goods (e.g., Depot Inc. transfers goods to Digital Commerce Inc. for ecommerce fulfillment), system automatically generates IC invoice at configured transfer price upon receipt confirmation (W22.8); IC AP/AR posted simultaneously per W14.1; transfer pricing rules maintained per annual IC review (W14); note: standard DC→Store replenishment (W4) is NOT an inter-entity transfer — Depot Inc. owns goods at both DC and store locations; Logistics Inc. provides warehousing services billed monthly per W14, not per-transfer
+- Intercompany model — dual IC framework: BuildRight operates two IC models: (1) **Service-based IC** (primary, per W14): monthly fees for warehousing (Logistics Inc.), ecommerce fulfillment (Digital Commerce Inc.), rent (Property Mgmt Inc.), and management fees (Holdings Inc.) — no goods change ownership between entities; Depot Inc. owns all merchandise inventory throughout the supply chain; (2) **Goods-based IC** (rare, for exceptional scenarios): if inter-entity goods transfer is needed (e.g., Digital Commerce Inc. purchases goods from Depot Inc. for direct resale, Property Mgmt Inc. purchases building materials for property maintenance), system creates IC sales order and IC purchase order at configured transfer price; IC invoice auto-generated at receipt; IC elimination during consolidation per W9a.13; system supports both models with different GL posting paths; standard DC→Store replenishment (W4) is NOT an inter-entity transfer — Depot Inc. owns goods at both DC and store locations; Logistics Inc. provides warehousing services billed monthly per W14, not per-transfer
 - Customer-initiated inter-store transfer: when a customer at Store A requests an item out of stock, Sales Associate checks real-time inventory at nearby stores via handheld or terminal; if available, Associate creates customer transfer request (item, quantity, source store, destination store, customer contact); Store Manager at destination approves; source Store Manager or system auto-confirms if within same region; system creates Transfer Order per W22; source store picks and ships; destination store receives and notifies customer via SMS/app; sale booked at destination store when customer purchases; transport cost absorbed by company as customer service (no charge to customer); real-time cross-store inventory lookup available to Sales Associates via handheld/terminal and to customers via website/app store selector
 - Catch-weight / variable-measure items during transfers: for catch-weight items (lumber, wire, bulk nails), source location measures and records actual length/weight/piece count on Transfer Order; destination location re-measures upon receipt; if quantity differs from TO, variance handled per W22.9a with measurement tolerance applied (e.g., ±2% for lumber, ±1% for wire by length); within tolerance: system accepts destination measurement and posts variance as inventory adjustment at source; outside tolerance: source location investigates (measurement error, transit damage); system supports dual-entry measurement capture for catch-weight items on both outbound and inbound transfer processing
 
@@ -1666,6 +1680,18 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 - Loyalty points reconciliation for transactions processed offline (W5d.5)
 - Stale price detection for extended outages (W5d.8)
 
+### Business Continuity — Operational Fallback
+
+During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per NFR-013), store operations continue in degraded mode:
+
+- **POS**: continues selling offline per W5d (up to 8+ hours with local cache)
+- **Goods receiving (W3/W18)**: stores suspend goods receipt processing until system restored; Receiving Clerk captures delivery details manually (DR number, vendor, item, quantity) on paper or offline spreadsheet for batch entry upon recovery
+- **Ecommerce**: Digital Commerce Inc. platform displays maintenance notification; new orders suspended; in-progress orders held for fulfillment upon recovery
+- **Loyalty**: points earning tracked offline at POS and reconciled upon reconnection; points redemption suspended during outage (cashier cannot verify balance)
+- **AP / Treasury**: payment runs delayed until system restored; AP Clerk communicates with vendors if payment deadlines are at risk
+- **Incident declaration**: IT Helpdesk declares DR event per incident response plan; CIO notified; Store Ops Director communicates to Regional Managers who notify Store Managers; estimated recovery time communicated within 30 minutes of declaration
+- **Recovery**: upon system restoration, all offline transactions upload per W5d; manual receiving entries batch-posted; ecommerce order processing resumes; loyalty reconciliation runs automatically
+
 ### Staffing Implication
 - No incremental headcount. Outage recovery is a Store Manager responsibility with IT support.
 - Estimated 2–4 recoveries per store per year × 30 min each = ~1–2 hours/year per store.
@@ -1954,6 +1980,7 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 - Mobile dashboard for executives (W35.2)
 - Integration with all ERP modules (financials, inventory, POS, procurement, HR, ecommerce) for data aggregation
 - Store P&L occupancy cost allocation: store rent is a direct charge per location based on individual lease agreements with Property Mgmt Inc. (not allocated from a pool); DC warehousing and distribution costs (IC payment to Logistics Inc. per W14) are allocated to stores monthly based on a configurable allocation key (recommended: proportional to replenishment order value or volume per store); utility costs are direct charges per store (each location has its own meter/account); corporate overhead from Holdings Inc. (management fees per W14) is shown as a separate line below store EBITDA, not embedded in store-level P&L; system auto-generates store P&L with all cost lines from configurable allocation rules
+- Store-level budget variance tracking: annual budget (W26) is phased monthly per store with revenue, COGS, labor, occupancy, and shrinkage targets; system generates monthly store budget vs. actual report with variance flags (revenue > ±5%, gross margin > ±2%, operating expense > +10%); Regional Manager reviews store-level budget variance with Store Manager during monthly store visit; significant variances escalated to VP Store Operations; store-level budget accountability is a standing agenda item in monthly management committee meeting (W35.14)
 
 ### Staffing Implication
 - **1 BI Analyst** (within IT or Finance): Handles ~20 ad-hoc requests/month + maintains standard report templates + supports self-service tool adoption. This may be a new role or absorbed by a data-savvy Finance team member.
@@ -2277,6 +2304,19 @@ When an LPO investigation confirms theft or irrecoverable loss:
 | 12 | Monthly: Store Ops Director reviews complaint trends with Department Heads; assigns corrective actions for recurring root causes | Store Ops Director | COO | 1 hour/month |
 | 13 | Quarterly: top complaint root causes feed into operational improvement initiatives (training, process changes, vendor quality requirements) | Store Ops Director | COO | Quarterly review |
 
+### Ecommerce Order Issue Resolution
+
+For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the primary workload for the 30-person call center team (~2,100–4,300 issue tickets/month at 5–10% issue rate on 42,900 orders/month):
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| E1 | Customer contacts call center (phone, chat, email) or submits issue via self-service portal/online form: order not received, wrong item received, item damaged in transit, wants to change delivery address, wants to cancel order, didn't receive BOPIS pickup notification | Customer / CSR | CS Manager | 3 min |
+| E2 | System creates issue ticket linked to original order number; displays full order lifecycle (placement, payment, fulfillment status, carrier tracking) | CSR / System | CS Manager | 2 min |
+| E3 | CSR resolves per issue type: (a) cancel-and-refund: system cancels unfulfilled order, initiates refund to original payment method (Dr. Revenue / Cr. Cash); (b) redelivery: system reschedules carrier pickup via 3PL integration (W19); (c) wrong/damaged item: initiates W12b return process and arranges replacement; (d) address change: updates delivery address if order not yet shipped; (e) BOPIS pickup issue: confirms correct store, resends notification, or extends hold period | CSR | CS Manager | 5–15 min |
+| E4 | For partial refunds (damaged but usable item): CSR issues partial refund with CS Manager approval (Dr. Revenue / Cr. Cash); system logs partial refund with reason code and photo evidence if available | CSR / CS Manager | CS Manager | 10 min |
+| E5 | System tracks issue SLA: target resolution within 24 hours for delivery issues, 48 hours for damaged/wrong items; escalated to CS Manager if SLA breached | System | CS Manager | Automated |
+| E6 | Automated customer notifications at each status change: issue acknowledged, resolution proposed, refund processed, redelivery scheduled | System | — | Automated |
+
 ### System Touchpoints
 - Multi-channel complaint ticket creation (in-store, phone, email, chat, web) (W41.1–2)
 - Ticket categorization with auto-priority assignment (W41.2)
@@ -2286,6 +2326,7 @@ When an LPO investigation confirms theft or irrecoverable loss:
 - Data Subject Access Request (DSAR) handling per RA 10173: system logs DSAR requests (access, correction, deletion, consent withdrawal) with 72-hour acknowledgment and 30-day resolution tracking; supports data anonymization for deactivated accounts after retention period; customer consent preferences viewable and editable via self-service portal (W41.2, W17.2)
 - Complaint analytics dashboard: volume, category, store, resolution rate, SLA compliance (W41.11)
 - Root cause analysis reporting (W41.12–13)
+- Ecommerce order issue resolution: ticket creation linked to original order number with full order lifecycle visibility (placement, payment, fulfillment, carrier tracking); issue type routing (cancel-and-refund, redelivery, partial refund, address change, BOPIS pickup issue); financial adjustment posting (refund, partial refund) with GL entries; carrier rescheduling via 3PL integration (W19); automated customer notification at each status change; SLA tracking with escalation (24-hour delivery issues, 48-hour damaged/wrong items) (W41.E1–E6)
 
 ### Staffing Implication
 - **CSRs (stores)**: 10–15 complaints/store/month × ~10 min each = ~2–3 hours/store/month. Absorbed within existing CSR role.
@@ -2381,7 +2422,7 @@ When an LPO investigation confirms theft or irrecoverable loss:
 | 7 | **Finance clearance**: AP Clerk confirms no outstanding cash advances or loans; AR confirms no corporate account exposure | AP / AR Clerk | AP/AR Supervisor | 10 min/employee |
 | 8 | **Store Operations clearance** (if store employee): Store Manager confirms no pending inventory accountability issues, cash drawer reconciled | Store Manager | Store Ops Director | 10 min/employee |
 | 9 | HR Assistant collects all signed clearances; marks clearance as complete in system | HR Assistant | HR Head | 10 min/employee |
-| 10 | Payroll Officer computes final pay per W10 step 12: pro-rated salary, pro-rated 13th month pay, converted unused leave credits (VL to cash per company policy), less outstanding loans/advances and clearance deductions | Payroll Officer | Payroll Manager | Per W10 |
+| 10 | Payroll Officer computes final pay per W10 step 12: pro-rated salary for final pay period, pro-rated 13th month pay (1/12 of annual basic salary × months worked ÷ 12), converted unused leave credits (VL to cash per company policy), less outstanding loans/advances and clearance deductions; final pay computation varies by separation type — resignation: pro-rated salary + 13th month + VL conversion; termination for cause: pro-rated salary + 13th month (VL conversion per company discretion); retirement: pro-rated salary + 13th month + VL conversion + retirement pay per Labor Code or company plan (whichever is higher); end of contract: pro-rated salary + 13th month + VL conversion + separation pay if applicable per DOLE; system auto-calculates final pay based on separation type classification from W43.2 with Payroll Officer review and validation | Payroll Officer | Payroll Manager | Per W10 |
 | 11 | System generates final pay as separate payroll run or adjustment; final payslip issued (W10 step 13) | System | — | Automated |
 | 12 | System updates employee status to "Separated"; deactivates payroll processing; retains record for regulatory retention (7 years) | System | — | Automated |
 | 13 | System generates COE (Certificate of Employment) on request: dates of employment, position, compensation range (optional) | System / HR Assistant | HR Head | 5 min/request |
@@ -2395,7 +2436,7 @@ When an LPO investigation confirms theft or irrecoverable loss:
 - Automated clearance form generation and routing (W43.4)
 - Clearance status tracking per department (W43.5–9)
 - System account deactivation trigger (W43.5)
-- Final pay computation with pro-ration and deductions (W43.10–11)
+- Final pay computation by separation type: system auto-calculates final pay based on separation type (resignation, termination, retirement, end of contract) including pro-rated salary, pro-rated 13th month pay per BIR rules (1/12 of basic salary × months worked), unused VL monetization, applicable separation/retirement pay per Labor Code, less outstanding loans and deductions; final tax withholding per BIR rules (different treatment for retirement pay vs. resignation); final statutory contribution period computed per SSS/PhilHealth/Pag-IBIG rules; Payroll Officer reviews system calculation before processing (W43.10)
 - Employee status lifecycle: Active → On Notice → Separated (W43.12)
 - Certificate of Employment generation (W43.13)
 - Cross-entity employee transfer: simultaneous separation and onboarding across legal entities with continuity of service; automatic payroll entity switch with transferred leave balances, 13th month pro-ration, and statutory reassignment; SSS/PhilHealth/Pag-IBIG reassigned to new entity; BIR withholding tax switched to new entity's TIN; GL postings to both entity payrolls for the transfer period (W43.15)
@@ -2438,12 +2479,23 @@ When an LPO investigation confirms theft or irrecoverable loss:
 | 7 | Annually: VP Merchandising and CFO review total vendor portfolio performance; approve vendor list for next year; authorize new vendor onboarding (W36) and vendor exits | VP Merchandising + CFO | CEO | 4 hours/year |
 | 8 | System maintains vendor scorecard history for trend analysis; supports vendor selection decisions in W2 and W36 | System | — | Automated |
 
+### Vendor Corrective Action Tiers
+
+When vendor performance falls below acceptable thresholds, the following corrective action tiers apply:
+
+| Tier | Trigger | Action | System Impact |
+|---|---|---|---|
+| **Warning** | Scorecard rating drops to C, or single significant incident (major quality failure, delivery causing stockout) | Buyer communicates performance gaps to vendor in writing with specific metrics; establishes 30-day improvement period with clear targets | Vendor master status remains Active; Buyer monitors PO performance during improvement period |
+| **Probation** | No improvement after Warning, or scorecard rating drops to D | Vendor suspended from receiving new POs; existing committed POs are fulfilled; 90-day formal review period; Category Manager notifies vendor in writing of probation status and improvement requirements | Vendor master status changed to Probation; system blocks creation of new POs for this vendor; existing POs unaffected |
+| **Termination** | No improvement after Probation, or scorecard rating F, or vendor commits fraud/breach | VP Merchandising approves termination; Category Manager notifies vendor; all open POs cancelled or allowed to complete per agreement; vendor master deactivated | Vendor master status changed to Inactive; system blocks all transactions; termination date and reason recorded in audit trail; vendor record retained for regulatory and historical purposes |
+| **Reactivation** | Buyer requests reactivation with evidence of improved capability (new ownership, new processes, reference customers) | Category Manager reviews evidence; if approved, vendor re-enters onboarding process per W36 (abbreviated: skip trial PO if recent history exists) | Vendor master status changed back to Active; full audit trail of termination and reactivation retained |
+
 ### System Touchpoints
 - Automated vendor scorecard generation from operational data (W44.1)
 - Multi-metric scoring: on-time delivery, fill rate, quality, invoice accuracy, lead time, return rate (W44.1)
 - Vendor rating system with configurable thresholds (W44.3)
 - Improvement plan tracking (W44.4)
-- Vendor lifecycle status: Active → Probation → Exit (W44.5)
+- Vendor lifecycle status: Active → Warning → Probation → Inactive (terminated) → Active (reactivated); each status change logged with reason, approver, date, and supporting documentation; system enforces PO blocking for Probation and Inactive vendors (W44.5, corrective action tiers)
 - Scorecard history and trend analysis (W44.8)
 - Integration with W2 (PO performance), W3 (receiving quality), W7 (invoice matching), W36 (vendor onboarding)
 

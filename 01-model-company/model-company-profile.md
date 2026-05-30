@@ -370,7 +370,7 @@ The company operates through **5 legal entities** organized as follows:
 | **Registered Loyalty Members** | ~600,000 |
 | **Trade Account Customers** | ~5,000 |
 | **Corporate Account Customers** | ~200 |
-| **Loyalty Program** | Points-based (1 point per PHP 100 spent); tiers: Bronze, Silver, Gold, Platinum |
+| **Loyalty Program** | Points-based (1 point per PHP 100 spent; redemption value: PHP 1.00 per point); tiers: Bronze, Silver, Gold, Platinum |
 
 ### 9.3 Pricing Structure
 

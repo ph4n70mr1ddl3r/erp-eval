@@ -22,6 +22,8 @@ inconsistencies, and 2 were acknowledged non-blocking items carried forward.
 
 **All 14 gaps have been resolved.**
 
+A Wave 3 independent review subsequently identified **11 additional gaps** (see Section I below). All 11 have been resolved through targeted additions to existing workflows and one new workflow (W45).
+
 | Gap Category | Count | Status |
 |---|---|---|
 | **A. Requirements with insufficient workflow coverage** | 6 | ✅ All 6 resolved |
@@ -29,13 +31,14 @@ inconsistencies, and 2 were acknowledged non-blocking items carried forward.
 | **C. Internal inconsistencies** | 3 | ✅ All 3 resolved |
 | **D. Detail gaps in existing workflows** | 3 | ✅ All 3 resolved |
 | **E. Acknowledged non-blocking** | 2 | 🟡 Carried forward (implementation-phase) |
+| **F. Wave 3 gaps (Wave 3 review)** | 11 | ✅ All 11 resolved |
 
 | Metric | Value |
 |---|---|
-| Total workflows | **46** (W1–W44 + W2c + W3b + W5d) |
+| Total workflows | **47** (W1–W45 + W2c + W3b + W5d) |
 | Total requirements | **130+** |
-| Requirements fully covered | **~128 (98%)** |
-| Requirements partially covered | **~2 (2%)** (low-priority, implementation-phase) |
+| Requirements fully covered | **~130 (99%)** |
+| Requirements partially covered | **~1 (1%)** (low-priority, implementation-phase) |
 | Requirements not covered | **0 (0%)** |
 
 ---
@@ -468,9 +471,9 @@ Updated matrix showing all 45 workflows. ✅ = covered, ⚠️ = partially cover
 | NFR-005 | Concurrent Users | — | ⚠️ Infrastructure; no workflow needed |
 | NFR-006 | Data Retention (7 yr) | W35.18, W36 | ✅ |
 | NFR-007 | Security | W37, W43.5 | ✅ |
-| NFR-008 | Scalability | W16 (new stores) | ✅ |
+| NFR-008 | Scalability | W16 (new stores), W45 (store closure) | ✅ |
 | NFR-009 | Localization | W5b, W9a.16, W10 | ✅ |
-| NFR-010 | Data Privacy | W39.7, W43.12 | ✅ |
+| NFR-010 | Data Privacy | W39.7, W43.12, W17.2, W41 | ✅ |
 | NFR-011 | Offline POS | W5d | ✅ |
 | NFR-012 | Integration Capability | Multiple | ✅ |
 | NFR-013 | Disaster Recovery | W5d | ✅ |
@@ -536,4 +539,141 @@ implementation, not gaps in the evaluation materials.
 
 ---
 
-*Document Version: 5.0 | Date: 2026-05-30 | All 14 identified gaps resolved; coverage now 98%; 2 non-blocking items carried forward for implementation phase*
+*Document Version: 6.0 | Date: 2026-05-30 | All 14 + 11 Wave 3 gaps resolved; coverage now 99%; 2 non-blocking items carried forward for implementation phase*
+
+---
+
+## I. Wave 3 Gap Analysis (Independent Review)
+
+> A third-pass independent review examined all 47 workflows against the 130+ requirements,
+> company profile, and data volumes. This review focused on accounting completeness,
+> regulatory compliance, and operational edge cases not covered by Waves 1–2.
+
+### I1. ✅ Resolved — FIN-014: Month-End FX Revaluation of Open Foreign-Currency Balances
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | FIN-014 (Multi-Currency) |
+| **Requirement** | PHP base; USD for imports |
+| **Gap** | W2b.12–13 described FX rate capture at PO, GR, and invoice with gain/loss posting at settlement. W30.10 mentioned USD account management. **No step described the standard month-end accounting procedure of revaluing open foreign-currency AP/AR balances at the BIR exchange rate and posting unrealized FX gains/losses** — required by PFRS/IAS 21. |
+| **Impact** | With ~50–70 TEUs/month of imports and 45–90 day lead times, there are always open USD-denominated AP balances at month-end. Without FX revaluation, financial statements would be non-compliant. |
+| **Resolution** | ✅ Added step W9a.5a (FX Revaluation) to month-end close: system revalues all open foreign-currency balances at month-end BIR rate; posts unrealized FX gain/loss; auto-reverses at start of next period. Added system touchpoint to W2b and W9a. |
+
+### I2. ✅ Resolved — NFR-010 / CRM-002: Customer Data Privacy & Consent Management
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | NFR-010 (Data Privacy Act), CRM-002 (Customer Master B2C) |
+| **Requirement** | RA 10173 compliance for 600,000+ loyalty members |
+| **Gap** | No workflow described how customer consent is captured at enrollment, how consent preferences are managed, how data subject access requests (DSARs) are handled, or how customer data is deleted/anonymized upon request — all required by RA 10173 and NPC regulations. |
+| **Impact** | With 600,000+ loyalty members collecting PII across POS, ecommerce, and CRM, BuildRight must have a privacy management program. ERP evaluators need to know how the system supports consent capture, preference management, and DSAR handling. |
+| **Resolution** | ✅ Expanded W17 step 2 to include consent flag capture at enrollment (purpose, date, consent version). Added DSAR handling to W41 system touchpoints: request logging, 72-hour acknowledgment, 30-day resolution tracking, data anonymization for deactivated accounts, self-service consent preferences. |
+
+### I3. ✅ Resolved — INV-008 / INV-013: Batch/Lot Capture at POS
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | INV-008 (Lot & Serial Tracking), INV-013 (Batch/Lot for Paint) |
+| **Requirement** | Lot/serial tracking for select items; paint batch traceability |
+| **Gap** | W29 assumed the system could trace sold batches back to customers, but no workflow step described how batch/lot numbers are **captured at the POS during routine sales**. Without this capture, the forward traceability that W29 relies on is impossible. |
+| **Impact** | If lot tracking is required, capture must happen at POS. Affects POS scanning workflow (batch barcode scanning vs. manual entry) and has hardware implications. |
+| **Resolution** | ✅ Added step W5b.4b: for lot-tracked items, system prompts for batch/lot number entry; auto-extracts from GS1-128/2D barcodes if present; records batch against transaction line. Added corresponding system touchpoint. |
+
+### I4. ✅ Resolved — IC-002: Intercompany Transfer Pricing Governance
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | IC-002 (Arm's-Length Transfer Pricing) |
+| **Requirement** | Configurable IC pricing rules per service/goods flow |
+| **Gap** | W14 step 1 described auto-generation of IC invoices from configured transfer pricing rules, but no workflow described how transfer prices are **set, reviewed, benchmarked, and documented** per BIR RR 19-2020 (Transfer Pricing guidelines). With 5 entities and 6 IC flow types, transfer prices must be defensible. |
+| **Impact** | BIR audits commonly scrutinize IC pricing. Without an annual review cycle and contemporaneous documentation, BuildRight is exposed to tax adjustment risk. |
+| **Resolution** | ✅ Added "Annual IC Transfer Pricing Review" sub-section to W14: CFO and Controller review all IC pricing schedules against market benchmarks and arm's-length principles annually during budget cycle (W26); update transfer pricing rules; prepare documentation per BIR RR 19-2020. Added system touchpoint for transfer pricing rule maintenance and documentation storage. |
+
+### I5. ✅ Resolved — FIN-004 / FIN-010: Early Payment Discount Management
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | FIN-004 (AP 3-Way Match), FIN-010 (Cash Management) |
+| **Requirement** | AP processing and treasury optimization |
+| **Gap** | W7 step 7 queued invoices for payment per vendor terms (Net 30, Net 60). No workflow described how **early payment discounts** (e.g., 2/10 Net 30) are identified, evaluated, and executed. With ~6,500 AP invoices/month and PHP 41–43B annual COGS, even a 1% discount capture rate could save PHP 400M+/year. |
+| **Impact** | Discount management is a standard treasury/AP optimization. The system needs to display available discounts during payment run and calculate annualized ROI. |
+| **Resolution** | ✅ Added step W7.7a: system identifies invoices eligible for early payment discount; displays discount amount, deadline, and annualized return; Treasury includes discount opportunities in weekly cash flow planning (W30); AP Supervisor prioritizes discounted invoices in payment run. Added system touchpoint for discount detection and ROI calculation. |
+
+### I6. ✅ Resolved — Store Closure / Relocation (No Workflow)
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W16 covered new store opening in detail. **No workflow existed for store closure or relocation** — the reverse process. With 200 stores and growth to 300+, some underperforming stores will be closed over time. |
+| **Impact** | Store closure requires: lease termination, inventory redistribution, employee redeployment/separation, IT decommissioning, asset disposal, location deactivation, customer communication, and GL close-out. Without a workflow, ERP evaluators cannot assess location deactivation, mass transfer, and multi-module closure capabilities. |
+| **Resolution** | ✅ Added **W45: Store Closure / Relocation** with 14 steps covering: closure decision, lease termination, mass inventory redistribution via transfer orders, employee redeployment/separation per W43, customer communication and redirect, AR collection, IT decommissioning, fixed asset disposal per W39, location master deactivation, final store P&L close-out, and data retention. Added full system touchpoints and staffing implications. |
+
+### I7. ✅ Resolved — Seasonal / Contractual Worker Management
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W10 covered regular employee payroll and W15 covered recruitment for regular positions. No workflow addressed **seasonal or contractual workers** (5-month fixed-term contracts, project-based hiring) — a standard Philippine retail practice. With 10–15 new store openings/year plus Christmas peak, BuildRight likely has 200–400 contractual workers at any time. |
+| **Impact** | Contractual workers have different payroll computation (pro-rated benefits, different end-of-contract settlement, potential regularization conversion). ERP payroll modules handle this differently per employee type. |
+| **Resolution** | ✅ Added step W10.11b (contractual/fixed-term worker management): contract date tracking with auto-alerts, pro-rated benefit computation, end-of-contract settlement, regularization conversion. Expanded W15 step 7 to include employee type classification (regular, probationary, fixed-term, project-based) with contract start/end dates. |
+
+### I8. ✅ Resolved — Ecommerce Inventory Reservation / ATP Logic
+
+| Attribute | Detail |
+|---|---|
+| **Req ID** | ECOM-001 (Real-Time Inventory Sync) |
+| **Gap** | W11 (BOPIS) and W19 (Home Delivery) described order flow from placement to fulfillment, but no workflow described the **ATP (Available-to-Promise) reservation logic** that prevents overselling. Without explicit ATP logic, simultaneous orders could oversell inventory. |
+| **Impact** | Overselling leads to failed picks, customer frustration, and operational rework. ATP reservation is a critical design point for ERP evaluators. |
+| **Resolution** | ✅ Added ATP reservation system touchpoints to both W11 and W19: system deducts from available (not physical) inventory at order placement; ATP = on-hand − allocated − safety stock; reservation held until pick confirmation or cancellation; auto-release after BOPIS 5-day hold or failed delivery. |
+
+### I9. ✅ Resolved — W9a: GRNI (Goods Received Not Invoiced) Reconciliation
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W9a step 4 covered accruals for uninvoiced expenses but did not specifically address **Goods Received Not Invoiced (GRNI)** — a critical retail accounting accrual. With ~6,000 DC receipts + ~600 DSD receipts/month, there are always GRs without matching invoices at month-end. |
+| **Impact** | If the system doesn't reconcile GRNI or verify the GR/IR clearing account, AP accuracy and balance sheet completeness are at risk. |
+| **Resolution** | ✅ Added step W9a.2a (GRNI reconciliation): system generates GRNI report; Finance verifies completeness; reconciles GR/IR clearing account; accrues provision for expected but un-invoiced costs. Added system touchpoint. |
+
+### I10. ✅ Resolved — W10: Statutory Remittance Reconciliation
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W10 step 11 described generating SSS PRN, PhilHealth, and Pag-IBIG contribution files, but no step described **reconciling** remitted amounts back to employee-level deductions. With 8,050 employees and ~PHP 30–40M/month in statutory contributions, reconciliation gaps could lead to under-/over-coverage. |
+| **Impact** | Philippine regulatory compliance requires accurate statutory remittance. SSS requires PRN per employee. Unreconciled remittances lead to employee disputes and DOLE penalties. |
+| **Resolution** | ✅ Added step W10.11a: Payroll Officer reconciles statutory contribution schedule (per-employee breakdown) to remittance file and bank confirmation; investigates discrepancies before deadline; system flags employees with missing/incomplete statutory data. Added system touchpoint. |
+
+### I11. ✅ Resolved — W38: Special Order GL Treatment (Revenue Recognition)
+
+| Attribute | Detail |
+|---|---|
+| **Gap** | W38 described customer deposit (step 6) and final delivery (step 12) but the **GL treatment was absent**. Customer deposits are a liability (unearned revenue) per PFRS 15 that should not be recognized as revenue until delivery. |
+| **Impact** | Without clear GL guidance, accounting for special orders could be inconsistent. Revenue recognition requires deposits remain as deferred revenue until delivery. |
+| **Resolution** | ✅ Expanded W38 step 6 with GL entries: system records deposit as liability (Cr. Customer Deposits Payable / Dr. Cash), not revenue. Expanded step 12: system recognizes revenue (Dr. Customer Deposits / Cr. Revenue) and COGS (Dr. COGS / Cr. Inventory) at delivery. Added system touchpoint for deposit liability tracking and revenue recognition trigger. |
+
+---
+
+### Wave 3 Coverage Statistics
+
+| Metric | v5.0 (Previous) | v6.0 (After Wave 3) |
+|---|---|---|
+| Total workflows | 46 | **47** (+W45) |
+| Requirements fully covered | ~128 (98%) | **~130 (99%)** |
+| Requirements partially covered | ~2 (2%) | **~1 (1%)** |
+| Requirements not covered | 0 (0%) | **0 (0%)** |
+| New gaps identified | — | **11** (3 HIGH, 8 MEDIUM) |
+| All gaps resolved | 14 resolved | **25 resolved** (14 + 11) |
+| Non-blocking carried forward | 2 | 2 |
+
+### Wave 3 Priority Matrix
+
+| Priority | Gap ID | Action | Status |
+|---|---|---|---|
+| 🔴 **P1** | I1 (FIN-014) | Add FX revaluation step to W9a | ✅ Done |
+| 🔴 **P1** | I2 (NFR-010) | Add consent management to W17 + DSAR to W41 | ✅ Done |
+| 🔴 **P1** | I6 (Store Closure) | Add W45: Store Closure / Relocation | ✅ Done |
+| 🟡 **P2** | I3 (INV-008) | Add lot capture at POS in W5b | ✅ Done |
+| 🟡 **P2** | I4 (IC-002) | Add IC pricing governance to W14 | ✅ Done |
+| 🟡 **P2** | I5 (FIN-004) | Add early payment discount to W7 | ✅ Done |
+| 🟡 **P2** | I7 (HR) | Expand W10/W15 for contractual workers | ✅ Done |
+| 🟡 **P2** | I8 (ECOM-001) | Add ATP reservation to W11/W19 | ✅ Done |
+| 🟡 **P2** | I9 (GRNI) | Add GRNI reconciliation to W9a | ✅ Done |
+| 🟡 **P2** | I10 (HR-002) | Add statutory reconciliation to W10 | ✅ Done |
+| 🟡 **P2** | I11 (W38 GL) | Add GL treatment to W38 | ✅ Done |

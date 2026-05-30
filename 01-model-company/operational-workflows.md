@@ -135,6 +135,7 @@ Each workflow follows this format:
 - Landed cost calculation engine (W2b.12)
 - 3-way match: PO → Goods Receipt → Vendor Invoice (W2b.13)
 - FX rate capture at PO creation (budget rate), goods receipt (spot rate or BSR), and invoice (actual rate); automatic FX gain/loss posting (W2b.12–13)
+- Month-end FX revaluation of open foreign-currency balances at BIR exchange rate with unrealized FX gain/loss posting and auto-reversal (W9a.5a)
 
 ### W2c. Blanket / Contract Purchase Orders
 
@@ -344,6 +345,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 3 | If paint mixing: Associate mixes paint per customer color choice; system creates custom SKU | Sales Associate | Department Supervisor | 5–10 min |
 | 4 | Customer brings items to checkout; Cashier scans barcodes | Cashier | Store Manager | ~2 min/txn |
 | 4a | If Cashier needs to override scanned price (customer price match, damaged-item discount, competitor price): system prompts for reason code; if override > 10% or > PHP 500: system requires manager swipe/card authorization; system logs override with cashier ID, authorizing manager ID, original price, override price, and reason code | Cashier / Store Manager | Store Manager | 1 min |
+| 4b | For lot/batch-tracked items (per INV-008 and INV-013): when Cashier scans a lot-tracked SKU, system prompts for batch/lot number entry (scanned from item label or manually entered); system records batch number against transaction line for forward traceability; if item barcode includes batch-level data (GS1-128 or 2D barcode), system auto-extracts batch from scan | Cashier | Store Manager | 10 sec |
 | 5 | If loyalty member: Cashier scans loyalty card or asks for mobile number | Cashier | — | 15 sec |
 | 6 | System calculates totals: applies promos, quantity breaks, loyalty discounts | System | — | Automated |
 | 7 | Customer pays (cash, card, e-wallet, split tender) | Cashier | — | 30–60 sec |
@@ -384,6 +386,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - BIR-registered receipt format: receipts printed on BIR-authorized thermal paper with TIN, registered invoice number, and compliant layout (W5b.8)
 - Customer-facing display (pole display or second screen) showing scanned items, running total, and payment amount during checkout (W5b.4–7)
 - Price override with manager authorization threshold and audit trail (W5b.4a)
+- Lot/batch capture at POS for lot-tracked items: system prompts for batch number, auto-extracts from GS1-128/2D barcode, records batch against transaction line for forward traceability (W5b.4b)
 - Catch-weight / variable measure selling with weight/length capture and auto-price calculation (W5b.2)
 - Custom SKU generation for paint mixing (W5b.3)
 - Age-restricted product prompts (W5b.9)
@@ -461,6 +464,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 6a | Exception SLA: all unmatched invoices must be resolved within 5 business days; system tracks aging of exceptions | System | AP Supervisor | Automated |
 | 6b | If exception unresolved after 5 days: system escalates to AP Supervisor; AP Supervisor coordinates with Buyer and vendor for resolution | AP Supervisor | Controller | 15 min/invoice |
 | 7 | Approved invoices queued for payment per vendor terms (Net 30, Net 60) | System | — | Automated |
+| 7a | System identifies invoices eligible for early payment discount (e.g., 2/10 Net 30); displays discount amount, discount deadline, and annualized return on taking discount; Treasury Analyst includes discount opportunities in weekly cash flow planning (W30 step 8); AP Supervisor prioritizes discounted invoices in payment run when Treasury authorizes | System / AP Supervisor | CFO | 15 min/review |
 | 8 | AP Supervisor reviews AP aging weekly; prioritize payments by due date and vendor relationship | AP Supervisor | CFO | 2 hours/week |
 | 9 | Twice-weekly payment run: system generates payment file (checks, bank transfers) | AP Clerk | AP Supervisor | 1 hour/run |
 | 10 | Treasury reviews and approves payment batch; transmits to bank | Treasury Analyst | CFO | 30 min/run |
@@ -474,6 +478,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Auto-approval with tolerance thresholds (W7.3)
 - Exception routing and workflow (W7.4–6)
 - Exception aging tracker with SLA enforcement and auto-escalation at day 5 (W7.6a–b)
+- Early payment discount detection: system identifies invoices eligible for discount, calculates annualized ROI, and highlights during payment run (W7.7a)
 - AP aging report (W7.8)
 - Payment file generation (bank formats) (W7.9–10)
 
@@ -541,9 +546,11 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 |---|---|---|---|---|
 | 1 | Verify all store day-end closings are posted; follow up on any outstanding | Chief Accountant | Controller | 2 hours |
 | 2 | AP: Ensure all vendor invoices received before cut-off are entered and matched | AP Supervisor | Controller | 2 hours |
+| 2a | GRNI reconciliation: system generates Goods Received Not Invoiced report showing all GRs without matching AP invoices; Finance verifies completeness; if system uses GR/IR clearing account, verify clearing account balance reconciles to open GRNI list; accrue provision for estimated costs where invoices are expected but not yet received | AP Supervisor / Chief Accountant | Controller | 1 hour |
 | 3 | AR: Post all AR invoices and payments received through month-end | AR Clerk | Controller | 1 hour |
 | 4 | Accruals: Book accrual entries for expenses incurred but not yet invoiced (utilities, freight, rent) | Chief Accountant | Controller | 3 hours |
 | 5 | Intercompany: Verify all IC transactions are posted; run IC matching | Chief Accountant | Controller | 2 hours |
+| 5a | FX Revaluation: System revalues all open foreign-currency AP and AR balances at month-end BIR exchange rate; posts unrealized FX gain/loss to P&L and FX revaluation reserve to BS; auto-reverses the revaluation entries at start of next period | System / Chief Accountant | Controller | Automated + 30 min review |
 | 6 | Inventory: Run monthly inventory valuation (WAC); post any adjustments from cycle counts | Cost Accountant | Controller | 2 hours |
 | 7 | Fixed Assets: Post monthly depreciation | Cost Accountant | Controller | 30 min |
 | 8 | Prepayments: Amortize prepaid expenses (insurance, rent) | Chief Accountant | Controller | 30 min |
@@ -574,6 +581,7 @@ Additional steps on top of month-end close (December):
 
 ### System Touchpoints
 - Store day-end posting monitoring (W9a.1)
+- GRNI reconciliation report and clearing account balance verification (W9a.2a)
 - Accrual and journal entry workflow (W9a.4–8, 11)
 - IC matching and elimination automation (W9a.5, 13)
 - Inventory valuation engine (W9a.6)
@@ -616,6 +624,8 @@ Additional steps on top of month-end close (December):
 | 9 | System posts payroll journal entries to GL (salary expense, payable, deductions) | System | — | Automated |
 | 10 | Payslips generated; distributed via email or employee self-service portal | System | — | Automated |
 | 11 | Monthly: generate SSS PRN, PhilHealth contribution, Pag-IBIG contribution files for remittance | Payroll Officer | Payroll Manager | 1 hour/month |
+| 11a | Payroll Officer reconciles statutory contribution schedule (per-employee breakdown) to generated remittance file and bank payment confirmation; investigates and resolves discrepancies before remittance deadline; system flags employees with missing or incomplete statutory data | Payroll Officer | Payroll Manager | 30 min/month |
+| 11b | Contractual / fixed-term workers: system tracks contract start/end dates and auto-alerts HR Assistant 30 days before expiry; payroll computes pro-rated 13th month pay and statutory benefits per contract duration; end-of-contract settlement computed similar to final pay (W10 step 12) but with different legal basis; if employee converts to regular status, HR Assistant updates employee type in system and payroll adjusts benefit computation accordingly | HR Assistant / Payroll Officer | Payroll Manager | 15 min/employee |
 | 12 | Final pay computation (upon employee separation): system calculates pro-rated 13th month pay, converted unused leave credits, less outstanding loans/advances and clearance deductions | Payroll Officer | Payroll Manager | 30 min/employee |
 | 13 | System posts final pay as separate payroll run or adjustment; generates final payslip | System | — | Automated |
 
@@ -630,6 +640,8 @@ Additional steps on top of month-end close (December):
 - GL posting from payroll (W10.9)
 - Payslip distribution (W10.10)
 - Statutory contribution file generation with PRN (W10.11)
+- Statutory remittance reconciliation: per-employee contribution schedule vs. remittance file vs. bank confirmation; discrepancy flagging (W10.11a)
+- Contractual/fixed-term worker management: contract date tracking, pro-rated benefit computation, end-of-contract settlement, regularization conversion (W10.11b)
 
 ### Staffing Implication
 - **2–3 Payroll Officers**: 5 entities × 2 runs = 10 runs/month. Each run takes ~6 hours. Total ~60 hours/month of payroll processing. 2 officers can handle this with time for reconciliation and inquiries.
@@ -669,6 +681,8 @@ Additional steps on top of month-end close (December):
 
 ### System Touchpoints
 - Real-time inventory availability per store on website (W11.1)
+- Available-to-Promise (ATP) reservation at order placement: system deducts from available inventory (not physical) at the fulfillment location; ATP = on-hand − allocated to open orders − safety stock buffer; if ATP = 0, item shown as "unavailable" on website for that location (W11.1)
+- ATP reservation held until pick confirmation (hard commitment) or order cancellation; BOPIS reservation auto-releases after 5-day hold period if not picked up (W11.11)
 - Order routing to store with pick list generation (W11.2–3)
 - In-store pick confirmation via scanning (W11.4)
 - Out-of-stock substitution/cancellation handling (W11.5)
@@ -825,6 +839,15 @@ Additional steps on top of month-end close (December):
 - IC reconciliation report across entity pairs (W14.4)
 - IC elimination automation during consolidation (W14.8)
 - Consolidated financial statement generation with IC lines eliminated (W14.9)
+- Transfer pricing rule maintenance with annual review documentation per BIR RR 19-2020 (W14.1)
+
+### Annual IC Transfer Pricing Review
+
+| Activity | Role (R) | Role (A) | Frequency |
+|---|---|---|---|
+| CFO and Controller review all IC pricing schedules (store rent, DC fees, ecommerce fulfillment, management fees, IC loans, ecommerce payment collection) against market benchmarks and arm's-length principles | CFO + Controller | CEO | Annually (during budget cycle, W26) |
+| Update transfer pricing rules in system for new fiscal year; prepare and store transfer pricing documentation per BIR RR 19-2020 requirements | Controller | CFO | Annually |
+| CFO approves updated IC pricing; system updates IC invoice generation rules effective new fiscal year | CFO | CEO | Annually |
 
 ### Staffing Implication
 - IC processing adds ~6–8 hours/month to the Chief Accountant's workload. No dedicated IC clerk needed — it's absorbed into the month-end close cycle within the current ~35-person Finance team.
@@ -851,7 +874,7 @@ Additional steps on top of month-end close (December):
 | 4 | Conduct interviews (1st: HR; 2nd: Hiring Manager) | Recruitment Officer + Hiring Manager | Dept. Head | 1 hour/candidate |
 | 5 | Select candidate; extend offer | Recruitment Officer | HR Head | 30 min |
 | 6 | New hire completes pre-employment requirements (SSS, PhilHealth, Pag-IBIG, TIN, medical, NBI clearance) | New Hire | Recruitment Officer | — |
-| 7 | HR Assistant creates employee record in system (personal info, position, salary, entity, tax status) | HR Assistant | HR Head | 30 min |
+| 7 | HR Assistant creates employee record in system (personal info, position, salary, entity, tax status); employee type classified as regular, probationary, fixed-term, or project-based with contract start/end dates for non-regular employees | HR Assistant | HR Head | 30 min |
 | 8 | System generates employee ID; enrolls in payroll with correct statutory deductions | System | — | Automated |
 | 9 | Assign biometric/RFID credentials for time & attendance | HR Assistant | — | 10 min |
 | 10 | Onboarding: safety orientation, company policies, POS/system training | Dept. Supervisor + HR | Hiring Manager | 2–3 days |
@@ -926,7 +949,7 @@ Additional steps on top of month-end close (December):
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
 | 1 | Customer signs up for loyalty program (in-store, online, or via app) | Customer / CSR | Loyalty Manager | 3 min (in-store) |
-| 2 | System creates loyalty account with tier status (Bronze default) | System | — | Automated |
+| 2 | System creates loyalty account with tier status (Bronze default); captures data privacy consent flag with purpose, date, and consent version per RA 10173 (Data Privacy Act) | System | — | Automated |
 | 3 | At each POS transaction, cashier scans loyalty card or enters mobile number | Cashier | — | 15 sec |
 | 4 | System calculates points earned (1 point per PHP 100 spent) and updates balance | System | — | Automated |
 | 5 | Customer checks points balance via app, receipt, or in-store kiosk | Customer | — | Self-service |
@@ -1028,6 +1051,8 @@ Additional steps on top of month-end close (December):
 
 ### System Touchpoints
 - Real-time inventory availability per DC on website (W19.1)
+- Available-to-Promise (ATP) reservation at order placement: system deducts from available inventory at the fulfillment DC; ATP = on-hand − allocated to open orders − safety stock buffer; if ATP = 0, item shown as "unavailable" for that delivery zone (W19.1)
+- ATP reservation held until pick confirmation (hard commitment) or order cancellation; released if delivery fails and order is cancelled (W19.12)
 - Order routing to nearest fulfillment location (W19.2)
 - WMS pick task generation and assignment (W19.3–4)
 - Out-of-stock substitution/cancellation (W19.5)
@@ -1903,13 +1928,13 @@ Shrinkage target: < 1.5% of sales (~PHP 75M/month at risk). Exception-based repo
 | 3a | Merchandise Planner creates non-stock SKU in item master with type = "Special Order / Non-Stock"; flags as non-stocking (no ROP, no safety stock, no replenishment) | Merchandise Planner | Category Manager | 10 min |
 | 4 | Buyer identifies vendor, obtains quotation (price, lead time, minimum quantity); enters quote in system linked to the non-stock SKU | Buyer | Category Manager | 30–60 min |
 | 5 | CSR or Sales Rep communicates quote to customer: price, estimated delivery date, payment terms (typically 50% deposit, 50% on delivery) | CSR / Sales Rep | — | 10 min |
-| 6 | Customer confirms order and pays deposit | Customer / Cashier | — | 5 min |
+| 6 | Customer confirms order and pays deposit; system records deposit as liability (Cr. Customer Deposits Payable / Dr. Cash); not recognized as revenue until delivery | Customer / Cashier | — | 5 min |
 | 7 | System creates Sales Order linked to non-stock SKU with customer deposit recorded; reservation created against incoming PO | System | — | Automated |
 | 8 | Buyer creates Special Order PO (links PO to Sales Order); routes for approval per standard tiered matrix (W2) | Buyer | Category Manager | Per W2 |
 | 9 | Buyer tracks PO; follows up with vendor on delivery schedule | Buyer | Buyer | Per W2 |
 | 10 | Goods received at store or DC (per W3 or W18); system matches GR to both PO and linked Sales Order | Receiving Clerk | Dept. Supervisor | Per W3/W18 |
 | 11 | System alerts CSR that special order has arrived; CSR contacts customer for pickup or arranges delivery | System / CSR | Store Manager | Automated + 5 min |
-| 12 | Customer picks up item (or receives delivery); pays remaining balance; Sales Order closed | Cashier / CSR | — | 5 min |
+| 12 | Customer picks up item (or receives delivery); pays remaining balance; system recognizes revenue (Dr. Customer Deposits / Cr. Revenue) and COGS (Dr. COGS / Cr. Inventory) at delivery; Sales Order closed | Cashier / CSR | — | 5 min |
 | 13 | If customer cancels before PO is placed: CSR cancels Sales Order; deposit refunded; no PO created | CSR | Store Manager | 5 min |
 | 14 | If customer cancels after PO is placed but before shipment: Buyer negotiates with vendor (restocking fee, return); Finance processes partial refund less any costs | Buyer + Finance | Category Manager | 30 min |
 
@@ -1920,6 +1945,7 @@ Shrinkage target: < 1.5% of sales (~PHP 75M/month at risk). Exception-based repo
 - Item creation request workflow (W38.3)
 - Sales Order creation with customer deposit and PO linkage (W38.7–8)
 - PO-to-Sales-Order reservation and matching (W38.8, W38.10)
+- Customer deposit liability tracking (Cr. Customer Deposits Payable) with revenue recognition trigger at delivery (W38.6, W38.12)
 - Customer notification upon receipt (W38.11)
 - Sales Order lifecycle: open → PO linked → goods received → customer notified → closed (W38.7–12)
 - Cancellation handling with deposit refund workflow (W38.13–14)
@@ -2047,6 +2073,7 @@ Shrinkage target: < 1.5% of sales (~PHP 75M/month at risk). Exception-based repo
 - Tiered escalation workflow with SLA timers (W41.5, W41.10)
 - Resolution code tracking and financial action triggers (refund, voucher) (W41.4, W41.8)
 - Customer satisfaction capture at resolution (W41.4)
+- Data Subject Access Request (DSAR) handling per RA 10173: system logs DSAR requests (access, correction, deletion, consent withdrawal) with 72-hour acknowledgment and 30-day resolution tracking; supports data anonymization for deactivated accounts after retention period; customer consent preferences viewable and editable via self-service portal (W41.2, W17.2)
 - Complaint analytics dashboard: volume, category, store, resolution rate, SLA compliance (W41.11)
 - Root cause analysis reporting (W41.12–13)
 
@@ -2214,6 +2241,56 @@ Shrinkage target: < 1.5% of sales (~PHP 75M/month at risk). Exception-based repo
 
 ---
 
+## W45. Store Closure / Relocation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Persistent underperformance, lease expiry non-renewal, market exit, or relocation to better site |
+| **Frequency** | Occasional (estimated 2–5 closures/relocations per year as network matures to 300+ stores) |
+| **Volume** | 1 store at a time; each takes 2–3 months from decision to final close-out |
+| **Owner** | Store Operations Director |
+| **Participants** | COO, Store Ops Director, Real Estate (Property Mgmt Inc.), IT, Finance, HR, Supply Chain, Marketing |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Store performance review triggers closure decision: sustained negative EBITDA, declining foot traffic, lease renewal at unfavorable terms, or strategic market exit | Store Ops Director / CFO | CEO | Decision meeting |
+| 2 | CEO and Board approve closure/relocation; Store Ops Director appointed as closure lead | CEO / Board | CEO | Board meeting |
+| 3 | Property Mgmt Inc. negotiates lease termination with landlord; settles any penalties or early termination fees | Property Mgmt Inc. | CFO | 2–4 weeks |
+| 4 | Supply Planner creates mass inventory redistribution plan: system generates transfer orders from closing store to nearest stores and serving DC; prioritizes by item velocity and destination need | Supply Planner | Supply Planning Manager | 1 week |
+| 5 | DC and receiving stores process inbound transfers per standard receiving (W22, W3); closing store picks and ships inventory in waves over 1–2 weeks | Closing Store Staff | DC Supervisor / Store Manager | 1–2 weeks |
+| 6 | HR initiates employee action: (a) redeploy high-performers to nearby stores (transfer, not separation), (b) offer voluntary separation to others, (c) process separations per W43 for staff not redeployed; peak: up to 35 separations per store | HR Assistant / HR Head | CHRO | 2–4 weeks |
+| 7 | Marketing executes customer communication plan: notify loyalty members of closure, redirect to nearest store, offer relocation promotion (e.g., extra loyalty points at new nearest store), update store locator on website/app | Marketing | CMO | 2 weeks |
+| 8 | Customer Service handles inbound inquiries from trade/corporate accounts; reassigns accounts to nearest store's Sales Rep or Regional Manager | CS Manager / Sales Rep | Store Ops Director | 1 week |
+| 9 | AR Clerk reviews and collects any outstanding trade/corporate account balances specific to closing store location | AR Clerk | AR Supervisor | 2 weeks |
+| 10 | IT decommissions store infrastructure: POS terminals, network equipment, RF devices (reverse of W16.3); deactivates store location in ERP system; removes from price file and replenishment routing | IT Team | CIO | 1 week |
+| 11 | Cost Accountant disposes store fixtures and fixed assets per W39 (disposal/retirement); capitalizes any leasehold improvement write-offs | Cost Accountant | Controller | Per W39 |
+| 12 | System deactivates store location master: location status set to "Closed"; no further transactions posted; location excluded from reports and dashboards | IT / Controller | CFO | Automated + 15 min |
+| 13 | Controller runs final store P&L and balance sheet reconciliation: all inventory cleared, all AP/AR settled, all assets disposed; final profit/loss on closure recognized | Controller | CFO | 1 day |
+| 14 | Post-closure: system retains closed store data for 7-year retention period (BIR); historical data accessible for reporting but location excluded from active operations | System | — | Automated |
+
+**Total closure cycle**: 2–3 months from decision to final close-out
+
+### System Touchpoints
+- Mass transfer order generation from closing store to multiple destinations (W45.4)
+- Store location deactivation: status change, transaction blocking, removal from active reporting (W45.12)
+- Employee redeployment (transfer between locations in same entity) vs. separation processing per W43 (W45.6)
+- Fixed asset disposal trigger for store-specific assets per W39 (W45.11)
+- Customer account reassignment to new default store (W45.7)
+- Trade/AR account collection and reassignment (W45.8–9)
+- Final store financial close-out with closure P&L recognition (W45.13)
+- Closed location data retention with restricted access (W45.14)
+
+### Staffing Implication
+- **Store Ops Director**: Leads closure process. ~20 hours per closure spread over 2–3 months.
+- **Supply Planner**: Mass redistribution planning adds ~1 week per closure. Absorbed within existing team.
+- **HR**: Up to 35 separations + redeployments per closure. Absorbed within existing HR team with advance planning.
+- **IT**: 1 week per store decommission. 2–3 IT staff per closure. With 2–5 closures/year, this is ~5–15 staff-weeks. Absorbed within existing IT team.
+- **Finance**: Final P&L close-out adds ~1 day per closure. Absorbed.
+
+---
+
 ## Workflow-to-Headcount Summary
 
 ### HQ Departments
@@ -2278,7 +2355,8 @@ Summary of which ERP modules support which workflows:
 | **Master Data** | W1 (SKU lifecycle), W16 (new store/location creation), W20 (VMI item setup), W23 (consignment item setup), W36 (vendor onboarding), W38 (non-stock item creation) |
 | **Reporting / Analytics** | W1 (assortment analysis), W9 (financial statements), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget), W26 (budget variance), W27 (rebate ROI), W28 (gift card liability), W29 (recall tracking), W30 (cash flow forecast), W31 (forecast accuracy), W35 (management reporting rhythm), W37 (shrinkage/exception reports), W40 (price change analytics), W41 (complaint analytics), W42 (physical inventory summary), W44 (vendor scorecards) |
 | **Loss Prevention** | W37 (POS exception monitoring, shrinkage tracking) |
+| **Store Lifecycle** | W16 (new store opening), W45 (store closure / relocation) |
 
 ---
 
-*Document Version: 5.0 | Date: 2026-05-30 | Added W2c (Blanket/Contract POs), W3b (Yard Management); expanded W5b (Price Override), W6 (in-store damage, staffing clarity), W13 (clearance/markdown), W23 (consignment GL entries), W20 (VMI accrual), W31 (safety stock review), W35 (document retention review), W36 (vendor document expiry), W3.6a (insurance claims), W1 (product content), W2a (vendor portal), W7 (vendor portal)*
+*Document Version: 6.0 | Date: 2026-05-30 | Wave 3 gap analysis: added W45 (Store Closure); expanded W5b (lot capture at POS), W7 (early payment discounts), W9a (FX revaluation, GRNI reconciliation), W10 (statutory recon, contractual workers), W14 (IC transfer pricing governance), W17 (consent management), W38 (special order GL treatment), W41 (DSAR handling), W11/W19 (ATP reservation)*

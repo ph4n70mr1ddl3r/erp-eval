@@ -9,7 +9,7 @@ This repository contains ERP implementation plans for a theoretical retail compa
 ```
 erpplans/
 ├── README.md                    ← You are here
-├── 01-model-company/            ← Complete model company profile & requirements
+├── 01-model-company/            ← Complete model company profile, requirements & workflows
 ├── 02-wilcon-benchmark/         ← Real-world Wilcon Depot research & comparison
 ├── 03-sap/                      ← SAP S/4HANA evaluation (placeholder)
 ├── 04-oracle-netsuite/          ← Oracle NetSuite evaluation (placeholder)

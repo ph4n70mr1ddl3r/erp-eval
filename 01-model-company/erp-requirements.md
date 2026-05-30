@@ -25,6 +25,10 @@
 | FIN-013 | Landed Cost Calculation | Must Have | Import duty, freight, insurance allocation |
 | FIN-014 | Multi-Currency | Must Have | PHP base; USD for imports |
 | FIN-015 | Period-End Close Workflow | Must Have | Month-end within 5 working days |
+| FIN-016 | Capital Expenditure Workflow | Must Have | Capex request, tiered approval, budget check, asset capitalization |
+| FIN-017 | Petty Cash Management | Must Have | Disbursement, replenishment, reconciliation per location (200 stores + 5 DCs) |
+| FIN-018 | Consignment Settlement | Should Have | Sell-through reporting and vendor payment for consignment goods |
+| FIN-019 | Vendor Rebate Management | Should Have | Rebate accrual, tracking, and settlement per vendor agreement |
 
 ## R2. Inventory Management
 
@@ -45,6 +49,9 @@
 | INV-013 | Batch/LOT Tracking for Paint | Should Have | Paint mixing, batch traceability |
 | INV-014 | In-Transit Inventory | Must Have | Visibility during DC→Store shipment |
 | INV-015 | Inventory Valuation Reports | Must Have | By location, category, entity |
+| INV-016 | Product Recall Tracking | Should Have | Lot/serial-based withdrawal, customer notification, and regulatory reporting |
+| INV-017 | Consignment Inventory Tracking | Must Have | Non-valuated receipt, vendor ownership indicator, ownership transfer at sale, sell-through reporting |
+| INV-018 | VMI Inventory Tracking | Should Have | Vendor-owned stock tracking with sell-through data sharing and settlement |
 
 ## R3. Procurement & Purchasing
 
@@ -62,6 +69,9 @@
 | PUR-010 | Approval Workflow | Must Have | Tiered by amount; PO > PHP 50K needs manager |
 | PUR-011 | Goods Receipt Processing | Must Have | At DC and at store (DSD) |
 | PUR-012 | Return to Vendor (RTV) | Must Have | Defective, overage, wrong items |
+| PUR-013 | Direct Store Delivery (DSD) | Must Have | Store-level GR against PO; 3-way AP matching for DSD goods (~30% of inbound) |
+| PUR-014 | Vendor Managed Inventory | Should Have | Sell-through data sharing, ASN receipt, auto-confirmation, and settlement |
+| PUR-015 | Vendor Rebate Management | Should Have | Rebate accrual, tracking, and settlement per agreement |
 
 ## R4. Warehouse Management
 
@@ -94,10 +104,11 @@
 | POS-012 | Receipt Printing | Must Have | Thermal; BIR-registered format |
 | POS-013 | Real-Time Inventory Deduction | Must Have | Immediate sync to central inventory |
 | POS-014 | Promotional Pricing Auto-Apply | Must Have | No cashier intervention needed |
-| POS-015 | Gift Card / Store Credit | Should Have | Issuance and redemption |
+| POS-015 | Gift Card / Store Credit | Should Have | Issuance, reload, redemption, balance inquiry, expiry, and breakage accounting |
 | POS-016 | Catch-Weight / Variable Measure at POS | Must Have | Weight-based (kg) and cut-to-length (m, board ft) selling — critical for lumber, wire, bulk nails |
 | POS-017 | Paint Mixing / Custom SKU at POS | Must Have | Generate custom SKU for tinted paint; link to base paint + colorant inventory |
 | POS-018 | Age-Restricted Product Prompts | Should Have | Mandatory prompt for solvents, cutting tools, etc.; requires cashier confirmation |
+| POS-019 | Warranty Claim Registration | Should Have | Record warranty claims at POS; link to vendor return or repair tracking |
 
 ## R6. Ecommerce Integration
 
@@ -113,6 +124,8 @@
 | ECOM-008 | Customer Data Sync | Must Have | Ecommerce ↔ ERP ↔ Loyalty |
 | ECOM-009 | Product Catalog Sync | Must Have | Item master, images, specs |
 | ECOM-010 | Promo/Coupon Integration | Should Have | Online promotions synced |
+| ECOM-011 | Home Delivery Fulfillment | Must Have | DC pick, carrier dispatch, real-time tracking, proof of delivery, failed delivery handling |
+| ECOM-012 | Delivery Partner Integration | Must Have | API integration with 3PL carriers (Lalamove, Transportify, own fleet) for order dispatch and status |
 
 ## R7. Supply Chain Planning
 
@@ -154,6 +167,7 @@
 | CRM-005 | Tiered Loyalty | Should Have | Bronze, Silver, Gold, Platinum |
 | CRM-006 | Customer Purchase History | Should Have | For personalization and service |
 | CRM-007 | Marketing Campaign Integration | Nice to Have | Promo targeting by segment |
+| CRM-008 | Credit Application Workflow | Must Have | Trade/corporate credit application, credit assessment, tiered approval, annual review |
 
 ## R10. Analytics & Reporting
 
@@ -225,4 +239,4 @@
 
 ---
 
-*Document Version: 1.3 | Date: 2026-05-30 | Removed NFR-016 (technical detail); reworded NFR-011/012 to be business-level; removed deployment model prescriptions*
+*Document Version: 1.4 | Date: 2026-05-30 | Added FIN-016–019, INV-016–018, PUR-013–015, POS-019, ECOM-011–012, CRM-008; expanded POS-015*

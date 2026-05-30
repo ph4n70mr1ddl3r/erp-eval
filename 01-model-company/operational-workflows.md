@@ -314,7 +314,7 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 - POS cash float management and tracking (W5a.4)
 - Real-time price and promo sync (W5a.5)
 - Barcode scanning, multi-tender, loyalty at POS (W5b.4–9)
-- Catch-weight / variable measure selling (W5b.2)
+- Catch-weight / variable measure selling with weight/length capture and auto-price calculation (W5b.2)
 - Custom SKU generation for paint mixing (W5b.3)
 - Age-restricted product prompts (W5b.9)
 - Z-report generation (W5c.2)
@@ -867,15 +867,353 @@ Additional steps on top of month-end close (December):
 
 ---
 
+## W18. Direct Store Delivery (DSD) Receiving
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vendor delivers goods directly to store (bypassing DC) |
+| **Frequency** | ~2–3 DSD deliveries per store per week; ~500–600 DSD receipts/month chain-wide |
+| **Volume** | ~30% of total inbound goods by volume; ~5–10 lines per receipt |
+| **Owner** | Receiving Clerk (Store) |
+| **Participants** | Receiving Clerk, Department Supervisor, Vendor Driver, AP Clerk |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Vendor arrives at store receiving dock; presents Delivery Receipt (DR) and PO reference | Vendor Driver | Receiving Clerk | 5 min |
+| 2 | Receiving Clerk retrieves PO in system on handheld/tablet | Receiving Clerk | Dept. Supervisor | 2 min |
+| 3 | Unload goods; Receiving Clerk scans/verifies each item against PO: SKU, quantity, condition | Receiving Clerk | Dept. Supervisor | 20–45 min |
+| 4 | Quality check on sampled items (damage, completeness) | Dept. Supervisor | Dept. Supervisor | 5–10 min |
+| 5 | If discrepancy: flag in system; note on DR; notify Buyer | Receiving Clerk | Dept. Supervisor | 5 min if any |
+| 6 | Confirm Goods Receipt in system; store inventory increases in real-time | Receiving Clerk | Dept. Supervisor | 5 min |
+| 7 | Vendor DR signed and returned; copy retained for AP matching | Receiving Clerk | — | 2 min |
+| 8 | Stock Associate moves goods directly to sales floor (no backroom staging for DSD) | Stock Associate | Dept. Supervisor | 15–30 min |
+| 9 | AP receives vendor invoice; 3-way match: PO → Store GR → Invoice | AP Clerk | AP Supervisor | Automated / 10 min |
+
+**Total time per DSD delivery**: ~1–2 hours from truck arrival to shelf
+
+### DSD vs. DC-Receiving Differences
+- No putaway step — goods go directly to sales floor
+- No WMS involved — processed through store-level receiving in POS/ERP
+- Smaller average receipt size (~5–10 lines vs. ~15 for DC)
+- Vendor driver typically waits for GR confirmation and signed DR
+- Common DSD categories: cement, lumber, sand, gravel, large appliances
+
+### System Touchpoints
+- PO lookup on store handheld/tablet (W18.2)
+- Barcode/RF scanning against PO at store level (W18.3)
+- Store-level Goods Receipt posting → inventory update (W18.6)
+- DR capture and linking to PO for AP matching (W18.7, W18.9)
+- 3-way match including store-level GR (W18.9)
+- Real-time inventory visibility for DSD items (W18.6)
+
+### Staffing Implication
+- **2 Receiving Clerks per store** (already in staffing model): DSD adds 2–3 additional receiving events per week (~3–6 hours). Combined with DC replenishment receiving (2–3 trucks/week) and BOPIS, the 2 clerks in alternating shifts can handle the load. No additional headcount needed.
+
+---
+
+## W19. Ecommerce — Home Delivery Fulfillment
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer places delivery order on website/app (non-BOPIS) |
+| **Frequency** | ~17,200 delivery orders/month; ~573/day |
+| **Volume** | Avg 3–4 items per order |
+| **Owner** | DC Dispatch Supervisor |
+| **Participants** | System (order routing), DC Picker, DC Packer, Delivery Partner driver, Customer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer places delivery order on website/app; selects delivery address; pays online | Customer | — | — |
+| 2 | System routes order to nearest DC (or store if DC out of stock); creates pick list | System | — | Automated |
+| 3 | DC receives pick task; assigns to picker by zone | WMS / DC Supervisor | DC Supervisor | 2 min |
+| 4 | Picker picks items; scans each for confirmation | Picker | DC Supervisor | 5–15 min/order |
+| 5 | If item unavailable: system offers substitution or cancels line; notifies customer | System / CSR | — | 3 min |
+| 6 | Packer packs items for shipping; generates shipping label and packing slip | Packer | DC Supervisor | 5 min/order |
+| 7 | System creates delivery order with selected partner (Lalamove, Transportify, own fleet) | System | DC Dispatch | Automated |
+| 8 | Delivery partner picks up package; system updates order status to "Shipped" | Delivery Partner | DC Dispatch | 5 min |
+| 9 | System sends tracking link to customer via SMS/email | System | — | Automated |
+| 10 | Delivery partner delivers to customer; obtains proof of delivery (photo, signature) | Delivery Partner | — | Varies by distance |
+| 11 | System marks order as "Delivered"; inventory formally deducted | System | — | Automated |
+| 12 | If delivery fails (customer unavailable): reschedule or return to DC; restock | Delivery Partner / DC | DC Supervisor | 15 min |
+
+**Delivery SLA**: 2–5 business days from order placement
+
+### System Touchpoints
+- Real-time inventory availability per DC on website (W19.1)
+- Order routing to nearest fulfillment location (W19.2)
+- WMS pick task generation and assignment (W19.3–4)
+- Out-of-stock substitution/cancellation (W19.5)
+- Shipping label and packing slip generation (W19.6)
+- Delivery partner API integration for order creation and tracking (W19.7, W19.8, W19.10)
+- Customer notification (SMS/email) with tracking link (W19.9)
+- Proof of delivery capture (W19.10)
+- Failed delivery / return-to-origin handling (W19.12)
+
+### Staffing Implication
+- **Per DC**: Home delivery adds ~115 orders/day ÷ 5 DCs = ~23 orders/DC/day. At ~15 min pick+pack per order, that's ~6 hours/day of additional DC labor. Absorbed by existing picking/packing staff within the ~150 DC headcount.
+- **No incremental headcount**: Home delivery fulfillment uses the same DC pick/pack team as store replenishment (W4), just with different packing and labeling requirements.
+
+---
+
+## W20. Vendor Managed Inventory (VMI)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | VMI vendor reviews sell-through data or system sends replenishment signal |
+| **Frequency** | Varies by vendor (typically weekly or bi-weekly) |
+| **Volume** | ~300 SKUs from 12 key vendors |
+| **Owner** | Buyer (oversight) |
+| **Participants** | VMI Vendor, Buyer, Receiving Clerk (DC or Store), AP Clerk |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System shares sell-through data and current stock levels with VMI vendor (EDI or portal) | System | Buyer | Automated |
+| 2 | VMI vendor analyzes data and determines replenishment quantities | VMI Vendor | VMI Vendor | External |
+| 3 | VMI vendor creates shipment; provides Advance Shipping Notice (ASN) to system | VMI Vendor | Buyer | External |
+| 4 | Buyer reviews and confirms ASN; or system auto-confirms if within agreed parameters | Buyer / System | Buyer | 10 min/batch |
+| 5 | Vendor ships goods to DC or store per agreement | VMI Vendor | — | External |
+| 6 | Receiving Clerk processes Goods Receipt against ASN (standard receiving process) | Receiving Clerk | Dept. Supervisor / DC Supervisor | Per W3 or W18 |
+| 7 | Goods recorded as vendor-owned inventory in system (non-valuated until sold) | System | — | Automated |
+| 8 | At POS: system records sell-through event per VMI SKU; ownership transfers at point of sale | System | — | Automated |
+| 9 | Monthly: system generates VMI sell-through report per vendor showing units sold × agreed price | System | Buyer | Automated |
+| 10 | Buyer reviews sell-through report; confirms settlement | Buyer | Category Manager | 1 hour/month/vendor |
+| 11 | System generates AP invoice from sell-through data; vendor payment processed | System / AP Clerk | AP Supervisor | Automated + 30 min |
+
+**Settlement cycle**: Monthly per VMI vendor
+
+### System Touchpoints
+- Sell-through data export to vendor (EDI/portal/API) (W20.1)
+- ASN receipt and processing from vendor (W20.3)
+- Non-valuated (vendor-owned) inventory tracking (W20.7)
+- Sell-through event capture at POS (W20.8)
+- VMI settlement report generation (W20.9)
+- Auto-generation of AP from sell-through (W20.11)
+
+### Staffing Implication
+- **Buyer time**: 12 VMI vendors × 1 hour/month review = 12 hours/month. Spread across 10–12 buyers, this is ~1 hour each per month. Minimal impact.
+- **AP**: VMI settlement adds 12 additional AP invoices/month. Negligible incremental load.
+
+---
+
+## W21. Capital Expenditure (Capex) Request & Approval
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Need identified for asset acquisition (equipment, vehicles, fixtures, IT hardware, store build-out) |
+| **Frequency** | ~50–80 capex requests/year |
+| **Volume** | Peaks during new store openings (W16) and annual budget cycle |
+| **Owner** | Requesting Department Head |
+| **Participants** | Requestor, Department Head, Finance (Capex Analyst), CFO, CEO/Board |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Requestor submits capex request: item description, justification, quotations (min. 3), expected useful life, budget code | Requestor | Dept. Head | 30 min |
+| 2 | Department Head reviews and approves or returns for revision | Dept. Head | Dept. Head | 15 min |
+| 3 | Finance (Capex Analyst) validates against approved annual budget; checks ROI calculation | Capex Analyst | CFO | 30 min |
+| 4 | Route for approval per tiered matrix (see below) | System | As per tier | 15–30 min |
+| 5 | Approved capex → Purchase Order created (standard PO workflow W2) or direct purchase | Buyer / Requestor | Dept. Head | Per W2 |
+| 6 | Goods/asset received; Goods Receipt posted | Receiving Clerk / IT | Dept. Head | Per W3 |
+| 7 | Finance capitalizes asset in Fixed Asset module: asset tag, location, depreciation schedule, useful life | Cost Accountant | Controller | 15 min/asset |
+| 8 | System begins monthly depreciation per schedule | System | — | Automated |
+| 9 | Post-implementation review: actual vs. budgeted cost; in-service date | Capex Analyst | CFO | Quarterly |
+
+### Approval Matrix
+
+| Amount | Approval Required |
+|---|---|
+| ≤ PHP 100,000 | Finance Manager |
+| PHP 100,001 – 500,000 | CFO |
+| PHP 500,001 – 5,000,000 | CEO |
+| > PHP 5,000,000 | Board of Directors |
+
+### System Touchpoints
+- Capex request form with quotation attachments (W21.1)
+- Tiered approval workflow (W21.4)
+- Budget availability check against annual capex budget (W21.3)
+- PO creation from approved capex (W21.5)
+- Fixed Asset creation and capitalization (W21.7)
+- Depreciation schedule auto-generation (W21.8)
+- Capex vs. budget reporting (W21.9)
+
+### Staffing Implication
+- **1 Capex Analyst** (within Finance): 50–80 requests/year. Each requires ~30 min validation. ~40 hours/year = ~1 day/month. Absorbed by existing Finance team (~35). May be the Cost Accountant or a dedicated analyst role during peak store-opening periods.
+
+---
+
+## W22. Stock Transfers (Store-to-Store & Inter-DC)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Stock imbalance between locations; emergency need; inter-DC rebalancing |
+| **Frequency** | ~30–40 inter-DC transfers/month; ~50–80 store-to-store transfers/month |
+| **Volume** | Variable (typically 5–20 lines per transfer) |
+| **Owner** | Supply Planner (inter-DC); Store Manager (store-to-store) |
+| **Participants** | Supply Planner, Store Manager, Receiving Clerk, Stock Associate, DC Picker |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Requestor identifies transfer need (stock-out risk, excess inventory, rebalancing) | Supply Planner / Store Manager | Supply Planning Mgr / Regional Mgr | 10 min |
+| 2 | Requestor creates Transfer Order in system: source location, destination, items, quantities | Requestor | — | 10 min |
+| 3 | System checks availability at source location; confirms or flags shortage | System | — | Automated |
+| 4 | Approval: inter-DC → Supply Planning Manager; store-to-store → Regional Manager | Approver | Approver | 10 min |
+| 5 | Source location picks items (DC: WMS pick; Store: Stock Associate picks from shelf) | Picker / Stock Associate | DC Supervisor / Store Manager | 15–60 min |
+| 6 | Items packed and shipped; system creates in-transit inventory | Shipper / Driver | DC Supervisor / Store Manager | 15–30 min |
+| 7 | Destination location receives items; scans against Transfer Order | Receiving Clerk | DC Supervisor / Store Manager | 15–30 min |
+| 8 | System updates: source inventory decreases, in-transit clears, destination inventory increases | System | — | Automated |
+| 9 | If discrepancy at destination: flag in system; source location notified for investigation | Receiving Clerk | DC Supervisor / Store Manager | 5 min if any |
+
+**Transfer lead time**: Inter-DC: 3–7 days; Store-to-Store: 1–3 days (same city) or 3–5 days (inter-region)
+
+### System Touchpoints
+- Transfer Order creation with source/destination (W22.2)
+- Real-time availability check at source (W22.3)
+- Approval workflow (W22.4)
+- In-transit inventory tracking (W22.6)
+- Receiving against Transfer Order (W22.7)
+- Inventory update at both locations (W22.8)
+- Discrepancy handling (W22.9)
+
+### Staffing Implication
+- Inter-DC transfers are part of Supply Planner's existing duties (within the 30-person Supply Chain team).
+- Store-to-store transfers are managed by Store Managers with Regional Manager approval — absorbed into existing roles.
+
+---
+
+## W23. Consignment Inventory Operations
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Consignment goods received at store/DC; or consignment goods sold |
+| **Frequency** | ~15–25 consignment vendors; settlement monthly |
+| **Volume** | ~500–1,000 consignment SKUs (primarily appliances, select tiles, fixtures) |
+| **Owner** | Buyer (consignment agreements) |
+| **Participants** | Buyer, Receiving Clerk, Cashier, AP Clerk, Consignment Vendor |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Buyer establishes consignment agreement: vendor, SKUs, consignment price, settlement terms | Buyer | Category Manager | Per vendor setup |
+| 2 | System flags consignment items in item master with vendor ownership indicator | Merchandise Planner | Buyer | 5 min/SKU |
+| 3 | Vendor delivers consignment goods; Receiving Clerk processes GR (standard receiving) | Receiving Clerk | Dept. Supervisor | Per W3/W18 |
+| 4 | System records consignment receipt as non-valuated inventory (vendor-owned) | System | — | Automated |
+| 5 | Consignment items displayed and sold on sales floor; POS scans barcode normally | Cashier | — | Part of sale |
+| 6 | At sale: system records sell-through event; ownership transfers from vendor to company to customer | System | — | Automated |
+| 7 | Monthly: system generates consignment sell-through report per vendor (units sold × consignment price) | System | Buyer | Automated |
+| 8 | Buyer reviews and confirms settlement report | Buyer | Category Manager | 1 hour/vendor/month |
+| 9 | AP Clerk processes consignment vendor payment based on confirmed sell-through | AP Clerk | AP Supervisor | Per W7 |
+| 10 | Quarterly: Buyer reviews consignment SKU performance; returns slow movers to vendor | Buyer | Category Manager | 2 hours/quarter |
+
+### System Touchpoints
+- Consignment item flagging in item master (W23.2)
+- Non-valuated inventory receipt and tracking (W23.4)
+- Ownership transfer at point of sale (W23.6)
+- Consignment sell-through report generation (W23.7)
+- AP settlement from sell-through data (W23.9)
+
+### Staffing Implication
+- Consignment management adds ~15–25 hours/month to Buyer workload (review + settlement). Spread across 10–12 buyers handling their respective vendor portfolios, this is ~2 hours/buyer/month. Absorbed within existing headcount.
+
+---
+
+## W24. Trade & Corporate Credit Application
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer applies for trade or corporate credit account |
+| **Frequency** | ~100–150 new credit applications/month |
+| **Volume** | ~5,200 active trade accounts; ~200 corporate accounts |
+| **Owner** | AR Supervisor |
+| **Participants** | Sales Rep, AR Clerk, AR Supervisor, Finance Manager, Credit Committee |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer submits credit application (in-store, via Sales Rep, or online form) | Customer / Sales Rep | AR Clerk | 15 min |
+| 2 | AR Clerk verifies application completeness: business registration, financial statements, trade references | AR Clerk | AR Supervisor | 30 min |
+| 3 | AR Clerk runs credit check (bank references, trade references, external credit bureau if available) | AR Clerk | AR Supervisor | 30 min |
+| 4 | AR Clerk prepares credit assessment with recommended limit and terms | AR Clerk | AR Supervisor | 15 min |
+| 5 | Approval per tier (see matrix below) | Approver | Approver | 10–30 min |
+| 6 | System creates customer account with approved credit limit, payment terms, and entity assignment | AR Clerk | AR Supervisor | 15 min |
+| 7 | Customer notified of approval; account activated | AR Clerk | — | 10 min |
+| 8 | Annual credit review: AR Clerk reviews all accounts for limit adjustment (increase, decrease, or suspension) | AR Clerk | AR Supervisor | 5 min/account |
+
+### Credit Approval Matrix
+
+| Credit Limit | Approver |
+|---|---|
+| ≤ PHP 200,000 | AR Supervisor |
+| PHP 200,001 – 1,000,000 | Finance Manager |
+| > PHP 1,000,000 | Credit Committee (CFO + Finance Manager + AR Supervisor) |
+
+### System Touchpoints
+- Credit application form (online or in-store) (W24.1)
+- Customer master creation with credit limit and payment terms (W24.6)
+- Credit limit enforcement at POS/sales order (W24.6 → W8.3)
+- Annual credit review scheduling and workflow (W24.8)
+
+### Staffing Implication
+- **AR Clerks** (3–4): 100–150 applications/month × ~90 min each = 150–225 hours/month. Spread across 3–4 clerks = ~50 hours/clerk/month. Absorbed within existing AR team workload, primarily in the first half of the month when collection activity is lighter.
+
+---
+
+## W25. Petty Cash Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Small expense incurred at store or DC that cannot go through standard PO/AP process |
+| **Frequency** | ~10–15 petty cash disbursements per store per month; ~2,000–3,000/month chain-wide |
+| **Volume** | PHP 20,000 float per store; PHP 50,000 float per DC |
+| **Owner** | Store Manager / DC Supervisor |
+| **Participants** | Employee (requestor), Store Manager, Petty Cash Custodian, AP Clerk |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Employee requests petty cash for small expense (supplies, minor repairs, transport, miscellaneous) | Employee | Store Manager | 5 min |
+| 2 | Store Manager approves request (verifies business purpose) | Store Manager | Store Manager | 5 min |
+| 3 | Petty Cash Custodian disburses cash; employee signs petty cash voucher | Custodian | Store Manager | 5 min |
+| 4 | Employee provides receipt and any change back to Custodian | Employee | — | 5 min |
+| 5 | Custodian records transaction in petty cash log (physical or system) | Custodian | Store Manager | 5 min |
+| 6 | When fund runs low (~70% disbursed): Custodian prepares replenishment request with all vouchers | Custodian | Store Manager | 30 min |
+| 7 | Store Manager reviews vouchers; approves replenishment | Store Manager | Store Manager | 15 min |
+| 8 | AP Clerk processes replenishment; creates petty cash voucher in system; posts expense to GL | AP Clerk | AP Supervisor | 15 min |
+| 9 | Treasury / bank transfers replenishment amount to store custodian | Treasury Analyst | CFO | 10 min |
+| 10 | Monthly: Custodian reconciles petty cash (cash on hand + outstanding vouchers = fund amount) | Custodian | Store Manager | 15 min |
+
+### System Touchpoints
+- Petty cash voucher recording (W25.5)
+- Replenishment request and approval workflow (W25.6–7)
+- GL posting for petty cash expenses (W25.8)
+- Petty cash reconciliation reporting (W25.10)
+
+### Staffing Implication
+- **Petty Cash Custodian**: Typically the Assistant Store Manager or a designated cashier. Not a separate role.
+- **AP impact**: ~2,000–3,000 replenishment requests/year. Most stores replenish once or twice monthly. Absorbed by existing AP clerks.
+
+---
+
 ## Workflow-to-Headcount Summary
 
 ### HQ Departments
 
 | Department | Roles | Count | Key Workflows | Validation |
 |---|---|---|---|---|
-| **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13 | ✅ Adequate for daily PO review + quarterly assortment cycles |
-| **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W8, W9, W14 | ✅ Stretched during close week but manageable |
-| **Supply Chain & Logistics** | Supply Planners, Import Coordinator, DC Ops managers | ~30 | W3, W4 | ✅ 2–3 planners handle daily replenishment + demand planning |
+| **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13, W20, W23 | ✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight |
+| **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W8, W9, W14, W21, W24, W25 | ✅ Stretched during close week; capex/credit/petty cash absorbed |
+| **Supply Chain & Logistics** | Supply Planners, Import Coordinator, DC Ops managers | ~30 | W3, W4, W19, W22 | ✅ 2–3 planners handle replenishment + transfers; home delivery picked by DC staff |
 | **HR & Payroll** | HR Head, Recruitment, Payroll, HR Assistants | ~15 | W10, W15 | ✅ 2–3 payroll officers + 2 recruiters handle the volume |
 | **Marketing** | Brand, Promo, Loyalty, Ecommerce, Digital | ~20 | W13, W17 | ✅ Loyalty is largely automated; promo work is cyclical |
 | **Store Operations** | Director, Regional Managers, Ops Standards | ~20 | W5, W16 | ✅ 4 Regional Managers × 50 stores each; oversee new openings |
@@ -891,9 +1229,9 @@ Additional steps on top of month-end close (December):
 | Dept. Supervisors | 4 | W5b (floor selling), W6 (cycle count review), W12 (restock) | 4 depts × 1 supervisor; handles floor + counts |
 | Sales Associates | 16 | W5b (selling, paint mixing, lumber cutting), W11 (BOPIS pick) | 4/dept × 2 shifts = adequate for floor coverage |
 | Cashiers | 6 | W5b (checkout), W17 (loyalty scan) | 5 terminals + 1 float; 2 shifts of 3; tight on coverage |
-| Receiving Clerks | 2 | W4 (store receiving from DC), W3 (DSD receiving) | 2–3 trucks/week + DSD; 2 clerks in shifts handle it |
-| Stock Associates | 3 | W4 (shelf stocking), W6 (cycle counting), W11 (BOPIS pick) | 700 SKUs/day counting + stocking; adequate but minimal slack |
-| Customer Service Rep | 1 | W11 (BOPIS handoff), W12 (returns) | ~4 BOPIS + ~2 returns/day = light; also handles special orders |
+| Receiving Clerks | 2 | W4 (store receiving from DC), W18 (DSD receiving), W22 (transfer receiving) | 2–3 DC trucks/week + 2–3 DSD/week + transfers; 2 clerks in shifts handle it |
+| Stock Associates | 3 | W4 (shelf stocking), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD shelving), W22 (transfer pick/receive) | 700 SKUs/day counting + stocking + DSD + transfers; adequate but minimal slack |
+| Customer Service Rep | 1 | W11 (BOPIS handoff), W12 (returns), W24 (credit application assistance) | ~4 BOPIS + ~2 returns/day = light; also handles special orders |
 | Maintenance | 1 | W5c (closing checklist), general upkeep | Standard for big-box format |
 | **Total** | **35** | | **Validated — headcount is lean but supportable** |
 
@@ -902,8 +1240,8 @@ Additional steps on top of month-end close (December):
 | Function | Count | Key Workflows | Workload Validation |
 |---|---|---|---|
 | DC Manager + Supervisors | 5 | W3, W4 (oversight) | 1 manager + 4 shift/area supervisors |
-| Receiving | 10–13 | W3 (receiving & putaway) | ~40 receipts/day × 1.5–3 hrs; 3–4 clerks + 4–6 putaway + 1–2 QC |
-| Picking & Packing | 25–30 | W4 (pick/pack/ship) | ~33 orders/day × 50 lines; 15–20 pickers + 8–10 packers |
+| Receiving | 10–13 | W3 (receiving & putaway), W20 (VMI receipt) | ~40 receipts/day × 1.5–3 hrs; 3–4 clerks + 4–6 putaway + 1–2 QC |
+| Picking & Packing | 25–30 | W4 (pick/pack/ship), W19 (home delivery pick/pack) | ~33 store orders + ~23 home delivery orders/day; 15–20 pickers + 8–10 packers |
 | Loading & Dispatch | 6–8 | W4 (loading) | Multi-drop truck loading; 4–6 crew + dispatch |
 | Inventory Control | 2–3 | W6 (DC cycle counts) | DC-level accuracy monitoring |
 | Admin & Support | 5–8 | Admin, safety, maintenance | Office, security, equipment maintenance |
@@ -918,19 +1256,19 @@ Summary of which ERP modules support which workflows:
 
 | ERP Module | Workflows Supported |
 |---|---|
-| **POS / Retail** | W5 (store selling), W12 (returns), W17 (loyalty at POS) |
-| **Inventory Management** | W3 (GR posting), W4 (replenishment), W6 (cycle counting), W11 (BOPIS pick) |
-| **Procurement** | W2 (PO cycle), W3 (receiving vs. PO) |
-| **Warehouse Management** | W3 (putaway, cross-dock), W4 (pick/pack/ship) |
-| **Financials (GL/AP/AR)** | W7 (AP), W8 (AR), W9 (close), W14 (intercompany) |
-| **Supply Chain Planning** | W2a (auto-replenishment), W4 (replenishment calculation) |
+| **POS / Retail** | W5 (store selling), W12 (returns), W17 (loyalty at POS), W18 (DSD receiving), W23 (consignment sale) |
+| **Inventory Management** | W3 (GR posting), W4 (replenishment), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD GR), W20 (VMI stock), W22 (transfers), W23 (consignment tracking) |
+| **Procurement** | W2 (PO cycle), W3 (receiving vs. PO), W18 (DSD PO/GR), W20 (VMI ASN), W21 (capex PO) |
+| **Warehouse Management** | W3 (putaway, cross-dock), W4 (pick/pack/ship), W19 (home delivery pick/pack), W22 (transfer pick) |
+| **Financials (GL/AP/AR)** | W7 (AP), W8 (AR), W9 (close), W14 (intercompany), W21 (capex & FA), W24 (credit approval), W25 (petty cash) |
+| **Supply Chain Planning** | W2a (auto-replenishment), W4 (replenishment calculation), W22 (transfer planning) |
 | **HR & Payroll** | W10 (payroll), W15 (onboarding) |
-| **Ecommerce** | W11 (BOPIS order flow), W12b (online returns) |
-| **CRM / Loyalty** | W17 (loyalty program) |
+| **Ecommerce** | W11 (BOPIS order flow), W12b (online returns), W19 (home delivery fulfillment) |
+| **CRM / Loyalty** | W17 (loyalty program), W24 (credit application) |
 | **Pricing / Merchandising** | W13 (promotions) |
-| **Master Data** | W1 (SKU lifecycle), W16 (new store/location creation) |
-| **Reporting / Analytics** | W1 (assortment analysis), W9 (financial statements), W13 (promo analysis) |
+| **Master Data** | W1 (SKU lifecycle), W16 (new store/location creation), W20 (VMI item setup), W23 (consignment item setup) |
+| **Reporting / Analytics** | W1 (assortment analysis), W9 (financial statements), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget) |
 
 ---
 
-*Document Version: 1.0 | Date: 2026-05-30*
+*Document Version: 2.0 | Date: 2026-05-30 | Added W18–W25 (DSD, home delivery, VMI, capex, transfers, consignment, credit application, petty cash); expanded W5 catch-weight touchpoint; updated summary tables*

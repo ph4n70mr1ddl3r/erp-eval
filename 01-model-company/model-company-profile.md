@@ -50,6 +50,7 @@ The company operates through **5 legal entities** organized as follows:
 | Parameter | Value |
 |---|---|
 | **Total Stores** | 200 |
+| **Growth Rate** | ~10–15 new stores/year |
 | **Store Format** | Big-box warehouse (selling area: 8,000–15,000 sqm each) |
 | **Total Selling Area** | ~1.6M – 3.0M sqm aggregate |
 | **Store Staff** | ~35 employees per store |
@@ -132,7 +133,7 @@ The company operates through **5 legal entities** organized as follows:
 | Store Personnel | 7,000 (200 stores × 35) |
 | Distribution Center Personnel | ~750 (5 DCs × ~150) |
 | Corporate HQ Personnel | ~300 |
-| **Total Company Headcount** | **~8,050** |
+| **Total Company Headcount** | **8,050** |
 
 ---
 
@@ -728,4 +729,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.2 | Date: 2026-05-30 | Removed POS hardware spec and IT infrastructure (moved to technical guidelines); simplified integration table to business-level touchpoints; reconciled ecommerce volumes; added DC4 growth note*
+*Document Version: 2.3 | Date: 2026-05-30 | Added growth rate to §3.1; removed tilde from exact total headcount*

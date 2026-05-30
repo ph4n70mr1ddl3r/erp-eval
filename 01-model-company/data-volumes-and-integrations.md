@@ -33,7 +33,7 @@
 | Journal Entries + Lines | ~1,500,000 | ~3 GB |
 | Purchase Orders + Lines | ~233,000 | ~0.6 GB |
 | AP/AR Documents | ~1,440,000 | ~4 GB |
-| Ecommerce Orders + Lines | ~540,000 | ~1.5 GB |
+| Ecommerce Orders + Lines | ~515,000 | ~1.5 GB |
 | Master Data (all types) | ~700,000 | ~0.7 GB |
 | **Total Annual Increment** | | **~100 GB** |
 | **7-Year Retention** | | **~700 GB** (with compression) |
@@ -144,4 +144,4 @@
 
 ---
 
-*Document Version: 3.0 | Date: 2026-05-30 | Removed network bandwidth estimates and integration protocols (moved to technical guidelines); renumbered §6 to §5; kept business-level volumes, timings, and batch windows*
+*Document Version: 3.1 | Date: 2026-05-30 | Reconciled ecommerce annual order count (42,900/mo × 12 = ~515,000)*

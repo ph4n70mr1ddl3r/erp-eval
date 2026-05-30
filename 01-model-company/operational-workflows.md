@@ -273,6 +273,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Shelf-life / expiry date management: at Goods Receipt, Receiving Clerk captures manufacturing date and shelf-life duration for date-sensitive items (paint, adhesives, sealants, chemicals, cement, grout); system calculates and records expiry date per batch/lot; items with remaining shelf life below configurable threshold (e.g., < 30%) flagged for priority picking or markdown; expired items blocked from dispatch (W3.4)
 - Inventory ownership: all merchandise received into DCs is owned by BuildRight Depot Inc. even though DC facilities are operated by BuildRight Logistics Inc.; Logistics Inc. provides warehousing and distribution services billed monthly per W14; goods are Depot Inc. inventory throughout the DC→Store flow
 - RTV physical logistics and tracking: Receiving Clerk stages RTV items in designated RTV holding area at DC; system creates RTV shipment record with lifecycle tracking (Initiated → Packed → Shipped → In Transit → Vendor Received → Credit Note Issued → Settled); DC dispatch arranges carrier pickup or vendor pickup per agreement with Buyer coordination; system tracks RTV aging by status; for store-initiated RTVs (W6.8a, W12a.8, W33.6), Stock Associate stages items in backroom and system creates RTV shipment record; Buyer coordinates with vendor for direct pickup from store or shipment to DC for consolidation; vendor credit note triggered upon vendor confirmation of receipt; if vendor disputes, Buyer negotiates resolution per W3.6b; system maintains RTV tracking dashboard with aging by status
+- RTV freight cost allocation: freight cost for returning goods to vendor is borne by the party responsible for the return reason — (a) defective/wrong items (vendor fault): vendor bears freight cost; deducted from credit note amount negotiated by Buyer; (b) buyer-initiated returns (overstock, discontinuation): BuildRight bears freight cost; posted to inventory write-down or return-to-vendor expense; (c) carrier damage: freight cost claimed from carrier insurance per W3.6a; system captures RTV freight cost as a separate line on the RTV shipment record; AP Clerk reconciles freight cost allocation during credit note processing (W7.9b)
 
 ### Staffing Implication
 - Per DC: 3–4 Receiving Clerks (handling ~40 receipts/day in shifts, ~1.5–3 hrs each)
@@ -1077,7 +1078,7 @@ Additional steps on top of month-end close (December):
 |---|---|---|
 | Earn rate | 1 point per PHP 100 spent | Applied to transaction value after discounts, before VAT |
 | Redemption value | PHP 1.00 per point | Each point can be redeemed for PHP 1.00 discount at checkout |
-| PFRS 15 deferred revenue allocation | ~1.0% of qualifying transaction value | Estimated standalone selling price of points earned: (1 point × PHP 1.00) ÷ PHP 100 = 1%; actual allocation based on expected redemption rate |
+| PFRS 15 deferred revenue allocation | ~1.0% of qualifying transaction value | Face value: (1 point × PHP 1.00) ÷ PHP 100 = 1%; actual PFRS 15 allocation rate may differ based on expected redemption rate (~75–85%) and breakage (~15–25%); the ~1.0% figure represents the standalone selling price allocation before breakage adjustment |
 | Estimated monthly points earned | ~50M points (PHP 5B revenue ÷ PHP 100 × 1 point) | Before breakage adjustment |
 | Estimated monthly deferred revenue allocation (PFRS 15) | ~PHP 50M/month (PHP 5B qualifying revenue × 1.0% allocation) | Monthly flow: new deferred revenue from points earned; recognized proportionally at redemption or as breakage at expiry |
 | Estimated cumulative loyalty points liability (balance sheet) | ~PHP 1.2–1.8B (outstanding unredeemed points × PHP 1.00 × expected redemption rate ~75–85%) | Cumulative stock: outstanding points not yet redeemed or expired; reconciled monthly by Cost Accountant per W17.11a |
@@ -1164,6 +1165,32 @@ Additional steps on top of month-end close (December):
 
 ### Staffing Implication
 - **2 Receiving Clerks per store** (already in staffing model): DSD adds 2–3 additional receiving events per week (~3–6 hours). Combined with DC replenishment receiving (2–3 trucks/week) and BOPIS, the 2 clerks in alternating shifts can handle the load. No additional headcount needed.
+
+### W18b. DSD Vendor Delivery Scheduling
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Weekly DSD delivery schedule coordination |
+| **Frequency** | Weekly schedule per DSD vendor; ~500–600 DSD deliveries/month across 200 stores |
+| **Volume** | ~2–3 DSD deliveries per store per week; each vendor serves multiple stores per region |
+| **Owner** | Buyer (coordination); Receiving Clerk (store execution) |
+
+#### DSD Vendor Scheduling Process
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Buyer maintains DSD vendor delivery calendar per vendor: assigned stores, delivery frequency, preferred delivery day(s), contact person, special handling requirements | Buyer | Category Manager | 1 hour/vendor/quarter |
+| 2 | Vendor or Buyer confirms weekly delivery schedule: which stores, which day, approximate time window, PO references (if applicable) | Buyer / Vendor | Buyer | 30 min/vendor/week |
+| 3 | System pushes DSD delivery schedule to affected store Receiving Clerks via handheld/tablet notification; includes expected vendor, PO references, and time window | System | — | Automated |
+| 4 | Receiving Clerk plans receiving dock availability around DSD schedule and DC replenishment truck schedule (W4); flags scheduling conflicts to Store Manager | Receiving Clerk | Store Manager | 15 min/day |
+| 5 | If vendor misses scheduled delivery: Receiving Clerk reports no-show to Buyer; Buyer follows up with vendor; reschedules within the same week if possible; tracks vendor delivery reliability in vendor scorecard (W44) | Receiving Clerk / Buyer | Category Manager | 10 min/occurrence |
+
+#### System Touchpoints (DSD Scheduling)
+- DSD vendor delivery calendar per vendor with assigned stores and frequency (W18b.1)
+- Weekly delivery schedule communication to store receiving (W18b.3)
+- Scheduling conflict alerting when DSD and DC deliveries overlap (W18b.4)
+- Vendor no-show tracking feeding into vendor scorecard (W44) (W18b.5)
+- Integration with W18 (DSD receiving), W4 (DC replenishment scheduling), W44 (vendor performance)
 
 ---
 

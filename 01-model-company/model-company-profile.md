@@ -101,7 +101,7 @@ The company operates through **5 legal entities** organized as follows:
 - Vendor managed inventory (VMI) for select suppliers
 - Each DC serves ~40 stores on average (range: 20–60)
 - Replenishment cycles: 2–3x per week per store
-- DC headcount: ~120–160 per DC (~750 total)
+- DC headcount: ~150 per DC (~750 total)
 - Special handling areas: lumber, tiles, paint/chemicals
 
 ### 3.3 Corporate Headquarters
@@ -133,10 +133,10 @@ The company operates through **5 legal entities** organized as follows:
 |---|---|
 | Store Personnel | 7,000 (200 stores × 35) |
 | Distribution Center Personnel | ~750 (5 DCs × ~150) |
-| Corporate HQ Personnel | ~320 |
-| **Total Company Headcount** | **~8,070** |
+| Corporate HQ Personnel | ~310 (expanding to ~320 with DPO and Regulatory Officer per W53/W54) |
+| **Total Company Headcount** | **~8,060** (baseline; ~8,070 with compliance expansion) |
 
-> **Revenue per employee**: ~PHP 7.7M/year (~PHP 62.3B ÷ ~8,070) — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (35 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further. HQ headcount of ~320 includes DPO (W53) and Regulatory Officer (W54) required for Philippine regulatory compliance.
+> **Revenue per employee**: ~PHP 7.7M/year (~PHP 62.3B ÷ ~8,060) — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (35 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further. HQ headcount of ~310 is the baseline; Legal & Compliance expands from ~5 to ~7 with the addition of a Data Protection Officer (W53) and Regulatory Officer (W54) required for Philippine regulatory compliance, bringing total HQ to ~320 and total company to ~8,070.
 
 ---
 
@@ -421,7 +421,7 @@ The company operates through **5 legal entities** organized as follows:
 
 | Parameter | Value |
 |---|---|
-| **Monthly Vendor Invoices** | ~6,000–7,000 (merchandise); ~8,500–9,500 total incl. non-PO recurring expenses (W7c) |
+| **Monthly Vendor Invoices** | ~6,500 merchandise (3-way match per W7); ~2,000–3,000 non-PO/recurring (2-way match per W7c); ~8,500–9,500 total |
 | **Payment Terms (Typical)** | Net 30, Net 60 |
 | **Payment Methods** | Check, bank transfer, LC (imports) |
 | **3-Way Match** | Required for all PO-based purchases (PO → GR → Invoice) |
@@ -741,4 +741,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.8 | Date: 2026-05-30 | Wave 11: expanded Legal & Compliance to ~7 (DPO + Regulatory Officer per W53/W54); HQ headcount ~320, total ~8,070; reconciled AP invoice volume to include non-PO recurring expenses*
+*Document Version: 2.9 | Date: 2026-05-30 | Reconciled DC headcount (~150/DC, ~750 total), HQ headcount (~310 baseline, ~320 with compliance roles), total ~8,060–8,070; clarified AP invoice volume breakdown*

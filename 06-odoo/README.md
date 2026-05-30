@@ -37,4 +37,57 @@
 
 ---
 
+## Scorecard Template
+
+> To be completed during evaluation. See [Scoring Methodology](../07-methodology/scoring-methodology.md) for full details.
+
+### Dimension Scores
+
+| Dimension | Score (1–5) | Weight | Weighted Score | Notes |
+|---|---|---|---|---|
+| Functional Fit | — | 40% | — | See odoo-fit-gap.md |
+| TCO (5-year) | — | 20% | — | See odoo-cost-estimate.md |
+| Implementation Risk | — | 15% | — | |
+| Scalability & Performance | — | 15% | — | |
+| Local Support Ecosystem | — | 10% | — | |
+| **Overall** | | **100%** | **—** | |
+
+### Fit-Gap Summary (by Requirement Category)
+
+| Category | Must Have Count | Met (4-3) | Partial (2-1) | Gap (0) | Notes |
+|---|---|---|---|---|---|
+| FIN (Financial Management) | 15 | — | — | — | |
+| INV (Inventory Management) | 12 | — | — | — | |
+| PUR (Procurement) | 10 | — | — | — | |
+| WMS (Warehouse Management) | 5 | — | — | — | |
+| POS (Point of Sale) | 13 | — | — | — | |
+| ECOM (Ecommerce Integration) | 9 | — | — | — | |
+| SCP (Supply Chain Planning) | 3 | — | — | — | |
+| HR (HR & Payroll) | 8 | — | — | — | |
+| CRM (CRM & Loyalty) | 5 | — | — | — | |
+| RPT (Analytics & Reporting) | 5 | — | — | — | |
+| IC (Intercompany) | 5 | — | — | — | |
+| DOC (Document Management) | 4 | — | — | — | |
+| MDM (Master Data Management) | 5 | — | — | — | |
+| NFR (Non-Functional Requirements) | 11 | — | — | — | |
+| **Total** | **~110 Must Have** | — | — | — | |
+
+### Disqualifiers / Red Flags
+- [List any Must Have requirements scored 0 or 1]
+
+### Top Strengths
+1.
+2.
+3.
+
+### Top Gaps / Risks
+1.
+2.
+3.
+
+### Recommendation
+[Proceed / Conditional / Eliminate] — with rationale
+
+---
+
 *Date created: 2026-05-30*

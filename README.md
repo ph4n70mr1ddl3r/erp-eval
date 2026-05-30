@@ -10,6 +10,16 @@ This repository contains ERP implementation plans for a theoretical retail compa
 erpplans/
 ├── README.md                    ← You are here
 ├── 01-model-company/            ← Complete model company profile, requirements & workflows
+│   ├── model-company-profile.md       Company profile, operations, financials
+│   ├── erp-requirements.md            ~200 requirements across 14 categories
+│   ├── data-volumes-and-integrations.md  Transaction volumes, integration map
+│   ├── operational-workflows.md        66 detailed workflows (W1–W66)
+│   ├── executive-summary.md            1-page C-suite overview
+│   ├── assumptions-and-design-decisions.md  Consolidated assumptions & rationale
+│   ├── requirement-workflow-matrix.md  Cross-reference: requirements ↔ workflows
+│   ├── internal-controls-matrix.md     43 internal controls by objective
+│   ├── mobile-app-strategy.md          Customer & employee mobile app strategy
+│   └── data-migration-mapping.md       Data migration field mapping templates
 ├── 02-wilcon-benchmark/         ← Real-world Wilcon Depot research & comparison
 ├── 03-sap/                      ← SAP S/4HANA evaluation (placeholder)
 ├── 04-oracle-netsuite/          ← Oracle NetSuite evaluation (placeholder)

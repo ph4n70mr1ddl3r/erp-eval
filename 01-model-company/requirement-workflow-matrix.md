@@ -106,7 +106,7 @@
 | POS-004 | Multi-Tender | M | W5b.7 (multi-tender payment), W12a.6 (split-tender refund) | — |
 | POS-005 | Loyalty Integration | M | W5b.5 (loyalty scan), W17 (loyalty program operations) | — |
 | POS-006 | Price Override (w/ Auth) | M | W5b.4a (price override with manager authorization) | W61 (competitor price match) |
-| POS-007 | Returns & Exchanges | M | W12a (in-store returns), W12b (online returns), W12c (cross-store returns) | — |
+| POS-007 | Returns & Exchanges | M | W12a (in-store returns), W12b (online returns), W12c (cross-store returns) — loyalty points reversal on all return types | — |
 | POS-008 | Cash Drawer Management | M | W5a.4 (cash float), W5c.2–5 (Z-report & cash count) | — |
 | POS-009 | End-of-Day Reconciliation | M | W5c (store closing & EOD) | W30.4 (deposit auto-matching) |
 | POS-010 | Quantity Break Pricing | M | W5b.6 (auto quantity breaks), W40.15–19 (quantity break setup) | — |
@@ -172,7 +172,7 @@
 |---|---|---|---|---|
 | CRM-001 | Loyalty Points Engine | M | W17 (loyalty program operations) | W5b.5 (POS points earning) |
 | CRM-002 | Customer Master (B2C) | M | W17.1–2 (enrollment & dedup), W50 (ecommerce customer sync) | — |
-| CRM-003 | Trade Account Management | M | W8 (AR processing), W5b.4c (trade pricing at POS) | W24 (credit application) |
+| CRM-003 | Trade Account Management | M | W8 (AR processing, dormant account management), W5b.4c (trade pricing at POS) | W24 (credit application) |
 | CRM-004 | Corporate Account Management | M | W58 (corporate/project accounts), W24 (credit application) | — |
 | CRM-005 | Tiered Loyalty | S | W17.8 (tier movement) | — |
 | CRM-006 | Customer Purchase History | S | W12a.2 (transaction lookup), W17 (loyalty history) | W29 (recall customer tracing) |
@@ -255,8 +255,8 @@
 
 - **Total requirements**: 100+ across 14 categories (FIN through NFR)
 - **Requirements with primary workflow mapping**: All ✅
-- **Workflows without requirement mapping**: W47 (facility maintenance), W48 (IT helpdesk), W49 (typhoon BC), W50 (PIM), W51 (training), W52 (fleet), W59 (insurance), W62 (vendor contracts), W63 (shelf labels), W65 (CSAT measurement) — these are operational workflows that support requirements indirectly but don't have direct 1:1 requirement mappings; they exercise NFR, DOC, MDM, and RPT requirements
+- **Workflows without requirement mapping**: W47 (facility maintenance), W48 (IT helpdesk), W49 (typhoon BC), W50 (PIM), W51 (training), W52 (fleet), W59 (insurance), W62 (vendor contracts), W63 (shelf labels), W65 (CSAT measurement), W71 (physical security), W72 (employee performance management), W73 (data migration validation) — these are operational workflows that support requirements indirectly but don't have direct 1:1 requirement mappings; they exercise NFR, DOC, MDM, HR, and RPT requirements
 
 ---
 
-*Date: 2026-05-30*
+*Date: 2026-05-30 (v2 — updated coverage validation for W71–W73; added loyalty reversal to POS-007; added dormant account management to CRM-003)*

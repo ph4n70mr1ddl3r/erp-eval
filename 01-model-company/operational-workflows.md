@@ -65,7 +65,7 @@ Each workflow follows this format:
 - Product content coordination: when new SKUs are created or item attributes change (W1.7), Merchandise Planner or Marketing coordinates product content (photos, specifications, dimensions, how-to guides) for publishing to the ecommerce platform via PIM integration or manual upload
 - Sample / demo inventory management: system supports a 'Sample/Demo' inventory status for display items (tile gallery boards, appliance demo units, tool displays) tracked separately from saleable stock; samples excluded from available inventory and replenishment calculations but included in inventory valuation; quarterly review by Department Supervisor identifies samples for markdown sale, vendor return, or scrap; display refresh planned as part of W1 assortment review
 - Slow-mover / dead stock operational review: monthly cross-functional review where Category Managers, Supply Planner, and Cost Accountant examine the slow-mover report (system-generated: items with > 90 days since last sale, < 2 turns/year, or current stock > 6 months forward demand); disposition decided per SKU — continue selling (monitor), markdown and clearance (W13.9a), RTV (W3.6a), bulk liquidation (W13.9b), donation, or scrap; results feed into quarterly assortment review (W1) for potential discontinuation; accounting consequences (NRV write-down) processed per W9a.16b
-- Negative inventory resolution: system generates daily negative inventory alert listing all SKU-locations where on-hand < 0; at store level, Stock Associate investigates root cause (timing lag from offline POS transactions per W5d, receiving error, mispick, or cycle count needed); at DC level, Inventory Control clerk investigates (pending GR posting, allocation error, picking error); resolution action depends on cause — recount and adjust (W6), wait for pending transaction posting, or force adjustment with supervisor approval; system blocks negative-inventory locations from ecommerce ATP availability until resolved; monthly report of negative inventory frequency by location feeds into inventory accuracy improvement initiatives
+
 
 ### Staffing Implication
 5 Category Managers each handling ~2 categories per quarterly cycle = manageable at ~18 hours/category. The 3 Pricing Analysts handle data pulls and analysis in parallel. 10–12 Buyers handle vendor validation. Current team of ~40 in Merchandising is adequate.
@@ -124,7 +124,7 @@ Each workflow follows this format:
 |---|---|
 | **Trigger** | Seasonal buy plan or replenishment of import SKUs |
 | **Frequency** | ~20–30 import POs/month |
-| **Volume** | 50–70 TEUs/month |
+| **Volume** | ~400–600 TEUs/month across all import vendors (per model-company-profile §7.1); ~15–25 TEUs per major import PO |
 | **Owner** | Buyer (with Import Coordinator) |
 | **Participants** | Buyer, Import Coordinator, Finance (LC), Customs Broker, Warehouse (receiving) |
 
@@ -477,6 +477,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Immutable audit trail for all adjustments (W6.8)
 - In-store damage discovery reporting with photo, cause code, and disposition workflow (W6.8a)
 - Near-expiry alerting: during cycle counts, system flags items approaching expiry (configurable threshold per category, e.g., 90 days for paint, 60 days for cement); Department Supervisor reviews flagged items and initiates disposition per W13.9a (markdown), W3.6a (RTV), or W13.9b (scrap/liquidation) (W6)
+- Negative inventory resolution: system generates daily negative inventory alert listing all SKU-locations where on-hand < 0; at store level, Stock Associate investigates root cause (timing lag from offline POS transactions per W5d, receiving error, mispick, or cycle count needed); at DC level, Inventory Control clerk investigates (pending GR posting, allocation error, picking error); resolution action depends on cause — recount and adjust (W6), wait for pending transaction posting, or force adjustment with supervisor approval; system blocks negative-inventory locations from ecommerce ATP availability until resolved; monthly report of negative inventory frequency by location feeds into inventory accuracy improvement initiatives
 
 ### Staffing Implication
 - **3 Stock Associates per store**: Each counts ~233 SKUs/day (~40 min), with remainder of time on replenishment, receiving, damage reporting, and BOPIS picking. Current count of 3 is adequate but has no slack for absenteeism.
@@ -962,6 +963,7 @@ Additional steps on top of month-end close (December):
 - IC elimination automation during consolidation (W14.8)
 - Consolidated financial statement generation with IC lines eliminated (W14.9)
 - Transfer pricing rule maintenance with annual review documentation per BIR RR 19-2020 (W14.1)
+- Dual IC framework: BuildRight operates two intercompany models — (1) **Service-based IC** (primary): monthly fees for warehousing (Logistics Inc.), ecommerce fulfillment (Digital Commerce Inc.), rent (Property Mgmt Inc.), and management fees (Holdings Inc.) — no goods change ownership between entities; Depot Inc. owns all merchandise inventory throughout the supply chain; standard DC→Store replenishment (W4) and inter-DC transfers (W22) are intra-entity inventory movements, not IC goods transfers; (2) **Goods-based IC** (rare): if inter-entity goods transfer is needed (e.g., Digital Commerce Inc. purchases goods from Depot Inc. for direct resale, Property Mgmt Inc. purchases building materials for property maintenance), system creates IC sales order and IC purchase order at configured transfer price; IC invoice auto-generated at receipt; IC elimination during consolidation per W9a.13; system supports both models with different GL posting paths (W14)
 
 ### Annual IC Transfer Pricing Review
 
@@ -1341,7 +1343,7 @@ Additional steps on top of month-end close (December):
 - Receiving against Transfer Order (W22.7)
 - Inventory update at both locations (W22.8)
 - Discrepancy handling with financial resolution: source error, carrier damage, or unexplained loss disposition (W22.9a)
-- Intercompany model — dual IC framework: BuildRight operates two IC models: (1) **Service-based IC** (primary, per W14): monthly fees for warehousing (Logistics Inc.), ecommerce fulfillment (Digital Commerce Inc.), rent (Property Mgmt Inc.), and management fees (Holdings Inc.) — no goods change ownership between entities; Depot Inc. owns all merchandise inventory throughout the supply chain; (2) **Goods-based IC** (rare, for exceptional scenarios): if inter-entity goods transfer is needed (e.g., Digital Commerce Inc. purchases goods from Depot Inc. for direct resale, Property Mgmt Inc. purchases building materials for property maintenance), system creates IC sales order and IC purchase order at configured transfer price; IC invoice auto-generated at receipt; IC elimination during consolidation per W9a.13; system supports both models with different GL posting paths; standard DC→Store replenishment (W4) is NOT an inter-entity transfer — Depot Inc. owns goods at both DC and store locations; Logistics Inc. provides warehousing services billed monthly per W14, not per-transfer
+- Intercompany model — see W14 for full dual IC framework (service-based vs. goods-based); standard DC→Store replenishment (W4) is NOT an inter-entity transfer — Depot Inc. owns goods at both locations; Logistics Inc. provides warehousing services billed monthly per W14, not per-transfer
 - Customer-initiated inter-store transfer: when a customer at Store A requests an item out of stock, Sales Associate checks real-time inventory at nearby stores via handheld or terminal; if available, Associate creates customer transfer request (item, quantity, source store, destination store, customer contact); Store Manager at destination approves; source Store Manager or system auto-confirms if within same region; system creates Transfer Order per W22; source store picks and ships; destination store receives and notifies customer via SMS/app; sale booked at destination store when customer purchases; transport cost absorbed by company as customer service (no charge to customer); real-time cross-store inventory lookup available to Sales Associates via handheld/terminal and to customers via website/app store selector
 - Catch-weight / variable-measure items during transfers: for catch-weight items (lumber, wire, bulk nails), source location measures and records actual length/weight/piece count on Transfer Order; destination location re-measures upon receipt; if quantity differs from TO, variance handled per W22.9a with measurement tolerance applied (e.g., ±2% for lumber, ±1% for wire by length); within tolerance: system accepts destination measurement and posts variance as inventory adjustment at source; outside tolerance: source location investigates (measurement error, transit damage); system supports dual-entry measurement capture for catch-weight items on both outbound and inbound transfer processing
 
@@ -2558,51 +2560,6 @@ When vendor performance falls below acceptable thresholds, the following correct
 
 ---
 
-## Workflow-to-Headcount Summary
-
-### HQ Departments
-
-| Department | Roles | Count | Key Workflows | Validation |
-|---|---|---|---|---|
-| **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13, W20, W23, W27, W29, W32, W36, W40, W44 | ✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight + rebate management + seasonal planning + vendor onboarding + price maintenance |
-| **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W8, W9, W14, W21, W24, W25, W26, W27, W28, W30, W39, W42 | ✅ Stretched during close week; capex/credit/petty cash absorbed; treasury daily cycle manageable with 2–3 analysts; asset disposal and annual physical inventory absorbed |
-| **Supply Chain & Logistics** | Supply Planners, Demand Planners, Import Coordinator, DC Ops managers | ~30 | W3, W4, W19, W22, W31 | ✅ 2–3 planners handle replenishment + transfers; home delivery picked by DC staff; 1–2 dedicated demand planners handle forecasting |
-| **HR & Payroll** | HR Head, Recruitment, Payroll, HR Assistants | ~15 | W10, W15 | ✅ 2–3 payroll officers + 2 recruiters handle the volume |
-| **Marketing** | Brand, Promo, Loyalty, Ecommerce, Digital | ~20 | W13, W17 | ✅ Loyalty is largely automated; promo work is cyclical |
-| **Store Operations** | Director, Regional Managers, CS Manager, Ops Standards | ~22 | W5, W16, W29, W5d, W34, W37, W41 | ✅ 4 Regional Managers × 50 stores each; oversee new openings; offline recovery is Store Mgr responsibility; shift scheduling and complaint handling absorbed; 2–3 LPOs recommended for loss prevention |
-| **IT** | Infrastructure, Apps, Data, Security, BI Analyst | ~26 | W16 (store setups), W35 (reporting) | ✅ 2–3 per store setup + BAU support; 1 BI Analyst supports management reporting |
-| **Other** | Legal, Internal Audit, Customer Service (call center), Executive | ~50 | W41 (complaints), W42 (audit observation) | ✅ Support functions; call center handles multi-channel complaint intake |
-
-### Per-Store Staffing (35 people)
-
-| Role | Count | Key Workflows | Workload Validation |
-|---|---|---|---|
-| Store Manager | 1 | W5 (open/close), W6 (approvals), W12 (returns), W16 (opening) | Manageable; delegates floor ops to supervisors |
-| Asst. Store Manager | 1 | W5 (open/close backup), W6, W12 | Shares management load; covers days off |
-| Dept. Supervisors | 4 | W5b (floor selling), W6 (cycle count review), W12 (restock) | 4 depts × 1 supervisor; handles floor + counts |
-| Sales Associates | 16 | W5b (selling, paint mixing, lumber cutting), W11 (BOPIS pick) | 4/dept × 2 shifts = adequate for floor coverage |
-| Cashiers | 6 | W5b (checkout), W17 (loyalty scan), W28 (gift card sell/reload) | 5 terminals + 1 float; 2 shifts of 3; tight on coverage |
-| Receiving Clerks | 2 | W4 (store receiving from DC), W18 (DSD receiving), W22 (transfer receiving) | 2–3 DC trucks/week + 2–3 DSD/week + transfers; 2 clerks in shifts handle it |
-| Stock Associates | 3 | W4 (shelf stocking), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD shelving), W22 (transfer pick/receive), W34 (shift adherence), W42 (annual count) | 700 SKUs/day counting + stocking + DSD + transfers; adequate but minimal slack |
-| Customer Service Rep | 1 | W11 (BOPIS handoff), W12 (returns), W24 (credit application assistance), W28 (store credit), W29 (recall returns), W33 (warranty claims), W38 (special order intake), W41 (complaints) | ~4 BOPIS + ~2 returns + ~0.5 gift cards + ~2 warranty claims + ~0.5 special orders + ~10 complaints/day = moderate; also handles special orders |
-| Maintenance | 1 | W5c (closing checklist), general upkeep | Standard for big-box format |
-| **Total** | **35** | | **Validated — headcount is lean but supportable** |
-
-### Per-DC Staffing (~150 people)
-
-| Function | Count | Key Workflows | Workload Validation |
-|---|---|---|---|
-| DC Manager + Supervisors | 5 | W3, W4 (oversight) | 1 manager + 4 shift/area supervisors |
-| Receiving | 10–13 | W3 (receiving & putaway), W20 (VMI receipt) | ~40 receipts/day × 1.5–3 hrs; 3–4 clerks + 4–6 putaway + 1–2 QC |
-| Picking & Packing | 25–30 | W4 (pick/pack/ship), W19 (home delivery pick/pack) | ~33 store orders + ~115 home delivery orders/day; 15–20 pickers + 8–10 packers; 3–4 dedicated to home delivery; peak ecommerce periods may require surge staffing |
-| Loading & Dispatch | 6–8 | W4 (loading) | Multi-drop truck loading; 4–6 crew + dispatch |
-| Inventory Control | 2–3 | W6 (DC cycle counts) | DC-level accuracy monitoring |
-| Admin & Support | 5–8 | Admin, safety, maintenance | Office, security, equipment maintenance |
-| Special Handling (lumber, tiles, paint) | 8–10 | W3, W4 (special areas) | Dedicated teams for heavy/hazardous goods |
-| **Total** | **~150** | | **Validated** |
-
----
-
 ## W46. Kit / Bundle Assembly & Disassembly
 
 | Field | Detail |
@@ -2641,6 +2598,391 @@ When vendor performance falls below acceptable thresholds, the following correct
 
 ---
 
+## W47. Store Facility Maintenance & Work Orders
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Equipment failure, scheduled preventive maintenance, safety inspection finding, or store staff report |
+| **Frequency** | Continuous; preventive maintenance on fixed schedules per equipment type |
+| **Volume** | ~2,000–3,000 maintenance work orders/month across 200 stores + 5 DCs (~10–15 per location per month) |
+| **Owner** | Store Manager (store-level); Facilities Coordinator (HQ oversight) |
+| **Participants** | Maintenance/Utility staff, Store Manager, Facilities Coordinator, external contractors, Finance |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Issue identified: (a) store staff reports equipment malfunction (POS terminal, paint mixer, lumber saw, forklift, HVAC, lighting, plumbing, roll-up door), (b) scheduled preventive maintenance triggers, (c) safety inspection reveals deficiency | Maintenance / Utility Staff | Store Manager | 5 min (reporting) |
+| 2 | Maintenance staff or Store Manager creates work order in system: location, equipment/area, issue description, priority (critical / high / medium / low), photos if applicable | Store Manager / Maintenance | Store Manager | 5 min |
+| 3 | System classifies work order: (a) in-store capability — Maintenance/Utility staff can resolve with available tools and parts, (b) requires external contractor (specialized repair: HVAC, electrical, plumbing, elevator/escalator), (c) requires equipment vendor service (POS, forklift, paint mixer under warranty or service contract), (d) requires capex (major repair exceeding PHP 50,000 → route to W21 capex workflow) | System | — | Automated |
+| 4a | **In-store resolution**: Maintenance staff performs repair using on-hand parts or petty cash purchase (W25); completes work order with repair description, parts used, and labor time | Maintenance / Utility | Store Manager | Varies (15 min – 4 hours) |
+| 4b | **External contractor**: Store Manager or Facilities Coordinator engages pre-approved contractor from approved vendor list; contractor scheduled for site visit; system tracks appointment and SLA | Facilities Coordinator / Store Manager | Store Ops Director | Scheduling: 15 min; repair: varies |
+| 4c | **Vendor service call**: Store Manager contacts equipment vendor for warranty or service contract repair; system links to vendor master and warranty records (W33 for warranty process, W21 for asset records) | Store Manager | Facilities Coordinator | 10 min (coordination) |
+| 5 | Work order completed: repair verified by Store Manager; work order closed in system with resolution code, actual labor hours, parts cost, and contractor/vendor cost | Store Manager / Maintenance | Store Manager | 10 min |
+| 6 | System posts maintenance costs: parts and labor to store maintenance expense GL; contractor invoices routed to AP per W7c (non-PO) or against maintenance contract PO | System | — | Automated |
+| 7 | Monthly: Facilities Coordinator reviews maintenance report by location: total cost per store, top issue categories, contractor response time SLA compliance, recurring issues | Facilities Coordinator | Store Ops Director | 2 hours/month |
+
+### Preventive Maintenance Schedule
+
+| Equipment / System | Frequency | Responsible | Notes |
+|---|---|---|---|
+| HVAC units | Quarterly filter change; annual service | External contractor | Critical for customer comfort; store sells HVAC — reputation risk if own units fail |
+| Fire suppression / extinguishers | Annual inspection per BFP requirement | Certified inspector | Regulatory compliance; non-negotiable |
+| Paint mixing station | Monthly cleaning and calibration | Maintenance / Utility | Accuracy affects customer satisfaction |
+| Lumber cutting equipment | Weekly blade inspection; monthly sharpening/replace | Maintenance / Utility | Safety-critical; dull blades are injury risk |
+| POS terminals and peripherals | Quarterly cleaning and cable check | IT + Maintenance | Cross-reference W48 |
+| Roll-up doors / loading docks | Bi-annual servicing | External contractor | Security and receiving operations |
+| Electrical panel and generators (if applicable) | Annual inspection | Licensed electrician | Safety compliance |
+| Pest control | Monthly treatment | External contractor (pest control vendor) | Health and sanitation |
+| Elevators / escalators (if applicable) | Monthly inspection per DOLE requirement | Licensed elevator contractor | Regulatory compliance |
+
+### System Touchpoints
+- Work order creation with priority classification and photo attachment (W47.2)
+- Auto-classification of resolution path: in-store, contractor, vendor service, or capex (W47.3)
+- Pre-approved contractor vendor list with rate cards and SLA terms (W47.4b)
+- Maintenance cost posting to store-level GL (W47.6)
+- Preventive maintenance scheduling with automated work order generation per equipment calendar (W47 preventive table)
+- Maintenance reporting by location, cost, issue category, contractor performance (W47.7)
+- Integration with W21 (capex routing for major repairs), W25 (petty cash for small parts), W33 (vendor warranty claims), W39 (asset retirement if equipment beyond repair), W48 (IT equipment maintenance)
+
+### Staffing Implication
+- **1 Maintenance/Utility per store** (already in model): handles ~10–15 work orders/month including routine preventive tasks. Viable for standard repairs and routine maintenance; relies on external contractors for specialized work.
+- **1 Facilities Coordinator** (HQ, within Store Ops team): manages contractor relationships, preventive maintenance calendar compliance, and maintenance cost analysis across 200 stores. This is a new role recommendation.
+- **External contractor network**: each store should have 3–5 pre-approved contractors (electrician, plumber, HVAC technician, general handyman) on retainer or call-out basis. Facilities Coordinator manages the approved list centrally.
+
+---
+
+## W48. IT Operations & Helpdesk Support
+
+| Field | Detail |
+|---|---|
+| **Trigger** | User reports issue (phone, email, self-service portal); system generates automated alert; scheduled change window |
+| **Frequency** | Continuous; ~800–1,200 support tickets/month across all locations |
+| **Volume** | ~8,050 users; 1,000 POS terminals; 5 WMS systems; ~500 RF devices; 200+ network locations |
+| **Owner** | IT Helpdesk Lead |
+| **Participants** | IT Helpdesk, IT Infrastructure, IT Applications, end users, external vendors |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | User contacts IT Helpdesk via phone, email, or self-service portal; describes issue with system, hardware, network, or access | End User | — | 2 min |
+| 2 | Helpdesk Agent creates support ticket: user, location, device, issue category, severity (see matrix below), description | Helpdesk Agent | IT Helpdesk Lead | 3 min |
+| 3 | System auto-routes ticket based on category: (a) POS/retail → Retail IT support queue, (b) network/connectivity → Infrastructure queue, (c) ERP/application → Applications queue, (d) hardware → Hardware support queue, (e) access/permissions → Security queue | System | — | Automated |
+| 4 | **Tier 1 — Remote resolution**: Helpdesk Agent attempts to resolve remotely (password reset, configuration fix, user guidance, system restart) | Helpdesk Agent | IT Helpdesk Lead | 5–15 min |
+| 5 | If Tier 1 resolves: ticket closed with resolution code; user confirms | Helpdesk Agent | — | 2 min |
+| 6 | If Tier 1 unresolved: ticket escalated to Tier 2 (specialist) with diagnostic notes; SLA timer restarts per severity | Helpdesk Agent | IT Helpdesk Lead | 2 min |
+| 7 | **Tier 2 — Specialist resolution**: IT specialist investigates; may require remote session, configuration change, or system-level fix | IT Specialist | IT Helpdesk Lead | 15–60 min |
+| 8 | If Tier 2 requires on-site presence (hardware failure, network cabling, POS terminal replacement): ticket assigned to IT Field Support with scheduled site visit | IT Specialist | CIO | Scheduling: 5 min |
+| 9 | **Tier 3 — Vendor / escalation**: if issue requires vendor support (POS software bug, ERP vendor support, hardware warranty claim), IT engages vendor; tracks vendor response SLA | IT Specialist / CIO | CIO | Vendor-dependent |
+| 10 | Resolution confirmed by user; ticket closed; system logs resolution time, root cause category, and recurring issue flag | Helpdesk Agent | IT Helpdesk Lead | 2 min |
+| 11 | Monthly: IT Helpdesk Lead reviews ticket analytics: volume by category, resolution rate by tier, SLA compliance, mean time to resolution, top recurring issues per location | IT Helpdesk Lead | CIO | 2 hours/month |
+
+### Severity & SLA Matrix
+
+| Severity | Definition | Examples | Response SLA | Resolution SLA |
+|---|---|---|---|---|
+| **P1 — Critical** | System down affecting revenue or multiple users | All POS terminals down at a store, ERP system inaccessible, DC WMS failure | 15 min | 4 hours |
+| **P2 — High** | Major function impaired but workaround exists | Single POS terminal down, ecommerce integration failure, reporting module error | 30 min | 8 hours |
+| **P3 — Medium** | Non-critical issue affecting productivity | Printer malfunction, slow report generation, single user access issue | 2 hours | 24 hours |
+| **P4 — Low** | Minor issue or enhancement request | Cosmetics, feature requests, non-urgent how-to questions | 8 hours | 72 hours |
+
+### Change Management
+
+| # | Activity | Role (R) | Role (A) | Frequency |
+|---|---|---|---|---|
+| 1 | IT team member submits change request: description, affected systems, risk assessment, rollback plan, planned window | IT Team Member | IT Helpdesk Lead | As needed (~20–30 changes/month) |
+| 2 | IT Helpdesk Lead reviews and classifies: (a) standard change (pre-approved, low risk — e.g., password policy update), (b) normal change (requires review and approval — e.g., POS software patch), (c) emergency change (unplanned, critical fix — e.g., security vulnerability patch) | IT Helpdesk Lead | CIO | 10 min/change |
+| 3 | Normal changes: CIO approves; emergency changes: CIO verbal approval with post-hoc documentation; standard changes: auto-approved per catalog | CIO | — | 5–15 min/change |
+| 4 | Change executed during maintenance window (typically Tuesday/Thursday 22:00–02:00 or Sunday 00:00–04:00 to avoid peak hours) | IT Infrastructure | CIO | Per change |
+| 5 | Post-change verification: IT confirms system health; Helpdesk monitors for related ticket spikes in next 24 hours | IT Team | IT Helpdesk Lead | 15 min/change |
+
+### System Touchpoints
+- IT ticket management: create, route, escalate, resolve, close with full audit trail (W48.2–10)
+- Auto-routing by issue category to specialist queues (W48.3)
+- SLA timer per severity level with auto-escalation at 75% of SLA threshold (W48.4–9)
+- Remote desktop / diagnostic tool integration (W48.4, 7)
+- Knowledge base / self-service portal for common issues (W48.1)
+- Change request workflow with classification and approval (W48 change management)
+- Maintenance window scheduling (W48 change 4)
+- Ticket analytics dashboard: volume, SLA compliance, MTTR, top issues by location (W48.11)
+- IT asset tracking: system maintains asset register for all IT equipment (POS terminals, RF devices, servers, networking equipment, laptops, tablets) with location assignment, warranty status, maintenance history, and lifecycle status; supports IT asset planning and budgeting (cross-reference W21 for capex, W39 for disposal)
+- Integration with W5d (offline POS recovery), W16 (new store IT setup), W43 (employee separation — account deactivation)
+
+### Staffing Implication
+- **4–5 Helpdesk Agents (Tier 1)**: handle ~800–1,200 tickets/month ÷ 20 working days = ~40–60/day. At ~10 min average per ticket = ~7–10 hours/day. With shifts and coverage, 4–5 agents needed.
+- **3–4 IT Specialists (Tier 2)**: Application support, infrastructure, retail IT, security. Specialists handle ~30% of tickets that Tier 1 cannot resolve = ~240–360/month.
+- **1–2 IT Field Support**: physical site visits for hardware issues across 200 stores + 5 DCs. Estimated 50–80 on-site visits/month across the Philippines. With travel time, 1–2 dedicated field staff with regional coverage.
+- **1 IT Helpdesk Lead**: manages helpdesk operations, SLA compliance, change management.
+- **Total IT**: recommend expanding IT team from ~25 to ~28–30 to accommodate dedicated helpdesk function. Current ~25 includes infrastructure, applications, data, security, and BI but does not explicitly allocate helpdesk headcount.
+
+---
+
+## W49. Natural Disaster / Typhoon Business Continuity
+
+| Field | Detail |
+|---|---|
+| **Trigger** | PAGASA raises tropical cyclone warning signal over a store/DC location; or earthquake, flooding, or volcanic activity alert |
+| **Frequency** | ~10–20 typhoon-related events/year requiring action across Philippine store network; 2–4 significant events/year with store closures |
+| **Volume** | Variable — from 1–2 stores affected (localized flooding) to 50+ stores (major typhoon crossing multiple regions) |
+| **Owner** | COO (overall response); Store Manager (store-level execution) |
+| **Participants** | COO, Store Ops Director, Regional Managers, Store Managers, DC Managers, IT, HR, Finance, Supply Chain, Marketing, Logistics |
+
+### Background
+
+The Philippines experiences an average of 20 tropical cyclones per year, of which 5–7 make landfall as typhoons (Signal 3 or higher). BuildRight's 200 stores span Luzon, Visayas, and Mindanao, meaning multiple regions can be affected simultaneously or sequentially. The primary risks are: (a) staff safety, (b) inventory damage (especially outdoor lumber yards and building materials), (c) facility structural damage, (d) supply chain disruption, and (e) revenue loss from store closures.
+
+### Phase 1: Pre-Disaster Preparation (48–72 hours before projected landfall)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | COO monitors PAGASA bulletins and NDRRMC advisories; activates disaster monitoring protocol when Signal 1 is raised over any operating region | COO | CEO | Ongoing during typhoon season |
+| 2 | Regional Managers notify Store Managers in affected regions to begin preparations; Store Managers brief all staff | Regional Manager | Store Ops Director | 1 hour |
+| 3 | **Store preparations**: Store Manager directs staff to: (a) secure outdoor yard inventory — move lumber, cement, and building materials under cover or to higher ground; (b) protect floor-level merchandise from potential flooding (move to higher shelves or backroom); (c) secure display fixtures, signage, and loose items; (d) verify backup power (generator fuel level, battery backup for POS); (e) verify emergency supplies (flashlights, first aid kits, drinking water) | Store Manager | Regional Manager | 4–8 hours |
+| 4 | **DC preparations**: DC Manager directs staff to: (a) prioritize outbound shipments to stores in safe zones before transport disruption; (b) secure outdoor inventory and yard areas; (c) verify backup power systems; (d) coordinate with carriers to suspend inbound shipments to affected areas | DC Manager | Supply Chain Manager | 4–8 hours |
+| 5 | IT sends system advisory to all locations: reminder of offline POS procedures (W5d), system backup schedule accelerated | IT Team | CIO | 30 min |
+| 6 | HR verifies emergency contact information for all employees in affected regions; prepares welfare check plan | HR Head | CHRO | 1 hour |
+| 7 | Supply Planner reviews inventory levels at stores and DCs in projected path; identifies potential stockout risks for essential items (tarps, waterproofing, cement, plywood, flashlights, batteries, generators) | Supply Planner | Supply Chain Manager | 1 hour |
+
+### Phase 2: Closure Decision & Execution (24–0 hours before projected landfall)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 8 | COO makes store closure decision based on: PAGASA signal level (Signal 2+ triggers automatic closure), LGU advisory, road conditions, staff safety assessment; decisions made by region, not chain-wide | COO | CEO | 30 min |
+| 9 | Marketing communicates closure to customers: update website, social media, Google Business listings; send SMS/email to loyalty members in affected areas | Marketing | CMO | 1 hour |
+| 10 | Ecommerce platform: Digital Commerce Inc. suspends BOPIS and delivery orders for closed stores/DCs; displays closure notice | Ecom Team | CMO | 30 min |
+| 11 | Store Manager executes early closing procedure (abbreviated W5c): expedited Z-report, cash secured in safe (do NOT send with armored car during typhoon — hold in safe), POS shut down, building secured | Store Manager | Regional Manager | 30 min |
+| 12 | Store Manager sends staff home with safety instructions; confirms all staff have departed safely | Store Manager | Regional Manager | 15 min |
+
+### Phase 3: Post-Disaster Assessment & Recovery (0–72 hours after event)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 13 | Store Manager or designated contact conducts visual assessment of store exterior (drive-by or walk-by) as soon as safely possible after event passes; reports to Regional Manager: structural damage, flooding, power status, yard inventory status | Store Manager | Regional Manager | 30 min |
+| 14 | Regional Manager compiles damage assessment across affected stores; reports to COO and Store Ops Director | Regional Manager | COO | 2 hours |
+| 15 | COO makes reopening decision per store: (a) open immediately if no damage and power/connectivity restored, (b) delayed opening for minor cleanup and repair, (c) remain closed for significant damage requiring repair or insurance assessment | COO | CEO | 1 hour |
+| 16 | **If inventory damaged**: Store Manager conducts damage inventory with photos; system creates damage report; disposition per W6.8a (scrap, markdown, RTV, insurance claim) | Store Manager / Maintenance | Regional Manager | 2–4 hours |
+| 17 | **If facility damaged**: Facilities Coordinator engages contractors for emergency repair; Store Manager initiates insurance claim per W3.6a process (photos, documentation, claim filing) | Facilities Coordinator / Store Manager | Store Ops Director | Varies |
+| 18 | Supply Planner triggers emergency replenishment for disaster-response items (tarps, plywood, cement, paint, waterproofing, tools, generators) to reopened stores; coordinates with DC for expedited shipment | Supply Planner | Supply Chain Manager | 2–4 hours |
+| 19 | HR conducts welfare check on all employees in affected regions within 24 hours; provides assistance (advance salary, emergency loan, temporary shelter) per company policy | HR Head | CHRO | 4–8 hours |
+| 20 | Marketing communicates reopening to customers; update website and social media; potential "rebuilding supplies" promotion to serve community needs | Marketing | CMO | 1 hour |
+| 21 | System reconciles: process any offline POS transactions from pre-closure; reverse pending ecommerce orders for closed stores; update inventory for damaged/scrapped items | IT / Finance | Controller | 2–4 hours |
+
+### Phase 4: Post-Event Review (1–2 weeks after)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 22 | COO conducts after-action review: preparation adequacy, response time, damage extent, recovery speed, staff safety outcomes | COO | CEO | 2 hours |
+| 23 | Finance quantifies total loss: inventory damage, facility repair costs, revenue loss from closure days, insurance recovery | Controller | CFO | 1 day |
+| 24 | Insurance claims finalized for major events; Finance tracks claim status and settlement | Treasury Analyst | CFO | Varies |
+| 25 | Store Ops Director updates disaster response procedures based on lessons learned | Store Ops Director | COO | 2 hours |
+
+### System Touchpoints
+- Emergency communication channel integration (SMS blast to store managers, regional managers, employees) (W49.2, 6, 9)
+- Store closure/reopening status tracking per location with real-time dashboard (W49.8, 15)
+- Ecommerce platform store availability toggle for BOPIS/delivery (W49.10)
+- Damage inventory recording with photo attachment and disposition workflow (W49.16)
+- Emergency replenishment order generation with priority flag (W49.18)
+- Insurance claim tracking per W3.6a process (W49.17, 24)
+- Post-disaster inventory and financial reconciliation (W49.21, 23)
+- Employee welfare check tracking with HR case management (W49.19)
+- Integration with W5d (offline POS recovery), W3.6a (insurance claims), W22 (emergency transfers), W25 (emergency petty cash for cleanup supplies), W47 (facility emergency repair)
+
+### Staffing Implication
+- No dedicated disaster response team. Response is a cross-functional effort managed by existing roles (COO leads, Regional Managers execute, Store Managers act).
+- **Facilities Coordinator** (recommended in W47) becomes critical during post-disaster recovery for coordinating emergency repairs across multiple affected stores.
+- **IT Field Support** (recommended in W48) may need to deploy to affected stores for POS/network restoration.
+- Post-disaster emergency replenishment adds temporary surge to Supply Planner and DC workload — absorbed with overtime during recovery period.
+
+---
+
+## W50. Product Information Management (PIM)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New SKU creation (W1), seasonal item setup (W32), product content refresh cycle, vendor product update |
+| **Frequency** | Continuous; ~1,500–2,500 new SKUs/year + seasonal rotations + content refreshes |
+| **Volume** | 35,000 active SKUs requiring product content; ~55,000 total in item master |
+| **Owner** | Marketing — Content Manager |
+| **Participants** | Content Manager, Content Specialist, Merchandise Planner, Category Manager, Ecom Team, Photographer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Trigger: Merchandise Planner creates new SKU in item master per W1.7 (or seasonal setup per W32); system flags SKU as "content pending" — item cannot be published to ecommerce until content is complete | System | — | Automated |
+| 2 | Content Manager receives new SKU content request from system queue; assigns to Content Specialist by category | Content Manager | — | 5 min |
+| 3 | Content Specialist gathers product information: (a) vendor product data sheet (specs, dimensions, weight, material, finish, color options), (b) Category Manager input (key selling points, target customer, recommended use), (c) competitive product content benchmarking | Content Specialist | Content Manager | 15–30 min/SKU |
+| 4 | Content Specialist enriches product data in PIM/ERP: (a) completes all mandatory attributes per category schema (e.g., tiles: material, size mm, thickness, finish, PEI rating, pieces per sqm; lumber: species, dimensions, treatment, grade; paint: base type, coverage area, drying time, finish), (b) writes short description (50–100 chars for search results), (c) writes long description (200–500 chars for product page — features, benefits, application), (d) maps to category navigation path, (e) assigns search keywords and synonyms, (f) links related accessories and cross-sell items | Content Specialist | Content Manager | 20–30 min/SKU |
+| 5 | Product photography: (a) for new SKUs with high online potential (A/B items): schedule product shoot with photographer (studio or on-location for large items); produce 3–5 images per SKU (front, detail, lifestyle/context, dimensions reference, packaging), (b) for C-items and low online potential: use vendor-provided images or placeholder category image with "image coming soon" flag; system marks these items for prioritized photography during quarterly content refresh | Content Specialist / Photographer | Content Manager | Shoot: 5–10 min/SKU |
+| 6 | Content Specialist uploads and links digital assets (images, PDFs for spec sheets, installation guides, safety data sheets) to SKU record in PIM/ERP | Content Specialist | Content Manager | 5 min/SKU |
+| 7 | Content Manager reviews and approves completed content per SKU; checks attribute completeness, description quality, image quality, and keyword relevance | Content Manager | CMO | 5 min/SKU |
+| 8 | System publishes approved content to ecommerce platform (catalog sync); updates in-store kiosk and POS product lookup if applicable; clears "content pending" flag | System | — | Automated |
+| 9 | For items with vendor-provided content only: system publishes with "vendor content — not verified" tag visible to Content Manager; these items prioritized for enrichment during quarterly refresh | System | Content Manager | Automated |
+| 10 | **Quarterly content refresh**: Content Manager reviews content quality metrics (incomplete attributes, missing images, low search ranking, high bounce rate on product pages); prioritizes 500–1,000 SKUs for content improvement per quarter | Content Manager | CMO | 8 hours/quarter |
+| 11 | **Seasonal catalog refresh**: before each major promotional period (W13), Content Manager coordinates with Marketing for seasonal landing pages, featured product collections, and updated lifestyle imagery | Content Manager | CMO | Per W13 lead time |
+
+### System Touchpoints
+- PIM module or dedicated PIM system integrated with ERP item master (W50.4)
+- Category-specific attribute schema with mandatory field enforcement (W50.4)
+- Content workflow: Draft → In Review → Approved → Published → Refresh Needed (W50.7–8)
+- Digital asset management: image storage, versioning, and linking to SKU records (W50.6)
+- Ecommerce catalog sync with content completeness validation (W50.8)
+- Content quality dashboard: attribute completeness % by category, missing images, search ranking, page views, bounce rate (W50.10)
+- Integration with W1 (SKU creation trigger), W13 (promotional content), W32 (seasonal setup), W36 (vendor onboarding — vendor content import)
+
+### Staffing Implication
+- **1 Content Manager** (within Marketing team): manages content strategy, quality standards, and team output.
+- **2–3 Content Specialists**: at ~1,500–2,500 new SKUs/year × 45 min/SKU average = ~1,100–1,900 hours/year. With 2–3 specialists, that's ~400–600 hours/year each = ~10–15 hours/week of new content, leaving time for quarterly refreshes and seasonal campaigns.
+- **1 Photographer** (in-house or freelance retainer): product shoots scheduled in batches (50–100 SKUs per shoot day). With ~600–1,000 A/B items needing photography annually, that's ~10–15 shoot days/year.
+- **Incremental headcount**: Content Manager + 2 Content Specialists should be added to the Marketing team (from ~20 to ~23) to support ecommerce content operations. These roles become increasingly critical as ecommerce penetration grows from 3% to 7% of revenue.
+
+---
+
+## W51. Employee Training & Skills Development
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New hire onboarding (W15), new system rollout, compliance requirement, periodic schedule, performance review finding |
+| **Frequency** | Continuous; formal training sessions monthly per store; compliance training quarterly |
+| **Volume** | ~8,050 employees; ~1,200–1,600 new hires/year requiring onboarding training; all employees require periodic refresher |
+| **Owner** | HR — Training Officer |
+| **Participants** | Training Officer, Department Supervisors, Store Managers, Category Managers (product knowledge), IT (system training), external trainers |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Training Officer maintains annual training calendar: (a) new hire onboarding (W15 step 10 — continuous), (b) quarterly compliance refreshers (safety, BIR procedures, data privacy), (c) semi-annual product knowledge updates (aligned with W1 assortment review and W32 seasonal planning), (d) annual system refresher (POS, ERP updates), (e) leadership development for supervisors and managers | Training Officer | HR Head | 4 hours/quarter (planning) |
+| 2 | Training Officer develops or sources training materials per category: (a) creates in-house materials for company-specific processes (POS operations, returns handling, safety procedures, customer service standards), (b) sources external content for compliance topics (fire safety, first aid, hazmat handling for paint/chemicals), (c) coordinates with Category Managers for product knowledge content (new product features, seasonal items) | Training Officer | HR Head | Ongoing |
+| 3 | Training delivery methods by audience: (a) **Store staff (7,000)**: monthly 30-minute department huddles led by Department Supervisors using provided materials; quarterly 2-hour group sessions at store level; (b) **DC staff (~750)**: quarterly safety and equipment training at DC; (c) **HQ staff (~300)**: quarterly system and process training at HQ; (d) **New hires**: W15 onboarding program (2–3 days); (e) **Managers and supervisors**: semi-annual leadership and management skills workshops | Training Officer / Dept. Supervisors / External Trainers | HR Head | Per schedule |
+| 4 | System tracks training completion per employee: attendance recording, quiz/assessment scores (where applicable), certification status and expiry dates | System / HR Assistant | Training Officer | Automated + 15 min/session |
+| 5 | Training Officer generates compliance dashboard: completion rates by training type, overdue trainings by location, certification expiries (e.g., forklift license, fire safety) | Training Officer | HR Head | 1 hour/month |
+| 6 | Department Supervisors and Store Managers identify training needs from performance observations (W34 schedule adherence, W37 exception patterns, W41 complaint root causes) and submit training requests to Training Officer | Dept. Supervisor / Store Manager | HR Head | As needed |
+| 7 | Annual: HR Head reviews training program effectiveness: training hours per employee, correlation between training completion and key metrics (POS accuracy, shrinkage rate, customer satisfaction), budget utilization | HR Head | CHRO | 4 hours/year |
+
+### Training Categories
+
+| Category | Frequency | Audience | Delivery Method | Assessment |
+|---|---|---|---|---|
+| **New hire onboarding** | Per W15 | New employees | In-person at store/DC + e-learning modules | POS competency test, safety quiz |
+| **POS operations** | Annual refresher; ad-hoc for system updates | Cashiers, CSRs | Hands-on at POS terminal | Speed and accuracy test |
+| **Product knowledge** | Quarterly (aligned with W1 assortment review) | Sales Associates, Dept. Supervisors | Department huddle with Category Manager materials | Informal — supervisor observation |
+| **Safety & compliance** | Quarterly | All employees | E-learning (LMS) + annual practical drill | Mandatory quiz (pass/fail) |
+| **Hazmat handling** | Annual (for paint/chemical departments) | Paint dept. staff, receiving clerks | In-person with certified trainer | Written test + practical demo |
+| **Loss prevention awareness** | Semi-annual | All store staff | E-learning + LP officer presentation (W37) | Awareness quiz |
+| **Leadership development** | Semi-annual | Store Managers, Dept. Supervisors, Asst. Managers | Workshop (2 days) | 360 feedback |
+| **IT system updates** | Per system change (W48 change management) | Affected users | E-learning + release notes | N/A |
+
+### System Touchpoints
+- Training calendar management with automated scheduling (W51.1)
+- Training material repository (document storage per category) (W51.2)
+- Training attendance tracking with digital sign-in or manager confirmation (W51.4)
+- Assessment and certification tracking with expiry alerts (W51.4–5)
+- Compliance dashboard: completion rates, overdue trainings, certification status by location and employee (W51.5)
+- Learning Management System (LMS) integration for e-learning modules and assessments (W51.3)
+- Integration with W15 (onboarding), W34 (shift scheduling — training time scheduled), W37 (LP awareness), W43 (separation — training history retained), W48 (system change training)
+
+### Staffing Implication
+- **1 Training Officer** (within HR team): manages training calendar, develops materials, coordinates external trainers, and monitors compliance. With 8,050 employees across 200+ locations, this is a full-time role.
+- **Department Supervisors (per store)**: deliver monthly department huddles (30 min/month) — absorbed into existing duties.
+- **HR Assistants (2)**: support attendance recording and logistics — absorbed into existing duties.
+- **External trainers**: engaged for specialized topics (fire safety, hazmat, first aid, forklift certification, leadership) on a per-event basis.
+
+---
+
+## W52. Fleet Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vehicle registration renewal, scheduled maintenance, fuel purchase, driver assignment, route planning review |
+| **Frequency** | Continuous; daily operations + periodic scheduled maintenance |
+| **Volume** | ~30–40 owned vehicles (20% of total fleet); remainder 80% third-party (Lalamove, Transportify, contracted carriers) |
+| **Owner** | Fleet Manager (within Supply Chain team) |
+| **Participants** | Fleet Manager, Drivers, DC Dispatch, Finance, External carriers |
+
+### Background
+
+BuildRight's distribution fleet operates with a mixed model: ~20% owned vehicles (primarily 10-wheeler wing vans and 6-wheeler trucks for regular DC-to-store routes) and ~80% third-party carriers (for seasonal surge, inter-island routes, last-mile ecommerce delivery via Lalamove/Transportify). Owned vehicles are registered under BuildRight Logistics Inc. Third-party carrier management for ecommerce is covered in W19 (3PL management) and for general distribution in W4 (outbound logistics).
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Driver assignment**: Fleet Manager assigns drivers to owned vehicles based on route schedule, driver qualifications (LTO license type — professional driver's license with restriction codes for heavy vehicles), and duty hour limits | Fleet Manager | Supply Chain Manager | 30 min/week |
+| 2 | **Daily pre-trip inspection**: Driver conducts vehicle inspection checklist (tires, brakes, lights, fluid levels, cargo area, safety equipment) before departure; records in system via mobile app; vehicle not cleared for dispatch if critical items fail | Driver | Fleet Manager | 15 min/vehicle/day |
+| 3 | **Fuel management**: Driver refuels at designated fuel stations using company fuel card; system captures fuel volume, odometer reading, and cost per transaction; Fleet Manager reviews fuel consumption per vehicle monthly (km/L benchmark per vehicle type; flags vehicles > 15% below benchmark for maintenance investigation) | Driver / Fleet Manager | Fleet Manager | 5 min/refuel + 1 hour/month review |
+| 4 | **Scheduled maintenance**: Fleet Manager maintains maintenance calendar per vehicle based on manufacturer intervals (typically every 5,000–10,000 km or 3–6 months): (a) oil change and basic service, (b) tire rotation and replacement, (c) brake inspection, (d) annual comprehensive service; system alerts Fleet Manager 1 week before service due | Fleet Manager | DC Manager | Per schedule |
+| 5 | **Unscheduled repair**: Driver reports vehicle issue; Fleet Manager assesses severity: (a) minor — schedule repair at next available slot, substitute 3PL for pending deliveries, (b) major — vehicle taken out of service, substitute vehicle or 3PL arranged | Fleet Manager | DC Manager | 30 min/occurrence |
+| 6 | Maintenance or repair executed at company-approved workshop per region; Fleet Manager approves work order and cost; system tracks maintenance history per vehicle | Fleet Manager | DC Manager | Varies |
+| 7 | **Vehicle registration & insurance**: Fleet Manager maintains calendar for LTO registration renewal (annual per vehicle), CTPL insurance renewal, and comprehensive insurance; system alerts 60 days before expiry; vehicles with expired registration blocked from dispatch | Fleet Manager | DC Manager | 30 min/vehicle/year |
+| 8 | **Route performance review**: monthly, Fleet Manager reviews route metrics per vehicle: km driven, fuel efficiency, delivery punctuality (on-time % per W4 SLA), maintenance cost per km; identifies vehicles with declining performance for maintenance escalation or replacement planning | Fleet Manager | Supply Chain Manager | 2 hours/month |
+| 9 | **3PL carrier performance**: Fleet Manager monitors third-party carrier performance per W19 (on-time delivery, damage rate, cost per delivery) in coordination with DC Dispatch; quarterly carrier review per W44 vendor scorecard methodology | Fleet Manager / DC Dispatch | Supply Chain Manager | Per W19/W44 |
+| 10 | **Vehicle replacement planning**: annually, Fleet Manager evaluates vehicles > 5 years or > 300,000 km for replacement; submits capex request per W21; considers total cost of ownership (maintenance cost trajectory, fuel efficiency decline, reliability) vs. new vehicle cost plus financing | Fleet Manager | Supply Chain Manager | Annual (4 hours) |
+
+### System Touchpoints
+- Vehicle master record: plate number, VIN, model, year, capacity, assigned DC, registration expiry, insurance expiry, assigned driver (W52.1)
+- Pre-trip inspection checklist on mobile app with defect reporting and dispatch block for critical failures (W52.2)
+- Fuel card integration: automated fuel transaction capture with per-vehicle km/L tracking and anomaly alerting (W52.3)
+- Maintenance scheduling with automated alerts per vehicle based on km or calendar interval (W52.4)
+- Maintenance history tracking with cost per vehicle and cost per km (W52.6, 8)
+- Registration and insurance calendar with expiry alerting and dispatch blocking (W52.7)
+- Route and delivery performance tracking per vehicle (W52.8)
+- Integration with W4 (route scheduling), W19 (3PL management), W21 (vehicle replacement capex), W39 (vehicle disposal), W30 (fuel expense GL posting)
+
+### Staffing Implication
+- **1 Fleet Manager** (within Supply Chain team): manages owned fleet (30–40 vehicles) and third-party carrier relationships. This role reports to Supply Chain Manager and coordinates daily with DC Dispatch.
+- **30–40 Drivers** (BuildRight Logistics Inc. employees): assigned to owned vehicles; each driver covers ~1–2 routes/day, 5–6 days/week. Drivers are part of Logistics Inc. headcount (~750 total DC staff includes drivers).
+- **Approved workshops**: 2–3 workshops per region (Davao, Cebu, Laguna, Clark, Manila) for scheduled and unscheduled maintenance. Fleet Manager manages workshop relationships and rate negotiations.
+- **Fuel card program**: corporate fuel card (e.g., Petron Value Card, Shell Fleet Card) for all owned vehicles. Eliminates cash handling for fuel and enables automated consumption tracking.
+
+---
+
+## Workflow-to-Headcount Summary
+
+### HQ Departments
+
+| Department | Roles | Count | Key Workflows | Validation |
+|---|---|---|---|---|
+| **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13, W20, W23, W27, W29, W32, W36, W40, W44 | ✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight + rebate management + seasonal planning + vendor onboarding + price maintenance |
+| **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W8, W9, W14, W21, W24, W25, W26, W27, W28, W30, W39, W42 | ✅ Stretched during close week; capex/credit/petty cash absorbed; treasury daily cycle manageable with 2–3 analysts; asset disposal and annual physical inventory absorbed |
+| **Supply Chain & Logistics** | Supply Planners, Demand Planners, Import Coordinator, Fleet Manager, DC Ops managers | ~31 | W3, W4, W19, W22, W31, W52 | ✅ 2–3 planners handle replenishment + transfers; home delivery picked by DC staff; 1–2 dedicated demand planners handle forecasting; 1 Fleet Manager manages owned vehicles and 3PL relationships |
+| **HR & Payroll** | HR Head, Recruitment, Payroll, Training Officer, HR Assistants | ~16 | W10, W15, W51 | ✅ 2–3 payroll officers + 2 recruiters + 1 Training Officer handle the volume |
+| **Marketing** | Brand, Promo, Loyalty, Ecommerce, Digital, Content | ~23 | W13, W17, W50 | ✅ Loyalty is largely automated; promo work is cyclical; dedicated Content Manager + 2–3 Content Specialists for ecommerce product content |
+| **Store Operations** | Director, Regional Managers, CS Manager, Ops Standards, Facilities Coordinator | ~23 | W5, W16, W29, W5d, W34, W37, W41, W47, W49 | ✅ 4 Regional Managers × 50 stores each; oversee new openings; offline recovery is Store Mgr responsibility; shift scheduling and complaint handling absorbed; 2–3 LPOs recommended for loss prevention; 1 Facilities Coordinator manages store maintenance and disaster response |
+| **IT** | Infrastructure, Apps, Data, Security, BI Analyst, Helpdesk | ~28–30 | W16 (store setups), W35 (reporting), W48 (helpdesk & IT ops) | ✅ 4–5 helpdesk agents + 3–4 specialists handle ~800–1,200 tickets/month; 2–3 per store setup + BAU support; 1 BI Analyst supports management reporting |
+| **Other** | Legal, Internal Audit, Customer Service (call center), Executive | ~50 | W41 (complaints), W42 (audit observation) | ✅ Support functions; call center handles multi-channel complaint intake |
+
+### Per-Store Staffing (35 people)
+
+| Role | Count | Key Workflows | Workload Validation |
+|---|---|---|---|
+| Store Manager | 1 | W5 (open/close), W6 (approvals), W12 (returns), W16 (opening) | Manageable; delegates floor ops to supervisors |
+| Asst. Store Manager | 1 | W5 (open/close backup), W6, W12 | Shares management load; covers days off |
+| Dept. Supervisors | 4 | W5b (floor selling), W6 (cycle count review), W12 (restock) | 4 depts × 1 supervisor; handles floor + counts |
+| Sales Associates | 16 | W5b (selling, paint mixing, lumber cutting), W11 (BOPIS pick) | 4/dept × 2 shifts = adequate for floor coverage |
+| Cashiers | 6 | W5b (checkout), W17 (loyalty scan), W28 (gift card sell/reload) | 5 terminals + 1 float; 2 shifts of 3; tight on coverage |
+| Receiving Clerks | 2 | W4 (store receiving from DC), W18 (DSD receiving), W22 (transfer receiving) | 2–3 DC trucks/week + 2–3 DSD/week + transfers; 2 clerks in shifts handle it |
+| Stock Associates | 3 | W4 (shelf stocking), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD shelving), W22 (transfer pick/receive), W34 (shift adherence), W42 (annual count) | 700 SKUs/day counting + stocking + DSD + transfers; adequate but minimal slack |
+| Customer Service Rep | 1 | W11 (BOPIS handoff), W12 (returns), W24 (credit application assistance), W28 (store credit), W29 (recall returns), W33 (warranty claims), W38 (special order intake), W41 (complaints) | ~4 BOPIS + ~2 returns + ~0.5 gift cards + ~2 warranty claims + ~0.5 special orders + ~10 complaints/day = moderate; also handles special orders |
+| Maintenance | 1 | W5c (closing checklist), W47 (facility maintenance & work orders), general upkeep | Standard for big-box format; handles ~10–15 maintenance work orders/month including preventive tasks; external contractors engaged for specialized repairs |
+| **Total** | **35** | | **Validated — headcount is lean but supportable** |
+
+### Per-DC Staffing (~150 people)
+
+| Function | Count | Key Workflows | Workload Validation |
+|---|---|---|---|
+| DC Manager + Supervisors | 5 | W3, W4 (oversight) | 1 manager + 4 shift/area supervisors |
+| Receiving | 10–13 | W3 (receiving & putaway), W20 (VMI receipt) | ~40 receipts/day × 1.5–3 hrs; 3–4 clerks + 4–6 putaway + 1–2 QC |
+| Picking & Packing | 25–30 | W4 (pick/pack/ship), W19 (home delivery pick/pack) | ~33 store orders + ~115 home delivery orders/day; 15–20 pickers + 8–10 packers; 3–4 dedicated to home delivery; peak ecommerce periods may require surge staffing |
+| Loading & Dispatch | 6–8 | W4 (loading) | Multi-drop truck loading; 4–6 crew + dispatch |
+| Inventory Control | 2–3 | W6 (DC cycle counts) | DC-level accuracy monitoring |
+| Admin & Support | 5–8 | Admin, safety, maintenance | Office, security, equipment maintenance |
+| Special Handling (lumber, tiles, paint) | 8–10 | W3, W4 (special areas) | Dedicated teams for heavy/hazardous goods |
+| **Total** | **~150** | | **Validated** |
+
+---
+
 ## Workflow-to-System Touchpoint Map
 
 Summary of which ERP modules support which workflows:
@@ -2661,7 +3003,13 @@ Summary of which ERP modules support which workflows:
 | **Reporting / Analytics** | W1 (assortment analysis), W9 (financial statements), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget), W26 (budget variance), W27 (rebate ROI), W28 (gift card liability), W29 (recall tracking), W30 (cash flow forecast), W31 (forecast accuracy, ROP parameter governance), W35 (management reporting rhythm, store P&L occupancy cost allocation), W37 (shrinkage/exception reports), W40 (price change analytics, quantity break utilization), W41 (complaint analytics), W42 (physical inventory summary), W44 (vendor scorecards) |
 | **Loss Prevention** | W37 (POS exception monitoring, shrinkage tracking, confirmed theft write-off) |
 | **Store Lifecycle** | W16 (new store opening), W45 (store closure / relocation) |
+| **Facility Maintenance** | W47 (store & DC maintenance, work orders, preventive maintenance scheduling) |
+| **IT Operations** | W48 (helpdesk, incident management, change management, IT asset tracking) |
+| **Business Continuity** | W49 (natural disaster preparation, response, recovery, insurance claims) |
+| **Product Information** | W50 (PIM, content creation, ecommerce catalog management, digital assets) |
+| **Training & Development** | W51 (training calendar, compliance tracking, certification management, LMS) |
+| **Fleet Management** | W52 (vehicle lifecycle, fuel management, maintenance scheduling, 3PL carrier oversight) |
 
 ---
 
-*Document Version: 11.1 | Date: 2026-05-30 | Wave 9: realism review — added replenishment order consolidation note (W4), buyer staffing note (W1), updated replenishment frequency to clarify orders vs deliveries*
+*Document Version: 12.0 | Date: 2026-05-30 | Wave 10: gap fill — added W47–W52 (facility maintenance, IT operations, disaster response, PIM, training, fleet management); fixed TEU volume in W2b (400–600/month, was 50–70), moved negative inventory resolution from W1 to W6, moved IC dual framework to W14, added cross-reference in W22; updated headcount and touchpoint tables*

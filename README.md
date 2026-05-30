@@ -32,8 +32,9 @@ erpplans/
 | Avg Lines per Transaction | 4 |
 | Staff per Store | ~35 |
 | Active SKUs | 35,000 |
-| Monthly Trade Purchase Orders | 1,200 |
+| Monthly Trade Purchase Orders | ~1,200 merchandise; ~1,400–1,600 total |
 | Legal Entities | 5 |
+| Total Headcount | ~8,060 (200 stores × 35 + ~750 DC + ~310 HQ) |
 | Ecommerce | Yes (with BOPIS) |
 | Country | Philippines |
 

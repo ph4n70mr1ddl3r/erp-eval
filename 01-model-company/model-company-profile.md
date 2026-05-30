@@ -110,17 +110,17 @@ The company operates through **5 legal entities** organized as follows:
 |---|---|
 | **Location** | Davao City, Philippines |
 | **Office Size** | ~3,000 sqm |
-| **HQ Headcount** | ~300 |
+| **HQ Headcount** | ~310 |
 
 #### HQ Departments
 - **Executive Office**: CEO, CFO, COO, CIO, CMO
 - **Merchandising & Buying**: Category managers, buyers, pricing analysts (~40)
 - **Finance & Accounting**: GL, AP, AR, treasury, tax (~35)
-- **Supply Chain & Logistics**: Planning, DC ops, fleet, procurement (~30)
-- **Information Technology**: Infrastructure, applications, data, security (~25)
-- **Human Resources**: Recruitment, compensation, training, payroll (~15)
-- **Marketing**: Brand, promotions, ecommerce, digital (~20)
-- **Store Operations**: Regional managers, operations standards (~20)
+- **Supply Chain & Logistics**: Planning, DC ops, fleet, procurement (~31)
+- **Information Technology**: Infrastructure, applications, data, security, helpdesk (~28)
+- **Human Resources**: Recruitment, compensation, training, payroll (~16)
+- **Marketing**: Brand, promotions, ecommerce, digital, content (~23)
+- **Store Operations**: Regional managers, operations standards, facilities coordination (~23)
 - **Legal & Compliance**: Corporate secretary, regulatory (~5)
 - **Internal Audit**: (~5)
 - **Customer Service / Call Center**: (~30)
@@ -133,8 +133,8 @@ The company operates through **5 legal entities** organized as follows:
 |---|---|
 | Store Personnel | 7,000 (200 stores × 35) |
 | Distribution Center Personnel | ~750 (5 DCs × ~150) |
-| Corporate HQ Personnel | ~300 |
-| **Total Company Headcount** | **8,050** |
+| Corporate HQ Personnel | ~310 |
+| **Total Company Headcount** | **~8,060** |
 
 > **Revenue per employee**: ~PHP 7.7M/year — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (35 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further.
 
@@ -241,8 +241,8 @@ The company operates through **5 legal entities** organized as follows:
 | **International / Import Vendors** | ~400 (40%) — China, Taiwan, Indonesia, Malaysia, Japan, Europe |
 | **Top 20 Vendors** | Account for ~45% of COGS |
 | **Vendor-Managed Inventory (VMI)** | ~300 SKUs from 12 key vendors |
-| **Monthly Trade Purchase Orders** | 1,200 |
-| **Annual Purchase Orders** | 14,400 |
+| **Monthly Trade Purchase Orders** | ~1,200 merchandise POs; ~1,400–1,600 total POs incl. blanket releases (W2c), imports (W2b), and non-merchandise (W7c) |
+| **Annual Purchase Orders** | ~14,400 merchandise; ~17,000–19,000 total |
 
 ### 6.6 Purchasing Parameters
 | Parameter | Value |
@@ -643,7 +643,8 @@ should propose its own integration architecture.
 |---|---|---|
 | POS Transactions | 2,800,000 | 33,600,000 |
 | POS Line Items | 11,200,000 | 134,400,000 |
-| Purchase Orders | 1,200 | 14,400 |
+| Purchase Orders (merchandise) | 1,200 | 14,400 |
+| Purchase Orders (all types) | ~1,400–1,600 | ~17,000–19,000 |
 | Purchase Order Lines | 18,000 | 216,000 |
 | Store Replenishment Orders | ~5,000 | ~60,000 |
 | Goods Receipts (Inbound) | ~6,000 | ~72,000 |
@@ -740,4 +741,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.6 | Date: 2026-05-30 | Wave 8: realism review — revised EBITDA to 12–14% (from 10–12%), inventory turns to 6–8x (from 8–10x), import TEUs to 400–600/month (from 50–70), added replenishment order consolidation note, buyer staffing note, revenue-per-employee note, shrinkage aspiration note*
+*Document Version: 2.7 | Date: 2026-05-30 | Wave 10: updated PO count to distinguish merchandise vs. total; updated HQ department headcounts for IT, HR, Marketing, Store Ops, and Supply Chain per W47–W52 additions; HQ headcount ~310 (from ~300), total ~8,060*

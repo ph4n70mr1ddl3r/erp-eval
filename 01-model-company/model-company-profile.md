@@ -84,12 +84,14 @@ The company operates through **5 legal entities** organized as follows:
 | **DC1 — Mindanao Hub** | Davao City (near HQ) | 35,000 | Primary DC; serves Mindanao stores |
 | **DC2 — Visayas Hub** | Cebu (Mandaue) | 30,000 | Serves Visayas stores |
 | **DC3 — South Luzon Hub** | Calamba, Laguna | 40,000 | Serves South Luzon (CALABARZON, Bicol) |
-| **DC4 — North/Central Luzon Hub** | Clark, Pampanga | 25,000 | Serves North/Central Luzon |
+| **DC4 — North/Central Luzon Hub** | Clark, Pampanga | 25,000 | Serves North/Central Luzon (20 stores); sized for growth to 40+ stores |
 | **DC5 — Metro Manila Hub** | Metro Manila (Valenzuela) | 30,000 | Serves NCR (Metro Manila) stores |
 
 > **Rationale**: A dedicated Metro Manila DC relieves the South Luzon hub from serving
 > the high-density 30-store NCR market, and the 5-DC footprint brings the DC-to-selling-area
-> ratio closer to the 8–12% industry norm for big-box retail.
+> ratio closer to the 8–12% industry norm for big-box retail. DC4 (Clark) is proportionally
+> oversized at 25,000 sqm for its current 20-store coverage; this is intentional to absorb
+> planned expansion in North/Central Luzon and potentially serve as overflow for NCR.
 
 #### DC Operations
 - Cross-dock capable for fast-moving items
@@ -174,6 +176,23 @@ The company operates through **5 legal entities** organized as follows:
 - Support for weight-based items (sold by kg: nails, screws in bulk)
 - Support for cut-to-length items (lumber, pipes, wire)
 - Support for paint mixing (custom SKU generation)
+
+### POS Hardware Specification
+
+| Component | Specification |
+|---|---|
+| **Terminal Type** | Android-based all-in-one POS terminal (touchscreen) |
+| **Screen Size** | 15" touchscreen (cashier) + customer-facing display |
+| **Operating System** | Android 12+ (POS app runs as managed device via MDM) |
+| **Barcode Scanner** | Integrated 2D imager (1D + 2D: QR, DataMatrix) + handheld scanner accessory |
+| **Receipt Printer** | 80mm thermal printer (networked; BIR-registered) |
+| **Cash Drawer** | USB-triggered; 4-bill / 8-coin compartments |
+| **Connectivity** | Ethernet (primary) + Wi-Fi + 4G LTE SIM (failover) |
+| **Offline Storage** | Local SQLite/encrypted DB; stores up to 8 hours of transactions (~4,700 txns) |
+| **Payment Device** | Integrated PIN pad for card (EMV/chip & contactless); external GCash/Maya QR stand |
+| **Management** | Centrally managed via MDM (e.g., Esper, Android Enterprise); OTA updates |
+
+> **Rationale**: Android-based POS terminals provide a balance of cost-effectiveness (~PHP 15–25K/terminal), offline capability, and broad ERP POS app compatibility. The Android ecosystem is well-supported by major POS middleware providers and simplifies device management across 200 stores via MDM.
 
 ---
 
@@ -328,11 +347,11 @@ The company operates through **5 legal entities** organized as follows:
 
 | Parameter | Monthly Estimate |
 |---|---|
-| Orders (BOPIS) | ~27,000 |
-| Orders (Delivery) | ~18,000 |
-| Total Ecommerce Orders | ~45,000 |
+| Orders (BOPIS) | ~25,700 |
+| Orders (Delivery) | ~17,200 |
+| Total Ecommerce Orders | ~42,900 |
 | Average Order Value | PHP 3,500 |
-| Ecommerce GMV | ~PHP 157.5M/month |
+| Ecommerce GMV | ~PHP 150M/month |
 
 #### Ecommerce Penetration Targets
 
@@ -342,10 +361,10 @@ The company operates through **5 legal entities** organized as follows:
 | Year 2 | ~5% | ~PHP 250M |
 | Year 3 | ~7% | ~PHP 350M |
 
-> **Note**: The volume table above shows ~PHP 157.5M/month based on 45,000 orders × PHP 3,500
-> AOV. This is slightly above the 3% target (~PHP 151M). The figures are intentionally left as
-> planning estimates; the AOV and/or order volume should be adjusted to hit the exact 3% target
-> during detailed business planning.
+> **Note**: The volume table above is calibrated to ~PHP 150M/month (42,900 orders × PHP 3,500
+> AOV), which aligns exactly with the Year 1 target of 3% of total monthly revenue (~PHP 5.04B).
+> Order counts are split 60/40 between BOPIS and delivery based on typical Philippine omnichannel
+> retail patterns.
 
 ---
 
@@ -601,7 +620,29 @@ BuildRight Holdings, Inc.
 | **Approvals / Workflow** | Configurable approval matrix for PO, capex, discounts |
 | **Mobile** | Store manager app, receiving app, executive dashboard |
 
-### 14.3 Integration Requirements
+### 14.3 Target IT Infrastructure
+
+> This section describes the target infrastructure topology for the ERP system.
+
+| Component | Specification |
+|---|---|
+| **Deployment Model** | Cloud-primary (SaaS ERP); no on-premise application servers |
+| **Cloud Region** | Asia-Pacific (Singapore or Hong Kong) as primary; secondary DR region |
+| **DR Strategy** | Active-passive with automated failover; RPO ≤ 1 hour, RTO ≤ 4 hours for back-office |
+| **Store Connectivity** | MPLS or dedicated fiber (2 Mbps minimum) + 4G/5G LTE failover per store |
+| **DC Connectivity** | Redundant fiber links (10+ Mbps) at each DC; dual ISP |
+| **HQ Connectivity** | 100 Mbps fiber with redundant ISP |
+| **POS Offline** | Local device storage supports 8+ hours of autonomous selling; auto-syncs on reconnection |
+| **WAN Management** | SD-WAN recommended for traffic prioritization across 200+ sites |
+| **Backup** | Daily automated database snapshots (03:00); 30-day rolling; 7-year archive to cold storage |
+| **Monitoring** | Centralized NOC dashboard; alerting for store link-down, POS health, DC system health |
+| **Security** | WAF for cloud APIs; endpoint protection on POS devices; SOC 2 / ISO 27001 compliance target |
+
+> **Rationale**: A cloud-primary model eliminates the need for on-premise server infrastructure
+> at 206 locations. The MPLS/fiber + LTE dual-link strategy ensures POS continuity even during
+> primary link failures. Asia-Pacific cloud hosting minimizes latency for Philippines-based users.
+
+### 14.4 Integration Requirements
 
 | Integration | Direction | Protocol |
 |---|---|---|
@@ -723,4 +764,4 @@ BuildRight Holdings, Inc.
 
 ---
 
-*Document Version: 2.0 | Date: 2026-05-29 | Status: Revised — adjusted volumes, SKUs, DCs, and POS per realism review*
+*Document Version: 2.1 | Date: 2026-05-30 | Added: POS hardware specification (§5), target IT infrastructure (§14.3), DC4 growth note; reconciled ecommerce volume to exactly 3% target*

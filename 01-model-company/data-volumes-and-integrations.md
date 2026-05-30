@@ -1,7 +1,10 @@
 # Model Company — Data Volumes & Integration Map
 
 > Supplementary reference for ERP planning. Contains detailed volume calculations,
-> integration touchpoints, and data flow architecture.
+> integration touchpoints, and data flow architecture. Cross-references:
+> - Company profile & POS details: [model-company-profile.md](model-company-profile.md)
+> - Full requirements list: [erp-requirements.md](erp-requirements.md)
+> - Scoring methodology: [scoring-methodology.md](../07-methodology/scoring-methodology.md)
 
 ---
 
@@ -183,4 +186,4 @@
 
 ---
 
-*Document Version: 2.1 | Date: 2026-05-29 | Added: network bandwidth estimates (Section 5), batch processing windows (Section 6)*
+*Document Version: 2.2 | Date: 2026-05-30 | Added cross-document references*

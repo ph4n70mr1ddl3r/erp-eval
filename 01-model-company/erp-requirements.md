@@ -219,10 +219,11 @@
 | NFR-010 | Data Privacy | RA 10173 (Data Privacy Act) compliance |
 | NFR-011 | Deployment Model | Cloud-first with offline POS capability |
 | NFR-012 | Integration Architecture | API-first; support REST/webhook/file-based |
-| NFR-013 | Disaster Recovery | RPO ≤ 1 hour; RTO ≤ 4 hours for core; POS must operate offline 8+ hours with automatic sync reconciliation upon reconnection |
-| NFR-015 | Batch Processing Windows | Month-end close, payroll runs, and bulk report generation must complete within defined off-peak windows (see Data Volumes doc) |
+| NFR-013 | Disaster Recovery | RPO ≤ 1 hour; RTO ≤ 4 hours for core; POS must operate offline 8+ hours with automatic sync reconciliation upon reconnection (see [Data Volumes §6](data-volumes-and-integrations.md#6-batch-processing-windows)) |
 | NFR-014 | Data Migration | Tools/process for migrating from legacy accounting, POS, payroll, and inventory data |
+| NFR-015 | Batch Processing Windows | Month-end close, payroll runs, and bulk report generation must complete within defined off-peak windows (see [Data Volumes §6](data-volumes-and-integrations.md#6-batch-processing-windows)) |
+| NFR-016 | Infrastructure & DR Topology | Cloud-primary deployment with regional redundancy; primary region in Asia-Pacific with DR failover; stores connect via MPLS/fiber primary + 4G/5G LTE failover; DCs on redundant fiber; see [Model Company Profile §14.4](model-company-profile.md#144-target-it-infrastructure) |
 
 ---
 
-*Document Version: 1.1 | Date: 2026-05-29 | Added: R11 Intercompany, R12 Document Management, R13 Master Data Management; added POS-016/017/018, NFR-015; fixed INV-001 DC count*
+*Document Version: 1.2 | Date: 2026-05-30 | Fixed NFR-014/015 ordering; added NFR-016 (Infrastructure & DR Topology); added cross-document references*

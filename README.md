@@ -11,7 +11,11 @@ erpplans/
 ├── README.md                    ← You are here
 ├── 01-model-company/            ← Complete model company profile & requirements
 ├── 02-wilcon-benchmark/         ← Real-world Wilcon Depot research & comparison
-└── (erp subfolders to follow)   ← e.g., sap/, oracle-netsuite/, odoo/, microsoft-d365/, etc.
+├── 03-sap/                      ← SAP S/4HANA evaluation (placeholder)
+├── 04-oracle-netsuite/          ← Oracle NetSuite evaluation (placeholder)
+├── 05-microsoft-d365/           ← Microsoft Dynamics 365 evaluation (placeholder)
+├── 06-odoo/                     ← Odoo evaluation (placeholder)
+└── 07-methodology/              ← Scoring methodology & implementation roadmap
 ```
 
 ## The Model Company at a Glance

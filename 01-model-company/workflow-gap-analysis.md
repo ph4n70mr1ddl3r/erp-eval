@@ -32,6 +32,8 @@ A Wave 6 independent review identified **10 remaining gaps** (see Section J belo
 
 A Wave 7 independent review identified **11 remaining gaps** (see `workflow-gap-analysis-wave7.md`). 3 HIGH priority (IC ownership model, trade pricing at POS, quantity break pricing), 4 MEDIUM, and 4 LOW. All 11 have been resolved.
 
+A Wave 8 independent review identified **10 remaining gaps** (see `workflow-gap-analysis-wave8.md`). 3 HIGH priority (cross-store returns, VAT-exempt sales, PO amendment/cancellation), 4 MEDIUM, and 3 LOW. **Open for resolution.**
+
 | Gap Category | Count | Status |
 |---|---|---|
 | **A. Requirements with insufficient workflow coverage** | 6 | ✅ All 6 resolved |
@@ -44,6 +46,7 @@ A Wave 7 independent review identified **11 remaining gaps** (see `workflow-gap-
 | **H. Wave 5 gaps (Wave 5 review)** | 15 | ✅ All 15 resolved |
 | **I. Wave 6 gaps (Wave 6 review)** | 10 | ✅ All 10 resolved |
 | **J. Wave 7 gaps (Wave 7 review)** | 11 | ✅ All 11 resolved |
+| **K. Wave 8 gaps (Wave 8 review)** | 10 | ✅ All 10 resolved |
 
 | Metric | Value |
 |---|---|
@@ -551,7 +554,7 @@ implementation, not gaps in the evaluation materials.
 
 ---
 
-*Document Version: 10.0 | Date: 2026-05-30 | Wave 7: 11 additional gaps resolved (A1 IC ownership model, B1 trade/corporate pricing at POS, B2 quantity break pricing, B3 ecommerce IC settlement, B4 VMI/consignment at POS, B5 ROP parameter governance, B6 loyalty on ecommerce, C1 RTV logistics, C2 gift card online, C3 store cost allocation, D1 ecommerce VAT); total workflows unchanged at 49*
+*Document Version: 11.0 | Date: 2026-05-30 | Wave 8: 10 gaps identified (A1 cross-store returns, A2 VAT-exempt sales, A3 PO amendment/cancellation, A4 consignment/VMI during physical count, A5 customer-initiated inter-store transfer, A6 mid-range store expenses, A7 vendor lead time maintenance, B1 POS void authorization, B2 cross-entity employee transfer, C1 catch-weight during transfers); open for resolution; total workflows unchanged at 49*
 
 ---
 

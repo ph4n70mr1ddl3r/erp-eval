@@ -99,6 +99,23 @@ Each workflow follows this format:
 
 **Total buyer effort**: ~3–5 hours/day for daily PO review and follow-up
 
+### PO Lifecycle: Amendment, Cancellation & Close
+
+| Activity | Trigger | Approval | System Action |
+|---|---|---|---|
+| **PO Amendment** | Buyer needs to change quantity, delivery date, price, or add/remove lines on an approved PO | Re-approval per tiered matrix (same thresholds as original PO: > PHP 50K → Category Manager, > PHP 500K → VP Merchandising, > PHP 2M → CFO for imports) if change exceeds materiality threshold (quantity change > 20%, price change > 5%, or any delivery date change); minor changes (within threshold) auto-approved with Buyer note | System transmits amendment to vendor (email, EDI, or portal); tracks amendment history with full audit trail (original values, amended values, reason code, approver ID, timestamp); for import POs (W2b), Finance notifies bank if LC amendment is required for value changes |
+| **PO Cancellation** | Vendor cannot deliver, demand drops, item discontinued, or PO no longer needed | Buyer initiates with reason code; Category Manager approval required for cancellations > PHP 50K; VP Merchandising for > PHP 500K | System checks for existing GR against PO: if no GR, auto-cancels with vendor notification; if partial GR, Buyer confirms close of remaining quantity; system releases budget commitment; cancelled PO retained in audit trail |
+| **PO Auto-Close** | PO fully received (GR quantity matches ordered quantity within tolerance) or PO open beyond configured age limit | Automated | System auto-closes fully received POs; system flags POs open > 90 days for Buyer review (dashboard alert); Buyer reviews aged POs weekly and decides: close remaining quantity, extend delivery date (amendment), or escalate to Category Manager |
+
+### System Touchpoints (PO Lifecycle)
+- PO amendment workflow with materiality thresholds triggering re-approval (W2a)
+- Amendment history with full audit trail: original vs. amended values, reason, approver (W2a)
+- Vendor notification on amendment (email/EDI/portal) (W2a)
+- Import PO LC amendment trigger (cross-reference W2b) (W2a)
+- PO cancellation with reason code and budget release (W2a)
+- Partial-receipt PO close workflow (W2a)
+- Auto-close rules: tolerance-based for fully received POs; aging threshold for open POs (W2a)
+
 ### W2b. Import Purchase Orders
 
 | Field | Detail |
@@ -403,11 +420,13 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Price override with manager authorization threshold and audit trail (W5b.4a)
 - Lot/batch capture at POS for lot-tracked items: system prompts for batch number, auto-extracts from GS1-128/2D barcode, records batch against transaction line for forward traceability (W5b.4b)
 - Trade / corporate account pricing at POS: Cashier identifies customer via card or mobile number; system loads customer's pricing tier (trade discount %, corporate contract price list, or project-specific pricing); applies account-specific pricing to scanned items; if promo price is lower than account price, system applies lower price; sale posted to customer AR account with real-time credit limit check (W5b.4c, cross-reference W8, W24)
+- VAT-exempt / zero-rated sales at POS: when a VAT-exempt or zero-rated customer account is identified at POS (per VAT treatment classification in W24.6), system automatically applies zero output VAT to the transaction; receipt prints "VAT-EXEMPT" or "ZERO-RATED" designation per BIR requirements; transaction recorded in separate VAT register for exempt/zero-rated sales; system segregates VATable, exempt, and zero-rated sales in BIR Form 2550M reporting (W9a.16); VAT-exempt customers include government agencies with supporting BIR ruling, PEZA-registered entities, and other entities with documented VAT exemption (W5b.4c)
 - VMI and consignment items at POS: system automatically identifies VMI and consignment items at scan via item master flags (no cashier intervention); standard items post Dr. COGS / Cr. Inventory; VMI items post Dr. COGS / Cr. VMI Vendor Payable (W20.8); consignment items post Dr. COGS / Cr. Consignment Vendor Payable (W23.6); cashier experience is identical regardless of item ownership type; different GL posting paths are transparent to the cashier
 - Catch-weight / variable measure selling with weight/length capture and auto-price calculation (W5b.2)
 - Custom SKU generation for paint mixing (W5b.3)
 - Age-restricted product prompts (W5b.9)
 - Void transaction with manager authorization: full audit trail (cashier, manager, reason, timestamp); automatic reversal of inventory, payment, loyalty points, and promo usage; voided transaction retained for loss prevention analysis (W5b.10)
+- Void authorization roles and queuing: void authorization granted to Store Manager and Assistant Store Manager by default; Department Supervisors may be granted void authorization for their department's items up to a configurable threshold (e.g., ≤ PHP 5,000); if no authorized person is physically available at the time of void request, cashier can suspend the transaction and queue the void for next-available manager authorization; system enforces that all queued voids are authorized within the same business day; queued voids visible on Store Manager's terminal dashboard (W5b.10)
 - Z-report generation (W5c.2)
 - Cash reconciliation / variance reporting (W5c.3–4)
 - Electronic payment reconciliation: automated import of card acquirer and e-wallet settlement reports; comparison to Z-report by tender type; variance alerting (W5c.3a–b)
@@ -804,8 +823,38 @@ Additional steps on top of month-end close (December):
 | 5 | CSR accepts return; system processes refund to original payment method | CSR | — | 3 min |
 | 6 | Inventory returned to stock or flagged as damaged | Stock Associate | Dept. Supervisor | 5 min |
 
-### System Touchpoints (Returns)
-- Transaction lookup by receipt number / loyalty card (W12a.2)
+### W12c. Cross-Store Returns (Purchased at Store A, Returned at Store B)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer brings item to a different store than where it was purchased |
+| **Frequency** | ~10–20% of returns = ~5,600–11,200/year; ~2–3 per store per month |
+| **Volume** | Common for chain-wide customers (contractors, travelers) and loyalty members |
+| **Owner** | Customer Service Rep (receiving store) |
+| **Participants** | CSR (Store B), Store Manager (Store B), Stock Associate (Store B) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer presents item and receipt (or loyalty card for transaction lookup) at CSR counter of Store B (different from purchase Store A) | Customer | — | — |
+| 2 | CSR looks up original transaction in system by receipt number or loyalty card; system supports cross-store transaction lookup across all 200 locations | CSR | — | 2 min |
+| 3 | CSR inspects item condition (resalable, damaged, defective) per standard W12a.3 | CSR | — | 2 min |
+| 4 | CSR processes cross-store return in system; Store Manager approval required for cross-store returns above PHP 5,000 (higher threshold than same-store due to fraud risk) | CSR | Store Manager | 3–5 min |
+| 5 | System posts financial reversal to original purchase store (Store A): reverses revenue and COGS at Store A for correct store P&L attribution | System | — | Automated |
+| 6 | System receives returned inventory at Store B: increases Store B inventory; system automatically creates an inter-store inventory adjustment to account for the physical inventory movement (Store B gains inventory, Store A's books already reflect the COGS reversal from step 5) | System | — | Automated |
+| 7 | System processes refund to original tender method per W12a.6 split-tender rules; refund debited from Store A's cash accountability (system-level, not physical cash at Store B) | System / CSR | — | 2 min |
+| 8 | Inventory returned to stock at Store B (if resalable) or flagged as damaged/defective per W12a.7–8 | Stock Associate | Dept. Supervisor | 5 min |
+
+### System Touchpoints (Cross-Store Returns)
+- Cross-store transaction lookup: system retrieves original transaction from any store location by receipt number or loyalty card (W12c.2)
+- Cross-location financial posting: revenue reversal and COGS adjustment posted to original purchase store (Store A) for correct P&L attribution; inventory received at return store (Store B) (W12c.5–6)
+- Automatic inter-store inventory adjustment: system accounts for physical inventory movement between locations without requiring a separate Transfer Order (W12c.6)
+- Cross-store refund processing: refund debited from original store's tender accountability; physical cash disbursed at return store reconciled via centralized treasury (W12c.7)
+- Manager approval threshold for cross-store returns (W12c.4)
+
+### System Touchpoints (All Returns)
+- Transaction lookup by receipt number / loyalty card, including cross-store lookup (W12a.2, W12c.2)
 - Return policy enforcement (time window, condition rules) (W12a.4)
 - Manager override for policy exceptions (W12a.5)
 - Refund processing to original tender (W12a.6)
@@ -814,6 +863,7 @@ Additional steps on top of month-end close (December):
 - Online return initiation with QR authorization (W12b.2)
 - Split-tender refund processing: pro-rata refund to each original tender method; cash availability threshold enforcement with automatic redirect to card/e-wallet for excess (W12a.6)
 - Home delivery return reverse logistics: for bulky items that cannot be transported to store, system schedules carrier pickup via 3PL integration (W19 delivery partners); tracks return shipment to DC; DC inspection and disposition; refund processed upon inspection confirmation (cross-reference W19.12a)
+- Cross-store return processing: cross-location transaction lookup, financial reversal at original store, inventory receipt at return store, inter-store inventory adjustment (W12c)
 
 ### Staffing Implication
 - Returns add ~15 min/day to CSR workload (1.4 in-store + ~0.5 online returns per store). Minimal impact on current headcount.
@@ -1276,6 +1326,8 @@ Additional steps on top of month-end close (December):
 - Inventory update at both locations (W22.8)
 - Discrepancy handling with financial resolution: source error, carrier damage, or unexplained loss disposition (W22.9a)
 - Intercompany invoice trigger: for transfers between legal entities where the sending entity owns the goods (e.g., Depot Inc. transfers goods to Digital Commerce Inc. for ecommerce fulfillment), system automatically generates IC invoice at configured transfer price upon receipt confirmation (W22.8); IC AP/AR posted simultaneously per W14.1; transfer pricing rules maintained per annual IC review (W14); note: standard DC→Store replenishment (W4) is NOT an inter-entity transfer — Depot Inc. owns goods at both DC and store locations; Logistics Inc. provides warehousing services billed monthly per W14, not per-transfer
+- Customer-initiated inter-store transfer: when a customer at Store A requests an item out of stock, Sales Associate checks real-time inventory at nearby stores via handheld or terminal; if available, Associate creates customer transfer request (item, quantity, source store, destination store, customer contact); Store Manager at destination approves; source Store Manager or system auto-confirms if within same region; system creates Transfer Order per W22; source store picks and ships; destination store receives and notifies customer via SMS/app; sale booked at destination store when customer purchases; transport cost absorbed by company as customer service (no charge to customer); real-time cross-store inventory lookup available to Sales Associates via handheld/terminal and to customers via website/app store selector
+- Catch-weight / variable-measure items during transfers: for catch-weight items (lumber, wire, bulk nails), source location measures and records actual length/weight/piece count on Transfer Order; destination location re-measures upon receipt; if quantity differs from TO, variance handled per W22.9a with measurement tolerance applied (e.g., ±2% for lumber, ±1% for wire by length); within tolerance: system accepts destination measurement and posts variance as inventory adjustment at source; outside tolerance: source location investigates (measurement error, transit damage); system supports dual-entry measurement capture for catch-weight items on both outbound and inbound transfer processing
 
 ### Staffing Implication
 - Inter-DC transfers are part of Supply Planner's existing duties (within the 30-person Supply Chain team).
@@ -1357,7 +1409,8 @@ Additional steps on top of month-end close (December):
 
 ### System Touchpoints
 - Credit application form (online or in-store) (W24.1)
-- Customer master creation with credit limit and payment terms (W24.6)
+- Customer master creation with credit limit, payment terms, entity assignment, and VAT treatment classification (W24.6)
+- VAT treatment per customer account: AR Clerk classifies account as Standard (12% VAT), VAT-Exempt (government agencies with BIR ruling, PEZA-registered entities), or Zero-Rated (export sales) during account setup based on supporting documents (BIR ruling, PEZA certificate, government purchase order, diplomatic note); system stores VAT treatment in customer master; applied automatically at POS (W5b.4c) and AR invoicing (W8) (W24.6)
 - Credit limit enforcement at POS/sales order (W24.6 → W8.3)
 - Annual credit review scheduling and workflow (W24.8)
 
@@ -1396,6 +1449,7 @@ Additional steps on top of month-end close (December):
 - Replenishment request and approval workflow (W25.6–7)
 - GL posting for petty cash expenses (W25.8)
 - Petty cash reconciliation reporting (W25.10)
+- Store disbursement request for mid-range expenses (PHP 5,000–50,000): for expenses too large for petty cash but not suited to formal PO (emergency equipment repair, small equipment purchase, local contractor services, urgent supplies) — Store Manager or Department Supervisor submits disbursement request in system with business justification, vendor quotation (if available), and cost center; approval per tier (Store Manager approves up to PHP 20,000; Regional Manager approves PHP 20,001–50,000); upon approval, Custodian pays vendor and obtains receipt; AP Clerk posts expense with receipt attachment to GL; disbursements tracked per store per month in expense summary report; distinct from petty cash (W25.1–4) in requiring formal system request and approval before payment, and from PO-based purchasing (W2) in bypassing the PO/GR/invoice cycle for immediacy (W25)
 
 ### Staffing Implication
 - **Petty Cash Custodian**: Typically the Assistant Store Manager or a designated cashier. Not a separate role.
@@ -1943,6 +1997,7 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 - Item-vendor mapping with cost, lead time, MOQ (W36.8)
 - Vendor portal provisioning (W36.9)
 - Vendor document tracking with expiry alerts: system tracks business permit, tax compliance certificate, and other regulatory document expiry dates; alerts Buyer and AP Clerk 30 days before expiry; vendor blocked from new POs if documents expired
+- Vendor lead time master data lifecycle: initial lead time entered during vendor onboarding per vendor-SKU (W36 step 8); ongoing maintenance — Buyer updates lead times when vendor notifies of changes (new warehouse, route change, seasonal factors); system auto-suggests lead time updates based on actual delivery performance (comparing actual GR date vs. PO promised date) and presents suggestions to Buyer for review and confirmation; quarterly review per W31 step 8 confirms or adjusts stale lead times; system tracks all lead time changes with full audit trail (old value, new value, reason, date, Buyer ID); lead time variance metric feeds vendor scorecard (W44) (W36.6, W36.8)
 - Integration with vendor performance scorecard (W36.11 → W44)
 
 ### Staffing Implication
@@ -2291,6 +2346,7 @@ When an LPO investigation confirms theft or irrecoverable loss:
 - Recount tracking (W42.10)
 - Adjustment approval workflow with tiered authorization (W42.12)
 - Bulk inventory adjustment posting and GL impact (W42.14)
+- Vendor-owned inventory (consignment/VMI) during physical count: count teams count consignment (W23) and VMI (W20) items using separate count sheets flagged as "Vendor-Owned — Non-Valuated"; system records vendor-owned counts separately from BuildRight-owned (valuated) inventory; after count, system reconciles physical count of vendor-owned items to vendor's expected quantities per W23/W20 records; discrepancies investigated — if physical < system, potential unrecorded sell-through requiring W20/W23 settlement adjustment; if physical > system, potential unrecorded receipt requiring investigation; vendor-owned count results shared with respective vendors for reconciliation; Internal Audit (W42 step 13) verifies that all counted items are correctly classified as owned (valuated) or vendor-owned (non-valuated) for audit evidence (W42.7–8)
 - Physical inventory summary reporting (W42.17)
 
 ### Staffing Implication
@@ -2330,6 +2386,7 @@ When an LPO investigation confirms theft or irrecoverable loss:
 | 12 | System updates employee status to "Separated"; deactivates payroll processing; retains record for regulatory retention (7 years) | System | — | Automated |
 | 13 | System generates COE (Certificate of Employment) on request: dates of employment, position, compensation range (optional) | System / HR Assistant | HR Head | 5 min/request |
 | 14 | HR Head includes separation data in monthly turnover report: rate by department, store, and separation type; exit interview themes | HR Head | CHRO | 1 hour/month |
+| 15 | Cross-entity employee transfer (between legal entities, e.g., Depot Inc. → Logistics Inc.): HR Assistant initiates transfer with effective date, destination entity, and new position; system processes as simultaneous separation from source entity and onboarding in destination entity with continuity of service — accumulated leave credits, 13th month pay pro-ration, and seniority carry forward; system deactivates employee in source entity payroll, creates employee record in destination entity with transferred balances, reassigns SSS/PhilHealth/Pag-IBIG to new entity's remittance, and switches BIR withholding tax to new entity's TIN registration; final pay computed at source entity (pro-rated) and first pay at destination entity for the same period; no break in employment continuity | HR Assistant / Payroll Officer | HR Head | 30 min/transfer |
 
 **Total cycle time**: 30 days (notice period) + 5 business days after last day for final pay release
 
@@ -2341,6 +2398,7 @@ When an LPO investigation confirms theft or irrecoverable loss:
 - Final pay computation with pro-ration and deductions (W43.10–11)
 - Employee status lifecycle: Active → On Notice → Separated (W43.12)
 - Certificate of Employment generation (W43.13)
+- Cross-entity employee transfer: simultaneous separation and onboarding across legal entities with continuity of service; automatic payroll entity switch with transferred leave balances, 13th month pro-ration, and statutory reassignment; SSS/PhilHealth/Pag-IBIG reassigned to new entity; BIR withholding tax switched to new entity's TIN; GL postings to both entity payrolls for the transfer period (W43.15)
 - Turnover analytics (W43.14)
 - Integration with W10 (payroll) and W15 (onboarding — reverse process)
 
@@ -2535,21 +2593,21 @@ Summary of which ERP modules support which workflows:
 
 | ERP Module | Workflows Supported |
 |---|---|
-| **POS / Retail** | W5 (store selling, offline recovery, void transactions, trade/corporate account pricing, VMI/consignment GL routing), W12 (returns, split-tender refunds), W17 (loyalty at POS), W18 (DSD receiving), W23 (consignment sale), W28 (gift card/store credit), W29 (recall blocking), W33 (warranty claims), W38 (special order deposit) |
-| **Inventory Management** | W3 (GR posting, shelf-life/expiry tracking, perpetual WAC at receipt, inventory ownership clarification, RTV logistics tracking), W4 (replenishment, FEFO picking, intra-entity ownership note), W6 (cycle counting, near-expiry alerting), W11 (BOPIS pick), W18 (DSD GR, shelf-life capture), W20 (VMI stock), W22 (transfers, transfer discrepancy resolution), W23 (consignment tracking, consignment returns), W29 (recall quarantine), W37 (confirmed theft write-off, shrinkage tracking), W42 (annual physical inventory), W46 (kit assembly/disassembly), negative inventory resolution |
-| **Procurement** | W2 (PO cycle), W3 (receiving vs. PO), W18 (DSD PO/GR), W20 (VMI ASN), W21 (capex PO), W36 (vendor onboarding), W38 (special order PO) |
+| **POS / Retail** | W5 (store selling, offline recovery, void transactions, trade/corporate account pricing, VAT-exempt/zero-rated sales processing, VMI/consignment GL routing), W12 (returns including cross-store returns, split-tender refunds), W17 (loyalty at POS), W18 (DSD receiving), W23 (consignment sale), W28 (gift card/store credit), W29 (recall blocking), W33 (warranty claims), W38 (special order deposit) |
+| **Inventory Management** | W3 (GR posting, shelf-life/expiry tracking, perpetual WAC at receipt, inventory ownership clarification, RTV logistics tracking), W4 (replenishment, FEFO picking, intra-entity ownership note), W6 (cycle counting, near-expiry alerting), W11 (BOPIS pick), W12c (cross-store return inventory adjustment), W18 (DSD GR, shelf-life capture), W20 (VMI stock), W22 (transfers, transfer discrepancy resolution, customer-initiated inter-store transfer, catch-weight item measurement), W23 (consignment tracking, consignment returns), W29 (recall quarantine), W37 (confirmed theft write-off, shrinkage tracking), W42 (annual physical inventory, vendor-owned inventory count), W46 (kit assembly/disassembly), negative inventory resolution |
+| **Procurement** | W2 (PO cycle, PO amendment/cancellation/close lifecycle), W3 (receiving vs. PO), W18 (DSD PO/GR), W20 (VMI ASN), W21 (capex PO), W36 (vendor onboarding, lead time master data lifecycle), W38 (special order PO) |
 | **Warehouse Management** | W3 (putaway, cross-dock, forward-pick replenishment), W4 (pick/pack/ship), W19 (home delivery pick/pack), W22 (transfer pick), W42 (DC count), W46 (kit assembly) |
-| **Financials (GL/AP/AR)** | W7 (AP, EWT, vendor credit memos, non-PO recurring expenses), W8 (AR, credit hold override, customer credit memos), W9 (close, NRV review, WAC verification, LBT per LGU), W14 (intercompany), W21 (capex & FA), W24 (credit approval), W25 (petty cash), W26 (budget), W27 (rebates), W28 (gift card liability, cross-channel redemption IC), W30 (treasury & cash management, ecommerce payment reconciliation, cash-in-transit), W37 (confirmed theft write-off), W39 (asset disposal), W42 (inventory adjustments) |
+| **Financials (GL/AP/AR)** | W7 (AP, EWT, vendor credit memos, non-PO recurring expenses), W8 (AR, credit hold override, customer credit memos), W9 (close, NRV review, WAC verification, LBT per LGU, VAT-exempt/zero-rated sales reporting), W14 (intercompany), W21 (capex & FA), W24 (credit approval, VAT treatment classification), W25 (petty cash, store disbursement requests), W26 (budget), W27 (rebates), W28 (gift card liability, cross-channel redemption IC), W30 (treasury & cash management, ecommerce payment reconciliation, cash-in-transit), W37 (confirmed theft write-off), W39 (asset disposal), W42 (inventory adjustments) |
 | **Supply Chain Planning** | W2a (auto-replenishment), W4 (replenishment calculation), W22 (transfer planning), W27 (rebate accrual triggers), W31 (demand forecasting, multi-echelon DC replenishment sourcing, ROP parameter governance), W32 (seasonal buy planning) |
-| **HR & Payroll** | W10 (payroll), W15 (onboarding), W34 (shift scheduling), W43 (separation & offboarding) |
+| **HR & Payroll** | W10 (payroll), W15 (onboarding), W34 (shift scheduling), W43 (separation & offboarding, cross-entity employee transfer) |
 | **Ecommerce** | W11 (BOPIS order flow, IC settlement, ecommerce VAT), W12b (online returns, home delivery reverse logistics), W19 (home delivery fulfillment, payment reconciliation, 3PL management, reverse logistics, IC settlement, ecommerce VAT) |
-| **CRM / Loyalty** | W17 (loyalty program, manual points adjustment, customer deduplication, ecommerce points earning), W24 (credit application), W41 (complaint management) |
+| **CRM / Loyalty** | W17 (loyalty program, manual points adjustment, customer deduplication, ecommerce points earning), W24 (credit application, VAT treatment classification), W41 (complaint management) |
 | **Pricing / Merchandising** | W13 (promotions, pricing conflict rules, vendor-funded promo settlement), W27 (vendor rebates), W40 (regular price changes, price protection, quantity break pricing setup & maintenance) |
-| **Master Data** | W1 (SKU lifecycle, sample/demo inventory, slow-mover review), W16 (new store/location creation, capex project tracking), W20 (VMI item setup), W23 (consignment item setup), W36 (vendor onboarding), W38 (non-stock item creation, unclaimed deposit aging), W46 (kit BOM) |
+| **Master Data** | W1 (SKU lifecycle, sample/demo inventory, slow-mover review), W16 (new store/location creation, capex project tracking), W20 (VMI item setup), W23 (consignment item setup), W36 (vendor onboarding, lead time lifecycle), W38 (non-stock item creation, unclaimed deposit aging), W46 (kit BOM) |
 | **Reporting / Analytics** | W1 (assortment analysis), W9 (financial statements), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget), W26 (budget variance), W27 (rebate ROI), W28 (gift card liability), W29 (recall tracking), W30 (cash flow forecast), W31 (forecast accuracy, ROP parameter governance), W35 (management reporting rhythm, store P&L occupancy cost allocation), W37 (shrinkage/exception reports), W40 (price change analytics, quantity break utilization), W41 (complaint analytics), W42 (physical inventory summary), W44 (vendor scorecards) |
 | **Loss Prevention** | W37 (POS exception monitoring, shrinkage tracking, confirmed theft write-off) |
 | **Store Lifecycle** | W16 (new store opening), W45 (store closure / relocation) |
 
 ---
 
-*Document Version: 10.0 | Date: 2026-05-30 | Wave 7 gap analysis: resolved 11 gaps — A1 IC inventory ownership model clarification (profile + W3/W4/W22), B1 trade/corporate account pricing at POS (W5b.4c + touchpoints), B2 quantity break pricing setup (W40 sub-section), B3 ecommerce IC settlement (W11/W19 touchpoints), B4 VMI/consignment GL routing at POS (W5b touchpoints), B5 ROP parameter governance (W31 step 8 + touchpoints), B6 ecommerce loyalty points earning (W17 touchpoints), C1 RTV physical logistics tracking (W3 touchpoints), C2 cross-channel gift card redemption (W28 touchpoints), C3 store P&L occupancy cost allocation (W35 touchpoints), D1 ecommerce VAT handling (W11/W19 touchpoints)*
+*Document Version: 11.0 | Date: 2026-05-30 | Wave 8: resolved 10 gaps — A1 cross-store returns (W12c), A2 VAT-exempt/zero-rated sales (W24+W5b), A3 PO amendment/cancellation/close lifecycle (W2a), A4 consignment/VMI during physical count (W42), A5 customer-initiated inter-store transfer (W22), A6 mid-range store expenses (W25), A7 vendor lead time master data lifecycle (W36), B1 POS void authorization roles (W5b), B2 cross-entity employee transfer (W43), C1 catch-weight items during transfers (W22)*

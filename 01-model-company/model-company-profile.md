@@ -346,7 +346,7 @@ The company operates through **5 legal entities** organized as follows:
 | Year 3 | ~7% | ~PHP 350M |
 
 > **Note**: The volume table above is calibrated to ~PHP 150M/month (42,900 orders × PHP 3,500
-> AOV), which aligns exactly with the Year 1 target of 3% of total monthly revenue (~PHP 5.04B).
+> AOV), which represents ~2.9% of total monthly revenue (~PHP 5.19B), consistent with the Year 1 target of ~3%.
 > Order counts are split 60/40 between BOPIS and delivery based on typical Philippine omnichannel
 > retail patterns.
 
@@ -388,15 +388,15 @@ The company operates through **5 legal entities** organized as follows:
 |---|---|
 | **Average Transaction Value (ATV)** | PHP 1,800 |
 | **Monthly POS Transactions** | 2,800,000 |
-| **Monthly In-Store Revenue** | ~PHP 4.89 Billion (97%) |
-| **Monthly Ecommerce Revenue** | ~PHP 150 Million (3%) |
-| **Monthly Gross Revenue (Total)** | ~PHP 5.04 Billion |
-| **Annual Gross Revenue** | ~PHP 60.5 Billion |
+| **Monthly In-Store Revenue** | ~PHP 5.04 Billion (97.1%) |
+| **Monthly Ecommerce Revenue** | ~PHP 150 Million (2.9%) |
+| **Monthly Gross Revenue (Total)** | ~PHP 5.19 Billion |
+| **Annual Gross Revenue** | ~PHP 62.3 Billion |
 | **Average Gross Margin** | ~28–32% |
-| **Annual COGS** | ~PHP 41–43 Billion |
+| **Annual COGS** | ~PHP 42–45 Billion |
 | **EBITDA Margin** | ~10–12% |
 
-> Note: Monthly gross revenue of ~PHP 5.04 Billion includes both in-store (PHP 4.89B, 97%) and ecommerce (PHP 150M, 3%). Per-store annual revenue of ~PHP 25M/month reflects in-store only. Per-store annual revenue of ~PHP 302M is ~90% of Wilcon Depot's estimated per-store revenue (PHP 330–350M), reflecting the more provincial footprint and leaner SKU assortment. Revenue figures assume all 200 stores are mature.
+> Note: POS transactions (2,800,000 × PHP 1,800) = PHP 5.04B in-store revenue. Ecommerce adds PHP 150M. Total monthly revenue = PHP 5.19B. Ecommerce represents 2.9% of total, consistent with Year 1 penetration target of ~3%. Per-store monthly revenue of ~PHP 25.2M reflects in-store only (PHP 5.04B ÷ 200 stores). Per-store annual revenue of ~PHP 302M is ~90% of Wilcon Depot's estimated per-store revenue (PHP 330–350M), reflecting the more provincial footprint and leaner SKU assortment. Revenue figures assume all 200 stores are mature.
 
 ---
 

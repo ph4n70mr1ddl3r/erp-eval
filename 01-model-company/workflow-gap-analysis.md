@@ -33,10 +33,11 @@ A Wave 3 independent review subsequently identified **11 additional gaps** (see 
 | **E. Acknowledged non-blocking** | 2 | 🟡 Carried forward (implementation-phase) |
 | **F. Wave 3 gaps (Wave 3 review)** | 11 | ✅ All 11 resolved |
 | **G. Wave 4 gaps (Wave 4 review)** | 12 | ✅ All 12 resolved |
+| **H. Wave 5 gaps (Wave 5 review)** | 15 | ✅ All 15 resolved |
 
 | Metric | Value |
 |---|---|
-| Total workflows | **48** (W1–W46 + W2c + W3b + W5d) |
+| Total workflows | **49** (W1–W46 + W2c + W3b + W5d + W7c) |
 | Total requirements | **130+** |
 | Requirements fully covered | **~130 (99%)** |
 | Requirements partially covered | **~1 (1%)** (low-priority, implementation-phase) |
@@ -540,7 +541,7 @@ implementation, not gaps in the evaluation materials.
 
 ---
 
-*Document Version: 7.0 | Date: 2026-05-30 | Wave 4: 12 additional gaps resolved (EWT, NRV, loyalty deferred revenue, multi-tender recon, kit assembly, credit memos, price protection, forward-pick replenishment, pricing conflicts, credit hold override, sample/demo inventory, DSD GRNI follow-up); total workflows now 48*
+*Document Version: 8.0 | Date: 2026-05-30 | Wave 5: 15 additional gaps resolved (ATV inconsistency, non-PO AP W7c, shelf-life/expiry management, ecommerce payment reconciliation, slow-mover operational review, negative inventory resolution, 3PL management, DC-to-DC multi-echelon sourcing, loyalty points manual adjustment, consignment return logistics, unclaimed deposit aging, split-tender refunds, void transaction process, store capex project tracking, customer deduplication); total workflows now 49*
 
 ---
 

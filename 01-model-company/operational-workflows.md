@@ -1476,20 +1476,684 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 
 ---
 
+## W31. Demand Forecasting Cycle
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Weekly forecast recalculation schedule (Sunday batch) |
+| **Frequency** | Weekly recalculation; monthly review; quarterly adjustment |
+| **Volume** | 35,000 active SKUs × 5 DCs × 200 stores = up to 7.2M SKU-location forecasts; typically forecasted at DC level (175,000 SKU-DC combinations) and disaggregated to stores |
+| **Owner** | Demand Planner |
+| **Participants** | Demand Planner, Supply Planner, Category Manager, Pricing Analyst |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System runs automated forecast engine: statistical algorithms (exponential smoothing, seasonal decomposition) applied to 2+ years of historical sales data per SKU per DC | System | — | Automated (Sunday batch, 1–3 hours) |
+| 2 | System adjusts raw statistical forecast for known events: promotional calendar (W13), seasonal calendar, new store openings (W16), planned store closures, one-time events (typhoons, pandemic) | System | — | Automated |
+| 3 | Demand Planner reviews forecast exception report: SKUs with forecast error > 30%, SKUs with insufficient history, new SKUs with no history, SKUs with sudden demand spikes or drops | Demand Planner | Supply Planning Manager | 2–3 hours/week |
+| 4 | Demand Planner adjusts flagged forecasts manually: overrides algorithm, inputs qualitative intelligence (vendor intel, market trends, competitive activity) | Demand Planner | Supply Planning Manager | 1–2 hours/week |
+| 5 | Demand Planner reviews forecast accuracy metrics (MAPE, bias) by category; identifies systematic over/under-forecasting patterns | Demand Planner | Supply Planning Manager | 1 hour/week |
+| 6 | Adjusted forecast released to replenishment engine (W4.1, W2a.1); system uses forecast instead of simple min/max for forecasted SKUs | System | — | Automated |
+| 7 | Monthly: Demand Planner presents forecast vs. actual report to Category Managers; discusses upcoming demand shifts | Demand Planner | VP Merchandising | 1 hour/category/month |
+| 8 | Quarterly: Demand Planner recalibrates forecast model parameters (alpha, beta, gamma for exponential smoothing); updates seasonal indices based on latest year of data | Demand Planner | Supply Planning Manager | 4–6 hours/quarter |
+
+**Total Demand Planner effort**: ~8–12 hours/week + 4–6 hours/quarter for model recalibration
+
+### System Touchpoints
+- Statistical forecast engine with multiple algorithms (W31.1)
+- Automated event adjustment from promotional and seasonal calendars (W31.2)
+- Forecast exception reporting with error thresholds (W31.3)
+- Manual forecast override with audit trail (W31.4)
+- Forecast accuracy dashboards (MAPE, bias, weighted MAPE) (W31.5)
+- Forecast release to replenishment/MRP engine (W31.6)
+- Forecast vs. actual variance reporting by category (W31.7)
+- Model parameter maintenance and seasonal index recalculation (W31.8)
+
+### Staffing Implication
+- **1–2 Demand Planners** (within the 30-person Supply Chain team): This is a specialized analytical role. With 35,000 SKUs across 5 DCs, weekly review of forecast exceptions + monthly category reviews + quarterly recalibration requires a dedicated person. A 2nd demand planner provides coverage and can focus on new-item forecasting (no history) and promotional lift modeling.
+- **Category Managers**: 1 hour/month each for forecast review meetings = ~10 hours/month total. Absorbed into existing duties.
+
+---
+
+## W32. Seasonal Buy Planning
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Seasonal calendar milestones (6 months before each season peak) |
+| **Frequency** | 4 major seasonal planning cycles/year: Christmas (plan in Jun), Summer/March (plan in Oct), Back-to-School (plan in Nov), Rainy Season/ typhoon prep (plan in Jan) |
+| **Volume** | ~3,000–5,000 seasonal SKUs per major event; ~20–30 import POs per season |
+| **Owner** | Category Manager |
+| **Participants** | Category Manager, Buyer, Demand Planner, Import Coordinator, VP Merchandising, Finance (budget) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Demand Planner generates seasonal forecast: prior-year sales by SKU for the season period, adjusted for current trend and planned promotions | Demand Planner | Category Manager | 4 hours/season |
+| 2 | Category Manager reviews seasonal forecast; identifies SKUs to carry forward, new items to add, items to drop | Category Manager | VP Merchandising | 2 hours/season |
+| 3 | Buyer solicits vendor quotations for seasonal items; negotiates volume discounts, early-order incentives, and return/excess-stock terms | Buyer | Category Manager | 1 week/season |
+| 4 | Category Manager creates seasonal buy plan: SKU-level quantities, vendor allocation, delivery schedule (phased receipts vs. single drop) | Category Manager | VP Merchandising | 4 hours/season |
+| 5 | Finance validates seasonal buy plan against working capital budget and inventory plan (max inventory days target) | Controller | CFO | 2 hours/season |
+| 6 | VP Merchandising approves seasonal buy plan | VP Merchandising | VP Merchandising | 1 hour/season |
+| 7 | Buyer creates import POs (W2b) or domestic POs (W2a) per the seasonal buy plan; times orders to arrive 6–8 weeks before season start | Buyer | Category Manager | Per W2 |
+| 8 | System tracks seasonal PO commitments vs. seasonal buy plan budget; alerts if over-committed | System | — | Automated |
+| 9 | As season approaches: Pricing Analyst sets up seasonal pricing and promotions (W13) | Pricing Analyst | Category Manager | Per W13 |
+| 10 | Mid-season: Category Manager and Buyer review sell-through vs. plan; trigger re-orders for hot items or accelerate markdowns for slow movers | Category Manager | VP Merchandising | 1 hour/week during season |
+| 11 | Post-season: Buyer and Category Manager conduct post-mortem: actual vs. plan sales, margin, leftover inventory disposition (clearance, return to vendor, carry forward to next year) | Buyer + Category Manager | VP Merchandising | 2 hours/season |
+
+**Total cycle time**: 6 months from planning start to season peak
+
+### System Touchpoints
+- Seasonal forecast generation from historical data with event adjustment (W32.1)
+- Seasonal buy plan entry with SKU, quantity, vendor, delivery phasing (W32.4)
+- Budget/working capital check against seasonal plan (W32.5)
+- PO commitment tracking against seasonal buy plan budget (W32.8)
+- Seasonal sell-through dashboard: actual vs. plan by SKU (W32.10)
+- Post-season analysis and leftover inventory disposition tracking (W32.11)
+- Integration with W1 (assortment review), W2 (PO creation), W13 (promotions)
+
+### Staffing Implication
+- **Category Managers**: Seasonal planning is an extension of their existing W1 duties. Each seasonal cycle adds ~8–10 hours of work per category, spread over several weeks. With 5 Category Managers and 4 seasonal cycles, each handles ~1 major seasonal plan at a time. Absorbed within existing ~40-person Merchandising team.
+- **Buyers**: Import PO creation follows standard W2b. Seasonal volume adds ~20–30 import POs per season, concentrated in a few weeks. Manageable within existing team.
+- **Demand Planner**: Adds ~4 hours per seasonal cycle for forecast generation. With 4 cycles/year = 16 hours/year. Minimal impact.
+
+---
+
+## W33. Warranty Claim Processing
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer brings defective product to store within warranty period, or submits claim online |
+| **Frequency** | ~800–1,200 warranty claims/month chain-wide; ~4–6 per store per month |
+| **Volume** | Primarily power tools, appliances, plumbing fixtures, electrical equipment |
+| **Owner** | Customer Service Rep (in-store) |
+| **Participants** | CSR, Department Supervisor, Buyer, Vendor, Customer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer brings defective item to CSR counter with proof of purchase (receipt, loyalty lookup, or bank statement) | Customer | — | — |
+| 2 | CSR looks up original transaction; verifies item is within warranty period (system displays warranty terms per SKU) | CSR | Dept. Supervisor | 3 min |
+| 3 | CSR inspects item and documents defect: photographs, written description, defect category (manufacturing defect, premature wear, DOA) | CSR | Dept. Supervisor | 5 min |
+| 4 | System creates warranty claim record: linked to original transaction, SKU, serial/lot number (if tracked), customer contact, defect description, photos | CSR | Dept. Supervisor | 5 min |
+| 5 | CSR determines resolution path based on warranty policy and defect type: (a) direct replacement from store stock, (b) send to vendor for repair, or (c) refund if item cannot be repaired/replaced | CSR | Dept. Supervisor | 2 min |
+| 6 | **If direct replacement**: CSR processes replacement in system; new item issued to customer; defective unit removed from inventory; system creates RTV record linked to warranty claim | CSR | Store Manager | 5 min |
+| 7 | **If vendor repair**: CSR labels item with warranty claim number; stages in backroom for vendor pickup or shipment to vendor service center; system creates RTV shipment record | CSR | Dept. Supervisor | 5 min |
+| 8 | **If refund**: CSR processes refund per W12 return workflow; warranty claim closed with refund as resolution | CSR | Store Manager | Per W12 |
+| 9 | Buyer is notified of warranty claim for vendor-owned items; Buyer tracks vendor response SLA (repair: 15 business days; replacement: 10 business days) | Buyer | Category Manager | Automated notification + 5 min/claim |
+| 10 | If vendor repair/replacement exceeds SLA: Buyer escalates to Category Manager; Category Manager may authorize store to issue replacement from stock pending vendor resolution | Category Manager | VP Merchandising | 10 min/escalation |
+| 11 | Repaired/replaced item received from vendor: CSR notifies customer for pickup; system links incoming item to original warranty claim | CSR | Dept. Supervisor | 5 min |
+| 12 | Customer receives repaired/replaced item; warranty claim closed in system | CSR | — | 3 min |
+| 13 | Monthly: system generates warranty claim report by vendor, SKU, defect type; Buyer reviews with top vendors during vendor performance review (W44) | System / Buyer | Category Manager | 1 hour/month |
+
+### System Touchpoints
+- Transaction lookup with warranty terms display per SKU (W33.2)
+- Warranty claim record creation with photo attachment and defect categorization (W33.4)
+- Serial/lot number linkage to warranty claim (W33.4)
+- Replacement issuance with RTV creation (W33.6)
+- Vendor repair tracking with RTV shipment record (W33.7)
+- Vendor response SLA tracking and auto-notification (W33.9)
+- Warranty claim lifecycle status tracking (open → in repair → resolved → closed) (W33.4–12)
+- Warranty analytics dashboard by vendor, SKU, defect type (W33.13)
+
+### Staffing Implication
+- **CSR**: ~4–6 warranty claims/store/month × ~15 min each = ~1–1.5 hours/store/month. Absorbed within existing CSR role.
+- **Buyer**: Warranty claims that need vendor follow-up add ~5 min/claim. With ~800–1,200 claims/month, not all require buyer intervention (many are direct replacements). Estimated ~200–300 needing buyer action = ~20–25 hours/month across 10–12 buyers = ~2 hours/buyer/month. Absorbed.
+- No incremental headcount needed.
+
+---
+
+## W34. Store Shift Scheduling
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Weekly schedule creation cycle |
+| **Frequency** | Weekly per store; published 1 week in advance |
+| **Volume** | 35 staff × 200 stores = 7,000 weekly shift assignments; 2–3 shifts per day (opening: 7 AM–2 PM, mid: 10 AM–6 PM, closing: 2 PM–10 PM) |
+| **Owner** | Store Manager |
+| **Participants** | Store Manager, Assistant Store Manager, Department Supervisors, HR Assistant |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System generates draft schedule based on: (a) store operating hours, (b) staffing model per shift (min cashiers, floor associates, receiving), (c) historical sales volume by day and hour, (d) approved leave requests, (e) labor budget (max hours per employee per week) | System | — | Automated |
+| 2 | Store Manager reviews draft schedule; adjusts for: expected delivery days (DSD receiving), upcoming promotions, special events, employee skill mix per shift | Store Manager | Store Ops Director | 1 hour/week |
+| 3 | Department Supervisors review shift assignments for their departments; flag conflicts or coverage gaps | Dept. Supervisor | Store Manager | 30 min/week |
+| 4 | Store Manager finalizes and publishes schedule in system; employees receive notification (mobile app, SMS, or bulletin board) | Store Manager | — | 15 min |
+| 5 | Employee views schedule; submits swap requests to Store Manager if needed | Employee | — | Self-service |
+| 6 | Store Manager approves or denies shift swap requests; updates schedule | Store Manager | — | 15 min/week |
+| 7 | During the week: if unplanned absence (sick leave, emergency): Store Manager activates contingency (call in off-duty employee, redistribute floor staff, cover cashier shift personally) | Store Manager | — | Ad hoc |
+| 8 | System tracks actual hours worked (biometric/RFID clock-in/out) vs. scheduled hours; flags overtime and undertime | System | — | Automated |
+| 9 | Weekly: Store Manager reviews schedule adherence report; adjusts next week's plan based on actuals | Store Manager | Regional Manager | 15 min/week |
+| 10 | Monthly: Regional Manager reviews overtime hours per store vs. labor budget; flags stores consistently exceeding targets | Regional Manager | Store Ops Director | 2 hours/month (across 50 stores) |
+
+### System Touchpoints
+- Automated schedule generation based on rules engine (W34.1)
+- Leave request integration (W34.1d)
+- Shift swap request and approval workflow (W34.5–6)
+- Schedule publishing with employee notification (W34.4)
+- Time & attendance integration: actual vs. scheduled hours comparison (W34.8)
+- Overtime alerting (W34.8)
+- Schedule adherence and labor budget reporting (W34.9–10)
+- Integration with payroll (W10) for hour calculation
+
+### Staffing Implication
+- **Store Manager**: ~2 hours/week on scheduling. Absorbed into existing duties.
+- **Department Supervisors**: ~30 min/week reviewing their section schedules. Absorbed.
+- **Regional Managers**: ~2 hours/month reviewing overtime reports across their 50 stores. Absorbed.
+- No incremental headcount. The system's automated draft generation significantly reduces manual scheduling effort.
+
+---
+
+## W35. Management Reporting Rhythm
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Reporting calendar (daily, weekly, monthly, quarterly cadences) |
+| **Frequency** | Daily flash, weekly review, monthly close reporting, quarterly board pack |
+| **Volume** | ~50 standard reports on recurring schedules; ~20 ad-hoc requests/month |
+| **Owner** | Controller |
+| **Participants** | Controller, CFO, CEO, Department Heads, BI Analyst |
+
+### Steps
+
+### Daily
+
+| # | Activity | Role (R) | Role (A) | Frequency |
+|---|---|---|---|---|
+| 1 | System generates daily flash report (auto-distributed by 7:00 AM): total chain revenue, transactions, avg ticket, same-store sales vs. prior year, top/bottom 10 stores | System | Controller | Daily (automated) |
+| 2 | CFO reviews daily flash on mobile dashboard | CFO | — | 5 min/day |
+| 3 | System generates daily inventory exception report: negative stock alerts, stockouts at store level, critical DC shortages | System | Supply Planning Manager | Daily (automated) |
+
+### Weekly
+
+| # | Activity | Role (R) | Role (A) | Frequency |
+|---|---|---|---|---|
+| 4 | Week-on-week sales report by store, category, and channel (POS vs. ecommerce); auto-distributed every Monday | System | Controller | Weekly (automated) |
+| 5 | Supply chain KPI report: fill rate, on-time delivery (DC→store), PO overdue rate, forecast accuracy | Demand Planner | Supply Planning Manager | Weekly |
+| 6 | AP aging summary: total payables, overdue invoices, payment run schedule | AP Supervisor | Controller | Weekly |
+| 7 | Treasury: weekly cash flow forecast (W30 step 8) | Treasury Analyst | CFO | Weekly |
+
+### Monthly
+
+| # | Activity | Role (R) | Role (A) | Frequency |
+|---|---|---|---|---|
+| 8 | Financial statements per entity and consolidated (from W9 close process) | Chief Accountant | Controller | Monthly (by day 5) |
+| 9 | Budget vs. actual variance report per entity, per department (from W26) | Controller | CFO | Monthly (by day 7) |
+| 10 | Store P&L: revenue, COGS, gross margin, labor cost, occupancy, shrinkage, EBITDA per store | System | Store Ops Director | Monthly (by day 7) |
+| 11 | Merchandising performance: category sales, margin, inventory turns, sell-through, vendor rebate realization | Pricing Analyst | VP Merchandising | Monthly (by day 7) |
+| 12 | AR aging and collections performance: DSO, overdue %, write-offs | AR Supervisor | CFO | Monthly |
+| 13 | HR metrics: turnover rate, time-to-fill, absenteeism, overtime hours, headcount vs. plan | HR Head | CHRO | Monthly |
+| 14 | Management committee meeting: CFO presents consolidated results; Department Heads present functional KPIs | CFO / Dept. Heads | CEO | Monthly (by day 10) |
+
+### Quarterly
+
+| # | Activity | Role (R) | Role (A) | Frequency |
+|---|---|---|---|---|
+| 15 | Board pack preparation: consolidated financials, management discussion & analysis, KPI scorecard, risk register update | Controller + CFO | CEO | Quarterly |
+| 16 | Vendor performance scorecard review (W44) | Buyer | VP Merchandising | Quarterly |
+| 17 | Budget revision (if material changes warranted) (W26 step 13) | Controller | CFO | Quarterly |
+
+### Ad-Hoc
+
+| # | Activity | Role (R) | Role (A) | Frequency |
+|---|---|---|---|---|
+| 18 | Department Heads request ad-hoc reports from BI Analyst or self-service via report builder | Dept. Heads / BI Analyst | — | As needed (~20/month) |
+| 19 | BI Analyst creates custom analyses: product affinity, customer segmentation, promotional lift analysis, geographic trends | BI Analyst | Requestor | As needed |
+
+### System Touchpoints
+- Scheduled report auto-generation and distribution (email, portal, mobile) (W35.1, 4, 8–13)
+- Executive dashboard with real-time KPIs (W35.2)
+- Store P&L module (W35.10)
+- Self-service report builder / ad-hoc query tool (W35.18)
+- Mobile dashboard for executives (W35.2)
+- Integration with all ERP modules (financials, inventory, POS, procurement, HR, ecommerce) for data aggregation
+
+### Staffing Implication
+- **1 BI Analyst** (within IT or Finance): Handles ~20 ad-hoc requests/month + maintains standard report templates + supports self-service tool adoption. This may be a new role or absorbed by a data-savvy Finance team member.
+- **Controller**: Monthly reporting adds ~8 hours/month (review + variance analysis + board pack quarterly). Absorbed into existing duties.
+- Most standard reports are auto-generated; the human effort is in review, interpretation, and action.
+
+---
+
+## W36. Vendor Onboarding
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New vendor identified by Buyer or Category Manager (new product sourcing, alternative supplier, new brand) |
+| **Frequency** | ~50–100 new vendors/year (replacing churned vendors + new categories) |
+| **Volume** | Peaks during seasonal planning (W32) and new store openings (W16) |
+| **Owner** | Buyer |
+| **Participants** | Buyer, Category Manager, AP Clerk, Finance (credit assessment), IT (portal setup) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Buyer identifies need for new vendor; collects basic information: company name, contact person, product categories offered, business registration | Buyer | Category Manager | 30 min |
+| 2 | Buyer sends vendor application form to prospective vendor; vendor provides: DTI/SEC registration, BIR TIN, business permit, tax compliance certificate, bank certificate, product catalog with SRP | Buyer | Category Manager | External (vendor-dependent) |
+| 3 | AP Clerk or Finance validates vendor documents: confirms TIN is valid, business permit is current, bank details verified | AP Clerk | AP Supervisor | 30 min |
+| 4 | Buyer evaluates vendor capability: product quality (sample review), pricing competitiveness (vs. current vendors), delivery lead time, minimum order quantities, payment terms offered | Buyer | Category Manager | 2–4 hours |
+| 5 | Category Manager approves vendor for onboarding (or rejects with reason) | Category Manager | VP Merchandising | 15 min |
+| 6 | Buyer creates vendor master record in system: name, TIN, address, contact details, payment terms, bank account, currency, lead time, assigned category, entity(ies) | Buyer | Category Manager | 15 min |
+| 7 | System assigns vendor number; configures: approval tier for PO amounts, default PO delivery location(s), matching tolerance for invoice price variance | System | — | Automated |
+| 8 | Merchandise Planner maps vendor's product catalog to item master: creates new SKUs or links to existing SKUs; sets vendor-specific cost, lead time, minimum order quantity, order multiple | Merchandise Planner | Buyer | 1–2 hours/vendor (varies by catalog size) |
+| 9 | IT configures vendor portal access (if vendor uses portal): credentials, PO visibility, invoice submission capability | IT Team | Buyer | 15 min |
+| 10 | Buyer places trial PO (small initial order) to validate vendor reliability, product quality at scale, and delivery performance | Buyer | Category Manager | Per W2 |
+| 11 | After 3 trial orders: Buyer completes vendor scorecard baseline (delivery on-time %, quality reject rate, invoice accuracy) for future performance tracking (W44) | Buyer | Category Manager | 30 min |
+
+**Total onboarding cycle**: 2–4 weeks from identification to first PO
+
+### System Touchpoints
+- Vendor master creation with document attachments (W36.6)
+- TIN validation and business permit tracking with expiry alerts (W36.3, W36.6)
+- Vendor-specific configuration: payment terms, tolerance thresholds, approval tiers (W36.7)
+- Item-vendor mapping with cost, lead time, MOQ (W36.8)
+- Vendor portal provisioning (W36.9)
+- Integration with vendor performance scorecard (W36.11 → W44)
+
+### Staffing Implication
+- **Buyer**: 50–100 new vendors/year × ~4–6 hours of buyer time each = 200–600 hours/year = ~1–3 hours/week. Absorbed across 10–12 buyers.
+- **AP Clerk**: 30 min per vendor for document validation = ~25–50 hours/year. Negligible.
+- **Merchandise Planner**: Item-vendor mapping is the most labor-intensive step at 1–2 hours per vendor. With 50–100 vendors = ~100 hours/year. Absorbed within existing team.
+
+---
+
+## W37. Loss Prevention & Exception Reporting
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Daily exception report generation; or real-time alert triggered by POS exception |
+| **Frequency** | Daily review; real-time alerts for high-severity exceptions |
+| **Volume** | ~500–1,000 exception events/day chain-wide across all 200 stores |
+| **Owner** | Loss Prevention Officer (LPO) |
+| **Participants** | LPO, Store Manager, Regional Manager, Internal Audit, Cashier, Department Supervisor |
+
+### Background
+
+Shrinkage target: < 1.5% of sales (~PHP 75M/month at risk). Exception-based reporting identifies suspicious transaction patterns at POS and receiving dock that may indicate theft, fraud, or process errors.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System automatically monitors POS transactions in real-time and generates exception alerts for: (a) excessive voids/cancels per cashier, (b) high-value refunds without manager override, (c) manual price overrides, (d) sweet-hearting (repeated transactions with loyalty card of same employee or family), (e) excessive no-sale drawer opens, (f) post-void patterns, (g) high ratio of discount transactions | System | — | Real-time |
+| 2 | System generates daily exception summary report per store: top exception categories, top cashiers by exception count, transaction drill-down capability | System | — | Automated (daily) |
+| 3 | LPO reviews daily exception report; prioritizes investigation of high-risk patterns (e.g., one cashier with 5× average void rate) | LPO | Internal Audit | 1–2 hours/day |
+| 4 | For flagged exceptions: LPO pulls transaction details, CCTV timestamps (cross-reference with security footage), and employee history | LPO | Internal Audit | 30 min/case |
+| 5 | If investigation confirms irregularity: LPO documents findings; escalates to Regional Manager and Internal Audit for disciplinary action | LPO | Internal Audit | 1 hour/case |
+| 6 | For receiving dock exceptions: system monitors GR short shipments, frequent damage claims from same vendor, and receiving patterns outside scheduled appointments | System | DC Manager | Automated |
+| 7 | Monthly: LPO generates shrinkage report per store (inventory adjustment value ÷ sales); flags stores exceeding 1.5% threshold | LPO | Internal Audit | 2 hours/month |
+| 8 | Monthly: LPO and Regional Manager review top shrinkage stores; develop action plans (additional training, CCTV repositioning, staffing adjustments) | LPO + Regional Manager | Internal Audit | 1 hour/month per high-shrinkage store |
+| 9 | Quarterly: Internal Audit includes POS exception trends in audit findings; recommends system configuration changes (e.g., tighten void approval rules) | Internal Audit | CFO | Quarterly report |
+| 10 | System tracks all investigation cases: status (open/investigating/closed), resolution, recovery amount, disciplinary action taken | System | — | Automated |
+
+### System Touchpoints
+- Real-time POS exception monitoring with configurable thresholds per exception type (W37.1)
+- Daily exception summary report with drill-down to transaction level (W37.2)
+- Transaction detail with CCTV timestamp cross-reference capability (W37.4)
+- Receiving dock exception monitoring (W37.6)
+- Shrinkage report per store with threshold alerting (W37.7)
+- Investigation case management with status tracking (W37.10)
+- Exception threshold configuration and tuning (W37.9)
+- Integration with CCTV system (timestamp correlation, not video storage)
+
+### Staffing Implication
+- **2–3 Loss Prevention Officers** (reporting to Internal Audit or a dedicated LP function): Daily review (1–2 hours) + case investigation (5–10 active cases at any time) + monthly shrinkage reporting + quarterly reviews. This is a specialized role that may not exist in the current org chart. Recommend adding 2 LPOs to cover 200 stores (each covering ~70 stores, rotating through physical store visits).
+- **Store Managers**: Review their store's exception report daily (~15 min). Absorbed into opening routine.
+- **Internal Audit**: Incorporates LP findings into quarterly audit cycle. No incremental headcount.
+
+---
+
+## W38. Special Order / Non-Stock Item Fulfillment
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer requests an item not carried in regular store assortment |
+| **Frequency** | ~500–1,000 special orders/month chain-wide; ~2–5 per store per month |
+| **Volume** | Primarily professional trade customers (contractors, builders) and project-specific items; avg order value ~PHP 5,000–15,000 |
+| **Owner** | Customer Service Rep (order intake); Buyer (fulfillment) |
+| **Participants** | CSR, Sales Rep (trade accounts), Buyer, Receiving Clerk, Customer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer requests non-stock item at store (CSR counter) or via Sales Rep; provides product description, specification, quantity needed, and desired delivery date | Customer | — | — |
+| 2 | CSR or Sales Rep searches item in system: (a) checks if item exists in item master as non-stock/Special Order type, (b) if not found, creates a non-stock item request with description, specs, and estimated price | CSR / Sales Rep | Dept. Supervisor | 5–10 min |
+| 3 | System routes non-stock item creation request to Merchandise Planner for item master setup (category assignment, unit of measure, tax classification) | System | Merchandise Planner | Automated routing |
+| 3a | Merchandise Planner creates non-stock SKU in item master with type = "Special Order / Non-Stock"; flags as non-stocking (no ROP, no safety stock, no replenishment) | Merchandise Planner | Category Manager | 10 min |
+| 4 | Buyer identifies vendor, obtains quotation (price, lead time, minimum quantity); enters quote in system linked to the non-stock SKU | Buyer | Category Manager | 30–60 min |
+| 5 | CSR or Sales Rep communicates quote to customer: price, estimated delivery date, payment terms (typically 50% deposit, 50% on delivery) | CSR / Sales Rep | — | 10 min |
+| 6 | Customer confirms order and pays deposit | Customer / Cashier | — | 5 min |
+| 7 | System creates Sales Order linked to non-stock SKU with customer deposit recorded; reservation created against incoming PO | System | — | Automated |
+| 8 | Buyer creates Special Order PO (links PO to Sales Order); routes for approval per standard tiered matrix (W2) | Buyer | Category Manager | Per W2 |
+| 9 | Buyer tracks PO; follows up with vendor on delivery schedule | Buyer | Buyer | Per W2 |
+| 10 | Goods received at store or DC (per W3 or W18); system matches GR to both PO and linked Sales Order | Receiving Clerk | Dept. Supervisor | Per W3/W18 |
+| 11 | System alerts CSR that special order has arrived; CSR contacts customer for pickup or arranges delivery | System / CSR | Store Manager | Automated + 5 min |
+| 12 | Customer picks up item (or receives delivery); pays remaining balance; Sales Order closed | Cashier / CSR | — | 5 min |
+| 13 | If customer cancels before PO is placed: CSR cancels Sales Order; deposit refunded; no PO created | CSR | Store Manager | 5 min |
+| 14 | If customer cancels after PO is placed but before shipment: Buyer negotiates with vendor (restocking fee, return); Finance processes partial refund less any costs | Buyer + Finance | Category Manager | 30 min |
+
+**Total cycle time**: 7–30 days from order to delivery (depends on vendor lead time and whether domestic or import)
+
+### System Touchpoints
+- Non-stock item type in item master with no auto-replenishment (W38.3a)
+- Item creation request workflow (W38.3)
+- Sales Order creation with customer deposit and PO linkage (W38.7–8)
+- PO-to-Sales-Order reservation and matching (W38.8, W38.10)
+- Customer notification upon receipt (W38.11)
+- Sales Order lifecycle: open → PO linked → goods received → customer notified → closed (W38.7–12)
+- Cancellation handling with deposit refund workflow (W38.13–14)
+
+### Staffing Implication
+- **CSR**: ~2–5 special orders/store/month × ~20 min each (intake + communication + handoff) = ~1–1.5 hours/store/month. Absorbed.
+- **Buyer**: 500–1,000 special orders/month ÷ 10–12 buyers = ~50–80/buyer/month × ~30 min each = ~30 hours/buyer/month. This is significant. Special orders should be handled by a dedicated 1–2 Buyers who specialize in trade/special orders, with remaining buyers focused on replenishment.
+- **Merchandise Planner**: 500–1,000 non-stock SKU creations/year = ~2–4 hours/week. Absorbed within existing team.
+
+---
+
+## W39. Fixed Asset Disposal & Retirement
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Asset reaches end of useful life, becomes uneconomic to maintain, or is replaced by new asset |
+| **Frequency** | ~50–100 asset disposals/year; peaks during store renovations and IT refresh cycles |
+| **Volume** | ~8,050 fixed assets across all entities (POS terminals, forklifts, vehicles, fixtures, IT servers, office equipment) |
+| **Owner** | Cost Accountant |
+| **Participants** | Cost Accountant, Requestor (dept), CFO, IT (for IT assets), Procurement (if resale), Legal (if land/building) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Requestor identifies asset for disposal: reason (end of life, beyond repair, obsolete, replacement, store closure) | Requestor (Dept. Head) | Dept. Head | 15 min |
+| 2 | Cost Accountant reviews asset record: original cost, accumulated depreciation, net book value (NBV), remaining useful life, any outstanding encumbrances | Cost Accountant | Controller | 15 min/asset |
+| 3 | If NBV is material (> PHP 50,000): Requestor obtains disposal valuation or market quotation for resale | Requestor | Dept. Head | 1–2 hours |
+| 4 | Disposal request routed for approval per tier: (a) NBV ≤ PHP 50,000: Controller, (b) NBV PHP 50,001–500,000: CFO, (c) NBV > PHP 500,000: CEO, (d) Land/building: Board | Approver | Approver | 15–30 min |
+| 5 | Cost Accountant determines disposal method: (a) trade-in (against new asset purchase), (b) public sale/auction, (c) scrap/recycle, (d) donation, (e) write-off (no residual value) | Cost Accountant | Controller | 15 min/asset |
+| 6 | If sale: Procurement or Admin conducts sale; system records proceeds | Procurement / Admin | Controller | Varies |
+| 7 | If IT asset: IT ensures data wipe and compliance with Data Privacy Act (RA 10173) before physical disposal | IT Team | CIO | 30 min/asset |
+| 8 | Physical disposal or handover executed; asset tag removed; documented with photos | Requestor / Admin | Dept. Head | 30 min/asset |
+| 9 | Cost Accountant posts disposal entry in system: (a) remove asset at original cost from fixed asset register, (b) remove accumulated depreciation, (c) recognize gain/loss on disposal = proceeds − NBV (or NBV if scrapped), (d) post to GL disposal P&L account | Cost Accountant | Controller | 15 min/asset |
+| 10 | System updates fixed asset register; asset status changed to "Disposed" with disposal date; asset no longer depreciated | System | — | Automated |
+| 11 | Quarterly: Cost Accountant reviews disposed assets report; reconciles disposal gain/loss to GL | Cost Accountant | Controller | 30 min/quarter |
+
+### System Touchpoints
+- Fixed asset disposal workflow with approval tiers (W39.4)
+- Asset record with NBV calculation at any point (W39.2)
+- Disposal entry auto-generation: cost removal, depreciation reversal, gain/loss calculation (W39.9)
+- Asset status lifecycle: Active → Pending Disposal → Disposed (W39.10)
+- Disposal gain/loss reporting (W39.11)
+- Integration with W21 (Capex → Asset creation) for full asset lifecycle tracking
+
+### Staffing Implication
+- **Cost Accountant**: 50–100 disposals/year × ~30 min each = ~25–50 hours/year = ~2–4 hours/month. Absorbed within existing Finance team.
+- No incremental headcount needed.
+
+---
+
+## W40. Regular Price Change Execution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vendor cost increase notification, competitive price adjustment, periodic SRP review, or regulatory price change |
+| **Frequency** | ~200–500 SRP changes/month across 35,000 active SKUs; peaks when major vendors announce price increases (typically quarterly) |
+| **Volume** | ~10–25 price changes/day; concentrated in categories with commodity-linked pricing (lumber, cement, metals, paint) |
+| **Owner** | Pricing Analyst |
+| **Participants** | Pricing Analyst, Category Manager, Buyer, IT (price sync) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Buyer receives vendor price increase notice (letter, email, or portal notification); enters new cost and effective date in system | Buyer | Category Manager | 10 min/vendor notice |
+| 2 | System calculates margin impact: current SRP × current cost vs. current SRP × new cost; shows margin erosion per SKU and total category impact | System | — | Automated |
+| 3 | Pricing Analyst reviews margin impact report; decides action per SKU: (a) absorb cost increase (reduce margin), (b) pass through to SRP, (c) increase SRP partially, (d) negotiate with vendor, (e) switch to alternative vendor, (f) discontinue item | Pricing Analyst | Category Manager | 2–4 hours/vendor notice |
+| 4 | Pricing Analyst enters new SRP per SKU with effective date in system; system shows new margin % for validation | Pricing Analyst | Category Manager | 5 min/SKU |
+| 5 | Category Manager reviews and approves price changes; VP Merchandising approves if aggregate margin impact > PHP 500K/month | Category Manager / VP | VP Merchandising | 30 min – 1 hour/batch |
+| 6 | System schedules price update: new SRP takes effect at configured date/time (typically start of business day) | System | — | Automated |
+| 7 | System pushes updated price file to all POS terminals per nightly sync (or immediately if real-time sync configured); updates ecommerce catalog | System | — | Automated |
+| 8 | Store Operations receives price change bulletin; Department Supervisors update shelf tags before store opening on effective date | Dept. Supervisor | Store Manager | 30–60 min per price change batch |
+| 9 | System maintains full price history per SKU: date range, old SRP, new SRP, reason code, approver — for audit and BIR compliance | System | — | Automated |
+| 10 | Monthly: Pricing Analyst generates price change summary report: # of changes, average increase/decrease, margin impact, top categories affected | Pricing Analyst | Category Manager | 1 hour/month |
+
+### System Touchpoints
+- Vendor cost change entry with effective date (W40.1)
+- Margin impact calculator: current vs. new cost at current SRP (W40.2)
+- SRP entry with effective date and margin display (W40.4)
+- Approval workflow for price changes with aggregate impact thresholds (W40.5)
+- Scheduled price activation (W40.6)
+- Price file sync to POS and ecommerce (W40.7)
+- Full price history with audit trail (W40.9)
+- Price change analytics (W40.10)
+- Integration with W13 (promotional pricing — regular and promo prices coexist with date ranges)
+
+### Staffing Implication
+- **3 Pricing Analysts**: 200–500 changes/month × 5 min/SKU (entry) + 2–4 hours per vendor notice (analysis) = ~60–80 hours/month. With 3 analysts that's ~20–25 hours each. This is a core part of their role alongside promotional pricing (W13). Current team of 3 is adequate.
+- **Department Supervisors (stores)**: Shelf tag updates are the most labor-intensive step. With 10–25 price changes/day chain-wide, most stores see only a few changes per week. Shelf tag updates take ~30–60 min per batch. Absorbed into daily opening routine.
+
+---
+
+## W41. Customer Complaint Resolution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer submits complaint in-store, by phone (call center), by email/chat, or on website/app |
+| **Frequency** | ~2,000–3,000 complaints/month chain-wide; ~10–15 per store per month |
+| **Volume** | Categories: product quality (30%), delivery issues (20%), staff behavior (15%), pricing/charging errors (15%), out-of-stock (10%), others (10%) |
+| **Owner** | Customer Service Rep (Tier 1) / Customer Service Manager (Tier 2) |
+| **Participants** | CSR, CS Manager, Department Supervisor, Store Manager, Buyer, Call Center Agent, Logistics |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer submits complaint via any channel: in-store (CSR counter), phone (call center), email/chat, or website/app form | Customer | — | — |
+| 2 | System creates complaint ticket: unique ticket number, channel, customer info (loyalty lookup or guest), category, description, priority (auto-assessed by category) | CSR / Call Center Agent | CS Manager | 5 min |
+| 3 | **Tier 1 Resolution** (CSR or Call Center Agent): attempt immediate resolution — (a) product issue: offer exchange (W12), warranty claim (W33), or store credit; (b) pricing error: verify and issue refund; (c) delivery issue: check status, arrange redelivery | CSR / Call Center Agent | CS Manager | 5–15 min |
+| 4 | If resolved at Tier 1: CSR closes ticket with resolution code and customer satisfaction rating (if provided) | CSR / Call Center Agent | — | 2 min |
+| 5 | If unresolved at Tier 1: ticket escalated to Tier 2 (CS Manager or Store Manager); system reassigns ticket and starts SLA timer | System | CS Manager | Automated |
+| 6 | **Tier 2 Resolution** (CS Manager / Store Manager): investigates root cause; coordinates with relevant department (Buyer for product issues, Logistics for delivery, HR for staff complaints) | CS Manager / Store Manager | Store Ops Director | 30–60 min |
+| 7 | CS Manager proposes resolution to customer: refund, exchange, discount voucher, written apology, corrective action commitment | CS Manager | Store Ops Director | 15 min |
+| 8 | If customer accepts: ticket closed with resolution; system triggers any financial actions (refund, voucher issuance) | CS Manager | — | 5 min |
+| 9 | If customer rejects or complaint involves legal/regulatory risk: escalate to Store Ops Director or Legal; system logs escalation | CS Manager | Store Ops Director | 15 min |
+| 10 | SLA enforcement: Tier 1 must respond within 4 hours; Tier 2 must resolve within 48 hours; if exceeded, system escalates to Store Ops Director | System | — | Automated |
+| 11 | Monthly: CS Manager generates complaint analytics report: volume by category, by store, resolution rate, SLA compliance, top recurring issues | CS Manager | Store Ops Director | 2 hours/month |
+| 12 | Monthly: Store Ops Director reviews complaint trends with Department Heads; assigns corrective actions for recurring root causes | Store Ops Director | COO | 1 hour/month |
+| 13 | Quarterly: top complaint root causes feed into operational improvement initiatives (training, process changes, vendor quality requirements) | Store Ops Director | COO | Quarterly review |
+
+### System Touchpoints
+- Multi-channel complaint ticket creation (in-store, phone, email, chat, web) (W41.1–2)
+- Ticket categorization with auto-priority assignment (W41.2)
+- Tiered escalation workflow with SLA timers (W41.5, W41.10)
+- Resolution code tracking and financial action triggers (refund, voucher) (W41.4, W41.8)
+- Customer satisfaction capture at resolution (W41.4)
+- Complaint analytics dashboard: volume, category, store, resolution rate, SLA compliance (W41.11)
+- Root cause analysis reporting (W41.12–13)
+
+### Staffing Implication
+- **CSRs (stores)**: 10–15 complaints/store/month × ~10 min each = ~2–3 hours/store/month. Absorbed within existing CSR role.
+- **Call Center (30 people)**: Handles phone, email, chat, and web complaints. ~1,000–1,500 complaints/month via call center ÷ 30 agents = ~50 complaints/agent/month ÷ 20 working days = ~2.5/day. Each takes ~10–15 min. Manageable; call center also handles inbound inquiries, order tracking, and general support.
+- **CS Manager (HQ or regional)**: 1 CS Manager oversees complaint analytics and Tier 2 escalations. May be a regional role (4 Regional CS Managers) or 1 centralized with store managers handling Tier 2 locally.
+
+---
+
+## W42. Annual Physical Inventory Execution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Year-end close calendar (typically December 31 or last business day of fiscal year) |
+| **Frequency** | Annual; each store and DC counted once per year |
+| **Volume** | 35,000 SKUs × 205 locations (200 stores + 5 DCs); executed in coordinated 2-day window |
+| **Owner** | Cost Accountant (overall); Store Manager (per store); DC Manager (per DC) |
+| **Participants** | Cost Accountant, Store Managers, DC Managers, all store staff, inventory count teams, IT, Internal Audit |
+
+### Pre-Count Planning (2–3 weeks before count)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Cost Accountant issues physical inventory instructions: count dates, methodology, team assignments, system freeze schedule | Cost Accountant | Controller | 4 hours |
+| 2 | IT configures count sheets in system: generate zone-based count sheets per location with expected system quantities (hidden for blind count) | IT Team | Cost Accountant | 1 day |
+| 3 | Store Managers organize count teams: assign zones (8 zones per store), designate team leaders, schedule shifts for 2-day count | Store Manager | Store Ops Director | 2 hours/store |
+| 4 | Store Managers ensure all receiving and shipments are posted before count; process pending transactions; stage goods in correct locations | Store Manager | Store Ops Director | 4 hours/store |
+| 5 | Internal Audit prepares to observe counts at selected locations (sample: 20–30 stores + all DCs) | Internal Audit | CFO | 1 week |
+
+### Count Execution (Day 1 — full count; Day 2 — recounts and adjustments)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 6 | System freezes inventory transactions at count locations (no sales, receiving, or transfers during count window) | System / IT | Cost Accountant | Automated |
+| 7 | Count teams physically count every SKU in assigned zone: two-person teams (one counts, one records on RF device/count sheet) | Count Teams | Team Leader | 6–10 hours/location |
+| 8 | Team leaders submit zone counts; system compares to system quantities (blind count — system quantity only revealed after team submits) | Team Leader | Store Manager | Per zone |
+| 9 | System generates variance report per zone: items where physical count differs from system count | System | — | Automated |
+| 10 | For items with variance: recount team (different from original) performs blind recount | Recount Team | Store Manager | 2–4 hours/location |
+| 11 | If recount confirms variance: Team Leader investigates and documents root cause (theft, damage, receiving error, data entry error) | Team Leader | Store Manager | 15 min/item |
+| 12 | Store Manager reviews and approves adjustments per tier: (a) adjustment ≤ PHP 10,000: Store Manager, (b) adjustment PHP 10,001–100,000: Regional Manager, (c) adjustment > PHP 100,000: Controller | Approver | Approver | 5–15 min/adjustment |
+| 13 | Internal Audit observes counts at sampled locations; validates methodology compliance and count accuracy | Internal Audit | CFO | Full count day |
+| 14 | System posts approved inventory adjustments; updates inventory valuation; posts to GL (gain/loss on inventory) | System | — | Automated |
+
+### Post-Count (1 week after)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 15 | System unfreezes inventory transactions; normal operations resume | IT Team | Cost Accountant | Automated |
+| 16 | Cost Accountant reconciles total inventory valuation post-adjustment to GL inventory accounts | Cost Accountant | Controller | 4 hours |
+| 17 | Cost Accountant generates physical inventory summary report: total adjustments by location, by category, by variance type (gain/loss), shrinkage as % of sales | Cost Accountant | Controller | 2 hours |
+| 18 | Controller and CFO review physical inventory results; identify high-shrinkage locations for loss prevention action (W37) | Controller | CFO | 2 hours |
+| 19 | Internal Audit issues observation report with recommendations for count process improvement | Internal Audit | CFO | 1 week |
+
+### System Touchpoints
+- System inventory transaction freeze per location (W42.6, W42.15)
+- Zone-based count sheet generation with blind count mode (W42.2, W42.7–8)
+- RF device / handheld count entry (W42.7)
+- Variance detection after count submission (W42.9)
+- Recount tracking (W42.10)
+- Adjustment approval workflow with tiered authorization (W42.12)
+- Bulk inventory adjustment posting and GL impact (W42.14)
+- Physical inventory summary reporting (W42.17)
+
+### Staffing Implication
+- **All store staff (35/store)**: Mobilized for 2-day count. Stores may close early or operate with skeleton crew during count.
+- **DC staff (~150/DC)**: Full DC count requires 1–2 days. Operations paused during count.
+- **Cost Accountant**: 20–30 hours for planning, execution support, and reconciliation. Heaviest workload of the year for this role.
+- **Internal Audit (3–5 auditors)**: Travel to sampled locations. Absorbed within annual audit plan.
+- **IT**: 1 day for count sheet configuration + system freeze/unfreeze support.
+
+---
+
+## W43. Employee Separation & Offboarding
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Employee submits resignation, or management initiates termination, or employee retires |
+| **Frequency** | ~100–130 separations/month (1,200–1,600/year at 15–20% annual turnover) |
+| **Volume** | Peaks in January (post-13th month pay resignations) and during store opening months (transfer to new store vs. separation) |
+| **Owner** | HR Assistant |
+| **Participants** | HR Assistant, HR Head, Department Head, Payroll Officer, IT, Employee |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Employee submits resignation letter (or management issues termination notice) | Employee / Dept. Head | Dept. Head | — |
+| 2 | HR Assistant creates separation record in system: resignation date, last working day (30-day notice per Labor Code or garden leave), separation type (resignation, termination, retirement, end of contract) | HR Assistant | HR Head | 10 min |
+| 3 | Department Head conducts exit interview; documents feedback (work conditions, compensation, management, reason for leaving) | Dept. Head | HR Head | 30 min |
+| 4 | HR Assistant initiates clearance process: system generates clearance form routed to all relevant departments | System | HR Assistant | Automated |
+| 5 | **IT clearance**: IT confirms return of laptop/tablet/phone (if issued); deactivates system accounts (ERP, POS, email, VPN); revokes access badges | IT Team | CIO | 15 min/employee |
+| 6 | **Department clearance**: Dept. Head confirms return of company property (uniforms, tools, keys); approves final leave usage | Dept. Head | Dept. Head | 10 min/employee |
+| 7 | **Finance clearance**: AP Clerk confirms no outstanding cash advances or loans; AR confirms no corporate account exposure | AP / AR Clerk | AP/AR Supervisor | 10 min/employee |
+| 8 | **Store Operations clearance** (if store employee): Store Manager confirms no pending inventory accountability issues, cash drawer reconciled | Store Manager | Store Ops Director | 10 min/employee |
+| 9 | HR Assistant collects all signed clearances; marks clearance as complete in system | HR Assistant | HR Head | 10 min/employee |
+| 10 | Payroll Officer computes final pay per W10 step 12: pro-rated salary, pro-rated 13th month pay, converted unused leave credits (VL to cash per company policy), less outstanding loans/advances and clearance deductions | Payroll Officer | Payroll Manager | Per W10 |
+| 11 | System generates final pay as separate payroll run or adjustment; final payslip issued (W10 step 13) | System | — | Automated |
+| 12 | System updates employee status to "Separated"; deactivates payroll processing; retains record for regulatory retention (7 years) | System | — | Automated |
+| 13 | System generates COE (Certificate of Employment) on request: dates of employment, position, compensation range (optional) | System / HR Assistant | HR Head | 5 min/request |
+| 14 | HR Head includes separation data in monthly turnover report: rate by department, store, and separation type; exit interview themes | HR Head | CHRO | 1 hour/month |
+
+**Total cycle time**: 30 days (notice period) + 5 business days after last day for final pay release
+
+### System Touchpoints
+- Separation record creation with type classification (W43.2)
+- Automated clearance form generation and routing (W43.4)
+- Clearance status tracking per department (W43.5–9)
+- System account deactivation trigger (W43.5)
+- Final pay computation with pro-ration and deductions (W43.10–11)
+- Employee status lifecycle: Active → On Notice → Separated (W43.12)
+- Certificate of Employment generation (W43.13)
+- Turnover analytics (W43.14)
+- Integration with W10 (payroll) and W15 (onboarding — reverse process)
+
+### Staffing Implication
+- **HR Assistants (2)**: 100–130 separations/month × ~45 min admin each (clearance coordination + documentation) = ~90 hours/month. With 2 assistants that's ~45 hours each. Manageable alongside other HR admin duties.
+- **IT**: 100–130 deactivations/month × 15 min each = ~30 hours/month. Absorbed by IT helpdesk.
+- **Department Heads / Store Managers**: ~20 min per separating employee for clearance. With ~100/month spread across 200 stores, most managers handle < 1 separation/month. Negligible impact.
+
+---
+
+## W44. Vendor Performance Review
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Quarterly review calendar; or ad-hoc triggered by persistent quality/delivery issues |
+| **Frequency** | Quarterly for top 50 vendors (by spend); annually for remaining active vendors |
+| **Volume** | ~800–1,000 active vendors; top 50 = 45% of COGS |
+| **Owner** | Buyer |
+| **Participants** | Buyer, Category Manager, VP Merchandising, Receiving Supervisor (quality input), AP Supervisor (invoice accuracy input) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System auto-generates vendor scorecard per vendor for the review period with the following metrics: | System | — | Automated |
+| | • **On-time delivery %**: PO lines delivered on or before promised date ÷ total PO lines | | | |
+| | • **Fill rate %**: PO lines delivered at full ordered quantity ÷ total PO lines | | | |
+| | • **Quality reject rate %**: GR lines rejected for quality ÷ total GR lines | | | |
+| | • **Invoice accuracy %**: Invoices matching PO within tolerance on first submission ÷ total invoices | | | |
+| | • **Lead time variance**: avg actual lead time vs. agreed lead time (days) | | | |
+| | • **Return rate %**: RTV lines ÷ total receipt lines | | | |
+| 2 | Buyer reviews scorecard; adds qualitative notes: vendor responsiveness, market reputation, new product pipeline, relationship quality | Buyer | Category Manager | 15–30 min/vendor |
+| 3 | Buyer assigns overall rating: A (Preferred), B (Acceptable), C (Watch), D (Probation), F (Exit) | Buyer | Category Manager | 5 min/vendor |
+| 4 | For C-rated vendors: Buyer drafts improvement plan with specific targets and timeline; communicates to vendor | Buyer | Category Manager | 30 min/vendor |
+| 5 | For D/F-rated vendors: Buyer escalates to Category Manager for decision: (a) put on probation with 90-day improvement deadline, (b) initiate vendor exit process (transition to alternative vendor, settle outstanding obligations) | Buyer | VP Merchandising | 1 hour/vendor |
+| 6 | Quarterly: Category Manager and VP Merchandising review top 50 vendor scorecards in portfolio review meeting; discuss strategic vendor relationships, negotiate improved terms for A-rated vendors | Category Manager | VP Merchandising | 2 hours/quarter |
+| 7 | Annually: VP Merchandising and CFO review total vendor portfolio performance; approve vendor list for next year; authorize new vendor onboarding (W36) and vendor exits | VP Merchandising + CFO | CEO | 4 hours/year |
+| 8 | System maintains vendor scorecard history for trend analysis; supports vendor selection decisions in W2 and W36 | System | — | Automated |
+
+### System Touchpoints
+- Automated vendor scorecard generation from operational data (W44.1)
+- Multi-metric scoring: on-time delivery, fill rate, quality, invoice accuracy, lead time, return rate (W44.1)
+- Vendor rating system with configurable thresholds (W44.3)
+- Improvement plan tracking (W44.4)
+- Vendor lifecycle status: Active → Probation → Exit (W44.5)
+- Scorecard history and trend analysis (W44.8)
+- Integration with W2 (PO performance), W3 (receiving quality), W7 (invoice matching), W36 (vendor onboarding)
+
+### Staffing Implication
+- **Buyers**: Top 50 vendors reviewed quarterly × 30 min = 25 hours/quarter. Remaining ~750 vendors reviewed annually × 15 min = ~190 hours/year. Total ~290 hours/year ÷ 10 buyers = ~29 hours/buyer/year. Absorbed within existing buyer duties.
+- **Category Managers**: 2 hours/quarter for portfolio review + 1 hour/quarter for escalations = ~12 hours/year. Absorbed.
+- **VP Merchandising**: 2 hours/quarter for top vendor review + 4 hours/year for annual portfolio review = ~12 hours/year. Absorbed.
+
+---
+
 ## Workflow-to-Headcount Summary
 
 ### HQ Departments
 
 | Department | Roles | Count | Key Workflows | Validation |
 |---|---|---|---|---|
-| **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13, W20, W23, W27, W29 | ✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight + rebate management |
-| **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W8, W9, W14, W21, W24, W25, W26, W27, W28, W30 | ✅ Stretched during close week; capex/credit/petty cash absorbed; treasury daily cycle manageable with 2–3 analysts |
-| **Supply Chain & Logistics** | Supply Planners, Import Coordinator, DC Ops managers | ~30 | W3, W4, W19, W22 | ✅ 2–3 planners handle replenishment + transfers; home delivery picked by DC staff |
+| **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13, W20, W23, W27, W29, W32, W36, W40, W44 | ✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight + rebate management + seasonal planning + vendor onboarding + price maintenance |
+| **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W8, W9, W14, W21, W24, W25, W26, W27, W28, W30, W39, W42 | ✅ Stretched during close week; capex/credit/petty cash absorbed; treasury daily cycle manageable with 2–3 analysts; asset disposal and annual physical inventory absorbed |
+| **Supply Chain & Logistics** | Supply Planners, Demand Planners, Import Coordinator, DC Ops managers | ~30 | W3, W4, W19, W22, W31 | ✅ 2–3 planners handle replenishment + transfers; home delivery picked by DC staff; 1–2 dedicated demand planners handle forecasting |
 | **HR & Payroll** | HR Head, Recruitment, Payroll, HR Assistants | ~15 | W10, W15 | ✅ 2–3 payroll officers + 2 recruiters handle the volume |
 | **Marketing** | Brand, Promo, Loyalty, Ecommerce, Digital | ~20 | W13, W17 | ✅ Loyalty is largely automated; promo work is cyclical |
-| **Store Operations** | Director, Regional Managers, Ops Standards | ~20 | W5, W16, W29, W5d | ✅ 4 Regional Managers × 50 stores each; oversee new openings; offline recovery is Store Mgr responsibility |
-| **IT** | Infrastructure, Apps, Data, Security | ~25 | W16 (store setups) | ✅ 2–3 per store setup + BAU support |
-| **Other** | Legal, Internal Audit, Customer Service, Executive | ~50 | — | ✅ Support functions |
+| **Store Operations** | Director, Regional Managers, CS Manager, Ops Standards | ~22 | W5, W16, W29, W5d, W34, W37, W41 | ✅ 4 Regional Managers × 50 stores each; oversee new openings; offline recovery is Store Mgr responsibility; shift scheduling and complaint handling absorbed; 2–3 LPOs recommended for loss prevention |
+| **IT** | Infrastructure, Apps, Data, Security, BI Analyst | ~26 | W16 (store setups), W35 (reporting) | ✅ 2–3 per store setup + BAU support; 1 BI Analyst supports management reporting |
+| **Other** | Legal, Internal Audit, Customer Service (call center), Executive | ~50 | W41 (complaints), W42 (audit observation) | ✅ Support functions; call center handles multi-channel complaint intake |
 
 ### Per-Store Staffing (35 people)
 
@@ -1501,8 +2165,8 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 | Sales Associates | 16 | W5b (selling, paint mixing, lumber cutting), W11 (BOPIS pick) | 4/dept × 2 shifts = adequate for floor coverage |
 | Cashiers | 6 | W5b (checkout), W17 (loyalty scan), W28 (gift card sell/reload) | 5 terminals + 1 float; 2 shifts of 3; tight on coverage |
 | Receiving Clerks | 2 | W4 (store receiving from DC), W18 (DSD receiving), W22 (transfer receiving) | 2–3 DC trucks/week + 2–3 DSD/week + transfers; 2 clerks in shifts handle it |
-| Stock Associates | 3 | W4 (shelf stocking), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD shelving), W22 (transfer pick/receive) | 700 SKUs/day counting + stocking + DSD + transfers; adequate but minimal slack |
-| Customer Service Rep | 1 | W11 (BOPIS handoff), W12 (returns), W24 (credit application assistance), W28 (store credit), W29 (recall returns) | ~4 BOPIS + ~2 returns + ~0.5 gift cards/day = light; also handles special orders |
+| Stock Associates | 3 | W4 (shelf stocking), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD shelving), W22 (transfer pick/receive), W34 (shift adherence), W42 (annual count) | 700 SKUs/day counting + stocking + DSD + transfers; adequate but minimal slack |
+| Customer Service Rep | 1 | W11 (BOPIS handoff), W12 (returns), W24 (credit application assistance), W28 (store credit), W29 (recall returns), W33 (warranty claims), W38 (special order intake), W41 (complaints) | ~4 BOPIS + ~2 returns + ~0.5 gift cards + ~2 warranty claims + ~0.5 special orders + ~10 complaints/day = moderate; also handles special orders |
 | Maintenance | 1 | W5c (closing checklist), general upkeep | Standard for big-box format |
 | **Total** | **35** | | **Validated — headcount is lean but supportable** |
 
@@ -1527,19 +2191,20 @@ Summary of which ERP modules support which workflows:
 
 | ERP Module | Workflows Supported |
 |---|---|
-| **POS / Retail** | W5 (store selling, offline recovery), W12 (returns), W17 (loyalty at POS), W18 (DSD receiving), W23 (consignment sale), W28 (gift card/store credit), W29 (recall blocking) |
-| **Inventory Management** | W3 (GR posting), W4 (replenishment), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD GR), W20 (VMI stock), W22 (transfers), W23 (consignment tracking), W29 (recall quarantine) |
-| **Procurement** | W2 (PO cycle), W3 (receiving vs. PO), W18 (DSD PO/GR), W20 (VMI ASN), W21 (capex PO) |
-| **Warehouse Management** | W3 (putaway, cross-dock), W4 (pick/pack/ship), W19 (home delivery pick/pack), W22 (transfer pick) |
-| **Financials (GL/AP/AR)** | W7 (AP), W8 (AR), W9 (close), W14 (intercompany), W21 (capex & FA), W24 (credit approval), W25 (petty cash), W26 (budget), W27 (rebates), W28 (gift card liability), W30 (treasury & cash management) |
-| **Supply Chain Planning** | W2a (auto-replenishment), W4 (replenishment calculation), W22 (transfer planning), W27 (rebate accrual triggers) |
-| **HR & Payroll** | W10 (payroll), W15 (onboarding) |
+| **POS / Retail** | W5 (store selling, offline recovery), W12 (returns), W17 (loyalty at POS), W18 (DSD receiving), W23 (consignment sale), W28 (gift card/store credit), W29 (recall blocking), W33 (warranty claims), W38 (special order deposit) |
+| **Inventory Management** | W3 (GR posting), W4 (replenishment), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD GR), W20 (VMI stock), W22 (transfers), W23 (consignment tracking), W29 (recall quarantine), W37 (shrinkage tracking), W42 (annual physical inventory) |
+| **Procurement** | W2 (PO cycle), W3 (receiving vs. PO), W18 (DSD PO/GR), W20 (VMI ASN), W21 (capex PO), W36 (vendor onboarding), W38 (special order PO) |
+| **Warehouse Management** | W3 (putaway, cross-dock), W4 (pick/pack/ship), W19 (home delivery pick/pack), W22 (transfer pick), W42 (DC count) |
+| **Financials (GL/AP/AR)** | W7 (AP), W8 (AR), W9 (close), W14 (intercompany), W21 (capex & FA), W24 (credit approval), W25 (petty cash), W26 (budget), W27 (rebates), W28 (gift card liability), W30 (treasury & cash management), W39 (asset disposal), W42 (inventory adjustments) |
+| **Supply Chain Planning** | W2a (auto-replenishment), W4 (replenishment calculation), W22 (transfer planning), W27 (rebate accrual triggers), W31 (demand forecasting), W32 (seasonal buy planning) |
+| **HR & Payroll** | W10 (payroll), W15 (onboarding), W34 (shift scheduling), W43 (separation & offboarding) |
 | **Ecommerce** | W11 (BOPIS order flow), W12b (online returns), W19 (home delivery fulfillment) |
-| **CRM / Loyalty** | W17 (loyalty program), W24 (credit application) |
-| **Pricing / Merchandising** | W13 (promotions), W27 (vendor rebates) |
-| **Master Data** | W1 (SKU lifecycle), W16 (new store/location creation), W20 (VMI item setup), W23 (consignment item setup) |
-| **Reporting / Analytics** | W1 (assortment analysis), W9 (financial statements), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget), W26 (budget variance), W27 (rebate ROI), W28 (gift card liability), W29 (recall tracking), W30 (cash flow forecast) |
+| **CRM / Loyalty** | W17 (loyalty program), W24 (credit application), W41 (complaint management) |
+| **Pricing / Merchandising** | W13 (promotions), W27 (vendor rebates), W40 (regular price changes) |
+| **Master Data** | W1 (SKU lifecycle), W16 (new store/location creation), W20 (VMI item setup), W23 (consignment item setup), W36 (vendor onboarding), W38 (non-stock item creation) |
+| **Reporting / Analytics** | W1 (assortment analysis), W9 (financial statements), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget), W26 (budget variance), W27 (rebate ROI), W28 (gift card liability), W29 (recall tracking), W30 (cash flow forecast), W31 (forecast accuracy), W35 (management reporting rhythm), W37 (shrinkage/exception reports), W40 (price change analytics), W41 (complaint analytics), W42 (physical inventory summary), W44 (vendor scorecards) |
+| **Loss Prevention** | W37 (POS exception monitoring, shrinkage tracking) |
 
 ---
 
-*Document Version: 3.0 | Date: 2026-05-30 | Added W26–W30 (budget, rebates, gift cards, product recall, offline POS recovery, treasury); fixed W2b FX handling, W3 damage disposition, W4 allocation, W5a offline cache, W5b BIR receipt/customer display, W7 exception SLA, W10 final pay, W13 digital coupons, W16 go-live checklist, W18 volume clarification; updated summary tables*
+*Document Version: 4.0 | Date: 2026-05-30 | Added W31–W44 (demand forecasting, seasonal buy planning, warranty claims, shift scheduling, management reporting, vendor onboarding, loss prevention, special orders, fixed asset disposal, regular price changes, customer complaints, annual physical inventory, employee offboarding, vendor performance review); updated summary tables*

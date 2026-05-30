@@ -217,13 +217,12 @@
 | NFR-008 | Scalability | Support growth to 300+ stores |
 | NFR-009 | Localization | Full Philippine localization (language, tax, regulatory) |
 | NFR-010 | Data Privacy | RA 10173 (Data Privacy Act) compliance |
-| NFR-011 | Deployment Model | Cloud-first with offline POS capability |
-| NFR-012 | Integration Architecture | API-first; support REST/webhook/file-based |
-| NFR-013 | Disaster Recovery | RPO ≤ 1 hour; RTO ≤ 4 hours for core; POS must operate offline 8+ hours with automatic sync reconciliation upon reconnection (see [Data Volumes §6](data-volumes-and-integrations.md#6-batch-processing-windows)) |
+| NFR-011 | Offline POS Capability | POS terminals must continue selling during network outages (≥ 8 hours offline); auto-sync upon reconnection |
+| NFR-012 | Integration Capability | Must support standard integration methods with all external systems listed in [Integration Touchpoints](model-company-profile.md#143-integration-touchpoints) |
+| NFR-013 | Disaster Recovery | RPO ≤ 1 hour; RTO ≤ 4 hours for core; POS must operate offline 8+ hours with automatic sync reconciliation upon reconnection |
 | NFR-014 | Data Migration | Tools/process for migrating from legacy accounting, POS, payroll, and inventory data |
-| NFR-015 | Batch Processing Windows | Month-end close, payroll runs, and bulk report generation must complete within defined off-peak windows (see [Data Volumes §6](data-volumes-and-integrations.md#6-batch-processing-windows)) |
-| NFR-016 | Infrastructure & DR Topology | Cloud-primary deployment with regional redundancy; primary region in Asia-Pacific with DR failover; stores connect via MPLS/fiber primary + 4G/5G LTE failover; DCs on redundant fiber; see [Model Company Profile §14.4](model-company-profile.md#144-target-it-infrastructure) |
+| NFR-015 | Batch Processing Windows | Month-end close, payroll runs, and bulk report generation must complete within defined off-peak windows (see [Data Volumes §5](data-volumes-and-integrations.md#5-batch-processing-windows)) |
 
 ---
 
-*Document Version: 1.2 | Date: 2026-05-30 | Fixed NFR-014/015 ordering; added NFR-016 (Infrastructure & DR Topology); added cross-document references*
+*Document Version: 1.3 | Date: 2026-05-30 | Removed NFR-016 (technical detail); reworded NFR-011/012 to be business-level; removed deployment model prescriptions*

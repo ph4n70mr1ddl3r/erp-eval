@@ -80,27 +80,27 @@
 
 ## 3. Integration Detail Matrix
 
-| Source | Target | Data | Direction | Frequency | Protocol |
-|---|---|---|---|---|---|
-| POS | ERP | Sales transactions | POS → ERP | Real-time (or batch every 15 min) | API |
-| ERP | POS | Price file, item master, promos | ERP → POS | Hourly sync | API |
-| ERP | POS | Customer lookup | ERP → POS | Real-time | API |
-| Ecommerce | ERP | Orders, customer registrations | ECOM → ERP | Real-time | REST API |
-| ERP | Ecommerce | Inventory levels, prices, catalog | ERP → ECOM | Near real-time (5 min) | REST API |
-| ERP | Ecommerce | Order fulfillment status | ERP → ECOM | Real-time | Webhook |
-| ERP | WMS | Transfer orders, PO receipts | ERP → WMS | Real-time | API |
-| WMS | ERP | Pick confirmation, ship confirm, inventory | WMS → ERP | Real-time | API |
-| ERP | Loyalty/CRM | Points earning triggers | ERP → CRM | Real-time | API |
-| CRM/POS | ERP | Points redemption | CRM → ERP | Real-time | API |
-| ERP | Banks | Payment files (AP) | ERP → Bank | Batch (daily) | File (CSV/XML) |
-| Banks | ERP | Bank statements | Bank → ERP | Batch (daily) | File / API |
-| ERP | BIR eFPS | Tax returns | ERP → BIR | Monthly/Quarterly | File |
-| ERP | SSS/PH/PagIBIG | Contribution files | ERP → Statutory | Monthly | File |
-| ERP | Delivery Partners | Delivery orders | ERP → 3PL | Real-time | API |
-| Delivery Partners | ERP | Delivery status | 3PL → ERP | Real-time | Webhook |
-| Payment GW | ERP | Payment confirmation | GW → ERP | Real-time | Webhook |
-| ERP | Supplier Portal | POs, schedules | ERP → Portal | Real-time | Web portal |
-| Supplier Portal | ERP | ASN, invoices | Portal → ERP | As submitted | Web portal |
+| Source | Target | Data | Direction | Frequency |
+|---|---|---|---|---|
+| POS | ERP | Sales transactions | POS → ERP | Real-time (or batch every 15 min) |
+| ERP | POS | Price file, item master, promos | ERP → POS | Hourly sync |
+| ERP | POS | Customer lookup | ERP → POS | Real-time |
+| Ecommerce | ERP | Orders, customer registrations | ECOM → ERP | Real-time |
+| ERP | Ecommerce | Inventory levels, prices, catalog | ERP → ECOM | Near real-time (5 min) |
+| ERP | Ecommerce | Order fulfillment status | ERP → ECOM | Real-time |
+| ERP | WMS | Transfer orders, PO receipts | ERP → WMS | Real-time |
+| WMS | ERP | Pick confirmation, ship confirm, inventory | WMS → ERP | Real-time |
+| ERP | Loyalty/CRM | Points earning triggers | ERP → CRM | Real-time |
+| CRM/POS | ERP | Points redemption | CRM → ERP | Real-time |
+| ERP | Banks | Payment files (AP) | ERP → Bank | Batch (daily) |
+| Banks | ERP | Bank statements | Bank → ERP | Batch (daily) |
+| ERP | BIR eFPS | Tax returns | ERP → BIR | Monthly/Quarterly |
+| ERP | SSS/PH/PagIBIG | Contribution files | ERP → Statutory | Monthly |
+| ERP | Delivery Partners | Delivery orders | ERP → 3PL | Real-time |
+| Delivery Partners | ERP | Delivery status | 3PL → ERP | Real-time |
+| Payment GW | ERP | Payment confirmation | GW → ERP | Real-time |
+| ERP | Supplier Portal | POs, schedules | ERP → Portal | Real-time |
+| Supplier Portal | ERP | ASN, invoices | Portal → ERP | As submitted |
 
 ---
 
@@ -115,49 +115,7 @@
 | WMS ↔ ERP (inventory) | 1 minute | DC inventory inaccuracy |
 | Payment confirmation | 30 seconds | Failed order completion |
 
-## 5. Network Bandwidth Estimates
-
-### Per-Store Bandwidth (Minimum)
-
-| Data Flow | Estimated Volume | Frequency | Bandwidth Needed |
-|---|---|---|---|
-| POS → ERP (sales transactions) | ~4,700 txns/day × ~2 KB = ~9.4 MB/day | Real-time / 15-min batch | ~10 Kbps sustained |
-| ERP → POS (price/item/promo sync) | ~35,000 SKUs × ~1 KB = ~35 MB full; delta ~1 MB | Hourly (delta); nightly (full) | ~100 Kbps per sync burst |
-| Ecommerce inventory update | ~200 stores × ~5 KB = ~1 MB | Per-store: 5-min cycle | Shared with POS link |
-| System updates / patches | Varies | Weekly/monthly | Burst; ~50 MB per update |
-| **Minimum per-store link** | | | **2 Mbps** (stable, with headroom) |
-
-### Per-DC Bandwidth
-
-| Data Flow | Estimated Volume | Bandwidth Needed |
-|---|---|---|
-| WMS ↔ ERP (inventory, pick/ship) | ~1,000 transactions/day × ~5 KB | ~1 Mbps sustained |
-| RF gun traffic (150 devices/DC) | ~100 msgs/device/hour × ~1 KB | ~400 Kbps sustained |
-| Label printing, document sync | ~5 MB/hour | Burst |
-| **Minimum per-DC link** | | **10 Mbps** (stable) |
-
-### HQ / Corporate Bandwidth
-
-| Data Flow | Bandwidth Needed |
-|---|---|
-| Back-office users (~300 concurrent) | ~50 Mbps |
-| Report generation, batch processing | ~20 Mbps burst |
-| Ecommerce platform sync | ~10 Mbps |
-| **Minimum HQ link** | **100 Mbps** |
-
-### Total Estimated WAN Bandwidth
-
-| Site Type | Count | Per-Site BW | Aggregate |
-|---|---|---|---|
-| Stores | 200 | 2 Mbps | 400 Mbps |
-| DCs | 5 | 10 Mbps | 50 Mbps |
-| HQ | 1 | 100 Mbps | 100 Mbps |
-| **Total** | **206** | | **~550 Mbps** |
-
-> **Recommendation**: Each store should have a primary MPLS/fiber link (2 Mbps minimum)
-> plus a 4G/5G LTE failover for POS resilience. DCs should have redundant fiber connections.
-
-## 6. Batch Processing Windows
+## 5. Batch Processing Windows
 
 | Process | Schedule | Estimated Duration | Window |
 |---|---|---|---|
@@ -186,4 +144,4 @@
 
 ---
 
-*Document Version: 2.2 | Date: 2026-05-30 | Added cross-document references*
+*Document Version: 3.0 | Date: 2026-05-30 | Removed network bandwidth estimates and integration protocols (moved to technical guidelines); renumbered §6 to §5; kept business-level volumes, timings, and batch windows*

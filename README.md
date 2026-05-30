@@ -15,7 +15,7 @@ erpplans/
 ├── 04-oracle-netsuite/          ← Oracle NetSuite evaluation (placeholder)
 ├── 05-microsoft-d365/           ← Microsoft Dynamics 365 evaluation (placeholder)
 ├── 06-odoo/                     ← Odoo evaluation (placeholder)
-└── 07-methodology/              ← Scoring methodology & implementation roadmap
+├── 07-methodology/              ← Scoring methodology, implementation roadmap, technical guidelines
 ```
 
 ## The Model Company at a Glance

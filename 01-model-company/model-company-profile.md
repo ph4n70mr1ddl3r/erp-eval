@@ -177,23 +177,6 @@ The company operates through **5 legal entities** organized as follows:
 - Support for cut-to-length items (lumber, pipes, wire)
 - Support for paint mixing (custom SKU generation)
 
-### POS Hardware Specification
-
-| Component | Specification |
-|---|---|
-| **Terminal Type** | Android-based all-in-one POS terminal (touchscreen) |
-| **Screen Size** | 15" touchscreen (cashier) + customer-facing display |
-| **Operating System** | Android 12+ (POS app runs as managed device via MDM) |
-| **Barcode Scanner** | Integrated 2D imager (1D + 2D: QR, DataMatrix) + handheld scanner accessory |
-| **Receipt Printer** | 80mm thermal printer (networked; BIR-registered) |
-| **Cash Drawer** | USB-triggered; 4-bill / 8-coin compartments |
-| **Connectivity** | Ethernet (primary) + Wi-Fi + 4G LTE SIM (failover) |
-| **Offline Storage** | Local SQLite/encrypted DB; stores up to 8 hours of transactions (~4,700 txns) |
-| **Payment Device** | Integrated PIN pad for card (EMV/chip & contactless); external GCash/Maya QR stand |
-| **Management** | Centrally managed via MDM (e.g., Esper, Android Enterprise); OTA updates |
-
-> **Rationale**: Android-based POS terminals provide a balance of cost-effectiveness (~PHP 15–25K/terminal), offline capability, and broad ERP POS app compatibility. The Android ecosystem is well-supported by major POS middleware providers and simplifies device management across 200 stores via MDM.
-
 ---
 
 ## 6. Product & Merchandise
@@ -620,42 +603,23 @@ BuildRight Holdings, Inc.
 | **Approvals / Workflow** | Configurable approval matrix for PO, capex, discounts |
 | **Mobile** | Store manager app, receiving app, executive dashboard |
 
-### 14.3 Target IT Infrastructure
+### 14.3 Integration Touchpoints
 
-> This section describes the target infrastructure topology for the ERP system.
+The following external systems must connect to the ERP. Each ERP implementation
+should propose its own integration architecture.
 
-| Component | Specification |
-|---|---|
-| **Deployment Model** | Cloud-primary (SaaS ERP); no on-premise application servers |
-| **Cloud Region** | Asia-Pacific (Singapore or Hong Kong) as primary; secondary DR region |
-| **DR Strategy** | Active-passive with automated failover; RPO ≤ 1 hour, RTO ≤ 4 hours for back-office |
-| **Store Connectivity** | MPLS or dedicated fiber (2 Mbps minimum) + 4G/5G LTE failover per store |
-| **DC Connectivity** | Redundant fiber links (10+ Mbps) at each DC; dual ISP |
-| **HQ Connectivity** | 100 Mbps fiber with redundant ISP |
-| **POS Offline** | Local device storage supports 8+ hours of autonomous selling; auto-syncs on reconnection |
-| **WAN Management** | SD-WAN recommended for traffic prioritization across 200+ sites |
-| **Backup** | Daily automated database snapshots (03:00); 30-day rolling; 7-year archive to cold storage |
-| **Monitoring** | Centralized NOC dashboard; alerting for store link-down, POS health, DC system health |
-| **Security** | WAF for cloud APIs; endpoint protection on POS devices; SOC 2 / ISO 27001 compliance target |
-
-> **Rationale**: A cloud-primary model eliminates the need for on-premise server infrastructure
-> at 206 locations. The MPLS/fiber + LTE dual-link strategy ensures POS continuity even during
-> primary link failures. Asia-Pacific cloud hosting minimizes latency for Philippines-based users.
-
-### 14.4 Integration Requirements
-
-| Integration | Direction | Protocol |
+| Integration | Direction | Data Exchanged |
 |---|---|---|
-| POS ↔ ERP | Bidirectional | API / real-time |
-| Ecommerce ↔ ERP | Bidirectional | REST API |
-| Payment Gateway ↔ ERP | Inbound | Webhook / API |
-| Bank ↔ ERP (Banking) | Bidirectional | File-based (BPI, BDO formats) / API |
-| BIR eFPS ↔ ERP | Outbound | File-based (tax returns) |
-| SSS / PhilHealth / Pag-IBIG ↔ ERP | Outbound | File-based (PRN, contribution tables) |
-| Delivery Partners ↔ ERP | Bidirectional | API |
-| Loyalty Engine ↔ ERP/POS | Bidirectional | API |
-| WMS (RF Guns) ↔ ERP | Bidirectional | API / middleware |
-| Supplier Portal ↔ ERP | Bidirectional | Web portal / EDI |
+| POS ↔ ERP | Bidirectional | Sales transactions, prices, item master, promos, customer lookup |
+| Ecommerce ↔ ERP | Bidirectional | Orders, inventory levels, prices, catalog, fulfillment status, customer data |
+| Payment Gateway ↔ ERP | Inbound | Payment confirmations |
+| Bank ↔ ERP | Bidirectional | Payment files, bank statements |
+| BIR eFPS ↔ ERP | Outbound | Tax returns |
+| SSS / PhilHealth / Pag-IBIG ↔ ERP | Outbound | Contribution files |
+| Delivery Partners ↔ ERP | Bidirectional | Delivery orders, delivery status |
+| Loyalty Engine ↔ ERP | Bidirectional | Points earning/redemption |
+| WMS (RF Guns) ↔ ERP | Bidirectional | Transfer orders, pick/ship confirmations, inventory |
+| Supplier Portal ↔ ERP | Bidirectional | POs, ASN, invoices |
 
 ---
 
@@ -764,4 +728,4 @@ BuildRight Holdings, Inc.
 
 ---
 
-*Document Version: 2.1 | Date: 2026-05-30 | Added: POS hardware specification (§5), target IT infrastructure (§14.3), DC4 growth note; reconciled ecommerce volume to exactly 3% target*
+*Document Version: 2.2 | Date: 2026-05-30 | Removed POS hardware spec and IT infrastructure (moved to technical guidelines); simplified integration table to business-level touchpoints; reconciled ecommerce volumes; added DC4 growth note*

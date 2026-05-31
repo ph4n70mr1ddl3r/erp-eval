@@ -1,6 +1,6 @@
 # Finance & Treasury Workflows
 
-> AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, and bad debt management.
+> AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, and product costing & margin analysis.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -23,6 +23,7 @@
 - [W70. Credit Note & Debit Note Aging Reconciliation](#credit-note-debit-note-aging-reconciliation)
 - [W80. FX Hedging & Forward Contract Management](#fx-hedging-forward-contract-management)
 - [W81. Bad Debt Provisioning, Write-Off & Recovery](#bad-debt-provisioning-write-off-recovery)
+- [W85. Product Costing & Margin Analysis Review](#product-costing-margin-analysis-review)
 
 ---
 
@@ -988,3 +989,57 @@ For a bad debt write-off to be deductible for Philippine income tax purposes (pe
 
 ---
 
+
+## W85. Product Costing & Margin Analysis Review
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly margin variance review during W9a close; or quarterly assortment review (W1); or ad-hoc triggered by significant vendor cost change (W40) or competitive pricing pressure (W61) |
+| **Frequency** | Monthly margin monitoring; quarterly deep-dive review; annual category-level strategy review |
+| **Volume** | 35,000 active SKUs across 200 stores + 5 DCs; ~20–25 product categories |
+| **Owner** | Cost Accountant |
+| **Participants** | Cost Accountant, Controller, Category Managers, Pricing Analysts, VP Merchandising, CFO |
+
+### Background
+
+Product costing and margin analysis is currently fragmented: WAC verification happens during month-end close (W9a.6a), margin impact assessment occurs during price changes (W40.2), and assortment review (W1) considers category-level margin targets. This workflow consolidates these into a structured periodic review that ensures margin erosion is detected early, cost changes are proactively managed, and pricing strategy decisions are data-driven. It bridges the Finance and Merchandising functions.
+
+### Monthly Margin Monitoring (by day 10, after W9a close)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System generates monthly margin analysis report per category and per SKU: (a) gross margin % by category (current month vs. prior month vs. same month prior year vs. budget), (b) top 50 margin-declining SKUs (by margin % change month-over-month), (c) top 50 margin-improving SKUs, (d) SKUs with gross margin below minimum threshold (configurable per category, typically 15–20%), (e) WAC movement analysis — SKUs with cost change > 5% in the month, (f) promo margin impact: SKUs on promotion during the month with actual vs. planned margin, (g) category-level contribution to total gross profit | System | — | Automated |
+| 2 | Cost Accountant reviews margin analysis report; investigates SKUs with margin below threshold or significant margin decline: (a) cost increase not passed to SRP (W40 not executed after cost increase), (b) promotional pricing eroding margin below plan, (c) WAC distortion from small-quantity receipts at high cost, (d) vendor cost change not yet reflected in SRP decision | Cost Accountant | Controller | 2–3 hours/month |
+| 3 | Cost Accountant prepares margin exception report for Controller: top 20 margin concerns with root cause analysis and recommended action (SRP increase per W40, vendor negotiation per W44, assortment exit per W68, or accept lower margin with strategic justification) | Cost Accountant | Controller | 1 hour/month |
+| 4 | Controller reviews margin exception report with VP Merchandising in monthly margin review meeting; agrees on action items with deadlines; action items tracked in system | Controller / VP Merchandising | CFO | 30 min/month |
+
+### Quarterly Deep-Dive Review (aligned with W1 assortment review)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 5 | Cost Accountant prepares quarterly category margin deep-dive per category: (a) category gross margin % trend over 4 quarters, (b) category margin vs. budget and vs. target, (c) top 10 margin contributors (SKUs generating highest absolute gross profit), (d) bottom 10 margin drags (SKUs with lowest margin % and significant revenue), (e) vendor-level margin analysis — margin by vendor within each category, (f) cost structure breakdown per category: material cost, landed cost components (duty, freight, insurance), (g) import vs. domestic margin comparison, (h) promotional margin impact analysis: average margin during promo periods vs. non-promo periods | Cost Accountant | Controller | 8 hours/quarter |
+| 6 | Cost Accountant and Pricing Analyst jointly prepare pricing strategy recommendations per category: (a) categories where SRP increases are recommended (cost has risen but SRP not adjusted), (b) categories where competitive pricing pressure (W61 data) is limiting margin, (c) categories where vendor cost reduction should be negotiated (W44), (d) categories with structural low margin requiring assortment changes (W1, W68), (e) categories where quantity break pricing (W40.15–19) is eroding margin below acceptable levels | Cost Accountant / Pricing Analyst | Controller | 4 hours/quarter |
+| 7 | Controller and VP Merchandising review quarterly margin deep-dive together with Category Managers; each Category Manager presents margin improvement plan for categories below target; agreed actions integrated into W1 assortment review and W40 pricing execution | Controller / VP Merchandising | CFO | 2 hours/quarter |
+| 8 | Cost Accountant updates system margin thresholds per category if needed (based on strategic pricing decisions); updates category margin targets for next quarter's monitoring | Cost Accountant | Controller | 30 min/quarter |
+
+### Annual Category-Level Strategy Review (aligned with W26 budget cycle)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 9 | Cost Accountant prepares annual margin strategy report: (a) 12-month margin trend by category with quarterly granularity, (b) year-over-year margin movement by category with driver analysis (cost, mix, promo, pricing), (c) vendor rebate impact on effective margin (W27), (d) category margin vs. industry benchmarks (where available), (e) proposed margin targets by category for next year, (f) margin improvement opportunities with estimated P&L impact | Cost Accountant | Controller | 16 hours/year |
+| 10 | CFO reviews annual margin strategy with VP Merchandising and CEO; agreed category margin targets feed into W26 annual budget as gross profit targets; significant pricing strategy changes approved and scheduled for execution through W40 | CFO / VP Merchandising | CEO | 2 hours/year |
+
+### System Touchpoints
+- Automated monthly margin analysis report: category-level and SKU-level margin % with trend comparison (W85.1)
+- Margin exception reporting: SKUs below threshold with root cause classification (W85.3)
+- Quarterly category margin deep-dive: vendor-level analysis, import vs. domestic, promo vs. non-promo (W85.5)
+- Configurable margin thresholds per category with alerting (W85.8)
+- Annual margin strategy report with driver analysis and proposed targets (W85.9)
+- Integration with W1 (assortment review — margin is a key input to SKU add/drop decisions), W9a (WAC verification and month-end inventory valuation), W13 (promo margin impact), W27 (vendor rebate impact on effective margin), W40 (SRP changes — margin impact calculator), W44 (vendor cost negotiation), W61 (competitive pricing pressure), W68 (product discontinuation — margin as exit criterion), W83 (campaign ROI — margin data feeds campaign performance analysis)
+
+### Staffing Implication
+- **Cost Accountant**: adds ~4 hours/month for monthly review + ~12 hours/quarter for deep-dive + ~16 hours/year for annual review = ~100 hours/year. Absorbed within existing Finance team.
+- **Pricing Analysts**: add ~4 hours/quarter for joint pricing strategy recommendations. Absorbed.
+- **No incremental headcount.**
+
+---

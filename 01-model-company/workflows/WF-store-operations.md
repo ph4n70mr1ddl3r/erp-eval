@@ -1,6 +1,6 @@
 # Store Operations Workflows
 
-> Daily store selling, POS, returns, loyalty, DSD receiving, gift cards, new store opening/closure, warranty, facility maintenance, and performance review.
+> Daily store selling, POS, returns, loyalty, DSD receiving, gift cards, new store opening/closure, warranty, facility maintenance, performance review, and planogram compliance.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -23,6 +23,7 @@
 - [W69. Price Compliance Audit](#price-compliance-audit)
 - [W71. Store Physical Security & Access Control](#store-physical-security-access-control)
 - [W75. Layaway / Installment Sales](#layaway-installment-sales)
+- [W86. Planogram Compliance & Store Layout Verification](#planogram-compliance-store-layout-verification)
 
 ---
 
@@ -1073,3 +1074,65 @@ Layaway ("reserved items, installment payment") is a standard practice in Philip
 
 ---
 
+
+## W86. Planogram Compliance & Store Layout Verification
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly planogram audit schedule; or new planogram release from Merchandising; or post-reset verification after promotional display change |
+| **Frequency** | Monthly audit per store (all 200 stores); ad-hoc after planogram resets or new store openings (W16) |
+| **Volume** | 200 stores × 4–6 departments per store = ~800–1,200 department-level audits/month; each department contains 50–200 SKUs in the planogram |
+| **Owner** | Department Supervisor (in-store execution); Merchandise Planner (planogram design) |
+| **Participants** | Department Supervisor, Stock Associate, Merchandise Planner, Store Manager, Regional Manager |
+
+### Background
+
+Planograms define the visual layout of products on store shelves — which SKUs go where, how many facings, at what height, and in what sequence. Planogram compliance ensures that stores display products according to the approved layout, maximizing sell-through, customer navigation, and brand consistency across all 200 locations. While W63 covers shelf label accuracy and W69 covers price compliance, there is no workflow for verifying that products are physically placed in the correct locations according to the planogram.
+
+### Planogram Design & Distribution
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Merchandise Planner creates or updates planogram per category using planogram design tool: (a) defines shelf layout — bay heights, shelf positions, SKU-to-shelf assignment, number of facings, adjacent product rules, (b) incorporates category management insights from W1 assortment review — new SKUs added, discontinued SKUs removed, space allocation adjusted based on sales velocity, (c) considers fixture type per store format (standard vs. compact stores), (d) generates planogram document per department per store format with visual layout, SKU placement map, and compliance checklist | Merchandise Planner | Category Manager | 4–8 hours/category/update |
+| 2 | Category Manager reviews and approves planogram; VP Merchandising approves for major category resets (occurring 2–4 times/year aligned with W1 quarterly cycles) | Category Manager | VP Merchandising | 1 hour/review |
+| 3 | System distributes planogram to stores: Merchandise Planner uploads approved planogram to system; Store Managers and Department Supervisors access planogram view on tablet/terminal; planogram includes visual shelf map, SKU images, facing counts, and before/after photos for resets | System / Merchandise Planner | Store Ops Director | Automated distribution |
+| 4 | **Planogram reset execution** (for major category resets): Department Supervisors execute planogram reset during non-business hours (evening or before opening) — Stock Associates remove products from shelves per old layout, reposition shelves if needed, place products per new planogram using tablet visual guide; Stock Associate scan-confirms each SKU placement against planogram using handheld; system records compliance per SKU position | Dept. Supervisor / Stock Associate | Store Manager | 2–4 hours/department/reset |
+
+### Monthly Planogram Compliance Audit
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 5 | System generates monthly planogram audit sample per store: 2–3 departments per month (rotating so all departments are audited over 2–3 months); 20–30 SKU positions per department randomly selected for verification | System | — | Automated (nightly) |
+| 6 | Department Supervisor or designated Stock Associate conducts planogram audit: walks assigned department with handheld showing current planogram; for each sampled SKU position: (a) scans shelf location barcode (if location-level barcoding available) or selects position on planogram map, (b) scans item barcode at that position, (c) system compares scanned item to planogram-expected item and facing count, (d) enters result: Correct / Wrong Item / Wrong Position / Out of Stock / Facing Count Mismatch | Dept. Supervisor / Stock Associate | Store Manager | 20–30 min/department |
+| 7 | System calculates planogram compliance score per department: (correct positions ÷ total positions audited) × 100; stores must achieve ≥ 90% planogram compliance score | System | — | Automated |
+| 8 | Department Supervisor investigates non-compliant positions: (a) wrong item in position — Stock Associate placed wrong SKU during replenishment or reset, (b) out of stock — SKU allocated to position but no inventory available (feeds into W4 replenishment), (c) facing count mismatch — insufficient facings maintained due to low stock or over-crowding from adjacent SKUs, (d) wrong position — SKU present but in incorrect location (often from customer browsing returns) | Dept. Supervisor | Store Manager | 15 min/department |
+| 9 | Department Supervisor corrects non-compliant positions immediately during audit (where stock is available): repositions SKUs to match planogram, adjusts facing counts | Stock Associate | Dept. Supervisor | 15–30 min/department |
+| 10 | Department Supervisor documents non-compliance exceptions that cannot be resolved immediately (out of stock, fixture issue) with photos and reason code in system; exception flagged for Store Manager review | Dept. Supervisor | Store Manager | 5 min/department |
+| 11 | Store Manager reviews planogram compliance dashboard weekly: compliance score per department, trend vs. prior month, top non-compliance reasons; departments below 90% require corrective action plan from Department Supervisor | Store Manager | Regional Manager | 15 min/week |
+| 12 | Monthly: Regional Manager reviews planogram compliance scores across all 50 assigned stores; identifies stores consistently below 90% for targeted coaching; compliance score included in W67 Store Performance Scorecard | Regional Manager | Store Ops Director | 1 hour/month |
+| 13 | Quarterly: Merchandise Planner reviews planogram compliance data chain-wide — identifies categories with systematically low compliance across stores (indicating planogram design issues rather than execution issues); feeds into W1 category review for planogram redesign | Merchandise Planner | VP Merchandising | 2 hours/quarter |
+
+### Planogram Compliance for New Store Openings
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 14 | During new store opening (W16 step 10 — receiving and stocking): Department Supervisors execute initial planogram using planogram view on tablet; Stock Associates place every SKU per planogram with scan confirmation; Merchandise Planner or Store Ops representative verifies initial placement before store opens | Dept. Supervisor / Stock Associate | Store Manager | Per W16 (1–2 days) |
+| 15 | At new store 30-day post-opening review (W16 T+30): Merchandise Planner reviews initial planogram compliance report for new store; identifies positioning issues caused by local fixture variations or stock availability; adjusts planogram if needed | Merchandise Planner | Category Manager | 2 hours/store |
+
+### System Touchpoints
+- Planogram design tool integrated with item master and category management (W86.1)
+- Planogram visual layout display on store tablet/terminal with SKU images and facing counts (W86.3)
+- Scan-verified planogram reset execution with handheld barcode confirmation (W86.4)
+- Monthly planogram audit sampling and compliance scoring per department (W86.5–7)
+- Non-compliance exception documentation with photos and reason codes (W86.10)
+- Planogram compliance dashboard: score per department, per store, chain-wide trend (W86.11–12)
+- Chain-wide planogram analytics: category-level compliance, design vs. execution issue identification (W86.13)
+- Integration with W1 (assortment review — planogram redesign trigger), W4 (replenishment — out-of-stock positions), W16 (new store — initial planogram execution), W63 (shelf labels — label matches planogram position), W67 (store performance — compliance KPI), W68 (product discontinuation — remove from planogram), W83 (campaign — promotional display planograms)
+
+### Staffing Implication
+- **Department Supervisors**: ~30 min/month for audit + 15 min/month for corrections per department = ~45 min/department/month. With 4–6 departments audited per month, this is ~2–3 hours/month. Absorbed into existing duties.
+- **Stock Associates**: audit walk + corrections add ~45 min/department/month. Absorbed within existing 3–4 Stock Associates per store.
+- **Merchandise Planner**: adds ~4–8 hours per planogram update + 2 hours/quarter for chain-wide review. Absorbed within existing Merchandising team (~40).
+- **No incremental headcount.**
+
+---

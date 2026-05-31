@@ -1,6 +1,6 @@
 # Customer Experience Workflows
 
-> Complaint resolution, corporate/project accounts, price matching, and satisfaction measurement.
+> Complaint resolution, corporate/project accounts, price matching, satisfaction measurement, account reactivation, and feedback-to-action loop.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -12,6 +12,8 @@
 - [W58. Corporate / Project Account Management](#corporate-project-account-management)
 - [W61. Competitor Price Match Process](#competitor-price-match-process)
 - [W65. Customer Satisfaction Measurement](#customer-satisfaction-measurement)
+- [W84. Customer Account Reactivation](#customer-account-reactivation)
+- [W87. Customer Feedback-to-Action Loop](#customer-feedback-to-action-loop)
 
 ---
 
@@ -219,7 +221,124 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 
 ---
 
+## W84. Customer Account Reactivation
 
+| Field | Detail |
+|---|---|
+| **Trigger** | Former customer (dormant, closed, or written-off) requests to resume business; or Sales Rep identifies reactivation opportunity during prospecting |
+| **Frequency** | ~20–40 reactivation requests/month; peaks during construction season (October–March) |
+| **Volume** | ~5,200 active accounts; ~300–500 dormant/inactive accounts at any time; ~10–20 written-off accounts per year potentially recoverable |
+| **Owner** | AR Supervisor |
+| **Participants** | Sales Rep, AR Clerk, AR Supervisor, Finance Manager, Credit Committee (if large account) |
+
+### Background
+
+Customer accounts may become dormant (no transactions for 6+ months, per W8), closed (per W8 step 12), or written off (per W81). When these customers wish to resume business — often driven by new construction projects, change of ownership, or settlement of prior obligations — a formal reactivation process ensures appropriate risk assessment while avoiding unnecessary friction. This workflow covers all reactivation scenarios.
+
+### Reactivation Scenarios
+
+| Scenario | Prior Status | Risk Level | Reactivation Path |
+|---|---|---|---|
+| **Dormant reactivation** | Inactive (credit limit reduced to PHP 0) | Low | Abbreviated credit review |
+| **Voluntarily closed → reopen** | Closed by customer request | Low–Medium | Standard W24 credit application |
+| **Written-off → repayment & reactivate** | Written off per W81 | High | Enhanced credit review + approval |
+| **Written-off → new entity** | New company formed by same principal | High | Full W24 + legal review |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer or Sales Rep initiates reactivation request: provides customer name or prior account number, reason for reactivation, and current business status | Customer / Sales Rep | AR Clerk | 10 min |
+| 2 | AR Clerk retrieves prior account record from system; reviews account history: (a) prior credit limit and payment history, (b) reason for dormancy/closure/write-off, (c) outstanding balance (if any), (d) any pending disputes or unresolved issues | AR Clerk | AR Supervisor | 15 min |
+| 3 | **Dormant reactivation** (no write-off, reactivation within 12 months): (a) AR Clerk contacts customer to confirm business is active and update contact details, (b) if prior credit assessment is < 12 months old, AR Clerk reactivates account with prior credit limit (AR Supervisor approval required), (c) if prior credit assessment is > 12 months old, process abbreviated W24 credit review — updated financial statements + trade references, (d) system changes account status from "Inactive" to "Active"; restores credit limit per approval | AR Clerk / AR Supervisor | AR Supervisor | 30 min–1 hour |
+| 4 | **Voluntarily closed → reopen** (customer previously closed account per W8.12 with zero balance): (a) AR Clerk processes standard W24 credit application with updated business documents, (b) if closed within 12 months and prior payment history was good (no > 60-day overdue), AR Supervisor may approve with prior credit limit, (c) if closed > 12 months ago or prior payment issues, full W24 credit assessment required | AR Clerk / AR Supervisor | Finance Manager | Per W24 |
+| 5 | **Written-off account reactivation** (customer previously written off per W81 and now wishes to resume): (a) AR Clerk confirms prior written-off balance has been fully settled (payment, settlement agreement per W81.11, or court-approved compromise) — no reactivation while prior balance is outstanding, (b) customer must provide: updated business registration, current financial statements, and explanation of circumstances leading to prior write-off (e.g., ownership change, resolved dispute, business recovery), (c) AR Clerk processes enhanced credit review: full W24 credit assessment + additional trade reference checks + external credit bureau inquiry (if available), (d) mandatory Finance Manager review regardless of amount, (e) Credit Committee approval (CFO + Finance Manager + AR Supervisor) required for reactivated credit limit > PHP 200,000, (f) initial credit limit set conservatively (typically 50% of prior limit) with 6-month probationary period — system flags all transactions on reactivated accounts for first 6 months | AR Clerk / Finance Manager / Credit Committee | CFO | 2–4 hours |
+| 5a | **New entity with same principal** (customer formed new company after prior entity was written off): (a) AR Clerk and Legal review relationship between new entity and prior written-off entity — shared directors, officers, or beneficial owners per SEC records, (b) if affiliation confirmed: prior written-off balance must be settled or covered by a payment plan before new account is considered, (c) full W24 credit assessment required for new entity with no credit history reuse, (d) Credit Committee approval mandatory regardless of requested credit limit, (e) system links new entity record to prior entity for ongoing risk monitoring | AR Clerk / Legal / Credit Committee | CFO | 4–8 hours |
+| 6 | System reactivates account: (a) status changed from "Inactive"/"Closed"/"Written Off" to "Active — Reactivated", (b) credit limit set per approved amount, (c) payment terms assigned per approval, (d) reactivation date and approver logged in audit trail, (e) if probationary period applies, system schedules automatic review at 6-month mark | System / AR Clerk | AR Supervisor | 10 min |
+| 7 | AR Clerk notifies customer and assigned Sales Rep of reactivation: approved credit limit, payment terms, and any probationary conditions | AR Clerk | — | 10 min |
+| 8 | **6-month probationary review** (for written-off reactivations): AR Supervisor reviews reactivated account payment history at 6 months — (a) if all payments on time and no credit limit breaches: AR Supervisor recommends standard account status with potential credit limit increase per W24 annual review, (b) if any payment delays > 30 days: extend probationary period 6 months with credit limit review, (c) if payment defaults: Finance Manager decides between continued probation with reduced limit or account closure | AR Supervisor | Finance Manager | 30 min/account |
+| 9 | Monthly: AR Supervisor generates reactivation report — number of reactivations by scenario, approval tier utilization, probationary account performance, recovered revenue from reactivated accounts; includes in monthly AR aging review | AR Supervisor | Finance Manager | 30 min/month |
+
+### System Touchpoints
+- Account reactivation workflow with scenario-based routing (dormant, closed, written-off, new entity) (W84.3–5a)
+- Prior account history retrieval with write-off/dormancy reason display (W84.2)
+- Enhanced credit review flag for written-off account reactivation (W84.5)
+- Probationary account status with 6-month automatic review scheduling (W84.6, 8)
+- Entity linkage: new entity linked to prior written-off entity for risk monitoring (W84.5a)
+- Reactivation analytics: volume by scenario, approval tier, probationary performance, recovered revenue (W84.9)
+- Integration with W8 (AR management — dormant account management, account closure), W24 (credit application), W58 (corporate account management), W81 (bad debt write-off — settlement confirmation)
+
+### Staffing Implication
+- **AR Clerk**: ~20–40 reactivations/month × 30 min average = ~10–20 hours/month. Absorbed within existing AR team.
+- **AR Supervisor**: review and approval adds ~5 hours/month. Absorbed.
+- **Finance Manager**: Credit Committee participation for written-off reactivations adds ~2–4 hours/month. Absorbed.
+- **No incremental headcount.**
+
+---
+
+## W87. Customer Feedback-to-Action Loop
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly complaint analytics review (W41.11); or quarterly CSAT/NPS deep analysis (W65.6); or recurring pattern identified by BI Analyst |
+| **Frequency** | Monthly review; quarterly action planning; annual strategic review |
+| **Volume** | ~2,000–3,000 complaints/month + ~5,000–10,000 survey responses/month feeding into the loop |
+| **Owner** | CS Manager (operational); Store Ops Director (store-level actions); CMO (strategic) |
+| **Participants** | CS Manager, Store Ops Director, Regional Managers, Category Managers, Training Officer, BI Analyst, CMO |
+
+### Background
+
+BuildRight collects rich customer feedback through multiple channels: complaint tickets (W41), CSAT/NPS surveys (W65), loyalty program data (W17), mystery shopping results (W65), and social media monitoring. However, there is no formal workflow for systematically converting this feedback into operational improvements, product changes, or service enhancements. This workflow closes the loop — ensuring that customer insights drive continuous improvement rather than remaining as reports.
+
+### Monthly Feedback Review (by day 15 of each month, after W41 and W65 reporting)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | CS Manager compiles monthly feedback synthesis from: (a) W41 complaint analytics — top 5 complaint categories, top 10 stores by complaint volume, recurring root causes, unresolved escalations, (b) W65 CSAT/NPS scores — stores below threshold (< 85% CSAT), trending decline, specific department-level issues from survey comments, (c) W17 loyalty data — points redemption patterns, tier movement, enrollment drop-offs, loyalty program feedback, (d) social media sentiment — review of mentions, reviews, and direct messages aggregated by social media monitoring tool, (e) W58 corporate account feedback — Sales Rep reports of customer dissatisfaction with pricing, delivery, or service | CS Manager | CMO | 4 hours/month |
+| 2 | CS Manager categorizes feedback into actionable themes: (a) **Quick wins** — individual issues resolvable by a single department within 1 week (e.g., specific store cleanliness issue, individual staff behavior, specific SKU pricing error), (b) **Process improvements** — recurring issues requiring process or procedure changes across multiple locations (e.g., BOPIS pickup SLA not met consistently, DSD receiving causing customer wait times, returns policy confusion), (c) **Training needs** — patterns indicating skill or knowledge gaps (e.g., product knowledge complaints in specific departments, POS error rates by store), (d) **Product/service changes** — feedback suggesting product assortment gaps, new service needs, or pricing concerns, (e) **Strategic themes** — fundamental customer experience shifts (e.g., channel preference changes, competitive threats, brand perception issues) | CS Manager | CMO | 2 hours/month |
+| 3 | CS Manager assigns quick wins to responsible department with specific action items and 1-week resolution SLA: (a) store-level issues → Regional Manager → Store Manager, (b) product issues → Category Manager, (c) pricing issues → Pricing Analyst, (d) delivery issues → DC Dispatch / Fleet Manager, (e) website/app issues → Ecom Team | CS Manager | Department Head | 1 hour/month |
+| 4 | CS Manager follows up on prior month's quick win resolution status; reports completion rate to CMO; unresolved items escalated to department head | CS Manager | CMO | 30 min/month |
+
+### Quarterly Action Planning (aligned with W35 quarterly management review)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 5 | CS Manager prepares quarterly customer experience improvement report: (a) complaint trend analysis — month-over-month volume, resolution rate, SLA compliance trend, (b) CSAT/NPS trend with store heat map, (c) top 5 recurring root causes with frequency and business impact (estimated revenue at risk from unresolved issues), (d) process improvement recommendations — specific process changes with expected impact, (e) training recommendations — specific programs with target audience, (f) product/service change recommendations — new products, discontinued products, service enhancements based on customer demand | CS Manager | CMO | 8 hours/quarter |
+| 6 | CS Manager presents quarterly report to cross-functional customer experience review meeting — attended by Store Ops Director, VP Merchandising, Training Officer, BI Analyst, and CMO; meeting reviews each recommendation and assigns owners, deadlines, and success metrics | CS Manager / CMO | COO | 2 hours/quarter |
+| 7 | **Process improvements**: Store Ops Director (for operational changes), VP Merchandising (for product/pricing changes), or CIO (for system changes) implements approved process improvements; changes documented in system with expected completion date; CS Manager tracks implementation status | Department Head | COO | Varies |
+| 8 | **Training needs**: Training Officer incorporates approved training recommendations into W51 training calendar — develops targeted training materials for identified gaps (e.g., product knowledge for specific departments, returns handling refresher for CSRs, delivery communication for ecommerce team); training completion tracked and reported to CS Manager | Training Officer | HR Head | Per W51 |
+| 9 | **Product/service changes**: Category Managers review product feedback recommendations during next W1 quarterly assortment review; CMO reviews service enhancement proposals for feasibility and budget; approved changes implemented through existing workflows (W1, W13, W40, W58) | Category Manager / CMO | VP Merchandising / COO | Per existing workflows |
+| 10 | CS Manager tracks all quarterly action items to completion; reports status at next quarterly review; closed action items archived with outcome measurement (did the action reduce complaints or improve CSAT?) | CS Manager | CMO | 2 hours/quarter |
+
+### Annual Strategic Review (aligned with W26 annual budget cycle)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 11 | CMO and CS Manager prepare annual customer experience strategic review: (a) year-over-year CSAT/NPS trend, (b) complaint volume and resolution efficiency trend, (c) customer retention rate (loyalty member active rate, trade account retention), (d) voice-of-customer themes for the year, (e) competitive customer experience benchmarking (where available), (f) investment recommendations — technology, staffing, training, or service enhancements to improve customer experience, (g) proposed customer experience KPIs for next year | CMO / CS Manager | CEO | 8 hours/year |
+| 12 | CMO presents annual CX review to CEO and management committee; approved investments included in next year's budget (W26) | CMO | CEO | 1 hour/year |
+
+### Feedback Loop Tracking Dashboard
+
+| Metric | Source | Frequency | Target |
+|---|---|---|---|
+| Quick win resolution rate | W87.4 | Monthly | ≥ 90% within 1-week SLA |
+| Process improvement implementation rate | W87.7 | Quarterly | ≥ 80% of approved improvements implemented on schedule |
+| Training completion rate for CX-targeted programs | W87.8 | Quarterly | 100% completion by target date |
+| CSAT/NPS improvement vs. prior quarter | W65 | Quarterly | Positive trend in bottom 10 stores |
+| Complaint reduction in top 5 root causes | W41 | Quarterly | ≥ 15% reduction per quarter |
+| Revenue at risk from unresolved feedback | W87.5c | Quarterly | Decreasing trend |
+
+### System Touchpoints
+- Feedback synthesis dashboard: aggregates W41 complaint data, W65 CSAT/NPS scores, W17 loyalty insights, social media sentiment, and W58 corporate account feedback into a single view (W87.1)
+- Action item tracking: assigns ownership, deadline, and success metrics per recommendation; tracks completion status (W87.3–4, 6–10)
+- Quarterly improvement report generation with trend analysis and store heat map (W87.5)
+- Annual CX strategic review archive with year-over-year comparison (W87.11)
+- Integration with W1 (assortment changes from product feedback), W13 (promotional adjustments), W41 (complaint data source), W51 (training improvements), W65 (CSAT/NPS data source), W67 (store performance review — CX action items in store scorecard), W83 (marketing campaign feedback)
+
+### Staffing Implication
+- **CS Manager**: adds ~8 hours/month for feedback synthesis and action tracking + ~10 hours/quarter for quarterly planning = ~130 hours/year. Absorbed within existing CS Manager role.
+- **BI Analyst**: adds ~2 hours/month for feedback data analysis and dashboard support. Absorbed.
+- **No incremental headcount.** Cross-functional action execution is absorbed by respective departments.
 
 ---
 

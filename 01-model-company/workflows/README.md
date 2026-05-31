@@ -41,20 +41,22 @@ Workflows are organized by functional domain for easier navigation and gap analy
 - **[Procurement & Vendor Management Workflows](./WF-procurement.md)** (7 workflows) — Purchase orders, vendor onboarding, VMI, special orders, vendor performance, and contracts.
 - **[Warehouse & Logistics Workflows](./WF-warehouse.md)** (4 workflows) — Receiving, putaway, kit assembly, fleet management, and inter-island logistics.
 - **[Inventory Management Workflows](./WF-inventory.md)** (7 workflows) — Replenishment, cycle counting, transfers, consignment, physical inventory, backorders, and promo stock allocation.
-- **[Store Operations Workflows](./WF-store-operations.md)** (15 workflows) — Daily store selling, POS, returns, loyalty, DSD receiving, gift cards, new store opening/closure, warranty, facility maintenance, and performance review.
+- **[Store Operations Workflows](./WF-store-operations.md)** (16 workflows) — Daily store selling, POS, returns, loyalty, DSD receiving, gift cards, new store opening/closure, warranty, facility maintenance, performance review, and planogram compliance.
 - **[Ecommerce Workflows](./WF-ecommerce.md)** (2 workflows) — BOPIS order fulfillment and home delivery fulfillment.
-- **[Finance & Treasury Workflows](./WF-finance.md)** (15 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, and bad debt management.
+- **[Finance & Treasury Workflows](./WF-finance.md)** (16 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, and product costing & margin analysis.
 - **[HR & Payroll Workflows](./WF-hr.md)** (8 workflows) — Payroll, recruitment, shift scheduling, onboarding/offboarding, training, performance, expenses, and employee loans.
 - **[Supply Chain Planning Workflows](./WF-supply-chain.md)** (2 workflows) — Demand forecasting and seasonal buy planning.
-- **[Customer Experience Workflows](./WF-customer.md)** (4 workflows) — Complaint resolution, corporate/project accounts, price matching, and satisfaction measurement.
+- **[Customer Experience Workflows](./WF-customer.md)** (6 workflows) — Complaint resolution, corporate/project accounts, price matching, satisfaction measurement, account reactivation, and feedback-to-action loop.
 - **[IT Operations Workflows](./WF-it-operations.md)** (4 workflows) — Helpdesk, data privacy breach response, disaster recovery, and data migration/parallel-run testing.
 - **[Compliance & Governance Workflows](./WF-compliance.md)** (7 workflows) — Loss prevention, business continuity, LGU permits, BIR audit, government procurement, grievance/whistleblower, and hazardous waste disposal.
+
+- **[Marketing Campaign Workflows](./WF-marketing.md)** (1 workflow) — Campaign planning, creative production, multi-channel execution, budget tracking, and performance measurement.
 
 - **[Workflow-to-System Touchpoint Map](./workflow-system-touchpoint-map.md)** — ERP module-to-workflow cross-reference
 
 ---
 
-## Complete Workflow Index (W1–W82)
+## Complete Workflow Index (W1–W87)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
@@ -141,7 +143,12 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W80 | FX Hedging & Forward Contract Management | [Finance & Treasury Workflows](WF-finance.md) |
 | W81 | Bad Debt Provisioning, Write-Off & Recovery | [Finance & Treasury Workflows](WF-finance.md) |
 | W82 | Hazardous Waste Disposal Tracking & DENR Compliance | [Compliance & Governance Workflows](WF-compliance.md) |
+| W83 | Marketing Campaign Planning, Execution & Performance Measurement | [Marketing Campaign Workflows](WF-marketing.md) |
+| W84 | Customer Account Reactivation | [Customer Experience Workflows](WF-customer.md) |
+| W85 | Product Costing & Margin Analysis Review | [Finance & Treasury Workflows](WF-finance.md) |
+| W86 | Planogram Compliance & Store Layout Verification | [Store Operations Workflows](WF-store-operations.md) |
+| W87 | Customer Feedback-to-Action Loop | [Customer Experience Workflows](WF-customer.md) |
 
 ---
 
-*Total: 82 workflows across 12 domains. Split from original monolithic file*
+*Total: 87 workflows across 13 domains. Split from original monolithic file*

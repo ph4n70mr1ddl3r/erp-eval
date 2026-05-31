@@ -12,6 +12,7 @@
 - [W19. Ecommerce — Home Delivery Fulfillment](#ecommerce-home-delivery-fulfillment)
 - [W98. Ecommerce Order Exception & Cancellation Management](#ecommerce-order-exception-cancellation-management)
 - [W180. E-commerce Marketplace Integration (Lazada/Shopee)](#e-commerce-marketplace-integration-lazada-shopee)
+- [W210. E-commerce Fulfillment Hub (Dark Store) Operations](#e-commerce-fulfillment-hub-dark-store-operations)
 
 ---
 
@@ -252,4 +253,28 @@ W11 (BOPIS) and W19 (Home Delivery) cover the happy-path fulfillment process fro
 - API integration (Middleware) for Order, Inventory, and Status sync
 - Marketplace-specific shipping label generation
 - Automated commission/fee deduction accounting
+
+---
+
+## W210. E-commerce Fulfillment Hub (Dark Store) Operations
+
+| Field | Detail |
+|---|---|
+| **Trigger** | High online order density in a specific urban zone; or DC congestion |
+| **Frequency** | Daily operations |
+| **Volume** | Covers selected "Strategic Stores" converted to Hubs |
+| **Owner** | Ecommerce Operations Manager |
+| **Participants** | Hub Coordinator, Hub Pickers, 3PL Couriers |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Hub Inventory Reservation**: System prioritizes "Hub-specific" inventory for online orders; prevents "walk-in" sales of designated e-comm stock | System | — | Real-time |
+| 2 | **Order Routing**: Intelligent routing engine assigns orders to the nearest Fulfillment Hub (Dark Store) to reduce last-mile cost (W19) | System | — | Real-time |
+| 3 | **Wave Picking**: Hub Pickers perform batch picking (multiple orders simultaneously) using RF guns (W3) | Hub Picker | Hub Coordinator | 20 min/wave |
+| 4 | **Packing & QC**: Items verified and packed in the store's "Dark Zone" (backroom or dedicated section) | Hub Packer | — | 5 min |
+| 5 | **Dispatch**: 3PL Couriers (Lalamove/Transportify) pick up directly from store backroom; avoids DC bottleneck | DC Dispatch (at store) | — | 10 min |
+| 6 | **Replenishment**: Hub inventory replenished via priority DC-to-Store "Push" (W154) to ensure high ATP | Supply Planner | — | Daily |
+
 

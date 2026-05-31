@@ -230,6 +230,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W158 | Business Continuity Drill & Disaster Recovery Testing | [Compliance & Governance Workflows](WF-compliance.md) |
 | W159 | Anti-Bribery & Corruption (ABC) Monitoring & Audit | [Internal Audit & Risk Management Workflows](WF-audit.md) |
 | W160 | Private Label Factory Audit & Social Compliance | [Procurement & Vendor Management Workflows](WF-procurement.md) |
+| W161 | Vendor Price Protection & Market Markdown Claims | [Procurement & Vendor Management Workflows](WF-procurement.md) |
 | W162 | Project Quotation & Bid Management | [Project Sales Workflows](WF-project-sales.md) |
 | W163 | Contract Pricing & Project Price Books | [Project Sales Workflows](WF-project-sales.md) |
 | W164 | Staged Project Delivery & Call-Off Orders | [Project Sales Workflows](WF-project-sales.md) |
@@ -272,7 +273,15 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W201 | Robotic Process Automation (RPA) Lifecycle | [Innovation & Digital Transformation](WF-innovation.md) |
 | W202 | Predictive Maintenance for Industrial Assets | [Innovation & Digital Transformation](WF-innovation.md) |
 | W203 | Computer Vision for Inventory & Planogram Audit | [Innovation & Digital Transformation](WF-innovation.md) |
+| W204 | Regional Stock Rebalancing & Inter-Store Expedited Transfers | [Inventory Management Workflows](WF-inventory.md) |
+| W205 | Employee Purchase Program & Internal Staff Sales | [Store Operations Workflows](WF-store-operations.md) |
+| W206 | Mobile POS (mPOS) & Queue-Busting Operations | [Store Operations Workflows](WF-store-operations.md) |
+| W207 | Store-Level Security Camera (CCTV) Audit & LP Integration | [Compliance & Governance Workflows](WF-compliance.md) |
+| W208 | Retail Analytics & AI-Driven Inventory Optimization | [Innovation & Digital Transformation](WF-innovation.md) |
+| W209 | Barangay & Local Community Relationship Management | [Compliance & Governance Workflows](WF-compliance.md) |
+| W210 | E-commerce Fulfillment Hub (Dark Store) Operations | [Ecommerce Workflows](WF-ecommerce.md) |
+| W211 | In-Store 3D Kitchen/Bathroom Design Rendering | [Installation & Value-Added Services](WF-services.md) |
 
 ---
 
-*Total: 203 workflows across 23 domains. Expanded to include ESG metrics, fleet optimization, and digital innovation (AI/RPA).*
+*Total: 211 workflows across 23 domains. Expanded to include ESG metrics, fleet optimization, digital innovation (AI/RPA), and regional retail operations.*

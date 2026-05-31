@@ -12,6 +12,7 @@
 - [W201. Robotic Process Automation (RPA) Lifecycle](#robotic-process-automation-rpa-lifecycle)
 - [W202. Predictive Maintenance for Industrial Assets](#predictive-maintenance-for-industrial-assets)
 - [W203. Computer Vision for Inventory & Planogram Audit](#computer-vision-for-inventory--planogram-audit)
+- [W208. Retail Analytics & AI-Driven Inventory Optimization](#retail-analytics--ai-driven-inventory-optimization)
 
 ---
 
@@ -104,3 +105,26 @@
 - IoT Gateway for sensor data (W202.1)
 - Mobile App with CV capability (W203.1)
 - AI Model Registry and Monitoring dashboard
+
+---
+
+## W208. Retail Analytics & AI-Driven Inventory Optimization
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Periodic replenishment cycle (W4) or promotion planning (W13) |
+| **Frequency** | Weekly / Monthly |
+| **Volume** | Covers all 35,000 active SKUs |
+| **Owner** | Supply Chain Planning Manager |
+| **Participants** | Data Scientist, Supply Planner, Category Manager |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Data Aggregation**: Ingest historical sales, inventory levels, promotional history, and external factors (weather, holidays) into Data Lake | System | Data Scientist | Automated |
+| 2 | **Demand Forecasting**: AI model generates granular forecasts by SKU, by store, for the next 4-8 weeks | System | — | 1 hour |
+| 3 | **Optimization**: Model suggests optimal Reorder Points (ROP) and Safety Stock levels to minimize carrying costs while maintaining 97% service level | Data Scientist | Supply Chain Mgr | 2 hours |
+| 4 | **S&OP Integration**: Feed optimized parameters back into ERP replenishment engine (W31) | Supply Planner | — | 30 min |
+| 5 | **Impact Measurement**: Compare actual stock-outs and inventory turns against pre-optimization baseline | Data Scientist | CFO | Monthly |
+

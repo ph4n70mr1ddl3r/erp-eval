@@ -19,6 +19,7 @@
 - [W92. Inventory Adjustment & Shrinkage Authorization](#inventory-adjustment-shrinkage-authorization)
 - [W105. Multi-Channel Inventory Allocation & Priority Governance](#multi-channel-inventory-allocation--priority-governance)
 - [W154. Proactive Store Inventory Rebalancing (Stock Push)](#proactive-store-inventory-rebalancing-stock-push)
+- [W204. Regional Stock Rebalancing & Inter-Store Expedited Transfers](#regional-stock-rebalancing--inter-store-expedited-transfers)
 
 ---
 
@@ -645,3 +646,27 @@ Multiple workflows reference inventory allocation: W4 (store replenishment with 
 | 3 | **Push Order**: System generates "Push" Stock Transfers (W22); overrides standard ROP to clear excess | Supply Planner | Supply Planning Mgr | 1 hour |
 | 4 | **Logistics**: Consolidate transfers into weekly DC-to-Store backhaul or store-to-store courier | Logistics | — | Varies |
 | 5 | **Impact Review**: Measure sales lift at receiving store and holding cost reduction at sending store | Supply Planner | CFO | 2 hours |
+
+---
+
+## W204. Regional Stock Rebalancing & Inter-Store Expedited Transfers
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Critical stock-out at Store A; excess stock of same SKU at Store B (within same region/cluster) |
+| **Frequency** | Weekly |
+| **Volume** | ~50–100 transfers per week |
+| **Owner** | Regional Store Operations Manager |
+| **Participants** | Store Managers, Supply Planner, Local Courier (3PL) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Opportunity Identification**: Store A Manager identifies "Sold Out" status for high-demand SKU; checks "Regional Inventory" in real-time system (W5) | Store Manager | — | 5 min |
+| 2 | **Transfer Request**: Store A Manager initiates an "Expedited Transfer Request" from Store B (nearest location with > 2 weeks cover) | Store Manager | — | 2 min |
+| 3 | **Approval**: Regional Manager or Supply Planner approves based on regional inventory health and cost of transfer vs. margin | Regional Manager | — | 1 hour |
+| 4 | **Pick & Stage**: Store B Staff picks and stages items in backroom; system records "In-Transit" status (W22) | Stock Associate | Store Manager | 15 min |
+| 5 | **Expedited Dispatch**: Local 3PL (Lalamove/Transportify) picks up from Store B; delivers to Store A within 4-8 hours | Logistics | — | 4-8 hours |
+| 6 | **Receipt**: Store A Receiving Clerk processes Goods Receipt; inventory available for sale immediately | Receiving Clerk | Store Manager | 10 min |
+

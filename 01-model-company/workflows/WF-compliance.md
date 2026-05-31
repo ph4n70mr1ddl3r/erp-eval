@@ -21,6 +21,8 @@
 - [W158. Business Continuity Drill & Disaster Recovery Testing](#business-continuity-drill--disaster-recovery-testing)
 - [W167. Store & DC Recycling Program (Circular Economy)](#store--dc-recycling-program-circular-economy)
 - [W185. Product Liability & Consumer Safety Incident Management](#product-liability--consumer-safety-incident-management)
+- [W207. Store-Level Security Camera (CCTV) Audit & LP Integration](#store-level-security-camera-cctv-audit--lp-integration)
+- [W209. Barangay & Local Community Relationship Management](#barangay--local-community-relationship-management)
 
 ---
 
@@ -603,6 +605,29 @@ BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Envi
 
 ---
 
+## W158. Business Continuity Drill & Disaster Recovery Testing
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual BC/DR schedule or major system change |
+| **Frequency** | Semi-annual for IT DR; Annual for full BC drill |
+| **Volume** | Covers all 5 legal entities and critical sites (HQ, DCs, 200 stores) |
+| **Owner** | VP Legal & Compliance |
+| **Participants** | IT Infrastructure Team, DC Managers, Store Managers, HR, Finance |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Scenario Planning**: Define the drill scenario (e.g., total network outage, major typhoon landfall in Visayas, fire at DC3) | Compliance Officer | VP Legal & Compliance | 4 hours |
+| 2 | **IT Disaster Recovery Test**: Execute "failover" to backup data center; verify data integrity and POS transaction synchronization (W55) | IT Manager | CIO | 8-12 hours |
+| 3 | **Communication Drill**: Activate emergency notification tree; verify response times from Store Managers and DC Supervisors | HR Manager | CHRO | 2 hours |
+| 4 | **Operational Workarounds**: Stores practice manual sales recording (W5g) and manual inventory logging for 4 hours; DCs practice manual load manifest creation | Store Manager / DC Supervisor | COO | 4 hours |
+| 5 | **Post-Drill Review**: Document gaps, system performance issues, and communication bottlenecks; update Business Continuity Plan (BCP) | Compliance Officer | VP Legal & Compliance | 1 day |
+| 6 | **Board Reporting**: Present DR/BC readiness status and improvement plan to the Board of Directors | VP Legal & Compliance | CEO | Quarterly |
+
+---
+
 ## W167. Store & DC Recycling Program (Circular Economy)
 
 | Field | Detail |
@@ -650,4 +675,51 @@ BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Envi
 - Integration with SKU Master (Stop-Sell flag) (W185.2)
 - Link to Insurance Claims workflow (W59) (W185.4)
 - Link to Product Recall (W29) and Vendor Performance (W44) (W185.6, W185.8)
+
+---
+
+## W207. Store-Level Security Camera (CCTV) Audit & LP Integration
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Scheduled audit or suspected internal/external theft incident |
+| **Frequency** | Weekly audits of high-risk transactions |
+| **Volume** | Covers all 200 stores and 5 DCs |
+| **Owner** | Loss Prevention (LP) Manager |
+| **Participants** | LP Analyst, Store Manager, IT (for system access) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Exception Identification**: System identifies high-risk POS transactions (e.g., voids, high-value returns, employee discounts) via automated exception reports (W37) | System | LP Analyst | Automated |
+| 2 | **CCTV Reconciliation**: LP Analyst retrieves CCTV footage synced with POS transaction timestamps; verifies physical action matches system record | LP Analyst | LP Manager | 30 min/event |
+| 3 | **Discrepancy Logging**: If "phantom return" or unrecorded sale discovered, log as a "Confirmed Incident" in LP module | LP Analyst | LP Manager | 15 min |
+| 4 | **Investigation**: Confront staff or review external footage for identification; coordinate with HR for disciplinary action (W79) | LP Manager | CHRO | 2-4 hours |
+| 5 | **System Update**: Write off confirmed theft inventory (W37.6); update shrinkage metrics in P&L (W102) | Finance | LP Manager | 10 min |
+| 6 | **Security Hardening**: Adjust camera angles or POS procedures based on audit findings | IT / Store Manager | LP Manager | 1 hour |
+
+---
+
+## W209. Barangay & Local Community Relationship Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Store opening (W16); annual local permit cycle (W54); or community grievance |
+| **Frequency** | Quarterly check-ins; or as needed |
+| **Volume** | One relationship per store/DC location (205+ barangays) |
+| **Owner** | Store Manager / DC Manager |
+| **Participants** | Barangay Captain, LGU Officials, Legal Manager |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Stakeholder Mapping**: Identify key local officials (Barangay Captain, LGU licensing office, local police) | Store Manager | Legal Manager | 2 hours |
+| 2 | **Permit Coordination**: Liaise with Barangay for "Barangay Clearance" required for LGU Business Permit renewal (W54) | Store Manager | Regulatory Officer | 4 hours/year |
+| 3 | **Local Employment**: Coordinate with Barangay for local hiring requirements/quotas as part of social responsibility and LGU agreements | HR / Store Manager | — | Monthly |
+| 4 | **Community Support**: Manage local CSR requests (e.g., school repair donations, neighborhood cleaning) via CSR Program Execution (W135) | Store Manager | CSR Coordinator | 1 hour |
+| 5 | **Dispute Resolution**: Address community complaints (e.g., truck noise, parking congestion) via direct dialogue; document resolution in Legal Case Management (W125) | Store Manager | Legal Manager | Varies |
+| 6 | **Annual Appreciation**: Conduct "Community Day" or stakeholder briefing on store performance and local impact | Store Manager | — | 4 hours/year |
+
 

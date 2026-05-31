@@ -22,6 +22,7 @@
 - [W150. Product Quality Testing & Certification](#product-quality-testing--certification)
 - [W155. Vendor Strategic Collaboration & Joint Business Planning (JBP)](#vendor-strategic-collaboration--joint-business-planning-jbp)
 - [W160. Private Label Factory Audit & Social Compliance](#private-label-factory-audit--social-compliance)
+- [W161. Vendor Price Protection & Market Markdown Claims](#vendor-price-protection--market-markdown-claims)
 
 ---
 
@@ -752,3 +753,27 @@ The Philippine government actively promotes MSME development through the Magna C
 | 2 | **On-site Audit**: Internal or 3rd-party audit (SGS/TUV) of factory floor, dormitories, and payroll records | External Auditor | Quality Mgr | 1–2 days |
 | 3 | **CAPA**: If violations found, vendor must submit and execute Corrective Action Plan (W110) | Vendor | Quality Mgr | 30 days |
 | 4 | **Certification**: Issue "BuildRight Approved Factory" status in ERP; linked to W2 PO creation | Quality Mgr | VP Merch | 1 day |
+
+---
+
+## W161. Vendor Price Protection & Market Markdown Claims
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Retail price reduction (W40, W93) or competitive price match (W61) impacting stocking items |
+| **Frequency** | Monthly or per major price event |
+| **Volume** | Covers all SKU categories with price protection agreements |
+| **Owner** | Pricing Analyst |
+| **Participants** | Buyer, Category Manager, Vendor, Finance (AR/AP) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Eligibility Review**: Identify SKUs with active price protection clauses in vendor contracts (W62) upon retail price change | Pricing Analyst | Category Manager | 1 hour |
+| 2 | **Stock-on-Hand Capture**: System takes a snapshot of group-wide inventory (stores + DCs) at the moment of price change | System | — | Real-time |
+| 3 | **Claim Calculation**: Calculate claim amount = (Old Retail - New Retail) × Inventory Count; or (Old Cost - New Cost) × Inventory Count, depending on contract | Pricing Analyst | Category Manager | 30 min |
+| 4 | **Vendor Validation**: Transmit claim report to vendor for verification and approval; negotiate discrepancies | Buyer | Category Manager | 3-5 days |
+| 5 | **Credit Note Issuance**: Vendor issues Credit Memo to offset future payables; or system auto-deducts from next PO payment if pre-authorized | Vendor / Finance | Buyer | 5-10 days |
+| 6 | **Margin Recovery**: Update product costing (W85) to reflect the recovered margin; update P&L for category (W102) | Finance | Category Manager | 1 hour |
+

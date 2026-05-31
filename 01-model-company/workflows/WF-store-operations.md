@@ -33,6 +33,8 @@
 - [W176. Store-to-DC Reverse Logistics (Consolidation)](#store-to-dc-reverse-logistics-consolidation)
 - [W177. Vending & Concessionaire Management](#vending--concessionaire-management)
 - [W182. Gift / Home Registry Lifecycle](#gift--home-registry-lifecycle)
+- [W205. Employee Purchase Program & Internal Staff Sales](#employee-purchase-program--internal-staff-sales)
+- [W206. Mobile POS (mPOS) & Queue-Busting Operations](#mobile-pos-mpos--queue-busting-operations)
 
 ---
 
@@ -1484,4 +1486,49 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 - Registry master data (Customer + Items + Event Date)
 - Real-time "Purchased" status sync across channels
 - Completion discount logic (Promo engine integration)
+
+---
+
+## W205. Employee Purchase Program & Internal Staff Sales
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Employee wishes to purchase merchandise for personal use |
+| **Frequency** | Daily; ~1,000 transactions/month across group |
+| **Volume** | Covers all 8,060+ employees |
+| **Owner** | Store Manager / HR Manager |
+| **Participants** | Employee (Buyer), Cashier, HR (for eligibility) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Eligibility Check**: Employee presents ID at POS; System verifies active employment status and "Monthly Purchase Limit" (e.g., PHP 20,000/month) | Cashier / System | HR Manager | 1 min |
+| 2 | **Discount Application**: System applies "Staff Discount" (e.g., Cost + 5% or 15% off SRP) based on product category rules | System | — | Real-time |
+| 3 | **Payment**: Employee pays via Cash, Card, or "Payroll Deduction" (W10/W76) | Employee | Cashier | 2 min |
+| 4 | **Verification**: Manager signs receipt; confirms items are for personal use (not resale) | Store Manager | — | 1 min |
+| 5 | **Audit**: LP Team reviews high-frequency staff purchases for potential abuse (W37) | LP Analyst | VP Compliance | Monthly |
+
+---
+
+## W206. Mobile POS (mPOS) & Queue-Busting Operations
+
+| Field | Detail |
+|---|---|
+| **Trigger** | High foot traffic in store; long checkout queues; or large-item sales in the yard (W3b) |
+| **Frequency** | Peak hours (weekends, paydays, holidays) |
+| **Volume** | 2-3 mPOS tablets per store |
+| **Owner** | Store Operations Manager |
+| **Participants** | Sales Associate (with tablet), Cashier, Customer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Queue Scanning**: Sales Associate moves through checkout line with mPOS tablet; scans customer items and creates a "Draft Order" | Sales Associate | — | 3-5 min |
+| 2 | **Digital Cart**: System generates a QR code or Transaction ID on the tablet/printed slip | System | — | Real-time |
+| 3 | **Payment Processing**: (a) If Card/E-wallet: Associate processes payment directly on mPOS with integrated reader; (b) If Cash: Customer takes slip to "Express Cashier" for final tender | Sales Associate / Cashier | — | 2 min |
+| 4 | **Inventory Update**: Real-time inventory deduction (W6) occurs upon payment confirmation | System | — | Real-time |
+| 5 | **Digital Receipt**: Customer receives SMS/Email receipt; physical slip printed only upon request | System | — | Real-time |
+
 

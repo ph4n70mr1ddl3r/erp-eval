@@ -57,6 +57,9 @@ Workflows are organized by functional domain for easier navigation and gap analy
 - **[Health, Safety & Environment Workflows](./WF-health-safety.md)** (2 workflows) — Occupational health & safety (OHS) incident management and workplace safety inspection & audit.
 - **[Wholesale & Reseller Operations Workflows](./WF-wholesale.md)** (2 workflows) — Wholesale reseller onboarding and bulk fulfillment/cross-docking.
 - **[Project-Based B2B & Trade Sales Workflows](./WF-project-sales.md)** (5 workflows) — Quotations, bid management, contract pricing, staged deliveries, and project-specific logistics.
+- **[ESG & Sustainability Reporting Workflows](./WF-esg.md)** (4 workflows) — Carbon footprint, waste management, circular economy, and social impact.
+- **[Fleet Operations & Driver Management](./WF-logistics-fleet.md)** (4 workflows) — Route optimization, driver performance, and fuel management.
+- **[Innovation & Digital Transformation](./WF-innovation.md)** (4 workflows) — AI/ML, RPA, predictive maintenance, and computer vision.
 
 - **[Workflow-to-System Touchpoint Map](./workflow-system-touchpoint-map.md)** — ERP module-to-workflow cross-reference
 
@@ -257,7 +260,19 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W189 | Referral Program & Brand Ambassador Management | [Marketing Campaign Workflows](WF-marketing.md) |
 | W190 | In-house Design & Creative Production Management | [Marketing Campaign Workflows](WF-marketing.md) |
 | W191 | Global Supply Chain — Incoterm & Marine Insurance Tracking | [Supply Chain Planning Workflows](WF-supply-chain.md) |
+| W192 | Greenhouse Gas (GHG) Emissions Tracking | [ESG & Sustainability Reporting](WF-esg.md) |
+| W193 | Waste Management & Circular Economy | [ESG & Sustainability Reporting](WF-esg.md) |
+| W194 | Social Impact & Community Development (CSR) | [ESG & Sustainability Reporting](WF-esg.md) |
+| W195 | Sustainable Sourcing & Ethical Vendor Audit | [ESG & Sustainability Reporting](WF-esg.md) |
+| W196 | Route Planning & Dispatch Optimization | [Fleet Operations & Driver Management](WF-logistics-fleet.md) |
+| W197 | Driver Performance & Safety Management | [Fleet Operations & Driver Management](WF-logistics-fleet.md) |
+| W198 | Fuel Management & Consumption Monitoring | [Fleet Operations & Driver Management](WF-logistics-fleet.md) |
+| W199 | Fleet Telematics & Real-Time Tracking | [Fleet Operations & Driver Management](WF-logistics-fleet.md) |
+| W200 | AI-Driven Personalization & Recommendation Engine | [Innovation & Digital Transformation](WF-innovation.md) |
+| W201 | Robotic Process Automation (RPA) Lifecycle | [Innovation & Digital Transformation](WF-innovation.md) |
+| W202 | Predictive Maintenance for Industrial Assets | [Innovation & Digital Transformation](WF-innovation.md) |
+| W203 | Computer Vision for Inventory & Planogram Audit | [Innovation & Digital Transformation](WF-innovation.md) |
 
 ---
 
-*Total: 191 workflows across 20 domains. Expanded to include CIT, retirement funds, reverse logistics, marketplace integration, fixed asset audits, product liability, SOP governance, contractor safety, fleet maintenance, referral programs, and global logistics.*
+*Total: 203 workflows across 23 domains. Expanded to include ESG metrics, fleet optimization, and digital innovation (AI/RPA).*

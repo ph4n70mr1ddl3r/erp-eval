@@ -30,8 +30,8 @@ Summary of which ERP modules support which workflows:
 | **Business Continuity** | W49 (natural disaster preparation, response, recovery, insurance claims), W55 (IT DR) |
 | **Product Information** | W50 (PIM, content creation, ecommerce catalog management, digital assets, seasonal PIM timeline coordination with W32) |
 | **Training & Development** | W51 (training calendar, compliance tracking, certification management, LMS, employee self-service portal) |
-| **Fleet Management** | W52 (vehicle lifecycle, fuel management, maintenance scheduling, 3PL carrier oversight), W188 (Fleet Spare Parts) |
-| **Data Privacy & Compliance** | W53 (data privacy breach response, breach register, NPC notification, forensic audit trail, DSAR full lifecycle — access, rectification, erasure with BIR retention preservation, data portability, consent withdrawal), W54a (BIR CAS registration, permit tracking, books of accounts compliance), W79 (Employee Grievance & Due Process — NTE/NOD tracking, timeline enforcement), W82 (Hazardous Waste — Manifest lifecycle, DENR waste code tracking), W167 (Recycling — Weight-diverted reporting, Reverse logistics integration), W185 (Product Liability) |
+| **Fleet Management** | W52 (vehicle lifecycle, fuel management, maintenance scheduling, 3PL carrier oversight), W188 (Fleet Spare Parts), W196 (Route Optimization), W197 (Driver Performance), W198 (Fuel Monitoring), W199 (Real-time Telematics) |
+| **Data Privacy & Compliance** | W53 (data privacy breach response, breach register, NPC notification, forensic audit trail, DSAR full lifecycle — access, rectification, erasure with BIR retention preservation, data portability, consent withdrawal), W54a (BIR CAS registration, permit tracking, books of accounts compliance), W79 (Employee Grievance & Due Process — NTE/NOD tracking, timeline enforcement), W82 (Hazardous Waste — Manifest lifecycle, DENR waste code tracking), W167 (Recycling — Weight-diverted reporting, Reverse logistics integration), W185 (Product Liability), W192 (GHG Emissions), W193 (Waste Diversion), W194 (CSR Impact), W195 (Ethical Sourcing Audit) |
 | **Regulatory Operations** | W54 (LGU business permit renewal per location, permit status dashboard, location master integration) |
 | **Customer Order Management** | W56 (backorder creation, allocation against incoming PO, customer notification, aging escalation) |
 | **Corporate Account Management** | W58 (project record, project-specific pricing, cumulative budget tracking, project billing, milestone/progress billing with retention amounts, change orders, account portfolio analytics, customer project quotation lifecycle with one-click conversion to Sales Order, quotation conversion analytics), W162 (Project Quotation & Bid Management — BOM/BOQ pricing, margin check), W163 (Project Price Books — locked-in pricing), W164 (Staged Delivery — Call-off balance tracking), W165 (Milestone Billing & Retention Receivable), W166 (Tendering — Bond tracking, PhilGEPS compliance) |
@@ -44,7 +44,8 @@ Summary of which ERP modules support which workflows:
 | **HSE / Safety** | W140 (incident mgmt), W141 (safety inspection), W187 (Contractor Safety) |
 | **Services / Rental** | W138 (installation), W139 (tool rental), W147 (workshops), W148 (design consultancy) |
 | **Wholesale / B2B** | W145 (wholesale onboarding), W146 (bulk fulfillment) |
+| **Innovation & Digital Transformation** | W200 (AI Personalization), W201 (RPA Lifecycle), W202 (Predictive Maintenance), W203 (Computer Vision Audit) |
 
 ---
 
-*Document Version: 28.0 | Date: 2026-05-31 | Wave 26: Added W184–W191 (Fixed Asset Audit, Product Liability, SOP Governance, Contractor Safety, Fleet Spare Parts, Referrals, Creative Production, Incoterms). Total 191 workflows.*
+*Document Version: 29.0 | Date: 2026-05-31 | Wave 29: Added W192–W203 (ESG metrics, Fleet Operations, AI/RPA Innovation). Total 203 workflows.*

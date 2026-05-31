@@ -69,7 +69,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 
 ---
 
-## Complete Workflow Index (W1–W213)
+## Complete Workflow Index (W1–W250)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
@@ -324,6 +324,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W247 | BOPIS Smart Locker & Queue Management | [Ecommerce Workflows](WF-ecommerce.md) |
 | W248 | Store Inventory Variance & LP Investigation | [Store Operations Workflows](WF-store-operations.md) |
 | W249 | Import Port Demurrage & Detention Management | [Supply Chain Planning Workflows](WF-supply-chain.md) |
+| W250 | Supply Chain Control Tower & Real-Time Shipment Visibility | [Supply Chain Planning Workflows](WF-supply-chain.md) |
 
 ---
 

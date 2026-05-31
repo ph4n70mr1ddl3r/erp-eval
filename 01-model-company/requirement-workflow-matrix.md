@@ -60,7 +60,7 @@
 | INV-011 | Inventory Aging Analysis | S | W1 (slow-mover review), W9a.16b (NRV review), W220 (SLOB provisioning & liquidation) | W13.9b (clearance disposition), W93 (markdown & clearance pricing for aging inventory) |
 | INV-012 | Safety Stock & Reorder Point | M | W2a.1 (ROP calculation), W31.8 (parameter governance) | W56 (backorder — insufficient ROP) |
 | INV-013 | Batch/LOT Tracking for Paint | S | W3.4 (shelf-life capture), W4.5 (FEFO picking) | W6 (near-expiry alerting) |
-| INV-014 | In-Transit Inventory | M | W4.8 (DC→Store in-transit), W22.6 (transfer in-transit) | W66 (inter-island in-transit) |
+| INV-014 | In-Transit Inventory | M | W4.8 (DC→Store in-transit), W22.6 (transfer in-transit), W250 (supply chain control tower visibility) | W66 (inter-island in-transit) |
 | INV-015 | Inventory Valuation Reports | M | W9a.6 (inventory valuation), W42.17 (physical inventory summary) | W35.10 (store P&L) |
 | INV-016 | Product Recall Tracking | S | W29 (product recall execution) | — |
 | INV-017 | Consignment Inventory Tracking | M | W23 (consignment operations — non-valuated receipt, ownership transfer at sale) | W42 (vendor-owned inventory during physical count) |
@@ -73,7 +73,7 @@
 | PUR-001 | Purchase Order Management | M | W2a (auto-replenishment), W2b (import PO), W2c (blanket PO), W246 (drop-ship back-to-back PO) | W38 (special order PO), W60 (emergency PO) |
 | PUR-002 | Automated Replenishment | M | W2a.1–2 (ROP/EOQ auto-generate), W31.6 (forecast release) | W57 (promo stock PO) |
 | PUR-003 | Vendor Management | M | W36 (vendor onboarding), W44 (vendor scorecard), W230 (legal contract review) | W62 (non-PO contracts) |
-| PUR-004 | Import Purchase Orders | M | W2b (import PO lifecycle), W232 (LC lifecycle), W239 (customs duty recon), W249 (port demurrage management) | W32 (seasonal import PO) |
+| PUR-004 | Import Purchase Orders | M | W2b (import PO lifecycle), W232 (LC lifecycle), W239 (customs duty recon), W249 (port demurrage management), W250 (import shipment control tower tracking) | W32 (seasonal import PO) |
 | PUR-005 | 3-Way Matching | M | W7.2–3 (3-way match engine) | W18.9 (DSD 3-way) |
 | PUR-006 | Blanket/Contract POs | S | W2c (blanket PO lifecycle) | — |
 | PUR-007 | Vendor Portal | N | W2a.7 (vendor portal PO access), W36.9 (portal provisioning) | W20.1 (VMI data sharing) |

@@ -15,6 +15,7 @@
 - [W183. Supply Chain Network Optimization Review](#supply-chain-network-optimization-review)
 - [W191. Global Supply Chain — Incoterm & Marine Insurance Tracking](#global-supply-chain--incoterm--marine-insurance-tracking)
 - [W249. Import Port Demurrage & Detention Management](#import-port-demurrage--detention-management)
+- [W250. Supply Chain Control Tower & Real-Time Shipment Visibility](#supply-chain-control-tower--real-time-shipment-visibility)
 
 ---
 
@@ -262,6 +263,36 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 - Automated demurrage/detention free-time calculations and system alerting
 - Hauler empty container gate-in/gate-out logs tracking
 - Landed cost integration for port penalty allocations (W2b/W13)
+
+---
+
+## W250. Supply Chain Control Tower & Real-Time Shipment Visibility
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Shipment of import PO (W144 / W2b) or inter-island freight dispatch (W66) |
+| **Frequency** | Ongoing per shipment |
+| **Volume** | ~20–30 import containers and ~40–50 inter-island shipments/month |
+| **Owner** | Supply Chain Director |
+| **Participants** | Logistics Manager, Import Coordinator, Store Operations Rep, 3PL Partners |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Shipment Dispatch**: 3PL partner dispatches shipment and transmits Container ID / GPS tracker link via API/EDI to BuildRight. | 3PL Partner | — | Automated |
+| 2 | **Milestones Tracking**: Control Tower system aggregates tracking data (vessel GPS, port gate-out/gate-in, inland truck GPS) to trace shipment in transit. | System | — | Automated |
+| 3 | **Dynamic ETA Update**: System dynamically recalculates estimated time of arrival (ETA) based on weather, port speed, and transit history. | System | — | Automated |
+| 4 | **Geofence Alerts**: System detects container entering port/DC zone; auto-alerts DC gate crew (W3) and Import Coordinator to prepare receiving. | System | — | Automated |
+| 5 | **Exception Trigger**: If a shipment is delayed > 24 hours from original ETA, system triggers alert. Import Coordinator investigates bottleneck. | Import Coordinator | Logistics Mgr | 1 hour |
+| 6 | **Re-routing / Mitigation**: If critical delay threatens store stockout, Supply Chain Director authorizes inventory reallocation (W105) or alternative local sourcing (W60). | Supply Chain Director | VP Supply Chain | 2 hours |
+| 7 | **Carrier Review**: Monthly, Logistics Manager reviews carrier lead-time performance and delay metrics in S&OP dashboard (W133). | Logistics Manager | Supply Chain Director | 2 hours |
+
+### System Touchpoints
+- Control Tower Dashboard with GIS integration
+- Carrier EDI/API tracking integrations
+- Dynamic ETA recalculation engine
+- Automated SMS/Email delay exception notifications
 
 
 

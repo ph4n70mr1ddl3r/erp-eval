@@ -24,6 +24,10 @@
 - [W80. FX Hedging & Forward Contract Management](#fx-hedging-forward-contract-management)
 - [W81. Bad Debt Provisioning, Write-Off & Recovery](#bad-debt-provisioning-write-off-recovery)
 - [W85. Product Costing & Margin Analysis Review](#product-costing-margin-analysis-review)
+- [W89. Bank Reconciliation](#bank-reconciliation)
+- [W90. Monthly Tax Filing & Statutory Remittance](#monthly-tax-filing-statutory-remittance)
+- [W94. Customer Deposit & Advance Payment Management](#customer-deposit-advance-payment-management)
+- [W99. Payment Settlement Reconciliation (Card / E-Wallet / Online)](#payment-settlement-reconciliation-card-e-wallet-online)
 
 ---
 
@@ -1040,6 +1044,216 @@ Product costing and margin analysis is currently fragmented: WAC verification ha
 ### Staffing Implication
 - **Cost Accountant**: adds ~4 hours/month for monthly review + ~12 hours/quarter for deep-dive + ~16 hours/year for annual review = ~100 hours/year. Absorbed within existing Finance team.
 - **Pricing Analysts**: add ~4 hours/quarter for joint pricing strategy recommendations. Absorbed.
+- **No incremental headcount.**
+
+---
+
+
+
+## W89. Bank Reconciliation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Bank statements received (monthly paper/electronic from BDO, BPI, Metrobank, Chinabank across 5 entities) |
+| **Frequency** | Monthly per bank account per entity; ~25 bank accounts (5 entities × ~5 accounts each: PHP operating, PHP payroll, USD import, PHP savings/deposit, PHP petty cash replenishment) |
+| **Volume** | ~3,000–4,000 bank statement lines/month across all accounts |
+| **Owner** | Treasury Analyst |
+| **Participants** | Treasury Analyst, Controller, AP Clerk, AR Clerk |
+
+### Background
+
+Bank reconciliation is a fundamental financial control ensuring that the general ledger cash balances match actual bank balances. With 5 legal entities, ~25 bank accounts across 4 banks (BDO, BPI, Metrobank, Chinabank), multi-currency (PHP and USD), and high transaction volume from store deposits, vendor payments, payroll crediting, and ecommerce settlement, a structured reconciliation workflow is essential. This workflow is distinct from W30 (daily treasury cash position management) which focuses on operational cash visibility; bank reconciliation is the periodic accounting control that validates GL accuracy.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Statement import**: Treasury Analyst imports electronic bank statements (BDO, BPI, Metrobank, Chinabank formats) into ERP bank reconciliation module; for accounts receiving paper statements only, AP Clerk scans and enters key transactions manually | Treasury Analyst / AP Clerk | Controller | 30 min/account |
+| 2 | **Auto-matching — system level**: System attempts to auto-match bank statement lines to GL transactions: (a) vendor payment (W7) matched by payment reference and amount, (b) customer receipt (W8) matched by deposit reference, (c) payroll bank file (W10) matched by batch reference and total, (d) intercompany settlement (W14) matched by IC reference, (e) treasury sweeps and transfers (W30) matched by transfer reference, (f) tax payments (W90) matched by BIR payment reference, (g) capex payments (W21) matched by PO/invoice reference | System | — | Automated |
+| 3 | **Review auto-matched items**: Treasury Analyst reviews auto-matched items for accuracy; system displays match confidence score (high: exact reference + amount match; medium: amount match only; low: fuzzy match); high-confidence matches auto-accepted; medium and low reviewed manually | Treasury Analyst | Controller | 15 min/account |
+| 4 | **Manual matching — unmatched items**: Treasury Analyst investigates unmatched bank statement lines: (a) bank charges and fees (not in GL — post as bank charges expense), (b) deposit discrepancies (store cash deposit variance per W5c), (c) timing differences (checks issued but not yet cleared), (d) unknown items requiring investigation, (e) payment gateway settlement deposits (cross-reference W99), (f) interest income/expense (post as incurred) | Treasury Analyst | Controller | 30 min/account |
+| 5 | **Outstanding items review**: (a) Outstanding checks > 90 days: investigate with AP — stale check per Philippine law (6 months); if stale, AP re-issues or reverses; (b) Outstanding deposits > 7 days: investigate with store operations — missing deposit; (c) Unrecorded bank fees: post to bank charges expense; (d) FX gains/losses on USD accounts: post FX revaluation per W9a.5a | Treasury Analyst | Controller | 15 min/account |
+| 6 | **Reconciliation sign-off**: Treasury Analyst completes bank reconciliation per account; system generates reconciliation report showing: opening GL balance, plus/minus reconciling items, ending GL balance, ending bank balance, unreconciled difference (must be zero); Treasury Analyst signs off electronically | Treasury Analyst | Controller | 5 min/account |
+| 7 | **Controller review**: Controller reviews completed bank reconciliations for all accounts; focuses on: (a) accounts with high unmatched volume, (b) unusual items, (c) stale checks, (d) deposit discrepancies > PHP 5,000; approves or returns for correction | Controller | CFO | 1 hour/month |
+| 8 | **Journal entries**: System auto-generates journal entries for: (a) bank charges and fees, (b) interest income, (c) FX gains/losses on USD accounts, (d) stale check reversals, (e) deposit discrepancy adjustments; all auto-posted to GL with bank reconciliation reference | System | Controller | Automated |
+| 9 | **Aging of reconciling items**: System tracks aging of all unreconciled items: items > 30 days flagged for Treasury Analyst follow-up; items > 60 days escalated to Controller; items > 90 days require write-off or resolution per Controller | System | Controller | Automated |
+
+### Multi-Entity Considerations
+- Each entity's bank accounts reconciled separately
+- Intercompany bank transfers (W14 settlements) must clear in both entities' bank reconciliations in the same month
+- USD accounts (for import payments) reconciled with FX revaluation per W9a.5a
+- Ecommerce payment gateway accounts (PayMongo, Dragonpay) reconciled via W99 and cross-referenced here
+
+### System Touchpoints
+- Electronic bank statement import (BDO, BPI, Metrobank, Chinabank file formats) (W89.1)
+- Auto-matching engine: payment reference, deposit reference, batch reference matching with confidence scoring (W89.2)
+- Bank reconciliation module with GL-to-bank matching screen (W89.3–4)
+- Outstanding items aging tracker with escalation triggers (W89.5, W89.9)
+- Auto-journal entry generation for bank charges, interest, FX, stale checks (W89.8)
+- Multi-entity, multi-currency bank reconciliation with consolidated dashboard (W89 multi-entity)
+- Integration with W7 (AP payments), W8 (AR receipts), W10 (payroll bank files), W14 (IC settlements), W21 (capex payments), W25 (petty cash replenishment), W30 (treasury sweeps), W90 (tax payments), W99 (payment gateway settlements)
+
+### Staffing Implication
+- **Treasury Analysts**: ~25 accounts × ~90 min each = ~37.5 hours/month. With 2 Treasury Analysts, that's ~19 hours each/month. Absorbed within existing Finance team (month-end close week is the heaviest period).
+- **Controller**: 1 hour/month for review. Absorbed.
+- **No incremental headcount.**
+
+---
+
+
+
+## W90. Monthly Tax Filing & Statutory Remittance
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly tax filing deadlines per BIR calendar; payroll statutory deduction deadlines per SSS/PhilHealth/Pag-IBIG schedules |
+| **Frequency** | Monthly (VAT, EWT, SSS, PhilHealth, Pag-IBIG); quarterly (corporate income tax); annual (1702RT, 1604-C/E) |
+| **Volume** | 5 entities × multiple tax types = ~25 monthly filings; plus payroll statutory for 5 entities |
+| **Owner** | Tax Accountant |
+| **Participants** | Tax Accountant, Controller, Treasury Analyst, Payroll Officer, HR Manager |
+
+### Background
+
+FIN-008 requires BIR tax return generation as a Must Have. W9 (Financial Close) produces the tax data and generates the returns, but the operational process of reviewing, validating, filing, and remitting taxes is a distinct workflow. Philippine tax compliance involves strict monthly deadlines (VAT 2550M by 20th/25th, EWT 1601-E by 10th, withholding on compensation 1601-C by 10th), quarterly filings (1702Q income tax), and annual returns (1702RT). Late filing incurs penalties (25% surcharge + 12% annual interest + compromise penalty). This workflow bridges the financial close (W9) to actual regulatory compliance.
+
+### Monthly Tax Filing Cycle
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Tax data extraction** (after W9a month-end close day 3–4): Tax Accountant extracts from ERP: (a) VAT data — output VAT (sales) and input VAT (purchases) per entity; sales/purchases split by VAT-able, VAT-exempt, zero-rated; (b) EWT data — withholding tax per vendor per ATC (Alphanumeric Tax Code) from AP (W7.9a); (c) Withholding on compensation — per employee per entity from payroll (W10.4); (d) Local business tax — per LGU per location from W9a.16c | Tax Accountant | Controller | 2 hours/month |
+| 2 | **VAT return preparation** (BIR Form 2550M — monthly, or 2550Q — quarterly): (a) Tax Accountant reviews VAT data for completeness: all sales transactions captured, all purchase VAT claimed, intercompany VAT elimination correct per W14; (b) prepares 2550M per entity: gross sales, VAT-able sales, output VAT, total purchases, VAT-able purchases, input VAT, adjustments (prior period corrections), net VAT payable or refundable; (c) validates input VAT claims against supporting documents — BIR-registered sales invoices, official receipts, import entry declarations; (d) cross-references with W9a.16 VAT return schedule | Tax Accountant | Controller | 3 hours/month |
+| 3 | **EWT return preparation** (BIR Form 1601-E): (a) Tax Accountant reviews EWT computations per vendor per ATC; validates against AP records (W7.9a); (b) reconciles total EWT withheld per entity vs. vendor creditable withholding tax certificates (BIR Form 2307) to be issued; (c) prepares 1601-E per entity: total withholding per ATC category, taxes remitted prior months, current month liability | Tax Accountant | Controller | 2 hours/month |
+| 4 | **Withholding on compensation** (BIR Form 1601-C): (a) Payroll Officer provides monthly withholding tax per entity from W10 payroll processing; (b) Tax Accountant validates against TRAIN law tax tables and payroll register; (c) prepares 1601-C per entity | Tax Accountant / Payroll Officer | Controller | 1 hour/month |
+| 5 | **Statutory remittance — SSS, PhilHealth, Pag-IBIG**: (a) Payroll Officer generates monthly contribution schedules per entity from W10: employer share, employee share, total per employee; (b) validates against PRN (Payment Reference Number) from each agency; (c) submits payment via bank transfer or agency portal per deadline (SSS by last day of month, PhilHealth by every 10th, Pag-IBIG by every 14th) | Payroll Officer | HR Manager | 2 hours/month |
+| 6 | **BIR eFPS filing**: Tax Accountant files returns via BIR Electronic Filing and Payment System (eFPS) or eBIRForms for non-eFPS-covered entities: (a) uploads prepared returns (2550M, 1601-E, 1601-C); (b) system validates return data against BIR validation rules; (c) receives confirmation and payment reference | Tax Accountant | Controller | 1 hour/month |
+| 7 | **Tax payment**: Treasury Analyst processes tax payments via bank: (a) eFPS auto-debit for covered entities; (b) manual bank transfer for non-eFPS entities; (c) verifies payment confirmation against filed return amounts | Treasury Analyst | Controller | 30 min/month |
+| 8 | **Tax certificate generation**: Tax Accountant generates and distributes: (a) BIR Form 2307 (creditable withholding tax certificates) to vendors — monthly for top vendors, quarterly for others; (b) BIR Form 2316 (certificate of compensation payment/tax withheld) to all employees — annually or upon separation (W43); (c) alphalist of payees (1604-E) and employees (1604-C) — annual | Tax Accountant | Controller | 2 hours/month |
+| 9 | **Tax reconciliation**: Monthly: Tax Accountant reconciles tax liability accounts (VAT payable, EWT payable, WTC payable) per entity: (a) beginning balance + current month liability − payments = ending balance; (b) ending balance must agree with GL (W9a); (c) investigates and resolves discrepancies before next filing cycle | Tax Accountant | Controller | 1 hour/month |
+| 10 | **Tax calendar compliance dashboard**: System maintains tax compliance calendar per entity showing: filing deadline, filing status (pending/filed/paid), responsible person, penalty exposure for late filing; Controller reviews weekly | System / Controller | CFO | 15 min/week |
+
+### Quarterly / Annual Filing Additions
+
+| # | Activity | Role (R) | Role (A) | Frequency |
+|---|---|---|---|---|
+| 11 | **Quarterly income tax return** (BIR Form 1702Q): Tax Accountant prepares quarterly corporate income tax return per entity: taxable income, tax due, quarterly installment; validates against quarterly financial statements (W9a) | Tax Accountant | Controller | Quarterly |
+| 12 | **Annual income tax return** (BIR Form 1702RT): Tax Accountant prepares annual corporate income tax return per entity; incorporates year-end adjustments from W9b; cross-references with external auditor's tax computations (W95) | Tax Accountant | Controller / CFO | Annual |
+| 13 | **Annual information returns** (BIR Forms 1604-C, 1604-E): Tax Accountant prepares and files annual alphalist of employees and payees; reconciles with full-year withholding records | Tax Accountant | Controller | Annual (January) |
+| 14 | **Local business tax reconciliation**: Tax Accountant reconciles quarterly LBT payments per LGU (from W9a.16c) against LGU assessment; prepares any variance explanations; LGU assessments reconciled during W54 permit renewals | Tax Accountant | Controller | Quarterly |
+
+### System Touchpoints
+- Automated tax data extraction: VAT, EWT, WTC per entity with intercompany elimination (W90.1)
+- BIR return generation: 2550M/Q, 1601-E, 1601-C, 1702Q/RT, 1604-C/E in BIR-prescribed format (W90.2–4)
+- BIR eFPS/eBIRForms integration or export: prepared returns uploadable to BIR systems (W90.6)
+- Tax calendar compliance dashboard with deadline tracking and penalty exposure (W90.10)
+- Vendor withholding tax certificate (2307) generation and distribution (W90.8)
+- Employee withholding tax certificate (2316) generation (W90.8, W43.10)
+- Tax liability account reconciliation: VAT payable, EWT payable, WTC payable per entity (W90.9)
+- Statutory contribution schedules: SSS, PhilHealth, Pag-IBIG with employer/employee split per entity (W90.5)
+- Integration with W7 (AP — EWT computation), W8 (AR — VAT on sales), W9 (financial close — tax data source), W10 (payroll — withholding on compensation, statutory contributions), W14 (IC — VAT elimination), W30 (treasury — tax payment processing), W54 (LGU — local business tax), W77 (BIR audit — returns serve as audit support), W95 (external audit — tax provision validation)
+
+### Staffing Implication
+- **Tax Accountant**: adds ~12–15 hours/month for monthly filings + ~8 hours/quarter for quarterly returns + ~20 hours for annual returns = ~210 hours/year. This is a full-time responsibility; if a dedicated Tax Accountant does not exist, the Controller or Senior Accountant absorbs this work at the cost of ~25% of their capacity. **Recommend: 1 dedicated Tax Accountant** given 5 entities and Philippine tax complexity.
+- **Payroll Officer**: statutory remittance adds ~2 hours/month. Absorbed.
+- **Treasury Analyst**: tax payment processing adds ~30 min/month. Absorbed.
+
+---
+
+
+
+## W94. Customer Deposit & Advance Payment Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer places special order (W38); corporate/project account requires advance payment for large order; layaway deposit (W75); or customer requests credit balance refund |
+| **Frequency** | ~800–1,200 customer deposits/month (special orders, project accounts, layaway) |
+| **Volume** | Avg PHP 5,000–50,000 per deposit; project deposits can reach PHP 500,000+ |
+| **Owner** | AR Accountant |
+| **Participants** | AR Accountant, CSR / Sales Associate, Store Manager, Treasury Analyst, Customer |
+
+### Background
+
+Customer deposits (advance payments) are a common retail scenario for big-box home improvement: special orders for non-stock items, large project orders requiring down payments, layaway deposits, and corporate accounts with credit balances. Without a structured workflow, deposits can be mishandled — unapplied to invoices, forgotten refunds, or misallocated across entities. This workflow manages the full deposit lifecycle from receipt to application, refund, or forfeiture. It supports FIN-005 (AR for B2B) and POS-020 (layaway/installment sales).
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Deposit collection**: (a) **At POS** (store): Sales Associate or CSR collects deposit from customer for special order (W38), layaway (W75), or large in-store project order; system creates deposit receipt with deposit reference, customer account (loyalty, trade, or corporate), amount, and linked sales order or special order reference; payment captured via standard POS tender (cash, card, e-wallet); system posts to GL: Dr. Cash / Cr. Customer Deposits (liability); (b) **Online** (ecommerce): Customer prepays for BOPIS (W11) or home delivery (W19); system treats as advance payment captured by Digital Commerce Inc. and remitted to Depot Inc. per W14 IC model; (c) **Bank transfer** (corporate/project accounts): Corporate customer wires advance payment for large project order (W58); AR Accountant receives bank credit advice; posts deposit to customer account with project order reference | Sales Associate / CSR / AR Accountant | Store Manager / Controller | 5 min/POS deposit; 15 min/bank transfer |
+| 2 | **Deposit tracking**: System maintains deposit register per customer showing: deposit reference, date, amount, linked order, status (open/partially applied/fully applied/forfeited/refunded), aging; deposits are customer-level liability (not order-level revenue) until applied to invoice at fulfillment | System | — | Automated |
+| 3 | **Deposit application — at fulfillment**: (a) When linked sales order is fulfilled and invoice is generated (POS sale, special order delivery, project billing per W58), system auto-applies deposit to invoice: system reduces customer deposit liability (Dr. Customer Deposits) and reduces AR (Cr. Accounts Receivable) or cash balance; (b) if deposit exceeds invoice amount: system applies deposit to invoice and maintains residual credit balance on customer account for next invoice or refund; (c) if deposit is less than invoice amount: system applies full deposit and customer pays remaining balance at POS or via standard AR terms | System / AR Accountant | Controller | Automated + 5 min/review |
+| 4 | **Deposit refund**: (a) Customer requests cancellation of special order before fulfillment: CSR processes deposit refund per cancellation policy (full refund, less cancellation fee per W38, or forfeiture per W75 layaway rules); (b) system creates refund transaction: Dr. Customer Deposits / Cr. Cash (for POS refunds) or Cr. AP (for bank transfer refunds); (c) refund processed within 3–5 business days per customer-facing SLA; (d) for card/e-wallet deposits: refund to original payment method; for cash deposits: cash refund at store; for bank transfer deposits: bank transfer back to customer | CSR / AR Accountant | Store Manager | 10 min/refund |
+| 5 | **Unclaimed deposit aging**: System monitors unapplied/unrefunded deposits with aging: (a) 0–90 days: normal; (b) 90–180 days: system sends customer notification (deposit reminder); (c) 180–365 days: CSR contacts customer for disposition (apply, refund, or forfeit); (d) > 365 days: per Philippine law and BuildRight policy, unclaimed deposits may be recognized as revenue with Controller approval; system generates unclaimed deposit report for Controller review | System / CSR | Controller | 15 min/week |
+| 6 | **Layaway deposit forfeiture** (W75 integration): (a) If customer cancels layaway or defaults on installment payments per W75 cancellation rules, system forfeits deposit per layaway agreement terms; (b) forfeiture amount posted as Dr. Customer Deposits / Cr. Other Income (cancellation fee) or Cr. Revenue (if goods retained); (c) inventory reservation released per W75 | System / CSR | Store Manager | Per W75 |
+| 7 | **Project account advance billing** (W58 integration): For corporate/project accounts with milestone billing: (a) project contract may specify advance payment (e.g., 30% down, 40% at delivery, 30% at completion); (b) each advance collected per step 1; (c) at each billing milestone (W58), system applies collected deposits to milestone invoice; (d) retention amounts (typically 10% held for 90–180 days post-completion) tracked separately in deposit register with scheduled release date | AR Accountant | Controller | Per W58 |
+| 8 | **Monthly reconciliation**: AR Accountant reconciles customer deposit liability account: (a) total deposit liability per GL must agree with deposit register total per system; (b) aging analysis of unapplied deposits; (c) investigate and resolve discrepancies; (d) report to Controller as part of W9a month-end close | AR Accountant | Controller | 2 hours/month |
+
+### System Touchpoints
+- Deposit receipt creation at POS or AR with linked order reference (W94.1)
+- Customer deposit register: per-customer, per-order deposit tracking with status and aging (W94.2)
+- Auto-application of deposit to invoice at fulfillment (W94.3)
+- Deposit refund processing with cancellation policy enforcement (W94.4)
+- Unclaimed deposit aging report with escalation triggers (W94.5)
+- Integration with W11 (BOPIS — prepayment), W12 (returns — refund from deposit), W19 (home delivery — prepayment), W38 (special orders — deposit collection and cancellation fee), W58 (project accounts — milestone advance billing), W75 (layaway — deposit and installment payments, forfeiture), W89 (bank reconciliation — deposit refunds in bank statement)
+
+### Staffing Implication
+- **AR Accountant**: adds ~2–3 hours/week for deposit management and reconciliation. Absorbed within existing Finance team.
+- **CSRs**: deposit collection and refund adds ~5 min per transaction; with ~800–1,200 deposits/month across 200 stores = ~4–6 per store/month. Absorbed.
+- **No incremental headcount.**
+
+---
+
+
+
+## W99. Payment Settlement Reconciliation (Card / E-Wallet / Online)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Daily settlement reports received from payment processors (card acquirers, e-wallet providers, payment gateways) |
+| **Frequency** | Daily reconciliation; weekly summary review; monthly comprehensive reconciliation |
+| **Volume** | ~1,400,000 non-cash transactions/month (card 36% + e-wallet 15% = 51% of 2.8M POS transactions) + ~42,900 ecommerce payment transactions/month |
+| **Owner** | Treasury Analyst |
+| **Participants** | Treasury Analyst, AR Accountant, Controller, POS Administrator, Store Manager (for deposit variances) |
+
+### Background
+
+With 51% of POS transactions paid via non-cash methods (credit/debit cards ~36%, e-wallets like GCash and Maya ~15%) and all ecommerce orders paid online, payment settlement reconciliation is a critical daily operational process. Payment processors (card acquirers, GCash, Maya, PayMongo, Dragonpay) settle to BuildRight's bank accounts on varying schedules (T+1 for cards, T+1 to T+3 for e-wallets, T+2 to T+5 for payment gateways), each with different fee structures, chargeback processes, and settlement reporting formats. Without a structured reconciliation workflow, settlement discrepancies go undetected, fees are not properly recorded, and cash is misstated.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Settlement report import**: System imports daily settlement reports from each payment channel: (a) card acquirer settlement (BDO, BPI merchant acquiring — per-terminal breakdown of gross sales, refunds, chargebacks, interchange fees, acquiring fees, net settlement); (b) e-wallet settlement (GCash, Maya — per-transaction or batch settlement with per-transaction fees); (c) ecommerce payment gateway (PayMongo, Dragonpay — per-order settlement with gateway fees, payment method fees) | System | Treasury Analyst | Automated |
+| 2 | **Auto-matching**: System attempts to match settlement report lines to POS/ecommerce transactions: (a) match by transaction reference (card approval code, e-wallet reference, payment gateway order ID); (b) match by amount and date; (c) system calculates variance per settlement batch: gross transactions − refunds − chargebacks − fees = expected net settlement; compare to actual bank credit | System | — | Automated |
+| 3 | **Fee validation**: (a) System validates processing fees per transaction against contracted rates per payment processor: card acquiring fees (1.5–2.5% + PHP 10–15 per transaction), e-wallet fees (1.0–2.0% + PHP 5–10), payment gateway fees (2.0–3.5% + PHP 15–25); (b) flags transactions with fees exceeding contracted rate by > 0.5% for investigation; (c) monthly: Treasury Analyst compares actual effective fee rate (total fees ÷ total processed) vs. contracted blended rate per processor | System / Treasury Analyst | Controller | 15 min/day |
+| 4 | **Chargeback management**: (a) System receives chargeback notification from card acquirer; (b) creates chargeback case with transaction details; (c) Store Manager or CSR provides supporting documentation (signed receipt, delivery proof, CCTV if fraud); (d) Treasury Analyst submits representment (dispute) within acquirer deadline (typically 7–14 days); (e) if chargeback upheld: system posts Dr. Chargeback Expense / Cr. AR-Card Processor; if reversed: system posts Dr. AR-Card Processor / Cr. Chargeback Expense; (f) monthly chargeback rate monitored: target < 0.5% of card transaction volume | Treasury Analyst / CSR / Store Manager | Controller | 20 min/chargeback |
+| 5 | **Unreconciled items investigation**: Treasury Analyst investigates unmatched items: (a) settlement received but no matching POS transaction (possible: delayed posting from offline POS per W5g, multi-tender split transaction), (b) POS transaction but no matching settlement (possible: transaction on cutoff date, settlement in next day's batch), (c) amount discrepancy (partial refund, fee dispute, FX conversion for international cards) | Treasury Analyst | Controller | 30 min/day |
+| 6 | **GL posting**: System posts daily settlement entries: (a) Dr. Cash (net settlement received in bank) / Cr. AR-Card Processor (gross transactions); (b) Dr. Payment Processing Expense / Cr. AR-Card Processor (processing fees); (c) Dr. AR-Card Processor / Cr. Revenue (refunds/chargebacks); (d) net effect: system AR-Card Processor clearing account should net to zero daily; any residual balance investigated | System | Treasury Analyst | Automated |
+| 7 | **Weekly summary**: Treasury Analyst prepares weekly payment settlement summary: total processed per channel, total fees, effective fee rate per channel, chargeback count and rate, unreconciled items aging; submits to Controller | Treasury Analyst | Controller | 30 min/week |
+| 8 | **Monthly comprehensive reconciliation**: (a) Treasury Analyst reconciles monthly totals per payment channel: gross transactions (from POS/ecommerce system) vs. processed volume (from processor statements) vs. net settlement (from bank statements per W89); (b) validates monthly fee accrual vs. actual fees charged; adjusts accrual if variance > 2%; (c) confirms all chargeback cases resolved; (d) part of W9a month-end close supporting schedules | Treasury Analyst | Controller | 2 hours/month |
+
+### Per-Channel Settlement Timing
+
+| Channel | Settlement Schedule | Fee Structure |
+|---|---|---|
+| Credit/Debit Card (BDO acquiring) | T+1 business day | 1.5–2.5% + PHP 10–15/txn |
+| Credit/Debit Card (BPI acquiring) | T+1 business day | 1.5–2.5% + PHP 10–15/txn |
+| GCash | T+1 business day | 1.0–2.0% + PHP 5–10/txn |
+| Maya | T+1 to T+2 business day | 1.0–2.0% + PHP 5–10/txn |
+| PayMongo (ecommerce) | T+2 to T+3 business day | 2.0–3.5% + PHP 15–25/txn |
+| Dragonpay (bank transfer) | T+1 to T+5 business day | PHP 15–30/txn (fixed) |
+
+### System Touchpoints
+- Settlement report import from multiple processors in their respective formats (W99.1)
+- Auto-matching engine: transaction reference, amount, date matching across POS, ecommerce, and settlement data (W99.2)
+- Fee validation against contracted rates with variance alerting (W99.3)
+- Chargeback case management with document collection and deadline tracking (W99.4)
+- AR-Card Processor clearing account with daily zero-balance target (W99.6)
+- Weekly payment settlement summary and monthly comprehensive reconciliation (W99.7–8)
+- Integration with W5b (POS transactions — source of card/e-wallet payments), W5g (offline POS — delayed settlement), W11 (BOPIS payments), W12 (returns — refund processing), W19 (ecommerce payments), W25 (petty cash — small cash refunds), W30 (treasury — cash position includes settlement deposits), W89 (bank reconciliation — settlement deposits in bank statements)
+
+### Staffing Implication
+- **Treasury Analysts**: add ~1 hour/day for daily reconciliation + 30 min/week summary + 2 hours/month comprehensive = ~25 hours/month. With 2 Treasury Analysts, this is ~12.5 hours each/month. Absorbed within existing Finance team.
+- **CSRs / Store Managers**: chargeback documentation adds ~5–10 min per chargeback case. With ~50–100 chargebacks/month across 200 stores, this is minimal per store.
 - **No incremental headcount.**
 
 ---

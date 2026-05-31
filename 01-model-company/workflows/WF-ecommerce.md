@@ -10,6 +10,7 @@
 
 - [W11. Ecommerce — BOPIS Order Fulfillment](#ecommerce-bopis-order-fulfillment)
 - [W19. Ecommerce — Home Delivery Fulfillment](#ecommerce-home-delivery-fulfillment)
+- [W98. Ecommerce Order Exception & Cancellation Management](#ecommerce-order-exception-cancellation-management)
 
 ---
 
@@ -155,6 +156,71 @@
 ---
 
 
+
+## W98. Ecommerce Order Exception & Cancellation Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | BOPIS pick failure; home delivery failure; customer cancellation request; auto-cancellation (hold period expiry, payment failure); order modification request; or payment authorization failure |
+| **Frequency** | ~4,000–6,000 exception cases/month (~10–15% of ~42,900 ecommerce orders) |
+| **Volume** | ~130–200 exception cases/day across all channels
+| **Owner** | CSR (store-level exceptions); DC Dispatch (delivery exceptions); Ecommerce Customer Support (online channel) |
+| **Participants** | CSR, DC Dispatch, Ecommerce Customer Support, Stock Associate, Treasury Analyst, Customer |
+
+### Background
+
+W11 (BOPIS) and W19 (Home Delivery) cover the happy-path fulfillment process from order to delivery. However, ~10–15% of ecommerce orders encounter exceptions: items not found during BOPIS picking, delivery failures when the customer is unavailable, customer-initiated cancellations, payment authorization failures, and auto-cancellations when hold periods expire. Without a dedicated exception handling workflow, these cases result in poor customer experience, delayed refunds, inventory discrepancies, and increased customer service contacts. This workflow covers all ecommerce order exception scenarios and ensures timely resolution with proper financial and inventory reconciliation.
+
+### BOPIS Exceptions
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Pick failure — item not found in store**: (a) Stock Associate cannot locate item during BOPIS pick (W11.4); (b) system checks: is item in backroom? checked recently? If not found after 10 min search, Stock Associate marks item as "Pick Failed"; (c) system evaluates alternatives: (i) **Substitution**: offer customer a similar item (system suggests substitutes based on category and price range); customer accepts or declines via SMS/email with one-click response; (ii) **Transfer from nearby store**: if item available at store within 10 km, system creates emergency inter-store transfer per W22 for pickup within 24 hours; (iii) **Ship from DC**: convert BOPIS line to home delivery (W19) with system routing to nearest DC; customer notified of new delivery timeline; (iv) **Cancel line**: if customer declines all alternatives, cancel the unfilled line and initiate refund | Stock Associate / System / CSR | Store Manager | 10 min + customer response time |
+| 2 | **Pick failure — item damaged on shelf**: (a) Stock Associate finds item but it's damaged; (b) Stock Associate marks as "Damaged at Pick"; system routes to W91 damaged goods process; (c) same substitution/transfer/ship/cancel alternatives as step 1 apply for customer | Stock Associate / CSR | Store Manager | 10 min |
+| 3 | **BOPIS hold period expiry** (5-day auto-cancel): (a) System monitors BOPIS orders not picked up within 5 days; (b) **Day 3**: system sends reminder to customer (SMS + email): "Your order is ready for pickup. Please pick up by [date] or your order will be cancelled and refunded."; (c) **Day 4**: CSR calls customer for high-value orders (> PHP 10,000) to confirm pickup intent; (d) **Day 5**: if not picked up, system auto-cancels order; initiates refund to original payment method per W94 deposit refund; items returned to saleable inventory (shelf or backroom); system reverses ATP reservation | System / CSR | Store Manager | Automated + 5 min/call |
+| 4 | **BOPIS customer cancellation**: (a) Customer requests cancellation via website/app, phone, or in-store before pickup; (b) if order status is "Ready for Pickup": CSR processes cancellation in system; items returned to shelf; refund initiated per original payment method; (c) if order status is "Being Picked": system attempts to stop pick; if already picked, items staged but customer cancelled — CSR processes cancellation and restocks | CSR / System | Store Manager | 5 min/cancellation |
+
+### Home Delivery Exceptions
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 5 | **Delivery failure — customer unavailable**: (a) Carrier reports failed delivery (per W19.12); (b) system sends customer SMS with reschedule/cancel options; (c) if customer reschedules: system creates new delivery order with carrier; (d) if customer cancels: system processes refund and DC restocks upon carrier return; (e) if no customer response within 3 business days: system auto-cancels and refunds per W19.12 | Carrier / System / DC Dispatch | DC Supervisor | Per W19.12 |
+| 6 | **Delivery failure — address issue**: (a) Carrier reports address not found or incorrect; (b) system contacts customer via SMS/email to confirm/correct address; (c) if customer provides corrected address within 24 hours: carrier re-attempts delivery; (d) if customer does not respond: same 3-day auto-cancel as step 5 | Carrier / System | DC Dispatch | 10 min |
+| 7 | **Delivery — customer reports wrong item**: (a) Customer contacts Ecommerce Customer Support (chat, email, phone) reporting wrong item delivered; (b) CSR verifies: compares order contents vs. delivery confirmation photo; (c) if carrier error (wrong package delivered): CSR initiates carrier claim (W19.12b) and reships correct item from DC; (d) if DC pick error (DC picked wrong SKU): DC Dispatch investigates pick process; correct item reshipped; wrong item scheduled for carrier pickup (reverse logistics per W19.12a); (e) system creates exception order with priority flag for reshipment | CSR / DC Dispatch | DC Supervisor | 15 min/case |
+| 8 | **Delivery — customer reports damaged item**: (a) Customer contacts support with photos of damaged delivery; (b) CSR processes per W19.12b carrier damage vs. vendor defect liability; (c) for carrier damage: immediate replacement order created with priority flag + carrier claim filed; (d) for vendor defect: replacement order created + vendor warranty claim per W33; (e) damaged item returned via reverse logistics per W19.12a | CSR / DC Receiving Clerk | DC Supervisor | 15 min/case |
+
+### Payment & System Exceptions
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 9 | **Payment authorization failure**: (a) Customer places order but payment gateway declines authorization (insufficient funds, expired card, e-wallet limit reached); (b) system holds order in "Payment Pending" status for 1 hour; (c) system sends customer notification: "Payment not completed. Please retry or use a different payment method."; (d) if customer retries within 1 hour: order proceeds to fulfillment; (e) if payment not completed within 1 hour: system auto-cancels order; inventory reservation released | System / Customer | — | Automated |
+| 10 | **Partial payment / split payment failure**: (a) For multi-tender orders (e.g., gift card + credit card): if one payment method fails, system holds successful payment as customer credit (W28) and prompts customer to retry failed portion; (b) if customer does not complete within 1 hour: auto-cancel entire order; successful payment portion refunded to gift card or original method | System | — | Automated |
+| 11 | **Order modification request**: (a) Customer requests change to order after placement but before fulfillment: change delivery address, add/remove items, change pickup store; (b) **Before pick/ship**: CSR modifies order in system; inventory reservation adjusted; if new items added, system checks ATP and adds if available; if items removed, ATP released; (c) **After pick/ship**: no modification possible; customer must receive order and then initiate return per W12b; exception: delivery address change may be possible if carrier has not dispatched — CSR coordinates with DC Dispatch | CSR / DC Dispatch | Store Manager / DC Supervisor | 5–10 min/request |
+| 12 | **System error / duplicate order**: (a) Customer contacts support reporting duplicate order (placed twice accidentally); (b) CSR verifies duplicate: same items, same address, placed within 30 minutes; (c) cancels duplicate order and refunds; (d) if duplicate already shipped: customer may refuse delivery of second package (carrier returns to DC) or return in-store per W12b | CSR | Ecommerce Manager | 10 min/case |
+
+### Exception Monitoring & Analytics
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 13 | **Daily exception dashboard**: System generates daily ecommerce exception dashboard: total orders, exceptions by type (pick failure, delivery failure, cancellation, payment failure), resolution rate, average resolution time, customer satisfaction impact; Ecommerce Manager reviews daily | System / Ecommerce Manager | CMO | 15 min/day |
+| 14 | **Weekly exception review**: Ecommerce Manager and DC Dispatch Supervisor review weekly exception trends: (a) BOPIS pick failure rate by store (target: < 3%); stores > 5% investigated for inventory accuracy issues (W6); (b) delivery failure rate by carrier (target: < 2%); carriers > 5% flagged for W62b performance review; (c) cancellation rate (target: < 5%); cancellation reason analysis; (d) top exception SKUs — items that frequently fail picking (possible ATP/inventory sync issue) or frequently get delivery complaints (possible packaging issue) | Ecommerce Manager / DC Dispatch | CMO / COO | 30 min/week |
+| 15 | **Monthly exception report**: Ecommerce Manager prepares monthly exception report for CMO and COO: exception rate trend, resolution time trend, root cause analysis, improvement initiatives, and financial impact (lost revenue from cancellations, cost of re-shipping, refund volume); feeds into W35 management reporting | Ecommerce Manager | CMO | 1 hour/month |
+
+### System Touchpoints
+- BOPIS pick failure handling with substitution/transfer/ship-from-DC/cancel alternatives (W98.1)
+- BOPIS hold period monitoring with escalating reminders and auto-cancellation (W98.3)
+- Home delivery failure management with reschedule/cancel and reverse logistics (W98.5–6)
+- Wrong/damaged item delivery resolution with carrier claim and reshipment (W98.7–8)
+- Payment authorization failure handling with retry window and auto-cancellation (W98.9–10)
+- Order modification processing with fulfillment-stage-dependent rules (W98.11)
+- Daily exception dashboard and weekly/monthly analytics (W98.13–15)
+- Integration with W11 (BOPIS — pick failure originates here), W12 (returns — cancelled order refund processing), W12b (online returns — return after delivery), W19 (home delivery — delivery failure originates here), W22 (inter-store transfer — BOPIS emergency transfer), W28 (gift card — partial payment failure), W33 (warranty — vendor defect replacement), W41 (complaints — customer escalations), W56 (backorder — similar customer notification), W91 (damaged goods — pick failure damage), W94 (deposit refund — cancellation refund processing), W99 (payment settlement — payment failure reconciliation)
+
+### Staffing Implication
+- **CSRs**: ~2,000–3,000 BOPIS exceptions/month ÷ 200 stores = ~10–15 per store/month × 10 min each = ~2 hours/store/month. Absorbed by existing 1 CSR/store.
+- **DC Dispatch**: ~1,000–2,000 delivery exceptions/month ÷ 5 DCs = ~200–400 per DC/month × 15 min each = ~50–100 hours/DC/month. With DC Dispatch team of 3–4, this is ~15–25 hours each/month. Absorbed.
+- **Ecommerce Customer Support** (30-person call center): handles chat/email/phone exception cases; ~1,000–1,500 cases/month ÷ 30 agents = ~40–50 cases/agent/month × 10 min each = ~7–8 hours/agent/month. Absorbed within existing call center capacity.
+- **No incremental headcount.**
 
 ---
 

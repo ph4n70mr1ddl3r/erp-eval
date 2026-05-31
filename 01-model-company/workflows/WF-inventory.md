@@ -15,6 +15,8 @@
 - [W42. Annual Physical Inventory Execution](#annual-physical-inventory-execution)
 - [W56. Customer Backorder Management](#customer-backorder-management)
 - [W57. Promotional Stock Allocation & Pre-Positioning](#promotional-stock-allocation-pre-positioning)
+- [W91. Damaged & Defective Goods Disposition](#damaged-defective-goods-disposition)
+- [W92. Inventory Adjustment & Shrinkage Authorization](#inventory-adjustment-shrinkage-authorization)
 
 ---
 
@@ -458,6 +460,94 @@ When a store is the source location for a store-to-store transfer (W22 step 5), 
 ---
 
 
+
+## W91. Damaged & Defective Goods Disposition
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Damaged or defective goods identified during receiving (W3, W18), cycle counting (W6), daily operations (W5), or customer return (W12) |
+| **Frequency** | ~500–800 damaged/defective units/month across all locations |
+| **Volume** | ~15–25 per store per month; ~50–100 per DC per month |
+| **Owner** | Store Manager (store-level); DC Supervisor (DC-level) |
+| **Participants** | Store Manager, DC Supervisor, Stock Associate, Receiving Clerk, Buyer, Category Manager, Controller |
+
+### Background
+
+Damaged and defective goods are an inevitable part of retail operations — items damaged in transit (DC→Store or vendor→DC), in-store handling damage, customer-caused damage on display items, vendor manufacturing defects, and age-related deterioration (paint expiry, adhesive hardening). While W88 (Return to Vendor) handles the vendor-liability path and W92 (Inventory Adjustment) handles the accounting authorization, this workflow governs the physical identification, documentation, and disposition decision-making for damaged/defective goods regardless of liability. It fills the gap between discovering damaged inventory and the final resolution.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Identification and documentation**: (a) Store Associate, Stock Associate, or Receiving Clerk discovers damaged/defective item; (b) scans item barcode and selects damage type: (i) transit damage (DC→Store or vendor→DC/Store), (ii) in-store handling damage (dropped, shelving collapse, water damage), (iii) customer-caused damage (opened package, broken seal on display), (iv) vendor manufacturing defect (functional failure, missing parts, cosmetic defect out of box), (v) age/expiry deterioration (expired paint, hardened adhesive, rusted hardware), (vi) environmental damage (flood, typhoon — W49); (c) takes photo of damage; (d) system creates damage report with timestamp, location, item, quantity, damage type, and photo evidence | Stock Associate / Receiving Clerk | Dept. Supervisor / DC Supervisor | 5 min/item |
+| 2 | **Quarantine and physical segregation**: System moves damaged items to "Damaged/Defective" inventory status (unavailable for sale, unavailable for replenishment calculation); physical items moved to designated damaged goods area in store backroom or DC quarantine zone | Stock Associate / Receiving Clerk | Store Manager / DC Supervisor | 5 min/item |
+| 3 | **Liability assessment**: (a) **Vendor liability** — damage type is vendor defect, transit damage from vendor, or wrong item received: route to W88 (Return to Vendor) for vendor credit or replacement; (b) **Carrier liability** — damage type is transit damage from DC to store or 3PL delivery to customer: route to carrier claim (W19.12b for ecommerce, W66 for inter-island, W52 for fleet); (c) **BuildRight liability** — in-store handling damage, customer-caused damage, environmental damage: no external recovery possible; proceed to disposition decision; (d) **Undetermined** — route to Buyer for vendor negotiation or DC Supervisor for carrier investigation | Dept. Supervisor / DC Supervisor | Store Manager / DC Supervisor | 5 min/item |
+| 4 | **Disposition decision** (BuildRight-liability items only — vendor/carrier items follow W88 or carrier claim): (a) **Markdown and sell at discount** — item is cosmetically damaged but functionally usable (e.g., dented can of paint, scratched tile, box-damaged appliance); system routes to W93 (Markdown & Clearance) for discounted sale; (b) **Donate** — item is functional but not saleable at any price (e.g., display model replaced by newer version); coordinate with CSR for community donation program; requires Controller approval; (c) **Scrap/dispose** — item is non-functional, hazardous (paint/chemical per W82), or broken beyond any use; system routes to disposal with proper documentation; (d) **Return to regular stock** — item was incorrectly flagged (e.g., packaging scuff but product perfect); system reverses damage status | Dept. Supervisor / Store Manager / DC Supervisor | Store Manager / DC Supervisor | 5 min/item |
+| 5 | **DC-level consolidation**: DC Supervisor consolidates damaged/defective items from DC operations and items returned from stores (via W22b store-to-DC return); sorts by vendor for potential consolidated RTV shipment per W88; disposes of scrap items in bulk per W82 (hazardous materials) or general waste protocols | DC Supervisor | Supply Chain Manager | 1 hour/week |
+| 6 | **Financial impact recording**: System calculates damage/defective value at WAC per item; records in damage/defective register: total value by damage type, by location, by category; feeds into shrinkage report per W37 (loss prevention) and W92 (inventory adjustment) | System | Controller | Automated |
+| 7 | **Monthly damage analysis**: Category Manager and Controller review monthly damage/defective report: (a) damage rate by category (target: < 0.5% of inventory value), (b) damage rate by location (flag stores > 1% rate), (c) damage rate by damage type (trend analysis), (d) top 20 items by damage frequency (possible packaging improvement or vendor quality issue), (e) vendor defect rate feeds into W44 vendor scorecard; (f) transit damage rate by carrier feeds into W52/W62b carrier performance | Category Manager / Controller | VP Merchandising / CFO | 1 hour/month |
+
+### System Touchpoints
+- Damage report creation with barcode scan, damage type classification, and photo evidence (W91.1)
+- Inventory status change to "Damaged/Defective" (blocked from sale and allocation) (W91.2)
+- Liability assessment routing: W88 (vendor), carrier claim, or BuildRight (W91.3)
+- Disposition decision workflow: markdown (W93), donate, scrap/dispose, or reinstate (W91.4)
+- Damage/defective register with value tracking by type, location, category (W91.6)
+- Monthly damage analysis dashboard with rate tracking and trend analysis (W91.7)
+- Integration with W3 (DC receiving — transit damage from vendor), W4 (DC→Store transit damage), W6 (cycle count — discovered damage), W12 (customer returns — damaged items), W18 (DSD — transit damage), W22 (transfers — in-transit damage), W37 (loss prevention — damage as shrinkage component), W44 (vendor scorecard — vendor defect rate), W52/W62b (carrier performance — transit damage rate), W66 (inter-island — transit damage), W82 (hazardous waste disposal), W88 (RTV — vendor liability path), W92 (inventory adjustment — accounting authorization), W93 (markdown — sellable damaged goods)
+
+### Staffing Implication
+- **Store Associates / Stock Associates**: ~15–25 damaged items/store/month × 10 min each = ~2.5–4 hours/store/month. Absorbed.
+- **DC Supervisor**: 1 hour/week for consolidation. Absorbed.
+- **Category Manager / Controller**: 1 hour/month for damage review. Absorbed.
+- **No incremental headcount.**
+
+---
+
+
+
+## W92. Inventory Adjustment & Shrinkage Authorization
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Cycle count discrepancy identified (W6); annual physical inventory variance (W42); confirmed theft or loss (W37); damaged goods write-off (W91); RTV write-off (W88); or system correction needed (negative inventory, data entry error) |
+| **Frequency** | ~1,500–2,500 adjustments/month across all locations (mostly from cycle counts) |
+| **Volume** | ~8–12 adjustments per store per month; ~30–50 per DC per month |
+| **Owner** | Controller |
+| **Participants** | Stock Associate, Store Manager, DC Supervisor, Cost Accountant, Controller, Internal Audit |
+
+### Background
+
+W6 (Cycle Counting) identifies discrepancies between system and physical inventory, and W42 (Annual Physical Inventory) produces wall-to-wall variances. However, the resolution — investigating the root cause, authorizing the adjustment, and posting the accounting entry — requires a separate control workflow. Inventory adjustments directly impact the GL (inventory asset and COGS/shrinkage expense), so they require proper authorization tiers, documentation, and segregation of duties. This workflow also covers adjustments from confirmed theft (W37), damage write-offs (W91), and system corrections.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Adjustment request creation**: System automatically creates adjustment request when: (a) cycle count (W6) reveals variance exceeding threshold (±1 unit for A-items, ±3 for B-items, ±5 for C-items), (b) physical inventory (W42) variance confirmed, (c) confirmed theft reported (W37), (d) damaged goods disposition completed (W91 — markdown, scrap, or donate), (e) RTV unresolved > 90 days (W88.9 — auto-write-off), (f) negative inventory detected (system shows on-hand < 0). Alternatively, Stock Associate or DC Supervisor manually creates adjustment request with reason code and supporting documentation | System / Stock Associate / DC Supervisor | Store Manager / DC Supervisor | 5 min/request |
+| 2 | **Root cause classification**: Initiator or Supervisor classifies the adjustment reason: (a) shrinkage/theft (unexplained loss), (b) receiving/putaway error (item received but put in wrong location), (c) POS scanning error (wrong item scanned at checkout), (d) damage/spoilage (per W91), (e) vendor short-shipment (received less than PO — per W3), (f) data entry error (incorrect quantity or SKU entered), (g) negative inventory correction (overselling or system timing), (h) RTV write-off (per W88), (i) intercompany/transfer discrepancy (per W22), (j) other (with explanation) | Dept. Supervisor / DC Supervisor | Store Manager / DC Supervisor | 5 min/request |
+| 3 | **Investigation** (for material adjustments): (a) A-items with variance > PHP 10,000: Dept. Supervisor investigates — review POS transactions for scanning errors, review receiving logs, check transfer records, review CCTV if theft suspected; (b) confirmed theft: escalate to Loss Prevention per W37; (c) receiving/putaway error: check if item is in adjacent bin location (common in big-box with 35,000 SKUs); (d) document findings in adjustment request | Dept. Supervisor / DC Supervisor | Store Manager / DC Supervisor | 15 min/investigation |
+| 4 | **Authorization** (tiered approval): (a) **Level 1 — Store Manager / DC Supervisor**: adjustments ≤ PHP 5,000 per SKU per count event; max 20 adjustments/month per location without escalation; (b) **Level 2 — Cost Accountant**: adjustments > PHP 5,000 and ≤ PHP 50,000; validates GL impact and cost center allocation; (c) **Level 3 — Controller**: adjustments > PHP 50,000; reviews root cause documentation and investigation quality; approves or requests additional investigation; (d) **Level 4 — CFO**: adjustments > PHP 500,000 (typically annual physical inventory major variances); requires Internal Audit observation per CTL-38 in Internal Controls Matrix | Per tier above | Per tier above | 5–15 min/approval |
+| 5 | **System posting**: Upon authorization, system posts inventory adjustment: (a) Dr. COGS-Shrinkage / Cr. Inventory (at WAC) — for losses, theft, damage write-offs; (b) Dr. Inventory / Cr. COGS-Shrinkage — for gains (found items, receiving errors corrected); (c) Dr. Vendor Claim Receivable / Cr. Inventory — for vendor short-shipment (pending vendor credit per W88); (d) Dr. Carrier Claim Receivable / Cr. Inventory — for carrier damage (pending carrier claim); (e) adjustment posted with authorization trail, reason code, supporting evidence reference, and GL impact | System | Cost Accountant | Automated |
+| 6 | **Negative inventory resolution**: Special handling for negative inventory (system shows < 0 on-hand): (a) system auto-creates adjustment request flagged as high priority; (b) immediate investigation by Dept. Supervisor — most common causes: (i) POS sold item not yet received (timing), (ii) POS sold wrong SKU (scanning error), (iii) cycle count in progress but not posted; (c) resolution within 24 hours; if unresolved, system blocks further sales of that SKU at that location until resolved (prevents cascading negative inventory) | System / Dept. Supervisor | Store Manager | 15 min/case |
+| 7 | **Monthly shrinkage reporting**: Cost Accountant prepares monthly shrinkage report: (a) total adjustments by reason code, by location, by category; (b) shrinkage as % of sales (target: < 1.5% per company profile); (c) shrinkage trend by store — identify stores exceeding target; (d) adjustment authorization compliance — verify all adjustments properly approved per tier; (e) top 20 SKUs by shrinkage value; submits to Controller for management reporting per W35 | Cost Accountant | Controller | 2 hours/month |
+| 8 | **Quarterly Internal Audit review**: Internal Audit samples adjustments quarterly: (a) verify authorization compliance (right approval tier used), (b) verify documentation completeness (reason code, investigation, evidence), (c) verify segregation of duties (requestor ≠ authorizer for Level 2+), (d) test negative inventory resolution timeliness; findings reported to CFO and Audit Committee | Internal Audit | CFO | 4 hours/quarter |
+
+### System Touchpoints
+- Auto-adjustment request creation from cycle count variances, physical inventory variances, negative inventory detection (W92.1)
+- Reason code classification with mandatory documentation per code type (W92.2)
+- Tiered approval workflow with amount-based routing and authorization trail (W92.4)
+- GL posting with WAC recalculation and proper debit/credit routing (W92.5)
+- Negative inventory alerting with auto-block on further sales (W92.6)
+- Monthly shrinkage report: by reason, location, category, SKU (W92.7)
+- Adjustment authorization compliance dashboard for Internal Audit (W92.8)
+- Integration with W3 (DC receiving — short-shipment adjustments), W4 (replenishment — in-transit variances), W6 (cycle counting — primary source of adjustments), W12 (returns — cross-store adjustments), W22 (transfers — discrepancy adjustments), W37 (loss prevention — confirmed theft write-offs), W42 (annual physical inventory — major adjustments), W44 (vendor scorecard — vendor short-shipment rate), W88 (RTV — unresolved write-offs), W91 (damaged goods — disposition-driven adjustments)
+
+### Staffing Implication
+- **Cost Accountant**: adds ~2 hours/month for shrinkage reporting and Level 2 approvals. Absorbed.
+- **Controller**: adds ~1 hour/month for Level 3 approvals and shrinkage review. Absorbed.
+- **Internal Audit**: adds ~4 hours/quarter for adjustment testing. Absorbed.
+- **No incremental headcount.**
 
 ---
 

@@ -37,18 +37,18 @@ Each workflow follows this format:
 
 Workflows are organized by functional domain for easier navigation and gap analysis:
 
-- **[Merchandising & Pricing Workflows](./WF-merchandising.md)** (8 workflows) — Assortment planning, promotions, pricing, product lifecycle, PIM, and vendor rebate management.
-- **[Procurement & Vendor Management Workflows](./WF-procurement.md)** (7 workflows) — Purchase orders, vendor onboarding, VMI, special orders, vendor performance, and contracts.
+- **[Merchandising & Pricing Workflows](./WF-merchandising.md)** (10 workflows) — Assortment planning, promotions, pricing, product lifecycle, PIM, vendor rebate management, markdown & clearance pricing, and sample & demo inventory management.
+- **[Procurement & Vendor Management Workflows](./WF-procurement.md)** (8 workflows) — Purchase orders, vendor onboarding, VMI, special orders, vendor performance, contracts, and return to vendor processing.
 - **[Warehouse & Logistics Workflows](./WF-warehouse.md)** (4 workflows) — Receiving, putaway, kit assembly, fleet management, and inter-island logistics.
-- **[Inventory Management Workflows](./WF-inventory.md)** (7 workflows) — Replenishment, cycle counting, transfers, consignment, physical inventory, backorders, and promo stock allocation.
-- **[Store Operations Workflows](./WF-store-operations.md)** (16 workflows) — Daily store selling, POS, returns, loyalty, DSD receiving, gift cards, new store opening/closure, warranty, facility maintenance, performance review, and planogram compliance.
-- **[Ecommerce Workflows](./WF-ecommerce.md)** (2 workflows) — BOPIS order fulfillment and home delivery fulfillment.
-- **[Finance & Treasury Workflows](./WF-finance.md)** (16 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, and product costing & margin analysis.
+- **[Inventory Management Workflows](./WF-inventory.md)** (9 workflows) — Replenishment, cycle counting, transfers, consignment, physical inventory, backorders, promo stock allocation, damaged goods disposition, and inventory adjustment authorization.
+- **[Store Operations Workflows](./WF-store-operations.md)** (17 workflows) — Daily store selling, POS, returns, loyalty, DSD receiving, gift cards, new store opening/closure, warranty, facility maintenance, performance review, planogram compliance, and store renovation projects.
+- **[Ecommerce Workflows](./WF-ecommerce.md)** (3 workflows) — BOPIS order fulfillment, home delivery fulfillment, and ecommerce order exception & cancellation management.
+- **[Finance & Treasury Workflows](./WF-finance.md)** (20 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, product costing & margin analysis, bank reconciliation, tax filing & statutory remittance, customer deposit management, and payment settlement reconciliation.
 - **[HR & Payroll Workflows](./WF-hr.md)** (8 workflows) — Payroll, recruitment, shift scheduling, onboarding/offboarding, training, performance, expenses, and employee loans.
 - **[Supply Chain Planning Workflows](./WF-supply-chain.md)** (2 workflows) — Demand forecasting and seasonal buy planning.
 - **[Customer Experience Workflows](./WF-customer.md)** (6 workflows) — Complaint resolution, corporate/project accounts, price matching, satisfaction measurement, account reactivation, and feedback-to-action loop.
 - **[IT Operations Workflows](./WF-it-operations.md)** (4 workflows) — Helpdesk, data privacy breach response, disaster recovery, and data migration/parallel-run testing.
-- **[Compliance & Governance Workflows](./WF-compliance.md)** (7 workflows) — Loss prevention, business continuity, LGU permits, BIR audit, government procurement, grievance/whistleblower, and hazardous waste disposal.
+- **[Compliance & Governance Workflows](./WF-compliance.md)** (8 workflows) — Loss prevention, business continuity, LGU permits, BIR audit, government procurement, grievance/whistleblower, hazardous waste disposal, and external audit coordination.
 
 - **[Marketing Campaign Workflows](./WF-marketing.md)** (1 workflow) — Campaign planning, creative production, multi-channel execution, budget tracking, and performance measurement.
 
@@ -56,7 +56,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 
 ---
 
-## Complete Workflow Index (W1–W87)
+## Complete Workflow Index (W1–W99)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
@@ -148,7 +148,19 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W85 | Product Costing & Margin Analysis Review | [Finance & Treasury Workflows](WF-finance.md) |
 | W86 | Planogram Compliance & Store Layout Verification | [Store Operations Workflows](WF-store-operations.md) |
 | W87 | Customer Feedback-to-Action Loop | [Customer Experience Workflows](WF-customer.md) |
+| W88 | Return to Vendor (RTV) Processing | [Procurement & Vendor Management Workflows](WF-procurement.md) |
+| W89 | Bank Reconciliation | [Finance & Treasury Workflows](WF-finance.md) |
+| W90 | Monthly Tax Filing & Statutory Remittance | [Finance & Treasury Workflows](WF-finance.md) |
+| W91 | Damaged & Defective Goods Disposition | [Inventory Management Workflows](WF-inventory.md) |
+| W92 | Inventory Adjustment & Shrinkage Authorization | [Inventory Management Workflows](WF-inventory.md) |
+| W93 | Markdown & Clearance Pricing Execution | [Merchandising & Pricing Workflows](WF-merchandising.md) |
+| W94 | Customer Deposit & Advance Payment Management | [Finance & Treasury Workflows](WF-finance.md) |
+| W95 | External Audit Coordination & Support | [Compliance & Governance Workflows](WF-compliance.md) |
+| W96 | Store Renovation & Remodel Project | [Store Operations Workflows](WF-store-operations.md) |
+| W97 | Sample & Demo Inventory Management | [Merchandising & Pricing Workflows](WF-merchandising.md) |
+| W98 | Ecommerce Order Exception & Cancellation Management | [Ecommerce Workflows](WF-ecommerce.md) |
+| W99 | Payment Settlement Reconciliation (Card / E-Wallet / Online) | [Finance & Treasury Workflows](WF-finance.md) |
 
 ---
 
-*Total: 87 workflows across 13 domains. Split from original monolithic file*
+*Total: 99 workflows across 13 domains. Split from original monolithic file*

@@ -24,6 +24,7 @@
 - [W71. Store Physical Security & Access Control](#store-physical-security-access-control)
 - [W75. Layaway / Installment Sales](#layaway-installment-sales)
 - [W86. Planogram Compliance & Store Layout Verification](#planogram-compliance-store-layout-verification)
+- [W96. Store Renovation & Remodel Project](#store-renovation-remodel-project)
 
 ---
 
@@ -1133,6 +1134,56 @@ Planograms define the visual layout of products on store shelves — which SKUs 
 - **Department Supervisors**: ~30 min/month for audit + 15 min/month for corrections per department = ~45 min/department/month. With 4–6 departments audited per month, this is ~2–3 hours/month. Absorbed into existing duties.
 - **Stock Associates**: audit walk + corrections add ~45 min/department/month. Absorbed within existing 3–4 Stock Associates per store.
 - **Merchandise Planner**: adds ~4–8 hours per planogram update + 2 hours/quarter for chain-wide review. Absorbed within existing Merchandising team (~40).
+- **No incremental headcount.**
+
+---
+
+
+
+## W96. Store Renovation & Remodel Project
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Store lease renewal with renovation requirement; store performance decline requiring refresh; category reset requiring fixture changes; or store format upgrade (e.g., adding appliance showroom, expanding lumber yard) |
+| **Frequency** | ~10–15 renovations/year across 200 stores (~5–7% of fleet per year; industry benchmark: major renovation every 7–10 years per store) |
+| **Volume** | 1 store per renovation project; duration 2–8 weeks depending on scope |
+| **Owner** | Store Ops Director |
+| **Participants** | Store Ops Director, Store Manager, VP Merchandising, Category Manager, Controller, Facilities Manager, IT Manager, Visual Merchandiser, contractors |
+
+### Background
+
+Store renovation and remodel projects sit between W16 (New Store Opening) and W47 (Facility Maintenance & Work Orders). W16 covers establishing a brand-new store from scratch. W47 handles routine maintenance (plumbing, electrical, HVAC repairs). Store renovation is a distinct mid-life-cycle event: a mature store undergoes significant layout changes, fixture replacement, category expansion/contraction, or lease-required improvements. Renovations involve capex approval, continued store operations during construction (or planned temporary closure), merchandising layout redesign, and post-renovation sales ramp monitoring. With ~10–15 renovations/year across 200 stores, this is a regular operational process requiring dedicated workflow.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Renovation need identification**: (a) **Lease-triggered**: Property Management Inc. (W14 lessor) communicates lease renewal requires tenant improvements (common in Philippine retail leases); (b) **Performance-triggered**: W67 monthly store performance review identifies store with declining sales trend > 2 consecutive quarters; Store Ops Director recommends renovation as part of turnaround plan; (c) **Merchandising-triggered**: VP Merchandising identifies category requiring expanded space (e.g., appliance section growth) or new fixture type (e.g., paint mixing station upgrade); (d) **Facility-triggered**: W47 facility assessment identifies major infrastructure needs (floor replacement, roof repair, electrical upgrade) that warrant comprehensive renovation vs. piecemeal maintenance | Store Ops Director / VP Merchandising / Facilities Manager | COO | 2 hours |
+| 2 | **Scope definition**: Store Ops Director, Store Manager, VP Merchandising, and Facilities Manager jointly define renovation scope: (a) **Light refresh**: repaint, new signage, updated lighting, repositioned checkout area (2–3 weeks, PHP 2–5M); (b) **Partial remodel**: department relocation, new fixtures, expanded category space, updated floor covering (4–6 weeks, PHP 5–15M); (c) **Full renovation**: complete layout redesign, all new fixtures, expanded selling area, new receiving area, major infrastructure (6–8 weeks, PHP 15–40M); (d) identify phasing options: full-store (temporary closure 2–8 weeks) vs. phased (store remains open, renovate department by department) | Store Ops Director / VP Merchandising | COO | 4–8 hours |
+| 3 | **Capex request and approval**: Store Ops Director submits capex request per W21: renovation scope, contractor bids (minimum 3 quotations), expected sales uplift, payback period, and timeline; approval follows W21 tiered approval matrix; budget charged to Store Renovation capex category in W26 | Store Ops Director | COO / CFO / CEO (per W21 tiers) | Per W21 |
+| 4 | **Design and planogram update**: (a) Visual Merchandiser creates revised store layout based on approved scope; (b) Merchandise Planner updates planogram per W86 for new layout; (c) IT Manager plans POS terminal relocation, network cabling, WiFi coverage adjustments; (d) Facilities Manager creates construction schedule with contractor | Visual Merchandiser / Merchandise Planner / IT Manager | Store Ops Director | 8–16 hours |
+| 5 | **Pre-renovation inventory management**: (a) If full-store closure: Supply Planner reduces replenishment orders 4–6 weeks before renovation start to draw down inventory; excess stock transferred to nearby stores per W22 or returned to DC per W22b; (b) If phased renovation: Merchandise Planner identifies affected departments; Stock Associates relocate merchandise to temporary display areas or backroom; system updates planogram temporarily to reflect reduced shelf space | Supply Planner / Merchandise Planner | VP Merchandising | 4–8 hours |
+| 6 | **Construction execution**: (a) Contractor mobilizes per agreed schedule; (b) Facilities Manager supervises construction on behalf of BuildRight; (c) weekly construction progress meetings: Facilities Manager, Store Manager (if open), contractor; (d) construction quality checkpoints: Facilities Manager inspects at foundation, framing, electrical rough-in, and finishing stages; (e) if store is open during phased renovation: Store Manager ensures customer safety (barriers, signage, dust control, noise management) | Facilities Manager / Contractor | Store Ops Director | Ongoing (2–8 weeks) |
+| 7 | **IT and systems setup** (during final construction phase): (a) IT team installs/relocates POS terminals, network equipment, CCTV (W71), WiFi access points, handheld charging stations; (b) IT verifies POS connectivity and offline capability (W5d); (c) system updates location master if selling area changes | IT Manager | CIO | 2–4 days |
+| 8 | **Restocking and planogram execution**: (a) Stock Associates stock shelves per updated planogram (W86.4 — scan-verified placement); (b) DC resumes replenishment to store (W4); (c) Merchandise Planner verifies initial stock levels per planogram; (d) new shelf labels generated per W63 | Stock Associates / Merchandise Planner | Store Manager | 1–3 days |
+| 9 | **Reopening / reveal**: (a) If store was closed: "Grand Reopening" event coordinated with W83 marketing campaign; (b) Store Manager conducts full store walkthrough with Dept. Supervisors; (c) verify all planogram positions correct, all POS terminals operational, all safety features in place (fire exits, emergency lighting, CCTV); (d) store opens to customers | Store Manager | Store Ops Director | 1 day |
+| 10 | **Post-renovation monitoring** (first 90 days): (a) Weekly sales tracking vs. pre-renovation baseline and vs. projected uplift from capex request (W21); (b) W67 monthly store performance review includes renovation ROI tracking; (c) Merchandise Planner monitors category sales in expanded/renovated sections vs. expectations; (d) if sales uplift < 50% of projection by day 90: Store Ops Director and VP Merchandising conduct diagnostic review; (e) at day 90: Facilities Manager conducts post-renovation punch list walk — any construction defects reported to contractor for rectification under warranty | Store Ops Director / Store Manager | COO | 2 hours/week for 90 days |
+| 11 | **Financial close-out**: Controller reviews renovation capex vs. budget; posts capex to fixed assets per W21; contractor retention (typically 10% held for 6 months) recorded as AP retention; final capex report submitted to CFO | Controller | CFO | 2 hours/project |
+
+### System Touchpoints
+- Renovation project tracking with scope, timeline, budget, and milestone tracking (W96.2–3)
+- Inventory draw-down planning: reduced replenishment and excess transfer to nearby stores (W96.5)
+- Planogram update for revised store layout (W96.4, W96.8)
+- POS and IT infrastructure relocation tracking (W96.7)
+- Post-renovation sales monitoring vs. projected uplift (W96.10)
+- Capex vs. budget tracking and fixed asset capitalization (W96.11)
+- Integration with W4 (replenishment — resume/adjust for renovation), W16 (new store — shares setup procedures for IT, planogram, restocking), W21 (capex — renovation funding), W22 (transfers — excess inventory redistribution), W22b (store-to-DC returns — inventory draw-down), W47 (facility maintenance — renovation scope may originate from maintenance assessment), W63 (shelf labels — updated for new layout), W67 (store performance — renovation ROI tracking), W83 (marketing — re-opening campaign), W86 (planogram — updated layout), W97 (sample/demo — reinstall or replace display samples)
+
+### Staffing Implication
+- **Store Ops Director**: oversees ~10–15 renovation projects/year; each project requires ~8–16 hours of planning + ~2 hours/week during construction + ~8 hours post-renovation. With staggered projects, peak load is 2–3 concurrent renovations = ~10–15 hours/week during peak. May delegate day-to-day supervision to Facilities Manager for smaller projects.
+- **Facilities Manager**: serves as on-site construction supervisor; adds ~10 hours/week per active renovation. With 1–2 concurrent renovations, this is manageable.
+- **Visual Merchandiser**: design and layout work adds ~8–16 hours per renovation. Absorbed within existing Marketing team.
+- **IT Manager**: adds ~2–4 days per renovation for IT relocation. Absorbed with support from IT team.
 - **No incremental headcount.**
 
 ---

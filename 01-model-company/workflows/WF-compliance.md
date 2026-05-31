@@ -15,6 +15,7 @@
 - [W78. Government / Institutional Procurement Participation](#government-institutional-procurement-participation)
 - [W79. Employee Grievance & Whistleblower Process](#employee-grievance-whistleblower-process)
 - [W82. Hazardous Waste Disposal Tracking & DENR Compliance](#hazardous-waste-disposal-tracking-denr-compliance)
+- [W95. External Audit Coordination & Support](#external-audit-coordination-support)
 
 ---
 
@@ -479,6 +480,53 @@ BuildRight Depot operations generate hazardous waste across several categories r
 ---
 
 
+
+## W95. External Audit Coordination & Support
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual external audit engagement per SEC requirement; quarterly review (if required by lenders or board); or special audit (M&A due diligence, regulatory investigation) |
+| **Frequency** | Annual statutory audit (Q1 following fiscal year-end); quarterly interim review (if applicable) |
+| **Volume** | 1 annual audit covering 5 entities + consolidated; quarterly reviews if required |
+| **Owner** | Controller |
+| **Participants** | Controller, CFO, Cost Accountant, AP Supervisor, AR Accountant, Treasury Analyst, Tax Accountant, Internal Audit, IT Manager, external auditors (CPA firm) |
+
+### Background
+
+As a Philippine corporation with 5 legal entities requiring consolidated financial statements, BuildRight must undergo an annual external audit by a SEC-accredited CPA firm per the Philippine Securities and Exchange Commission (SEC) requirements and the Philippine Financial Reporting Standards (PFRS). W77 (BIR Tax Audit Response) covers tax-specific audits by the Bureau of Internal Revenue. This workflow covers the broader external financial statement audit, which is a significant annual undertaking involving 5 entities, 200+ locations, and complex intercompany transactions. The external audit validates the financial statements that investors, lenders, regulators, and management rely upon.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Audit planning — engagement letter**: (a) CFO and Controller review and sign annual audit engagement letter from external auditors (typically signed Q4 for the following year's audit); (b) agree on audit scope (5 entities + consolidated), timeline (fieldwork in February, report by March–April), materiality thresholds, and audit fee; (c) Controller coordinates audit planning meeting with external audit partner and manager | CFO / Controller | CEO | 2 hours |
+| 2 | **Pre-audit preparation** (January — after W9b year-end close): Controller assigns preparation tasks across Finance team: (a) **AP Supervisor**: finalize AP aging reconciliation, open GRNI analysis, vendor confirmation letters (send to top 50 vendors requesting confirmation of balances); (b) **AR Accountant**: finalize AR aging, send customer confirmation letters (top 50 trade/corporate accounts), prepare bad debt provision analysis (W81); (c) **Treasury Analyst**: complete all bank reconciliations (W89) through December 31, prepare bank confirmation requests (send to all 4 banks for all 25 accounts); (d) **Tax Accountant**: prepare annual tax reconciliation (W90), reconcile tax liability accounts, compile all BIR filings for the year; (e) **Cost Accountant**: prepare inventory valuation report (W9a.6), inventory reserve analysis (obsolescence, NRV), fixed asset register with depreciation schedule (W39); (f) **IT Manager**: prepare IT general controls documentation (access controls, change management, backup procedures per W48/W55) | Controller | CFO | 8 hours |
+| 3 | **PBC (Prepared by Client) list fulfillment**: External auditors provide a PBC list of documents and schedules required for the audit; Controller assigns each item with deadline (typically 1–2 weeks before fieldwork start): (a) trial balance per entity, (b) consolidated elimination entries (W14), (c) intercompany reconciliation (W14.4–5), (d) revenue and expense analysis by category, (e) journal entry listing with supporting documentation for all manual JEs > materiality, (f) bank reconciliation reports (W89), (g) inventory count documentation from W42 annual physical inventory, (h) capex additions and disposals (W21, W39), (i) insurance schedule (W59), (j) related party transactions schedule, (k) contingent liabilities (pending litigation, tax assessments from W77), (l) subsequent events review (transactions after year-end through audit report date) | Finance Team | Controller | 20–30 hours total |
+| 4 | **External audit fieldwork** (February — typically 2–3 weeks on-site at HQ): (a) **Opening meeting**: Controller, CFO, and external audit team agree on fieldwork schedule, key contact persons per area, and logistics; (b) **Substantive testing**: auditors test revenue (POS transaction sampling — W5b), purchases (PO and invoice sampling — W2/W7), inventory (observe physical count — W42, or rely on count documentation), bank balances (confirmations from W89), fixed assets (physical verification of additions), intercompany (W14 reconciliation), payroll (W10 sampling); (c) **Internal controls testing**: auditors test key controls — PO approval (W2.5–6), 3-way match (W7.2–3), credit approval (W24), physical security (W71), IT access controls (W48); (d) **Entity walkthroughs**: auditors may visit 1–2 stores and 1 DC for physical observation; Controller coordinates visits with Store Managers and DC Supervisors | External Auditors / Controller | CFO | 2–3 weeks |
+| 5 | **Audit queries and information requests** (throughout fieldwork): (a) External auditors issue queries and additional information requests as testing proceeds; Controller triages and routes to appropriate Finance team member; (b) target response time: 2 business days for standard queries, 5 business days for complex analysis; (c) weekly status meetings between Controller and audit manager to track open queries and issues | Controller / Finance Team | CFO | Ongoing during fieldwork |
+| 6 | **Draft financial statements review**: (a) External auditors present draft audited financial statements (per entity and consolidated) to Controller and CFO; (b) Controller reviews for accuracy vs. internal records, proper PFRS/IFRS presentation, and adequate disclosure; (c) Controller provides comments and corrections within 1 week | Controller / CFO | CEO | 4–6 hours |
+| 7 | **Audit adjustments and passed adjustments**: (a) **Proposed audit adjustments**: external auditors propose correcting entries for any misstatements found during testing; Controller reviews and posts agreed adjustments per W9b year-end close; (b) **Passed adjustments (unadjusted differences)**: misstatements below materiality that auditors note but do not require correction; Controller logs passed adjustments in audit summary for future reference and potential cumulative materiality assessment | Controller | CFO | 2–4 hours |
+| 8 | **Exit meeting and management letter**: (a) External auditors conduct exit meeting with Controller, CFO, and CEO to present audit findings, significant observations, and recommendations; (b) external auditors issue management letter with internal control recommendations (e.g., segregation of duties improvements, system access issues, process inefficiencies); (c) Controller prepares management response and action plan for each recommendation with deadlines and responsible persons; (d) management response reviewed and approved by CFO | Controller / CFO / CEO | CEO | 2 hours |
+| 9 | **Audit report issuance**: External auditors issue audit opinion and audited financial statements; Controller files with SEC per regulatory deadline (typically within 120 days of fiscal year-end for corporations); files with BIR as part of 1702RT annual return (W90) | Controller / External Auditors | CFO | 2 hours |
+| 10 | **Management letter follow-up**: Controller tracks implementation of management letter recommendations: (a) assigns each recommendation to responsible person, (b) tracks implementation progress quarterly, (c) reports status to CFO and Audit Committee, (d) unresolved items > 6 months escalated to CEO; external auditors review prior year recommendations in next year's audit | Controller | CFO | Ongoing |
+
+### System Touchpoints
+- Audit document management: engagement letter, PBC list, management letter, audit report stored per entity with DOC-001 document management (W95.1, 3, 8–9)
+- Financial data extraction for PBC: trial balance, journal entries, aging reports, elimination entries per entity (W95.3)
+- Audit trail: all transactions, approvals, and changes accessible for auditor review with full audit trail per NFR-007 (W95.4)
+- Fixed asset register with depreciation schedule for auditor verification (W95.3e)
+- Inventory valuation and reserve analysis for auditor review (W95.3e)
+- Intercompany reconciliation and elimination documentation (W95.3c)
+- Bank reconciliation reports and bank confirmation coordination (W95.3c)
+- Management letter recommendation tracker with status and deadlines (W95.10)
+- Integration with W7 (AP — vendor confirmations, 3-way match testing), W8 (AR — customer confirmations, bad debt analysis), W9 (financial close — audited financial statements source), W10 (payroll — compensation testing), W14 (IC — intercompany reconciliation and elimination testing), W21 (capex — addition verification), W30 (treasury — bank balance confirmation), W39 (fixed assets — physical verification), W42 (physical inventory — count documentation), W48 (IT — IT general controls), W55 (DR — business continuity documentation), W77 (BIR audit — separate from external audit but may share data), W89 (bank reconciliation — primary audit evidence for cash), W90 (tax — tax reconciliation and filing verification), W92 (inventory adjustments — control testing)
+
+### Staffing Implication
+- **Controller**: primary audit liaison; adds ~40–60 hours during Jan–March for audit preparation and coordination. This is the Controller's busiest period; other duties deprioritized during fieldwork.
+- **Finance Team** (AP Supervisor, AR Accountant, Treasury Analyst, Tax Accountant, Cost Accountant): each adds ~10–20 hours for PBC preparation and query response during fieldwork. Managed through workload planning during Jan–Feb.
+- **Internal Audit**: provides coordination support and observes external audit process; adds ~8–10 hours. Absorbed.
+- **Store Managers / DC Supervisors**: 1–2 store/DC visits per year for physical observation; minimal time impact. Absorbed.
+- **No incremental headcount.** External audit fee budgeted as professional fees in W26 annual budget.
 
 ---
 

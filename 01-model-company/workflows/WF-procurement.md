@@ -15,6 +15,7 @@
 - [W44. Vendor Performance Review](#vendor-performance-review)
 - [W60. Emergency Procurement](#emergency-procurement)
 - [W62. Vendor Contract Lifecycle (Non-PO Contracts)](#vendor-contract-lifecycle-non-po-contracts)
+- [W88. Return to Vendor (RTV) Processing](#return-to-vendor-rtv-processing)
 
 ---
 
@@ -501,6 +502,55 @@
 - **Fleet Manager**: absorbs 3PL partner management within existing role; ~5–10 evaluations/year × 4–8 hours = ~20–80 hours/year; ~30 min/month ongoing monitoring per partner.
 - **IT**: API integration setup ~1–2 weeks per new partner; absorbed within existing IT team.
 - No incremental headcount.
+
+---
+
+
+
+## W88. Return to Vendor (RTV) Processing
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Defective goods identified at DC or store; wrong items received; overage discovered; vendor-authorized return; or quality hold escalation (W3 AQL inspection) |
+| **Frequency** | ~200–300 RTV shipments/month (~2–3% of inbound volume) |
+| **Volume** | Avg 5–15 lines per RTV shipment; consolidated by vendor at DC |
+| **Owner** | Buyer |
+| **Participants** | Buyer, DC Receiving Clerk, Store Receiving Clerk, AP Clerk, AP Supervisor, Category Manager |
+
+### Background
+
+PUR-012 (Return to Vendor) is a Must Have requirement. RTV is currently mentioned as sub-steps W3.6a–b within warehouse receiving, but RTV is a cross-functional process spanning procurement, warehouse, store operations, and finance. Defective, wrong, or overage items must be identified, documented, authorized, physically returned to the vendor (or vendor-authorized disposal), and financially settled (credit memo or replacement). Without a dedicated workflow, RTV decisions are ad-hoc, leading to delayed vendor credits, unresolved inventory, and write-offs.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Identification**: (a) DC Receiving Clerk identifies defective/wrong items during goods receipt inspection (W3 AQL); (b) Store Receiving Clerk identifies issues during DSD receiving (W18) or DC delivery receipt; (c) Store Associate or Stock Associate discovers damaged/defective stock on shelf or in backroom; (d) AP Clerk identifies overage during 3-way match (W7 — vendor invoice quantity exceeds PO + GR); (e) Quality hold escalation from W3 AQL inspection (system blocks inventory and flags for RTV evaluation) | Receiving Clerk / Store Associate / AP Clerk | Buyer | 10 min/case |
+| 2 | **Root cause classification**: Initiator classifies the issue: (a) defective/quality failure (vendor manufacturing defect, packaging damage in transit from vendor), (b) wrong item shipped (SKU mismatch vs. PO), (c) overage (vendor shipped more than PO quantity), (d) damaged in transit to DC (carrier damage — see W19.12b for carrier vs. vendor liability), (e) recall-related return (W29), (f) consignment return (W23.10), (g) warranty return (W33.6) | Initiator / Buyer | Buyer | 5 min/case |
+| 3 | **Quarantine**: System moves identified items to "RTV Quarantine" inventory status (not available for sale, not available for allocation); physical items moved to designated quarantine area at DC or store backroom | Receiving Clerk / Stock Associate | DC Supervisor / Store Manager | 10 min/case |
+| 4 | **Buyer review and authorization**: Buyer reviews RTV request with supporting evidence (photos, inspection report, PO vs. GR discrepancy); determines return action: (a) **Return to vendor** — vendor must physically take back goods and issue credit or replacement, (b) **Vendor-authorized disposal** — vendor authorizes BuildRight to dispose/destroy goods and issues credit memo (saves return freight cost for low-value items), (c) **Vendor-authorized markdown** — vendor agrees to partial credit; BuildRight sells at reduced price per W93 markdown process, (d) **No vendor liability** — damage caused by BuildRight handling (in-transit between DC and store, or in-store damage); disposition per W91 damaged goods process; no vendor credit sought | Buyer | Category Manager | 15 min/case |
+| 5 | **Vendor notification**: Buyer contacts vendor (email or vendor portal W36.9) with RTV request: original PO reference, GR reference, item details, quantity, defect description, photos, and requested resolution (credit memo, replacement, or disposal authorization); for blanket/contract PO vendors (W2c), checks contract terms for RTV provisions and return shipping responsibility | Buyer | — | 15 min/case |
+| 6 | **Vendor credit memo or replacement**: (a) If vendor agrees to credit: Buyer obtains vendor credit memo reference; (b) If vendor agrees to replacement: Buyer creates replacement PO with reference to original PO and RTV; (c) If vendor disputes: Buyer escalates to Category Manager for negotiation; unresolved disputes > 30 days escalated to VP Merchandising | Buyer / Category Manager | VP Merchandising | 30 min/dispute |
+| 7 | **Physical return logistics** (if vendor requires physical return): (a) **DC-initiated**: DC consolidates RTV items by vendor; DC creates outbound shipment; ships via own fleet (W52) or 3PL carrier; (b) **Store-initiated**: Store sends RTV items to assigned DC via next scheduled DC→Store truck backhaul (W22); DC consolidates with other RTV items for same vendor before shipping; (c) **Vendor pickup**: Some vendors (especially local DSD vendors) pick up RTV items directly from store or DC by arrangement | DC Receiving Clerk / Store Receiving Clerk | DC Supervisor / Store Manager | 30 min/consolidated shipment |
+| 8 | **Financial settlement**: (a) AP Clerk receives vendor credit memo (from Buyer); posts credit memo against original PO/invoice; system reduces vendor payable and posts GL entry (Dr. AP / Cr. COGS or Inventory); (b) If replacement PO: AP matches replacement invoice against replacement PO and GR per standard W7 3-way match; (c) If vendor-authorized disposal: AP posts credit memo and inventory write-off simultaneously; system removes items from RTV quarantine and posts disposal (Dr. AP / Cr. Inventory — at WAC value) | AP Clerk | AP Supervisor | 10 min/credit memo |
+| 9 | **Aging and escalation**: System tracks RTV items in quarantine with aging buckets (0–15, 16–30, 31–60, 60+ days); weekly: Buyer reviews RTV aging report; items > 15 days without vendor response: follow-up call/email; items > 30 days: escalated to Category Manager; items > 60 days: escalated to VP Merchandising with recommendation to auto-dispose and write-off; items > 90 days: auto-write-off per W92 with Category Manager approval | Buyer / Category Manager | VP Merchandising | 30 min/week |
+| 10 | **RTV analytics**: Monthly: Category Manager and Buyer review RTV report by vendor — RTV count, RTV value, average resolution time, root cause distribution (defective vs. wrong item vs. overage vs. carrier damage); feeds into W44 vendor performance scorecard as quality and accuracy metric; vendors with RTV rate > 5% of total PO lines flagged for vendor improvement plan or vendor exit per W68 | Category Manager / Buyer | VP Merchandising | 1 hour/month |
+
+### System Touchpoints
+- RTV quarantine inventory status: items blocked from sale and allocation while in quarantine (W88.3)
+- RTV request creation linked to original PO and GR with defect evidence (photos, inspection report) (W88.4)
+- Vendor portal RTV notification: vendor receives return request with documentation and can approve/reject/authorize disposal (W88.5)
+- Vendor credit memo matching to original PO/invoice with GL posting (W88.8)
+- Replacement PO creation linked to original PO with RTV reference (W88.6)
+- RTV aging report with vendor-level drill-down and escalation triggers (W88.9)
+- RTV analytics dashboard: RTV rate by vendor, root cause distribution, resolution time, value impact (W88.10)
+- Integration with W3 (DC receiving — AQL inspection triggers RTV), W7 (AP — credit memo processing), W12 (returns — customer-returned defective items may be RTV'd), W18 (DSD — receiving discrepancies), W22 (store-to-DC backhaul for RTV consolidation), W23 (consignment returns), W29 (recall-related RTV), W33 (warranty RTV), W44 (vendor scorecard — RTV rate as quality metric), W52 (fleet — physical return logistics), W62 (vendor contract — RTV provisions), W91 (damaged goods disposition — no-vendor-liability cases), W92 (inventory adjustment — write-off for unresolved RTV)
+
+### Staffing Implication
+- **Buyers**: ~200–300 RTV cases/month ÷ 10–12 buyers = ~20–25 cases/buyer/month × ~45 min each = ~15–19 hours/buyer/month. Absorbed within existing buying workload.
+- **DC Receiving Clerks**: RTV consolidation adds ~1–2 hours/week for staging and shipping returns. Absorbed.
+- **AP Clerks**: ~200–300 credit memos/month adds ~1–2 hours/week. Absorbed within existing AP team.
+- **No incremental headcount.**
 
 ---
 

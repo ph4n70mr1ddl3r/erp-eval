@@ -16,6 +16,8 @@
 - [W63. Shelf Label & Price Tag Distribution](#shelf-label-price-tag-distribution)
 - [W64. New Product Pilot / Store Test](#new-product-pilot-store-test)
 - [W68. Product Lifecycle & Discontinuation](#product-lifecycle-discontinuation)
+- [W93. Markdown & Clearance Pricing Execution](#markdown-clearance-pricing-execution)
+- [W97. Sample & Demo Inventory Management](#sample-demo-inventory-management)
 
 ---
 
@@ -440,6 +442,101 @@
 ---
 
 
+
+## W93. Markdown & Clearance Pricing Execution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Seasonal end-of-cycle clearance; slow-moving inventory identified by W85 (margin analysis) or W1 (assortment review); damaged-but-saleable items from W91; overstock identified by W6 (cycle count) or W31 (demand planning); or product discontinuation (W68) |
+| **Frequency** | Ongoing (as items are identified); seasonal clearance events ~4–6/year |
+| **Volume** | ~500–2,000 SKUs per seasonal clearance event; ~50–200 ad-hoc markdowns/month |
+| **Owner** | Pricing Analyst |
+| **Participants** | Pricing Analyst, Category Manager, Cost Accountant, Store Manager, VP Merchandising |
+
+### Background
+
+Markdowns and clearance pricing are distinct from promotional pricing (W13) and product discontinuation (W68). W13 creates temporary price reductions to drive traffic and volume with planned recovery at end of promo. W68 manages the exit of a product from the assortment entirely. Markdowns are permanent price reductions on specific inventory lots to accelerate sell-through of slow-moving, seasonal, or damaged-but-saleable items. Without a dedicated workflow, markdowns are applied inconsistently, margin impact is not tracked, and clearance inventory lingers on shelves consuming valuable retail space. This workflow supports FIN-011 (inventory aging), INV-010 (catch-weight), and W85 (margin analysis).
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Markdown candidate identification**: Sources of markdown candidates: (a) **Seasonal clearance**: end-of-season items identified per seasonal calendar (Christmas décor after Dec, flood control after rainy season); (b) **Slow-movers**: SKUs with inventory aging > 90 days and < 2 units sold/month flagged by system from W85 monthly margin report; (c) **Damaged-but-saleable**: items with cosmetic damage but functional per W91 disposition decision (dented cans, box-damaged appliances, scratched tiles); (d) **Overstock**: locations with > 12 weeks of supply vs. forecast per W31; (e) **Near-expiry**: date-sensitive items within 30% of shelf life per W6 near-expiry alerting | Category Manager / Pricing Analyst / System | VP Merchandising | 2 hours/clearance event; ongoing for ad-hoc |
+| 2 | **Markdown pricing calculation**: Pricing Analyst calculates markdown price for each candidate SKU: (a) current SRP, (b) current WAC (from inventory valuation), (c) minimum acceptable price (WAC + minimum margin % — configurable per category, typically 0–10% above cost; for clearance, may go below cost with approval), (d) recommended markdown price based on: markdown percentage tiers (25%, 33%, 50%, 75% off SRP), aging velocity (slower movers get deeper markdown), quantity on hand, and weeks of supply; (e) estimated total markdown loss (markdown amount × quantity); (f) estimated recovery value (markdown price × expected sell-through %) | Pricing Analyst | Category Manager | 5 min/SKU |
+| 3 | **Authorization** (tiered by markdown value): (a) **≤ PHP 50,000 total markdown loss per SKU**: Category Manager approves; (b) **> PHP 50,000 and ≤ PHP 500,000 total markdown loss**: VP Merchandising approves; (c) **> PHP 500,000 total markdown loss**: CFO approves; (d) **Below-cost markdown**: CFO approval required regardless of amount (loss recognition trigger) | Per tier above | VP Merchandising / CFO | 5–15 min/approval |
+| 4 | **Markdown execution in system**: (a) Pricing Analyst enters markdown in system with: effective date, markdown price, markdown reason code (seasonal, slow-mover, damaged, overstock, near-expiry), and authorization reference; (b) system updates price in POS (W5b) and ecommerce (W11/W19) — regular SRP preserved as reference; markdown price displayed as "Now" or "Clearance" on shelf label (W63); (c) system posts GL entry: Dr. Markdown Expense (or Dr. COGS-Clearance) / Cr. Inventory — at markdown amount per unit × quantity on hand (if below WAC, recognize loss immediately; if above WAC, no immediate GL impact — margin reduction recognized at sale) | Pricing Analyst / System | Cost Accountant | 3 min/SKU |
+| 5 | **Shelf label and display update**: (a) System generates clearance shelf labels per W63 with clearance pricing and distinctive visual treatment (e.g., yellow/orange tag); (b) Stock Associate replaces shelf labels at store; (c) for damaged-but-saleable items: Stock Associate moves to designated clearance rack or area with appropriate signage; (d) ecommerce catalog updated with clearance badge and price per W50 | System / Stock Associate | Store Manager | 30 min/store/event |
+| 6 | **Sell-through monitoring**: (a) System tracks markdown sell-through daily: markdown price × units sold = recovery; remaining markdown inventory × markdown price = remaining recovery; (b) **Escalation tiers**: if < 30% sell-through after 2 weeks: Category Manager reviews — consider deeper markdown; if < 50% sell-through after 4 weeks: Pricing Analyst applies second markdown (additional 25% off) with Level 2 re-authorization; if < 30% sell-through after 6 weeks: proceed to final disposition per W68.9 (RTV, donation, scrap) | Pricing Analyst / Category Manager | VP Merchandising | 30 min/week during clearance |
+| 7 | **Post-clearance analysis**: After clearance period: Pricing Analyst prepares clearance performance report per event: (a) original markdown value vs. actual recovery, (b) sell-through %, (c) days to clear, (d) margin impact by category, (e) lessons learned (markdown timing, depth, vendor quality issues); feeds into W85 annual margin strategy and W1 assortment decisions | Pricing Analyst | VP Merchandising | 1 hour/event |
+
+### Pricing Conflict Rules
+- Markdown price vs. promotional price: if an item is on both markdown (W93) and promotion (W13), system applies the **lower** of the two prices at POS (customer-friendly); if the promotional price is higher than markdown, system ignores the promotion
+- Markdown price vs. employee discount: employee discount (W5b.12) does **not** stack on top of markdown; the lower of employee discount price or markdown price applies
+- Markdown price vs. loyalty points: loyalty points earned on markdown sales calculated on markdown price (not original SRP)
+- Markdown price vs. competitor price match (W61): markdown price is the effective SRP for price match comparison
+
+### System Touchpoints
+- Markdown candidate identification: aging analysis, slow-mover flagging, seasonal calendar integration (W93.1)
+- Markdown pricing calculator: WAC floor, markdown % tiers, recovery estimation (W93.2)
+- Tiered authorization workflow with amount-based routing (W93.3)
+- Markdown price execution: POS and ecommerce price update with original SRP reference preserved (W93.4)
+- Clearance shelf label generation per W63 (W93.5)
+- Markdown sell-through dashboard with velocity tracking and escalation triggers (W93.6)
+- Post-clearance performance analysis with recovery and margin impact reporting (W93.7)
+- Pricing conflict rules engine: markdown vs. promo vs. employee discount vs. price match (W93 pricing conflicts)
+- Integration with W1 (assortment — slow-mover exit), W13 (promotions — pricing conflict rules), W31 (demand — overstock identification), W40 (price changes — markdown as a permanent price change), W50 (PIM — ecommerce catalog clearance), W63 (shelf labels — clearance tags), W68 (discontinuation — clearance as part of exit), W85 (margin analysis — markdown as margin recovery strategy), W91 (damaged goods — markdown disposition)
+
+### Staffing Implication
+- **Pricing Analysts**: add ~4 hours/seasonal clearance event (3 analysts) + ~2 hours/month ad-hoc markdowns. With 4–6 seasonal events/year, this is ~20–30 hours/year incremental. Absorbed.
+- **Store Associates**: clearance re-labeling adds ~30 min/store/event × 4–6 events = ~2–3 hours/store/year. Absorbed.
+- **No incremental headcount.**
+
+---
+
+
+
+## W97. Sample & Demo Inventory Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New product introduction requiring display samples; category reset (W1) requiring demo units; vendor-supplied display items; or existing samples needing replacement |
+| **Frequency** | ~50–100 new samples/demos per month across all stores; seasonal resets ~2/year |
+| **Volume** | ~3,000–5,000 sample/demo units across 200 stores at any time |
+| **Owner** | Category Manager |
+| **Participants** | Category Manager, Store Manager, Stock Associate, Cost Accountant, Buyer, Visual Merchandiser |
+
+### Background
+
+In big-box home improvement retail, physical product samples and demo units are critical sales tools — tile and flooring swatches, paint color chips, tool demonstration units, appliance display models, fixture showrooms, and material sample boards. These items are inventory (they have cost) but are not for sale to customers. Without proper tracking, samples become unaccounted inventory, are accidentally sold (POS scan conflict), are not replaced when worn, or remain on the books after disposal. This workflow manages the lifecycle of non-sellable sample and demo inventory from procurement to disposal.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Sample/demo request**: (a) Category Manager identifies need for sample/demo: new SKU introduction (W64), category reset (W1), vendor product launch, or replacement of worn/damaged existing sample; (b) creates sample/demo request specifying: SKU(s), quantity per store (may vary by store format/size), purpose (display, demo, color swatch, showroom model), expected useful life (3–12 months depending on item type) | Category Manager | VP Merchandising | 15 min/request |
+| 2 | **Procurement**: (a) **From existing inventory**: Buyer approves conversion of regular stock items to sample/demo status; system transfers items from saleable inventory to sample/demo inventory (not deducted from available-to-promise); (b) **From vendor**: Buyer orders samples from vendor — may be free-of-charge (vendor-funded display), at cost, or at special sample pricing; received at DC per W3 with "Sample" receipt type; (c) **Custom fabricated**: Visual Merchandiser designs custom display boards or sample kits; procured as non-stock items per W38 | Buyer / Visual Merchandiser | Category Manager | Per W2/W38 |
+| 3 | **Inventory classification**: System classifies sample/demo items with: (a) inventory status = "Sample/Demo" (blocked from POS sale, blocked from replenishment calculation, excluded from ATP, excluded from cycle count of saleable inventory — but included in total inventory valuation for GL purposes); (b) assigned to specific store location; (c) cost center = store-level merchandising display cost; (d) useful life start date; (e) expected replacement date | System | Category Manager | Automated |
+| 4 | **Distribution to stores**: (a) DC picks and ships sample/demo items to stores per standard W4 replenishment (but with "Sample" designation — not counted against store replenishment allocation); (b) Store Manager or Dept. Supervisor receives and places on display per planogram (W86); (c) Stock Associate confirms receipt and placement in system | DC Team / Store Manager | Store Manager | Per W4 |
+| 5 | **Periodic condition assessment**: (a) Quarterly: Dept. Supervisor assesses sample/demo condition at each store: "Good" (continue display), "Fair" (schedule replacement), "Poor" (remove and dispose); (b) for tool demo units: check functional condition (power tools, appliance demos); (c) for tile/paint swatches: check for fading, staining, chipping; (d) system tracks condition by sample/demo item | Dept. Supervisor | Store Manager | 30 min/store/quarter |
+| 6 | **Replacement cycle**: (a) At end of useful life or when condition reaches "Poor": system auto-generates replacement sample request to Category Manager; (b) Category Manager approves replacement and initiates procurement per step 2; (c) new sample received and displayed before old sample removed (continuous display) | Category Manager | VP Merchandising | 10 min/replacement |
+| 7 | **Disposal of old samples**: (a) System creates disposal request for sample/demo item reaching end of life; (b) disposition options: (i) return to vendor if vendor-funded with return provision, (ii) donate to trade school or community program, (iii) scrap/dispose (most common for worn samples); (c) Store Manager authorizes disposal; system removes from sample/demo inventory and posts GL: Dr. Sample/Display Expense / Cr. Sample Inventory (at original WAC); (d) for vendor-funded samples: if vendor requires return, ship to DC for consolidation per W88 | Store Manager / Stock Associate | Category Manager | 10 min/disposal |
+| 8 | **Financial reporting**: (a) Cost Accountant tracks total sample/demo inventory value: by category, by store, by age; (b) monthly: sample/demo value included in total inventory valuation for GL (W9a.6) but excluded from saleable inventory reports; (c) quarterly: Category Manager reviews sample/demo investment vs. sales lift in that category (ROI analysis); (d) annual: sample/demo expense budgeted as merchandising display cost in W26 | Cost Accountant / Category Manager | Controller / VP Merchandising | 1 hour/quarter |
+
+### System Touchpoints
+- Sample/demo inventory status: blocked from POS sale, ATP, and replenishment; included in GL inventory valuation (W97.3)
+- Sample/demo request and procurement workflow (from existing stock, vendor order, or custom fabrication) (W97.1–2)
+- Distribution tracking with receipt confirmation and planogram placement (W97.4)
+- Periodic condition assessment with Good/Fair/Poor status tracking (W97.5)
+- Auto-replacement request at end of useful life or poor condition (W97.6)
+- Disposal workflow with GL posting (expense recognition at disposal, not procurement) (W97.7)
+- Sample/demo inventory reporting: value by category, store, age; ROI analysis (W97.8)
+- Integration with W1 (assortment — sample needs from category resets), W2/W38 (procurement — sample orders), W3 (receiving — sample receipt type), W4 (distribution — sample shipments), W42 (physical inventory — sample/demo items counted separately), W50 (PIM — sample images in ecommerce catalog), W63 (shelf labels — sample/display designation), W86 (planogram — sample placement), W91 (damaged goods — damaged sample disposal)
+
+### Staffing Implication
+- **Category Managers**: add ~2 hours/month for sample management across their categories. Absorbed within existing merchandising duties.
+- **Dept. Supervisors**: add ~30 min/quarter per store for condition assessment. Absorbed.
+- **Cost Accountant**: add ~1 hour/quarter for sample/demo reporting. Absorbed.
+- **No incremental headcount.**
 
 ---
 

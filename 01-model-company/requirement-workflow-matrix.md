@@ -24,12 +24,12 @@
 | FIN-002 | Automated IC Elimination | M | W9a.13, W14.8 | — |
 | FIN-003 | Consolidated Financial Reporting | M | W9a.14, W35.8 | W26 (budget) |
 | FIN-004 | AP with 3-Way Match | M | W7 (AP processing), W18.9 (DSD 3-way) | W20.11 (VMI settlement), W23.9 (consignment) |
-| FIN-005 | AR for B2B | M | W8 (AR processing), W5b.4c (POS trade accounts) | W58 (corporate accounts) |
+| FIN-005 | AR for B2B | M | W8 (AR processing), W5b.4c (POS trade accounts) | W58 (corporate accounts), W94 (customer deposit management) |
 | FIN-006 | Philippine VAT (12%) | M | W5b (POS selling), W9a.16 (VAT return), W11/W19 (ecommerce VAT) | W12 (returns — VAT reversal) |
 | FIN-007 | Withholding Tax (Expanded) | M | W7.9a (EWT computation), W9a.16a (EWT remittance) | W7c (non-PO EWT on services) |
-| FIN-008 | BIR Tax Return Generation | M | W9a.16 (VAT, income tax), W9a.16a (EWT), W9a.16c (LBT) | W10.11 (statutory contribution files) |
-| FIN-009 | Multi-Bank Integration | S | W30.2 (bank statement import), W30.7 (cash sweeps) | W7.9 (payment file generation) |
-| FIN-010 | Cash Management / Treasury | S | W30 (daily treasury), W5c (store cash reconciliation) | W25 (petty cash) |
+| FIN-008 | BIR Tax Return Generation | M | W9a.16 (VAT, income tax), W9a.16a (EWT), W9a.16c (LBT) | W10.11 (statutory contribution files), W90 (monthly tax filing & statutory remittance) |
+| FIN-009 | Multi-Bank Integration | S | W30.2 (bank statement import), W30.7 (cash sweeps) | W7.9 (payment file generation), W89 (bank reconciliation) |
+| FIN-010 | Cash Management / Treasury | S | W30 (daily treasury), W5c (store cash reconciliation) | W25 (petty cash), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
 | FIN-011 | Fixed Asset Management | M | W21.7–8 (asset creation & depreciation), W39 (disposal) | W16 (new store capex) |
 | FIN-012 | Budgeting & Variance Analysis | S | W26 (annual budget), W35.9 (monthly variance) | W21.3 (budget check) |
 | FIN-013 | Landed Cost Calculation | M | W2b.12 (import landed cost) | W66.8 (inter-island freight allocation) |
@@ -57,7 +57,7 @@
 | INV-008 | Lot & Serial Tracking | S | W5b.4b (POS batch capture), W29 (recall tracing) | W33 (warranty serial lookup) |
 | INV-009 | Consignment Inventory | S | W23 (consignment operations) | — |
 | INV-010 | Catch-Weight / Variable Measure | M | W5b.2 (POS catch-weight), W3b.3 (yard catch-weight), W22 (transfer catch-weight) | W18 (DSD catch-weight) |
-| INV-011 | Inventory Aging Analysis | S | W1 (slow-mover review), W9a.16b (NRV review) | W13.9b (clearance disposition) |
+| INV-011 | Inventory Aging Analysis | S | W1 (slow-mover review), W9a.16b (NRV review) | W13.9b (clearance disposition), W93 (markdown & clearance pricing for aging inventory) |
 | INV-012 | Safety Stock & Reorder Point | M | W2a.1 (ROP calculation), W31.8 (parameter governance) | W56 (backorder — insufficient ROP) |
 | INV-013 | Batch/LOT Tracking for Paint | S | W3.4 (shelf-life capture), W4.5 (FEFO picking) | W6 (near-expiry alerting) |
 | INV-014 | In-Transit Inventory | M | W4.8 (DC→Store in-transit), W22.6 (transfer in-transit) | W66 (inter-island in-transit) |
@@ -81,7 +81,7 @@
 | PUR-009 | Multi-Entity Procurement | M | W2a (central buying), W14 (IC service fees) | — |
 | PUR-010 | Approval Workflow | M | W2a.5–6 (PO approval tiers), W21.4 (capex approval), W24.5 (credit approval) | W7c.3 (non-PO approval) |
 | PUR-011 | Goods Receipt Processing | M | W3 (DC receiving), W18 (store DSD receiving) | W20.6 (VMI receipt) |
-| PUR-012 | Return to Vendor | M | W3.6a–b (RTV process), W23.10 (consignment return) | W33.6 (warranty RTV) |
+| PUR-012 | Return to Vendor | M | W88 (RTV processing — full lifecycle) | W3.6a–b (DC receiving RTV), W23.10 (consignment return), W33.6 (warranty RTV) |
 | PUR-013 | Direct Store Delivery | M | W18 (DSD receiving), W18b (DSD scheduling) | — |
 | PUR-014 | Vendor Managed Inventory | S | W20 (VMI operations) | — |
 | PUR-015 | Vendor Rebate Management | S | W27 (rebate accrual & settlement) | — |
@@ -111,8 +111,8 @@
 | POS-005 | Loyalty Integration | M | W5b.5 (loyalty scan), W17 (loyalty program operations) | — |
 | POS-006 | Price Override (w/ Auth) | M | W5b.4a (price override with manager authorization) | W61 (competitor price match) |
 | POS-007 | Returns & Exchanges | M | W12a (in-store returns), W12b (online returns), W12c (cross-store returns) — loyalty points reversal on all return types | — |
-| POS-008 | Cash Drawer Management | M | W5a.4 (cash float), W5c.2–5 (Z-report & cash count) | — |
-| POS-009 | End-of-Day Reconciliation | M | W5c (store closing & EOD) | W30.4 (deposit auto-matching) |
+| POS-008 | Cash Drawer Management | M | W5a.4 (cash float), W5c.2–5 (Z-report & cash count) | W89 (bank reconciliation), W99 (payment settlement reconciliation) |
+| POS-009 | End-of-Day Reconciliation | M | W5c (store closing & EOD) | W30.4 (deposit auto-matching), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
 | POS-010 | Quantity Break Pricing | M | W5b.6 (auto quantity breaks), W40.15–19 (quantity break setup) | — |
 | POS-011 | Customer Display | S | W5b.4–7 (customer-facing display during checkout) | — |
 | POS-012 | Receipt Printing | M | W5b.8 (BIR-registered receipt) | — |
@@ -263,8 +263,8 @@
 
 - **Total requirements**: 100+ across 14 categories (FIN through NFR)
 - **Requirements with primary workflow mapping**: All ✅
-- **Workflows without requirement mapping**: W47 (facility maintenance), W48 (IT helpdesk), W49 (typhoon BC), W50 (PIM), W51 (training), W52 (fleet), W59 (insurance), W62 (vendor contracts), W63 (shelf labels), W65 (CSAT measurement), W71 (physical security), W72 (employee performance management), W73 (data migration validation), W74 (employee expense reimbursement), W75 (layaway/installment sales — exercises POS-004, POS-015, FIN-005), W76 (employee loans — exercises HR-001, HR-012), W77 (BIR tax audit response — exercises FIN-008), W78 (government procurement — exercises CRM-003, CRM-004), W79 (employee grievance — exercises HR-007, NFR-010), W80 (FX hedging — exercises FIN-014, FIN-021), W81 (bad debt — exercises FIN-005, FIN-022), W82 (hazardous waste — exercises DOC-007), W83 (marketing campaigns — exercises CRM-007, RPT-003), W84 (customer account reactivation — exercises CRM-003, CRM-004, FIN-005), W85 (product costing & margin analysis — exercises FIN-003, RPT-003, INV-003), W86 (planogram compliance — exercises MDM-006, POS-011), W87 (customer feedback loop — exercises CRM-007, RPT-003) — these are operational workflows that support requirements indirectly; several newly added workflows exercise existing requirements in new contexts
+- **Workflows without requirement mapping**: W47 (facility maintenance), W48 (IT helpdesk), W49 (typhoon BC), W50 (PIM), W51 (training), W52 (fleet), W59 (insurance), W62 (vendor contracts), W63 (shelf labels), W65 (CSAT measurement), W71 (physical security), W72 (employee performance management), W73 (data migration validation), W74 (employee expense reimbursement), W75 (layaway/installment sales — exercises POS-004, POS-015, FIN-005), W76 (employee loans — exercises HR-001, HR-012), W77 (BIR tax audit response — exercises FIN-008), W78 (government procurement — exercises CRM-003, CRM-004), W79 (employee grievance — exercises HR-007, NFR-010), W80 (FX hedging — exercises FIN-014, FIN-021), W81 (bad debt — exercises FIN-005, FIN-022), W82 (hazardous waste — exercises DOC-007), W83 (marketing campaigns — exercises CRM-007, RPT-003), W84 (customer account reactivation — exercises CRM-003, CRM-004, FIN-005), W85 (product costing & margin analysis — exercises FIN-003, RPT-003, INV-003), W86 (planogram compliance — exercises MDM-006, POS-011), W87 (customer feedback loop — exercises CRM-007, RPT-003), W91 (damaged goods disposition — exercises INV-001, INV-002, PUR-012), W92 (inventory adjustment — exercises INV-001, INV-006, FIN-003), W93 (markdown & clearance — exercises FIN-011, INV-011, POS-006), W95 (external audit coordination — exercises FIN-003, FIN-007, FIN-008), W96 (store renovation — exercises FIN-016, MDM-006, WMS-008), W97 (sample & demo inventory — exercises INV-001, MDM-001), W98 (ecommerce order exceptions — exercises ECOM-003, ECOM-004, ECOM-007), W99 (payment settlement reconciliation — exercises POS-004, ECOM-006) — these are operational workflows that support requirements indirectly; several newly added workflows exercise existing requirements in new contexts
 
 ---
 
-*Date: 2026-05-31 (v6 — added W83 Marketing Campaign Operations for CRM-007/RPT-003, W84 Customer Account Reactivation for CRM-003/CRM-004, W85 Product Costing & Margin Analysis for FIN-003/RPT-003/INV-003, W86 Planogram Compliance for MDM-006/POS-011, W87 Customer Feedback-to-Action Loop for CRM-007/RPT-003; updated coverage validation for W83–W87)*
+*Date: 2026-05-31 (v7 — added W88 RTV Processing for PUR-012, W89 Bank Reconciliation for FIN-009/FIN-010, W90 Tax Filing & Statutory Remittance for FIN-008, W91 Damaged Goods Disposition for INV-001/INV-002/PUR-012, W92 Inventory Adjustment for INV-001/INV-006, W93 Markdown & Clearance for FIN-011/INV-011, W94 Customer Deposit Management for FIN-005, W95 External Audit Coordination for FIN-003/FIN-008, W96 Store Renovation for FIN-016, W97 Sample & Demo Inventory for INV-001/MDM-001, W98 Ecommerce Order Exceptions for ECOM-003/ECOM-004/ECOM-007, W99 Payment Settlement Reconciliation for POS-004/ECOM-006; updated FIN-005, FIN-008, FIN-009, FIN-010, INV-011, PUR-012, POS-008, POS-009 to reference new workflows; total now 99 workflows)*

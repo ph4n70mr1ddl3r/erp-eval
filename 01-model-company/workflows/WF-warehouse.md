@@ -13,6 +13,7 @@
 - [W52. Fleet Management](#fleet-management)
 - [W66. Inter-Island Logistics & Freight Management](#inter-island-logistics-freight-management)
 - [W106. DC Outbound Dispatch & Load Planning](#dc-outbound-dispatch-load-planning)
+- [W188. Fleet Spare Parts & Preventive Maintenance (PM) Management](#fleet-spare-parts--preventive-maintenance-pm-management)
 
 ---
 
@@ -337,3 +338,33 @@ W4 (Store Replenishment) covers the pick/pack/ship process from the perspective 
 - **No incremental headcount.**
 
 ---
+
+## W188. Fleet Spare Parts & Preventive Maintenance (PM) Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Scheduled maintenance interval or spare part depletion |
+| **Frequency** | Ongoing |
+| **Volume** | Managing parts for ~40 owned vehicles |
+| **Owner** | Fleet Manager |
+| **Participants** | Driver, Workshop Supervisor, Procurement (for parts) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System tracks odometer/hours for each vehicle; triggers "Maintenance Alert" (W52.4) | System | — | Automated |
+| 2 | Fleet Manager reviews spare parts inventory (tires, batteries, oil, filters, brake pads) | Fleet Manager | — | 30 min |
+| 3 | If parts below reorder point: System generates PO for parts (W2a) | System | — | Automated |
+| 4 | Vehicle sent to workshop; Fleet Manager issues "Maintenance Work Order" | Fleet Manager | — | 15 min |
+| 5 | Workshop performs service; consumes spare parts from fleet inventory | Workshop Staff | — | 4-8 hours |
+| 6 | Record maintenance details: parts used, labor hours, costs, next service interval | Fleet Manager | — | 20 min |
+| 7 | Update vehicle status in Fleet Module: "Available" | Fleet Manager | — | 5 min |
+| 8 | Quarterly: Analyze maintenance cost per km across all vehicle brands/models | Fleet Manager | Supply Chain Mgr | 2 hours |
+
+### System Touchpoints
+- Fleet Maintenance Module (W188.1)
+- Spare Parts Inventory Management (dedicated warehouse zone) (W188.2)
+- Maintenance Work Order system (W188.4)
+- Cost-per-Kilometer Analytics Dashboard (W188.8)
+

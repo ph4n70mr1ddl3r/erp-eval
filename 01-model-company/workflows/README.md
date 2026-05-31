@@ -249,7 +249,15 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W181 | Store-Level Price Tag Printing & Verification | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W182 | Gift / Home Registry Lifecycle | [Store Operations Workflows](WF-store-operations.md) |
 | W183 | Supply Chain Network Optimization Review | [Supply Chain Planning Workflows](WF-supply-chain.md) |
+| W184 | Fixed Asset Physical Verification (Audit) | [Finance & Treasury Workflows](WF-finance.md) |
+| W185 | Product Liability & Consumer Safety Incident Management | [Compliance & Governance Workflows](WF-compliance.md) |
+| W186 | Internal SOP & Policy Governance Lifecycle | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W187 | Contractor & Third-Party On-site Safety Orientation | [Health, Safety & Environment Workflows](WF-health-safety.md) |
+| W188 | Fleet Spare Parts & Preventive Maintenance (PM) Management | [Warehouse & Logistics Workflows](WF-warehouse.md) |
+| W189 | Referral Program & Brand Ambassador Management | [Marketing Campaign Workflows](WF-marketing.md) |
+| W190 | In-house Design & Creative Production Management | [Marketing Campaign Workflows](WF-marketing.md) |
+| W191 | Global Supply Chain — Incoterm & Marine Insurance Tracking | [Supply Chain Planning Workflows](WF-supply-chain.md) |
 
 ---
 
-*Total: 183 workflows across 20 domains. Expanded to include CIT, retirement funds, reverse logistics, marketplace integration, and network optimization.*
+*Total: 191 workflows across 20 domains. Expanded to include CIT, retirement funds, reverse logistics, marketplace integration, fixed asset audits, product liability, SOP governance, contractor safety, fleet maintenance, referral programs, and global logistics.*

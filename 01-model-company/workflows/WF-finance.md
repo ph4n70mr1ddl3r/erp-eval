@@ -34,6 +34,7 @@
 - [W137. Intercompany Dividend & Loan Management](#intercompany-dividend-loan-management)
 - [W174. Store-Level Cash-in-Transit (CIT) & Armored Car Management](#store-level-cash-in-transit-cit--armored-car-management)
 - [W175. Employee Gratuity & Retirement Fund Management (RA 7641)](#employee-gratuity--retirement-fund-management-ra-7641)
+- [W184. Fixed Asset Physical Verification (Audit)](#fixed-asset-physical-verification-audit)
 
 ---
 
@@ -1523,4 +1524,36 @@ W8 covers AR processing — invoice generation, credit limit enforcement, and cr
 - Automatic monthly provision (Accrual) posting
 - Integration with Payroll (W10) for final pay computation
 - Actuarial gain/loss adjustment entry (OCI)
+
+## W184. Fixed Asset Physical Verification (Audit)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Scheduled annual or biennial fixed asset audit |
+| **Frequency** | Annual (rolling per region) |
+| **Volume** | ~206 locations (stores + DCs + HQ) |
+| **Owner** | Fixed Asset Accountant |
+| **Participants** | Store Manager, Internal Audit, IT Asset Manager (for IT equipment) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Fixed Asset Accountant generates "Asset Audit List" from ERP for a specific location | FA Accountant | Controller | 30 min |
+| 2 | Audit team (Finance + Internal Audit) arrives at location; performs physical count | Internal Audit | FA Accountant | 1-2 days |
+| 3 | Use mobile scanner/RFID to scan asset tags (tagged per W21.7) | Internal Audit | — | Ongoing |
+| 4 | Record asset condition (Working, Needs Repair, Obsolescent, Missing) | Internal Audit | — | Ongoing |
+| 5 | Reconcile physical count vs. ERP Asset Register | FA Accountant | Controller | 4 hours |
+| 6 | Investigate missing assets; interview location manager | Internal Audit | Store Manager | 2 hours |
+| 7 | Generate Audit Variance Report; obtain approvals for adjustments | FA Accountant | CFO | 2 hours |
+| 8 | Update Asset Register: change status, update location, or initiate disposal (W39) | FA Accountant | Controller | 1 hour |
+
+### System Touchpoints
+- Fixed Asset Register with barcode/RFID link (W184.1)
+- Mobile Asset Audit App with offline capability (W184.3)
+- Asset Condition & Lifecycle Tracking (W184.4)
+- Automated Reconciliation Report (FA Register vs. Audit Scan) (W184.5)
+- Asset status/location mass update (W184.8)
+- Link to W39 (Disposal) for missing/damaged assets (W184.8)
+
 

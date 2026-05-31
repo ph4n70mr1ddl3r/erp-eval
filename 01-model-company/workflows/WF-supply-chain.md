@@ -203,3 +203,33 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 - Simulation/Integration with Logistics Optimization software
 - Strategic decision support dashboards
 
+---
+
+## W191. Global Supply Chain — Incoterm & Marine Insurance Tracking
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Import PO creation (W2b) or Shipment Booking (W144) |
+| **Frequency** | Ongoing per import shipment |
+| **Volume** | ~400–600 TEUs/month |
+| **Owner** | Import Coordinator |
+| **Participants** | Buyer, Insurance Provider, Finance, Freight Forwarder |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Incoterm Selection**: Buyer selects Incoterm (EXW, FOB, CFR, CIF) during PO negotiation (W2b); system calculates risk transfer point | Buyer | — | 15 min |
+| 2 | **Insurance Booking**: If Incoterm requires BuildRight to provide insurance (EXW, FOB, CFR), Import Coordinator issues "Marine Insurance Declaration" | Import Coordinator | — | 30 min |
+| 3 | **Risk Monitoring**: System tracks shipment location vs. risk transfer point (e.g., "On Board" for FOB); alerts if insurance coverage gap exists | System | — | Automated |
+| 4 | **Claim Initiation**: If damage/loss occurs during transit (W3.6a), Import Coordinator gathers B/L, Survey Report, and Invoice | Import Coordinator | — | 2 hours |
+| 5 | **Claim Filing**: Submit claim to Marine Insurance provider; track status in ERP | Import Coordinator | Finance Mgr | 1 hour |
+| 6 | **Settlement**: Finance records insurance recovery; offsets against inventory loss (W3.6a) | Finance | — | 30 min |
+
+### System Touchpoints
+- Incoterm Master Data in Vendor/PO (W191.1)
+- Marine Insurance Declaration Portal (W191.2)
+- Risk Transfer Point Monitoring (W191.3)
+- Insurance Claim Tracking Module (W191.5)
+
+

@@ -128,9 +128,37 @@
 
 ---
 
+## W186. Internal SOP & Policy Governance Lifecycle
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Need for new process, regulatory change, or periodic review |
+| **Frequency** | Ongoing; Annual review of all policies |
+| **Volume** | ~200–300 SOPs and Policies group-wide |
+| **Owner** | VP for Legal & Compliance |
+| **Participants** | Subject Matter Experts (SMEs), Dept Heads, Internal Audit |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | SOP Draft: SME drafts process steps using standard corporate template | SME | Dept Head | 1 week |
+| 2 | Compliance Review: Legal/Compliance checks for regulatory alignment | Compliance Mgr | VP Legal | 3 days |
+| 3 | Stakeholder Review: Cross-functional review for handoff alignment | Dept Heads | — | 3 days |
+| 4 | Approval: Executive Sponsor or VP Legal approves the final version | VP Legal | — | 2 days |
+| 5 | Publication: Upload to Corporate Portal/Intranet; notify all staff | Admin | — | 1 day |
+| 6 | Training: Relevant staff complete training and digital acknowledgement | HR / Dept Head | — | 1 week |
+| 7 | Enforcement & Audit: Internal Audit checks compliance during audits | Internal Audit | — | Ongoing |
+| 8 | Retirement/Update: Archive old versions; trigger update every 2 years | Compliance Mgr | — | Periodic |
+
+---
+
 ### System Touchpoints (Governance)
 - Corporate records document management (Board minutes, Resolutions)
 - Legal matter management tracking (Litigation status, deadlines)
 - Strategic Planning/OKR tracking dashboard
 - Enterprise Project Management tool (Milestones, Gantt, Resource allocation)
 - IP database link for renewal tracking
+- Document Management System (DMS) for SOP Version Control (W186.5)
+- Digital Acknowledgement / E-learning tracking (W186.6)
+

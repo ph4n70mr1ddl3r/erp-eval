@@ -66,3 +66,33 @@
 - Automated integration with Facilities Maintenance (W47) for repairs
 - Compliance calendar with automated alerts for permit/license expiries
 - Incident analytics dashboard for trend reporting
+
+---
+
+## W187. Contractor & Third-Party On-site Safety Orientation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Contractor or 3rd party arriving to perform work (maintenance, construction, cleaning) |
+| **Frequency** | As occurred |
+| **Volume** | ~500–1,000 orientations/month chain-wide |
+| **Owner** | Store Manager / DC Manager |
+| **Participants** | Contractor Supervisor, Safety Officer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Contractor signs in at Security/Receiving; presents work order and valid ID | Security | — | 10 min |
+| 2 | Manager/Safety Officer verifies Contractor Insurance & Accreditation (W62) | Manager | — | 5 min |
+| 3 | Contractor undergoes "Safety Briefing": fire exits, PPE requirements, hazardous areas, emergency contacts | Manager | Safety Officer | 20 min |
+| 4 | Contractor signs digital "Safety Acknowledgement" and "Permit to Work" (for hot work, height work, or confined space) | Contractor | Manager | 10 min |
+| 5 | Security issues "Contractor Badge"; logs entry time in ERP | Security | — | 5 min |
+| 6 | Periodic monitoring: Safety Officer checks contractor compliance during the shift | Safety Officer | — | Ongoing |
+| 7 | Completion: Contractor signs out; Security logs exit time; Badge returned | Security | — | 5 min |
+
+### System Touchpoints
+- Contractor Management Module with Accreditation status (W187.2)
+- Digital Safety Induction & Permit-to-Work Portal (W187.4)
+- Visitor/Contractor Log integrated with ERP Access Control (W187.5)
+

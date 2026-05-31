@@ -245,7 +245,7 @@
 | NFR-004 | Report Generation | < 30 sec | W35 (management reporting) | — |
 | NFR-005 | Concurrent Users | 1,000–1,500 | W5b (1,000 POS terminals), W35 (HQ reporting) | — |
 | NFR-006 | Data Retention | 7 years | W42 (physical inventory archive), W35 quarterly retention review | Data Volumes §1.2 |
-| NFR-007 | Security | RBAC, audit trails | W37 (POS audit), W48 (change management) | W53 (breach response) |
+| NFR-007 | Security | RBAC, audit trails | W37 (POS audit), W48 (change management), W186 (SOP governance) | W53 (breach response) |
 | NFR-008 | Scalability | 300+ stores | W16 (new store opening process), W45 (store closure) | — |
 | NFR-009 | Localization | Full PH | W9a (BIR compliance), W10 (payroll statutory), W54 (LGU permits) | — |
 | NFR-010 | Data Privacy | RA 10173 | W53 (breach response), W41 (DSAR handling), W17.2 (consent management) | — |
@@ -267,4 +267,6 @@
 
 ---
 
-*Date: 2026-05-31 (v13 — gap analysis: added W174–W183; total now 183 workflows)*
+*Date: 2026-05-31 (v14 — gap analysis: added W184–W191; total now 191 workflows)*
+otal now 183 workflows)*
+workflows)*

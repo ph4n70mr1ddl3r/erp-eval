@@ -19,6 +19,8 @@
 - [W114. Sustainability & Environmental Compliance Reporting](#sustainability--environmental-compliance-reporting)
 - [W157. E-waste Collection & Circular Economy Operations](#e-waste-collection--circular-economy-operations)
 - [W158. Business Continuity Drill & Disaster Recovery Testing](#business-continuity-drill--disaster-recovery-testing)
+- [W167. Store & DC Recycling Program (Circular Economy)](#store--dc-recycling-program-circular-economy)
+- [W185. Product Liability & Consumer Safety Incident Management](#product-liability--consumer-safety-incident-management)
 
 ---
 
@@ -618,3 +620,34 @@ BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Envi
 | 3 | Logistics collects recyclables from Stores via **Reverse Logistics** trucks returning to DC | Logistics Team | — | Weekly |
 | 4 | DC consolidates recyclables; sells to accredited recycling partners | DC Supervisor | Supply Chain Mgr | Monthly |
 | 5 | System records "Recycling Revenue" and weight diverted from landfill; feeds into W114 Sustainability Report | DC Supervisor | — | 15 min |
+
+## W185. Product Liability & Consumer Safety Incident Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Report of property damage, personal injury, or safety hazard related to a sold product |
+| **Frequency** | As occurred |
+| **Volume** | < 10 incidents/month |
+| **Owner** | Legal & Compliance Manager |
+| **Participants** | Customer Service Manager, Risk Manager, Store Manager, Vendor (Supplier) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer Service Rep receives report; records incident details, product SKU, batch/lot (if available), and photos in ERP | CS Rep | CS Manager | 30 min |
+| 2 | System flags product; if multiple reports occur for same SKU, alerts Merchandising for potential stop-sell | System | Merchandising Mgr | Real-time |
+| 3 | Store Manager/Risk Manager conducts physical inspection of incident site or product remains | Risk Manager | Legal Manager | 4 hours |
+| 4 | Legal Manager reviews documentation; determines liability and coordinates with insurance (W59) | Legal Manager | CFO | 2 hours |
+| 5 | Formal notice sent to Vendor; request for investigation and indemnity | Legal Manager | — | 1 hour |
+| 6 | Coordinate with DTI (Dept of Trade and Industry) if mandatory product recall is triggered (W29) | Legal Manager | — | 2 hours |
+| 7 | Resolve claim: settlement, replacement, or legal defense | Legal Manager | CFO | Ongoing |
+| 8 | Document "Lessons Learned"; feed into Vendor Performance Review (W44) | Risk Manager | — | 1 hour |
+
+### System Touchpoints
+- Incident Management Portal with photo/document upload (W185.1)
+- Automated alert for "Product Hazard Threshold" (W185.2)
+- Integration with SKU Master (Stop-Sell flag) (W185.2)
+- Link to Insurance Claims workflow (W59) (W185.4)
+- Link to Product Recall (W29) and Vendor Performance (W44) (W185.6, W185.8)
+

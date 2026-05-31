@@ -52,8 +52,9 @@ Workflows are organized by functional domain for easier navigation and gap analy
 - **[Marketing Campaign Workflows](./WF-marketing.md)** (11 workflows) — Campaign planning, creative production, multi-channel execution, budget tracking, performance measurement, loyalty program financial governance, crisis communication, CSR program execution, social media & influencer management, PR & corporate communications, and bank partnership management.
 - **[Real Estate & Lease Management Workflows](./WF-property.md)** (4 workflows) — Site selection, lease administration, rent processing, and property tax management.
 - **[Internal Audit & Risk Management Workflows](./WF-audit.md)** (5 workflows) — Audit planning, execution, enterprise risk management, and fraud investigation.
-- **[Corporate Governance & Strategy Workflows](./WF-governance.md)** (6 workflows) — Board operations, legal case management, IP management, strategic planning, and project management.
+- **[Corporate Governance, Legal & Strategy Workflows](./WF-governance.md)** (7 workflows) — Board operations, legal case management, IP management, strategic planning, project management, and legal contract review.
 - **[Installation & Value-Added Services](./WF-services.md)** (8 workflows) — Home installation, tool rental, DIY workshops, design consultancy, paint mixing, lumber cutting, 3D rendering, and contractor quality audit.
+- **[Engineering & Construction Workflows](./WF-engineering-construction.md)** (5 workflows) — Site development, new store construction, renovations, and commissioning.
 - **[Health, Safety & Environment Workflows](./WF-health-safety.md)** (3 workflows) — Occupational health & safety (OHS) incident management and workplace safety inspection & audit.
 - **[Wholesale & Reseller Operations Workflows](./WF-wholesale.md)** (2 workflows) — Wholesale reseller onboarding and bulk fulfillment/cross-docking.
 - **[Project-Based B2B & Trade Sales Workflows](./WF-project-sales.md)** (5 workflows) — Quotations, bid management, contract pricing, staged deliveries, and project-specific logistics.
@@ -194,11 +195,11 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W121 | Operational Audit Execution (Store/DC/HQ) | [Internal Audit & Risk Management Workflows](WF-audit.md) |
 | W122 | Enterprise Risk Management (ERM) Review | [Internal Audit & Risk Management Workflows](WF-audit.md) |
 | W123 | Fraud Investigation | [Internal Audit & Risk Management Workflows](WF-audit.md) |
-| W124 | Corporate Secretarial & Entity Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
-| W125 | Legal Case & Litigation Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
-| W126 | Intellectual Property (IP) Portfolio Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
-| W127 | Annual Strategic Planning & OKR Setting | [Corporate Governance & Strategy Workflows](WF-governance.md) |
-| W128 | Enterprise Project Management (EPM) Lifecycle | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W124 | Corporate Secretarial & Entity Management | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
+| W125 | Legal Case & Litigation Management | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
+| W126 | Intellectual Property (IP) Portfolio Management | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
+| W127 | Annual Strategic Planning & OKRs | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
+| W128 | Enterprise Project Management (EPM) Lifecycle | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
 | W129 | Private Label / In-house Brand Development | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W130 | Competitor Price Intelligence Gathering | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W131 | IT Asset Lifecycle Management | [IT Operations Workflows](WF-it-operations.md) |
@@ -289,7 +290,14 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W216 | BIR CAS (Computerized Accounting System) Compliance Audit | [Compliance & Governance Workflows](WF-compliance.md) |
 | W217 | Senior Citizen & PWD VAT-Exemption Audit & Reporting | [Finance & Treasury Workflows](WF-finance.md) |
 | W218 | Inter-DC Stock Rebalancing (Stock Push) | [Inventory Management Workflows](WF-inventory.md) |
+| W223 | New Store Design & Engineering Standards | [Engineering & Construction Workflows](WF-engineering-construction.md) |
+| W224 | Construction Bidding & Contractor Selection | [Engineering & Construction Workflows](WF-engineering-construction.md) |
+| W225 | Store Construction Management & Supervision | [Engineering & Construction Workflows](WF-engineering-construction.md) |
+| W226 | Store Renovation & Retrofitting (CAPEX) | [Engineering & Construction Workflows](WF-engineering-construction.md) |
+| W227 | Commissioning & Operational Handover | [Engineering & Construction Workflows](WF-engineering-construction.md) |
+| W230 | Legal Contract Review & Approval | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
+| W231 | Management Performance Reporting (QBR) | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
 
 ---
 
-*Total: 218 workflows across 23 domains. Expanded to include ESG metrics, fleet optimization, digital innovation (AI/RPA), regional retail operations, automated cash management, and advanced Philippine regulatory compliance.*
+*Total: 225 workflows across 23 domains. Expanded to include Engineering & Construction, Legal Contract Review, and Management Performance (QBR), alongside ESG metrics, fleet optimization, digital innovation, and advanced regulatory compliance.*

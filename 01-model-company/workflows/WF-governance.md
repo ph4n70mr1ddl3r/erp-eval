@@ -1,6 +1,6 @@
 # Corporate Governance, Legal & Strategy Workflows
 
-> Board operations, legal case management, IP management, strategic planning, and project management.
+> Board operations, legal case management, IP management, strategic planning, project management, and legal contract review.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -8,11 +8,14 @@
 
 ## Workflows in This Domain
 
-- [W124. Corporate Secretarial & Entity Management](#corporate-secretarial-entity-management)
-- [W125. Legal Case & Litigation Management](#legal-case-litigation-management)
+- [W124. Corporate Secretarial & Entity Management](#corporate-secretarial--entity-management)
+- [W125. Legal Case & Litigation Management](#legal-case--litigation-management)
 - [W126. Intellectual Property (IP) Portfolio Management](#intellectual-property-ip-portfolio-management)
-- [W127. Annual Strategic Planning & OKR Setting](#annual-strategic-planning-okr-setting)
+- [W127. Annual Strategic Planning & OKRs](#annual-strategic-planning--okrs)
 - [W128. Enterprise Project Management (EPM) Lifecycle](#enterprise-project-management-epm-lifecycle)
+- [W129. (Reserved for Private Label - see Merchandising)](#)
+- [W230. Legal Contract Review & Approval](#legal-contract-review--approval)
+- [W231. Management Performance Reporting (QBR)](#management-performance-reporting)
 
 ---
 
@@ -24,17 +27,17 @@
 | **Frequency** | Quarterly Board meetings; Annual Stockholders' Meeting |
 | **Volume** | 5 legal entities |
 | **Owner** | Corporate Secretary |
-| **Participants** | Board of Directors, CEO, Legal Department |
+| **Participants** | Board of Directors, CEO, Legal Department, Finance |
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | Prepare Board Agenda and meeting materials (Financials, Strategy) | Corp Secretary | CEO | 1 week |
-| 2 | Conduct Board Meeting; record minutes and resolutions | Corp Secretary | Chairman | 1 day |
-| 3 | Execute Board Resolutions (e.g., bank signatories, property purchase) | Relevant Dept | CEO | Ongoing |
-| 4 | File General Information Sheet (GIS) with SEC (Philippine requirement) | Corp Secretary | Corp Secretary | Annual |
-| 5 | Maintain Corporate Books (Minutes, Stock and Transfer Book) | Corp Secretary | Corp Secretary | Ongoing |
+| 1 | **Meeting Prep**: Issue notices for Board/Stockholder meetings; prepare agenda and board packs | Corp Sec | Chairman | 1 week |
+| 2 | **Minutes**: Attend meetings and record minutes; obtain signatures | Corp Sec | Chairman | 3 days |
+| 3 | **GIS Filing**: Prepare and file General Information Sheet (GIS) with SEC within 30 days of meeting | Corp Sec | — | 1 day |
+| 4 | **Stock Ledger**: Maintain Stock and Transfer Book; record any share issuances or transfers | Corp Sec | — | Ongoing |
+| 5 | **Compliance**: Monitor compliance with Revised Corporation Code and SEC regulations | Legal Counsel | Corp Sec | Ongoing |
 
 ---
 
@@ -42,22 +45,23 @@
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Service of summons, labor complaint, or decision to sue |
-| **Frequency** | Ad-hoc |
-| **Volume** | ~10–20 active cases across 5 entities |
-| **Owner** | VP for Legal & Compliance |
-| **Participants** | Legal Counsel (Internal/External), Relevant Dept Head |
+| **Trigger** | Receipt of legal notice, summons, or complaint; or internal decision to initiate legal action |
+| **Frequency** | Ad-hoc; ~10–20 active cases at any time (labor, consumer, commercial) |
+| **Volume** | Covers labor disputes, customer injury claims, and vendor disputes |
+| **Owner** | VP Legal / General Counsel |
+| **Participants** | Legal Counsel, HR (for labor), Finance (for provisioning), External Counsel |
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | Intake of legal notice; docket case in Legal Management System | Legal Asst | VP Legal | 1 day |
-| 2 | Assign internal counsel or engage external firm | VP Legal | VP Legal | 2 days |
-| 3 | Gather evidence/witnesses (e.g., HR files for labor cases, POS logs for consumer) | Legal Counsel | Dept Head | 1 week |
-| 4 | Draft and file pleadings (Answer, Motion, etc.) | Legal Counsel | VP Legal | 1–2 weeks |
-| 5 | Attend hearings / mediation sessions | Legal Counsel | VP Legal | Ongoing |
-| 6 | Report case status and financial exposure (contingent liability) to Finance | VP Legal | CFO | Quarterly |
+| 1 | **Intake**: Receive and log new legal matter in Legal Tracker; scan and attach all documents | Legal Assistant | VP Legal | 1 hour |
+| 2 | **Assessment**: Assign internal/external counsel; determine case strategy and potential liability | Legal Counsel | VP Legal | 2–3 days |
+| 3 | **Provisioning**: For cases with probable loss, notify Finance to set up accounting provision (W81 linkage) | VP Legal | CFO | 1 day |
+| 4 | **Fieldwork**: Gather evidence (CCTV, logs, witness statements) from Store/DC/Dept | Legal Counsel | — | 1 week |
+| 5 | **Execution**: File response/pleadings; attend hearings; manage mediation/settlement negotiations | Legal Counsel | VP Legal | Ongoing |
+| 6 | **Closure**: Record final judgment or settlement; trigger payment (if loss) or recovery (if win) | Legal Counsel | VP Legal | 1 day |
+| 7 | **Reporting**: Quarterly Board report on legal exposure and case status | VP Legal | CEO | 4 hours |
 
 ---
 
@@ -65,43 +69,44 @@
 
 | Field | Detail |
 |---|---|
-| **Trigger** | New brand launch, slogan, or in-house design |
-| **Frequency** | Periodic; ~5–10 trademarks/copyrights |
-| **Volume** | Managing "BuildRight" and sub-brands |
+| **Trigger** | New private label brand launch (W1); or discovery of trademark infringement |
+| **Frequency** | Ongoing; Annual renewal reviews |
+| **Volume** | ~50–100 active trademarks and designs |
 | **Owner** | Legal Counsel |
-| **Participants** | Marketing (CMO), Merchandising |
+| **Participants** | Marketing, Merchandising (Private Label), IP Office (IPO) |
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | IP Search: Verify availability of proposed brand/logo in IPOPHL database | Legal Counsel | CMO | 3 days |
-| 2 | File Trademark/Copyright application with IPOPHL | Legal Counsel | VP Legal | 1 day |
-| 3 | Monitor application status and respond to office actions | Legal Counsel | VP Legal | 6–12 months |
-| 4 | Maintenance: Handle renewals of existing IPs (every 10 years) | Legal Counsel | VP Legal | Decadal |
-| 5 | IP Enforcement: Send Cease & Desist letters to infringers | Legal Counsel | VP Legal | Ad-hoc |
+| 1 | **Search**: Conduct trademark availability search for new brands/logos | Legal Counsel | VP Legal | 3 days |
+| 2 | **Filing**: Submit application to Intellectual Property Office (IPO) of the Philippines | Legal Counsel | — | 1 day |
+| 3 | **Monitoring**: Monitor for similar filings or unauthorized use of BuildRight brands | Marketing | Legal Counsel | Monthly |
+| 4 | **Enforcement**: Issue Cease & Desist notices to infringers; escalate to litigation (W125) if needed | Legal Counsel | VP Legal | 1 week |
+| 5 | **Maintenance**: Pay maintenance fees and file Declaration of Actual Use (DAU) per IPO schedule | Legal Counsel | — | Per schedule |
 
 ---
 
-## W127. Annual Strategic Planning & OKR Setting
+## W127. Annual Strategic Planning & OKRs
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Start of Q4 (planning for next year) |
-| **Frequency** | Annual |
-| **Volume** | Group-wide and Entity-specific goals |
-| **Owner** | CEO |
-| **Participants** | Executive Team (C-Suite), Board |
+| **Trigger** | Annual strategic planning cycle (Q3/Q4) |
+| **Frequency** | Annual (Planning); Quarterly (Review) |
+| **Volume** | Corporate-level + 14 Department-level OKRs |
+| **Owner** | CEO / Chief of Staff |
+| **Participants** | Executive Team (C-Level), Board of Directors |
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | Review current year performance vs. targets | Finance / Strategy | CEO | 1 week |
-| 2 | Strategy Offsite: Define top 3–5 strategic pillars for next year | Executive Team | CEO | 2–3 days |
-| 3 | Cascade goals into Objectives & Key Results (OKRs) per department | Dept Heads | CEO | 2 weeks |
-| 4 | Align Budget (W26) with Strategic Plan | CFO | CEO | 2 weeks |
-| 5 | Final approval of Annual Operating Plan (AOP) by Board | CEO | Board | 1 day |
+| 1 | **Environmental Scan**: Analyze market trends, macroeconomics, and SWOT | Strategy Team | CEO | 2 weeks |
+| 2 | **Strategy Offsite**: Define 3-year vision and Top 5 Objectives for the coming year | Executive Team | CEO | 2 days |
+| 3 | **OKR Cascading**: Departments define Key Results (KRs) aligned to corporate Objectives | Dept Heads | CEO | 1 week |
+| 4 | **Budget Alignment**: Reconcile OKRs with Annual Budget (W26) | CFO | CEO | 1 week |
+| 5 | **Communication**: Publish OKRs to the organization via Town Hall | CEO | — | 1 hour |
+| 6 | **Quarterly Review**: Track progress vs. KRs; adjust tactics if needed | Executive Team | CEO | Quarterly |
 
 ---
 
@@ -125,6 +130,50 @@
 | 4 | Change Control: Approve deviations in scope or budget (W21) | SteerCo | Sponsor | Ad-hoc |
 | 5 | UAT & Go-Live: Final validation (W73 for IT) | Dept Users | Sponsor | 1–4 weeks |
 | 6 | Post-Implementation Review (PIR): Capture lessons learned | PMO Lead | CEO | 1 week |
+
+---
+
+## W230. Legal Contract Review & Approval
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Request for contract review from any department (Procurement, Property, Marketing) |
+| **Frequency** | High; ~40–60 contracts/month |
+| **Volume** | Lease agreements, vendor master contracts, service agreements |
+| **Owner** | Legal Counsel |
+| **Participants** | Requesting Dept, Legal, External Party |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Submission**: Dept submits draft contract or request via Legal Portal with business terms | Dept Manager | — | 15 min |
+| 2 | **Review**: Legal reviews for risks, compliance, and alignment with company standards | Legal Counsel | VP Legal | 3–5 days |
+| 3 | **Negotiation**: Collaborative editing with external party to finalize terms | Legal Counsel | Dept Manager | 1–2 weeks |
+| 4 | **Finalization**: Generate final execution version; obtain internal signatures per Matrix | Legal Counsel | CEO/CFO | 1 day |
+| 5 | **Archiving**: Scan and file executed contract in Document Management System (DMS) | Legal Assistant | — | 30 min |
+
+---
+
+## W231. Management Performance Reporting (QBR)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Quarterly results availability |
+| **Frequency** | Quarterly |
+| **Volume** | Comprehensive review of all 200+ stores and 5 entities |
+| **Owner** | CFO |
+| **Participants** | Executive Team, Regional VPs, Department Heads |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Data Aggregation**: Pull financial and operational KPIs from ERP/BI (W113) | BI Analyst | CFO | 3 days |
+| 2 | **Narrative Prep**: Dept Heads provide "Variance Analysis" (Actual vs. Budget/Target) | Dept Heads | — | 2 days |
+| 3 | **QBR Meeting**: Present results to Executive Team; focus on underperforming areas | Executive Team | CEO | 1 day |
+| 4 | **Action Items**: Document corrective actions and owners | Strategy Team | CEO | 1 day |
+| 5 | **Follow-up**: Track completion of QBR action items in next month's review | Chief of Staff | CEO | Ongoing |
 
 ---
 
@@ -161,4 +210,6 @@
 - IP database link for renewal tracking
 - Document Management System (DMS) for SOP Version Control (W186.5)
 - Digital Acknowledgement / E-learning tracking (W186.6)
+- Contract Lifecycle Management (CLM) / Legal Portal
+- BI Dashboard (W113) for KPI tracking
 

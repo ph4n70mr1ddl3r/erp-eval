@@ -40,7 +40,8 @@ Summary of which ERP modules support which workflows:
 | **Marketing / Campaign** | W83 (campaign planning), W104 (loyalty governance), W134 (crisis comms), W135 (CSR), W142 (social media), W143 (PR), W149 (bank partnerships), W190 (Creative Production) |
 | **Real Estate** | W116 (site selection), W117 (lease admin), W118 (rent payment), W119 (property tax) |
 | **Internal Audit** | W120 (audit planning), W121 (operational audit), W122 (ERM), W123 (fraud investigation) |
-| **Governance** | W124 (corp sec), W125 (litigation), W126 (IP mgmt), W127 (strat plan), W128 (EPM), W186 (SOP Governance) |
+| **Governance / Strategy** | W124 (corp sec), W125 (litigation), W126 (IP mgmt), W127 (strat plan / OKRs), W128 (EPM), W129 (legal contract review), W135 (QBR performance review), W186 (SOP Governance) |
+| **Engineering & Construction** | W223 (store design), W224 (bidding), W225 (supervision), W226 (renovation CAPEX), W227 (handover) |
 | **HSE / Safety** | W140 (incident mgmt), W141 (safety inspection), W187 (Contractor Safety) |
 | **Services / Rental** | W138 (installation), W139 (tool rental), W147 (workshops), W148 (design consultancy), W211 (3D design rendering), W213 (contractor quality audit) |
 | **Wholesale / B2B** | W145 (wholesale onboarding), W146 (bulk fulfillment) |

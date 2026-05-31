@@ -239,7 +239,17 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W171 | Store Physical Security & Yard Patrol Routine | [Store Operations Workflows](WF-store-operations.md) |
 | W172 | Employee PPE & Uniform Lifecycle | [HR & Payroll Workflows](WF-hr.md) |
 | W173 | Store-Level Solar Energy Monitoring | [Store Operations Workflows](WF-store-operations.md) |
+| W174 | Store-Level Cash-in-Transit (CIT) & Armored Car Management | [Finance & Treasury Workflows](WF-finance.md) |
+| W175 | Employee Gratuity & Retirement Fund Management (RA 7641) | [Finance & Treasury Workflows](WF-finance.md) |
+| W176 | Store-to-DC Reverse Logistics (Consolidation) | [Store Operations Workflows](WF-store-operations.md) |
+| W177 | Vending & Concessionaire Management | [Store Operations Workflows](WF-store-operations.md) |
+| W178 | Employee Succession & Internal Mobility | [HR & Payroll Workflows](WF-hr.md) |
+| W179 | Management Trainee (Cadetship) Program | [HR & Payroll Workflows](WF-hr.md) |
+| W180 | E-commerce Marketplace Integration (Lazada/Shopee) | [Ecommerce Workflows](WF-ecommerce.md) |
+| W181 | Store-Level Price Tag Printing & Verification | [Merchandising & Pricing Workflows](WF-merchandising.md) |
+| W182 | Gift / Home Registry Lifecycle | [Store Operations Workflows](WF-store-operations.md) |
+| W183 | Supply Chain Network Optimization Review | [Supply Chain Planning Workflows](WF-supply-chain.md) |
 
 ---
 
-*Total: 173 workflows across 20 domains. Expanded to include paint mixing, lumber cutting, SC/PWD compliance, security patrols, PPE management, and solar monitoring.*
+*Total: 183 workflows across 20 domains. Expanded to include CIT, retirement funds, reverse logistics, marketplace integration, and network optimization.*

@@ -16,6 +16,9 @@
 - [W72. Employee Performance Management](#employee-performance-management)
 - [W74. Employee Expense Reimbursement](#employee-expense-reimbursement)
 - [W76. Employee Loans & Advances](#employee-loans-advances)
+- [W172. Employee PPE & Uniform Lifecycle](#employee-ppe--uniform-lifecycle)
+- [W178. Employee Succession & Internal Mobility](#employee-succession--internal-mobility)
+- [W179. Management Trainee (Cadetship) Program](#management-trainee-cadetship-program)
 
 ---
 
@@ -469,4 +472,57 @@ With over 8,000 employees in retail and distribution, maintaining a consistent p
 
 
 ---
+
+
+---
+
+## W178. Employee Succession & Internal Mobility
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Retirement of key leader; store expansion; or high-potential (HiPo) identification |
+| **Owner** | CHRO |
+| **Participants** | CEO, Department Heads, HR Manager, High-Potential Employees |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **HiPo Identification**: Annual review of performance (W72) and potential; tag employees for "Internal Mobility" in ERP | HR Manager | CHRO | 2 weeks |
+| 2 | **Succession Mapping**: Identify "Ready Now" and "Ready in 1–2 Years" successors for all Store Manager and HQ Director roles | Department Head | CEO | 1 week |
+| 3 | **Individual Development Plan (IDP)**: Successors assigned to specific training (W51) and cross-functional rotations | HR Manager | — | 1 year |
+| 4 | **Internal Posting**: Vacancies posted internally for 5 days before external search; system alerts eligible internal candidates | System | HR Manager | Automated |
+| 5 | **Transfer/Promotion**: Selected candidate's contract and payroll (W10) updated; system auto-triggers offboarding from old role and onboarding to new | System / HR | — | 30 min |
+
+### System Touchpoints
+- Talent pool tagging in HRIS
+- Career path visualization and tracking
+- Automatic internal job alerts based on profile
+
+---
+
+## W179. Management Trainee (Cadetship) Program
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual corporate strategy (10–15 new stores/year growth) |
+| **Frequency** | Annual intake (Cohort-based) |
+| **Volume** | ~30–50 trainees per year |
+| **Owner** | CHRO |
+| **Participants** | Store Managers (Mentors), Trainees, Learning & Development Team |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Recruitment**: Campus hiring and assessment centers targeting fresh graduates | HR Manager | — | 2 months |
+| 2 | **Orientation**: 1-week corporate orientation at HQ | L&D Team | CHRO | 1 week |
+| 3 | **Rotational Training**: 6-month rotation through all store departments (Receiving, Sales, Cashier, Operations) | Trainee | Store Manager | 6 months |
+| 4 | **Project Assignment**: Trainees assigned a "Process Improvement" project in a specific store | Trainee | Dept Head | 2 months |
+| 5 | **Graduation & Deployment**: Successful trainees deployed as "Assistant Store Managers" or "Department Supervisors" in new stores | CHRO | CEO | — |
+
+### System Touchpoints
+- Training progress tracking (W51)
+- Rotation schedule management (W34)
+- Trainee-to-Mentor mapping and feedback loop
 

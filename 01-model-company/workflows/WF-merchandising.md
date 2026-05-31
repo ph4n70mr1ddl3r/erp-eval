@@ -22,6 +22,7 @@
 - [W107. Pricing Hierarchy Governance & Compliance Audit](#pricing-hierarchy-governance-compliance-audit)
 - [W129. Private Label / In-house Brand Development](#private-label-in-house-brand-development)
 - [W130. Competitor Price Intelligence Gathering](#competitor-price-intelligence-gathering)
+- [W181. Store-Level Price Tag Printing & Verification](#store-level-price-tag-printing--verification)
 
 ---
 
@@ -700,3 +701,30 @@ BuildRight operates 5+ concurrent pricing mechanisms: regular SRP (W40), promoti
 - Quality Assurance test result logging for private label samples
 
 ---
+
+---
+
+## W181. Store-Level Price Tag Printing & Verification
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Central price update (W40/W13); or shelf tag discrepancy report (W5b.11) |
+| **Frequency** | Daily / As-needed |
+| **Owner** | Store Manager |
+| **Participants** | Stock Associate, Cashier (Verification) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Batch Generation**: ERP flags items with price changes; system creates "Price Tag Print Batch" per store | System | — | Automated |
+| 2 | **Printing**: Stock Associate prints new shelf tags at the store office using dedicated label printers | Stock Associate | — | 15 min |
+| 3 | **Tag Replacement**: Associate walks floor; replaces old tags; scans new tag with handheld to "Confirm Replacement" | Stock Associate | Dept Supervisor | 1 hour |
+| 4 | **Verification**: Cashier or Supervisor performs random "Price Scan Audit" (W69): scans 20 items on shelf; system verifies shelf price matches POS | Cashier | Store Manager | 15 min |
+| 5 | **Error Correction**: If mismatch found, system triggers immediate re-print and investigates sync lag | System | Store Manager | 5 min |
+
+### System Touchpoints
+- Automated price tag batching based on W40/W13
+- Handheld scan-confirmation of tag replacement
+- Real-time audit dashboard
+

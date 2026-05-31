@@ -27,6 +27,12 @@
 - [W96. Store Renovation & Remodel Project](#store-renovation-remodel-project)
 - [W109. Store-Level Inventory Receiving & Putaway](#store-level-inventory-receiving-putaway)
 - [W111. Store Energy & Utility Consumption Management](#store-energy-utility-consumption-management)
+- [W170. Senior Citizen & PWD Discount Compliance (PH Legal)](#senior-citizen--pwd-discount-compliance-ph-legal)
+- [W171. Store Physical Security & Yard Patrol Routine](#store-physical-security--yard-patrol-routine)
+- [W173. Store-Level Solar Energy Monitoring](#store-level-solar-energy-monitoring)
+- [W176. Store-to-DC Reverse Logistics (Consolidation)](#store-to-dc-reverse-logistics-consolidation)
+- [W177. Vending & Concessionaire Management](#vending--concessionaire-management)
+- [W182. Gift / Home Registry Lifecycle](#gift--home-registry-lifecycle)
 
 ---
 
@@ -1400,3 +1406,82 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 | 2 | **Anomaly Detection**: If generation drops > 15% below expected: system creates a W47 maintenance ticket; Facilities Coordinator reviews CCTV/Drone footage for panel obstructions (dust, debris) | System | Facilities Coord | 15 min |
 | 3 | **Cleaning Routine**: Quarterly: Store Maintenance or Vendor performs panel cleaning to remove soot/dust (critical in high-traffic/industrial areas) | Maintenance | Store Mgr | 4 hours |
 | 4 | **Savings Verification**: Monthly: Finance compares Solar Generation (Self-Consumption) against Meralco/Utility bill reduction to verify ROI | Finance | Controller | 1 hour |
+
+---
+
+## W176. Store-to-DC Reverse Logistics (Consolidation)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Accumulation of customer returns, overstock, or defective items at store level requiring vendor return |
+| **Frequency** | Bi-weekly per store |
+| **Volume** | ~2–5 pallets per shipment |
+| **Owner** | Store Receiving Clerk |
+| **Participants** | Store Receiving Clerk, DC Receiving Clerk, Logistics (Fleet) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Consolidation**: Store Receiving Clerk identifies items in "RTV Staging Area" (from W12 returns or W91 damage); groups by Vendor and Reason (Defective, Overstock) | Store Clerk | Asst Store Mgr | 1 hour |
+| 2 | **Transfer Creation**: Clerk creates a "Reverse Stock Transfer Order (RSTO)" in ERP from Store to Hub DC; system ensures items are non-saleable in store inventory | Store Clerk | — | 15 min |
+| 3 | **Palletization**: Items are boxed and palletized; "Return Shipment" labels generated from ERP | Store Clerk | — | 30 min |
+| 4 | **Backhaul Pickup**: Logistics truck (after making a store delivery, W4) picks up the return pallets (Backhaul) | Driver | — | 15 min |
+| 5 | **DC Receipt**: DC Receiving Clerk receives pallets; scan-verifies against RSTO; moves to DC RTV Zone for consolidated shipment to Vendor (W88) | DC Clerk | DC Supervisor | 30 min |
+
+### System Touchpoints
+- Reverse Stock Transfer Order (RSTO) creation
+- Backhaul load planning (Logistics integration)
+- Consolidated RTV tracking (Store -> DC -> Vendor)
+
+---
+
+## W177. Vending & Concessionaire Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New concessionaire application; monthly rent/commission calculation |
+| **Owner** | Store Manager |
+| **Participants** | Concessionaire, Finance (AR), Store Operations |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Onboarding**: Store Manager reviews application for in-store cafe, snack bar, or ATM space; validates compliance with safety/health standards | Store Mgr | — | 2 hours |
+| 2 | **Contract Setup**: Legal/Finance setup lease in ERP (W117); defines Rent or % Commission on Sales | Finance | — | 1 hour |
+| 3 | **Sales Tracking**: If commission-based: Concessionaire sales are rung through a dedicated "Non-Inventory" SKU at POS; system tracks total monthly throughput | Cashier | — | Continuous |
+| 4 | **Billing**: Monthly: Finance generates invoice for Rent + Utilities + Commission; offsets any payments collected on behalf of concessionaire | AR Clerk | Controller | 30 min |
+
+### System Touchpoints
+- Lease management integration (W117)
+- Non-inventory POS SKU for concessionaire sales tracking
+- Automated monthly billing
+
+---
+
+## W182. Gift / Home Registry Lifecycle
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer (Home Builder/Renovator) creates a "Project Wishlist" or "Registry" |
+| **Frequency** | ~50–100 new registries per month |
+| **Owner** | Customer Service Rep (CSR) |
+| **Participants** | Customer, Sales Associate, Gift Givers |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Creation**: Customer creates Registry via Website or In-store Tablet; specifies "Housewarming" or "Renovation Project" | Customer | — | 15 min |
+| 2 | **Item Selection**: Customer walks store with Sales Associate; scans items into Registry using Mobile App | Customer / Assoc | — | 1 hour |
+| 3 | **Sharing**: Customer shares Registry link with family/friends; or provides "Registry ID" for in-store lookup | Customer | — | — |
+| 4 | **Purchase**: Giver buys item from Registry (In-store or Online); system marks item as "Purchased" to prevent duplicates | Cashier / System | — | 2 min |
+| 5 | **Fulfillment**: Items can be picked up by Giver, or held at CSR counter for "Consolidated Delivery" to the Registry Owner | CSR | Store Mgr | 10 min |
+| 6 | **Completion**: Registry Owner receives "Completion Discount" (e.g., 10% off remaining items) after the event date | System | — | Automated |
+
+### System Touchpoints
+- Registry master data (Customer + Items + Event Date)
+- Real-time "Purchased" status sync across channels
+- Completion discount logic (Promo engine integration)
+

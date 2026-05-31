@@ -32,6 +32,8 @@
 - [W101. Customer Refund & Credit Processing](#customer-refund-credit-processing)
 - [W108. Customer Credit Collection & Escalation](#customer-credit-collection-escalation)
 - [W137. Intercompany Dividend & Loan Management](#intercompany-dividend-loan-management)
+- [W174. Store-Level Cash-in-Transit (CIT) & Armored Car Management](#store-level-cash-in-transit-cit--armored-car-management)
+- [W175. Employee Gratuity & Retirement Fund Management (RA 7641)](#employee-gratuity--retirement-fund-management-ra-7641)
 
 ---
 
@@ -1463,3 +1465,62 @@ W8 covers AR processing — invoice generation, credit limit enforcement, and cr
 - Treasury dashboard showing liquidity across all 5 legal entities
 
 ---
+
+---
+
+## W174. Store-Level Cash-in-Transit (CIT) & Armored Car Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Daily store cash accumulation exceeds threshold; scheduled armoured car pickup |
+| **Frequency** | Daily per store (365 days/year) |
+| **Volume** | ~PHP 2.1M/day average cash per store (42% of PHP 5B monthly retail sales) |
+| **Owner** | Treasury Manager |
+| **Participants** | Store Manager, Lead Cashier, Armoured Car Vendor, Treasury Analyst |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Cash Consolidation**: Lead Cashier performs EOD cash count; reconciles with POS Z-reports (W5f) | Lead Cashier | Store Manager | 30 min |
+| 2 | **Secure Bagging**: Reconciled cash placed in tamper-evident CIT bags with serialized seals; system logs seal numbers | Store Manager | Store Manager | 10 min |
+| 3 | **Pickup Verification**: Armoured car arrives; Store Manager verifies guard IDs and vehicle number against authorized list | Store Manager | Store Manager | 5 min |
+| 4 | **Handover**: Guard scans CIT bags; Store Manager and Guard sign electronic/physical manifest; copy stored in ERP | Store Manager / Guard | Store Manager | 5 min |
+| 5 | **System Posting**: Store Manager marks cash as "In-Transit to Bank"; ERP reduces Store Cash account, increases CIT account | Store Manager | — | Automated |
+| 6 | **Bank Acknowledgment**: Bank/CIT vendor processes cash; sends daily credit report | CIT Vendor | — | Next Day |
+| 7 | **Reconciliation**: Treasury Analyst matches Bank Credit to Store CIT record; investigates variances > PHP 100 | Treasury Analyst | Treasury Mgr | 2 hours/day |
+
+### System Touchpoints
+- POS EOD / Z-report integration
+- Serialized CIT bag/seal tracking
+- Guard/Vehicle authorization whitelist
+- Bank credit file auto-matching (W30)
+- Shortage/Overage exception reporting
+
+---
+
+## W175. Employee Gratuity & Retirement Fund Management (RA 7641)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Employee retirement; annual actuarial valuation; monthly fund contribution |
+| **Owner** | CFO |
+| **Participants** | HR Manager, Controller, External Actuary, Trust Bank |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Provisioning**: Monthly: Finance calculates retirement expense provision based on salary and service years per RA 7641 | System | Controller | Automated |
+| 2 | **Fund Contribution**: Quarterly: Treasury remits cash to the retirement trust fund managed by a Trust Bank | Treasury Mgr | CFO | 30 min |
+| 3 | **Annual Valuation**: External Actuary performs PFRS-compliant valuation (PAS 19) of the defined benefit obligation | Actuary | CFO | 1 week |
+| 4 | **Retirement Trigger**: Employee reaches retirement age or qualifies for early retirement | HR Manager | — | — |
+| 5 | **Computation**: HR calculates retirement pay per law (at least 1/2 month salary per year of service) | HR Manager | CFO | 1 hour |
+| 6 | **Disbursement**: Trust Bank releases funds to the employee; Finance adjusts the retirement liability in ERP | Finance Clerk | Controller | 1 day |
+
+### System Touchpoints
+- Employee service-year tracking
+- Automatic monthly provision (Accrual) posting
+- Integration with Payroll (W10) for final pay computation
+- Actuarial gain/loss adjustment entry (OCI)
+

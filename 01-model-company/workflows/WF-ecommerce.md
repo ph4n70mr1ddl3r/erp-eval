@@ -11,6 +11,7 @@
 - [W11. Ecommerce — BOPIS Order Fulfillment](#ecommerce-bopis-order-fulfillment)
 - [W19. Ecommerce — Home Delivery Fulfillment](#ecommerce-home-delivery-fulfillment)
 - [W98. Ecommerce Order Exception & Cancellation Management](#ecommerce-order-exception-cancellation-management)
+- [W180. E-commerce Marketplace Integration (Lazada/Shopee)](#e-commerce-marketplace-integration-lazada-shopee)
 
 ---
 
@@ -223,4 +224,32 @@ W11 (BOPIS) and W19 (Home Delivery) cover the happy-path fulfillment process fro
 - **No incremental headcount.**
 
 ---
+
+
+---
+
+## W180. E-commerce Marketplace Integration (Lazada/Shopee)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Order placed on external marketplace (Lazada/Shopee) |
+| **Frequency** | High; ~5,000–8,000 orders/month |
+| **Owner** | Ecommerce Operations Manager |
+| **Participants** | System (Middleware), DC Picker, Marketplace Courier |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Order Sync**: Middleware pulls orders from Lazada/Shopee APIs; creates Sales Orders in ERP | System | — | Automated |
+| 2 | **ATP Verification**: System checks DC stock; if unavailable, system auto-notifies marketplace to cancel or delay | System | — | Automated |
+| 3 | **Picking**: DC Picker receives marketplace pick task; scans each item | DC Picker | DC Supervisor | 10 min |
+| 4 | **Packaging**: Items packed in marketplace-specific packaging; marketplace shipping labels printed from middleware | DC Packer | — | 5 min |
+| 5 | **Handover**: Marketplace Courier (Lex/Shopee Xpress) picks up from DC; pickup confirmation synced to marketplace | DC Dispatch | — | 5 min |
+| 6 | **Settlement**: Bi-weekly: Marketplace remits payment (net of commission/fees); Finance reconciles with ERP Sales Orders | Finance Clerk | Controller | 4 hours |
+
+### System Touchpoints
+- API integration (Middleware) for Order, Inventory, and Status sync
+- Marketplace-specific shipping label generation
+- Automated commission/fee deduction accounting
 

@@ -11,6 +11,8 @@
 - [W31. Demand Forecasting Cycle](#demand-forecasting-cycle)
 - [W32. Seasonal Buy Planning](#seasonal-buy-planning)
 - [W133. Sales & Operations Planning (S&OP) Cycle](#sales-operations-planning-sop-cycle)
+- [W144. International Logistics & Import Operations](#international-logistics--import-operations)
+- [W183. Supply Chain Network Optimization Review](#supply-chain-network-optimization-review)
 
 ---
 
@@ -174,4 +176,30 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 
 
 ---
+
+
+---
+
+## W183. Supply Chain Network Optimization Review
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual strategic review; or significant change in logistics costs/fuel prices |
+| **Owner** | COO |
+| **Participants** | Supply Chain Director, Logistics Manager, Finance Analyst, External Logistics Consultant |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Data Extraction**: Pull historical store sales, DC throughput, and transport costs by route | Finance Analyst | — | 1 day |
+| 2 | **Modeling**: Use "Center of Gravity" and "Network Optimization" tools to simulate optimal DC locations vs. 200-store footprint | SC Director | — | 1 week |
+| 3 | **Cost Analysis**: Compare current "5-DC" cost vs. potential "6-DC" or "Consolidated DC" scenarios; include lease exit costs (W117) | Logistics Mgr | CFO | 3 days |
+| 4 | **Recommendation**: Present optimal network configuration (e.g., "Open DC6 in North Luzon") to Board | COO | CEO | 2 hours |
+| 5 | **Implementation Plan**: If approved, trigger W116 (Site Selection) for the new DC | Supply Chain Mgr | — | — |
+
+### System Touchpoints
+- Big Data extraction from ERP (Sales + Inventory + Transport costs)
+- Simulation/Integration with Logistics Optimization software
+- Strategic decision support dashboards
 

@@ -14,6 +14,7 @@
 - [W65. Customer Satisfaction Measurement](#customer-satisfaction-measurement)
 - [W84. Customer Account Reactivation](#customer-account-reactivation)
 - [W87. Customer Feedback-to-Action Loop](#customer-feedback-to-action-loop)
+- [W103. Trade Sales Pipeline & Territory Management](#trade-sales-pipeline-territory-management)
 - [W112. Trade Counter / Pro Desk Operations](#trade-counter-pro-desk-operations)
 
 ---

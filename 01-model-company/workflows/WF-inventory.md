@@ -17,6 +17,7 @@
 - [W57. Promotional Stock Allocation & Pre-Positioning](#promotional-stock-allocation-pre-positioning)
 - [W91. Damaged & Defective Goods Disposition](#damaged-defective-goods-disposition)
 - [W92. Inventory Adjustment & Shrinkage Authorization](#inventory-adjustment-shrinkage-authorization)
+- [W105. Multi-Channel Inventory Allocation & Priority Governance](#multi-channel-inventory-allocation-priority-governance)
 
 ---
 

@@ -9,6 +9,7 @@
 ## Workflows in This Domain
 
 - [W83. Marketing Campaign Planning, Execution & Performance Measurement](#marketing-campaign-planning-execution-performance-measurement)
+- [W104. Loyalty Program Financial Governance & Periodic Review](#loyalty-program-financial-governance-periodic-review)
 
 ---
 

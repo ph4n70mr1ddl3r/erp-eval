@@ -18,6 +18,8 @@
 - [W68. Product Lifecycle & Discontinuation](#product-lifecycle-discontinuation)
 - [W93. Markdown & Clearance Pricing Execution](#markdown-clearance-pricing-execution)
 - [W97. Sample & Demo Inventory Management](#sample-demo-inventory-management)
+- [W102. Category Performance Review & P&L Ownership](#category-performance-review-pl-ownership)
+- [W107. Pricing Hierarchy Governance & Compliance Audit](#pricing-hierarchy-governance-compliance-audit)
 
 ---
 

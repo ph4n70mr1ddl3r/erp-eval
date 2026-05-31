@@ -22,6 +22,8 @@
 - [W204. Regional Stock Rebalancing & Inter-Store Expedited Transfers](#regional-stock-rebalancing--inter-store-expedited-transfers)
 - [W214. Store-to-Store Expedited Transfers (Customer-Initiated)](#store-to-store-expedited-transfers-customer-initiated)
 - [W218. Inter-DC Stock Rebalancing (Stock Push)](#inter-dc-stock-rebalancing-stock-push)
+- [W219. Store Inventory Quarantine & Recertification](#store-inventory-quarantine--recertification)
+- [W220. Slow-Moving & Obsolete Inventory (SLOB) Provisioning & Liquidation](#slow-moving--obsolete-inventory-slob-provisioning--liquidation)
 
 ---
 
@@ -725,5 +727,64 @@ Multiple workflows reference inventory allocation: W4 (store replenishment with 
 - Bulk transfer order generation (Push mode)
 - WMS bulk zone picking and receiving
 - In-transit inventory value tracking between DCs
+
+---
+
+## W219. Store Inventory Quarantine & Recertification
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer return (W12), cycle count discrepancy, or receive inspection identifies suspected, damaged, or expired stock |
+| **Frequency** | Daily across all stores |
+| **Volume** | ~20–50 items/store/month |
+| **Owner** | Store Quality Inspector |
+| **Participants** | Store Quality Inspector, Stock Associate, Store Manager, Category Manager |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Quarantine Creation**: CSR or Stock Associate flags stock as "Damaged" or "Suspect"; system moves inventory from "Saleable" status to "Quarantined" status (Dr. Quarantined Inventory / Cr. Saleable Inventory) and moves to quarantine location | CSR / Stock Associate | Store Manager | 5 min |
+| 2 | **Physical Segregation**: Stock Associate prints "Quarantine Label" from system; attaches to item and physically moves to the secure store quarantine cage | Stock Associate | Dept. Supervisor | 10 min |
+| 3 | **Inspection & Evaluation**: Store Quality Inspector performs physical inspection; uploads photo evidence to system; classifies defect (e.g., cosmetic package damage, internal mechanical fault, paint tint mismatch) | Quality Inspector | Store Manager | 15 min |
+| 4 | **Disposition Determination**: Inspector enters recommended disposition: (a) *Refurbish & Recertify* (repackage, clean, test); (b) *B-Grade Downgrade* (cosmetic damage, sell on discount); (c) *Scrap / Write-off*; (d) *Return to Vendor (RTV)* | Quality Inspector | Store Manager | 10 min |
+| 5 | **Action Execution**: <br>• (a) *Refurbish*: Stock Associate performs repacking; system updates status to "Saleable" (Dr. Saleable Inventory / Cr. Quarantined Inventory);<br>• (b) *B-Grade*: System moves SKU to "B-Grade/Clearance" status and auto-applies standard clearance markdown (W93);<br>• (c) *Scrap*: Store Manager approves; system posts inventory adjustment (Dr. Scrap Expense / Cr. Quarantined Inventory) and schedules disposal (W82);<br>• (d) *RTV*: System generates Return to Vendor request (W88) | Stock Associate / System | Store Manager | 15 min |
+| 6 | **Discrepancy Reporting**: Quality Inspector generates monthly quarantine velocity and defect report to highlight recurring SKU failures to Category Managers | Quality Inspector | Store Manager | 1 hour/month |
+
+### System Touchpoints
+- Segregated quarantine inventory status (non-ATP)
+- Photographic upload and defect category logging in system
+- Automated financial posting for status transitions and write-offs
+- Integration with W93 (markdowns), W88 (RTV), and W82 (hazmat/scrap)
+
+---
+
+## W220. Slow-Moving & Obsolete Inventory (SLOB) Provisioning & Liquidation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly inventory aging cycle or system alert on aging thresholds |
+| **Frequency** | Monthly |
+| **Volume** | Reviewing ~500–1,000 slow-moving SKUs chain-wide |
+| **Owner** | Inventory Control Manager |
+| **Participants** | Inventory Control Manager, Category Manager, CFO, VP Merchandising, Store Managers |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Aging Detection**: System generates monthly aging report showing SKUs with > 180 days since last sale or inventory age exceeding category-specific thresholds (e.g., lumber shelf life, paint expiry) | System | Inventory Control Mgr | Automated |
+| 2 | **Obsolescence Provisioning**: Finance automatically calculates SLOB provision using standardized logic (e.g., 50% provision for 180–270 days age, 100% provision for > 270 days); system posts journal (Dr. Inventory Obsolescence Expense / Cr. SLOB Inventory Allowance) | System / Financial Analyst | CFO | 2 hours |
+| 3 | **Liquidation Campaign Proposal**: Inventory Control Manager routes the aging SKU list to the respective Category Manager with recommended liquidation strategies: (a) in-store clearance markdown (W93); (b) bulk wholesaler buy-out (W146); (c) stock transfer to high-velocity stores (W204); (d) vendor buy-back | Inventory Control Mgr | Category Manager | 2 days |
+| 4 | **Strategy Approval**: Category Manager selects liquidation route; CFO/VP Merchandising approves any margin impact exceeding PHP 100K | Category Manager | CFO | 1 day |
+| 5 | **Campaign Execution**: <br>• For in-store clearance: system applies pricing markdown;<br>• For redistribution: system auto-generates transfer orders (W204);<br>• For wholesaler: system creates Wholesale Sales Order (W146) | System / Category Manager | — | 1 hour |
+| 6 | **Allowance Release**: Upon actual sale of liquidated items or approved physical scrap write-off: system releases the provision allowance (Dr. SLOB Inventory Allowance / Cr. Inventory Asset) to realize the final inventory value | System | Financial Analyst | Automated |
+
+### System Touchpoints
+- Automated Inventory Aging Engine (180, 270, 360+ days)
+- Financial provisioning logic matrix
+- Automated GL posting for obsolescence reserves and allowance release
+- Integration with W93 (markdowns), W204 (transfers), and W146 (wholesale sales)
+
 
 

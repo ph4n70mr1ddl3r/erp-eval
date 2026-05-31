@@ -35,6 +35,8 @@
 - [W182. Gift / Home Registry Lifecycle](#gift--home-registry-lifecycle)
 - [W205. Employee Purchase Program & Internal Staff Sales](#employee-purchase-program--internal-staff-sales)
 - [W206. Mobile POS (mPOS) & Queue-Busting Operations](#mobile-pos-mpos--queue-busting-operations)
+- [W212. Automated Store Cash Management & Smart Safe Integration](#automated-store-cash-management--smart-safe-integration)
+- [W248. Store Inventory Variance & LP Investigation](#store-inventory-variance--lp-investigation)
 
 ---
 
@@ -745,53 +747,6 @@ The following hour-by-hour plan covers the system activation sequence on the day
 
 ---
 
-## W75. Layaway & Installment Sales
-
-| Field | Detail |
-|---|---|
-| **Trigger** | Customer requests to pay for high-ticket item in installments (Layaway or 3rd Party Financing) |
-| **Frequency** | ~500–1,000 transactions/month (primarily appliances, tile sets, furniture) |
-| **Owner** | Customer Service Rep (CSR) |
-| **Participants** | CSR, Cashier, 3rd Party Finance Provider (e.g., Home Credit, Maya), Stock Associate |
-
-### Steps (Layaway — In-house)
-
-| # | Activity | Role (R) | Role (A) | Duration |
-|---|---|---|---|---|
-| 1 | Customer selects items for Layaway; CSR creates **Layaway Order** in system | CSR | — | 15 min |
-| 2 | Customer pays initial deposit (typically 20%); system generates Layaway Receipt and payment schedule (e.g., 3 monthly payments) | Cashier | — | 5 min |
-| 3 | **Inventory Hold**: System reserves stock in backroom (or specific "Layaway Area"); item status set to "Reserved — Layaway" | Stock Associate | Dept Supervisor | 15 min |
-| 4 | Periodic Payments: Customer returns to pay installments; system updates Layaway balance; prints updated schedule | Cashier | — | 5 min |
-| 5 | Final Payment: Once balance is zero, system releases stock for pick-up/delivery | System / CSR | — | 5 min |
-| 6 | **Default Handling**: If customer fails to pay within agreed period (e.g., 90 days), system alerts CSR; store contacts customer; if cancelled, stock returned to shelf; deposit forfeited or converted to Store Credit (W28) per policy | CSR | Store Manager | 15 min |
-
-### Steps (3rd Party Installment / Financing)
-
-| # | Activity | Role (R) | Role (A) | Duration |
-|---|---|---|---|---|
-| 1 | Customer selects item; applies for financing via 3rd party partner (in-store kiosk or app) | Customer | — | 15–30 min |
-| 2 | Partner provides Approval Code; CSR enters Approval Code into POS as "Financing" tender type | CSR / Cashier | — | 5 min |
-| 3 | System treats as "Fully Paid" (Partner owes BuildRight); releases stock for immediate delivery | System | — | Automated |
-| 4 | **Settlement**: Finance reconciles Partner payments against POS Approval Codes weekly; posts Partner commission/fees | Finance | — | 1 hour/week |
-
-### System Touchpoints (Layaway/Installment)
-- Layaway Order type with deposit and balance tracking
-- Inventory reservation (soft-commit vs. hard-commit to backroom)
-- Automated payment schedule and overdue alerts
-- 3rd Party Financing tender type at POS with reference code capture
-- Partner settlement reconciliation reports
-
-### Staffing Implication
-- **CSR**: ~4–6 warranty claims/store/month × ~15 min each = ~1–1.5 hours/store/month. Absorbed within existing CSR role.
-- **Buyer**: Warranty claims that need vendor follow-up add ~5 min/claim. With ~800–1,200 claims/month, not all require buyer intervention (many are direct replacements). Estimated ~200–300 needing buyer action = ~20–25 hours/month across 10–12 buyers = ~2 hours/buyer/month. Absorbed.
-- No incremental headcount needed.
-
----
-
-
-
----
-
 ## W45. Store Closure / Relocation
 
 | Field | Detail |
@@ -1075,17 +1030,19 @@ The following hour-by-hour plan covers the system activation sequence on the day
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Customer wants to reserve a big-ticket item (appliance, tiles, fixtures, power tools) and pay in installments over a defined period |
+| **Trigger** | Customer wants to reserve a big-ticket item (appliance, tiles, fixtures, power tools) and pay in installments over a defined period (via in-house layaway or 3rd party financing) |
 | **Frequency** | ~1,000–1,500 layaway agreements/month chain-wide; ~5–8 per store per month |
 | **Volume** | Average agreement value PHP 5,000–50,000; primarily appliances, tiles, bathroom fixtures, power tools |
 | **Owner** | Customer Service Rep (agreement creation); Store Manager (approvals) |
-| **Participants** | CSR, Cashier, Store Manager, Stock Associate, Customer |
+| **Participants** | CSR, Cashier, Store Manager, Stock Associate, Customer, 3rd Party Finance Provider (e.g., Home Credit, Maya) |
 
 ### Background
 
 Layaway ("reserved items, installment payment") is a standard practice in Philippine retail, especially for big-ticket items where customers may not qualify for credit cards or trade accounts. The customer selects an item, pays a deposit to reserve it, and makes periodic installment payments over 30–90 days. When fully paid, the customer receives the item. This is distinct from credit sales (W8) — layaway items are not released until fully paid.
 
-### Steps
+Alternatively, for immediate receipt of items, customers utilize 3rd Party Installment Financing (such as Home Credit or Maya Easy Credit) where the provider approves credit in-store, pays BuildRight, and collects directly from the customer.
+
+### Steps (In-House Layaway)
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
@@ -1101,6 +1058,16 @@ Layaway ("reserved items, installment payment") is a standard practice in Philip
 | 10 | **Price change during layaway**: if SRP changes (W40) while item is on layaway, the layaway price is the price at time of agreement creation — not affected by subsequent price increases or decreases; if customer cancels and re-purchases at new price, that is a separate transaction | System | — | Automated |
 | 11 | Monthly: Store Manager generates layaway activity report — active agreements, completion rate, cancellation rate, forfeiture rate, average days to completion, total liability outstanding; Regional Manager reviews in monthly store performance review (W67) | Store Manager | Regional Manager | 30 min/month |
 
+### Steps (3rd Party Installment / Financing)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer selects item; CSR helps customer apply for financing via 3rd party partner (in-store kiosk, mobile app, or tablet integration) | Customer / CSR | Store Manager | 15–30 min |
+| 2 | Partner evaluates customer credit and provides digital Approval Code; CSR enters Approval Code into POS as "3rd Party Financing" tender type | CSR / Cashier | — | 5 min |
+| 3 | System treats order as "Fully Paid" (since partner guarantees payment to BuildRight within SLA); prints standard POS invoice with financing details | System | — | Automated |
+| 4 | Stock Associate releases stock to customer for immediate pick-up or schedules home delivery per W19 | Stock Associate | Dept. Supervisor | 10 min |
+| 5 | **Settlement & Audit**: Treasury/Finance reconciles daily 3rd Party Finance transactions against Partner reports weekly; posts Partner commission/fees and clears receivables (Dr. Cash / Cr. 3rd Party Financing Receivable) | Finance / Treasury | Treasury Mgr | 1 hour/week |
+
 ### System Touchpoints
 - Layaway agreement creation in POS/terminal with item reservation, deposit collection, and installment schedule (W75.2–3)
 - Inventory reservation: reserved quantity excluded from ATP for BOPIS (W11), ecommerce (W19), and backorder allocation (W56) (W75.3)
@@ -1110,6 +1077,7 @@ Layaway ("reserved items, installment payment") is a standard practice in Philip
 - Forfeiture with income recognition and inventory restoration (W75.9)
 - Price protection during layaway period — agreement price locked at creation (W75.10)
 - Layaway activity and liability reporting (W75.11)
+- 3rd Party Financing tender type at POS with reference code capture and weekly settlement reconciliation (W75.5)
 - Integration with W5b (POS selling), W6 (cycle counting — layaway items counted separately in backroom holding), W11 (ATP exclusion), W19 (ATP exclusion), W42 (physical inventory — layaway items counted as BuildRight inventory with reserved status)
 
 ### Staffing Implication
@@ -1567,6 +1535,35 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 - Bluetooth printer / Digital receipt integration
 - Yard-gate verification dashboard
 - Real-time inventory deduction (same as fixed POS)
+
+---
+
+## W248. Store Inventory Variance & LP Investigation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | High-value inventory variance flagged in cycle counts (W6) or annual physical count (W42) |
+| **Frequency** | Ad-hoc (weekly reviews) |
+| **Volume** | ~5–10 investigations per store/month |
+| **Owner** | Store Loss Prevention Officer |
+| **Participants** | Store Manager, LP Auditor, Cashier Supervisor, WMS/ERP IT Specialist |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Alert Generation**: System auto-flags high-value SKU discrepancies (> PHP 10,000 variance or > 5% of bin stock) during count post-reconciliation (W6/W42). | System | — | Automated |
+| 2 | **Audit Trail Review**: LP Officer extracts transactional audit logs for the flagged SKU: reviews receiving logs (W3/W18), transfer records (W22), POS sales details, and manual adjustment histories. | LP Officer | Store Manager | 1 hour |
+| 3 | **CCTV Timeline Correlation**: LP Officer maps count timestamp against CCTV footage using smart cameras with POS transaction overlay (W207); audits cash drawers for cashier scan errors. | LP Officer | — | 2 hours |
+| 4 | **Stock Verification**: LP team conducts a physical floor sweep and structural review of the adjacent bin locations to eliminate human putaway errors (W109). | LP Auditor | LP Officer | 30 min |
+| 5 | **Investigation Ruling**: LP Officer classifies the root cause: (a) Internal Theft / Shoplifting → triggers police/legal escalation; (b) Process Error (wrong SKU scanned at POS/GR) → triggers cashier/receiving retraining; (c) System Glitch → escalates to IT. | LP Officer | Store Manager | 1 hour |
+| 6 | **Adjustment Regularization**: Store Manager authorizes stock correction journal in ERP per W92 adjustment guidelines to restore inventory count accuracy. | Store Manager | — | 10 min |
+
+### System Touchpoints
+- Real-time inventory discrepancy reporting dashboard
+- Transactional audit logs with cashier ID and timestamp overlays
+- Integration with W6 (Cycle counts), W42 (Physical audit), W92 (Stock adjustment), W207 (CCTV Loss Prevention)
+
 
 
 

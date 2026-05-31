@@ -14,6 +14,8 @@
 - [W66. Inter-Island Logistics & Freight Management](#inter-island-logistics-freight-management)
 - [W106. DC Outbound Dispatch & Load Planning](#dc-outbound-dispatch-load-planning)
 - [W188. Fleet Spare Parts & Preventive Maintenance (PM) Management](#fleet-spare-parts--preventive-maintenance-pm-management)
+- [W221. Cross-Docking Operations for Fast-Moving Bulky Items](#cross-docking-operations-for-fast-moving-bulky-items)
+- [W222. DC Container Yard & Chassis Management](#dc-container-yard--chassis-management)
 
 ---
 
@@ -363,8 +365,64 @@ W4 (Store Replenishment) covers the pick/pack/ship process from the perspective 
 | 8 | Quarterly: Analyze maintenance cost per km across all vehicle brands/models | Fleet Manager | Supply Chain Mgr | 2 hours |
 
 ### System Touchpoints
-- Fleet Maintenance Module (W188.1)
-- Spare Parts Inventory Management (dedicated warehouse zone) (W188.2)
-- Maintenance Work Order system (W188.4)
 - Cost-per-Kilometer Analytics Dashboard (W188.8)
+
+---
+
+## W221. Cross-Docking Operations for Fast-Moving Bulky Items
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Advance Shipping Notice (ASN) or incoming import container contains fast-moving bulk items (cement, steel rebar, standard tiles) with active store replenishment demands or backorders |
+| **Frequency** | Daily at Distribution Centers |
+| **Volume** | ~10–20 container-loads cross-docked per day |
+| **Owner** | DC Operations Manager |
+| **Participants** | Receiving Clerk, Cross-Dock Coordinator, Forklift Operator, Shipping Clerk |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Pre-Allocation Matching**: System evaluates incoming container ASN against active store replenishment orders (W4) and customer backorders (W56); identifies high-matching fast-moving SKUs suitable for cross-docking | System | DC Operations Mgr | Automated |
+| 2 | **Dock Assignment**: Cross-Dock Coordinator assigns inbound container to a receiving dock adjacent to outbound store dispatch doors | Cross-Dock Coord | — | 10 min |
+| 3 | **Unloading & Direct Scan**: Forklift Operator unloads pallets; scan-confirms receipt via WMS terminal; system detects pre-allocation and flags pallet for "Direct Cross-Dock Staging" (bypassing normal bulk putaway racks) | Forklift Operator | Receiving Supervisor | 15 min/pallet |
+| 4 | **Sorting & Routing**: Receiving Clerk scan-confirms pallet; system generates store-specific routing labels and prints destination tags; Forklift Operator moves pallets directly to the designated outbound lane | Receiving Clerk | — | 5 min/pallet |
+| 5 | **Load Integration**: System automatically merges cross-docked pallets into the active outbound DC load planning schedule (W106) for store deliveries | System | — | Automated |
+| 6 | **Outbound Loading**: Forklift Operator loads the pallets directly onto the designated store delivery truck; scan-confirms loading; Shipping Clerk generates Outbound Transfer document | Forklift Operator / Shipping Clerk | DC Operations Mgr | 10 min/pallet |
+
+### System Touchpoints
+- WMS pre-allocation engine (ASN cross-reference with store demand)
+- Cross-dock staging zone barcode/RFID scanning
+- Putaway bypass logic and real-time destination tag printing
+- Integration with W4 (store replenishment), W106 (outbound dispatch), and W56 (backorders)
+
+---
+
+## W222. DC Container Yard & Chassis Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Import container arrives at DC gate, or empty container requires scheduling for port return |
+| **Frequency** | 20–50 container movements per day |
+| **Volume** | 200-slot yard capacity |
+| **Owner** | Yard Superintendent |
+| **Participants** | Gate Guard, Yard Coordinator, Reach Stacker Operator, Dispatcher, 3PL Truck Driver |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Gate-In Registration**: Gate Guard inspects seal integrity, container physical state, and chassis lease records; scan-registers container number in Yard Management System (YMS); records gate-in timestamp | Gate Guard | Yard Superintendent | 10 min |
+| 2 | **Yard Slot Assignment**: YMS automatically assigns slot coordinates (grid lane, stack height) based on container status (Full Import, Empty Return, Hazmat quarantine) and priority | System | — | Automated |
+| 3 | **Physical Stacking**: Reach Stacker Operator picks container from truck chassis; places in assigned yard slot; scan-confirms the grid coordinates in YMS to update the real-time yard map | Reach Stacker Operator | Yard Coordinator | 5 min |
+| 4 | **Demurrage & Detention Tracking**: YMS starts carrier-specific free-time countdown timers (e.g., 4 days yard free time, 7 days container lease); triggers daily priority warnings to Import Logistics team | System | Yard Superintendent | Automated |
+| 5 | **Stripping Scheduling**: Yard Coordinator assigns yard container to a warehouse dock; Reach Stacker Operator moves container to dock chassis; Receiving Clerk scan-registers goods receipt (W3) | Yard Coordinator / Reach Stacker Operator | — | 20 min |
+| 6 | **Empty Container Gate-Out**: System marks container "Empty"; Dispatcher books return logistics; Reach Stacker Operator loads empty container to carrier chassis; Gate Guard records gate-out, verifies empty status, and registers time in YMS | Reach Stacker Operator / Gate Guard | Yard Superintendent | 10 min |
+
+### System Touchpoints
+- Yard Management System (YMS) visual slot coordinate mapping
+- Gate-In / Gate-Out timestamp and seal-verification log
+- Carrier demurrage & detention countdown timers with email alert engine
+- Integration with W3 (warehouse receiving) and W144 (import operations)
+
 

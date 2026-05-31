@@ -15,6 +15,7 @@
 - [W180. E-commerce Marketplace Integration (Lazada/Shopee)](#e-commerce-marketplace-integration-lazada-shopee)
 - [W210. E-commerce Fulfillment Hub (Dark Store) Operations](#e-commerce-fulfillment-hub-dark-store-operations)
 - [W215. Customer Home Delivery Reverse Logistics (Returns)](#customer-home-delivery-reverse-logistics-returns)
+- [W246. Drop-Ship Vendor (DSV) Order Fulfillment](#drop-ship-vendor-dsv-order-fulfillment)
 - [W247. BOPIS Smart Locker & Queue Management](#bopis-smart-locker--queue-management)
 
 ---
@@ -99,7 +100,7 @@
 | 12a | **Home delivery return (reverse logistics)**: for bulky/large items (appliances, lumber, tiles, fixtures) that the customer cannot transport to a store, system schedules carrier pickup via 3PL integration; carrier collects item from customer address and returns to originating DC; DC Receiving Clerk inspects returned item; if resalable: system processes refund to original payment method and restocks per W12a.7; if damaged: disposition per W6.8a (markdown, scrap, RTV); refund processed upon DC inspection confirmation | System / DC Receiving Clerk / CSR | DC Supervisor | 15 min/setup + carrier transit time
 12b | **Carrier damage vs. vendor defect liability assignment**: when a home delivery customer reports damaged goods, CSR creates a damage report at intake with customer-provided photos and damage description; system routes damage report for liability determination: (a) **carrier damage** — external packaging damage, dents/scratches consistent with transit handling, item damage on one side, water damage to outer carton — CSR files carrier damage claim via 3PL integration (W19.7); carrier's insurance covers loss; customer receives immediate replacement or refund; system posts Dr. Carrier Claim Receivable / Cr. Inventory; (b) **vendor/manufacturing defect** — item defective out of box with intact packaging, missing parts, functional failure without physical damage — CSR processes vendor warranty claim (W33) or RTV (W3.6a); system posts Dr. Vendor Claim Receivable / Cr. Inventory; (c) **undetermined** — if cause unclear from photos, DC inspects returned item and makes final determination; (d) monthly: DC Supervisor generates delivery damage report — carrier damage rate by carrier (feeds W44/W62b), vendor defect rate by vendor (feeds W44), customer impact (refund vs. replacement) | CSR / DC Receiving Clerk | DC Supervisor | 10 min/classification
 
-### W19b. Ship from Store (Store-Fulfilled Home Delivery)
+## W19b. Ship from Store (Store-Fulfilled Home Delivery)
 
 | Field | Detail |
 |---|---|
@@ -310,6 +311,37 @@ W11 (BOPIS) and W19 (Home Delivery) cover the happy-path fulfillment process fro
 - 3PL integration for reverse logistics booking
 - Linkage between Return ID and original Order ID
 - QC status integration with Refund trigger
+
+---
+
+## W246. Drop-Ship Vendor (DSV) Order Fulfillment
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer orders a specialty, custom, or bulk direct-ship item (custom glass panels, premium cabinets, industrial pumps) on website or POS |
+| **Frequency** | ~200–400 orders/month chain-wide |
+| **Volume** | Avg PHP 20,000–100,000 per order |
+| **Owner** | Ecommerce Fulfillment Manager |
+| **Participants** | System, Drop-Ship Vendor (DSV), CSR, virtual Receiving Clerk, Finance (AP) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Order Route**: Customer places order; system identifies SKU as Drop-Ship in Item Master; processes payment; split-routes order to generate back-to-back PO | System | — | Automated |
+| 2 | **Vendor Intake**: PO automatically transmitted to the accredited Drop-Ship Vendor via EDI/Vendor Portal; vendor confirms stock and production timeline within 24 hours | Vendor | Ecommerce Fulfillment Mgr | 1 day |
+| 3 | **Fulfillment & Labeling**: Vendor picks/produces item; prints co-branded BuildRight packing slip and co-branded shipping label from Vendor Portal | Vendor | — | 1–3 days |
+| 4 | **Dispatch**: Vendor dispatches package directly to customer's address using co-branded carrier; enters tracking number in Vendor Portal | Vendor | — | 15 min |
+| 5 | **Transit Sync**: System automatically imports tracking status via carrier APIs; triggers tracking updates and SMS alerts to the customer | System | — | Automated |
+| 6 | **Virtual Receipt**: Upon carrier delivery confirmation (POD signature): system automatically posts a "Virtual Goods Receipt" in ERP; triggers sales revenue recognition | System | virtual Receiving Clerk | Automated |
+| 7 | **Invoice & Reconciliation**: Vendor submits invoice via Portal; system performs 3-way match (PO vs. Virtual GR vs. Invoice); routes to AP for payment settlement (W7) | System / Finance | Accountant | 1 hour |
+
+### System Touchpoints
+- Drop-Ship SKU virtual classification in Item Master
+- Back-to-back automated Purchase Order generator
+- Vendor Portal/EDI integration for tracking sync and document print
+- Automated Virtual Goods Receipt triggered by 3PL carrier API delivery status
+- Integration with W2a/W2b (procurement), W7 (AP processing), and W19 (ecommerce delivery)
 
 ---
 

@@ -13,6 +13,8 @@
 - [W133. Sales & Operations Planning (S&OP) Cycle](#sales-operations-planning-sop-cycle)
 - [W144. International Logistics & Import Operations](#international-logistics--import-operations)
 - [W183. Supply Chain Network Optimization Review](#supply-chain-network-optimization-review)
+- [W191. Global Supply Chain — Incoterm & Marine Insurance Tracking](#global-supply-chain--incoterm--marine-insurance-tracking)
+- [W249. Import Port Demurrage & Detention Management](#import-port-demurrage--detention-management)
 
 ---
 
@@ -231,5 +233,35 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 - Marine Insurance Declaration Portal (W191.2)
 - Risk Transfer Point Monitoring (W191.3)
 - Insurance Claim Tracking Module (W191.5)
+
+---
+
+## W249. Import Port Demurrage & Detention Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Import container vessel arrival at Philippine port (Manila/Cebu/Davao) (W144) |
+| **Frequency** | Ongoing per import shipment (~20–30 shipments/month) |
+| **Volume** | Covers ~400–600 TEUs/month |
+| **Owner** | Logistics Manager |
+| **Participants** | Import Coordinator, Customs Broker, Finance Specialist, Shipping Line |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Vessel Arrival**: System pulls actual arrival time from Port Authority API; calculates free-time expiration date (standard: 5 days demurrage, 3 days detention). | System | — | Automated |
+| 2 | **Clearance Tracking**: Import Coordinator monitors customs brokerage clearance progress (W239). If delayed (> 3 days), triggers warning. | Import Coordinator | Logistics Mgr | 10 min |
+| 3 | **Demurrage Alert**: System auto-calculates potential demurrage fees if containers are not gate-outed before free-time expiry; alerts Logistics Manager to prioritize pickup. | System | — | Automated |
+| 4 | **Gate-Out & Return**: Containers are hauled to DC (W3). Hauler returns empty container to designated port yard within shipping line's free-time window. | Hauler / DC Clerk | Logistics Mgr | 1–2 days |
+| 5 | **Charges Auditing**: If demurrage/detention occurs: Shipping line issues invoice; Finance Specialist audits charges against system-captured arrival/gate-out/gate-in logs. | Finance Specialist | Controller | 1 hour |
+| 6 | **Dispute / Payment**: If charges valid, approve payment to avoid port hold; if invalid, initiate dispute via shipping line portal with log evidence. | Finance Specialist | Logistics Mgr | 2 hours |
+
+### System Touchpoints
+- Port Authority vessel tracking API integration
+- Automated demurrage/detention free-time calculations and system alerting
+- Hauler empty container gate-in/gate-out logs tracking
+- Landed cost integration for port penalty allocations (W2b/W13)
+
 
 

@@ -14,6 +14,7 @@
 - [W165. Project Retention & Milestone Billing](#project-retention--milestone-billing)
 - [W166. Corporate / Institutional Tendering](#corporate--institutional-tendering)
 - [W228. Sales Commission Calculation (Trade & Project Sales)](#sales-commission-calculation-trade--project-sales)
+- [W229. B2B Customer Credit Limit Exception & Escalation](#b2b-customer-credit-limit-exception--escalation)
 
 ---
 
@@ -152,3 +153,34 @@
 - Retention Receivable accounting
 - Commission calculation engine integrated with AR collections and Payroll (W10)
 - Integration with W19 (Logistics) and W8 (AR)
+
+---
+
+## W229. B2B Customer Credit Limit Exception & Escalation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Staged delivery (Call-Off) (W164) is blocked at release because customer exceeds credit limit or has overdue invoices |
+| **Frequency** | ~30–50 exception requests/month |
+| **Volume** | Exception values: PHP 100K to PHP 5M+ |
+| **Owner** | B2B Credit Manager |
+| **Participants** | B2B Credit Manager, Sales Rep, Credit Control Clerk, VP Sales, CFO, Customer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **System Hold**: System automatically blocks Release Order (W164.3) due to credit limit breach or overdue balance; triggers alert to Sales Rep and Credit Control Clerk | System | B2B Credit Manager | Automated |
+| 2 | **Status Verification**: Credit Control Clerk reviews account (AR ledger, average payment days, credit utilization); consults with Sales Rep to check for payments in transit or bank guarantees | Credit Control Clerk | — | 30 min |
+| 3 | **Escalation Request**: Sales Rep submits "Credit Exception Request" in system, detailing project urgency, invoice value, payment commitment date, and attachment of client commitment letter | Sales Rep | B2B Credit Manager | 20 min |
+| 4 | **Tiered Routing**: System routes the request based on exception value for digital approval:<br>• Up to PHP 100K: Approved by Credit Manager;<br>• PHP 100K to PHP 1M: Approved by Credit Manager + VP Sales;<br>• Above PHP 1M: Approved by CFO | System | — | Automated |
+| 5 | **Temporary Release**: Approver grants exception; Credit Manager enters a "Temporary Credit Override" in ERP with a strict expiry date (typically 7–14 days); system releases blocked order for dispatch | B2B Credit Manager / CFO | — | 1 hour |
+| 6 | **Auto-Lock Enforcement**: System tracks payment; if commitment not fulfilled within override window, system automatically locks B2B customer account and suspends all subsequent deliveries | System | B2B Credit Manager | Automated |
+
+### System Touchpoints
+- Credit control engine (real-time balance and credit-utilization check)
+- B2B Credit Exception Request electronic form with file attachments
+- Tiered workflow routing based on exception monetary value
+- Temporary credit limit overrides with auto-expiry and account locking
+- Integration with W164 (call-off fulfillment) and W8 (AR accounts)
+

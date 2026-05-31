@@ -172,6 +172,8 @@
 | HR-010 | Overtime Calculation | M | W10.3 (OT calculation per Labor Code), W228 (sales commission calculation) | W34.8 (scheduled vs. actual hours) |
 | HR-011 | Holiday Pay Calculation | M | W10.3 (holiday pay rates) | — |
 | HR-012 | Bank File Generation | M | W10.7 (bank file for payroll crediting) | — |
+| HR-013 | Employee Loan & Advance Management | M | W76 (employee loans & advances) | W10 (payroll processing) |
+| HR-014 | Employee Grievance & Whistleblower Case Management | S | W79 (employee grievance & whistleblower process) | W53 (data privacy breach response) |
 
 ## R9. CRM & Loyalty (CRM)
 

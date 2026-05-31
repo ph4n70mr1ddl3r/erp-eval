@@ -1,6 +1,6 @@
 # Compliance & Governance Workflows
 
-> Loss prevention, business continuity, LGU permits, BIR audit, government procurement, and grievance/whistleblower.
+> Loss prevention, business continuity, LGU permits, BIR audit, government procurement, grievance/whistleblower, and hazardous waste disposal.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -14,6 +14,7 @@
 - [W77. BIR Tax Audit Response](#bir-tax-audit-response)
 - [W78. Government / Institutional Procurement Participation](#government-institutional-procurement-participation)
 - [W79. Employee Grievance & Whistleblower Process](#employee-grievance-whistleblower-process)
+- [W82. Hazardous Waste Disposal Tracking & DENR Compliance](#hazardous-waste-disposal-tracking-denr-compliance)
 
 ---
 
@@ -420,6 +421,60 @@ Under BIR Revenue Regulations No. 11-2018 and Revenue Memorandum Order (RMO) No.
 | Admin & Support | 5–8 | Admin, safety, maintenance | Office, security, equipment maintenance |
 | Special Handling (lumber, tiles, paint) | 8–10 | W3, W4 (special areas) | Dedicated teams for heavy/hazardous goods |
 | **Total** | **~150** | | **Validated** |
+
+---
+
+
+
+---
+
+## W82. Hazardous Waste Disposal Tracking & DENR Compliance
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Hazardous waste accumulation at location reaches disposal threshold; or quarterly disposal schedule; or DENR reporting deadline |
+| **Frequency** | Disposal: quarterly per location (minimum); DENR reporting: quarterly; Permit renewal: annual per location |
+| **Volume** | Hazardous waste categories: paint/chemical waste (sludge, expired products, solvent rags), used oils and lubricants (from fleet maintenance W52, forklift maintenance), broken fluorescent lamps and LED tubes (mercury content), used batteries (lead-acid from forklifts, UPS systems), aerosol cans (residual propellant); ~200 stores + 5 DCs each generating small but regulated quantities |
+| **Owner** | Regulatory Officer (HQ); Store Manager / DC Manager (location-level execution) |
+| **Participants** | Regulatory Officer, Store Manager, DC Manager, Maintenance Staff, accredited transporter, DENR-accredited treatment/disposal facility, Finance (disposal cost), Legal |
+
+### Background
+
+BuildRight Depot operations generate hazardous waste across several categories regulated by the Philippine Department of Environment and Natural Resources (DENR) under Republic Act 6969 (Toxic Substances and Hazardous and Nuclear Wastes Control Act) and its implementing rules (DAO 29, DENR Administrative Order). Each location (store or DC) that generates hazardous waste is classified as a waste generator and must hold a DENR Hazardous Waste Generator Registration (HWGR). Compliance requires: proper storage and labeling, use of DENR-accredited transporters and treaters, manifest tracking, and quarterly disposal reports.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Location registration**: for each new store (W16) or DC, Regulatory Officer applies for DENR Hazardous Waste Generator Registration (HWGR) — submits required documents (business permit, location map, waste management plan, emergency response plan) to DENR-EMB regional office; receives HWGR certificate with generator ID number; system records HWGR number, registration date, and expiry date per location | Regulatory Officer | Legal Head | 2–4 hours/location (initial) |
+| 2 | **Annual renewal**: system alerts Regulatory Officer 90 days before HWGR expiry per location; Regulatory Officer submits renewal documents to DENR-EMB; renewed certificate uploaded to location document management (W54-style permit tracking) | Regulatory Officer | Legal Head | 1 hour/location/year |
+| 3 | **Ongoing accumulation at location**: Maintenance Staff (or designated Stock Associate at stores) segregates hazardous waste by category in designated, properly labeled storage containers — (a) **paint/chemical waste**: expired paint, adhesives, solvents, contaminated rags — stored in sealed drums in ventilated area away from ignition sources, (b) **used oils**: from forklift maintenance at DCs and vehicle maintenance per W52 — stored in sealed containers in bunded area, (c) **fluorescent lamps**: broken or expired tubes — stored in original packaging or dedicated collection boxes, (d) **used batteries**: lead-acid batteries from forklifts and UPS systems — stored upright on spill containment pallets, (e) **aerosol cans**: residual product cans — stored in vented containers | Maintenance Staff / Stock Associate | Store Manager / DC Manager | Ongoing |
+| 4 | **Accumulation monitoring**: system tracks hazardous waste accumulation per location per waste category — Maintenance Staff logs waste additions (category, estimated quantity, date) in system via handheld or terminal; system flags location when accumulated quantity approaches disposal threshold (configurable per category based on DENR storage limits — typically 90 days maximum storage) | Maintenance Staff | Store Manager / DC Manager | 5 min/entry |
+| 5 | **Disposal scheduling**: when location reaches disposal threshold or quarterly schedule triggers — Regulatory Officer coordinates disposal with DENR-accredited transporter and DENR-accredited treatment/storage/disposal (TSD) facility; obtains quotations from accredited providers; selects based on: DENR accreditation status, cost, proximity, service reliability | Regulatory Officer | Legal Head | 1–2 hours/disposal event |
+| 6 | **Transporter accreditation verification**: before each shipment, Regulatory Officer verifies transporter's DENR accreditation (PCO license, transport permit, vehicle registration with DENR) is current and valid; system maintains accredited transporter registry with accreditation expiry tracking and auto-alerting | Regulatory Officer | Legal Head | 15 min/verification |
+| 7 | **Hazardous waste manifest (DENR Form)**: Regulatory Officer prepares DENR-compliant hazardous waste manifest per shipment — (a) generator information (BuildRight location name, address, HWGR number), (b) waste description (category, quantity, physical state, hazard characteristics), (c) transporter information (company name, DENR transport permit number, vehicle plate, driver name), (d) TSD facility information (company name, DENR permit number, facility address), (e) six-copy manifest per DENR format — signed by generator, transporter, and TSD facility | Regulatory Officer | Store Manager / DC Manager | 30 min/manifest |
+| 8 | **Physical pickup**: accredited transporter arrives at location; Maintenance Staff and transporter representative jointly verify waste quantity and category against manifest; both sign manifest copies; transporter loads waste | Maintenance Staff / Transporter | Store Manager / DC Manager | 30–60 min/pickup |
+| 9 | **Manifest tracking**: system tracks manifest lifecycle — (a) **Generated**: manifest created and signed by generator, (b) **In Transit**: transporter departs with waste, (c) **Received by TSD**: TSD facility signs manifest confirming receipt and treatment/disposal, (d) **Closed**: TSD returns signed manifest copy (generator copy) to Regulatory Officer within 30 days; if manifest not returned within 30 days, system alerts Regulatory Officer for follow-up with transporter and TSD | Regulatory Officer / System | Legal Head | 15 min/manifest tracking |
+| 10 | **Disposal cost processing**: Finance processes disposal invoice from transporter/TSD — (a) invoice matched to manifest number and location, (b) cost allocated to location's operating expense (Dr. Waste Disposal Expense / Cr. Cash), (c) system tracks disposal cost per location per quarter for budgeting (W26) | AP Clerk / Finance | Controller | Per W7 |
+| 11 | **Quarterly reporting**: Regulatory Officer prepares DENR quarterly disposal report (due within 30 days after end of quarter) — (a) total waste generated by category per location, (b) total waste disposed by category per location with manifest references, (c) transporter and TSD facility details, (d) current on-site waste inventory per location; report submitted to DENR-EMB regional office per location jurisdiction | Regulatory Officer | Legal Head | 4 hours/quarter |
+| 12 | **Annual waste management plan update**: Regulatory Officer reviews and updates the waste management plan per location — (a) projected waste generation by category, (b) disposal schedule and budget, (c) transporter and TSD facility list, (d) emergency response procedures for spills or accidents; updated plan submitted to DENR as part of HWGR renewal | Regulatory Officer | Legal Head | 8 hours/year |
+| 13 | **Spill / accidental release response**: if hazardous material spills or is accidentally released at a location — (a) Maintenance Staff contains spill using location's spill kit (positioned at paint area, chemical storage, and battery storage areas), (b) reports spill to Store Manager / DC Manager and Regulatory Officer, (c) Regulatory Officer assesses severity — minor spill (contained on-site, cleaned with standard PPE): location staff handles cleanup with proper disposal of contaminated materials per W82; major spill (spreading, off-site risk, or personnel exposure): Regulatory Officer engages DENR-accredited emergency response contractor and notifies DENR-EMB within 24 hours, (d) system logs spill event with date, location, material, quantity, response actions, and disposal of contaminated cleanup materials | Maintenance Staff / Regulatory Officer | Legal Head | Varies |
+
+### System Touchpoints
+- Hazardous waste generator registration (HWGR) tracking per location with expiry alerting (W82.1–2)
+- Hazardous waste accumulation log per location per category with disposal threshold alerting (W82.3–4)
+- DENR hazardous waste manifest lifecycle tracking: Generated → In Transit → Received by TSD → Closed; auto-alert if manifest not returned within 30 days (W82.7–9)
+- Accredited transporter registry with DENR accreditation expiry tracking (W82.6)
+- Quarterly disposal reporting: waste generation, disposal, and inventory by location and category (W82.11)
+- Disposal cost tracking per location per quarter integrated with AP (W82.10)
+- Spill / accidental release event logging with response documentation (W82.13)
+- Integration with W16 (new store opening — HWGR registration as part of pre-opening permits), W25 (petty cash — small disposal costs may be paid from petty cash), W26 (budget — annual disposal budget per location), W47 (facility maintenance — spill kit maintenance and replenishment), W48 (IT helpdesk — hazardous waste system support), W52 (fleet — used oil and battery disposal), W54 (LGU permits — HWGR tracked alongside LGU business permits in location compliance dashboard), W62 (vendor contracts — transporter and TSD facility contracts), W68 (product discontinuation — hazardous waste disposal for discontinued chemicals/paint)
+
+### Staffing Implication
+- **Regulatory Officer** (1 person in Legal & Compliance team): manages HWGR registrations, disposal scheduling, manifest tracking, DENR reporting, and transporter accreditation for 200 stores + 5 DCs. Quarterly reporting adds ~4 hours; annual plan update adds ~8 hours; ongoing coordination adds ~4–6 hours/month. This role is justified by the regulatory compliance requirement and aligns with the Regulatory Officer position mentioned in the model company profile.
+- **Maintenance Staff** (1 per store, part of existing headcount): hazardous waste segregation and logging adds ~15 min/week. Absorbed.
+- **DC Safety/Environmental Officer** (1 per DC, within existing support staff): hazardous waste management at DCs adds ~2 hours/month. Absorbed.
+- No incremental headcount beyond the Regulatory Officer role already planned in the model company profile.
 
 ---
 

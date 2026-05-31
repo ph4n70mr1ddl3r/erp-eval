@@ -43,18 +43,18 @@ Workflows are organized by functional domain for easier navigation and gap analy
 - **[Inventory Management Workflows](./WF-inventory.md)** (7 workflows) — Replenishment, cycle counting, transfers, consignment, physical inventory, backorders, and promo stock allocation.
 - **[Store Operations Workflows](./WF-store-operations.md)** (15 workflows) — Daily store selling, POS, returns, loyalty, DSD receiving, gift cards, new store opening/closure, warranty, facility maintenance, and performance review.
 - **[Ecommerce Workflows](./WF-ecommerce.md)** (2 workflows) — BOPIS order fulfillment and home delivery fulfillment.
-- **[Finance & Treasury Workflows](./WF-finance.md)** (13 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, and management reporting.
+- **[Finance & Treasury Workflows](./WF-finance.md)** (15 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, and bad debt management.
 - **[HR & Payroll Workflows](./WF-hr.md)** (8 workflows) — Payroll, recruitment, shift scheduling, onboarding/offboarding, training, performance, expenses, and employee loans.
 - **[Supply Chain Planning Workflows](./WF-supply-chain.md)** (2 workflows) — Demand forecasting and seasonal buy planning.
 - **[Customer Experience Workflows](./WF-customer.md)** (4 workflows) — Complaint resolution, corporate/project accounts, price matching, and satisfaction measurement.
 - **[IT Operations Workflows](./WF-it-operations.md)** (4 workflows) — Helpdesk, data privacy breach response, disaster recovery, and data migration/parallel-run testing.
-- **[Compliance & Governance Workflows](./WF-compliance.md)** (6 workflows) — Loss prevention, business continuity, LGU permits, BIR audit, government procurement, and grievance/whistleblower.
+- **[Compliance & Governance Workflows](./WF-compliance.md)** (7 workflows) — Loss prevention, business continuity, LGU permits, BIR audit, government procurement, grievance/whistleblower, and hazardous waste disposal.
 
 - **[Workflow-to-System Touchpoint Map](./workflow-system-touchpoint-map.md)** — ERP module-to-workflow cross-reference
 
 ---
 
-## Complete Workflow Index (W1–W79)
+## Complete Workflow Index (W1–W82)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
@@ -138,7 +138,10 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W77 | BIR Tax Audit Response | [Compliance & Governance Workflows](WF-compliance.md) |
 | W78 | Government / Institutional Procurement Participation | [Compliance & Governance Workflows](WF-compliance.md) |
 | W79 | Employee Grievance & Whistleblower Process | [Compliance & Governance Workflows](WF-compliance.md) |
+| W80 | FX Hedging & Forward Contract Management | [Finance & Treasury Workflows](WF-finance.md) |
+| W81 | Bad Debt Provisioning, Write-Off & Recovery | [Finance & Treasury Workflows](WF-finance.md) |
+| W82 | Hazardous Waste Disposal Tracking & DENR Compliance | [Compliance & Governance Workflows](WF-compliance.md) |
 
 ---
 
-*Total: 79 workflows across 12 domains. Split from original monolithic file*
+*Total: 82 workflows across 12 domains. Split from original monolithic file*

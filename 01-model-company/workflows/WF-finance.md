@@ -1,6 +1,6 @@
 # Finance & Treasury Workflows
 
-> AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, and management reporting.
+> AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, and bad debt management.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -21,6 +21,8 @@
 - [W39. Fixed Asset Disposal & Retirement](#fixed-asset-disposal-retirement)
 - [W59. Insurance Policy Lifecycle Management](#insurance-policy-lifecycle-management)
 - [W70. Credit Note & Debit Note Aging Reconciliation](#credit-note-debit-note-aging-reconciliation)
+- [W80. FX Hedging & Forward Contract Management](#fx-hedging-forward-contract-management)
+- [W81. Bad Debt Provisioning, Write-Off & Recovery](#bad-debt-provisioning-write-off-recovery)
 
 ---
 
@@ -850,6 +852,134 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 - **AP Clerk**: adds ~30 min/week for AP credit memo review. Absorbed.
 - **AR Clerk**: adds ~30 min/week for AR credit memo review. Absorbed.
 - **Chief Accountant**: adds ~1 hour/month + 30 min/quarter for reconciliation. Absorbed within month-end close duties.
+- No incremental headcount.
+
+---
+
+
+
+---
+
+## W80. FX Hedging & Forward Contract Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Import purchase order confirmed with USD vendor (W2b); or quarterly FX exposure review |
+| **Frequency** | Forward contracts placed as needed (typically monthly or quarterly aligned with import PO schedule); quarterly exposure review |
+| **Volume** | ~40% of COGS from imports ≈ PHP 1.4B/month; USD-denominated payables ~PHP 600M–1B/month at current exchange rates; ~10–20 active forward contracts at any time |
+| **Owner** | Treasury Analyst |
+| **Participants** | Treasury Analyst, CFO, Import Coordinator, Cost Accountant |
+
+### Background
+
+BuildRight's import purchasing (~40% of COGS) is primarily denominated in USD, exposing the company to PHP/USD exchange rate fluctuations. With import lead times of 45–90 days (W2b), the company faces FX risk from PO creation through LC payment. The company's FX hedging policy is conservative: hedging is limited to covering committed import payables (no speculative positions). Forward contracts are the primary hedging instrument.
+
+### Policy
+- **Hedging scope**: Only committed import payables (POs confirmed with vendor) — no speculative positions
+- **Hedging ratio target**: 50–80% of forecasted USD payables for the next 90 days
+- **Counterparty banks**: BDO, BPI, Metrobank (same banks used for operational accounts per FIN-009)
+- **Maturity matching**: Forward contract maturity dates aligned with expected LC/TT payment dates per W2b
+- **Approval**: Forward contracts ≤ USD 500K → CFO; > USD 500K → CEO
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Exposure identification**: system generates FX exposure report from open import POs (W2b) — for each open import PO with USD or other foreign-currency denomination: PO number, vendor, foreign currency amount, PHP equivalent at budget rate, expected payment date, current spot rate, unrealized FX gain/loss | System | Treasury Analyst | Automated (weekly) |
+| 2 | Treasury Analyst reviews FX exposure report; identifies payables requiring hedge coverage based on policy (hedging ratio target, maturity horizon) | Treasury Analyst | CFO | 30 min/week |
+| 3 | Treasury Analyst obtains forward contract quotations from 2–3 counterparty banks for required tenors and amounts | Treasury Analyst | CFO | 30 min/hedge |
+| 4 | Treasury Analyst selects bank based on: (a) forward rate competitiveness, (b) counterparty credit risk (bank credit rating), (c) existing facility limits and available margin; prepares forward contract recommendation: notional amount, forward rate, maturity date, counterparty bank, corresponding import PO reference(s) | Treasury Analyst | CFO | 15 min/hedge |
+| 5 | CFO approves forward contract; if notional > USD 500K, CEO approval required | CFO / CEO | CEO | 15 min/hedge |
+| 6 | Treasury Analyst executes forward contract with selected bank; receives contract confirmation; records forward contract in system: contract number, counterparty bank, notional amount (USD), forward rate (PHP/USD), trade date, maturity date, settlement type (physical delivery or cash net settlement), linked import PO reference(s) | Treasury Analyst | CFO | 15 min/hedge |
+| 7 | **Ongoing monitoring**: weekly, Treasury Analyst reviews forward contract portfolio vs. open USD payables — (a) hedge coverage ratio (total forward notional ÷ total USD payables), (b) MTM (mark-to-market) gain/loss per forward contract using current spot rate, (c) maturity ladder — forward contracts maturing in next 30 days flagged for settlement planning | Treasury Analyst | CFO | 30 min/week |
+| 8 | **Settlement at maturity**: when import LC/TT payment is due (W2b step 13), Treasury Analyst coordinates forward contract settlement — (a) for physical delivery: forward contract provides USD at contracted rate; bank debits PHP account at forward rate and credits USD for LC/TT payment; (b) for cash net settlement: if spot rate at maturity differs from forward rate, bank pays or receives the difference; Treasury Analyst settles the actual import payment at spot rate and separately receives/pays the forward contract settlement | Treasury Analyst | CFO | 30 min/settlement |
+| 9 | **System posting**: at settlement, system posts realized FX hedge result — (a) difference between forward rate and original PO budget rate allocated to the import PO's landed cost (W2b.12) or recognized as FX hedging gain/loss; (b) any premium or discount amortized over the contract period per PFRS 9; (c) system links forward contract settlement to corresponding AP payment for full audit trail | System / Treasury Analyst | Controller | Automated + 15 min review |
+| 10 | **Monthly**: Treasury Analyst includes forward contract portfolio summary in monthly cash position report (W30) — total notional, weighted average forward rate, MTM gain/loss, hedge coverage ratio, upcoming maturities | Treasury Analyst | CFO | 30 min/month |
+| 11 | **Quarterly**: CFO reviews hedging effectiveness — (a) actual FX cost (hedged vs. unhedged payables), (b) hedge coverage ratio vs. policy target, (c) counterparty concentration, (d) recommendations for hedging strategy adjustments; results presented to CEO quarterly | CFO | CEO | 1 hour/quarter |
+| 12 | **Early termination** (exception): if an import PO is cancelled (W2a PO cancellation) and linked forward contract no longer has an underlying payable, Treasury Analyst may: (a) hold forward contract to maturity and use for another import PO (if tenor matches), (b) terminate early with bank and recognize termination gain/loss, or (c) sell forward contract to offset new exposure; early termination requires CFO approval | Treasury Analyst | CFO | 30 min/occurrence |
+
+### System Touchpoints
+- FX exposure report from open import POs with unrealized gain/loss (W80.1)
+- Forward contract register: contract number, counterparty, notional, forward rate, trade date, maturity, settlement type, linked PO(s) (W80.6)
+- MTM (mark-to-market) calculation per forward contract using current spot rate (W80.7)
+- Hedge coverage ratio dashboard: forward notional ÷ USD payables with trend (W80.7)
+- Settlement posting with realized FX hedge result and PFRS 9 accounting (W80.9)
+- Forward contract portfolio summary integrated into monthly cash position report (W80.10)
+- Linkage to import PO lifecycle (W2b) and AP payment (W7) for full audit trail
+- Integration with W2b (import POs — exposure source), W7 (AP payment), W9a.5a (month-end FX revaluation — forward contracts included in revaluation), W26 (budget — hedging costs budgeted), W30 (treasury — forward contract cash flows)
+
+### Staffing Implication
+- **Treasury Analyst**: adds ~1–2 hours/week for FX exposure monitoring, forward contract management, and settlement. With 2 Treasury Analysts on the team, this is absorbed.
+- **CFO**: adds ~1 hour/quarter for hedging effectiveness review. Absorbed.
+- No incremental headcount.
+
+---
+
+
+
+---
+
+## W81. Bad Debt Provisioning, Write-Off & Recovery
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly AR aging review; or specific account identified for write-off after collection escalation (W8.8a) |
+| **Frequency** | Monthly provision review; write-offs as needed (typically quarterly batch) |
+| **Volume** | ~5,200 trade and corporate AR accounts; target bad debt rate < 0.5% of AR balance; estimated 10–20 write-off events/year |
+| **Owner** | AR Supervisor (collections and write-off initiation); Controller (provisioning) |
+| **Participants** | AR Supervisor, AR Clerk, Finance Manager, Controller, CFO, Legal, Sales Rep |
+
+### Background
+
+This workflow covers the complete bad debt lifecycle from initial provisioning through write-off and potential recovery. It formalizes and expands the bad debt steps embedded in W8.8a/8b into a standalone process with dedicated BIR documentation, provisioning methodology, and recovery tracking. The AR collection escalation process (W8 steps 6–8a) feeds into this workflow when accounts reach the write-off stage.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Monthly AR aging review**: AR Clerk generates AR aging report by bucket (current, 1–30, 31–60, 61–90, 91–120, > 120 days); identifies accounts > 90 days overdue for bad debt assessment | AR Clerk | AR Supervisor | 30 min/month |
+| 2 | **Individual account assessment**: for each account > 90 days overdue, AR Clerk and Sales Rep assess collectibility — (a) customer financial status (still operating, declared bankruptcy, unreachable), (b) collection history (payment promises made and broken, partial payments), (c) dispute status (customer disputes amount vs. simple non-payment), (d) security or collateral held (if any) | AR Clerk / Sales Rep | AR Supervisor | 15 min/account |
+| 3 | **Bad debt provision computation**: monthly, Controller computes bad debt provision using: (a) **specific provision**: for individually assessed accounts > 90 days where collection is uncertain — provision at 50–100% of outstanding amount based on assessment, (b) **general provision**: portfolio-level provision based on historical loss rate applied to remaining AR portfolio (e.g., 0.5–1% of total AR not specifically provided); system calculates provision suggestion based on configured aging percentages per bucket | Controller | CFO | 1 hour/month |
+| 4 | Controller reviews and approves monthly bad debt provision adjustment; system posts Dr. Bad Debt Expense / Cr. Allowance for Doubtful Accounts (balance sheet contra-asset) | Controller | CFO | 30 min/month |
+| 5 | **Write-off trigger**: when all collection efforts exhausted per W8.8a escalation tiers — (a) demand letter sent and no response after deadline, OR (b) external collection agency confirms account uncollectible, OR (c) customer confirmed insolvent/bankrupt (court filing or public record), OR (d) cost of collection exceeds amount recoverable — AR Supervisor initiates formal write-off process | AR Supervisor | Controller | 15 min/account |
+| 6 | **Write-off documentation package**: AR Supervisor prepares BIR-compliant write-off documentation: (a) **demand letter**: copy of formal demand letter sent via registered mail with return card, (b) **collection report**: summary of all collection actions taken with dates (phone calls, emails, demand letters, collection agency referral, legal filing if applicable), (c) **account history**: full AR transaction history showing original invoices, payments received, and outstanding balance, (d) **evidence of insolvency** (if applicable): court filing, SEC dissolution notice, or other public record, (e) **write-off recommendation**: amount, reason, and supporting evidence summary | AR Supervisor | Controller | 1–2 hours/account |
+| 7 | **Write-off approval**: tiered by amount — (a) ≤ PHP 50,000: Finance Manager + Controller, (b) PHP 50,001–200,000: CFO, (c) PHP 200,001–1,000,000: CEO + CFO, (d) > PHP 1,000,000: Board resolution | Approver(s) | CEO / Board | 15–30 min/write-off |
+| 8 | **System posting**: system posts write-off — Dr. Allowance for Doubtful Accounts / Cr. Accounts Receivable (if provision exists) or Dr. Bad Debt Expense / Cr. Accounts Receivable (direct write-off if no prior provision); AR balance reduced; account status changed to "Written Off"; customer blocked from new credit sales; full transaction history retained for 7-year BIR retention | System / AR Clerk | Controller | 5 min/write-off |
+| 9 | **Post write-off tracking**: system maintains written-off accounts register — original amount, write-off date, reason, approving authority; written-off accounts excluded from standard AR aging but tracked separately for potential recovery | System | — | Automated |
+| 10 | **Recovery — partial or full**: if customer subsequently pays on a previously written-off account — (a) AR Clerk receives payment (cash, bank transfer, or settlement agreement), (b) system posts recovery: Dr. Cash / Cr. Bad Debt Recovery (income — P&L), (c) recovery tracked separately from regular AR collections in GL and reporting, (d) if partial recovery: remaining balance remains in written-off register; if full recovery: account closed | AR Clerk / AR Supervisor | Controller | 10 min/recovery |
+| 11 | **Recovery via settlement agreement**: if customer offers reduced settlement (e.g., 60% of outstanding), AR Supervisor negotiates; Finance Manager approves settlement terms; system posts: Dr. Cash (settled amount) / Cr. Bad Debt Recovery (settled amount); remaining written-off balance confirmed as final loss | AR Supervisor / Finance Manager | Controller | 30 min/settlement |
+| 12 | **Quarterly**: Controller presents bad debt summary to CFO — (a) provision movement (opening balance + new provisions − write-offs + recoveries), (b) write-off volume and root cause analysis (customer bankruptcy, fraud, collection failure), (c) recovery rate on previously written-off accounts, (d) AR aging trend, (e) adequacy of general provision rate, (f) recommendation for provision rate adjustment if loss experience changes | Controller | CFO | 30 min/quarter |
+| 13 | **Annual**: CFO reviews bad debt provisioning methodology with external auditors as part of year-end audit (W9b); auditors assess adequacy of provision against actual loss history; methodology adjustments documented and approved | CFO | Board | 2 hours/year |
+
+### BIR Documentation Requirements
+
+For a bad debt write-off to be deductible for Philippine income tax purposes (per BIR Revenue Regulations), the following must be maintained:
+- Proof that the debt was previously reported as income (sales invoices, official receipts)
+- Demand letter sent via registered mail with return card
+- Documentation of collection efforts (call logs, email correspondence, collection agency reports)
+- Court filing (if legal action was pursued)
+- Evidence of insolvency or bankruptcy (if applicable)
+- Board resolution (for amounts requiring Board approval)
+- Write-off approval with sign-off by authorized officer
+- All documentation retained for 7 years per BIR retention requirements
+
+### System Touchpoints
+- AR aging report with configurable bucket thresholds (W81.1)
+- Individual account collectibility assessment with reason codes and supporting notes (W81.2)
+- Automated bad debt provision calculator: specific provision per account + general provision based on aging matrix (W81.3)
+- Provision posting with GL integration: Dr. Bad Debt Expense / Cr. Allowance for Doubtful Accounts (W81.4)
+- Write-off documentation package generation with BIR-required attachments (W81.6)
+- Tiered write-off approval workflow (W81.7)
+- Write-off posting: provision drawdown or direct expense with AR reduction; account status change to "Written Off" with credit block (W81.8)
+- Written-off accounts register with separate tracking from active AR (W81.9)
+- Bad debt recovery posting: Dr. Cash / Cr. Bad Debt Recovery (separate P&L line from regular revenue) (W81.10–11)
+- Quarterly bad debt summary dashboard: provision movement, write-off analysis, recovery rate, aging trend (W81.12)
+- Integration with W8 (AR collections — W8.8a escalation feeds into W81 write-off trigger), W9a (month-end — provision posting included in close), W9b (year-end — bad debt methodology review with auditors), W24 (credit application — written-off customers blocked from new credit), W35 (management reporting — bad debt KPIs), W44 (vendor scorecard — recovery process mirrors vendor collection logic)
+
+### Staffing Implication
+- **AR Supervisor**: adds ~2 hours/month for write-off initiation and documentation. Absorbed.
+- **Controller**: adds ~1 hour/month for provision review + 30 min/quarter for summary presentation. Absorbed within existing close duties.
+- **AR Clerk**: adds ~30 min/month for aging review escalation. Absorbed.
 - No incremental headcount.
 
 ---

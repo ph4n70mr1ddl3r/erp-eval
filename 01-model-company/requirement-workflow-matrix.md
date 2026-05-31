@@ -36,9 +36,12 @@
 | FIN-014 | Multi-Currency | M | W2b.12–13 (import FX), W9a.5a (FX revaluation) | W30.10 (USD accounts) |
 | FIN-015 | Period-End Close Workflow | M | W9a (month-end close), W9b (year-end close) | — |
 | FIN-016 | Capex Workflow | M | W21 (capex request & approval) | W16 (new store capex) |
-| FIN-017 | Petty Cash Management | M | W25 (petty cash lifecycle) | W47 (facility maintenance) |
+| FIN-017 | Petty Cash Management | M | W25 (petty cash lifecycle) | W47 (facility maintenance), W82 (small disposal costs) |
 | FIN-018 | Consignment Settlement | S | W23 (consignment operations) | W7 (AP settlement) |
 | FIN-019 | Vendor Rebate Management | S | W27 (rebate accrual & settlement) | W7.9b (credit memo) |
+| FIN-020 | Duplicate Vendor Invoice Detection | M | W7 (duplicate detection engine, blocks and alerts) | W70 (credit note aging — duplicate overrides) |
+| FIN-021 | FX Hedging / Forward Contract Management | S | W80 (forward contract lifecycle, settlement, MTM reporting) | W2b (import POs — exposure source), W9a.5a (month-end FX revaluation), W30 (treasury cash position) |
+| FIN-022 | Bad Debt Write-Off & Recovery | M | W81 (bad debt provisioning, write-off with BIR documentation, recovery tracking) | W8.8a (AR collection escalation — feeds into write-off), W9a (month-end provision posting), W24 (credit block on written-off accounts) |
 
 ## R2. Inventory Management (INV)
 
@@ -82,6 +85,7 @@
 | PUR-013 | Direct Store Delivery | M | W18 (DSD receiving), W18b (DSD scheduling) | — |
 | PUR-014 | Vendor Managed Inventory | S | W20 (VMI operations) | — |
 | PUR-015 | Vendor Rebate Management | S | W27 (rebate accrual & settlement) | — |
+| PUR-016 | Configurable AQL Sampling per SKU Category | S | W3 (AQL inspection standards per category at goods receipt) | W44 (vendor scorecard — quality reject rate) |
 
 ## R4. Warehouse Management (WMS)
 
@@ -215,8 +219,9 @@
 | DOC-002 | BIR-Compliant Invoice Format | M | W5b.8 (BIR-registered receipt), W7 (vendor invoices) | — |
 | DOC-003 | Delivery Receipt Tracking | M | W18.7 (DR capture), W3 (DC receiving DR) | — |
 | DOC-004 | Import Document Management | M | W2b (BL, LC, customs docs), W36 (vendor permits) | — |
-| DOC-005 | Document Retention Policy | M | W35 quarterly review, W42 (7-year archive) | W53 (breach register 5-year retention) |
+| DOC-005 | Document Retention Policy | M | W35 quarterly review, W42 (7-year archive) | W53 (breach register 5-year retention), W81 (bad debt write-off 7-year retention) |
 | DOC-006 | Approval Workflow with Attachments | S | W21 (capex with quotes), W62 (contracts with attachments) | — |
+| DOC-007 | Hazardous Waste Disposal Tracking | S | W82 (DENR-compliant manifest tracking, per-location generator registration, quarterly reporting) | W52 (fleet — used oil/battery disposal), W68 (discontinued chemical waste) |
 
 ## R13. Master Data Management (MDM)
 
@@ -258,8 +263,8 @@
 
 - **Total requirements**: 100+ across 14 categories (FIN through NFR)
 - **Requirements with primary workflow mapping**: All ✅
-- **Workflows without requirement mapping**: W47 (facility maintenance), W48 (IT helpdesk), W49 (typhoon BC), W50 (PIM), W51 (training), W52 (fleet), W59 (insurance), W62 (vendor contracts), W63 (shelf labels), W65 (CSAT measurement), W71 (physical security), W72 (employee performance management), W73 (data migration validation), W74 (employee expense reimbursement), W75 (layaway/installment sales — exercises POS-004, POS-015, FIN-005), W76 (employee loans — exercises HR-001, HR-012), W77 (BIR tax audit response — exercises FIN-008), W78 (government procurement — exercises CRM-003, CRM-004), W79 (employee grievance — exercises HR-007, NFR-010) — these are operational workflows that support requirements indirectly; several newly added workflows exercise existing requirements in new contexts
+- **Workflows without requirement mapping**: W47 (facility maintenance), W48 (IT helpdesk), W49 (typhoon BC), W50 (PIM), W51 (training), W52 (fleet), W59 (insurance), W62 (vendor contracts), W63 (shelf labels), W65 (CSAT measurement), W71 (physical security), W72 (employee performance management), W73 (data migration validation), W74 (employee expense reimbursement), W75 (layaway/installment sales — exercises POS-004, POS-015, FIN-005), W76 (employee loans — exercises HR-001, HR-012), W77 (BIR tax audit response — exercises FIN-008), W78 (government procurement — exercises CRM-003, CRM-004), W79 (employee grievance — exercises HR-007, NFR-010), W80 (FX hedging — exercises FIN-014, FIN-021), W81 (bad debt — exercises FIN-005, FIN-022), W82 (hazardous waste — exercises DOC-007) — these are operational workflows that support requirements indirectly; several newly added workflows exercise existing requirements in new contexts
 
 ---
 
-*Date: 2026-05-31 (v4 — added POS-020 through POS-022 to POS section; added gap closure cross-references for W22a, W27 dispute resolution, W38 trade account branch, W45 loyalty reassignment, W55 DR test failure remediation, W62b rate card maintenance, W79 anonymity controls)*
+*Date: 2026-05-31 (v5 — added W80 FX Hedging for FIN-021, W81 Bad Debt Write-Off for FIN-022, W82 Hazardous Waste Disposal for DOC-007; added FIN-020 through FIN-022, DOC-007, PUR-016 to matrix; updated coverage validation for W80–W82)*

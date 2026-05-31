@@ -252,4 +252,4 @@
 
 ---
 
-*Document Version: 1.7 | Date: 2026-05-31 | Added POS-022 (Employee Discount at POS); updated to reflect gap closure Wave 17*
+*Document Version: 1.8 | Date: 2026-05-31 | Added FIN-021 (FX Hedging) → W80, FIN-022 (Bad Debt Write-Off) → W81, DOC-007 (Hazardous Waste) → W82; updated traceability to requirement-workflow matrix v5*

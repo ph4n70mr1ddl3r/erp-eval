@@ -254,7 +254,9 @@
 | CRM-009 | Government Procurement Compliance (PHILGEPS) | Should Have | PHILGEPS registration tracking, government bid/quotation management, government-specific billing and collection procedures, separate government receivable aging |
 | DOC-007 | Hazardous Waste Disposal Tracking | Should Have | DENR-compliant hazardous waste manifest tracking, per-location waste generator registration renewal, transporter accreditation tracking, quarterly disposal reporting per location |
 | PUR-016 | Configurable AQL Sampling per SKU Category | Should Have | Configurable Acceptable Quality Level parameters per SKU category at goods receipt; AQL sampling plan selection; inspection checklist per category; quality hold process with aging tracking |
+| HR-015 | Philippine Statutory Benefits & Claims Management | Must Have | Managed advances, online agency portal certification, and automated semi-monthly payroll deductions for SSS, PhilHealth, and Pag-IBIG |
 
 ---
 
-*Document Version: 1.9 | Date: 2026-05-31 | Added NFR-018 to NFR-022 to align with requirement-workflow-matrix; updated document version to 1.9*
+*Document Version: 2.0 | Date: 2026-05-31 | Added HR-015 to align with W251 workflow; updated document version to 2.0*
+

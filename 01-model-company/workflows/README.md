@@ -69,34 +69,55 @@ Workflows are organized by functional domain for easier navigation and gap analy
 
 ---
 
-## Complete Workflow Index (W1–W250)
+## Complete Workflow Index (W1–W251)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
 | W1 | Merchandise Planning & Assortment Review | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W2 | Procurement — Purchase Order Cycle | [Procurement & Vendor Management Workflows](WF-procurement.md) |
+| W2A | Auto-Replenishment (Stocking Items) | [Procurement & Vendor Management Workflows](WF-procurement.md) |
+| W2B | Import Purchase Orders | [Procurement & Vendor Management Workflows](WF-procurement.md) |
+| W2C | Blanket / Contract Purchase Orders | [Procurement & Vendor Management Workflows](WF-procurement.md) |
 | W3 | Warehouse Receiving & Putaway | [Warehouse & Logistics Workflows](WF-warehouse.md) |
+| W3B | Yard & Outdoor Inventory Management | [Warehouse & Logistics Workflows](WF-warehouse.md) |
+| W3C | DC Inbound Delivery Scheduling | [Warehouse & Logistics Workflows](WF-warehouse.md) |
 | W4 | Store Replenishment (DC → Store) | [Inventory Management Workflows](WF-inventory.md) |
+| W4B | Store-Initiated Replenishment Request | [Inventory Management Workflows](WF-inventory.md) |
 | W5 | Daily Store Operations | [Store Operations Workflows](WF-store-operations.md) |
-| W5g | Offline POS Recovery & Reconciliation | [Store Operations Workflows](WF-store-operations.md) |
+| W5A | Store Opening | [Store Operations Workflows](WF-store-operations.md) |
+| W5B | In-Store Selling | [Store Operations Workflows](WF-store-operations.md) |
+| W5D | In-Store Customer Delivery Scheduling | [Store Operations Workflows](WF-store-operations.md) |
+| W5E | Store Opening Delay Procedure | [Store Operations Workflows](WF-store-operations.md) |
+| W5F | Store Closing & End-of-Day | [Store Operations Workflows](WF-store-operations.md) |
+| W5G | Offline POS Recovery & Reconciliation | [Store Operations Workflows](WF-store-operations.md) |
 | W6 | Cycle Counting & Inventory Accuracy | [Inventory Management Workflows](WF-inventory.md) |
 | W7 | Accounts Payable — Vendor Invoice Processing | [Finance & Treasury Workflows](WF-finance.md) |
+| W7C | Non-PO / Recurring Expense Invoice Processing | [Finance & Treasury Workflows](WF-finance.md) |
+| W7D | AP Vendor Statement Reconciliation | [Finance & Treasury Workflows](WF-finance.md) |
 | W8 | Accounts Receivable — Trade & Corporate Accounts | [Finance & Treasury Workflows](WF-finance.md) |
 | W9 | Financial Close & Reporting | [Finance & Treasury Workflows](WF-finance.md) |
+| W9A | Month-End Close | [Finance & Treasury Workflows](WF-finance.md) |
+| W9B | Year-End Close | [Finance & Treasury Workflows](WF-finance.md) |
 | W10 | Payroll Processing | [HR & Payroll Workflows](WF-hr.md) |
 | W11 | Ecommerce — BOPIS Order Fulfillment | [Ecommerce Workflows](WF-ecommerce.md) |
 | W12 | Returns & Exchanges | [Store Operations Workflows](WF-store-operations.md) |
+| W12A | In-Store Returns | [Store Operations Workflows](WF-store-operations.md) |
+| W12B | Online-Initiated Returns | [Store Operations Workflows](WF-store-operations.md) |
+| W12C | Cross-Store Returns (Purchased at Store A, Returned at Store B) | [Store Operations Workflows](WF-store-operations.md) |
 | W13 | Promotions & Pricing Execution | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W14 | Intercompany Transactions & Settlement | [Finance & Treasury Workflows](WF-finance.md) |
 | W15 | Recruitment & Employee Onboarding | [HR & Payroll Workflows](WF-hr.md) |
 | W16 | New Store Opening | [Store Operations Workflows](WF-store-operations.md) |
 | W17 | Customer Loyalty Program Operations | [Store Operations Workflows](WF-store-operations.md) |
 | W18 | Direct Store Delivery (DSD) Receiving | [Store Operations Workflows](WF-store-operations.md) |
+| W18B | DSD Vendor Delivery Scheduling | [Store Operations Workflows](WF-store-operations.md) |
 | W19 | Ecommerce — Home Delivery Fulfillment | [Ecommerce Workflows](WF-ecommerce.md) |
-| W19b | Ship from Store (Store-Fulfilled Home Delivery) | [Ecommerce Workflows](WF-ecommerce.md) |
+| W19B | Ship from Store (Store-Fulfilled Home Delivery) | [Ecommerce Workflows](WF-ecommerce.md) |
 | W20 | Vendor Managed Inventory (VMI) | [Procurement & Vendor Management Workflows](WF-procurement.md) |
 | W21 | Capital Expenditure (Capex) Request & Approval | [Finance & Treasury Workflows](WF-finance.md) |
 | W22 | Stock Transfers (Store-to-Store & Inter-DC) | [Inventory Management Workflows](WF-inventory.md) |
+| W22A | Store-Level Outbound Transfer Fulfillment | [Inventory Management Workflows](WF-inventory.md) |
+| W22B | Store-to-DC Return (Excess / Damaged Inventory) | [Inventory Management Workflows](WF-inventory.md) |
 | W23 | Consignment Inventory Operations | [Inventory Management Workflows](WF-inventory.md) |
 | W24 | Trade & Corporate Credit Application | [Finance & Treasury Workflows](WF-finance.md) |
 | W25 | Petty Cash Management | [Finance & Treasury Workflows](WF-finance.md) |
@@ -129,6 +150,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W52 | Fleet Management | [Warehouse & Logistics Workflows](WF-warehouse.md) |
 | W53 | Data Privacy Breach Response | [IT Operations Workflows](WF-it-operations.md) |
 | W54 | LGU Business Permit Renewal per Location | [Compliance & Governance Workflows](WF-compliance.md) |
+| W54A | BIR Computerized Accounting System (CAS) Registration | [Compliance & Governance Workflows](WF-compliance.md) |
 | W55 | IT Disaster Recovery & System Failover | [IT Operations Workflows](WF-it-operations.md) |
 | W56 | Customer Backorder Management | [Inventory Management Workflows](WF-inventory.md) |
 | W57 | Promotional Stock Allocation & Pre-Positioning | [Inventory Management Workflows](WF-inventory.md) |
@@ -137,6 +159,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W60 | Emergency Procurement | [Procurement & Vendor Management Workflows](WF-procurement.md) |
 | W61 | Competitor Price Match Process | [Customer Experience Workflows](WF-customer.md) |
 | W62 | Vendor Contract Lifecycle (Non-PO Contracts) | [Procurement & Vendor Management Workflows](WF-procurement.md) |
+| W62B | 3PL / Delivery Partner Onboarding & Offboarding | [Procurement & Vendor Management Workflows](WF-procurement.md) |
 | W63 | Shelf Label & Price Tag Distribution | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W64 | New Product Pilot / Store Test | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W65 | Customer Satisfaction Measurement | [Customer Experience Workflows](WF-customer.md) |
@@ -197,12 +220,12 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W120 | Internal Audit Planning & Risk Assessment | [Internal Audit & Risk Management Workflows](WF-audit.md) |
 | W121 | Operational Audit Execution (Store/DC/HQ) | [Internal Audit & Risk Management Workflows](WF-audit.md) |
 | W122 | Enterprise Risk Management (ERM) Review | [Internal Audit & Risk Management Workflows](WF-audit.md) |
-| W123 | Fraud Investigation | [Internal Audit & Risk Management Workflows](WF-audit.md) |
-| W124 | Corporate Secretarial & Entity Management | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
-| W125 | Legal Case & Litigation Management | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
-| W126 | Intellectual Property (IP) Portfolio Management | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
-| W127 | Annual Strategic Planning & OKRs | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
-| W128 | Enterprise Project Management (EPM) Lifecycle | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
+| W123 | Fraud Investigation Protocol | [Internal Audit & Risk Management Workflows](WF-audit.md) |
+| W124 | Corporate Secretarial & Entity Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W125 | Legal Case & Litigation Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W126 | Intellectual Property (IP) Portfolio Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W127 | Annual Strategic Planning & OKRs | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W128 | Enterprise Project Management (EPM) Lifecycle | [Corporate Governance & Strategy Workflows](WF-governance.md) |
 | W129 | Private Label / In-house Brand Development | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W130 | Competitor Price Intelligence Gathering | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W131 | IT Asset Lifecycle Management | [IT Operations Workflows](WF-it-operations.md) |
@@ -214,13 +237,13 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W137 | Intercompany Dividend & Loan Management | [Finance & Treasury Workflows](WF-finance.md) |
 | W138 | Home Installation Services Management | [Installation & Value-Added Services](WF-services.md) |
 | W139 | Tool & Equipment Rental Operations | [Installation & Value-Added Services](WF-services.md) |
-| W140 | OHS Incident Management | [Health, Safety & Environment Workflows](WF-health-safety.md) |
+| W140 | Occupational Health & Safety (OHS) Incident Management | [Health, Safety & Environment Workflows](WF-health-safety.md) |
 | W141 | Workplace Safety Inspection & Audit | [Health, Safety & Environment Workflows](WF-health-safety.md) |
 | W142 | Social Media & Influencer Management | [Marketing Campaign Workflows](WF-marketing.md) |
 | W143 | Public Relations & Corporate Communications | [Marketing Campaign Workflows](WF-marketing.md) |
 | W144 | International Logistics & Import Operations | [Supply Chain Planning Workflows](WF-supply-chain.md) |
-| W145 | Wholesale Reseller Onboarding & Credit | [Wholesale & Reseller Operations Workflows](WF-wholesale.md) |
-| W146 | Bulk Fulfillment & Cross-Docking | [Wholesale & Reseller Operations Workflows](WF-wholesale.md) |
+| W145 | Wholesale Reseller Onboarding & Credit Management | [Wholesale & Reseller Operations Workflows](WF-wholesale.md) |
+| W146 | Bulk Fulfillment & Cross-Docking for Wholesale | [Wholesale & Reseller Operations Workflows](WF-wholesale.md) |
 | W147 | DIY Workshop & In-Store Event Management | [Installation & Value-Added Services](WF-services.md) |
 | W148 | Home Design & Consultancy Services | [Installation & Value-Added Services](WF-services.md) |
 | W149 | Bank & Credit Card Partnership Management | [Marketing Campaign Workflows](WF-marketing.md) |
@@ -236,11 +259,11 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W159 | Anti-Bribery & Corruption (ABC) Monitoring & Audit | [Internal Audit & Risk Management Workflows](WF-audit.md) |
 | W160 | Private Label Factory Audit & Social Compliance | [Procurement & Vendor Management Workflows](WF-procurement.md) |
 | W161 | Vendor Price Protection & Market Markdown Claims | [Procurement & Vendor Management Workflows](WF-procurement.md) |
-| W162 | Project Quotation & Bid Management | [Project Sales Workflows](WF-project-sales.md) |
-| W163 | Contract Pricing & Project Price Books | [Project Sales Workflows](WF-project-sales.md) |
-| W164 | Staged Project Delivery & Call-Off Orders | [Project Sales Workflows](WF-project-sales.md) |
-| W165 | Project Retention & Milestone Billing | [Project Sales Workflows](WF-project-sales.md) |
-| W166 | Corporate / Institutional Tendering | [Project Sales Workflows](WF-project-sales.md) |
+| W162 | Project Quotation & Bid Management | [Project-Based B2B & Trade Sales Workflows](WF-project-sales.md) |
+| W163 | Contract Pricing & Project Price Books | [Project-Based B2B & Trade Sales Workflows](WF-project-sales.md) |
+| W164 | Staged Project Delivery & Call-Off Orders | [Project-Based B2B & Trade Sales Workflows](WF-project-sales.md) |
+| W165 | Project Retention & Milestone Billing | [Project-Based B2B & Trade Sales Workflows](WF-project-sales.md) |
+| W166 | Corporate / Institutional Tendering | [Project-Based B2B & Trade Sales Workflows](WF-project-sales.md) |
 | W167 | Store & DC Recycling Program (Circular Economy) | [Compliance & Governance Workflows](WF-compliance.md) |
 | W168 | Custom Paint Mixing & Tinting Operations | [Installation & Value-Added Services](WF-services.md) |
 | W169 | Lumber & Board Cutting Services | [Installation & Value-Added Services](WF-services.md) |
@@ -266,10 +289,10 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W189 | Referral Program & Brand Ambassador Management | [Marketing Campaign Workflows](WF-marketing.md) |
 | W190 | In-house Design & Creative Production Management | [Marketing Campaign Workflows](WF-marketing.md) |
 | W191 | Global Supply Chain — Incoterm & Marine Insurance Tracking | [Supply Chain Planning Workflows](WF-supply-chain.md) |
-| W192 | Greenhouse Gas (GHG) Emissions Tracking | [ESG & Sustainability Reporting](WF-esg.md) |
-| W193 | Waste Management & Circular Economy | [ESG & Sustainability Reporting](WF-esg.md) |
-| W194 | Social Impact & Community Development (CSR) | [ESG & Sustainability Reporting](WF-esg.md) |
-| W195 | Sustainable Sourcing & Ethical Vendor Audit | [ESG & Sustainability Reporting](WF-esg.md) |
+| W192 | Greenhouse Gas (GHG) Emissions Tracking | [ESG & Sustainability Reporting Workflows](WF-esg.md) |
+| W193 | Waste Management & Circular Economy | [ESG & Sustainability Reporting Workflows](WF-esg.md) |
+| W194 | Social Impact & Community Development (CSR) | [ESG & Sustainability Reporting Workflows](WF-esg.md) |
+| W195 | Sustainable Sourcing & Ethical Vendor Audit | [ESG & Sustainability Reporting Workflows](WF-esg.md) |
 | W196 | Route Planning & Dispatch Optimization | [Fleet Operations & Driver Management](WF-logistics-fleet.md) |
 | W197 | Driver Performance & Safety Management | [Fleet Operations & Driver Management](WF-logistics-fleet.md) |
 | W198 | Fuel Management & Consumption Monitoring | [Fleet Operations & Driver Management](WF-logistics-fleet.md) |
@@ -304,8 +327,8 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W227 | Commissioning & Operational Handover | [Engineering & Construction Workflows](WF-engineering-construction.md) |
 | W228 | Sales Commission Calculation (Trade & Project Sales) | [Project-Based B2B & Trade Sales Workflows](WF-project-sales.md) |
 | W229 | B2B Customer Credit Limit Exception & Escalation | [Project-Based B2B & Trade Sales Workflows](WF-project-sales.md) |
-| W230 | Legal Contract Review & Approval | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
-| W231 | Management Performance Reporting (QBR) | [Corporate Governance, Legal & Strategy Workflows](WF-governance.md) |
+| W230 | Legal Contract Review & Approval | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W231 | Management Performance Reporting (QBR) | [Corporate Governance & Strategy Workflows](WF-governance.md) |
 | W232 | Letter of Credit (LC) & Bank Guarantee Lifecycle | [Treasury & Corporate Finance Workflows](WF-treasury.md) |
 | W233 | Cash Flow Forecasting & Liquidity Management | [Treasury & Corporate Finance Workflows](WF-treasury.md) |
 | W234 | Intercompany Profit Elimination & Consolidation | [Treasury & Corporate Finance Workflows](WF-treasury.md) |
@@ -325,7 +348,8 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W248 | Store Inventory Variance & LP Investigation | [Store Operations Workflows](WF-store-operations.md) |
 | W249 | Import Port Demurrage & Detention Management | [Supply Chain Planning Workflows](WF-supply-chain.md) |
 | W250 | Supply Chain Control Tower & Real-Time Shipment Visibility | [Supply Chain Planning Workflows](WF-supply-chain.md) |
+| W251 | Philippine Statutory Benefits & Claims Administration (SSS, PhilHealth, Pag-IBIG) | [HR & Payroll Workflows](WF-hr.md) |
 
 ---
 
-*Total: 275 workflows across 27 domains. Expanded to include Treasury, Hazmat, Facilities Maintenance, Engineering & Construction, Legal, Sales Commission, Dispute Resolution, Smart Locker Fulfillment, LP Investigation, and Port Demurrage Management, alongside ESG, fleet optimization, digital innovation, and advanced regulatory compliance.*
+*Total: 276 workflows across 27 domains. Expanded to include Philippine Statutory Benefits & Claims (W251), alongside Treasury, Hazmat, Facilities Maintenance, Engineering & Construction, Legal, Sales Commission, Dispute Resolution, Smart Locker Fulfillment, LP Investigation, Port Demurrage Management, ESG, fleet optimization, digital innovation, and advanced regulatory compliance.*

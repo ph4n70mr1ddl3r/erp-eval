@@ -174,8 +174,10 @@
 | HR-012 | Bank File Generation | M | W10.7 (bank file for payroll crediting) | — |
 | HR-013 | Employee Loan & Advance Management | M | W76 (employee loans & advances) | W10 (payroll processing) |
 | HR-014 | Employee Grievance & Whistleblower Case Management | S | W79 (employee grievance & whistleblower process) | W53 (data privacy breach response) |
+| HR-015 | Philippine Statutory Benefits & Claims Management | M | W251 (Philippine statutory benefits & claims administration) | W10 (payroll processing statutory deductions) |
 
 ## R9. CRM & Loyalty (CRM)
+
 
 | Req ID | Requirement | Priority | Primary Workflows | Supporting Workflows |
 |---|---|---|---|---|
@@ -274,4 +276,4 @@
 
 ---
 
-*Date: 2026-05-31 (v19 — gap analysis: added W219–W222, W229, W246; total now 275 workflows)*
+*Date: 2026-05-31 (v20 — gap analysis: added W251; total now 276 workflows)*

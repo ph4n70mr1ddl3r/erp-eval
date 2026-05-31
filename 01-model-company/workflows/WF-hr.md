@@ -526,3 +526,35 @@ With over 8,000 employees in retail and distribution, maintaining a consistent p
 - Rotation schedule management (W34)
 - Trainee-to-Mentor mapping and feedback loop
 
+---
+
+## W251. Philippine Statutory Benefits & Claims Administration (SSS, PhilHealth, Pag-IBIG)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Employee sickness event, maternity event, or application for SSS/Pag-IBIG statutory loan |
+| **Frequency** | Continuous; daily processing of claims and semi-monthly reconciliation |
+| **Volume** | ~8,060 employee base; average ~120–180 sickness claims/month, ~40–60 maternity leaves/month, and ~250–350 loan applications/month |
+| **Owner** | HR Benefits Specialist |
+| **Participants** | Employee, HR Benefits Specialist, Payroll Specialist, Finance (Treasury) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Claim Submission**: Employee uploads medical certificate, SSS Maternity Notification, or loan request documents to the HRIS/ERP system via Employee Self-Service (ESS) portal (W251.1) | Employee | — | 15 min |
+| 2 | **Eligibility Verification**: HR Benefits Specialist reviews the uploaded documents; system auto-checks employee contribution history against SSS/PhilHealth criteria to verify eligibility (W251.2) | HR Benefits | CHRO | 30 min |
+| 3 | **Agency Portal Certification**: HR Benefits Specialist logs into the government agency's online portal (SSS Sickness/Maternity portal, Pag-IBIG Virtual Employer portal) to certify the employee's leave or confirm the employer endorsement for a salary/calamity loan (W251.3) | HR Benefits | — | 20 min |
+| 4 | **Benefit Advance Computation**: For SSS Sickness/Maternity, under Philippine law, the employer must advance the SSS benefit. System automatically computes the daily SSS benefit rate based on the employee's average daily salary credit and schedules the advance payment (W251.4) | System | Payroll Mgr | Automated |
+| 5 | **Payroll Disbursal**: Payroll Specialist reviews the computed statutory advance and approves it for inclusion in the next semi-monthly payroll run (W10) (W251.5) | Payroll Spec | Payroll Mgr | 10 min |
+| 6 | **Reimbursement Claim Submission**: After the employee returns or the leave completes, HR Benefits Specialist submits a digitized SSS Reimbursement Claim via the online portal to recover the advanced amount from the government (W251.6) | HR Benefits | — | 15 min |
+| 7 | **Reconciliation & Settlement**: SSS releases the reimbursement via direct deposit to the company's bank account. Finance reconciles the incoming bank settlement against the SSS Receivable ledger to close the transaction loop (W251.7) | Treasury / Accountant | Controller | 30 min |
+| 8 | **Loan Deduction Scheduling**: For SSS/Pag-IBIG loans, once approved, the system imports the monthly electronic billing files from SSS/Pag-IBIG, matches loan accounts with active employee profiles, and schedules the statutory semi-monthly deductions in the payroll system, ensuring compliance with minimum wage take-home pay rules (W251.8) | System | Payroll Mgr | Automated |
+
+### System Touchpoints
+- Employee Self-Service (ESS) portal for digital document upload and notification tracking
+- HRIS Integration with Payroll (W10) for automated advanced benefit calculation and statutory loan deductions
+- General Ledger integration: SSS Receivable reconciliation and bank settlement auto-matching (W89)
+- Government billing file import interface (semi-monthly SSS and Pag-IBIG billing formats)
+
+

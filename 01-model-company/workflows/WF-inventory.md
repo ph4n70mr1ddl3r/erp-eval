@@ -551,3 +551,73 @@ W6 (Cycle Counting) identifies discrepancies between system and physical invento
 
 ---
 
+
+
+## W105. Multi-Channel Inventory Allocation & Priority Governance
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Quarterly allocation governance review; or ad-hoc triggered by sustained stockout pattern, new channel launch, or allocation conflict escalation |
+| **Frequency** | Quarterly governance review; continuous allocation monitoring |
+| **Volume** | 35,000 active SKUs allocated across: 200 stores (W4), ecommerce BOPIS from stores (W11), ecommerce home delivery from DCs (W19), B2B trade/corporate orders (W58), promotional pre-positioning (W57), backorder fulfillment (W56) |
+| **Owner** | Supply Planning Manager |
+| **Participants** | Supply Planning Manager, VP Supply Chain, Category Manager, Ecommerce Manager, Sales Manager, DC Supervisor |
+
+### Background
+
+Multiple workflows reference inventory allocation: W4 (store replenishment with constrained allocation), W11 (BOPIS ATP reservation), W19 (home delivery ATP), W57 (promotional pre-positioning), and W56 (backorder priority). However, there is no unified governance framework defining allocation priorities when multiple demand channels compete for the same limited inventory. During constrained supply periods (vendor delays, seasonal peaks, promotional surges), the absence of clear priority rules leads to ad-hoc decisions, channel conflict, and customer dissatisfaction. This workflow establishes the allocation governance framework.
+
+### Allocation Priority Hierarchy (Constrained Supply)
+
+| Priority | Demand Channel | Rationale | Override Authority |
+|---|---|---|---|
+| 1 | **Existing customer backorders** (W56) | Customer already committed and waiting; highest service obligation | Supply Planning Manager |
+| 2 | **Promotional pre-positioning** (W57) | Committed marketing spend; stockout during promo damages brand | VP Supply Chain + VP Merchandising |
+| 3 | **Ecommerce BOPIS** (W11) | Customer already paid; fulfillment SLA of 4 hours | Supply Planning Manager |
+| 4 | **Ecommerce home delivery** (W19) | Customer already paid; fulfillment SLA of 2–5 days | Supply Planning Manager |
+| 5 | **B2B trade/corporate project orders** (W58) | Contractual obligation; high-value accounts | VP Supply Chain + Sales Manager |
+| 6 | **Store replenishment — A-items** (W4) | Top 20% of SKUs generating 80% of revenue; highest retail impact | Supply Planning Manager |
+| 7 | **Store replenishment — B-items** (W4) | Mid-tier items; moderate revenue impact | Supply Planning Manager |
+| 8 | **Store replenishment — C-items** (W4) | Bottom 50% of SKUs; lowest revenue impact; highest tolerance for stockout | System auto-allocated from residual |
+
+**Safety stock buffers**: each channel's ATP calculation deducts a configurable safety stock buffer that is NOT available for allocation to any channel — this buffer protects against demand variability and prevents complete stockout at any location.
+
+- **DC safety stock**: configurable per SKU per DC (set during W31.8 parameter governance); deducted from DC ATP before any allocation
+- **Store safety stock**: configurable per SKU per store; deducted from store ATP for BOPIS availability
+- **BOPIS buffer**: stores reserve a configurable buffer (default: 2 units per A-item SKU) so that walk-in customers are not completely displaced by BOPIS orders
+
+### Steps
+
+### Quarterly Allocation Governance Review
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Allocation performance report**: System generates quarterly allocation performance report: (a) fill rate by demand channel (target: A-items ≥ 97%, B-items ≥ 93%, C-items ≥ 85%), (b) allocation conflicts — instances where demand exceeded supply and priority rules were applied, with channel impact, (c) safety stock breaches — instances where actual inventory fell below safety stock buffer (indicates systemic under-supply), (d) channel stockout frequency — how often did each channel experience out-of-stock due to allocation exhaustion?, (e) override log — all instances where default priority was overridden, with approver and justification | System | — | Automated |
+| 2 | Supply Planning Manager reviews allocation performance with cross-functional stakeholders: (a) **Ecommerce Manager**: BOPIS and home delivery fill rate, customer impact of stockouts, allocation adequacy for peak events, (b) **Sales Manager**: B2B trade/corporate fill rate, impact on account relationships and revenue, (c) **Category Manager**: category-level fill rate, vendor supply reliability issues, (d) **DC Supervisor**: operational impact of allocation-driven picking priorities (promotional vs. routine orders), capacity conflicts | Supply Planning Manager | VP Supply Chain | 2 hours/quarter |
+| 3 | **Allocation rule review**: Supply Planning Manager and VP Supply Chain review and adjust allocation rules: (a) are priority rankings still appropriate given channel revenue contribution and growth trajectory?, (b) are safety stock buffers adequate or excessive? (benchmark: buffer usage rate — how often is buffer consumed?), (c) should any channels be added or removed from the hierarchy? (e.g., new ship-from-store channel per W19b), (d) are ABC classification thresholds (W31.8) correctly driving allocation priority — do A-items get sufficient allocation vs. B/C-items? | Supply Planning Manager / VP Supply Chain | VP Supply Chain | 1 hour/quarter |
+| 4 | **Conflict resolution from past quarter**: Review all allocation overrides from the past quarter — were they justified? Were the right approvers involved? Should any override patterns trigger a permanent rule change? (e.g., if B2B orders were frequently prioritized over ecommerce, consider adjusting the default hierarchy) | Supply Planning Manager | VP Supply Chain | 1 hour/quarter |
+| 5 | Supply Planning Manager updates allocation configuration in system based on review: priority weights, safety stock parameters, ATP buffer rules; documents changes with effective date, rationale, and VP Supply Chain approval; system logs all configuration changes with audit trail | Supply Planning Manager | VP Supply Chain | 30 min/quarter |
+
+### Continuous Allocation Monitoring
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 6 | System monitors allocation conflicts in real-time: when demand from a higher-priority channel exhausts available allocation for a lower-priority channel, system alerts Supply Planner with: SKU, location, channels affected, quantities short, and suggested action (expedite PO per W2, arrange inter-DC transfer per W22, or accept stockout) | System | — | Automated |
+| 7 | Supply Planner reviews daily allocation conflict dashboard; resolves conflicts by: (a) expediting POs with vendors for critical shortfalls, (b) rebalancing safety stock buffers (temporary reduction for low-demand locations), (c) arranging emergency inter-DC transfers per W22, (d) recommending substitution to affected channel (alternative SKU with available inventory) | Supply Planner | Supply Planning Manager | 30 min/day |
+| 8 | **Allocation override**: When a business decision requires deviating from the default priority (e.g., prioritizing a large corporate project order over routine store replenishment), requestor (Category Manager, Sales Manager, or Ecommerce Manager) submits allocation override request in system with: SKU, quantity, source location, requested priority channel, business justification, and revenue impact; VP Supply Chain approves overrides affecting > 5% of a location's inventory; system logs override with full audit trail | Requestor / VP Supply Chain | VP Supply Chain | 15 min/override |
+
+### System Touchpoints
+- Configurable allocation priority engine with channel-specific weights and safety stock buffers (W105 allocation hierarchy)
+- ATP calculation per channel per SKU per location incorporating priority rules, safety stock, and existing commitments (W105 ATP logic)
+- Quarterly allocation performance report with fill rate, conflicts, safety stock breaches, and override log (W105.1)
+- Daily allocation conflict dashboard with real-time alerts and suggested actions (W105.6)
+- Allocation override request workflow with VP Supply Chain approval and audit trail (W105.8)
+- Integration with W4 (store replenishment), W11 (BOPIS), W19 (home delivery), W22 (inter-DC transfers), W31 (demand planning parameters), W56 (backorder priority), W57 (promo allocation), W58 (B2B orders)
+
+### Staffing Implication
+- **Supply Planning Manager**: adds ~4 hours/quarter for governance review + 30 min/day for conflict monitoring = ~28 hours/quarter. Absorbed within existing role.
+- **Supply Planner**: 30 min/day for conflict resolution = ~10 hours/month. Absorbed within existing planning duties.
+- **VP Supply Chain**: ~2 hours/quarter for governance review + ~30 min/quarter for override approvals. Absorbed.
+- **No incremental headcount.**
+
+---

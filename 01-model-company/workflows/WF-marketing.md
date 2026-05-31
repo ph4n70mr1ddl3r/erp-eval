@@ -112,3 +112,54 @@ BuildRight's ~24-person Marketing team operates across brand, promotions, loyalt
 - **No incremental headcount.**
 
 ---
+
+
+## W104. Loyalty Program Financial Governance & Periodic Review
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Quarterly loyalty program review calendar; or ad-hoc triggered by significant points liability change, competitive loyalty program launch, or program design change request |
+| **Frequency** | Quarterly financial review; annual program design review |
+| **Volume** | 600,000 members; ~PHP 1.2–1.8B cumulative points liability; ~50M points earned/month |
+| **Owner** | Loyalty Manager (operations); Cost Accountant (financial); CMO (strategic) |
+| **Participants** | Loyalty Manager, Cost Accountant, Controller, CMO, CFO, Marketing Analytics |
+
+### Background
+
+W17 (Customer Loyalty Program Operations) covers day-to-day loyalty operations — enrollment, earning, redemption, tier management, and fraud detection. However, there is no periodic governance workflow reviewing the financial health of the loyalty program. With a cumulative points liability of PHP 1.2–1.8B on the balance sheet (deferred revenue), 600,000 members, and a program cost of ~1% of revenue, the loyalty program is a material financial obligation requiring regular oversight. This workflow covers financial reporting, liability management, breakage analysis, tier economics, program ROI, and strategic design decisions.
+
+### Steps
+
+### Quarterly Financial Review
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Liability reporting**: Cost Accountant prepares quarterly loyalty liability report: (a) total outstanding points balance and estimated liability (outstanding points × PHP 1.00 redemption value × expected redemption rate ~75–85%), (b) quarterly points earned vs. redeemed vs. expired (waterfall), (c) deferred revenue balance vs. prior quarter — trend analysis, (d) liability as % of trailing 12-month revenue (benchmark: should remain stable, not growing as % of revenue), (e) breakage rate (points expired ÷ points earned) — compare to PFRS 15 assumption used in W17.4 allocation, (f) deferred revenue adequacy — is the recorded deferred revenue sufficient to cover expected redemptions? | Cost Accountant | Controller | 2 hours/quarter |
+| 2 | **Program engagement metrics**: Loyalty Manager prepares quarterly engagement report: (a) active member rate (members with ≥ 1 transaction in trailing 90 days), (b) enrollment trend (new sign-ups per month, channel breakdown: in-store vs. online), (c) redemption rate (points redeemed ÷ points available for redemption), (d) tier distribution (Bronze/Silver/Gold/Platinum member count and revenue contribution per tier), (e) average points balance per member by tier, (f) earn-to-burn ratio (points earned ÷ points redeemed — ratio > 1.0 means liability is growing), (g) member spend lift — do loyalty members spend more per transaction than non-members? (target: ≥ 15% higher ATV) | Loyalty Manager | CMO | 2 hours/quarter |
+| 3 | **Program cost analysis**: Cost Accountant calculates quarterly program cost: (a) points redemption cost (value of discounts given at POS), (b) deferred revenue allocation impact on gross revenue recognition, (c) program administration cost ( Loyalty Manager time, system licensing, card printing, communication), (d) promotional loyalty costs (double-points weekends, bonus points per W17.10), (e) total program cost as % of qualifying revenue; benchmark against industry norms (1.0–1.5% for Philippine retail) | Cost Accountant | Controller | 1 hour/quarter |
+| 4 | **Tier economics review**: Loyalty Manager and Cost Accountant analyze tier-level economics: (a) revenue per member by tier, (b) margin per member by tier (after loyalty discount, promotional costs, and tier-specific benefits), (c) upgrade/downgrade rates between tiers, (d) tier retention rate (% of members maintaining or upgrading tier year-over-year), (e) Platinum/Gold tier cost-benefit analysis — do high-tier benefits (exclusive pricing, priority service) drive sufficient incremental margin to justify the cost? | Loyalty Manager / Cost Accountant | CMO / Controller | 1 hour/quarter |
+| 5 | **CMO and CFO joint review**: CMO (program strategy) and CFO (financial stewardship) review quarterly loyalty program performance: (a) is the liability growing sustainably?, (b) is engagement improving or declining?, (c) is the program cost within budget?, (d) are tier economics viable?, (e) competitive loyalty benchmarking — how does BuildRight's program compare to competitors (earn rate, redemption value, tier benefits)?; agree on action items (e.g., adjust earn rate, change tier thresholds, introduce new redemption options, run re-engagement campaign for dormant members) | CMO / CFO | CEO | 1 hour/quarter |
+
+### Annual Program Design Review
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 6 | Loyalty Manager prepares annual program review document: (a) full-year financial summary (liability, cost, breakage, ROI), (b) program engagement trend over 3 years, (c) member segmentation analysis — heavy redeemers, points hoarders, dormant members, new members, (d) competitive program analysis — what are competitors offering?, (e) member satisfaction data from W65 CSAT surveys specific to loyalty, (f) proposed program changes for next year (earn rate, tier thresholds, new benefits, redemption catalog expansion, partnership opportunities) | Loyalty Manager | CMO | 8 hours/year |
+| 7 | CMO, CFO, and CEO review annual program design; approve or modify proposed changes; changes to earn rate or redemption value require Board awareness due to balance sheet impact | CMO / CFO | CEO / Board | 2 hours/year |
+| 8 | If program changes approved: Loyalty Manager coordinates implementation timeline with IT and Marketing; system configuration changes deployed; member communication plan executed (30-day advance notice for changes affecting earn rate or tier thresholds); updated program terms published on website and in-store | Loyalty Manager / IT | CMO | Per change scope |
+
+### System Touchpoints
+- Quarterly loyalty liability report: outstanding points, deferred revenue, breakage waterfall, liability trend (W104.1)
+- Program engagement dashboard: active rate, enrollment, redemption, tier distribution, earn-to-burn, member spend lift (W104.2)
+- Program cost reporting: redemption cost, deferred revenue impact, admin cost, promotional cost (W104.3)
+- Tier economics analysis: revenue, margin, upgrade/downgrade, retention per tier (W104.4)
+- Annual program review with competitive benchmarking and member segmentation (W104.6–7)
+- Integration with W17 (day-to-day loyalty operations), W65 (CSAT measurement), W83 (marketing campaigns — loyalty mechanics), W35 (management reporting — program KPIs in executive dashboard)
+
+### Staffing Implication
+- **Cost Accountant**: adds ~3 hours/quarter for liability and cost analysis + ~2 hours/year for annual review = ~14 hours/year. Absorbed.
+- **Loyalty Manager**: adds ~2 hours/quarter for engagement analysis + ~8 hours/year for annual review = ~16 hours/year. Absorbed.
+- **CMO / CFO**: 1 hour/quarter joint review + 2 hours/year annual review = ~6 hours/year. Absorbed.
+- **No incremental headcount.**
+
+---

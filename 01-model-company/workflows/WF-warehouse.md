@@ -285,3 +285,54 @@ BuildRight's 5-DC footprint spans the Philippine archipelago: DC1 Davao (Mindana
 
 ---
 
+
+
+## W106. DC Outbound Dispatch & Load Planning
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Daily outbound dispatch planning cycle (initiated each morning after W4 replenishment orders confirmed) |
+| **Frequency** | Daily per DC; 2–3 dispatch waves per day (morning, midday, afternoon) |
+| **Volume** | ~33 replenishment orders/DC/day + ~115 home delivery orders/DC/day + occasional inter-DC transfers (W22); loaded onto ~6–10 outbound trucks per DC per day |
+| **Owner** | DC Dispatch Supervisor |
+| **Participants** | DC Dispatch Supervisor, DC Supervisor, Loaders, Drivers, Fleet Manager, Supply Planner |
+
+### Background
+
+W4 (Store Replenishment) covers the pick/pack/ship process from the perspective of order creation through WMS-directed picking. However, the dispatch process — route planning, truck loading sequence, multi-stop routing, driver assignment, proof of delivery, and delivery confirmation — is not detailed in any existing workflow. This is a core daily warehouse operation that directly impacts delivery SLA (1–3 days from order to store receipt), fleet utilization, and transportation cost (~80% of which is third-party). This workflow fills that gap.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Morning dispatch planning** (6:00 AM): System generates daily outbound dispatch plan from confirmed pick/pack outputs: (a) store replenishment orders ready for dispatch (grouped by destination store and delivery route), (b) home delivery orders packed and staged (grouped by delivery zone), (c) inter-DC transfer orders (W22) if any, (d) promotional pre-positioning shipments (W57) with priority flag | System | — | Automated (nightly batch) |
+| 2 | DC Dispatch Supervisor reviews dispatch plan and assigns loads to trucks: (a) **Route optimization**: system suggests optimal multi-stop route per truck based on store delivery addresses, traffic patterns (Metro Manila vs. provincial), and delivery time windows; Dispatch Supervisor accepts or adjusts, (b) **Load consolidation**: system groups multiple store replenishment orders on one truck where stores are on the same route (typical: 3–5 stores per truck for provincial routes; 5–8 for Metro Manila), (c) **Truck assignment**: owned fleet (W52) for regular scheduled routes; 3PL trucks for overflow, home delivery bulk, and inter-island, (d) **Home delivery batching**: system batches home delivery orders by delivery zone; assigns to 3PL carriers per W19 rate cards and zone coverage | DC Dispatch Supervisor | DC Supervisor | 30–60 min/day |
+| 3 | DC Dispatch Supervisor prints or transmits load manifests to loaders and drivers: (a) **Load manifest**: truck ID, driver name, stop sequence (store name, address, delivery time window, order number, number of cases/totes, special instructions), (b) **Loading sequence**: system directs loading in reverse stop order (last stop loaded first, first stop loaded last) for efficient unloading at each stop, (c) **Special handling flags**: fragile items, hazardous materials (paint/chemicals), catch-weight items (lumber), temperature-sensitive items | DC Dispatch Supervisor | DC Supervisor | 15 min/truck |
+| 4 | **Loading crew** loads truck per load manifest and loading sequence: (a) scan-confirm each case/tote against manifest during loading, (b) secure loads with straps/bars for transit, (c) load hazardous materials per DOT/DENR segregation rules (paint/chemicals separated from general merchandise), (d) load catch-weight items (lumber, rebar) last for easy access and to prevent damage to other goods | Loading Crew | DC Dispatch Supervisor | 30–60 min/truck |
+| 5 | **Driver pre-departure**: (a) Driver reviews load manifest and route, (b) signs dispatch confirmation acknowledging load received and route assigned, (c) conducts vehicle pre-trip check per W52.2 (if owned vehicle), (d) departs DC per scheduled departure time (target: first truck departs by 8:00 AM for morning wave) | Driver | DC Dispatch Supervisor | 15 min |
+| 6 | **In-transit tracking**: System tracks truck location via GPS (owned fleet) or 3PL carrier tracking API; DC Dispatch Supervisor monitors real-time delivery progress dashboard: (a) trucks en-route, (b) stops completed, (c) deliveries behind schedule (ETE > planned ETA by > 30 min flagged), (d) exceptions (traffic delay, road closure, vehicle breakdown) | System / DC Dispatch Supervisor | DC Supervisor | Continuous (15 min review every 2 hours) |
+| 7 | **Store delivery execution**: (a) Driver arrives at store; presents load manifest to Receiving Clerk, (b) Receiving Clerk scans each case/tote against transfer order per W4.10, (c) Driver obtains signed delivery receipt (proof of delivery), (d) if short shipment or damage at delivery: noted on delivery receipt; Driver reports to DC Dispatch for resolution per W22.9a, (e) Driver proceeds to next stop | Driver / Receiving Clerk | DC Dispatch Supervisor / Store Manager | 15–30 min/stop |
+| 8 | **Delivery confirmation**: (a) Upon completing all stops, Driver returns to DC (or proceeds to next dispatch wave), (b) Driver submits signed delivery receipts and exception reports to DC Dispatch, (c) DC Dispatch scans delivery receipts into system; system updates transfer order status to "Delivered" or "Partially Delivered" per receiving confirmation, (d) system triggers store inventory receipt posting (W4.12) | Driver / DC Dispatch Supervisor | DC Supervisor | 15 min/truck |
+| 9 | **Afternoon wave** (1:00 PM): Repeat steps 1–8 for second dispatch wave using afternoon replenishment orders and remaining home delivery batches; typically lighter volume than morning wave | DC Dispatch Supervisor | DC Supervisor | Per steps 1–8 |
+| 10 | **End-of-day dispatch summary**: DC Dispatch Supervisor generates daily dispatch report: (a) total orders dispatched, (b) on-time departure rate (target: ≥ 95% of trucks depart within 30 min of scheduled time), (c) on-time delivery rate (target: ≥ 95% of stores receive within delivery window), (d) truck utilization rate (loaded volume ÷ truck capacity), (e) exceptions and resolution, (f) 3PL carrier performance for the day (feeds W52.9 and W62b) | DC Dispatch Supervisor | DC Supervisor | 15 min/day |
+| 11 | **Weekly**: DC Dispatch Supervisor and Fleet Manager review route efficiency metrics: (a) cost per delivery by route, (b) stops per route, (c) average delivery time per stop, (d) route optimization opportunities (new store additions, traffic pattern changes), (e) 3PL vs. owned fleet cost comparison per route; recommendations for route rebalancing or carrier changes | DC Dispatch Supervisor / Fleet Manager | DC Supervisor | 1 hour/week |
+
+### System Touchpoints
+- Daily outbound dispatch plan generation from picked/packed orders (W106.1)
+- Route optimization engine: multi-stop routing with traffic, time window, and cost optimization (W106.2)
+- Load consolidation: multiple orders grouped by route onto single truck (W106.2)
+- Load manifest generation with stop sequence and loading order (W106.3)
+- Barcode scan-confirmation during loading against manifest (W106.4)
+- Driver dispatch confirmation with load acceptance (W106.5)
+- Real-time GPS tracking dashboard for owned fleet; 3PL API tracking integration (W106.6)
+- Delivery receipt capture and transfer order status update (W106.8)
+- Daily dispatch report: departure rate, delivery rate, utilization, exceptions (W106.10)
+- Weekly route efficiency analytics (W106.11)
+- Integration with W4 (store replenishment — the orders being dispatched), W19 (home delivery — ecommerce dispatch), W22 (inter-DC transfers), W52 (fleet management — owned vehicle dispatch), W62b (3PL carrier management), W66 (inter-island logistics)
+
+### Staffing Implication
+- **1 DC Dispatch Supervisor per DC** (within existing ~150 DC headcount): manages daily dispatch planning, loading coordination, and driver management. This role likely already exists but was not formalized.
+- **2–3 Loaders per DC** (within existing DC staff): dedicated to outbound loading during dispatch waves. Absorbed within existing pick/pack team.
+- **No incremental headcount.**
+
+---

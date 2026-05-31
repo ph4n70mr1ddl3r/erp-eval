@@ -342,3 +342,69 @@ BuildRight collects rich customer feedback through multiple channels: complaint 
 
 ---
 
+
+
+## W103. Trade Sales Pipeline & Territory Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly sales review calendar; new lead qualification; territory rebalancing decision |
+| **Frequency** | Weekly pipeline review; monthly territory performance review; quarterly territory rebalancing |
+| **Volume** | ~5,000 trade accounts + 200 corporate accounts generating 30% of revenue (~PHP 18.7B/year); managed by ~10–12 Sales Reps |
+| **Owner** | Sales Rep (pipeline); Sales Manager / AR Supervisor (territory) |
+| **Participants** | Sales Rep, Sales Manager, AR Supervisor, Category Manager, VP Merchandising, Store Manager |
+
+### Background
+
+W58 (Corporate/Project Account Management) covers the operational management of existing corporate accounts — quoting, ordering, delivery, and billing. However, there is no workflow governing the sales pipeline itself: how new trade/corporate leads are qualified, how the sales team manages their pipeline from prospect to closed account, how territories are assigned and balanced, and how sales targets are tracked and reviewed. With B2B trade and corporate accounts representing 30% of total revenue (PHP 18.7B/year), this is a significant operational gap.
+
+### Steps
+
+### Weekly Pipeline Review
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Sales Rep updates CRM pipeline: for each active prospect/lead — (a) company name, contact person, estimated annual potential (based on project size or trade volume), (b) pipeline stage: Prospect → Qualified → Quotation Sent → Negotiation → Won/Lost, (c) next action and target close date, (d) probability weighting (Prospect 10%, Qualified 25%, Quotation 50%, Negotiation 75%), (e) competitive situation (which competitor currently supplies, switching barriers) | Sales Rep | Sales Manager | 30 min/week |
+| 2 | Sales Manager reviews pipeline dashboard: (a) total weighted pipeline value per Sales Rep, (b) pipeline stage distribution (healthy pipeline has 3× quota in qualified+ stages), (c) stalled opportunities — no activity in 14 days flagged for Sales Rep action, (d) upcoming target close dates at risk, (e) win/loss ratio for the quarter | Sales Manager | VP Merchandising | 1 hour/week |
+| 3 | Sales Manager conducts weekly 15-min pipeline coaching call with each Sales Rep (10–12 calls = ~3 hours/week): review top 5 opportunities, discuss strategy for stalled deals, provide coaching on competitive positioning | Sales Manager | VP Merchandising | 15 min/Sales Rep |
+| 4 | **New lead qualification**: Sources of new trade/corporate leads — (a) walk-in contractor/builder at store referred by Sales Associate or CSR, (b) inbound inquiry via website/phone, (c) Sales Rep proactive prospecting (construction site visits, industry events, referrals from existing accounts), (d) marketing campaign response (W83), (e) new business permit filings in trade area (public data); Sales Rep qualifies lead: (i) Is the prospect a legitimate business? (DTI/SEC registration, TIN), (ii) Estimated annual material spend in BuildRight categories?, (iii) Geographic fit — does the prospect operate within a store's trade area?, (iv) Competitive incumbent — is there an opportunity to displace?, (v) Payment capability — will they qualify for trade credit per W24? | Sales Rep | Sales Manager | 30 min/lead |
+
+### Monthly Territory Performance Review
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 5 | System generates monthly territory performance report per Sales Rep: (a) total revenue from trade/corporate accounts in territory vs. target, (b) new account openings vs. target, (c) active account count and revenue per account (identify top 10 and dormant accounts), (d) average order value and order frequency per account, (e) credit utilization (outstanding AR as % of total credit limits in territory), (f) win rate on quotations submitted (W58.1a), (g) average quotation-to-close cycle time | System | — | Automated |
+| 6 | Sales Manager reviews territory performance with each Sales Rep: (a) revenue vs. target — on track, ahead, or behind, (b) new account acquisition — sufficient pipeline to meet annual target?, (c) dormant account reactivation — identify accounts with no orders in 90+ days for W84 reactivation outreach, (d) high-value account deepening — top accounts with potential for increased share-of-wallet, (e) territory issues — competitive pressure, geographic coverage gaps, account conflicts with neighboring Sales Reps | Sales Manager / Sales Rep | VP Merchandising | 30 min/Sales Rep |
+| 7 | Sales Manager and Sales Rep agree on monthly action plan: top 5 accounts to grow, top 5 prospects to close, top 5 dormant accounts to reactivate; system tracks action items | Sales Manager | VP Merchandising | 10 min/Sales Rep |
+
+### Quarterly Territory Rebalancing
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 8 | Sales Manager reviews territory balance: (a) revenue per territory — flag imbalances > 20% from average, (b) account count per territory, (c) geographic coverage — are new store trade areas adequately covered?, (d) account-to-revenue ratio — are some Sales Reps overburdened with small accounts? | Sales Manager | VP Merchandising | 2 hours/quarter |
+| 9 | If rebalancing needed: Sales Manager proposes territory realignment — reassigns accounts between Sales Reps based on geographic proximity, account size fit, and Sales Rep capability; VP Merchandising approves; system updates account assignments; affected Sales Reps briefed; customers notified of new contact if relationship changes | Sales Manager | VP Merchandising | 1 hour/rebalancing |
+| 10 | Annual: VP Merchandising and Sales Manager set territory revenue targets for next year based on: (a) prior year actual by territory, (b) known project pipeline in each territory, (c) new store openings (W16) creating new trade areas, (d) market growth assumptions, (e) competitive landscape; targets feed into W26 annual budget | VP Merchandising / Sales Manager | CEO | 4 hours/year |
+
+### Territory Assignment Rules
+
+| Territory Dimension | Assignment Logic |
+|---|---|
+| **Geographic** | Each Sales Rep assigned a primary region (Mindanao, Visayas, Luzon-South, Luzon-North, Metro Manila) with defined store coverage |
+| **Account size** | Corporate accounts (> PHP 5M annual) may have dedicated Sales Rep; trade accounts shared within region |
+| **Industry vertical** | Sales Reps may specialize: construction contractors, interior designers, government/institutional (W78), property developers |
+| **Account conflicts** | If customer operates across territories, primary Sales Rep assigned based on customer HQ location; cross-territory orders credited to primary Sales Rep with secondary credit to fulfilling store |
+
+### System Touchpoints
+- CRM pipeline management with stage tracking, probability weighting, and activity logging (W103.1)
+- Pipeline dashboard: weighted value, stage distribution, stalled opportunities, win/loss ratio (W103.2)
+- Territory performance reporting: revenue vs. target, new accounts, dormant accounts, credit utilization (W103.5)
+- Territory assignment master data with geographic, account size, and vertical dimensions (W103 territory table)
+- Account-to-Sales-Rep assignment with change history and approval trail (W103.9)
+- Integration with W24 (credit application — new accounts enter pipeline), W41 (complaints — can trigger at-risk account review), W58 (corporate account operations — won pipeline accounts transition to W58 management), W84 (account reactivation — dormant accounts identified in territory review), W26 (annual budget — sales targets feed budget)
+
+### Staffing Implication
+- **10–12 Sales Reps** (Trade & Corporate): already assumed within the model company's ~310 HQ headcount; this workflow formalizes their operating cadence. Weekly pipeline maintenance (~30 min) + monthly territory review (~30 min) = ~4 hours/month per Sales Rep. This is core sales activity.
+- **1 Sales Manager**: manages 10–12 Sales Reps. Weekly pipeline review (~3 hours) + monthly territory reviews (~6 hours) + quarterly rebalancing (~3 hours) = ~12 hours/month. This is a full-time management role.
+- **No incremental headcount** — these roles are implied by the 30% B2B revenue but were not formalized in a workflow.
+
+---

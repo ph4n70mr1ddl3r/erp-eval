@@ -540,3 +540,104 @@ In big-box home improvement retail, physical product samples and demo units are 
 
 ---
 
+
+
+## W102. Category Performance Review & P&L Ownership
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly category P&L review calendar (5th business day of following month) |
+| **Frequency** | Monthly review; quarterly deep-dive aligned with W1 assortment review |
+| **Volume** | 12 product categories across 200 stores + 5 DCs; reviewed by 5 Category Managers |
+| **Owner** | Category Manager |
+| **Participants** | Category Manager, Pricing Analyst, Buyer, Cost Accountant, VP Merchandising, Store Ops Director |
+
+### Background
+
+W1 (Merchandise Planning & Assortment Review) covers quarterly assortment decisions — add, drop, or adjust SKUs. However, there is no monthly workflow where Category Managers are held accountable for their category's profit contribution. In standard retail merchandising practice, Category Managers own a "mini-P&L" for their categories, reviewing revenue, gross margin, markdowns, shrinkage, and inventory productivity monthly. This workflow bridges the gap between W1 (strategic assortment) and W35 (management reporting) by creating a structured monthly accountability review at the category level.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | System generates monthly category P&L report per category (and per Category Manager, covering 2–3 categories each): (a) **Revenue**: gross sales, returns, net sales — by store, by channel (in-store, ecommerce, B2B), by SKU count, (b) **COGS**: cost of goods sold at WAC, inbound freight allocation, landed cost adjustments, (c) **Gross Margin**: gross margin $ and % — vs. budget (W26) and vs. prior year, (d) **Markdowns & Clearance**: total markdown value, markdown % of revenue — by reason (seasonal, slow-mover, damaged, promotional), per W93, (e) **Shrinkage**: inventory loss by category from W92 shrinkage report, (f) **Net Margin**: gross margin − markdowns − shrinkage = contribution margin by category, (g) **Inventory Productivity**: inventory turns, weeks of supply, GMROI (Gross Margin Return on Inventory Investment), sell-through %, (h) **Vendor Performance**: on-time delivery %, fill rate %, quality reject rate for top vendors in category per W44 | System | — | Automated (nightly batch, available T+3 business days) |
+| 2 | Category Manager reviews their category P&L and prepares analysis: (a) identify top 3 positive and top 3 negative variance drivers vs. budget, (b) explain margin erosion or improvement (cost changes from W40, promotional impact from W13, markdown impact from W93), (c) highlight store-level outliers (top 5 and bottom 5 stores by category margin), (d) identify SKUs with significant margin decline (cost up but SRP not adjusted per W40), (e) assess inventory productivity — categories with declining turns or excess weeks of supply need action plan | Category Manager | VP Merchandising | 3–4 hours/category/month |
+| 3 | Pricing Analyst provides supporting analysis: (a) price elasticity observations from recent W40 price changes, (b) promotional ROI from recent W13 events, (c) competitive pricing benchmarking updates, (d) quantity break utilization from W40.19 | Pricing Analyst | Category Manager | 2 hours/month |
+| 4 | Cost Accountant provides: (a) WAC verification per category (any unusual WAC movements from import FX, landed cost adjustments), (b) intercompany margin impact (if category products flow through IC per W14), (c) NRV (Net Realizable Value) review for slow-moving categories per W9a.16b | Cost Accountant | Controller | 1 hour/month |
+| 5 | Category Manager presents category P&L review to VP Merchandising in monthly category review meeting (30–45 min per category): (a) performance summary — did the category meet revenue, margin, and inventory targets?, (b) variance explanations with root cause, (c) action plan for underperforming areas (pricing adjustment per W40, assortment change per W1, vendor negotiation, markdown acceleration per W93, replenishment parameter adjustment per W31.8), (d) forward-looking outlook — upcoming seasonal factors, promotional plans, vendor cost changes | Category Manager | VP Merchandising | 30–45 min/category |
+| 6 | VP Merchandising and Category Manager agree on action items with owners and deadlines; system tracks action items to closure | VP Merchandising | Category Manager | 10 min/category |
+| 7 | Quarterly (aligned with W1): deeper analysis including (a) category contribution to total company P&L, (b) category market share analysis (if data available), (c) competitive category benchmarking, (d) SKU rationalization opportunities (further depth beyond W1), (e) vendor portfolio review for category (continue, expand, reduce, or exit vendor relationships per W44) | Category Manager / VP Merchandising | VP Merchandising | 2 hours/category/quarter |
+
+### System Touchpoints
+- Category P&L report with revenue, COGS, gross margin, markdowns, shrinkage, net margin, inventory turns, GMROI (W102.1)
+- Budget vs. actual variance analysis by category (integration with W26 budget data) (W102.1)
+- Store-level drill-down by category for top/bottom store identification (W102.2)
+- Action item tracking with owner, deadline, and status (W102.6)
+- Integration with W1 (assortment review), W13 (promotional impact), W26 (budget), W31 (demand forecast accuracy), W35 (management reporting), W40 (pricing changes), W44 (vendor performance), W85 (product costing), W93 (markdown analysis)
+
+### Staffing Implication
+- **Category Managers**: ~3–4 hours/category/month × 2–3 categories each = ~8–12 hours/month. This is a core part of their role. Absorbed.
+- **Pricing Analysts**: ~2 hours/month for supporting analysis across all categories. Absorbed.
+- **Cost Accountant**: ~1 hour/month. Absorbed.
+- **VP Merchandising**: ~30–45 min × 5 Category Managers = ~3–4 hours/month for review meetings. Absorbed.
+- **No incremental headcount.**
+
+---
+
+
+
+## W107. Pricing Hierarchy Governance & Compliance Audit
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Quarterly pricing governance review calendar; or ad-hoc triggered by pricing conflict (W13/W40 conflict), competitive price war, or regulatory inquiry |
+| **Frequency** | Quarterly governance review; annual comprehensive audit |
+| **Volume** | 35,000 active SKUs across 6+ pricing types (SRP, trade, corporate, promotional, quantity break, employee) |
+| **Owner** | Pricing Analyst (governance); Internal Audit (compliance) |
+| **Participants** | Pricing Analyst, Category Manager, VP Merchandising, Internal Audit, IT, Store Operations |
+
+### Background
+
+BuildRight operates 5+ concurrent pricing mechanisms: regular SRP (W40), promotional pricing (W13), trade/corporate account pricing (W5b.4c, W24), quantity break pricing (W40.15–19), competitor price matching (W61), and employee discount (W5b.12). Each has its own workflow, but there is no unified governance framework defining the pricing rule hierarchy (which price wins when multiple prices apply), periodic compliance verification (are shelf tags, POS, and ecommerce prices aligned?), and audit of pricing override patterns. This workflow creates that governance layer.
+
+### Pricing Hierarchy Rules (System-Enforced)
+
+| Priority | Price Type | When Applied | Override Authority |
+|---|---|---|---|
+| 1 | Clearance/Markdown (W93) | Item flagged as clearance | Category Manager |
+| 2 | Promotional Price (W13) | Within active promo date range | Pricing Analyst (setup); system auto-applies |
+| 3 | Competitor Price Match (W61) | Customer request with proof | Cashier + Store Manager authorization |
+| 4 | Quantity Break Price (W40.15) | Scanned quantity meets threshold | System auto-applies — no override |
+| 5 | Trade/Corporate Account Price (W5b.4c) | Customer identified at POS | Cashier selects account; system auto-applies |
+| 6 | Employee Discount (W5b.12) | Employee ID scanned | Cashier; system enforces limits |
+| 7 | Regular SRP (W40) | Default — no other price applies | N/A |
+
+**Conflict resolution**: When two or more pricing rules could apply, system applies the lowest price (customer-friendly) and logs the conflict for Pricing Analyst review. Exceptions: (a) employee discount does not stack with promotional or quantity break pricing — lower of employee discount or promo/QB applies, (b) trade account pricing and quantity break pricing do not stack — lower of the two applies, (c) clearance price is absolute — no further discounts apply on clearance items (W93 shelf labels display "Clearance — Final Sale — No Returns").
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **System conflict log review**: Pricing Analyst reviews weekly pricing conflict log generated by system — instances where multiple pricing rules applied to the same SKU at POS or ecommerce; each conflict shows: SKU, store/channel, prices compared, price applied, transaction reference; Pricing Analyst validates that the system applied the correct hierarchy rule | Pricing Analyst | Category Manager | 1 hour/week |
+| 2 | **Override audit**: Pricing Analyst reviews weekly POS price override report (W5b.4a) — all manual price overrides by cashier, authorizing manager, original price, override price, and reason code; flags: (a) cashiers with high override frequency (> 2× store average), (b) overrides exceeding 20% of original price without competitive price match documentation, (c) overrides in categories not typically subject to negotiation (e.g., small hardware), (d) pattern of overrides concentrated on specific SKUs (possible shelf tag/system price error requiring W63 correction) | Pricing Analyst | Category Manager | 1 hour/week |
+| 3 | **Quarterly shelf tag vs. POS vs. ecommerce price alignment**: (a) system generates price alignment report: compares current shelf tag price (from W63 print file), POS system price, and ecommerce published price for all active SKUs; (b) Pricing Analyst reviews discrepancies — any SKU where the three prices do not match; (c) discrepancies routed for correction: POS mismatch → IT (W48), shelf tag mismatch → Store Operations (W63), ecommerce mismatch → Ecommerce Team (W50); (d) Pricing Analyst tracks resolution; uncorrected mismatches > 5 business days escalated to VP Merchandising | Pricing Analyst / IT / Store Ops | VP Merchandising | 4 hours/quarter |
+| 4 | **Quarterly pricing rule review**: Pricing Analyst and Category Manager review pricing rule configuration: (a) quantity break thresholds — are tiers driving incremental volume per W40.19 analytics?, (b) trade account discount tiers — are they aligned with current margin targets and competitive positioning?, (c) promotional pricing rules — are promo-to-base price ratios consistent with promotional ROI targets from W13.10?, (d) employee discount rate — is current rate (default 10%) appropriate given margin impact? | Pricing Analyst / Category Manager | VP Merchandising | 2 hours/quarter |
+| 5 | **Annual comprehensive pricing audit**: Internal Audit conducts full pricing compliance audit: (a) sample 200 transactions per store (20 stores sampled) — verify correct price was applied per hierarchy rules, (b) verify all price changes during the year followed W40/W13 approval workflows (audit trail completeness), (c) verify pricing master data security — only authorized Pricing Analysts and Category Managers can create/modify price records, (d) verify promotional pricing auto-reverts after promo period (W13.9), (e) verify BIR-compliant price display on receipts (SRP inclusive of VAT per Consumer Act RA 7394), (f) report findings to CFO and VP Merchandising with recommendations | Internal Audit | CFO | 40 hours/year (1 week) |
+| 6 | **Pricing change approval compliance review**: Monthly, Pricing Analyst generates pricing change audit report showing all price changes (W40) and promotional price changes (W13) during the period — for each change: who initiated, who approved, was the correct approval tier used per W40.5 thresholds, was margin impact documented; report submitted to VP Merchandising for review | Pricing Analyst | VP Merchandising | 1 hour/month |
+
+### System Touchpoints
+- Weekly pricing conflict log from POS and ecommerce transactions with hierarchy rule details (W107.1)
+- Weekly POS price override report with cashier, manager, and reason code analysis (W107.2)
+- Quarterly price alignment report comparing shelf tag, POS system, and ecommerce prices (W107.3)
+- Pricing rule configuration review with utilization analytics from W40.19 (W107.4)
+- Annual pricing compliance audit sampling and workflow trail verification (W107.5)
+- Monthly pricing change audit report with approval compliance check (W107.6)
+- Pricing hierarchy engine: configurable priority rules, conflict resolution logic, and stacking rules enforced at POS and ecommerce checkout (W107 pricing hierarchy table)
+- Integration with W5b (POS pricing), W13 (promotional pricing), W24 (trade account pricing), W40 (regular pricing and quantity breaks), W61 (price matching), W63 (shelf labels), W69 (price compliance audit — W69 is store-level daily scanning; W107 is centralized governance), W93 (clearance pricing)
+
+### Staffing Implication
+- **Pricing Analysts**: adds ~3 hours/week for conflict log and override review + ~6 hours/quarter for shelf tag alignment and pricing rule review + ~1 hour/month for change audit = ~20 hours/month. With 3 Pricing Analysts, this is ~7 hours each/month. Absorbed.
+- **Internal Audit**: 40 hours/year for annual comprehensive pricing audit. Absorbed within annual audit plan.
+- **No incremental headcount.**
+
+---

@@ -1257,3 +1257,126 @@ With 51% of POS transactions paid via non-cash methods (credit/debit cards ~36%,
 - **No incremental headcount.**
 
 ---
+
+
+
+## W100. Vendor Statement Reconciliation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly reconciliation calendar (10th business day of following month) |
+| **Frequency** | Monthly for top 100 vendors (by spend); quarterly for remaining active vendors |
+| **Volume** | Top 100 vendors = ~80% of AP spend; remaining ~700–900 vendors reconciled quarterly |
+| **Owner** | AP Supervisor |
+| **Participants** | AP Clerk, AP Supervisor, Buyer (discrepancy resolution), Controller (escalation) |
+
+### Background
+
+Referenced as "W7d" in W3 (RTV credit note aging report feeding into vendor statement reconciliation), this workflow fills a critical AP control gap. Without systematic vendor statement reconciliation, the company risks overpayment (duplicate invoices not caught by auto-matching), underpayment (vendor disputes damaging relationships), and inaccurate liability reporting (AP sub-ledger diverges from actual amounts owed). This is a standard month-end close control for any company with 800–1,000 active vendors and ~8,500–9,500 monthly invoices.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | AP Clerk requests or receives vendor statement of account (SOA) — via email, vendor portal, or mail; top vendors provide monthly SOA automatically; for remaining vendors, AP Clerk sends batch request at month-end | AP Clerk | AP Supervisor | 30 min/batch (top 100) |
+| 2 | System prepares BuildRight's AP sub-ledger summary per vendor for the reconciliation period: total invoices received, payments made, credit memos applied, debit memos issued, and resulting AP balance | System | — | Automated |
+| 3 | AP Clerk compares vendor SOA to BuildRight's AP sub-ledger per vendor: (a) match invoices — vendor SOA invoices vs. BuildRight recorded invoices, (b) match payments — vendor SOA payments received vs. BuildRight payments issued, (c) match credit/debit memos — vendor SOA adjustments vs. BuildRight credit memos (W7.9b) and debit notes (W70), (d) compare ending balances | AP Clerk | AP Supervisor | 15 min/vendor |
+| 4 | **If balances match**: AP Clerk marks vendor as reconciled for the period; no further action | AP Clerk | AP Supervisor | 2 min/vendor |
+| 5 | **If balances do not match**: AP Clerk documents reconciling items by type: (a) **Timing differences** — payments in transit (BuildRight issued but vendor not yet received), invoices received after SOA cutoff, GRs posted but vendor invoices not yet received (GRNI per W7), (b) **Missing invoices** — vendor shows invoice not in BuildRight's system (possible loss, email misrouted, or vendor error), (c) **Missing payments** — BuildRight shows payment not on vendor SOA (check not cleared, bank transfer not yet credited to vendor), (d) **Unrecorded credit memos** — vendor issued credit not yet in BuildRight's system (RTV credit note pending per W3, rebate settlement pending per W27), (e) **Disputed items** — vendor shows charge that BuildRight disputes (quality rejection, pricing discrepancy, unauthorized charge) | AP Clerk | AP Supervisor | 15–30 min/vendor with variances |
+| 6 | AP Clerk resolves reconciling items: (a) timing differences — document and carry forward to next period, (b) missing invoices — request from vendor; if legitimate, process per W7, (c) missing payments — provide payment proof (bank reference, check copy) to vendor, (d) unrecorded credits — verify against RTV log (W88), rebate settlement log (W27), price protection log (W40); if valid, request vendor credit memo or record in system, (e) disputed items — route to Buyer for resolution with vendor per W44 dispute process | AP Clerk / Buyer | AP Supervisor | 15–60 min/item |
+| 7 | AP Clerk prepares reconciliation summary per vendor: BuildRight balance, vendor SOA balance, reconciling items (with aging), net agreed balance; system stores reconciliation record with full documentation | AP Clerk | AP Supervisor | 5 min/vendor |
+| 8 | AP Supervisor reviews reconciliation summary for top 20 vendors (by spend or by reconciliation complexity); approves or requests additional investigation | AP Supervisor | Controller | 1 hour/month |
+| 9 | Unresolved items > 60 days auto-escalate to Controller for review; Controller decides: write-off, pursue with vendor, or adjust AP balance | Controller | CFO | 30 min/month |
+| 10 | Quarterly: AP Supervisor generates vendor reconciliation KPI report: (a) reconciliation completion rate (% of top 100 vendors reconciled within SLA), (b) average reconciling items per vendor, (c) aging of unresolved items, (d) top vendors by reconciliation complexity (chronic discrepancies signal vendor billing quality issues — feed into W44 vendor scorecard), (e) duplicate payment recovery amount (if any duplicates caught during reconciliation) | AP Supervisor | Controller | 1 hour/quarter |
+
+**Reconciliation SLA**: Top 100 vendors reconciled within 15 business days of month-end; remaining vendors reconciled within 30 business days of quarter-end.
+
+### System Touchpoints
+- Vendor AP sub-ledger summary generation per vendor per period (W100.2)
+- Reconciliation workspace: side-by-side comparison of vendor SOA vs. BuildRight AP records with line-level matching (W100.3)
+- Reconciling item classification and documentation: timing, missing invoice, missing payment, unrecorded credit, disputed (W100.5)
+- Integration with W7 (invoice and payment records), W27 (rebate credits), W70 (debit note aging), W88 (RTV credit notes), W44 (vendor scorecard — reconciliation complexity as quality metric)
+- Aging tracker for unresolved reconciling items with auto-escalation at 60 days (W100.9)
+- Reconciliation KPI dashboard (W100.10)
+- Audit trail: all reconciliation actions logged with AP Clerk ID, timestamp, and documentation
+
+### Staffing Implication
+- **AP Clerks**: Top 100 vendors × 15 min average = ~25 hours/month for monthly reconciliation. Remaining ~800 vendors quarterly × 15 min ÷ 3 months = ~67 hours/quarter = ~22 hours/month. Total ~47 hours/month. With 8–10 AP Clerks, this is ~5–6 hours each/month. Absorbed within existing team, with some overtime during peak month-end close periods.
+- **AP Supervisor**: 1 hour/month for top-20 review + 1 hour/quarter for KPI report. Absorbed.
+- **Controller**: 30 min/month for escalations. Absorbed.
+
+---
+
+
+
+## W101. Customer Refund & Credit Processing
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer return approved (W12), ecommerce cancellation (W98), special order deposit refund (W38), customer deposit refund (W94), loyalty points reversal (W17), or credit note issuance from complaint resolution (W41) |
+| **Frequency** | ~5,000–7,000 refund/credit transactions/month across all channels |
+| **Volume** | ~2,800 in-store return refunds + ~2,250 ecommerce refunds + ~50–100 deposit refunds + ~50–200 credit notes/month |
+| **Owner** | CSR (in-store refunds); Ecommerce Customer Support (online refunds); AR Supervisor (trade/corporate credit notes) |
+| **Participants** | CSR, Cashier, Store Manager, AR Supervisor, AR Clerk, Ecommerce Customer Support, Treasury Analyst, Controller |
+
+### Background
+
+Refund and credit processing is currently scattered across multiple workflows: W12 (returns), W38 (special order deposits), W94 (customer deposits), W98 (ecommerce cancellations), and W41 (complaint credits). Each handles its specific trigger but there is no unified workflow governing authorization tiers, payment method routing, GL posting consistency, BIR compliance, reconciliation, and fraud prevention across all refund/credit channels. This workflow provides the common processing framework that all trigger workflows reference.
+
+### Refund Authorization Matrix
+
+| Refund Amount | In-Store (CSR/Cashier) | Online (Ecom Support) | Trade/Corporate (AR) |
+|---|---|---|---|
+| ≤ PHP 1,000 | CSR approves | Auto-approved | AR Clerk |
+| PHP 1,001–5,000 | Store Manager | CS Manager | AR Clerk |
+| PHP 5,001–50,000 | Store Manager + photo evidence | CS Manager + VP approval | AR Supervisor |
+| > PHP 50,000 | Regional Manager + Controller | CMO + Controller | Controller + CFO |
+
+### Refund by Payment Method
+
+| Original Payment | Refund Method | Processing | GL Posting |
+|---|---|---|---|
+| Cash (in-store) | Cash from drawer or store petty cash (W25) if drawer insufficient | Immediate at POS | Dr. Revenue / Cr. Cash |
+| Credit/Debit Card | Electronic refund to original card via POS terminal or card processor portal | T+1–3 business days settlement | Dr. Revenue / Cr. AR-Card Processor |
+| E-Wallet (GCash, Maya) | Electronic refund to original e-wallet via payment gateway | T+1–2 business days settlement | Dr. Revenue / Cr. AR-E-Wallet |
+| Loyalty Points | Points reversal (deduct from balance) | Immediate in system | Dr. Revenue / Cr. Deferred Revenue-Loyalty |
+| Gift Card | Reload to original gift card | Immediate in system | Dr. Revenue / Cr. Deferred Revenue-Gift Cards |
+| Trade Account (charge) | AR credit memo — reduces outstanding balance | Immediate in system | Dr. Revenue / Cr. AR-Trade |
+| Ecommerce (online payment) | Refund to original payment method via PayMongo/Dragonpay | T+2–5 business days settlement | Dr. Revenue / Cr. AR-Ecommerce |
+| Split Tender | Pro-rata refund to each method per W12a.6 | Combination of above | Split per method |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Trigger workflow** creates refund request: (a) W12 (return) — CSR processes return in POS; system creates refund request, (b) W98 (ecommerce cancellation) — system auto-creates refund for unfulfilled orders, (c) W38 (deposit refund) — CSR processes deposit refund with reason code, (d) W94 (advance payment refund) — CSR or AR Clerk processes with reason code, (e) W41 (complaint credit) — CS Manager authorizes refund or credit as complaint resolution, (f) W17 (loyalty reversal) — system auto-reverses points on return | Per trigger workflow | Per authorization matrix | Per trigger workflow |
+| 2 | System validates refund request: (a) original transaction exists and is within refund policy window, (b) refund amount does not exceed original transaction amount, (c) no prior refund already processed against same transaction (duplicate refund prevention), (d) authorization per matrix above is met — system enforces approval routing by amount and channel | System | — | Automated |
+| 3 | System determines refund payment method(s) from original transaction: for split-tender transactions, system identifies each payment method and calculates pro-rata refund amount per method | System | — | Automated |
+| 4 | **Cash refund**: Cashier disburses from cash drawer; system reduces cash drawer accountability; if cash in drawer insufficient, Cashier uses petty cash float (W25) with Store Manager override; system logs cash refund with cashier ID and drawer balance impact | Cashier | Store Manager | 2 min |
+| 5 | **Card/e-wallet refund**: System initiates electronic refund via payment processor integration; if terminal-based refund: Cashier processes refund on POS terminal; if gateway-based refund (ecommerce): system processes via PayMongo/Dragonpay API; system tracks refund settlement status (initiated → settled → confirmed) | System / Cashier | — | 2 min (terminal) / automated (gateway) |
+| 6 | **Trade account credit**: AR Clerk posts credit memo to customer's AR account; system reduces outstanding balance; credit memo reference linked to original invoice and trigger workflow | AR Clerk | AR Supervisor | 5 min |
+| 7 | **Gift card / loyalty reversal**: System reloads gift card balance or deducts loyalty points; reversal posted with reference to original earning transaction | System | — | Automated |
+| 8 | System posts GL entries: (a) Dr. Revenue (or Dr. Sales Returns) / Cr. Cash (or AR-Card/E-Wallet/Ecommerce) — revenue reversal at original amount, (b) Dr. Inventory / Cr. COGS — if physical goods returned to stock (for non-damaged returns), (c) Dr. VAT Output / Cr. VAT Payable — output VAT reversal on refund (BIR requirement: refund must reverse the VAT portion), (d) system generates BIR-compliant credit memo or refund receipt with all required fields (TIN, original invoice reference, credit memo number, reason code, VAT reversal) | System | — | Automated |
+| 9 | Weekly: AR Supervisor and Treasury Analyst review unsettled electronic refund report — refunds initiated but not yet settled by card processors or payment gateways; aged items > 7 business days investigated with processor | AR Supervisor / Treasury Analyst | Controller | 30 min/week |
+| 10 | Monthly: Controller reviews refund analytics: (a) total refund volume by channel (in-store, ecommerce, trade), (b) refund rate as % of revenue by channel (target: in-store < 3%, ecommerce < 8%), (c) top refund reasons, (d) refund processing time (initiation to settlement), (e) authorization compliance — spot-check 20 random refunds per tier for proper approval, (f) refund fraud indicators — high-refund stores, high-refund employees, repeat refund customers | Controller | CFO | 1 hour/month |
+
+### System Touchpoints
+- Unified refund request record with link to original transaction and trigger workflow (W101.1)
+- Automated validation: original transaction lookup, amount check, duplicate refund prevention, authorization tier enforcement (W101.2)
+- Payment method routing from original transaction with pro-rata split calculation (W101.3)
+- Cash refund with drawer balance tracking and petty cash fallback (W101.4)
+- Electronic refund initiation via POS terminal and payment gateway integration (W101.5)
+- Trade account credit memo posting (W101.6)
+- Gift card reload and loyalty points reversal (W101.7)
+- GL posting with VAT reversal and BIR-compliant credit memo / refund receipt generation (W101.8)
+- Unsettled electronic refund tracking with aging and processor follow-up (W101.9)
+- Monthly refund analytics dashboard with fraud indicators (W101.10)
+- Integration with W12 (in-store returns), W17 (loyalty reversal), W28 (gift card reload), W38 (deposit refund), W41 (complaint credit), W94 (advance payment refund), W98 (ecommerce cancellation), W99 (payment settlement reconciliation), W5b (POS refund processing)
+
+### Staffing Implication
+- **CSRs / Cashiers**: refund processing is part of existing return and cancellation workflows — no incremental effort
+- **AR Supervisor**: adds ~30 min/week for unsettled refund review. Absorbed.
+- **Controller**: adds 1 hour/month for refund analytics review. Absorbed.
+- **No incremental headcount.**
+
+---

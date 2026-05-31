@@ -670,3 +670,34 @@ Multiple workflows reference inventory allocation: W4 (store replenishment with 
 | 5 | **Expedited Dispatch**: Local 3PL (Lalamove/Transportify) picks up from Store B; delivers to Store A within 4-8 hours | Logistics | — | 4-8 hours |
 | 6 | **Receipt**: Store A Receiving Clerk processes Goods Receipt; inventory available for sale immediately | Receiving Clerk | Store Manager | 10 min |
 
+---
+
+## W218. Inter-DC Stock Rebalancing (Stock Push)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Supply planning identifies "Overstock" in one DC and "Stock-out Risk" in another |
+| **Frequency** | Monthly; or as needed for peak seasons |
+| **Volume** | Bulk pallet transfers |
+| **Owner** | Supply Planning Manager |
+| **Participants** | Supply Planner, DC Managers, Logistics (3PL Carrier) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Imbalance Detection**: Supply Planner reviews "DC-to-DC Inventory Health" report; identifies SKUs where current DC stock > 6 months cover vs. < 2 weeks at another DC | Supply Planner | — | 2 hours |
+| 2 | **Transfer Proposal**: System suggests "Rebalancing Transfer" (Push) to move bulk stock to the understocked DC | System / Planner | Supply Planning Mgr | 1 hour |
+| 3 | **Fulfillment Booking**: Logistics books heavy-duty transport (tractor head / 10-wheeler) for the bulk move | Logistics | — | 1 hour |
+| 4 | **Loading**: Source DC picks from bulk storage; system verifies quantities via WMS (W3) | DC Picker | DC Supervisor | 2 hours |
+| 5 | **Transit**: Bulk shipment moves between DCs; system tracks "In-Transit" at WAC | Driver | — | 1–3 days |
+| 6 | **Receipt**: Destination DC processes bulk GR; inventory available for sale immediately | Receiving Clerk | DC Manager | 2 hours |
+| 7 | **Efficiency Audit**: Review total freight cost vs. margin preserved by avoiding stock-outs | Supply Planning Mgr | — | Quarterly |
+
+### System Touchpoints
+- DC-level inventory health and cover analysis dashboard
+- Bulk transfer order generation (Push mode)
+- WMS bulk zone picking and receiving
+- In-transit inventory value tracking between DCs
+
+

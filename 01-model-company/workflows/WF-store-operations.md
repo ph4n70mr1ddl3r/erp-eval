@@ -1538,4 +1538,35 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 - Automated daily bank reconciliation for cash deposits
 - CIT pickup tracking and safe capacity monitoring
 
+---
+
+## W206. Mobile POS (mPOS) & Queue-Busting Operations
+
+| Field | Detail |
+|---|---|
+| **Trigger** | High foot traffic / long queues at main checkout; or customer needing checkout in Yard/Materials area |
+| **Frequency** | Peak hours (weekends, holidays); and for bulky outdoor sales |
+| **Volume** | ~5–10% of total store transactions |
+| **Owner** | Store Manager |
+| **Participants** | Sales Associate (mPOS Operator), Cashier (for cash handling if needed), Customer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Deployment**: Store Manager monitors queues; dispatches Sales Associates with tablets/mPOS devices to the floor | Store Manager | — | 2 min |
+| 2 | **Scanning**: Associate scans items in customer's cart or in the Yard area; system applies real-time pricing and promos | Associate | — | 3–5 min |
+| 3 | **Customer Lookup**: Associate scans Loyalty Card or looks up customer via phone/email (W17) | Associate | — | 1 min |
+| 4 | **Tendering**: (a) If Card/E-wallet: Associate processes payment on the mPOS device; (b) If Cash: Associate generates "Pre-order Barcode" and directs customer to "Express Cash" lane | Associate | — | 2 min |
+| 5 | **Receipt**: System generates Digital Receipt (Email/SMS) or prints via Bluetooth belt printer | System | — | 30 sec |
+| 6 | **Fulfillment**: If items are in Yard: Associate marks items as "Released" in system; guard verifies digital receipt at gate | Associate | — | 2 min |
+| 7 | **Sync**: Transactions sync instantly with central ERP inventory and Finance; no manual EOD re-entry required | System | — | Automated |
+
+### System Touchpoints
+- mPOS tablet application with full SKU/Price/Loyalty integration
+- Bluetooth printer / Digital receipt integration
+- Yard-gate verification dashboard
+- Real-time inventory deduction (same as fixed POS)
+
+
 

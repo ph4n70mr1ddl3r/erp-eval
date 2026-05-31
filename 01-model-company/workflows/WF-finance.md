@@ -1546,7 +1546,41 @@ W8 covers AR processing — invoice generation, credit limit enforcement, and cr
 | 5 | Reconcile physical count vs. ERP Asset Register | FA Accountant | Controller | 4 hours |
 | 6 | Investigate missing assets; interview location manager | Internal Audit | Store Manager | 2 hours |
 | 7 | Generate Audit Variance Report; obtain approvals for adjustments | FA Accountant | CFO | 2 hours |
-| 8 | Update Asset Register: change status, update location, or initiate disposal (W39) | FA Accountant | Controller | 1 hour |
+| 8 | **Update Asset Register**: change status, update location, or initiate disposal (W39) | FA Accountant | Controller | 1 hour |
+
+---
+
+## W217. Senior Citizen & PWD VAT-Exemption Audit & Reporting
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly and Quarterly tax filing deadlines (BIR Form 2550M/Q) |
+| **Frequency** | Monthly review; Quarterly reporting |
+| **Volume** | ~2–5% of total retail transactions |
+| **Owner** | Tax Manager |
+| **Participants** | Store Managers (data source), AR Clerk, Controller, BIR |
+
+### Background
+
+Philippine law (RA 9994 and RA 10754) requires 20% discount and VAT-exemption for Senior Citizens and Persons with Disabilities (PWD) on certain goods. This requires rigorous documentation for tax-deductible expense claiming.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Data Consolidation**: System pulls all POS transactions flagged as "SC/PWD Discount" across 200 stores | AR Clerk | Tax Manager | 2 hours |
+| 2 | **ID Verification Audit**: Sample review of captured ID numbers (OSCA/PWD ID) and customer signatures in the system to ensure compliance | AR Clerk | Tax Manager | 4 hours |
+| 3 | **VAT-Exemption Reconciliation**: Reconcile the "VAT-Exempt" sales column in the Sales Journal against actual discounts given | AR Clerk | Controller | 2 hours |
+| 4 | **Report Generation**: Generate "Summary List of Sales" (SLS) and specific SC/PWD discount reports required for BIR filing | Tax Manager | — | 1 hour |
+| 5 | **Accounting Entry**: Verify correct posting to "Discounts - SC/PWD" (Operating Expense) and "VAT-Exempt Sales" (Revenue) | Controller | CFO | 30 min |
+| 6 | **Document Archival**: Ensure digital/physical copies of SC/PWD booklets and transaction logs are archived for 7 years | Store Manager | Tax Manager | Monthly |
+
+### System Touchpoints
+- POS capture of SC/PWD ID and mandatory data fields (W170)
+- VAT-Exempt sales reporting in GL
+- Automated SLS (Summary List of Sales) generation for BIR
+- Archival system for discount documentation
+
 
 ### System Touchpoints
 - Fixed Asset Register with barcode/RFID link (W184.1)

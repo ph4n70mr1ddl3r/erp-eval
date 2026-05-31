@@ -126,6 +126,36 @@ As a "Home Building Partner," BuildRight Depot provides professional installatio
 
 ---
 
+## W211. In-Store 3D Kitchen/Bathroom Design Rendering
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer request for customized kitchen, bathroom, or closet layout |
+| **Frequency** | ~20–30 designs per store/month |
+| **Volume** | High-value project leads |
+| **Owner** | Design Consultant |
+| **Participants** | Customer, Sales Rep, Category Manager (for custom SKU approval) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Space Survey**: Consultant captures floor plan dimensions (manual or via laser scanner app) | Consultant | — | 30 min |
+| 2 | **Assortment Mapping**: System filters 3D assets library for SKUs currently in stock or available for order (W1) | System | — | Automated |
+| 3 | **Interactive Design**: Consultant builds 3D model with customer; applies finishes (tiles, paint), fixtures, and cabinets | Consultant | — | 1–2 hours |
+| 4 | **ERP BOM Linkage**: System automatically generates a Bill of Materials (BOM) linked to ERP SKU IDs and real-time prices | System | — | Real-time |
+| 5 | **Margin Validation**: System checks total project margin; flags if bundled price falls below threshold (W102) | System | Category Mgr | Automated |
+| 6 | **Rendering & Export**: Generate high-quality render; email to customer with link to "Click-to-Purchase" in Web Portal | Consultant | — | 15 min |
+| 7 | **Quote Conversion**: Convert design BOM into a Formal Quotation in ERP (W58); reserve stock for 48 hours | Consultant | Sales Rep | 5 min |
+
+### System Touchpoints
+- 3D Design software integration with ERP Item Master and Pricing
+- Automated BOM generation from design assets
+- Margin-check workflow for project-based pricing
+- Web portal integration for customer design viewing
+
+---
+
 ## W168. Custom Paint Mixing & Tinting Operations
 
 | Field | Detail |

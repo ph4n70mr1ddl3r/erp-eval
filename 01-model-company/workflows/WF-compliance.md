@@ -722,4 +722,39 @@ BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Envi
 | 5 | **Dispute Resolution**: Address community complaints (e.g., truck noise, parking congestion) via direct dialogue; document resolution in Legal Case Management (W125) | Store Manager | Legal Manager | Varies |
 | 6 | **Annual Appreciation**: Conduct "Community Day" or stakeholder briefing on store performance and local impact | Store Manager | — | 4 hours/year |
 
+---
+
+## W216. BIR CAS (Computerized Accounting System) Compliance Audit
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Periodic compliance review; or BIR post-evaluation/inspection of the ERP system |
+| **Frequency** | Annual internal review; or as scheduled by BIR |
+| **Volume** | Covers all 5 legal entities and centralized accounting |
+| **Owner** | VP Legal & Compliance / CIO |
+| **Participants** | Tax Manager, IT Manager, External Audit, BIR Officers |
+
+### Background
+
+Philippine regulations require companies using a Computerized Accounting System (CAS) to maintain a Permit to Use (PTU) and adhere to strict audit trail, reporting, and e-invoicing standards.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **System Documentation Update**: Maintain up-to-date system architecture, data flow diagrams, and functional descriptions for BIR submission | IT Manager | CIO | 4 hours |
+| 2 | **Audit Trail Verification**: Verify that all transactions (GL, AP, AR, Inventory) have immutable audit trails (who, when, what, previous value) | IT Manager | Internal Audit | 2 hours |
+| 3 | **Standard Report Generation**: Generate and validate "Books of Accounts" in BIR-required formats (General Journal, Sales Journal, Purchase Journal, etc.) | Tax Manager | Controller | 4 hours |
+| 4 | **E-Invoicing Compliance**: Verify that system-generated Invoices and Official Receipts (OR) comply with BIR serial numbering and mandatory field requirements | Tax Manager | VP Compliance | 2 hours |
+| 5 | **CAS Permit Review**: Verify that any significant system changes (W132) have been reported to the BIR as "System Enhancements" per regulation | VP Compliance | — | 1 hour |
+| 6 | **Mock Inspection**: Conduct mock BIR walk-through: demonstrate system navigation, report generation, and data archival for BIR officers | Tax Manager | CIO | 1 day |
+| 7 | **Archival & Retention**: Verify 7-year data retention and accessibility of archived accounting data (W15.3) | IT Manager | — | 1 hour |
+
+### System Touchpoints
+- BIR-compliant reporting module (Books of Accounts)
+- Immutable audit trail logs
+- Sequential and controlled serial numbering for invoices/receipts
+- Data retention and archival system (IT infrastructure)
+
+
 

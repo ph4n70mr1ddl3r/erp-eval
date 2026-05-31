@@ -277,4 +277,36 @@ W11 (BOPIS) and W19 (Home Delivery) cover the happy-path fulfillment process fro
 | 5 | **Dispatch**: 3PL Couriers (Lalamove/Transportify) pick up directly from store backroom; avoids DC bottleneck | DC Dispatch (at store) | — | 10 min |
 | 6 | **Replenishment**: Hub inventory replenished via priority DC-to-Store "Push" (W154) to ensure high ATP | Supply Planner | — | Daily |
 
+---
+
+## W215. Customer Home Delivery Reverse Logistics (Returns)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer requests return or exchange for an item delivered to their home (W19/W19b) |
+| **Frequency** | ~1–2% of home delivery orders |
+| **Volume** | ~200–400 returns/month initially |
+| **Owner** | Ecommerce Customer Service Manager |
+| **Participants** | Customer, CSR, 3PL Carrier, DC Receiving Team, Finance (Refunds) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Return Request**: Customer initiates return via Web/App or Call Center; provides reason and photos of item/packaging | Customer | — | 10 min |
+| 2 | **Validation**: CSR reviews request against Return Policy (W12); verifies purchase date and item condition; approves for pick-up | CSR | Ecommerce Ops Mgr | 15 min |
+| 3 | **Collection Booking**: System books 3PL carrier (Lalamove/Transportify) for home pick-up; generates "Return Label" for customer | CSR / System | — | 5 min |
+| 4 | **Pick-up**: Carrier collects item from customer; verifies "Return ID" and basic condition; issues "Proof of Collection" | 3PL Carrier | — | 10 min |
+| 5 | **DC Receipt**: Item arrives at DC (or Hub); Receiving Clerk scans Return Label; system identifies original Order/SO | Receiving Clerk | DC Supervisor | 5 min |
+| 6 | **Quality Inspection**: Quality Checker inspects item: (a) Resaleable → return to stock (W91); (b) Damaged → quarantine (W91); (c) Wrong item → flag for investigation | Quality Checker | — | 10 min |
+| 7 | **Refund Authorization**: Once receipt is confirmed and QC passed: Finance authorizes refund to original payment method (W101) | Finance (AR) | Controller | 10 min |
+| 8 | **Closure**: System notifies customer of refund status; updates inventory and sales analytics | System | — | Automated |
+
+### System Touchpoints
+- Online Return Merchandise Authorization (RMA) portal
+- 3PL integration for reverse logistics booking
+- Linkage between Return ID and original Order ID
+- QC status integration with Refund trigger
+
+
 

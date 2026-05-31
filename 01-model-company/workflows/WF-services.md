@@ -185,26 +185,29 @@ As a "Home Building Partner," BuildRight Depot provides professional installatio
 
 ---
 
-## W211. In-Store 3D Kitchen/Bathroom Design Rendering
+## W213. Installation Service Partner Quality Audit
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Customer interest in renovation project; lead from Home Design Consultancy (W148) |
-| **Frequency** | Daily; ~10-20 designs/store/month |
-| **Volume** | Covers all 200 stores |
-| **Owner** | Store Design Consultant |
-| **Participants** | Customer, Design Consultant, Sales Associate |
+| **Trigger** | Scheduled quarterly audit; or high complaint rate for a specific contractor (W138.8) |
+| **Frequency** | Quarterly per contractor; or ad-hoc |
+| **Owner** | Services Quality Manager |
+| **Participants** | Services Quality Mgr, Contractor, Customer (for site visit) |
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Requirement Gathering**: Consultant interviews customer for dimensions, style preferences, and budget | Design Consultant | — | 30 min |
-| 2 | **3D Rendering**: Using in-store design software (integrated with SKU catalog), Consultant creates 3D model of kitchen/bathroom | Design Consultant | — | 1-2 hours |
-| 3 | **Product Tagging**: System auto-generates "Project Bill of Materials" (BOM) based on 3D design (tiles, cabinets, fixtures, appliances) | System | — | Real-time |
-| 4 | **Quotation**: System generates "Project Quote" (W58) with total cost and availability per item; applies project pricing if applicable | System | Design Consultant | 5 min |
-| 5 | **Revision**: Customer reviews 3D model; Consultant makes real-time adjustments (e.g., swapping tile colors) | Design Consultant / Customer | — | 30 min |
-| 6 | **Conversion**: Customer approves design; Consultant converts Quote to Sales Order (W5) or triggers Project Delivery (W164) | Design Consultant | Store Manager | 10 min |
-| 7 | **Fulfillment**: Coordinate with Installation Services (W138) for site measurement and eventual fitting | Design Consultant | — | 1 hour |
+| 1 | **Audit Scoping**: System identifies contractors with high volume or low CSAT (W65) in the past quarter | System | Services Qual Mgr | 30 min |
+| 2 | **Site Visit**: Auditor visits 3–5 active/completed sites with the contractor; inspects workmanship against "BuildRight Standard" | Services Qual Mgr | — | 1 day |
+| 3 | **Compliance Check**: Verify contractor's team has valid IDs, PPE, and appropriate tools (as required in W138 contract) | Services Qual Mgr | — | 1 hour |
+| 4 | **Audit Report**: Auditor logs findings in system: workmanship score, safety score, compliance score | Services Qual Mgr | Services Mgr | 1 hour |
+| 5 | **Scorecard Update**: Audit score feeds into the "Contractor Master Scorecard" (linked to W44) | System | — | Automated |
+| 6 | **Corrective Action**: If score < 70%, contractor put on "Probation"; requires remedial training or face de-listing | Services Mgr | VP Store Ops | 1 hour |
+
+### System Touchpoints
+- Contractor quality audit module with photo upload capability
+- CSAT and Complaint data integration for audit triggering
+- Integration with Contractor Master Scorecard
 
 

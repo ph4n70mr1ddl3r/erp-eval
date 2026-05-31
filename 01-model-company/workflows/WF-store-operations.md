@@ -1511,24 +1511,31 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 
 ---
 
-## W206. Mobile POS (mPOS) & Queue-Busting Operations
+## W212. Automated Store Cash Management & Smart Safe Integration
 
 | Field | Detail |
 |---|---|
-| **Trigger** | High foot traffic in store; long checkout queues; or large-item sales in the yard (W3b) |
-| **Frequency** | Peak hours (weekends, paydays, holidays) |
-| **Volume** | 2-3 mPOS tablets per store |
-| **Owner** | Store Operations Manager |
-| **Participants** | Sales Associate (with tablet), Cashier, Customer |
+| **Trigger** | Shift end; or cash drawer limit reached |
+| **Frequency** | 2–3 times per day per cashier |
+| **Volume** | Covers all 200 stores; ~1,000 POS terminals |
+| **Owner** | Store Cashier Supervisor |
+| **Participants** | Cashier, Supervisor, CIT (Cash-in-Transit) Partner |
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Queue Scanning**: Sales Associate moves through checkout line with mPOS tablet; scans customer items and creates a "Draft Order" | Sales Associate | — | 3-5 min |
-| 2 | **Digital Cart**: System generates a QR code or Transaction ID on the tablet/printed slip | System | — | Real-time |
-| 3 | **Payment Processing**: (a) If Card/E-wallet: Associate processes payment directly on mPOS with integrated reader; (b) If Cash: Customer takes slip to "Express Cashier" for final tender | Sales Associate / Cashier | — | 2 min |
-| 4 | **Inventory Update**: Real-time inventory deduction (W6) occurs upon payment confirmation | System | — | Real-time |
-| 5 | **Digital Receipt**: Customer receives SMS/Email receipt; physical slip printed only upon request | System | — | Real-time |
+| 1 | **Drawer Limit Alert**: System triggers alert when POS cash drawer exceeds threshold (e.g., PHP 50,000) | System | Cashier | Real-time |
+| 2 | **Cash Skimming**: Cashier counts excess cash; Supervisor verifies; records "Skim" in POS | Cashier | Supervisor | 5 min |
+| 3 | **Smart Safe Deposit**: Cashier inserts bills into the in-store Smart Safe; safe validates bills and counts in real-time | Cashier | — | 3 min |
+| 4 | **Credit Recognition**: Smart Safe API sends deposit confirmation to ERP/Bank; Bank provides "Same-Day Credit" to BuildRight's account | System | Finance | Automated |
+| 5 | **EOD Reconciliation**: At EOD, system reconciles POS Sales vs. Smart Safe Deposits vs. Remaining Drawer Cash; flags variances | System | Supervisor | Automated |
+| 6 | **CIT Pickup**: CIT partner (e.g., G4S/Securicor) empties safe when full; system logs pickup; safe resets for next cycle | CIT Partner | — | 20 min |
+
+### System Touchpoints
+- Smart Safe API integration with ERP and Bank (W30)
+- POS cash limit alerts and skimming workflow
+- Automated daily bank reconciliation for cash deposits
+- CIT pickup tracking and safe capacity monitoring
 
 

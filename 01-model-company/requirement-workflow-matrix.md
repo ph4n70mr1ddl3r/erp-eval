@@ -51,7 +51,7 @@
 | INV-002 | Real-Time Inventory Visibility | M | W4 (replenishment), W11.1 (BOPIS ATP), W19.1 (delivery ATP) | W22 (transfer availability check) |
 | INV-003 | Weighted Average Cost (WAC) | M | W3.7 (receipt WAC recalc), W9a.6a (WAC verification) | W46.7 (kit costing) |
 | INV-004 | ABC Classification | M | W31.8 (classification review), W42 (tiered count strategy) | W1 (assortment review) |
-| INV-005 | Multi-Location Stock Transfer | M | W4 (DC→Store), W22 (store-to-store, inter-DC) | W45 (closure redistribution) |
+| INV-005 | Multi-Location Stock Transfer | M | W4 (DC→Store), W22 (store-to-store, inter-DC), W204 (regional expedited transfer) | W45 (closure redistribution) |
 | INV-006 | Cycle Counting | M | W6 (cycle counting) | W42 (annual physical inventory) |
 | INV-007 | Physical Inventory (Wall-to-Wall) | M | W42 (annual physical inventory) | W6 (cycle counts feed C-item validation) |
 | INV-008 | Lot & Serial Tracking | S | W5b.4b (POS batch capture), W29 (recall tracing) | W33 (warranty serial lookup) |
@@ -111,8 +111,8 @@
 | POS-005 | Loyalty Integration | M | W5b.5 (loyalty scan), W17 (loyalty program operations) | — |
 | POS-006 | Price Override (w/ Auth) | M | W5b.4a (price override with manager authorization) | W61 (competitor price match) |
 | POS-007 | Returns & Exchanges | M | W12a (in-store returns), W12b (online returns), W12c (cross-store returns) — loyalty points reversal on all return types | — |
-| POS-008 | Cash Drawer Management | M | W5a.4 (cash float), W5f.2–5 (Z-report & cash count) | W89 (bank reconciliation), W99 (payment settlement reconciliation) |
-| POS-009 | End-of-Day Reconciliation | M | W5f (store closing & EOD) | W30.4 (deposit auto-matching), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
+| POS-008 | Cash Drawer Management | M | W5a.4 (cash float), W5f.2–5 (Z-report & cash count), W212 (Smart Safe deposit) | W89 (bank reconciliation), W99 (payment settlement reconciliation) |
+| POS-009 | End-of-Day Reconciliation | M | W5f (store closing & EOD), W212.5 (Smart Safe reconciliation) | W30.4 (deposit auto-matching), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
 | POS-010 | Quantity Break Pricing | M | W5b.6 (auto quantity breaks), W40.15–19 (quantity break setup) | — |
 | POS-011 | Customer Display | S | W5b.4–7 (customer-facing display during checkout) | — |
 | POS-012 | Receipt Printing | M | W5b.8 (BIR-registered receipt) | — |
@@ -125,7 +125,7 @@
 | POS-019 | Warranty Claim Registration | S | W33 (warranty claim processing) | — |
 | POS-020 | Layaway / Installment Sales | S | W75 (layaway agreement lifecycle — exercises POS-004, POS-015, FIN-005) | — |
 | POS-021 | Multi-DC Order Splitting | S | W19 (multi-DC order splitting logic) | — |
-| POS-022 | Employee Discount at POS | S | W5b.12 (employee purchase with discount, limits, logging) | W17 (employee purchases excluded from loyalty points) |
+| POS-022 | Employee Discount at POS | S | W205 (employee purchase program), W5b.12 (staff discount logic) | W17 (employee purchases excluded from loyalty points) |
 
 ## R6. Ecommerce Integration (ECOM)
 
@@ -258,15 +258,17 @@
 | NFR-017 | LGU Business Permit Tracking | Per location | W54 (LGU permit renewal per location) | W16 (new store initial permit) |
 | NFR-018 | ESG & Sustainability Reporting | S | W192 (GHG tracking), W193 (Waste diversion) | W194 (CSR), W195 (Ethical audit) |
 | NFR-019 | Advanced Fleet Optimization | S | W196 (Route optimization), W199 (Telematics) | W197 (Driver performance), W198 (Fuel) |
-| NFR-020 | AI & Innovation Framework | N | W200 (AI Personalization), W201 (RPA) | W202 (Predictive maint), W203 (Computer vision) |
+| NFR-020 | AI & Innovation Framework | N | W200 (AI Personalization), W201 (RPA), W208 (AI Inventory Optimization) | W202 (Predictive maint), W203 (Computer vision) |
+| NFR-021 | Smart Store Operations | S | W206 (Mobile POS), W212 (Smart Safe), W211 (3D Rendering) | W205 (Employee purchase), W207 (CCTV audit) |
+| NFR-022 | Local & Partner Governance | S | W209 (Barangay relationship), W213 (Contractor audit) | W157 (E-waste), W210 (Dark store) |
 
 ---
 
 ## Coverage Validation
 
-- **Total requirements**: 105+ across 14 categories
+- **Total requirements**: 107+ across 14 categories
 - **Requirements with primary workflow mapping**: All ✅
 
 ---
 
-*Date: 2026-05-31 (v15 — gap analysis: added W192–W203; total now 203 workflows)*
+*Date: 2026-05-31 (v16 — gap analysis: added W204–W213; total now 213 workflows)*

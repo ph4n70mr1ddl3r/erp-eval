@@ -10,6 +10,8 @@
 
 - [W138. Home Installation Services Management](#home-installation-services-management)
 - [W139. Tool & Equipment Rental Operations](#tool-equipment-rental-operations)
+- [W147. DIY Workshop & In-Store Event Management](#diy-workshop--in-store-event-management)
+- [W148. Home Design & Consultancy Services](#home-design--consultancy-services)
 
 ---
 

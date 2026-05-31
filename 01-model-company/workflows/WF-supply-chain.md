@@ -107,6 +107,39 @@
 
 ---
 
+## W133. Sales & Operations Planning (S&OP) Cycle
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly planning calendar (typically starting 10th business day) |
+| **Frequency** | Monthly |
+| **Volume** | Covers all product categories and all 5 DCs |
+| **Owner** | VP for Supply Chain |
+| **Participants** | CEO, COO, CFO, VP Merchandising, VP Store Ops, Supply Planning Manager, Demand Planner, Category Managers |
+
+### Background
+
+S&OP is the cross-functional process that aligns demand, supply, and financial plans into a single "consensus plan." It ensures that BuildRight has enough inventory to meet sales targets without exceeding working capital limits or DC capacity.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Demand Review**: Demand Planner and Category Managers review the unconstrained forecast (W31); adjust for planned promos (W83) and new store openings (W16); sign off on "Consensus Demand Plan" | Demand Planner | VP Merch | 2 days |
+| 2 | **Supply Review**: Supply Planner and DC Managers evaluate ability to meet demand; check vendor lead times (W44), DC storage/labor capacity, and port congestion (W144); identify supply gaps | Supply Planner | VP Supply Chain | 2 days |
+| 3 | **Financial Integration**: Finance translates the volume plan into PHP; compares against budget (W26) and revenue targets; highlights margin risks if high-cost logistics (W66) are needed | Controller | CFO | 1 day |
+| 4 | **Pre-S&OP Meeting**: Managers reconcile demand/supply gaps; develop scenarios (e.g., "Air-freight vs. Out-of-stock") for leadership | Supply Planning Mgr | VP Supply Chain | 4 hours |
+| 5 | **Executive S&OP Meeting**: C-Suite reviews scenarios; makes trade-off decisions; approves the "Consensus Operating Plan" for the next 3–12 months | CEO | CEO | 2 hours |
+| 6 | **Disaggregation**: Approved plan is pushed back to replenishment systems (W4) and Buy Plans (W32) to drive execution | Supply Planner | — | 4 hours |
+
+### System Touchpoints
+- S&OP Workbench aggregating Forecast (Demand), Open POs/Inventory (Supply), and Budget (Finance)
+- Scenario modeling / "What-if" analysis tools
+- Executive dashboard showing Demand/Supply balance and projected stock-outs
+- Integration with W31 (Forecasting), W32 (Seasonal Buying), and W26 (Budgeting)
+
+---
+
 ## W144. International Logistics & Import Operations
 
 | Field | Detail |

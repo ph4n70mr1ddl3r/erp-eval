@@ -19,6 +19,7 @@
 - [W110. Supplier Quality & CAPA (Corrective and Preventive Action)](#supplier-quality-capa-corrective-and-preventive-action)
 - [W115. Supplier Diversity & MSME Development Program](#supplier-diversity-msme-development-program)
 - [W136. Indirect / Non-Merchandise Procurement](#indirect-non-merchandise-procurement)
+- [W150. Product Quality Testing & Certification](#product-quality-testing--certification)
 
 ---
 
@@ -667,6 +668,35 @@ The Philippine government actively promotes MSME development through the Magna C
 | 4 | PO Creation: Convert approved PR to PO and transmit to vendor | Buyer | Procurement Mgr | 15 min |
 | 5 | Receipt & Verification: Requestor confirms receipt of goods or service completion | Requestor | Dept Head | 30 min |
 | 6 | Invoice Processing: Finance matches Invoice to PO and Receipt (3-way match) | AP Specialist | AP Supervisor | 15 min |
+
+---
+
+## W150. Product Quality Testing & Certification
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New product onboarding (W1); new vendor onboarding (W36); or scheduled periodic audit |
+| **Frequency** | Ad-hoc (new items); Annual (periodic) |
+| **Volume** | ~500–1,000 items tested/year (primarily private label and structural materials) |
+| **Owner** | Quality Manager |
+| **Participants** | Category Manager, Vendor, external testing lab (e.g., TUV, SGS), DC Receiving |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Sample Submission**: Vendor provides physical samples of the product for testing | Vendor | Category Mgr | 1 day |
+| 2 | **Documentation Review**: Quality Manager verifies mandatory Philippine certifications (PS Mark for local, ICC for imported regulated items) | Quality Mgr | Quality Mgr | 1 hour |
+| 3 | **Internal Testing**: Basic "Fit & Finish" testing at HQ or DC lab (e.g., measuring tile thickness, weighing cement bags) | Quality Mgr | Category Mgr | 2 hours |
+| 4 | **External Lab Testing**: Send samples to accredited 3rd-party lab for structural/chemical testing (e.g., steel tensile strength, paint lead content) | Quality Mgr | — | 1–2 weeks |
+| 5 | **Decision**: (a) Pass: System flags SKU as "QC Approved"; (b) Fail: Item rejected; Vendor must remediate or SKU is blocked from sale | Quality Mgr | VP Merch | 30 min |
+| 6 | **Periodic Audit**: Random samples pulled from DC stock (W3) and sent for re-testing to ensure consistent quality | Quality Mgr | Quality Mgr | Ongoing |
+
+### System Touchpoints
+- "QC Approved" status flag in Item Master
+- Storage of digital certificates and lab reports linked to the SKU
+- Automated block on PO creation (W2) for items with expired or failed QC status
+- Integration with W3 (Receiving) for sample pulling during DC arrival
 
 ---
 

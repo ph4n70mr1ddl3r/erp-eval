@@ -64,12 +64,14 @@ Workflows are organized by functional domain for easier navigation and gap analy
 - **[ESG & Sustainability Reporting Workflows](./WF-esg.md)** (4 workflows) — Carbon footprint, waste management, circular economy, and social impact.
 - **[Fleet Operations & Driver Management](./WF-logistics-fleet.md)** (4 workflows) — Route optimization, driver performance, and fuel management.
 - **[Innovation & Digital Transformation](./WF-innovation.md)** (5 workflows) — AI/ML, RPA, predictive maintenance, and computer vision.
+- **[Master Data Management (MDM) Workflows](./WF-master-data.md)** (3 workflows) — Centralized item master, customer deduplication, location hierarchy.
+- **[Document Management (DOC) Workflows](./WF-document-management.md)** (2 workflows) — ERP-wide document storage, enterprise retention archiving.
 
 - **[Workflow-to-System Touchpoint Map](./workflow-system-touchpoint-map.md)** — ERP module-to-workflow cross-reference
 
 ---
 
-## Complete Workflow Index (W1–W251)
+## Complete Workflow Index (W1–W256)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
@@ -349,7 +351,12 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W249 | Import Port Demurrage & Detention Management | [Supply Chain Planning Workflows](WF-supply-chain.md) |
 | W250 | Supply Chain Control Tower & Real-Time Shipment Visibility | [Supply Chain Planning Workflows](WF-supply-chain.md) |
 | W251 | Philippine Statutory Benefits & Claims Administration (SSS, PhilHealth, Pag-IBIG) | [HR & Payroll Workflows](WF-hr.md) |
+| W252 | Centralized Item Master Creation & Governance | [Master Data Management (MDM) Workflows](WF-master-data.md) |
+| W253 | Customer Master Data Governance & Deduplication | [Master Data Management (MDM) Workflows](WF-master-data.md) |
+| W254 | Location Master Lifecycle & Hierarchy Management | [Master Data Management (MDM) Workflows](WF-master-data.md) |
+| W255 | Electronic Document Storage & Retrieval (ERP-wide) | [Document Management (DOC) Workflows](WF-document-management.md) |
+| W256 | Enterprise Document Retention & Archiving Policy | [Document Management (DOC) Workflows](WF-document-management.md) |
 
 ---
 
-*Total: 276 workflows across 27 domains. Expanded to include Philippine Statutory Benefits & Claims (W251), alongside Treasury, Hazmat, Facilities Maintenance, Engineering & Construction, Legal, Sales Commission, Dispute Resolution, Smart Locker Fulfillment, LP Investigation, Port Demurrage Management, ESG, fleet optimization, digital innovation, and advanced regulatory compliance.*
+*Total: 281 workflows across 29 domains. Expanded to include Master Data Management and Document Management, alongside Treasury, Hazmat, Facilities Maintenance, Engineering & Construction, Legal, Sales Commission, Dispute Resolution, Smart Locker Fulfillment, LP Investigation, Port Demurrage Management, ESG, fleet optimization, digital innovation, and advanced regulatory compliance.*

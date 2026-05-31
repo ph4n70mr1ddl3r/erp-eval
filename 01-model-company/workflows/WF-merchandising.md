@@ -1,0 +1,445 @@
+# Merchandising & Pricing Workflows
+
+> Assortment planning, promotions, pricing, product lifecycle, PIM, and vendor rebate management.
+> 
+> Back to [Workflow Index](README.md)
+
+---
+
+## Workflows in This Domain
+
+- [W1. Merchandise Planning & Assortment Review](#merchandise-planning-assortment-review)
+- [W13. Promotions & Pricing Execution](#promotions-pricing-execution)
+- [W27. Vendor Rebate Accrual & Settlement](#vendor-rebate-accrual-settlement)
+- [W40. Regular Price Change Execution](#regular-price-change-execution)
+- [W50. Product Information Management (PIM)](#product-information-management-pim)
+- [W63. Shelf Label & Price Tag Distribution](#shelf-label-price-tag-distribution)
+- [W64. New Product Pilot / Store Test](#new-product-pilot-store-test)
+- [W68. Product Lifecycle & Discontinuation](#product-lifecycle-discontinuation)
+
+---
+
+## W1. Merchandise Planning & Assortment Review
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Seasonal calendar and quarterly business review |
+| **Frequency** | Quarterly (4×/year) |
+| **Volume** | ~8,750 SKUs reviewed per quarter (35,000 ÷ 4) |
+| **Owner** | VP Merchandising |
+| **Participants** | Category Managers, Buyers, Pricing Analysts, Merchandise Planners, Store Operations rep |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Pull category performance report (sales, margin, turns, sell-through) | Pricing Analyst | Category Manager | 2 hours |
+| 2 | Identify underperformers (bottom 10% by revenue/sqm, negative margin, < 2 turns/year) | Category Manager | VP Merchandising | 3 hours |
+| 3 | Review seasonal calendar and upcoming promotional events | Category Manager | VP Merchandising | 1 hour |
+| 4 | Propose assortment changes: add new SKUs, discontinue slow movers, adjust depth/breadth | Buyer | Category Manager | 4 hours |
+| 5 | Validate proposed changes against vendor contracts and minimum order quantities | Buyer | Category Manager | 2 hours |
+| 6 | Present assortment plan to VP Merchandising for approval | Category Manager | VP Merchandising | 2 hours (meeting) |
+| 7 | Update item master: create new SKUs, flag discontinued items, set discontinuation dates | Merchandise Planner | Category Manager | 3 hours |
+| 8 | Communicate changes to stores via bulletin / system alert | Merchandise Planner | VP Merchandising | 1 hour |
+
+**Total effort per quarter**: ~18 hours across team
+
+### System Touchpoints
+- Sales analytics by category/SKU (W1.1)
+- Inventory turns and aging reports (W1.1)
+- Item master create/modify with approval workflow (W1.7)
+- Vendor contract and pricing reference (W1.5)
+- Store communication / bulletin system (W1.8)
+- Product content coordination: when new SKUs are created or item attributes change (W1.7), Merchandise Planner or Marketing coordinates product content (photos, specifications, dimensions, how-to guides) for publishing to the ecommerce platform via PIM integration or manual upload
+- Sample / demo inventory management: system supports a 'Sample/Demo' inventory status for display items (tile gallery boards, appliance demo units, tool displays) tracked separately from saleable stock; samples excluded from available inventory and replenishment calculations but included in inventory valuation; quarterly review by Department Supervisor identifies samples for markdown sale, vendor return, or scrap; display refresh planned as part of W1 assortment review
+- Slow-mover / dead stock operational review: monthly cross-functional review where Category Managers, Supply Planner, and Cost Accountant examine the slow-mover report (system-generated: items with > 90 days since last sale, < 2 turns/year, or current stock > 6 months forward demand); disposition decided per SKU — continue selling (monitor), markdown and clearance (W13.9a), RTV (W3.6a), bulk liquidation (W13.9b), donation, or scrap; results feed into quarterly assortment review (W1) for potential discontinuation; accounting consequences (NRV write-down) processed per W9a.16b
+- Competitive intelligence monitoring: as part of the quarterly assortment review cycle, Category Managers review competitive landscape per category — (a) new competitor store openings or closures within BuildRight trade areas (sourced from Store Manager reports and publicly available data), (b) competitor promotional events and pricing actions (sourced from Sales Associate and Pricing Analyst field observations, competitor websites/flyers), (c) new competitor product introductions in overlapping categories; findings documented per category and inform SKU add/drop decisions (W1.4), pricing adjustments (W40), and promotional planning (W13); Store Managers report competitive activity in their monthly performance review (W67); competitive intelligence is not a separate system module but is embedded in the W1 quarterly cycle with data sourced from operational channels
+
+
+### Staffing Implication
+5 Category Managers each handling ~2 categories per quarterly cycle = manageable at ~18 hours/category. The 3 Pricing Analysts handle data pulls and analysis in parallel. 10–12 Buyers handle vendor validation. Current team of ~40 in Merchandising is adequate.
+
+> **Buyer staffing note**: At 800–1,000 active vendors ÷ 10–12 buyers = ~67–100 vendors per buyer, which is above the industry average of 30–50. This lean buying model is viable because (a) ~70% of vendors are replenished via auto-generated POs (W2a), reducing daily buyer intervention; (b) top 20 vendors (45% of COGS) are on blanket contracts (W2c) requiring less transactional management; and (c) VMI vendors (12) are largely self-managing. However, during seasonal planning cycles (W32), the team may be stretched. Consider expanding to 15–17 buyers if vendor management quality suffers.
+
+---
+
+
+
+---
+
+## W13. Promotions & Pricing Execution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Promotional calendar (6 bi-monthly events + monthly hot deals) |
+| **Frequency** | 6 major promos/year + 12 monthly hot deal cycles |
+| **Volume** | ~200–500 SKUs per major promo; 10–20 SKUs per monthly hot deals |
+| **Owner** | Pricing Analyst |
+| **Participants** | Category Manager, Pricing Analyst, Marketing, Store Operations, IT |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Category Manager defines promo mechanics (percentage off, bundle price, buy-X-get-Y) | Category Manager | VP Merchandising | Per promo event |
+| 2 | Pricing Analyst sets up promotional prices in system with effective dates | Pricing Analyst | Category Manager | 2–4 hours/promo |
+| 3 | VP Merchandising approves promo pricing | VP Merchandising | VP Merchandising | 30 min review |
+| 4 | Marketing creates promotional materials (shelf tags, POS materials, digital banners) | Marketing | CMO | 1–2 weeks lead time |
+| 5 | System pushes promo prices to all POS terminals before promo start date | System | — | Automated (scheduled) |
+| 6 | Store Operations coordinates shelf tag updates across stores | Regional Manager | COO | 1–2 days before promo |
+| 7 | During promo: system auto-applies promotional pricing at POS (no cashier action) | System | — | Automated |
+| 8 | Pricing Analyst monitors promo performance daily (sell-through, margin impact) | Pricing Analyst | Category Manager | 30 min/day during promo |
+| 9 | After promo: system automatically reverts to regular price; flags unsold promo stock for clearance | System | — | Automated |
+| 9a | **Clearance / Markdown Execution**: Pricing Analyst sets clearance price for flagged items (target: recover cost or minimize loss); system applies clearance flag and price at POS; POS displays clearance disclaimer ("Clearance — Final Sale — No Returns"); Department Supervisors move clearance items to designated clearance section or mark with red tags; clearance period typically 2–4 weeks | Pricing Analyst / Dept. Supervisor | Category Manager | 1–2 hours/promo |
+| 9b | Post-clearance: unsold items dispositioned per policy — (a) bulk liquidation to discount buyers, (b) donation to partner organizations, (c) scrap/recycle; system removes remaining clearance inventory and posts final loss | Buyer / Dept. Supervisor | Category Manager | 1 hour |
+| 10 | Pricing Analyst generates post-promo analysis (lift, cannibalization, margin erosion, clearance recovery rate) | Pricing Analyst | Category Manager | 2 hours/promo |
+
+### System Touchpoints
+- Promotional price setup with date-effective pricing (W13.2)
+- Approval workflow for promotional prices (W13.3)
+- Scheduled push of promo prices to POS (W13.5)
+- Auto-application at POS without cashier intervention (W13.7)
+- Real-time promo performance dashboard (W13.8)
+- Automatic price reversion and clearance flagging (W13.9)
+- Post-promo analysis reporting (W13.10)
+- Clearance pricing with POS flag and disclaimer enforcement (W13.9a)
+- Post-clearance inventory disposition tracking (W13.9b)
+- Digital coupon / online promo code management: creation of coupon codes with validity dates, usage limits, and channel restrictions (in-store, online, or both); redemption tracking across channels; synchronization with ecommerce platform (W13.2, W13.5)
+- Vendor-funded promotional settlement: for promotions where the vendor funds the markdown (e.g., "buy paint at 20% off, funded by vendor"), system records vendor funding portion per transaction line at POS; accumulates vendor liability in a dedicated promo settlement accrual account; monthly settlement report generated per vendor showing units sold at promo price × vendor share; AP credit memo generated per W7.9b to settle vendor obligation; distinct from W27 (volume-based rebates) — vendor-funded promos are pre-agreed markdown reimbursements tied to specific promotional events
+- Pricing conflict resolution rules: (1) If a regular price change (W40) occurs during an active promotion, the promo price is NOT automatically adjusted — promo overrides regular price for the promo period. (2) If a new promotion starts and the regular price has changed since the promo was set up, the system alerts the Pricing Analyst to recalculate the promo price from the new base. (3) If two promotions overlap for the same SKU, system applies the lower price (customer-friendly) and alerts Pricing Analyst to investigate. (4) Post-promotion: system reverts to the CURRENT regular price, not the price active when the promo was created
+
+### Staffing Implication
+- **3 Pricing Analysts**: 6 major promos + 12 monthly cycles = ~18 events/year. Each event requires ~6–8 hours of setup + 30 min/day monitoring during the promo period + 2 hours post-analysis. With staggered events, 3 analysts can handle this alongside regular price maintenance.
+
+---
+
+
+
+---
+
+## W27. Vendor Rebate Accrual & Settlement
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vendor rebate agreement established; or monthly settlement date |
+| **Frequency** | Agreements established annually; settlements monthly or quarterly per contract terms |
+| **Volume** | ~40–60 active rebate agreements (top 20 vendors = 45% of COGS; ~2–3 agreements per vendor) |
+| **Owner** | Buyer (agreement); Finance — Cost Accountant (accrual and settlement) |
+| **Participants** | Buyer, Category Manager, Cost Accountant, AP Clerk, Vendor |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Buyer negotiates rebate agreement with vendor: terms (volume-based, growth-based, promotional), qualifying SKUs, rebate rate, settlement frequency, measurement period | Buyer | Category Manager | Per negotiation |
+| 2 | System records rebate agreement: vendor, SKUs, rebate type, rate/tier, effective dates, settlement schedule | Buyer | Category Manager | 15 min/agreement |
+| 3 | At each qualifying purchase (PO receipt): system accrues rebate amount based on agreement terms | System | — | Automated |
+| 4 | At each qualifying sale (POS): system accrues rebate for sell-through-based agreements | System | — | Automated |
+| 5 | Monthly: Cost Accountant reviews accrued rebates report; validates accruals against agreement terms | Cost Accountant | Controller | 2 hours/month |
+| 6 | At settlement date (monthly/quarterly): system generates rebate settlement report per vendor showing accrued rebate, qualifying volume, and amount due | System | Cost Accountant | Automated |
+| 7 | Buyer reviews settlement report; confirms quantities and amounts with vendor | Buyer | Category Manager | 30 min/vendor |
+| 8 | If vendor disputes: Buyer negotiates resolution; adjusts settlement amount with Category Manager approval | Buyer | Category Manager | 1 hour/occurrence |
+| 9 | Cost Accountant posts rebate settlement: AP credit memo created; vendor balance reduced | Cost Accountant | Controller | 15 min/vendor |
+| 10 | AP processes net payment to vendor (or offset against next invoice per agreement) | AP Clerk | AP Supervisor | Per W7 |
+| 11 | Quarterly: Buyer reviews rebate program effectiveness; recommends renewal, renegotiation, or termination | Buyer | VP Merchandising | 2 hours/quarter |
+
+### System Touchpoints
+- Rebate agreement creation with configurable terms (volume tiers, growth targets, promo-based) (W27.2)
+- Automatic rebate accrual at purchase or sale (W27.3–4)
+- Accrued rebates report by vendor (W27.5)
+- Settlement report generation with qualifying volume and amount (W27.6)
+- AP credit memo creation from rebate settlement (W27.9)
+- Rebate program analytics: ROI, margin impact, vendor comparison (W27.11)
+
+### Staffing Implication
+- **Cost Accountant**: Adds ~4–6 hours/month for rebate accrual review and settlement. Absorbed within existing Finance team.
+- **Buyers**: 40–60 agreements ÷ 10–12 buyers = ~4–5 agreements each. Settlement review = ~2 hours/buyer/settlement cycle. Absorbed.
+
+---
+
+
+
+---
+
+## W40. Regular Price Change Execution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vendor cost increase notification, competitive price adjustment, periodic SRP review, or regulatory price change |
+| **Frequency** | ~200–500 SRP changes/month across 35,000 active SKUs; peaks when major vendors announce price increases (typically quarterly) |
+| **Volume** | ~10–25 price changes/day; concentrated in categories with commodity-linked pricing (lumber, cement, metals, paint) |
+| **Owner** | Pricing Analyst |
+| **Participants** | Pricing Analyst, Category Manager, Buyer, IT (price sync) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Buyer receives vendor price increase notice (letter, email, or portal notification); enters new cost and effective date in system | Buyer | Category Manager | 10 min/vendor notice |
+| 2 | System calculates margin impact: current SRP × current cost vs. current SRP × new cost; shows margin erosion per SKU and total category impact | System | — | Automated |
+| 3 | Pricing Analyst reviews margin impact report; decides action per SKU: (a) absorb cost increase (reduce margin), (b) pass through to SRP, (c) increase SRP partially, (d) negotiate with vendor, (e) switch to alternative vendor, (f) discontinue item | Pricing Analyst | Category Manager | 2–4 hours/vendor notice |
+| 4 | Pricing Analyst enters new SRP per SKU with effective date in system; system shows new margin % for validation | Pricing Analyst | Category Manager | 5 min/SKU |
+| 5 | Category Manager reviews and approves price changes; VP Merchandising approves if aggregate margin impact > PHP 500K/month | Category Manager / VP | VP Merchandising | 30 min – 1 hour/batch |
+| 6 | System schedules price update: new SRP takes effect at configured date/time (typically start of business day) | System | — | Automated |
+| 7 | System pushes updated price file to all POS terminals per nightly sync (or immediately if real-time sync configured); updates ecommerce catalog | System | — | Automated |
+| 8 | Store Operations receives price change bulletin; Department Supervisors update shelf tags before store opening on effective date | Dept. Supervisor | Store Manager | 30–60 min per price change batch |
+| 9 | System maintains full price history per SKU: date range, old SRP, new SRP, reason code, approver — for audit and BIR compliance | System | — | Automated |
+| 10 | Monthly: Pricing Analyst generates price change summary report: # of changes, average increase/decrease, margin impact, top categories affected | Pricing Analyst | Category Manager | 1 hour/month |
+
+### System Touchpoints
+- Vendor cost change entry with effective date (W40.1)
+- Margin impact calculator: current vs. new cost at current SRP (W40.2)
+- SRP entry with effective date and margin display (W40.4)
+- Approval workflow for price changes with aggregate impact thresholds (W40.5)
+- Scheduled price activation (W40.6)
+- Price file sync to POS and ecommerce (W40.7)
+- Full price history with audit trail (W40.9)
+- Price change analytics (W40.10)
+- Integration with W13 (promotional pricing — regular and promo prices coexist with date ranges)
+- Price protection / retroactive cost adjustment: vendor announces retroactive cost reduction; system calculates credit due based on quantities purchased between effective date and now; generates vendor credit memo (W7.9b); revalues on-hand inventory to new cost if retroactive scope applies; posts difference as reduction in COGS (W40.11)
+
+### Staffing Implication
+- **3 Pricing Analysts**: 200–500 changes/month × 5 min/SKU (entry) + 2–4 hours per vendor notice (analysis) = ~60–80 hours/month. With 3 analysts that's ~20–25 hours each. This is a core part of their role alongside promotional pricing (W13). Current team of 3 is adequate.
+- **Department Supervisors (stores)**: Shelf tag updates are the most labor-intensive step. With 10–25 price changes/day chain-wide, most stores see only a few changes per week. Shelf tag updates take ~30–60 min per batch. Absorbed into daily opening routine.
+
+---
+
+### Price Protection / Retroactive Cost Adjustment
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vendor announces retroactive price reduction (price protection) |
+| **Frequency** | Occasional — typically quarterly when commodity-linked vendors adjust prices |
+| **Volume** | ~10–20 price protection events/year; concentrated in lumber, cement, steel, paint categories |
+| **Owner** | Buyer |
+| **Participants** | Buyer, Category Manager, AP Clerk, Cost Accountant, Pricing Analyst |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 11 | Buyer receives vendor price protection notice: new lower cost with effective date (possibly retroactive); enters in system: vendor, SKU(s), old cost, new cost, effective date, scope (future only vs. retroactive) | Buyer | Category Manager | 15 min/event |
+| 12 | If retroactive: system calculates credit due based on quantities purchased between effective date and now; generates vendor credit memo per W7.9b | System | Cost Accountant | Automated |
+| 13 | If on-hand inventory exists at old cost: system revalues on-hand inventory to new cost; posts difference (Dr. Accounts Payable / Cr. COGS or Inventory) | System / Cost Accountant | Controller | Automated + 15 min review |
+| 14 | Buyer communicates new cost to Pricing Analyst for SRP review per standard W40 process | Buyer | Category Manager | Per W40 |
+
+### Quantity Break Pricing Setup & Maintenance
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New product setup, category review, or competitive response |
+| **Frequency** | Ongoing; ~50–100 quantity break rules active at any time |
+| **Volume** | Primarily bulk-building categories: cement, lumber, nails, screws, paint, plumbing fittings |
+| **Owner** | Pricing Analyst |
+| **Participants** | Pricing Analyst, Category Manager |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 15 | Pricing Analyst defines quantity break rules per SKU or category in system: threshold quantity, discount % or fixed price per tier (e.g., cement: 1–9 bags at SRP, 10–99 bags at 5% off, 100+ bags at 8% off); rules are date-effective with start/end dates | Pricing Analyst | Category Manager | 5 min/rule |
+| 16 | Category Manager approves quantity break rules; VP Merchandising approves if aggregate margin impact exceeds threshold | Category Manager / VP | VP Merchandising | 15 min/batch |
+| 17 | System stores quantity break rules linked to item master; POS automatically applies the correct tier when scanned quantity meets or exceeds threshold — no cashier intervention required | System | — | Automated |
+| 18 | Discount stacking rules: if a promotional price (W13) is lower than the quantity break price, system applies the promo price (customer-friendly) and does not stack discounts; if quantity break price is lower, it applies; trade/corporate account pricing (W5b.4c) and quantity break pricing do not stack — the lower of the two applies | System | — | Automated |
+| 18a | **Loyalty points on discounted transactions**: loyalty points (W17) are earned on the final amount paid by the customer (after all discounts — promotional, quantity break, trade account, price match) but before VAT; this means quantity break discounts reduce the points earned proportionally; PFRS 15 deferred revenue allocation (W17.4) is calculated on the net revenue after all discounts | System | — | Automated |
+| 19 | Monthly: Pricing Analyst reviews quantity break utilization report: frequency of tier triggers by SKU, margin impact, average quantity per transaction for items with quantity breaks, and whether thresholds are driving incremental volume | Pricing Analyst | Category Manager | 1 hour/month |
+
+### System Touchpoints
+- Quantity break rule engine: configurable per SKU or category with multiple tiers, date-effective, threshold quantity, and discount method (% off SRP or fixed price) (W40.15)
+- Automatic POS application when scanned quantity meets threshold — no cashier action needed (W40.17)
+- Discount stacking rules: quantity breaks do not stack with promotional pricing or trade/corporate pricing — lower price wins (W40.18)
+- Loyalty points on quantity break transactions: points earned on net discounted amount (after all discounts, before VAT); PFRS 15 deferred revenue allocation calculated on net revenue (W40.18a, W17.4)
+- Quantity break utilization reporting: tier trigger frequency, margin impact, incremental volume analysis (W40.19)
+- Integration with W5b.6 (system applies quantity breaks during total calculation) and W40.5 (approval workflow)
+
+---
+
+
+
+---
+
+## W50. Product Information Management (PIM)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New SKU creation (W1), seasonal item setup (W32), product content refresh cycle, vendor product update |
+| **Frequency** | Continuous; ~1,500–2,500 new SKUs/year + seasonal rotations + content refreshes |
+| **Volume** | 35,000 active SKUs requiring product content; ~55,000 total in item master |
+| **Owner** | Marketing — Content Manager |
+| **Participants** | Content Manager, Content Specialist, Merchandise Planner, Category Manager, Ecom Team, Photographer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Trigger: Merchandise Planner creates new SKU in item master per W1.7 (or seasonal setup per W32); system flags SKU as "content pending" — item cannot be published to ecommerce until content is complete | System | — | Automated |
+| 2 | Content Manager receives new SKU content request from system queue; assigns to Content Specialist by category | Content Manager | — | 5 min |
+| 3 | Content Specialist gathers product information: (a) vendor product data sheet (specs, dimensions, weight, material, finish, color options), (b) Category Manager input (key selling points, target customer, recommended use), (c) competitive product content benchmarking | Content Specialist | Content Manager | 15–30 min/SKU |
+| 4 | Content Specialist enriches product data in PIM/ERP: (a) completes all mandatory attributes per category schema (e.g., tiles: material, size mm, thickness, finish, PEI rating, pieces per sqm; lumber: species, dimensions, treatment, grade; paint: base type, coverage area, drying time, finish), (b) writes short description (50–100 chars for search results), (c) writes long description (200–500 chars for product page — features, benefits, application), (d) maps to category navigation path, (e) assigns search keywords and synonyms, (f) links related accessories and cross-sell items | Content Specialist | Content Manager | 20–30 min/SKU |
+| 5 | Product photography: (a) for new SKUs with high online potential (A/B items): schedule product shoot with photographer (studio or on-location for large items); produce 3–5 images per SKU (front, detail, lifestyle/context, dimensions reference, packaging), (b) for C-items and low online potential: use vendor-provided images or placeholder category image with "image coming soon" flag; system marks these items for prioritized photography during quarterly content refresh | Content Specialist / Photographer | Content Manager | Shoot: 5–10 min/SKU |
+| 6 | Content Specialist uploads and links digital assets (images, PDFs for spec sheets, installation guides, safety data sheets) to SKU record in PIM/ERP | Content Specialist | Content Manager | 5 min/SKU |
+| 7 | Content Manager reviews and approves completed content per SKU; checks attribute completeness, description quality, image quality, and keyword relevance | Content Manager | CMO | 5 min/SKU |
+| 8 | System publishes approved content to ecommerce platform (catalog sync); updates in-store kiosk and POS product lookup if applicable; clears "content pending" flag | System | — | Automated |
+| 9 | For items with vendor-provided content only: system publishes with "vendor content — not verified" tag visible to Content Manager; these items prioritized for enrichment during quarterly refresh | System | Content Manager | Automated |
+| 10 | **Quarterly content refresh**: Content Manager reviews content quality metrics (incomplete attributes, missing images, low search ranking, high bounce rate on product pages); prioritizes 500–1,000 SKUs for content improvement per quarter | Content Manager | CMO | 8 hours/quarter |
+| 11 | **Seasonal catalog refresh**: before each major promotional period (W13), Content Manager coordinates with Marketing for seasonal landing pages, featured product collections, and updated lifestyle imagery | Content Manager | CMO | Per W13 lead time |
+
+### System Touchpoints
+- PIM module or dedicated PIM system integrated with ERP item master (W50.4)
+- Category-specific attribute schema with mandatory field enforcement (W50.4)
+- Content workflow: Draft → In Review → Approved → Published → Refresh Needed (W50.7–8)
+- Digital asset management: image storage, versioning, and linking to SKU records (W50.6)
+- Ecommerce catalog sync with content completeness validation (W50.8)
+- Content quality dashboard: attribute completeness % by category, missing images, search ranking, page views, bounce rate (W50.10)
+- Integration with W1 (SKU creation trigger), W13 (promotional content), W32 (seasonal setup), W36 (vendor onboarding — vendor content import)
+
+> **Seasonal PIM timeline coordination**: W32 seasonal buy planning requires SKU content to be ready for catalog/promo publication at least 6 weeks before season start. The PIM-to-seasonal timeline is: (a) W32 step 2 (Category Manager reviews seasonal forecast) triggers content request to Content Manager with target content-ready date = T-6 weeks before season; (b) W32 step 4 (Category Manager creates seasonal buy plan with SKU list) provides Content Manager with the final SKU list for content creation; (c) Content Manager prioritizes seasonal SKUs in the content queue — seasonal SKUs bypass the standard queue and are assigned to Content Specialists within 2 business days of receipt; (d) Content Specialists complete content (attributes, descriptions, images) within 2 weeks of assignment; (e) Content Manager reviews and approves within 3 business days; (f) system publishes approved content to ecommerce catalog at T-3 weeks before season start to allow Marketing to build seasonal landing pages and email campaigns; (g) if content is not ready by T-3 weeks, Content Manager escalates to CMO with risk assessment (incomplete content reduces ecommerce conversion for seasonal items); this timeline is tracked by Content Manager as part of the W50 quarterly content refresh calendar and reviewed in seasonal kick-off meetings with Category Managers and Marketing.
+
+### Staffing Implication
+- **1 Content Manager** (within Marketing team): manages content strategy, quality standards, and team output.
+- **2–3 Content Specialists**: at ~1,500–2,500 new SKUs/year × 45 min/SKU average = ~1,100–1,900 hours/year. With 2–3 specialists, that's ~400–600 hours/year each = ~10–15 hours/week of new content, leaving time for quarterly refreshes and seasonal campaigns.
+- **1 Photographer** (in-house or freelance retainer): product shoots scheduled in batches (50–100 SKUs per shoot day). With ~600–1,000 A/B items needing photography annually, that's ~10–15 shoot days/year.
+- **Incremental headcount**: Content Manager + 2 Content Specialists should be added to the Marketing team (from ~20 to ~23) to support ecommerce content operations. These roles become increasingly critical as ecommerce penetration grows from 3% to 7% of revenue.
+
+---
+
+
+
+---
+
+## W63. Shelf Label & Price Tag Distribution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Price change batch approved (W40 step 5) or promotional pricing approved (W13 step 3) |
+| **Frequency** | Price changes: ~2–3 batches/week; Promotional: 6 major events/year + 12 monthly hot deals |
+| **Volume** | ~200–500 SKUs per price change batch × 200 stores = ~40,000–100,000 shelf labels per batch; promotional batches may be larger |
+| **Owner** | Pricing Analyst (generation); Store Manager (execution) |
+| **Participants** | Pricing Analyst, IT, Store Manager, Department Supervisors, Stock Associates |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | After price change approval (W40 step 5) or promo approval (W13 step 3), system generates shelf label print file: SKU, old price, new price, effective date, store assignment, aisle/shelf location (if location master populated) | System | — | Automated |
+| 2 | System transmits print file to centralized label printer at HQ or to store-level label printers (if equipped); labels printed per store with store identifier, SKU barcode, item description, and new SRP | System / IT | IT Team | 15–30 min/batch (centralized) or 10 min/store (local) |
+| 3 | If centralized printing: HQ packages labels by store; ships to stores via next available DC delivery truck (W4) with clear labeling by department and effective date | Stock Associate (HQ) | Store Ops Director | 1–2 hours/batch |
+| 4 | Store Manager or Dept. Supervisor receives labels; sorts by department; assigns Stock Associates to apply labels before store opening on effective date | Dept. Supervisor | Store Manager | 15 min |
+| 5 | Stock Associates walk aisles with label batch; match labels to shelf items by barcode or location; replace old labels with new; remove old labels from shelf edge | Stock Associate | Dept. Supervisor | 30–60 min/batch |
+| 6 | Department Supervisor spot-checks label accuracy on effective date: scan 10–20 random items per department with RF gun; verify displayed price matches system price | Dept. Supervisor | Store Manager | 15 min |
+| 7 | If discrepancy found: Dept. Supervisor immediately corrects label and reports root cause (missed label in batch, wrong location, system vs. print mismatch) | Dept. Supervisor | Store Manager | 5 min/correction |
+| 8 | For electronic shelf labels (ESL) — if deployed at select stores: system pushes price changes to ESL devices overnight; Dept. Supervisor verifies ESL display matches system price during opening walkthrough (W5a step 2); no physical label handling required | System / Dept. Supervisor | Store Manager | Automated + 5 min verification |
+
+### System Touchpoints
+- Automated shelf label print file generation from approved price changes with store/location assignment (W63.1)
+- Centralized or store-level label printing with barcode, description, and SRP (W63.2)
+- Label shipment tracking if centralized (W63.3)
+- Label verification via RF gun barcode scan against system price (W63.6)
+- Electronic shelf label (ESL) integration for stores with ESL hardware (W63.8)
+- Catch-weight / variable measure item shelf labels: for items sold by weight, length, or board foot (lumber, wire, bulk nails), shelf labels display unit pricing (e.g., "PHP 85.00 per board foot", "PHP 45.00 per linear meter", "PHP 350.00 per kilogram") rather than a fixed SRP; label includes the unit of measure, unit price, and a note "Price varies by actual measure"; system generates catch-weight labels from item master pricing per unit of measure; at POS (W5b.2), Sales Associate measures/weighs actual quantity and system calculates price = unit price × actual quantity; integration with W5b (POS catch-weight selling) and W40 (price changes — unit price updates reflected on catch-weight labels)
+- Integration with W5a (opening — label application done before opening), W13 (promo labels), W40 (regular price changes)
+
+### Staffing Implication
+- **Stock Associates**: label application adds ~30–60 min per price change batch. With ~2–3 batches/week, this is ~1–3 hours/week. Absorbed within existing Stock Associate duties (3 per store), typically done during early morning before store opens.
+- **Pricing Analyst**: print file generation adds ~15 min/batch. Absorbed.
+- For centralized printing: 1 Stock Associate at HQ handles packaging and shipping. Absorbed.
+
+---
+
+
+
+---
+
+## W64. New Product Pilot / Store Test
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Buyer or Category Manager proposes new SKU for chain-wide rollout but wants to validate demand before committing to full distribution |
+| **Frequency** | ~20–30 product pilots/year |
+| **Volume** | Typically 5–20 SKUs per pilot; tested in 10–20 stores for 4–8 weeks |
+| **Owner** | Category Manager |
+| **Participants** | Category Manager, Buyer, Pricing Analyst, Supply Planner, Store Managers (pilot stores) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Category Manager identifies new SKU for pilot testing; defines hypothesis: target customer segment, expected sell-through rate, margin target, shelf space requirement, and success criteria (units/week/store above threshold) | Category Manager | VP Merchandising | 1–2 hours/pilot |
+| 2 | Category Manager selects pilot stores: criteria include (a) representative mix of store sizes and locations, (b) region diversity (Luzon/Visayas/Mindanao), (c) store manager capability and willingness, (d) existing demand for similar items in the category | Category Manager | VP Merchandising | 1 hour/pilot |
+| 3 | Buyer sources pilot quantity from vendor (may negotiate consignment or vendor-funded trial terms); Merchandise Planner creates SKU in item master with "Pilot" status flag | Buyer / Merchandise Planner | Category Manager | Per W2/W1 |
+| 4 | Supply Planner allocates pilot stock to selected stores only; system restricts SKU visibility and ordering to pilot stores (non-pilot stores cannot see or order the item during pilot phase) | Supply Planner | Supply Planning Manager | 30 min/pilot |
+| 5 | Store Managers at pilot stores receive pilot communication: product details, target customer, shelf placement recommendation, any special handling instructions | Category Manager | Store Managers | 15 min/store |
+| 6 | During pilot (4–8 weeks): Pricing Analyst monitors weekly sell-through per pilot store; compares to success criteria and to similar items in the category; tracks customer feedback via Sales Associates and loyalty data | Pricing Analyst | Category Manager | 30 min/week |
+| 7 | At pilot conclusion: Category Manager conducts go/no-go review with Buyer and Pricing Analyst: (a) **Go** — meets or exceeds success criteria; proceed with chain-wide rollout (add to assortment per W1, create standard replenishment parameters per W31), (b) **No-Go** — fails to meet criteria; discontinue item; disposition remaining stock per W13.9a/b (clearance/RTV), (c) **Conditional Go** — meets some criteria; extend pilot or modify (adjust price, change assortment depth, restrict to specific store formats) | Category Manager | VP Merchandising | 2 hours/pilot |
+| 8 | If Go: Merchandise Planner removes "Pilot" status flag; assigns standard replenishment parameters (ROP, safety stock, order multiple); adds SKU to standard assortment for all stores; Supply Planner plans chain-wide distribution | Merchandise Planner / Supply Planner | Category Manager | 2–4 hours |
+| 9 | Post-rollout: Category Manager monitors chain-wide performance for 2–3 months; compares to pilot results; validates that pilot learnings scale | Category Manager | VP Merchandising | 30 min/month |
+
+### System Touchpoints
+- Item master "Pilot" status flag that restricts visibility and ordering to designated pilot stores (W64.3–4)
+- Pilot store selection and assignment in system (W64.2)
+- Pilot sell-through dashboard: weekly velocity per store vs. success criteria vs. category benchmark (W64.6)
+- Pilot status removal and chain-wide assortment activation (W64.8)
+- Integration with W1 (assortment management), W2 (PO for pilot stock), W13 (clearance if no-go), W31 (replenishment parameter setup for chain-wide rollout)
+
+### Staffing Implication
+- No incremental headcount. Pilot management is absorbed by existing Category Managers, Buyers, and Pricing Analysts as part of their assortment duties (W1). ~20–30 pilots/year × ~4 hours each = ~80–120 hours/year spread across 5 Category Managers = ~20 hours each/year.
+
+---
+
+
+
+---
+
+## W68. Product Lifecycle & Discontinuation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Quarterly assortment review (W1) identifies SKUs for discontinuation; or vendor announces product end-of-life; or category rationalization decision |
+| **Frequency** | ~4–8 discontinuation campaigns/year (aligned with W1 quarterly cycles); ~200–500 SKUs discontinued per campaign |
+| **Volume** | ~1,000–2,000 SKUs discontinued/year (balanced by ~1,500–2,500 new SKUs/year from W1/W32); each SKU follows the same lifecycle |
+| **Owner** | Category Manager |
+| **Participants** | Category Manager, Buyer, Merchandise Planner, Pricing Analyst, Supply Planner, Marketing, Store Operations |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Category Manager identifies SKUs for discontinuation from W1.2 underperformer analysis (bottom 10% by revenue/sqm, negative margin, < 2 turns/year, or vendor product end-of-life notification); creates discontinuation candidate list per category | Category Manager | VP Merchandising | 2 hours/campaign |
+| 2 | Buyer validates discontinuation impact per SKU: (a) remaining open POs — can they be cancelled or reduced?, (b) outstanding vendor commitments on blanket POs (W2c) — minimum commitment status, (c) active rebate agreements (W27) — impact on rebate tier achievement, (d) vendor relationship impact — is vendor sole-source for other SKUs? | Buyer | Category Manager | 3 hours/campaign |
+| 3 | VP Merchandising approves discontinuation list; system sets "Discontinued — Pending" status on approved SKUs | VP Merchandising | VP Merchandising | 30 min/campaign |
+| 4 | **Last buy decision**: for each discontinued SKU, Buyer determines: (a) cancel all open POs (standard action) or (b) place final buy order to cover estimated sell-through during clearance period if remaining stock is critically low and sufficient margin exists; final buy follows standard W2a PO process but flagged as "Last Buy" — no future auto-replenishment | Buyer | Category Manager | 1 hour/campaign |
+| 5 | Supply Planner disables auto-replenishment (ROP) for discontinued SKUs; system stops generating suggested POs; remaining store replenishment continues until DC stock is exhausted; system auto-cancels all open backorders (W56) for discontinued SKUs across all stores; customers with cancelled backorders notified via SMS/email with apology and option to select a substitute item (directed to Sales Associate or CSR for assistance) | Supply Planner | Supply Planning Manager | 30 min/campaign |
+| 6 | Merchandise Planner flags SKU as "Discontinued" in item master with effective date; item hidden from planogram tools and new store assortment assignments (W16.5); item remains visible in POS and ecommerce for selling remaining stock | Merchandise Planner | Category Manager | 1 hour/campaign |
+| 7 | **Clearance execution**: Pricing Analyst sets clearance markdown per W13.9a — system applies clearance price at POS and ecommerce; POS displays clearance disclaimer; Dept. Supervisors move items to clearance section; clearance period typically 4–6 weeks (longer than promo clearance per W13.9a to allow complete sell-through) | Pricing Analyst / Dept. Supervisor | Category Manager | 2 hours/campaign |
+| 7a | **Pricing conflict during discontinuation clearance**: if a regular price increase (W40) occurs while an item is in discontinuation clearance, the clearance price is NOT recalculated from the new regular price — the clearance price remains fixed at its originally set level (typically a percentage below the pre-clearance regular price) until the clearance period ends; if a regular price decrease (W40) occurs during clearance and the new regular price falls below the clearance price, system alerts Pricing Analyst, who must either lower the clearance price below the new regular price or accelerate the item's disposition to post-clearance (W68.9); this rule extends the W13 pricing conflict resolution logic to the discontinuation context — clearance price overrides regular price during the clearance period, and clearance items are excluded from standard price change batches (W63)
+| 8 | **Weekly sell-through monitoring**: Pricing Analyst reviews discontinued SKU sell-through dashboard; if sell-through rate < 20% of remaining stock after 3 weeks, escalates to Category Manager for deeper markdown or accelerated disposition | Pricing Analyst | Category Manager | 30 min/week during clearance |
+| 9 | **Post-clearance disposition**: at end of clearance period, remaining stock dispositioned per priority: (a) Return to Vendor (RTV) — Buyer coordinates per W3.6a, negotiate credit note; (b) bulk liquidation to discount buyers — Buyer arranges sale; (c) donation to partner organizations (Habitat for Humanity, local community organizations); (d) scrap/recycle — DC Supervisor authorizes per W3.6c; system removes remaining inventory and posts final loss | Buyer / DC Supervisor | Category Manager | 2 hours/campaign |
+| 10 | **Vendor settlement**: AP Clerk processes any vendor credit memos from RTV per W7.9b; Buyer confirms vendor agreement termination or continued relationship on other SKUs; system releases any remaining blanket PO commitments per W2c | AP Clerk / Buyer | AP Supervisor | 1 hour/campaign |
+| 11 | **System archival**: Merchandise Planner sets SKU status to "Discontinued — Inactive"; item removed from active search in POS (no longer scannable for new sales), removed from ecommerce catalog, excluded from inventory reports; item master record retained for 7 years per BIR retention (historical transaction references remain accessible); WAC and inventory value zeroed out | Merchandise Planner | Category Manager | 30 min/campaign |
+| 12 | **Post-discontinuation review**: Category Manager compares actual recovery rate (clearance + RTV credits) vs. write-off loss; documents learnings for future discontinuation decisions; feeds into quarterly assortment review (W1) | Category Manager | VP Merchandising | 1 hour/campaign |
+
+**Total discontinuation campaign cycle**: 6–10 weeks from approval to archival
+
+### System Touchpoints
+- SKU discontinuation status lifecycle: Active → Discontinued (Pending) → Discontinued (Clearance) → Discontinued (Inactive); each status change controls system behavior (POS scanning, ecommerce visibility, auto-replenishment, planogram inclusion) (W68.3, 6, 11)
+- Last buy PO flag that triggers no future auto-replenishment while allowing one-time procurement (W68.4)
+- Auto-replenishment disable per SKU-location with effective date (W68.5)
+- Clearance markdown execution with extended clearance period (longer than W13.9a promotional clearance) (W68.7)
+- Discontinued SKU sell-through dashboard with velocity tracking and escalation triggers (W68.8)
+- Final disposition tracking: RTV, liquidation, donation, scrap — with GL posting for each outcome (W68.9)
+- SKU archival with 7-year BIR retention compliance; historical transaction references preserved (W68.11)
+- Integration with W1 (assortment review — trigger), W2 (last buy PO, blanket PO release), W3 (RTV), W7 (vendor credit memo), W13.9a–b (clearance), W16 (new store assortment — exclude discontinued), W31 (disable forecast), W36 (vendor relationship), W40 (price changes during clearance — W40 pricing conflict rules apply)
+
+### Staffing Implication
+- **Category Manager**: ~4–8 campaigns/year × 4 hours = ~16–32 hours/year. Absorbed within existing W1 quarterly duties.
+- **Buyer**: ~4–8 campaigns × 4 hours = ~16–32 hours/year. Absorbed.
+- **Pricing Analyst**: clearance setup + weekly monitoring = ~4 hours/campaign × 6–8 = ~24–32 hours/year. Absorbed.
+- **Merchandise Planner**: ~1 hour/campaign for status changes. Absorbed.
+- No incremental headcount.
+
+---
+
+
+
+---
+

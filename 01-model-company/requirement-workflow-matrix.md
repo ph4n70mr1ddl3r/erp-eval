@@ -1,7 +1,7 @@
 # Requirement-to-Workflow Cross-Reference Matrix
 
 > Maps each ERP requirement from [erp-requirements.md](erp-requirements.md) to the operational
-> workflows from [operational-workflows.md](operational-workflows.md) that exercise it.
+> workflows from the [workflows/](workflows/README.md) directory that exercise it.
 > Ensures complete traceability: every requirement is validated by at least one workflow,
 > and every workflow tests at least one requirement.
 

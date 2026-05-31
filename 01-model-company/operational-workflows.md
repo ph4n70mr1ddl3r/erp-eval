@@ -697,6 +697,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Non-PO / recurring expense invoice processing: 2-way match (invoice vs. contract or budget), store manager / department head approval routing, cost center allocation, utility and service bill capture (W7c.1–6)
 - Shelf-life / expiry date management: capture manufacturing date and shelf-life at GR for date-sensitive items; system tracks expiry per batch; FEFO (First Expired First Out) pick direction in DC; alerting for near-expiry items; periodic expiry review feeds into slow-mover disposition (W3, W4, W6)
 - GRNI aging management: AP Clerk runs weekly GRNI aging report showing all GRs without matching vendor invoices, grouped by aging bucket (0–30, 31–60, 61–90, 90+ days); items > 30 days flagged for Buyer follow-up with vendor; items > 60 days escalated to AP Supervisor for direct vendor contact; items > 90 days reviewed by Controller for potential permanent accrual or write-off; system tracks GRNI aging with vendor-level drill-down; weekly GRNI aging dashboard visible to AP Supervisor and Controller (W7, W9a.2a)
+- Duplicate vendor invoice detection: system automatically checks incoming vendor invoices against the AP sub-ledger for duplicate invoice number, duplicate vendor + amount + date combinations, and duplicate PO reference + invoice number; if a potential duplicate is detected, system blocks the invoice and alerts AP Clerk with the matching existing invoice reference; AP Clerk investigates (true duplicate vs. sequential invoice numbers from same vendor) and either rejects the duplicate or overrides with documentation; monthly: AP Supervisor reviews duplicate detection override log as part of AP controls review (cross-reference CTL-42 in Internal Controls Matrix) (W7)
 - Evaluated Receipt Settlement (ERS): for configured VMI vendors (W20) and select blanket PO vendors (W2c), system auto-generates vendor invoice from PO + Goods Receipt data without requiring vendor invoice submission; AP Clerk validates auto-generated invoice against PO and GR; if within tolerance, auto-approved for payment; reduces GRNI accumulation and manual invoice processing for high-volume, trusted vendor relationships
 
 ### Staffing Implication
@@ -782,6 +783,8 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 6 | For 30-day overdue: AR Clerk contacts customer (phone/email) for follow-up | AR Clerk | AR Supervisor | 15 min/account |
 | 7 | For 60-day overdue: escalate to Sales Rep for relationship-based collection | Sales Rep | AR Supervisor | 15 min/account |
 | 8 | For 90-day overdue: escalate to Finance Manager; consider credit hold | Finance Manager | CFO | 30 min/account |
+| 8a | **AR legal collection escalation**: for accounts > 120 days overdue with no payment response after standard collection tiers (W8.6–8) — (a) AR Supervisor sends formal demand letter (demand collection letter per Philippine legal requirements) via registered mail with return card; letter states outstanding amount, original invoice references, payment deadline (15 business days), and notice of potential legal action; (b) if customer responds and disputes: AR Clerk coordinates investigation with Sales Rep and Store Manager to validate or resolve dispute; disputed amounts suspended from collection while under investigation; (c) if no response after demand letter deadline: AR Supervisor escalates to Finance Manager for referral to external collection agency or Legal for filing of collection case; (d) external collection agency engaged per W62 (service contract); agency fee typically 10–20% of collected amount; system tracks collection agency referral with agency reference and status; (e) if legal action warranted (amount > PHP 200,000 and customer solvent): Legal files collection case with appropriate court; Legal manages case with external counsel; system tracks legal case reference and status; (f) **Bad debt write-off**: if all collection efforts exhausted (demand letter + collection agency + legal if applicable) or customer confirmed insolvent/bankrupt, AR Clerk submits bad debt write-off request — tiered approval per W8.8b below; system posts Dr. Bad Debt Expense / Cr. Allowance for Doubtful Accounts (or direct write-off Dr. Bad Debt Expense / Cr. AR per company policy); BIR documentation retained: demand letter, collection agency report, court filing (if applicable), write-off approval; (g) **Write-off recovery**: if customer subsequently pays on a previously written-off account (recovery of bad debt), AR Clerk processes recovery payment; system posts Dr. Cash / Cr. Bad Debt Recovery (income); write-off recovery tracked separately from regular AR collections for reporting | AR Supervisor / Finance Manager / Legal / CFO | Controller | Varies |
+| 8b | **Bad debt write-off approval**: (a) ≤ PHP 50,000: Finance Manager, (b) PHP 50,001–200,000: Controller + Finance Manager, (c) PHP 200,001–1,000,000: CFO, (d) > PHP 1,000,000: CEO | Approver | Approver | 15 min/write-off |
 | 9 | Customer payment received; AR Clerk applies payment to open invoices | AR Clerk | AR Supervisor | 5 min/payment |
 | 10 | Monthly reconciliation of AR sub-ledger to GL | AR Clerk | AR Supervisor | 2 hours/month |
 11 | Customer credit memo: AR Clerk creates credit memo with reason code and source reference (pricing error, volume discount adjustment, short delivery, service failure, promotional adjustment); tiered approval (AR Supervisor ≤ PHP 10,000; Finance Manager ≤ PHP 50,000; CFO > PHP 50,000); system applies credit to oldest open invoice or creates credit balance; posts GL entry (Dr. Revenue or appropriate expense / Cr. Accounts Receivable); customer notified of credit | AR Clerk / AR Supervisor | Finance Manager | 10 min/credit memo |
@@ -955,7 +958,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 - **2–3 Payroll Officers**: 5 entities × 2 runs = 10 runs/month. Each run takes ~6 hours. Total ~60 hours/month of payroll processing. 2 officers can handle this with time for reconciliation and inquiries.
 - **1 Payroll Manager**: Approval, oversight, statutory compliance.
 - **1–2 HR Assistants**: Leave and OT verification (data entry-heavy during payroll week).
-- Fits within the ~15-person HR team.
+- Fits within the ~16-person HR team.
 
 ---
 
@@ -1415,6 +1418,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 - Scheduled points expiry with breakage revenue recognition (W17.11)
 - Loyalty deferred revenue: allocation at POS earning (PFRS 15), proportional recognition at redemption, breakage recognition at expiry, monthly liability estimation and reconciliation (W17.4, W17.7, W17.11, W17.11a)
 - Manual points adjustment: Loyalty Manager (or authorized CSR) initiates adjustment with reason code and supporting documentation (system error, complaint resolution per W41, retroactive earning for missing transaction, dispute resolution); approval required for adjustments above threshold (> 500 points: Loyalty Manager; > 5,000 points: Marketing Head); system logs adjustment with initiator ID, approver ID, reason, and original transaction reference; monthly audit of all adjustments by Loyalty Manager (W17)
+- Loyalty fraud resolution process: when W37 loyalty fraud detection flags a suspected fraud pattern — (a) LPO creates fraud investigation case in system with detection rule triggered, affected account(s), and evidence; (b) Loyalty Manager reviews case within 2 business days and classifies: confirmed fraud, suspected fraud (requires further monitoring), or false positive; (c) **if confirmed fraud** — Loyalty Manager suspends the affected loyalty account (account cannot earn or redeem points; customer notified via email/SMS of suspension with reason and contact for appeal); LPO deducts fraudulently earned points (manual adjustment per approval tier above); if fraud involves employee (cashier self-scanning), LPO escalates per W37.5 confirmed irregularity process; (d) **if suspected fraud** — Loyalty Manager places account on monitoring status (all transactions flagged for 30-day observation period; no account suspension); if fraud confirmed during monitoring, escalate to confirmed fraud; if no further suspicious activity in 30 days, remove monitoring status; (e) **customer appeal**: customer may appeal suspension by contacting Customer Service; Loyalty Manager reviews appeal within 5 business days; if appeal upheld, account reinstated with apology communication and compensatory points per W41 complaint resolution; if appeal denied, account remains suspended; (f) **permanent ban**: for repeat offenders (2+ confirmed fraud incidents), Loyalty Manager recommends permanent account ban to Marketing Head for approval; permanently banned accounts cannot be reactivated; (g) monthly: Loyalty Manager generates fraud resolution summary — cases opened, confirmed, false positive rate, accounts suspended, points recovered; feeds into W37 shrinkage reporting
 - Customer data deduplication: system performs fuzzy-match deduplication at enrollment (blocks creation if > 85% match on name + phone or name + email); Loyalty Manager reviews weekly deduplication queue of potential duplicates; merges approved records with points consolidation; monthly data quality dashboard showing duplicate rate, incomplete records, and invalid contact info (W17.1–2)
 - Ecommerce loyalty points earning: for online orders (W11 BOPIS and W19 home delivery), system awards points when order is fulfilled (picked up for BOPIS, delivered for home delivery), not at order placement, because revenue recognition occurs at fulfillment; customer identifies loyalty account at online checkout via registered account linkage; guest checkout customers do not earn points; system calculates points using the same earn rate (1 point per PHP 100); PFRS 15 deferred revenue allocation follows same logic as in-store earning (W17.4); order fulfillment event triggers points earning via ecommerce-to-ERP integration
 
@@ -1512,7 +1516,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
 | 1 | Customer places delivery order on website/app; selects delivery address; pays online | Customer | — | — |
-| 2 | System routes order to nearest DC (or store if DC out of stock); creates pick list | System | — | Automated |
+| 2 | System routes order to nearest DC (or store if DC out of stock); creates pick list; **multi-DC order splitting**: if order contains items stocked at different DCs (e.g., bulky items at DC3 Laguna but specialty items only at DC5 Manila), system evaluates fulfillment options — (a) single-DC fulfillment preferred: ship all items from one DC if ATP available, even if not the closest DC for some lines; (b) split fulfillment: if no single DC has ATP for all items, system splits order into sub-orders per fulfillment DC — each sub-order gets its own tracking number, carrier assignment, and delivery timeline; customer receives a single order confirmation with "Items shipping from multiple locations" notice and per-sub-order tracking links; (c) split cost allocation: additional shipping cost from split fulfillment (if any) is absorbed by BuildRight, not charged to customer; (d) partial delivery: first sub-order ships immediately; remaining sub-orders ship as ATP becomes available; customer notified per sub-order status; (e) returns for split orders: customer may return all items to any BuildRight store per W12b regardless of which DC fulfilled; system handles cross-location inventory adjustment per W12c; Supply Planner reviews split fulfillment frequency weekly — high split rates for specific items trigger replenishment parameter review per W31.8 | System | — | Automated |
 | 3 | DC receives pick task; assigns to picker by zone | WMS / DC Supervisor | DC Supervisor | 2 min |
 | 4 | Picker picks items; scans each for confirmation | Picker | DC Supervisor | 5–15 min/order |
 | 5 | If item unavailable: system offers substitution or cancels line; notifies customer | System / CSR | — | 3 min |
@@ -2057,7 +2061,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 
 ---
 
-## W5d. Offline POS Recovery & Reconciliation
+## W5g. Offline POS Recovery & Reconciliation
 
 | Field | Detail |
 |---|---|
@@ -2135,6 +2139,7 @@ During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per
 | 8 | Weekly: Treasury prepares cash flow forecast (2-week rolling) based on AP aging, AR collection schedule, payroll dates, and capex commitments | Treasury Analyst | CFO | 2 hours/week |
 | 9 | Monthly: Treasury reconciles all bank accounts per entity; posts bank charges, interest income, FX gains/losses | Treasury Analyst | Controller | 1 day/month |
 | 10 | Import payments: Treasury manages USD accounts; executes FX conversions for import vendor payments based on LC/TT schedule | Treasury Analyst | CFO | As needed |
+| 10a | **FX hedging policy**: CFO defines and documents the company's FX risk management strategy — (a) natural hedging: match USD payables (import POs per W2b) with USD receivables where possible; maintain USD bank account balances sufficient to cover near-term import payment obligations (typically 30–60 day forward cover); (b) forward contracts: for large committed import orders (> PHP 5M equivalent), Treasury Analyst may purchase USD forward contracts through the banking relationship to lock in exchange rate at PO creation date; forward contract details (notional amount, forward rate, maturity date, counterparty bank) recorded in system; (c) policy limits: unhedged FX exposure limited to 30-day rolling average of import payments; CFO approves all forward contracts; no speculative FX positions permitted (hedging only for committed import payables); (d) monthly: Treasury Analyst prepares FX exposure report — total USD payables outstanding, USD bank balances, forward contracts in place, net unhedged exposure, unrealized FX gain/loss on open forward contracts; included in weekly cash flow forecast (W30 step 8); (e) at forward contract maturity: Treasury settles with bank; system posts settlement with realized FX gain/loss vs. forward rate | Treasury Analyst / CFO | CFO | Monthly review + as needed for forward contracts |
 
 ### System Touchpoints
 - Multi-bank statement import (BDO, BPI, Metrobank, Chinabank) via file formats or API (W30.2)
@@ -2560,6 +2565,7 @@ When an LPO investigation confirms theft or irrecoverable loss:
 - Customer notification upon receipt (W38.11)
 - Sales Order lifecycle: open → PO linked → goods received → customer notified → closed (W38.7–12)
 - Cancellation handling with deposit refund workflow (W38.13–14)
+- Non-stock SKU archival and cleanup: over time, the item master accumulates non-stock/special-order SKUs (type = "Special Order / Non-Stock" per W38.3a) from one-time customer orders; to prevent item master bloat — (a) monthly: Merchandise Planner generates non-stock SKU aging report listing all non-stock SKUs with no sales activity in the past 12 months; (b) Merchandise Planner reviews each stale non-stock SKU and sets status to "Non-Stock — Archived" — item remains searchable in system for transaction history but is hidden from new Sales Order creation and Sales Associate lookup; (c) archived non-stock SKUs excluded from item count in reporting and system performance metrics; (d) if a customer subsequently requests the same item, Merchandise Planner reactivates the archived SKU (updates status to active) rather than creating a duplicate; system checks for archived SKUs matching the item description before allowing new non-stock SKU creation; (e) annually: Merchandise Planner reviews all archived non-stock SKUs older than 3 years with zero transaction history and proposes permanent deletion per BIR 7-year retention compliance (items with any transaction history retained for full 7 years regardless of archival status)
 - Unclaimed deposit aging: system tracks deposit age from goods-receipt date; automated reminder at 30 days; escalation flag at 90 days; abandonment recognition with approval workflow; goods disposition tracking (W38.15)
 
 ### Staffing Implication
@@ -3067,6 +3073,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 | Roll-up doors / loading docks | Bi-annual servicing | External contractor | Security and receiving operations |
 | Electrical panel and generators (if applicable) | Annual inspection | Licensed electrician | Safety compliance |
 | Pest control | Monthly treatment | External contractor (pest control vendor) | Health and sanitation |
+| Hazardous waste disposal | Per accumulation or quarterly | Licensed DENR-accredited transporter | Regulatory compliance (DENR/EMB) |
 | Elevators / escalators (if applicable) | Monthly inspection per DOLE requirement | Licensed elevator contractor | Regulatory compliance |
 
 ### System Touchpoints
@@ -3077,6 +3084,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 - Preventive maintenance scheduling with automated work order generation per equipment calendar (W47 preventive table)
 - Maintenance reporting by location, cost, issue category, contractor performance (W47.7)
 - Integration with W21 (capex routing for major repairs), W25 (petty cash for small parts), W33 (vendor warranty claims), W39 (asset retirement if equipment beyond repair), W48 (IT equipment maintenance)
+- Hazardous waste disposal: paint mixing stations (W5b.3), chemical receiving areas, and lumber treatment areas generate hazardous waste (waste paint, solvents, chemical containers, treated wood offcuts) regulated under DENR Administrative Order No. 2013-22 (Revised Procedures and Requirements for the Management of Hazardous Wastes); Facilities Coordinator maintains a hazardous waste storage area at each store and DC — clearly labeled, ventilated, and segregated from general waste; waste accumulates in approved containers with proper labeling (waste type, date of first accumulation, hazard class); when accumulation reaches threshold (per DENR guidelines or when 90-day storage limit approaches), Facilities Coordinator arranges pickup by DENR-accredited hazardous waste transporter; transporter provides manifests (manifest system per DENR: 6-copy form tracking waste from generator to transporter to treater/disposer); system records hazardous waste disposal events: waste type, quantity, transporter, manifest number, disposal facility, date; manifest copies scanned and attached to disposal record; quarterly: Facilities Coordinator generates hazardous waste disposal report per location for DENR compliance; annual: DENR hazardous waste generator registration renewal per location (separate from W54 LGU business permit but tracked in the same Regulatory Officer calendar); Facilities Coordinator ensures all locations with paint mixing or chemical operations are registered as hazardous waste generators with DENR-EMB Regional Office; first violation of hazardous waste disposal regulations carries penalties of PHP 10,000–200,000 per DENR
 
 ### Staffing Implication
 - **1 Maintenance/Utility per store** (already in model): handles ~10–15 work orders/month including routine preventive tasks. Viable for standard repairs and routine maintenance; relies on external contractors for specialized work.
@@ -4051,6 +4059,7 @@ BuildRight's 5-DC footprint spans the Philippine archipelago: DC1 Davao (Mindana
 | 5 | For top 5 performers: Regional Manager recognizes performance; discusses best practices to share with other stores; identifies candidates for store manager development or new store opening leadership | Regional Manager | Store Ops Director | 15 min/store |
 | 6 | Regional Manager enters agreed action items into system per store; system tracks action item completion; Store Manager updates status before next review | Regional Manager / Store Manager | Store Ops Director | 10 min/store |
 | 7 | Regional Manager presents monthly store portfolio summary to Store Ops Director: top/bottom performers, common themes, resource requests, capital needs; Store Ops Director decides on escalations and resource allocation | Regional Manager | Store Ops Director | 2 hours/month |
+| 7a | **Competitive intelligence input**: as part of each monthly store review, Store Manager reports competitive activity observed during the month — (a) new competitor store openings or closures within the store's trade area, (b) competitor promotional events, pricing actions, or new product introductions observed by Sales Associates and Department Supervisors, (c) customer feedback referencing competitor offerings; Regional Manager consolidates competitive intelligence across stores in their region and reports to Store Ops Director; Store Ops Director routes competitive intelligence to VP Merchandising for incorporation into the quarterly assortment review (W1) and to Pricing Analyst for SRP review (W40); competitive intelligence is not a separate system module but is captured as a structured input in the W67 monthly review — Store Manager completes a competitive activity section in the store performance report with fields for competitor name, activity type, affected categories, and estimated impact | Store Manager / Regional Manager | Store Ops Director | 10 min/store/month |
 | 8 | Quarterly: Store Ops Director includes store performance trends in management committee meeting (W35 step 14); bottom 10 stores flagged for COO attention | Store Ops Director | COO | Quarterly |
 
 ### System Touchpoints
@@ -4404,6 +4413,210 @@ BuildRight's 5-DC footprint spans the Philippine archipelago: DC1 Davao (Mindana
 
 ---
 
+## W75. Layaway / Installment Sales
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer wants to reserve a big-ticket item (appliance, tiles, fixtures, power tools) and pay in installments over a defined period |
+| **Frequency** | ~1,000–1,500 layaway agreements/month chain-wide; ~5–8 per store per month |
+| **Volume** | Average agreement value PHP 5,000–50,000; primarily appliances, tiles, bathroom fixtures, power tools |
+| **Owner** | Customer Service Rep (agreement creation); Store Manager (approvals) |
+| **Participants** | CSR, Cashier, Store Manager, Stock Associate, Customer |
+
+### Background
+
+Layaway ("reserved items, installment payment") is a standard practice in Philippine retail, especially for big-ticket items where customers may not qualify for credit cards or trade accounts. The customer selects an item, pays a deposit to reserve it, and makes periodic installment payments over 30–90 days. When fully paid, the customer receives the item. This is distinct from credit sales (W8) — layaway items are not released until fully paid.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer selects item(s) for layaway; CSR confirms item is in stock at store; explains layaway terms: deposit (20% of item price), installment period (30, 60, or 90 days), payment frequency (weekly, bi-weekly, or monthly), cancellation/forfeiture policy | CSR | Store Manager | 5 min |
+| 2 | CSR creates layaway agreement in POS/terminal: scans item(s), enters deposit amount, selects installment plan (number of payments, dates); system generates layaway agreement number; customer signs digital agreement (or printed form) acknowledging terms | CSR | Store Manager | 5 min |
+| 3 | Customer pays deposit (cash, card, e-wallet); system records deposit as liability (Dr. Cash / Cr. Layaway Deposits Payable); not recognized as revenue until item is released; system creates inventory reservation against the layaway agreement — reserved quantity excluded from ATP for BOPIS (W11) and ecommerce (W19) | Cashier | Store Manager | 2 min |
+| 4 | Stock Associate stages the reserved item(s) in backroom layaway holding area with layaway agreement number label; items physically segregated from saleable stock | Stock Associate | Dept. Supervisor | 10 min |
+| 5 | Customer returns per agreed schedule to make installment payments; Cashier looks up layaway agreement, records payment; system updates payment schedule and shows remaining balance; each payment posted Dr. Cash / Cr. Layaway Deposits Payable | Cashier | Store Manager | 3 min/payment |
+| 6 | If customer misses a scheduled payment by > 7 days: system sends reminder notification (SMS/email); if payment not received within 14 days of due date: Store Manager contacts customer to discuss continuation or cancellation | System / Store Manager | Store Manager | 5 min/overdue |
+| 7 | **Completion**: when all installments paid, CSR releases item to customer; system recognizes revenue (Dr. Layaway Deposits Payable / Cr. Revenue) and COGS (Dr. COGS / Cr. Inventory); inventory reservation released; customer receives item with receipt | CSR / Cashier | Store Manager | 5 min |
+| 8 | **Customer cancellation**: customer cancels layaway before completion — (a) CSR processes cancellation in system with reason code; (b) system refunds payments received less cancellation fee (configurable, typically 10% of deposit or PHP 200, whichever is higher); cancellation fee retained as other income; (c) remaining refund issued to original payment methods; (d) Stock Associate returns item to sales floor; inventory reservation released, ATP restored | CSR / Stock Associate | Store Manager | 10 min |
+| 9 | **Forfeiture**: if customer does not make any payment for 30 consecutive days and does not respond to Store Manager contact — (a) system flags agreement for forfeiture; (b) Store Manager approves forfeiture; (c) all payments received forfeited to BuildRight (recognized as Layaway Forfeiture Income — Dr. Layaway Deposits Payable / Cr. Layaway Forfeiture Income); (d) Stock Associate returns item to sales floor; inventory reservation released; (e) customer notified of forfeiture via SMS/email with finality statement | Store Manager | Regional Manager | 10 min |
+| 10 | **Price change during layaway**: if SRP changes (W40) while item is on layaway, the layaway price is the price at time of agreement creation — not affected by subsequent price increases or decreases; if customer cancels and re-purchases at new price, that is a separate transaction | System | — | Automated |
+| 11 | Monthly: Store Manager generates layaway activity report — active agreements, completion rate, cancellation rate, forfeiture rate, average days to completion, total liability outstanding; Regional Manager reviews in monthly store performance review (W67) | Store Manager | Regional Manager | 30 min/month |
+
+### System Touchpoints
+- Layaway agreement creation in POS/terminal with item reservation, deposit collection, and installment schedule (W75.2–3)
+- Inventory reservation: reserved quantity excluded from ATP for BOPIS (W11), ecommerce (W19), and backorder allocation (W56) (W75.3)
+- Layaway deposit liability tracking on balance sheet with revenue recognition trigger at item release (W75.3, W75.7)
+- Installment payment recording with balance tracking and overdue alerting (W75.5–6)
+- Cancellation with configurable fee and refund processing (W75.8)
+- Forfeiture with income recognition and inventory restoration (W75.9)
+- Price protection during layaway period — agreement price locked at creation (W75.10)
+- Layaway activity and liability reporting (W75.11)
+- Integration with W5b (POS selling), W6 (cycle counting — layaway items counted separately in backroom holding), W11 (ATP exclusion), W19 (ATP exclusion), W42 (physical inventory — layaway items counted as BuildRight inventory with reserved status)
+
+### Staffing Implication
+- **CSR**: ~5–8 layaway agreements/store/month × ~10 min each (creation + payment processing) = ~1–1.5 hours/store/month. Absorbed.
+- **Stock Associate**: staging items in layaway holding adds ~10 min/agreement. Absorbed.
+- **No incremental headcount.**
+
+---
+
+## W76. Employee Loans & Advances
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Employee requests salary advance, calamity loan, or company-internal loan |
+| **Frequency** | ~100–200 loan/advance requests/month chain-wide; spikes after typhoons (W49) and during enrollment season (May–August) |
+| **Volume** | Salary advances: PHP 5,000–20,000; Calamity loans: PHP 10,000–50,000; Company loans: PHP 10,000–100,000 |
+| **Owner** | HR Assistant (intake); Payroll Officer (processing) |
+| **Participants** | Employee, Department Head / Store Manager, HR Assistant, Payroll Officer, Finance Manager |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Employee submits loan/advance request in self-service portal (W51) or paper form to HR Assistant: type (salary advance, calamity loan, company loan), amount, reason, proposed repayment period | Employee | — | 10 min |
+| 2 | HR Assistant verifies eligibility: (a) salary advance — employee must be regular status, employed ≥ 6 months, no outstanding salary advance; limit = 1× basic monthly salary; (b) calamity loan — triggered by declared natural disaster (W49) affecting employee's residence; limit = 2× basic monthly salary; requires disaster declaration or barangay certification; (c) company loan — employee must be regular status, employed ≥ 1 year, no outstanding loan delinquency; limit = 3× basic monthly salary; requires documented purpose (medical, education, housing repair) | HR Assistant | HR Head | 15 min/request |
+| 3 | Approval per tier: (a) salary advance ≤ PHP 20,000: Store Manager / Dept. Head; (b) calamity loan ≤ PHP 50,000: HR Head + Finance Manager; (c) company loan ≤ PHP 100,000: HR Head + CFO; (d) > PHP 100,000: CEO | Approver | Approver | 10 min/request |
+| 4 | Payroll Officer creates loan record in system: principal amount, disbursement date, repayment schedule (typically 3–6 monthly installments for salary advance; 6–12 months for calamity/company loan), interest rate (salary advance: 0% per company policy; calamity loan: 0% per DOLE guidance; company loan: 6% per annum or BIR-prescribed minimum per arm's-length rules if officer/owner), monthly deduction amount | Payroll Officer | Payroll Manager | 10 min/loan |
+| 5 | System disburses loan: salary advance included in next semi-monthly payroll run as a separate non-taxable line item (Dr. Employee Loans Receivable / Cr. Cash); calamity and company loans processed via separate bank transfer (Dr. Employee Loans Receivable / Cr. Cash) within 3 business days of approval | System / Treasury Analyst | Payroll Manager | Automated + 15 min |
+| 6 | System automatically deducts monthly loan repayment from employee's payroll per schedule (Dr. Cash / Cr. Employee Loans Receivable); deduction appears as separate line on payslip; if employee's net pay would fall below minimum wage after deduction, system reduces deduction amount and extends repayment period | System | — | Automated |
+| 7 | Monthly: Payroll Officer generates loan portfolio report — total outstanding loans by type, aging (current vs. overdue), delinquency rate, new disbursements, collections; Finance Manager reviews for provisioning adequacy | Payroll Officer | Finance Manager | 1 hour/month |
+| 8 | **Employee separation with outstanding loan**: at separation (W43), Payroll Officer settles outstanding loan balance from final pay (W10 step 12) — system deducts remaining principal and accrued interest from final pay before other deductions; if final pay insufficient to cover full loan balance, employee signs promissory note for remaining balance and Payroll Officer tracks post-employment collection; write-off per Controller approval if uncollectible | Payroll Officer / Controller | Finance Manager | Per W43 |
+
+### System Touchpoints
+- Loan/advance request form in self-service portal with eligibility validation (employment status, tenure, outstanding loans) (W76.1–2)
+- Loan record creation with amortization schedule and automatic payroll deduction (W76.4, W76.6)
+- Loan disbursement via payroll or bank transfer with GL posting (W76.5)
+- Loan portfolio reporting: outstanding, aging, delinquency, disbursements, collections (W76.7)
+- Final pay settlement of outstanding loans at separation (W76.8)
+- Minimum wage protection: system ensures net pay does not fall below minimum wage after loan deduction (W76.6)
+- Integration with W10 (payroll deduction), W43 (separation — final pay settlement), W49 (calamity loan trigger), W51 (self-service portal)
+
+### Staffing Implication
+- **HR Assistant**: ~100–200 requests/month × 15 min = ~25–50 hours/month. Absorbed within existing 2 HR Assistants.
+- **Payroll Officer**: loan creation + portfolio reporting adds ~15 hours/month. Absorbed within existing payroll team.
+- **No incremental headcount.**
+
+---
+
+## W77. BIR Tax Audit Response
+
+| Field | Detail |
+|---|---|
+| **Trigger** | BIR issues Letter of Authority (LOA) or audit notification to any BuildRight entity |
+| **Frequency** | Occasional; estimated 1–2 BIR audits/year across 5 entities; higher probability for entities with large revenue or import activity |
+| **Volume** | Audit scope varies — from specific tax type (VAT only) to comprehensive (income tax, VAT, withholding tax) for 1–3 taxable years |
+| **Owner** | Tax Accountant (operational); Controller (oversight); CFO (escalation) |
+| **Participants** | Tax Accountant, Controller, CFO, Chief Accountant, AP Clerk, AR Clerk, IT, Legal, external tax advisor, BIR Revenue Officers |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | BIR Revenue Officer presents Letter of Authority (LOA) at entity's registered office or BIR Regional Office; Tax Accountant receives and logs LOA in system: LOA number, audit period, tax types under audit, assigned Revenue Officers, deadline for submission | Tax Accountant | Controller | 30 min |
+| 2 | Controller and CFO assess audit scope and risk; engage external tax advisor (CPA firm) for audit representation if assessment is complex or potential exposure is material (> PHP 1M) | Controller / CFO | CEO | 1 hour |
+| 3 | Tax Accountant gathers documents per BIR requirements — system generates: (a) books of accounts (general journal, general ledger, cash receipts/disbursements journals, sales/purchases journals) per BIR format and CAS permit (W54a), (b) VAT returns and supporting schedules for audit period, (c) withholding tax returns (1601-E, 1601-C) and alphalist of payees, (d) income tax returns and supporting financial statements, (e) summary of credit/debit notes, (f) list of related-party transactions and IC pricing documentation per W14, (g) fixed asset register and depreciation schedules, (h) inventory records and physical count reports (W42) | Tax Accountant / Chief Accountant | Controller | 2–5 days |
+| 4 | Tax Accountant prepares working papers reconciling tax returns to books of accounts; identifies and documents any discrepancies or areas of exposure before submission to BIR | Tax Accountant | Controller | 3–5 days |
+| 5 | Tax Accountant or external tax advisor submits documents to BIR Revenue Officers per LOA deadline; logs submission date and receipt confirmation in system | Tax Accountant | Controller | 1 day |
+| 6 | BIR conducts examination: Revenue Officers may request additional documents, clarifications, or schedule meetings/walkthroughs; Tax Accountant coordinates responses within 5 business days per BIR practice | Tax Accountant / Controller | CFO | Varies (weeks to months) |
+| 7 | BIR issues Preliminary Assessment Notice (PAN) if deficiencies found; Tax Accountant and external tax advisor review PAN; prepare protest or rebuttal within 15 days of receipt if assessment is disputed | Tax Accountant / External Advisor | CFO | 3–5 days |
+| 8 | If protest accepted by BIR: case closed; Tax Accountant documents final resolution. If BIR issues Final Assessment Notice (FAN): Tax Accountant evaluates options — (a) accept assessment and pay deficiency tax + surcharge + interest; (b) escalate to Court of Tax Appeals or file motion for reconsideration within 30 days | Tax Accountant / CFO / Legal | CEO | 3–10 days |
+| 9 | If payment required: Treasury processes payment per W30; system posts payment (Dr. Tax Payable / Dr. Tax Penalty Expense / Cr. Cash); Tax Accountant files amended returns if applicable | Treasury Analyst / Tax Accountant | CFO | Per W30 |
+| 10 | Post-audit: Controller and Tax Accountant conduct lessons-learned review; document findings and corrective actions to prevent recurrence; update internal tax compliance procedures (W9a) if needed; include audit outcomes in next quarterly management committee meeting (W35.14) | Controller / Tax Accountant | CFO | 2 hours/audit |
+| 11 | Quarterly: Tax Accountant maintains BIR audit readiness checklist: confirm books of accounts are current and BIR-compliant, withholding tax alphalists reconcile to returns, IC transfer pricing documentation is complete per W14, CAS permit is current per W54a, all tax returns filed on time | Tax Accountant | Controller | 2 hours/quarter |
+
+### System Touchpoints
+- BIR audit register: LOA number, audit period, tax types, Revenue Officers, submission deadlines, assessment amounts, protest status, resolution date (W77.1)
+- Books of accounts generation in BIR-prescribed format per CAS permit (W77.3, cross-reference W54a)
+- Tax return and supporting schedule retrieval for audit periods (W77.3)
+- Document submission tracking with deadline alerting (W77.5)
+- Assessment tracking with protest deadline management (W77.7–8)
+- Integration with W9a (month-end close — source of audit documents), W14 (IC transfer pricing documentation), W30 (payment of deficiencies), W35 (management reporting), W54a (CAS permit compliance)
+
+### Staffing Implication
+- **Tax Accountant**: audit response adds ~40–80 hours per audit over 2–4 months. Absorbed within existing role with priority reallocation during active audits.
+- **External tax advisor**: engaged for complex audits; budgeted within Finance operations.
+- **No incremental headcount.**
+
+---
+
+## W78. Government / Institutional Procurement Participation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Government agency, LGU, or state-owned enterprise issues Invitation to Bid or Request for Quotation (RFQ) for construction materials, hardware, or related supplies |
+| **Frequency** | ~20–40 government procurement opportunities/year; primarily infrastructure agencies (DPWH), LGUs, DepEd, DOH, and state universities |
+| **Volume** | Individual contract values PHP 500K–20M; represents ~5–8% of total revenue |
+| **Owner** | Sales Rep (Trade & Corporate) — dedicated government accounts representative |
+| **Participants** | Sales Rep, Category Manager, Pricing Analyst, Legal, Finance, Supply Planner |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Sales Rep monitors government procurement opportunities: PHILGEPS (Philippine Government Electronic Procurement System) portal, agency websites, and newspaper postings per RA 9184 (Government Procurement Reform Act); identifies opportunities matching BuildRight's product range | Sales Rep | VP Merchandising | 2 hours/week |
+| 2 | Sales Rep evaluates opportunity viability: (a) product match — does BuildRight carry the specified items or equivalents, (b) delivery capability — can BuildRight deliver to the agency's required locations within the specified timeline, (c) pricing competitiveness — can BuildRight meet the Approved Budget for the Contract (ABC), (d) eligibility — does BuildRight meet PHILGEPS registration, BIR tax compliance, and other bidder eligibility requirements | Sales Rep | Category Manager | 1–2 hours/opportunity |
+| 3 | Sales Rep prepares bid/quote documents per agency requirements: (a) PHILGEPS registration certificate, (b) BIR tax compliance certificate, (c) business permits per W54, (d) audited financial statements (most recent year from W9b), (e) similar completed projects or supply contracts, (f) product specifications and pricing, (g) delivery schedule and terms, (h) bid security (if required) | Sales Rep / Legal | VP Merchandising | 4–8 hours/bid |
+| 4 | Category Manager and Pricing Analyst review proposed pricing: ensure margin is adequate (minimum gross margin target for government contracts, typically 10–15%); verify that pricing does not violate any existing contract pricing or trade agreements | Category Manager / Pricing Analyst | VP Merchandising | 1–2 hours/bid |
+| 5 | Sales Rep submits bid/quote per agency deadline (sealed bid, electronic submission, or direct quotation depending on procurement method per RA 9184) | Sales Rep | VP Merchandising | Per deadline |
+| 6 | **If awarded**: Sales Rep creates Sales Order in system linked to government Purchase Order; applies government-specific pricing and delivery schedule; system creates delivery plan per W19 or in-store pickup per W11 (BOPIS); revenue recognized at delivery per standard process | Sales Rep | Finance Manager | Per W58 |
+| 7 | **Billing**: Sales Rep generates billing documents per government agency requirements — (a) standard sales invoice with BIR-registered format, (b) delivery receipt signed by agency receiving officer, (c) collection receipt per agency's accounting procedures; government accounts typically on Net 30–60 terms; collection requires submission of complete billing documents per agency-specific procedures (some agencies require liquidation documents or progress reports) | Sales Rep / AR Clerk | AR Supervisor | Per W8 |
+| 8 | **Collection**: AR Clerk follows up on government receivables per W8 collection tiers; government payments may be delayed due to budget processing — Sales Rep coordinates with agency procurement officer and accounting division; system tracks government receivable aging separately from trade accounts for reporting | AR Clerk / Sales Rep | AR Supervisor | Per W8 |
+| 9 | Quarterly: Sales Rep and Category Manager review government account portfolio: win rate, revenue, margin, collection timeliness, and bid pipeline; VP Merchandising reviews as part of corporate account portfolio (W58.10) | Sales Rep / Category Manager | VP Merchandising | 2 hours/quarter |
+
+### System Touchpoints
+- PHILGEPS registration tracking in vendor/customer master with renewal alerting (W78.1)
+- Government customer account with specialized billing requirements, delivery terms, and collection procedures (W78.6–8)
+- Government-specific pricing and margin validation per W40 approval workflow (W78.4)
+- Government receivable aging separate from trade accounts for reporting and collection management (W78.8)
+- Integration with W8 (AR and collections), W19 (delivery), W24 (credit application — government accounts may use purchase orders instead of credit), W40 (pricing), W54 (LGU permits — build compliance documentation), W58 (corporate account management)
+
+### Staffing Implication
+- **1 Sales Rep (dedicated government accounts)**: within the existing 3–4 Sales Reps (Trade & Corporate) per W58, one rep should specialize in government accounts given the unique procurement regulations and document requirements; PHILGEPS monitoring and bid preparation add ~8–12 hours/week during active bidding periods.
+- **No incremental headcount.** Absorbed within existing B2B sales team.
+
+---
+
+## W79. Employee Grievance & Whistleblower Process
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Employee files a grievance regarding workplace conditions, policy violations, harassment, discrimination, or unethical conduct; or whistleblower report of fraud, corruption, or legal non-compliance |
+| **Frequency** | Estimated 20–50 grievance/whistleblower reports/year across all locations |
+| **Volume** | Grievance categories: workplace conflict (30%), policy/procedure concern (25%), compensation/benefits dispute (20%), harassment/discrimination (15%), safety concern (10%) |
+| **Owner** | HR Head (grievance); Internal Audit (whistleblower reports involving management) |
+| **Participants** | Employee, HR Head, Internal Audit, Legal, Department Head / Store Manager, CHRO |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Employee submits grievance or whistleblower report via: (a) **grievance form** in self-service portal (W51) or paper form to HR — identifies issue, parties involved, date(s), and desired resolution; (b) **whistleblower channel** — dedicated email or anonymous hotline (managed by HR Head or third-party hotline provider) for reports of fraud, corruption, or legal non-compliance where anonymity is protected | Employee | — | 15 min |
+| 2 | HR Head (grievance) or Internal Audit (whistleblower) acknowledges receipt within 24 hours; assigns case number; classifies severity: (a) low — interpersonal conflict, minor policy concern, (b) medium — repeated policy violation, compensation dispute, (c) high — harassment, discrimination, safety violation, (d) critical — fraud, corruption, legal non-compliance | HR Head / Internal Audit | CHRO | 15 min/case |
+| 3 | **For low/medium severity (HR Head investigates)**: (a) HR Head interviews employee (complainant) within 3 business days — documents complaint details; (b) HR Head interviews respondent(s) and any witnesses within 5 business days — documents responses; (c) HR Head reviews relevant evidence (system records, CCTV, emails, documents) | HR Head | CHRO | 4–8 hours/case |
+| 4 | **For high/critical severity**: (a) harassment/discrimination — HR Head and Legal jointly investigate; respondent may be placed on preventive suspension (with pay) per Labor Code during investigation if warranted by severity; (b) fraud/corruption — Internal Audit investigates; if management is implicated, CHRO and CEO are notified directly (bypassing implicated management); (c) safety concern — HR Head and Facilities Coordinator investigate per W47 | HR Head / Legal / Internal Audit | CHRO / CEO | 8–20 hours/case |
+| 5 | **Resolution options**: (a) mediation — HR Head facilitates mediation between parties for interpersonal conflicts; both parties agree to resolution terms; (b) corrective action — policy violation confirmed; HR Head issues written warning or corrective action per progressive discipline policy; (c) policy clarification — grievance resolved by clarifying or correcting a policy/procedure; (d) escalation — if unresolved at HR Head level, employee may escalate to CHRO within 5 business days; (e) grievance committee — for complex or unresolved cases, CHRO convenes a 3-person grievance committee (HR, Legal, and independent management representative) for hearing and binding recommendation | HR Head / CHRO | CEO | Varies |
+| 6 | HR Head documents resolution in system: case number, investigation summary, evidence reviewed, findings, resolution action, date resolved; all documentation retained per 7-year BIR/regulatory retention; whistleblower identity protected in documentation | HR Head | CHRO | 30 min/case |
+| 7 | **Retaliation protection**: system flags if any adverse action (demotion, transfer, schedule change, disciplinary action) is taken against an employee with an active or recently resolved grievance/whistleblower case within 90 days of filing; such actions require CHRO approval to prevent retaliation | System / HR Head | CHRO | Automated flag + 15 min/review |
+| 8 | Quarterly: HR Head generates grievance/whistleblower summary for CHRO — volume by category, severity, location, resolution time, corrective actions taken, repeat offenders, systemic issues identified; CHRO reports aggregate metrics (anonymized) to CEO in quarterly management committee (W35.14) | HR Head | CHRO | 2 hours/quarter |
+| 9 | Annual: CHRO reviews grievance trends with Legal; recommends policy or training improvements; findings feed into W51 training calendar and W72 performance management process | CHRO / Legal | CEO | 2 hours/year |
+
+### System Touchpoints
+- Grievance submission form in self-service portal with category, severity, and desired resolution fields (W79.1)
+- Anonymous whistleblower channel (email or third-party hotline) integration with case management (W79.1)
+- Case management with severity classification, investigation tracking, evidence attachment, and resolution documentation (W79.2–6)
+- Retaliation protection: system flags adverse actions against grievance filers within 90-day lookback (W79.7)
+- Grievance/whistleblower analytics: volume, category, severity, location, resolution time (W79.8)
+- Integration with W10 (payroll — preventive suspension with pay), W43 (separation — pending grievance resolved before clearance), W47 (safety concerns), W51 (self-service portal, training improvements), W72 (corrective action and progressive discipline)
+
+### Staffing Implication
+- **HR Head**: grievance investigation adds ~20–40 hours/year. Absorbed within existing role.
+- **Internal Audit**: whistleblower investigation adds ~10–20 hours/year. Absorbed.
+- **No incremental headcount.** Grievance handling is a core HR function distributed across existing management.
+
+---
+
 ### HQ Departments
 
 | Department | Roles | Count | Key Workflows | Validation |
@@ -4490,4 +4703,4 @@ Summary of which ERP modules support which workflows:
 
 ---
 
-*Document Version: 17.0 | Date: 2026-05-31 | Wave 15: gap fill — added W5d (in-store customer delivery scheduling), W5e (store opening delay procedure), W54a (BIR CAS registration); added customer project quotation to W58 (step 1a); added quality inspection standards to W3 (step 5 detail); added attendance exception handling to W34; fleshed out NRV write-down reversal accounting (W9a.16b) per PAS 2.31; added DC multi-dimensional capacity planning dashboard to W31; expanded DSAR / data portability / erasure in W53; added PO-to-GR ratio note to W2a; added RTV vendor credit note SLA to W3; added seasonal PIM timeline coordination to W50; fixed AP staffing calculation (business-day basis); fixed W9a.16c duplicate LBT touchpoint; fixed W71 guard force count with relief buffer; added catch-weight shelf label handling to W63; added quantity break + loyalty points clarification to W40; added vendor early payment discount decision criteria to W7; renumbered W5c → W5f to accommodate new sub-sections*
+*Document Version: 18.0 | Date: 2026-05-31 | Wave 16: gap closure — added W75 (layaway/installment sales), W76 (employee loans & advances), W77 (BIR tax audit response), W78 (government procurement), W79 (employee grievance & whistleblower); fixed W5d numbering conflict (second W5d → W5g); added AR legal collection escalation with bad debt write-off to W8; added loyalty fraud resolution to W17; added duplicate vendor invoice detection to W7; added multi-DC order splitting to W19; added FX hedging policy to W30; added non-stock SKU archival to W38; added hazardous waste disposal to W47; added competitive intelligence step to W67; fixed HR headcount (15→16)*

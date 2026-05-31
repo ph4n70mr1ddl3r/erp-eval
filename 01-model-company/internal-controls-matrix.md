@@ -100,6 +100,11 @@
 |---|---|---|---|---|---|---|
 | CTL-42 | Prevent vendor payment fraud via bank account change | P | All vendor bank account detail changes require out-of-band verification (phone call to known contact, not the change request itself); dual approval (AP Clerk entry + AP Supervisor approval); 48-hour cooling-off period before first payment to new account; first payment flagged for Treasury confirmation of receipt; full audit trail of old/new bank details, verifier, approver, and timestamp | AP Clerk / AP Supervisor / Treasury | W36.7a | PUR-003, NFR-007 |
 | CTL-43 | Prevent Sales Rep self-approval of credit limits on own accounts | P | System enforces that the Sales Rep assigned to a trade/corporate account cannot also be the credit approver for that same account; credit limit approval follows the standard W24 tiered matrix (AR Supervisor / Finance Manager / Credit Committee); if Sales Rep requests a credit limit increase, system routes approval directly to AR Supervisor (bypassing the requesting Sales Rep); quarterly: Internal Audit samples credit approvals to verify no self-dealing occurred | AR Supervisor / Finance Manager | W24, W58 | CRM-003, CRM-008 |
+| CTL-44 | Detect and prevent duplicate vendor payments | P | System auto-detects duplicate vendor invoices by invoice number, vendor+amount+date, and PO reference+invoice number; blocks duplicates with AP Clerk alert; AP Clerk investigates and either rejects or overrides with documentation; monthly override log reviewed by AP Supervisor | AP Clerk / AP Supervisor | W7 | FIN-020 |
+| CTL-45 | Ensure layaway deposit safeguarding | P | Layaway deposits recorded as liability (not revenue) until item release; inventory reserved and excluded from ATP; cancellation fee configurable with approval; forfeiture requires Store Manager approval; monthly liability report reviewed by Store Manager and Regional Manager | Store Manager / Regional Manager | W75 | POS-020 |
+| CTL-46 | Ensure loyalty fraud investigation and resolution | D | LPO flags suspected loyalty fraud patterns per W37; Loyalty Manager investigates within 2 business days; confirmed fraud results in account suspension with customer notification; points deducted per approval tier; monthly fraud resolution summary reviewed by Loyalty Manager; permanent ban requires Marketing Head approval | Loyalty Manager / LPO | W17, W37 | CRM-001, NFR-007 |
+| CTL-47 | Ensure ecommerce payment reconciliation accuracy | D | Daily reconciliation of payment gateway settlements (PayMongo, GCash, etc.) to ecommerce order records; gateway fees verified against contracted rates; unreconciled settlements investigated by Treasury Analyst; monthly ecommerce payment reconciliation included in bank reconciliation (W30 step 9) | Treasury Analyst / Controller | W19, W30 | ECOM-006, FIN-009 |
+| CTL-48 | Ensure vendor rebate dispute resolution | D | If vendor disputes rebate settlement amount, Buyer negotiates resolution; Category Manager approves any adjustment; if unresolved, Finance Manager mediates; adjusted settlement posted with Category Manager approval and documentation; rebate dispute frequency tracked in vendor scorecard (W44) | Buyer / Category Manager | W27 | FIN-019 |
 
 ---
 
@@ -114,8 +119,8 @@
 | Financial Reporting | 1 | 7 | 8 |
 | Operational Process | 2 | 4 | 6 |
 | Vendor & Customer Master Data | 2 | 0 | 2 |
-| **Total** | **22** | **23** | **45** |
+| **Total** | **23** | **26** | **49** |
 
 ---
 
-*Date: 2026-05-30 (v2 — added CTL-42: vendor bank account change control, CTL-43: credit limit self-approval prevention)*
+*Date: 2026-05-31 (v3 — added CTL-44: duplicate vendor invoice detection, CTL-45: layaway deposit safeguarding, CTL-46: loyalty fraud investigation & resolution, CTL-47: ecommerce payment reconciliation, CTL-48: vendor rebate dispute resolution; total controls: 49)*

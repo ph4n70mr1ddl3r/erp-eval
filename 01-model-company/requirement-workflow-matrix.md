@@ -255,8 +255,8 @@
 
 - **Total requirements**: 100+ across 14 categories (FIN through NFR)
 - **Requirements with primary workflow mapping**: All ✅
-- **Workflows without requirement mapping**: W47 (facility maintenance), W48 (IT helpdesk), W49 (typhoon BC), W50 (PIM), W51 (training), W52 (fleet), W59 (insurance), W62 (vendor contracts), W63 (shelf labels), W65 (CSAT measurement), W71 (physical security), W72 (employee performance management), W73 (data migration validation) — these are operational workflows that support requirements indirectly but don't have direct 1:1 requirement mappings; they exercise NFR, DOC, MDM, HR, and RPT requirements
+- **Workflows without requirement mapping**: W47 (facility maintenance), W48 (IT helpdesk), W49 (typhoon BC), W50 (PIM), W51 (training), W52 (fleet), W59 (insurance), W62 (vendor contracts), W63 (shelf labels), W65 (CSAT measurement), W71 (physical security), W72 (employee performance management), W73 (data migration validation), W74 (employee expense reimbursement), W75 (layaway/installment sales — exercises POS-004, POS-015, FIN-005), W76 (employee loans — exercises HR-001, HR-012), W77 (BIR tax audit response — exercises FIN-008), W78 (government procurement — exercises CRM-003, CRM-004), W79 (employee grievance — exercises HR-007, NFR-010) — these are operational workflows that support requirements indirectly; several newly added workflows exercise existing requirements in new contexts
 
 ---
 
-*Date: 2026-05-30 (v2 — updated coverage validation for W71–W73; added loyalty reversal to POS-007; added dormant account management to CRM-003)*
+*Date: 2026-05-31 (v3 — added W75–W79 to coverage validation; added FX hedging, duplicate invoice detection, layaway, multi-DC order splitting, government procurement, employee loans, hazardous waste, employee grievance to coverage notes)*

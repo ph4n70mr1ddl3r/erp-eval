@@ -120,3 +120,63 @@ As a "Home Building Partner," BuildRight Depot provides professional installatio
 | 3 | **Presentation**: Present 3D render and detailed BOM (Bill of Materials) to customer | Design Consultant | Sales Rep | 1 hour |
 | 4 | **Quotation**: Generate project quotation (W58.1a) with bundled discount if applicable | Sales Rep | Category Mgr | 30 min |
 | 5 | **Order Conversion**: Customer accepts; convert to Sales Order; coordinate delivery and installation (W138) | Sales Rep | Store Mgr | 15 min |
+
+---
+
+## W168. Custom Paint Mixing & Tinting Operations
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer selects a base paint and a specific color from the swatch/fan deck |
+| **Frequency** | High volume; ~15–30 tinting requests per store/day |
+| **Volume** | ~100,000+ liters mixed annually chain-wide |
+| **Owner** | Paint Department Supervisor |
+| **Participants** | Paint Technician (Sales Associate), Customer, Cashier |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Color Selection**: Customer chooses color code from brand swatch; Technician identifies required Base Paint (A, B, C, or Deep) | Paint Technician | — | 3 min |
+| 2 | **System Entry**: Technician enters Color Code and Can Size in the tinting machine software; system calculates required colorant dosage | Paint Technician | — | 2 min |
+| 3 | **Tinting**: Technician places base can under dispenser; machine injects colorants; system logs colorant consumption per canister | Paint Technician | — | 2 min |
+| 4 | **Mixing**: Can is sealed and placed in the Gyroscopic Mixer for 2–3 minutes to ensure uniform color distribution | Paint Technician | — | 3 min |
+| 5 | **Quality Check**: Technician performs a "dot test" on the can lid; dries with heat gun; verifies match against physical swatch | Paint Technician | Dept Supervisor | 2 min |
+| 6 | **Labeling & POS**: Technician generates a "Custom Tint" barcode label from the system; labels can; customer takes to Cashier | Paint Technician | — | 1 min |
+| 7 | **Checkout**: Cashier scans Custom SKU; system deducts Base Paint and Colorants from inventory in real-time | Cashier | — | 30 sec |
+| 8 | **Machine Maintenance**: Daily nozzle cleaning and weekly calibration to ensure color accuracy | Paint Technician | Dept Supervisor | 15 min |
+
+### System Touchpoints
+- Tinting software integration with ERP Item Master (Base + Colorants)
+- Real-time consumption tracking of colorants (milliliters)
+- Custom SKU generation at POS linked to original Base SKU for traceability
+- Machine maintenance log tracking in W47 (Facility Maintenance)
+
+---
+
+## W169. Lumber & Board Cutting Services
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer purchases whole lumber/plywood and requests specific sizes |
+| **Frequency** | Moderate; ~10–20 requests per store/day |
+| **Volume** | Primary items: Plywood, Marine Board, 2x4 Lumber |
+| **Owner** | Lumber Department Supervisor |
+| **Participants** | Cutter (Stock Associate), Customer, Cashier |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Intake**: Customer presents purchased board/lumber or selects from floor; provides cutting list/dimensions | Cutter | — | 5 min |
+| 2 | **Calculation**: Cutter calculates number of cuts; system determines "Cutting Fee" (e.g., first 2 cuts free, PHP 10 per subsequent cut) | Cutter | — | 2 min |
+| 3 | **Payment**: Customer pays Cutting Fee at POS; receives "Cutting Authorization" slip | Cashier | — | 2 min |
+| 4 | **Execution**: Cutter performs cuts using Table Saw or Panel Saw; adheres to safety protocols (PPE, machine guards) | Cutter | Dept Supervisor | 5–15 min |
+| 5 | **Scrap Management**: (a) Off-cuts > 1ft offered to customer; (b) if declined, off-cuts moved to "Scrap Bin" for discounted sale or internal use | Cutter | — | 2 min |
+| 6 | **Safety Log**: Cutter logs machine hours and blade condition; reports dull blades for sharpening/replacement (W47) | Cutter | Dept Supervisor | 5 min |
+
+### System Touchpoints
+- Service SKU for "Cutting Fee" at POS
+- Scrap inventory tracking (Optional: creating "Remnant" SKUs for large off-cuts)
+- Safety incident logging in W52 (Health & Safety)
+

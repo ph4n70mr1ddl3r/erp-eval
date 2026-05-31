@@ -62,7 +62,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 
 ---
 
-## Complete Workflow Index (W1–W150)
+## Complete Workflow Index (W1–W173)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
@@ -233,7 +233,13 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W165 | Project Retention & Milestone Billing | [Project Sales Workflows](WF-project-sales.md) |
 | W166 | Corporate / Institutional Tendering | [Project Sales Workflows](WF-project-sales.md) |
 | W167 | Store & DC Recycling Program (Circular Economy) | [Compliance & Governance Workflows](WF-compliance.md) |
+| W168 | Custom Paint Mixing & Tinting Operations | [Installation & Value-Added Services](WF-services.md) |
+| W169 | Lumber & Board Cutting Services | [Installation & Value-Added Services](WF-services.md) |
+| W170 | Senior Citizen & PWD Discount Compliance (PH Legal) | [Store Operations Workflows](WF-store-operations.md) |
+| W171 | Store Physical Security & Yard Patrol Routine | [Store Operations Workflows](WF-store-operations.md) |
+| W172 | Employee PPE & Uniform Lifecycle | [HR & Payroll Workflows](WF-hr.md) |
+| W173 | Store-Level Solar Energy Monitoring | [Store Operations Workflows](WF-store-operations.md) |
 
 ---
 
-*Total: 167 workflows across 19 domains. Expanded to include project sales, circular economy, and advanced compliance.*
+*Total: 173 workflows across 20 domains. Expanded to include paint mixing, lumber cutting, SC/PWD compliance, security patrols, PPE management, and solar monitoring.*

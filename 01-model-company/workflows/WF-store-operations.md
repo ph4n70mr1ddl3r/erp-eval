@@ -1331,3 +1331,72 @@ BuildRight operates 200 stores (8,000–15,000 sqm each) and 5 DCs (25,000–40,
 - **No incremental headcount.**
 
 ---
+
+## W170. Senior Citizen & PWD Discount Compliance (PH Legal)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer presents Senior Citizen (SC) or Person with Disability (PWD) ID at POS |
+| **Frequency** | High; ~5–10% of retail transactions in the Philippines |
+| **Volume** | ~70,000–140,000 transactions/month chain-wide |
+| **Owner** | Lead Cashier |
+| **Participants** | Cashier, SC/PWD Customer, Store Manager (for high-value overrides) |
+
+### Background
+
+Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exemption on specific "basic necessities and prime commodities" for SCs and PWDs. For hardware stores, this applies to specific items like light bulbs, batteries, and certain construction materials used for home repair, subject to DTI/DA quantity limits.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Identification**: Customer presents OSCA (Senior) or PWD ID card + Purchase Book | Cashier | — | 1 min |
+| 2 | **Validation**: Cashier verifies ID authenticity and matches name to the customer; checks Purchase Book for prior purchases of the same items to ensure within weekly quantity limits (e.g., PHP 1,300/week for basic goods) | Cashier | — | 2 min |
+| 3 | **POS Entry**: Cashier selects "SC/PWD Discount" in POS; system prompts for ID number and Name; system automatically filters items eligible for discount/VAT-exempt status per BIR/DTI rules | Cashier | — | 1 min |
+| 4 | **Transaction**: System applies 20% discount on eligible items and removes 12% VAT; receipt prints with mandatory SC/PWD disclosure (Name, ID#, Gross Sale, Discount, VAT Exempt Sales) | System | — | Automated |
+| 5 | **Logbook Entry**: Cashier manually records transaction in the mandatory BIR/OSCA Logbook (Legal requirement for audit) | Cashier | Lead Cashier | 2 min |
+| 6 | **Filing**: Monthly: Finance consolidates SC/PWD sales for BIR Form 2550M (VAT) and 1702 (Income Tax) reporting, claiming the discount as a deductible expense | Finance | Controller | 4 hours |
+
+---
+
+## W171. Store Physical Security & Yard Patrol Routine
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Hourly patrol requirement; or high-risk alert (storm, local unrest) |
+| **Frequency** | Hourly (24/7) |
+| **Volume** | Covers all 200 stores and 5 DCs |
+| **Owner** | Store Security Lead |
+| **Participants** | Security Guard, Store Manager |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Patrol Start**: Guard initiates patrol on handheld device/app; scans NFC tag at the Guard Post | Security Guard | — | 1 min |
+| 2 | **Perimeter Check**: Walk exterior walls; check for structural breaches, fence tampering, or unauthorized loitering | Security Guard | — | 10 min |
+| 3 | **Lumber Yard/Outdoor Inventory**: Verify seals on outdoor containers; check that bulky stock (cement, steel) is covered/secured; scan NFC tags at yard corners | Security Guard | — | 15 min |
+| 4 | **Utility & Fire Check**: Inspect fire pump room, generator set (check fuel/oil levels), and electrical sub-station for any leaks or abnormal noise | Security Guard | — | 10 min |
+| 5 | **Backroom/Receiving**: Verify that the receiving dock is locked and no staff are in restricted areas after-hours | Security Guard | — | 5 min |
+| 6 | **Digital Log**: Guard submits patrol report via app with photos of any "Alert" items; Store Manager receives instant notification for "Critical" issues | Security Guard | Store Mgr | 2 min |
+
+---
+
+## W173. Store-Level Solar Energy Monitoring
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Daily performance tracking; or "Inverter Failure" alert from IoT system |
+| **Frequency** | Daily monitoring; Quarterly cleaning |
+| **Volume** | Applicable to ~80 stores with rooftop solar installations |
+| **Owner** | Facilities Coordinator |
+| **Participants** | Store Maintenance, Solar Vendor (External) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Generation Tracking**: System pulls data from Solar Inverters; compares "Actual Generation" vs. "Expected" (based on weather/irradiance) | System | Facilities Coord | Automated |
+| 2 | **Anomaly Detection**: If generation drops > 15% below expected: system creates a W47 maintenance ticket; Facilities Coordinator reviews CCTV/Drone footage for panel obstructions (dust, debris) | System | Facilities Coord | 15 min |
+| 3 | **Cleaning Routine**: Quarterly: Store Maintenance or Vendor performs panel cleaning to remove soot/dust (critical in high-traffic/industrial areas) | Maintenance | Store Mgr | 4 hours |
+| 4 | **Savings Verification**: Monthly: Finance compares Solar Generation (Self-Consumption) against Meralco/Utility bill reduction to verify ROI | Finance | Controller | 1 hour |

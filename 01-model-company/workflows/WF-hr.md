@@ -434,6 +434,38 @@ The following table shows all recurring statutory remittance deadlines per entit
 
 ---
 
+## W172. Employee PPE & Uniform Lifecycle
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New hire onboarding; or periodic replacement schedule; or damage/loss report |
+| **Frequency** | Annual mass distribution; semi-annual replenishment; ad-hoc for new hires |
+| **Volume** | ~8,000 employees; ~24,000 sets of uniforms (3 per employee) + safety gear |
+| **Owner** | HR Operations Manager |
+| **Participants** | HR Assistant, Store/DC Manager, Procurement, Vendor, Employee |
+
+### Background
+
+With over 8,000 employees in retail and distribution, maintaining a consistent professional image and ensuring safety compliance (PPE) is a significant logistical task. BuildRight provides uniforms and mandatory safety gear (safety shoes, helmets, vests) to all store and DC personnel.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Sizing & Allocation**: During onboarding (W15), HR Assistant captures employee sizes (shirt, pants, shoes); system assigns standard entitlement (e.g., 3 shirts, 2 pants, 1 pair of safety shoes, 1 helmet) | HR Assistant | — | 10 min |
+| 2 | **Issuance**: HR Assistant issues gear from store/DC stock; employee signs "Property Acknowledgment" in the system/portal; system links items to employee ID for accountability | HR Assistant | Store/DC Mgr | 15 min |
+| 3 | **Inventory Tracking**: System tracks PPE/Uniform stock as "Internal Use Inventory"; replenishment triggered via W4 when stock falls below reorder point | HR Assistant | Procurement | Automated |
+| 4 | **Replacement**: (a) **Periodic**: Every 12 months, employees are eligible for a new set; (b) **Damage**: If gear is damaged in the line of duty, employee returns old item for a free replacement; (c) **Loss**: If lost, employee pays a replacement fee via payroll deduction (W10) | HR Assistant | Store/DC Mgr | 10 min |
+| 5 | **Return at Separation**: Upon separation (W43), employee must return all non-consumable gear (helmets, vests, badges); HR Assistant verifies return before final clearance approval | HR Assistant | Dept Head | 15 min |
+| 6 | **Audit**: Quarterly: HR Ops Manager audits PPE compliance on the floor (ensuring correct shoes/helmets worn); feeds into W72 Performance Review | HR Ops Mgr | Store/DC Mgr | 2 hours/site |
+
+### System Touchpoints
+- Employee entitlement module (linking roles to specific PPE requirements)
+- Property acknowledgment log with digital signature
+- Payroll deduction integration for lost items (W10)
+- Internal-use inventory replenishment (W4)
+- PPE compliance flag in Performance Management (W72)
+
 
 
 ---

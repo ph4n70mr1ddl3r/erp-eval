@@ -425,6 +425,8 @@ The following table shows all recurring statutory remittance deadlines per entit
 - Minimum wage protection: system ensures net pay does not fall below minimum wage after loan deduction (W76.6)
 - Integration with W10 (payroll deduction), W43 (separation — final pay settlement), W49 (calamity loan trigger), W51 (self-service portal)
 
+---
+
 ### Staffing Implication
 - **HR Assistant**: ~100–200 requests/month × 15 min = ~25–50 hours/month. Absorbed within existing 2 HR Assistants.
 - **Payroll Officer**: loan creation + portfolio reporting adds ~15 hours/month. Absorbed within existing payroll team.

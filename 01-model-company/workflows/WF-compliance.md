@@ -359,15 +359,15 @@ Under BIR Revenue Regulations No. 11-2018 and Revenue Memorandum Order (RMO) No.
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | Employee submits grievance or whistleblower report via: (a) **grievance form** in self-service portal (W51) or paper form to HR — identifies issue, parties involved, date(s), and desired resolution; (b) **whistleblower channel** — dedicated email or anonymous hotline (managed by HR Head or third-party hotline provider) for reports of fraud, corruption, or legal non-compliance where anonymity is protected | Employee | — | 15 min |
-| 2 | HR Head (grievance) or Internal Audit (whistleblower) acknowledges receipt within 24 hours; assigns case number; classifies severity: (a) low — interpersonal conflict, minor policy concern, (b) medium — repeated policy violation, compensation dispute, (c) high — harassment, discrimination, safety violation, (d) critical — fraud, corruption, legal non-compliance | HR Head / Internal Audit | CHRO | 15 min/case |
-| 3 | **For low/medium severity (HR Head investigates)**: (a) HR Head interviews employee (complainant) within 3 business days — documents complaint details; (b) HR Head interviews respondent(s) and any witnesses within 5 business days — documents responses; (c) HR Head reviews relevant evidence (system records, CCTV, emails, documents) | HR Head | CHRO | 4–8 hours/case |
-| 4 | **For high/critical severity**: (a) harassment/discrimination — HR Head and Legal jointly investigate; respondent may be placed on preventive suspension (with pay) per Labor Code during investigation if warranted by severity; (b) fraud/corruption — Internal Audit investigates; if management is implicated, CHRO and CEO are notified directly (bypassing implicated management); (c) safety concern — HR Head and Facilities Coordinator investigate per W47 | HR Head / Legal / Internal Audit | CHRO / CEO | 8–20 hours/case |
-| 5 | **Resolution options**: (a) mediation — HR Head facilitates mediation between parties for interpersonal conflicts; both parties agree to resolution terms; (b) corrective action — policy violation confirmed; HR Head issues written warning or corrective action per progressive discipline policy; (c) policy clarification — grievance resolved by clarifying or correcting a policy/procedure; (d) escalation — if unresolved at HR Head level, employee may escalate to CHRO within 5 business days; (e) grievance committee — for complex or unresolved cases, CHRO convenes a 3-person grievance committee (HR, Legal, and independent management representative) for hearing and binding recommendation | HR Head / CHRO | CEO | Varies |
-| 6 | HR Head documents resolution in system: case number, investigation summary, evidence reviewed, findings, resolution action, date resolved; all documentation retained per 7-year BIR/regulatory retention; whistleblower identity protected in documentation | HR Head | CHRO | 30 min/case |
-| 7 | **Retaliation protection**: system flags if any adverse action (demotion, transfer, schedule change, disciplinary action) is taken against an employee with an active or recently resolved grievance/whistleblower case within 90 days of filing; such actions require CHRO approval to prevent retaliation | System / HR Head | CHRO | Automated flag + 15 min/review |
-| 8 | Quarterly: HR Head generates grievance/whistleblower summary for CHRO — volume by category, severity, location, resolution time, corrective actions taken, repeat offenders, systemic issues identified; CHRO reports aggregate metrics (anonymized) to CEO in quarterly management committee (W35.14) | HR Head | CHRO | 2 hours/quarter |
-| 9 | Annual: CHRO reviews grievance trends with Legal; recommends policy or training improvements; findings feed into W51 training calendar and W72 performance management process | CHRO / Legal | CEO | 2 hours/year |
+| 1 | Employee submits grievance or whistleblower report; or incident reported (theft, misconduct, policy violation) | Employee / Manager | — | 15 min |
+| 2 | HR Head (grievance) or Internal Audit (whistleblower) acknowledges receipt within 24 hours; assigns case number; classifies severity (Minor, Serious, Grave, Critical) | HR Head / Internal Audit | CHRO | 15 min/case |
+| 3 | **Due Process: Notice to Explain (NTE)**: For disciplinary cases, HR issues NTE to employee; provides 120 hours (5 business days) to submit written response per Philippine Labor Code | HR ER Officer | — | 30 min |
+| 4 | Employee submits written explanation; system records date/time received; HR reviews explanation | Employee | — | — |
+| 5 | **Administrative Hearing**: For Serious/Grave offenses, HR conducts hearing; documents proceedings in system; respondent allowed counsel or union representative | HR ER Officer | Dept Head | 1–2 hours |
+| 6 | **Decision / Notice of Decision (NOD)**: HR and Dept Head determine outcome (Exoneration, Warning, Suspension, or Termination) per company table of offenses | HR Head | Dept Head | 1 hour |
+| 7 | System generates NOD; issued to employee; system updates employee record with disciplinary status; if Suspension: System auto-blocks timekeeping for suspension dates | HR ER Officer | — | 15 min |
+| 8 | **Whistleblower / High Severity Investigation**: For harassment, fraud, or corruption — HR Head and Legal/Audit jointly investigate; whistleblower identity protected; retaliation protection flagged (W79.7) | HR Head / Legal / Internal Audit | CHRO / CEO | 8–20 hours/case |
+| 9 | Monthly: HR Head generates grievance/whistleblower summary; reports to CHRO and CEO | HR Head | CHRO | 2 hours/month |
 
 ### System Touchpoints
 - Grievance submission form in self-service portal with category, severity, and desired resolution fields (W79.1)
@@ -601,21 +601,20 @@ BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Envi
 
 ---
 
-## W158. Business Continuity Drill & Disaster Recovery Testing
+## W167. Store & DC Recycling Program (Circular Economy)
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Annual BC/DR testing schedule |
-| **Frequency** | Annual (Full) / Quarterly (Tabletop) |
-| **Volume** | Covers ERP, POS, WMS, and physical DC/Store operations |
-| **Owner** | Business Continuity Manager |
-| **Participants** | IT (W55), Store Ops, Supply Chain, Executive Team |
+| **Trigger** | Accumulation of secondary packaging (cartons, plastics, broken pallets) |
+| **Frequency** | Weekly |
+| **Owner** | DC Supervisor / Store Manager |
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Scenario Definition**: Define the "disaster" (e.g., Typhoon hitting NCR DC, total internet outage, or Cyber-attack) | BC Manager | CIO | 1 week |
-| 2 | **Execution**: Activate failover systems (W55) or trigger manual workarounds (W5g, W49); monitor RPO/RTO | IT Team / Ops | CIO / COO | 1 day |
-| 3 | **Evaluation**: Assess performance vs. recovery targets; identify bottlenecks in communication or logic | BC Manager | CEO | 3 days |
-| 4 | **Remediation**: Update BC/DR plan and system configurations based on findings | IT / BC Mgr | CIO | 1 week |
+| 1 | Store/DC Associates segregate waste: Carton, Stretch Film (Plastic), Wood (Pallets), Scrap Metal | Associates | — | Ongoing |
+| 2 | Materials baled (for carton/plastic) or stacked (for pallets) at DC/Store dock | Stock Associate | — | 30 min/day |
+| 3 | Logistics collects recyclables from Stores via **Reverse Logistics** trucks returning to DC | Logistics Team | — | Weekly |
+| 4 | DC consolidates recyclables; sells to accredited recycling partners | DC Supervisor | Supply Chain Mgr | Monthly |
+| 5 | System records "Recycling Revenue" and weight diverted from landfill; feeds into W114 Sustainability Report | DC Supervisor | — | 15 min |

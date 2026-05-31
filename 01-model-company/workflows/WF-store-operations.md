@@ -735,6 +735,44 @@ The following hour-by-hour plan covers the system activation sequence on the day
 - Warranty claim lifecycle status tracking (open → in repair → resolved → closed) (W33.4–12)
 - Warranty analytics dashboard by vendor, SKU, defect type (W33.13)
 
+---
+
+## W75. Layaway & Installment Sales
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer requests to pay for high-ticket item in installments (Layaway or 3rd Party Financing) |
+| **Frequency** | ~500–1,000 transactions/month (primarily appliances, tile sets, furniture) |
+| **Owner** | Customer Service Rep (CSR) |
+| **Participants** | CSR, Cashier, 3rd Party Finance Provider (e.g., Home Credit, Maya), Stock Associate |
+
+### Steps (Layaway — In-house)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer selects items for Layaway; CSR creates **Layaway Order** in system | CSR | — | 15 min |
+| 2 | Customer pays initial deposit (typically 20%); system generates Layaway Receipt and payment schedule (e.g., 3 monthly payments) | Cashier | — | 5 min |
+| 3 | **Inventory Hold**: System reserves stock in backroom (or specific "Layaway Area"); item status set to "Reserved — Layaway" | Stock Associate | Dept Supervisor | 15 min |
+| 4 | Periodic Payments: Customer returns to pay installments; system updates Layaway balance; prints updated schedule | Cashier | — | 5 min |
+| 5 | Final Payment: Once balance is zero, system releases stock for pick-up/delivery | System / CSR | — | 5 min |
+| 6 | **Default Handling**: If customer fails to pay within agreed period (e.g., 90 days), system alerts CSR; store contacts customer; if cancelled, stock returned to shelf; deposit forfeited or converted to Store Credit (W28) per policy | CSR | Store Manager | 15 min |
+
+### Steps (3rd Party Installment / Financing)
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Customer selects item; applies for financing via 3rd party partner (in-store kiosk or app) | Customer | — | 15–30 min |
+| 2 | Partner provides Approval Code; CSR enters Approval Code into POS as "Financing" tender type | CSR / Cashier | — | 5 min |
+| 3 | System treats as "Fully Paid" (Partner owes BuildRight); releases stock for immediate delivery | System | — | Automated |
+| 4 | **Settlement**: Finance reconciles Partner payments against POS Approval Codes weekly; posts Partner commission/fees | Finance | — | 1 hour/week |
+
+### System Touchpoints (Layaway/Installment)
+- Layaway Order type with deposit and balance tracking
+- Inventory reservation (soft-commit vs. hard-commit to backroom)
+- Automated payment schedule and overdue alerts
+- 3rd Party Financing tender type at POS with reference code capture
+- Partner settlement reconciliation reports
+
 ### Staffing Implication
 - **CSR**: ~4–6 warranty claims/store/month × ~15 min each = ~1–1.5 hours/store/month. Absorbed within existing CSR role.
 - **Buyer**: Warranty claims that need vendor follow-up add ~5 min/claim. With ~800–1,200 claims/month, not all require buyer intervention (many are direct replacements). Estimated ~200–300 needing buyer action = ~20–25 hours/month across 10–12 buyers = ~2 hours/buyer/month. Absorbed.

@@ -56,6 +56,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 - **[Installation & Value-Added Services](./WF-services.md)** (4 workflows) — Home installation, tool rental, DIY workshops, and design consultancy services.
 - **[Health, Safety & Environment Workflows](./WF-health-safety.md)** (2 workflows) — Occupational health & safety (OHS) incident management and workplace safety inspection & audit.
 - **[Wholesale & Reseller Operations Workflows](./WF-wholesale.md)** (2 workflows) — Wholesale reseller onboarding and bulk fulfillment/cross-docking.
+- **[Project-Based B2B & Trade Sales Workflows](./WF-project-sales.md)** (5 workflows) — Quotations, bid management, contract pricing, staged deliveries, and project-specific logistics.
 
 - **[Workflow-to-System Touchpoint Map](./workflow-system-touchpoint-map.md)** — ERP module-to-workflow cross-reference
 
@@ -226,8 +227,13 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W158 | Business Continuity Drill & Disaster Recovery Testing | [Compliance & Governance Workflows](WF-compliance.md) |
 | W159 | Anti-Bribery & Corruption (ABC) Monitoring & Audit | [Internal Audit & Risk Management Workflows](WF-audit.md) |
 | W160 | Private Label Factory Audit & Social Compliance | [Procurement & Vendor Management Workflows](WF-procurement.md) |
-| W161 | Project Sales — Quotation & Contract Pipeline Management | [Customer Experience Workflows](WF-customer.md) |
+| W162 | Project Quotation & Bid Management | [Project Sales Workflows](WF-project-sales.md) |
+| W163 | Contract Pricing & Project Price Books | [Project Sales Workflows](WF-project-sales.md) |
+| W164 | Staged Project Delivery & Call-Off Orders | [Project Sales Workflows](WF-project-sales.md) |
+| W165 | Project Retention & Milestone Billing | [Project Sales Workflows](WF-project-sales.md) |
+| W166 | Corporate / Institutional Tendering | [Project Sales Workflows](WF-project-sales.md) |
+| W167 | Store & DC Recycling Program (Circular Economy) | [Compliance & Governance Workflows](WF-compliance.md) |
 
 ---
 
-*Total: 162 workflows across 19 domains. Expanded to include retail media, ESG impact, circular economy, and advanced vendor collaboration.*
+*Total: 167 workflows across 19 domains. Expanded to include project sales, circular economy, and advanced compliance.*

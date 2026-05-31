@@ -16,7 +16,9 @@
 - [W79. Employee Grievance & Whistleblower Process](#employee-grievance-whistleblower-process)
 - [W82. Hazardous Waste Disposal Tracking & DENR Compliance](#hazardous-waste-disposal-tracking-denr-compliance)
 - [W95. External Audit Coordination & Support](#external-audit-coordination-support)
-- [W114. Sustainability & Environmental Compliance Reporting](#sustainability-environmental-compliance-reporting)
+- [W114. Sustainability & Environmental Compliance Reporting](#sustainability--environmental-compliance-reporting)
+- [W157. E-waste Collection & Circular Economy Operations](#e-waste-collection--circular-economy-operations)
+- [W158. Business Continuity Drill & Disaster Recovery Testing](#business-continuity-drill--disaster-recovery-testing)
 
 ---
 
@@ -574,3 +576,46 @@ BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Envi
 - **No incremental headcount.**
 
 ---
+
+---
+
+## W157. E-waste Collection & Circular Economy Operations
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer brings end-of-life products (batteries, old tools, appliances) to store collection points |
+| **Frequency** | Ongoing |
+| **Volume** | Covers all 200 stores |
+| **Owner** | Sustainability Manager |
+| **Participants** | Store Staff, Logistics, Accredited Recyclers, DENR |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Collection**: Customer drops off items at designated in-store bins; Store Staff record weight/type in system | Store Staff | Store Manager | Ongoing |
+| 2 | **Incentive**: System issues "Green Points" to customer loyalty account (W17) for participating | System | — | Real-time |
+| 3 | **Consolidation**: DC delivery trucks backhaul e-waste to the nearest Hub (W4) | Logistics | — | Weekly |
+| 4 | **Certified Disposal**: Accredited 3rd-party recycler collects waste from DC; provide Certificate of Treatment | Recycler | Sustainability Mgr | Monthly |
+| 5 | **Impact Reporting**: Track total tonnage diverted from landfills for ESG report (W114) | Sustainability Mgr | CMO | Monthly |
+
+---
+
+## W158. Business Continuity Drill & Disaster Recovery Testing
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual BC/DR testing schedule |
+| **Frequency** | Annual (Full) / Quarterly (Tabletop) |
+| **Volume** | Covers ERP, POS, WMS, and physical DC/Store operations |
+| **Owner** | Business Continuity Manager |
+| **Participants** | IT (W55), Store Ops, Supply Chain, Executive Team |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Scenario Definition**: Define the "disaster" (e.g., Typhoon hitting NCR DC, total internet outage, or Cyber-attack) | BC Manager | CIO | 1 week |
+| 2 | **Execution**: Activate failover systems (W55) or trigger manual workarounds (W5g, W49); monitor RPO/RTO | IT Team / Ops | CIO / COO | 1 day |
+| 3 | **Evaluation**: Assess performance vs. recovery targets; identify bottlenecks in communication or logic | BC Manager | CEO | 3 days |
+| 4 | **Remediation**: Update BC/DR plan and system configurations based on findings | IT / BC Mgr | CIO | 1 week |

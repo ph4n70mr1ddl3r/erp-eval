@@ -14,7 +14,8 @@
 - [W73. Data Migration Validation & Parallel-Run Testing](#data-migration-validation-parallel-run-testing)
 - [W113. Business Intelligence & Data Governance](#business-intelligence-data-governance)
 - [W131. IT Asset Lifecycle Management](#it-asset-lifecycle-management)
-- [W132. Software Development & Change Management](#software-development-change-management)
+- [W132. Software Development & Change Management](#software-development--change-management)
+- [W152. Employee IT Provisioning & Access Lifecycle Management](#employee-it-provisioning--access-lifecycle-management)
 
 ---
 
@@ -342,3 +343,27 @@ RPT-001 through RPT-010 define reporting requirements — executive dashboards, 
 - Hardware refresh schedule alerts
 
 ---
+
+---
+
+## W152. Employee IT Provisioning & Access Lifecycle Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New hire notification (W15); employee transfer (W43.15); or separation (W43) |
+| **Frequency** | 100–150 provisioning events/month |
+| **Volume** | Covers ~8,000 employees and ~1,500 ERP users |
+| **Owner** | IT Infrastructure Manager |
+| **Participants** | HR, IT Helpdesk, Hiring Manager, Security |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Request**: HR system triggers provisioning request upon completion of W15 onboarding | System / HR | — | Automated |
+| 2 | **Identity Creation**: System auto-generates AD/Azure account, company email, and employee ID link | IT Helpdesk | Infrastructure Mgr | 15 min |
+| 3 | **Access Role Mapping**: Assign ERP roles (W37), folder permissions, and application access based on Job Code | IT Helpdesk | Infrastructure Mgr | 30 min |
+| 4 | **Hardware Prep**: Image laptop/workstation; configure POS login for store staff | IT Helpdesk | — | 1 hour |
+| 5 | **Transfer / Change**: Upon employee transfer, review and revoke old permissions; add new ones within 24 hours | IT Helpdesk | Dept Head | 30 min |
+| 6 | **De-provisioning**: Upon separation (W43), immediate block on all accounts (T-minus 0); hardware retrieval | IT Helpdesk | CIO | 15 min |
+| 7 | **Audit**: Monthly reconciliation of Active Directory vs. HR Master to identify "ghost accounts" | Security Admin | CIO | 4 hours |

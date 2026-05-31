@@ -15,7 +15,9 @@
 - [W84. Customer Account Reactivation](#customer-account-reactivation)
 - [W87. Customer Feedback-to-Action Loop](#customer-feedback-to-action-loop)
 - [W103. Trade Sales Pipeline & Territory Management](#trade-sales-pipeline-territory-management)
-- [W112. Trade Counter / Pro Desk Operations](#trade-counter-pro-desk-operations)
+- [W112. Trade Counter / Pro Desk Operations](#trade-counter--pro-desk-operations)
+- [W156. Customer Data Platform (CDP) & Hyper-Personalization](#customer-data-platform-cdp--hyper-personalization)
+- [W161. Project Sales — Quotation & Contract Pipeline Management](#project-sales--quotation--contract-pipeline-management)
 
 ---
 
@@ -457,3 +459,46 @@ Big-box home improvement retailers globally operate dedicated trade counters or 
 - **No incremental headcount.**
 
 ---
+
+---
+
+## W156. Customer Data Platform (CDP) & Hyper-Personalization
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Real-time customer interaction (web visit, POS sale, app notification) |
+| **Frequency** | Continuous |
+| **Volume** | 600,000+ member profiles |
+| **Owner** | Digital Marketing Manager |
+| **Participants** | Data Analyst, CRM Team, IT, CMO |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Data Ingestion**: Aggregate data from POS (W5), Ecommerce (W11), and Loyalty (W17) into a unified "Golden Record" | System | IT Mgr | Real-time |
+| 2 | **Segmentation**: System auto-assigns segments based on behavior: "DIY Hobbyist," "Professional Contractor," "Lapsed Buyer" | Data Analyst | Digital Mktg Mgr | Weekly |
+| 3 | **Triggered Journeys**: Auto-trigger email/SMS based on events: "Abandoned Cart," "Project Follow-up," or "Refill Reminder" (for paint/consumables) | CRM Team | Digital Mktg Mgr | Automated |
+| 4 | **Personalized Offers**: Push unique promo codes to the Mobile App based on individual purchase history | Digital Mktg Mgr | CMO | 1 hour |
+
+---
+
+## W161. Project Sales — Quotation & Contract Pipeline Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Large-scale construction project inquiry (Developers, Hotels, Malls) |
+| **Frequency** | 10–20 major bids/month |
+| **Volume** | Projects ranging from PHP 5M to PHP 100M+ |
+| **Owner** | Project Sales Manager |
+| **Participants** | Sales Engineer, Estimator, Credit (W24), Legal, Supply Chain |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Lead Intake**: Capture project details: owner, contractor, location, timeline, and Bill of Quantities (BOQ) | Sales Rep | Project Sales Mgr | 1 day |
+| 2 | **Estimation**: Prepare formal Quotation; check stock availability (W4) and lead times for bulk items | Estimator | Category Mgr | 2–3 days |
+| 3 | **Pricing Approval**: Apply project-specific discounts (W40.15); requires CFO approval for high-value bids | Category Mgr | CFO | 1 day |
+| 4 | **Contracting**: Draft Supply Agreement; define delivery schedule and staggered payment terms | Legal | VP Legal | 3 days |
+| 5 | **Pipeline Tracking**: Monitor "Quote-to-Order" conversion; track project milestones to time the deliveries | Sales Rep | Project Sales Mgr | Ongoing |

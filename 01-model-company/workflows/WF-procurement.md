@@ -20,6 +20,8 @@
 - [W115. Supplier Diversity & MSME Development Program](#supplier-diversity-msme-development-program)
 - [W136. Indirect / Non-Merchandise Procurement](#indirect-non-merchandise-procurement)
 - [W150. Product Quality Testing & Certification](#product-quality-testing--certification)
+- [W155. Vendor Strategic Collaboration & Joint Business Planning (JBP)](#vendor-strategic-collaboration--joint-business-planning-jbp)
+- [W160. Private Label Factory Audit & Social Compliance](#private-label-factory-audit--social-compliance)
 
 ---
 
@@ -708,3 +710,45 @@ The Philippine government actively promotes MSME development through the Magna C
 - Budget check (Commitment accounting) at Requisition stage
 
 ---
+
+---
+
+## W155. Vendor Strategic Collaboration & Joint Business Planning (JBP)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual planning cycle with "Top 20" strategic vendors |
+| **Frequency** | Annual (with quarterly progress reviews) |
+| **Volume** | Covers 20 key vendors (~45% of COGS) |
+| **Owner** | VP for Merchandising |
+| **Participants** | Category Managers, Buyers, Vendor Executives, Supply Chain Planners |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Performance Review**: Jointly review prior year: fill rates (W44), margin, growth, and rebate achievement (W27) | Buyer / Vendor | Category Mgr | 4 hours |
+| 2 | **Growth Targets**: Set consensus growth targets and market share goals for the next 12 months | Category Mgr | VP Merch | 2 hours |
+| 3 | **Supply Chain Alignment**: Share long-term demand forecasts (W31) to help vendor plan production capacity | Demand Planner | — | 1 hour |
+| 4 | **JBP Document**: Sign joint plan covering exclusive SKUs, marketing co-op (W153), and logistics efficiency | VP Merch | CEO | 1 week |
+
+---
+
+## W160. Private Label Factory Audit & Social Compliance
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Onboarding new private label vendor (W129); or annual compliance cycle |
+| **Frequency** | Annual per factory |
+| **Volume** | ~30–50 factories audited annually |
+| **Owner** | Quality & Compliance Manager |
+| **Participants** | Buyer, Legal, External Auditor, Vendor |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Self-Assessment**: Vendor submits social compliance questionnaire (labor practices, safety, environmental) | Vendor | Quality Mgr | 1 week |
+| 2 | **On-site Audit**: Internal or 3rd-party audit (SGS/TUV) of factory floor, dormitories, and payroll records | External Auditor | Quality Mgr | 1–2 days |
+| 3 | **CAPA**: If violations found, vendor must submit and execute Corrective Action Plan (W110) | Vendor | Quality Mgr | 30 days |
+| 4 | **Certification**: Issue "BuildRight Approved Factory" status in ERP; linked to W2 PO creation | Quality Mgr | VP Merch | 1 day |

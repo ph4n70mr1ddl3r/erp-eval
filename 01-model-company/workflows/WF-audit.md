@@ -12,6 +12,7 @@
 - [W121. Operational Audit Execution (Store/DC/HQ)](#operational-audit-execution)
 - [W122. Enterprise Risk Management (ERM) Review](#enterprise-risk-management-erm-review)
 - [W123. Fraud Investigation Protocol](#fraud-investigation-protocol)
+- [W159. Anti-Bribery & Corruption (ABC) Monitoring & Audit](#anti-bribery--corruption-abc-monitoring--audit)
 
 ---
 
@@ -113,3 +114,25 @@
 - Audit Management portal for report storage and CAP tracking
 - Risk Register module for ERM tracking
 - Access control reviews (SOD - Segregation of Duties matrix)
+
+---
+
+## W159. Anti-Bribery & Corruption (ABC) Monitoring & Audit
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Periodic audit cycle; or "Red Flag" system alert |
+| **Frequency** | Quarterly monitoring; Annual audit |
+| **Volume** | Covers high-risk areas (Procurement, Permits, Real Estate) |
+| **Owner** | Compliance Officer |
+| **Participants** | Internal Audit, Procurement, Legal |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Red Flag Monitoring**: Monitor high-risk transactions: non-PO payments to "consultants," gifts/entertainment expenses, and unusual vendor credit notes | Compliance Officer | Head of IA | Weekly |
+| 2 | **Vendor Due Diligence**: Perform background checks on vendors in high-risk categories (Construction, Government Sales) | Procurement | Compliance Officer | 1 day/vendor |
+| 3 | **Conflict of Interest (COI)**: Annual collection of COI disclosures from all employees in Procurement and Management | HR | Legal | 2 weeks |
+| 4 | **Audit**: Detailed audit of LGU permit payments (W54) and land acquisition fees to ensure compliance with the Foreign Corrupt Practices Act (FCPA) and local anti-graft laws | Internal Audit | VP Legal | 1 week |
+| 5 | **Training**: Mandatory ABC training for all employees with spending authority | HR / Compliance | CHRO | Annual |

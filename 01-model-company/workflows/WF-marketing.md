@@ -12,6 +12,11 @@
 - [W104. Loyalty Program Financial Governance & Periodic Review](#loyalty-program-financial-governance-periodic-review)
 - [W134. Crisis Communication & Brand Reputation Management](#crisis-communication-brand-reputation-management)
 - [W135. CSR Program Execution](#csr-program-execution)
+- [W142. Social Media & Influencer Management](#social-media--influencer-management)
+- [W143. Public Relations & Corporate Communications](#public-relations--corporate-communications)
+- [W149. Bank & Credit Card Partnership Management](#bank--credit-card-partnership-management)
+- [W151. Corporate Social Responsibility (CSR) Impact Measurement & Reporting](#corporate-social-responsibility-csr-impact-measurement--reporting)
+- [W153. Retail Media Network (RMN) Operations](#retail-media-network-rmn-operations)
 
 ---
 
@@ -280,3 +285,47 @@ W17 (Customer Loyalty Program Operations) covers day-to-day loyalty operations �
 | 6 | **Settlement**: Reconcile partner bank statements vs. POS records; invoice bank for their cost share | Finance (AR) | Controller | Monthly |
 | 7 | **ROI Review**: Measure incremental sales and new customer acquisition from the partnership | Partnerships Mgr | CMO | 2 hours/campaign |
 
+
+---
+
+## W151. Corporate Social Responsibility (CSR) Impact Measurement & Reporting
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Completion of CSR event (W135) or annual ESG reporting cycle |
+| **Frequency** | Monthly reporting; Annual impact summary |
+| **Volume** | ~10–15 major initiatives/year |
+| **Owner** | CSR Manager |
+| **Participants** | Marketing, HR, Finance, external NGOs |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Data Collection**: Gather quantitative data: number of beneficiaries, tons of waste diverted, trees planted, scholarship hours funded | CSR Team | CSR Manager | 1 week |
+| 2 | **Financial Reconciliation**: Match actual CSR spend against budget and donations collected from customers | Finance | Controller | 2 days |
+| 3 | **Qualitative Stories**: Interview beneficiaries and employee volunteers for "impact stories" | Marketing / CSR | CMO | 3 days |
+| 4 | **Impact Report**: Produce "BuildRight Impact" dashboard; integrate into Annual ESG Report (W114) | CSR Manager | CEO | 1 week |
+
+---
+
+## W153. Retail Media Network (RMN) Operations
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vendor request to purchase premium advertising space on BuildRight digital/physical assets |
+| **Frequency** | Ongoing; Monthly campaign cycles |
+| **Volume** | ~20–30 vendors participating; ~50 active ad placements |
+| **Owner** | Retail Media Manager |
+| **Participants** | Merchandising, Digital Marketing, Ecommerce, Finance |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Inventory Mapping**: Catalog all "ad assets": website banners, app home screen, email newsletters, in-store digital screens, gondola end-caps | RMN Manager | CMO | 1 week |
+| 2 | **Rate Card**: Define pricing for ad placements (CPM, CPC, or flat fee per week) | RMN Manager | CMO | 3 days |
+| 3 | **Media Booking**: Vendor selects and books ad space; Category Manager approves for brand alignment | Vendor / Buyer | RMN Manager | 2 days |
+| 4 | **Execution**: Upload ad creative to PIM (W50) or digital signage system; ensure tracking links are active | Digital Mktg | Ecommerce Mgr | 1 day |
+| 5 | **Performance Reporting**: Provide vendor with "Closed-Loop" report: ad impressions vs. actual sales lift at POS | System / RMN Mgr | RMN Manager | Monthly |
+| 6 | **Billing**: Invoice vendor for media services (distinct from product rebates W27) | Finance | Controller | Monthly |

@@ -17,7 +17,8 @@
 - [W57. Promotional Stock Allocation & Pre-Positioning](#promotional-stock-allocation-pre-positioning)
 - [W91. Damaged & Defective Goods Disposition](#damaged-defective-goods-disposition)
 - [W92. Inventory Adjustment & Shrinkage Authorization](#inventory-adjustment-shrinkage-authorization)
-- [W105. Multi-Channel Inventory Allocation & Priority Governance](#multi-channel-inventory-allocation-priority-governance)
+- [W105. Multi-Channel Inventory Allocation & Priority Governance](#multi-channel-inventory-allocation--priority-governance)
+- [W154. Proactive Store Inventory Rebalancing (Stock Push)](#proactive-store-inventory-rebalancing-stock-push)
 
 ---
 
@@ -622,3 +623,25 @@ Multiple workflows reference inventory allocation: W4 (store replenishment with 
 - **No incremental headcount.**
 
 ---
+
+---
+
+## W154. Proactive Store Inventory Rebalancing (Stock Push)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | High inventory variance between stores; slow-mover identification (W1); or localized demand spike |
+| **Frequency** | Monthly |
+| **Volume** | ~500–1,000 SKUs rebalanced per cycle |
+| **Owner** | Supply Planning Manager |
+| **Participants** | Supply Planner, Store Managers, Logistics |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Analysis**: Identify SKUs with "Overstock" at Store A and "Understock/High Velocity" at Store B | Supply Planner | Supply Planning Mgr | 4 hours |
+| 2 | **Validation**: Store Managers confirm physical stock availability and condition for transfer | Store Manager | — | 30 min/store |
+| 3 | **Push Order**: System generates "Push" Stock Transfers (W22); overrides standard ROP to clear excess | Supply Planner | Supply Planning Mgr | 1 hour |
+| 4 | **Logistics**: Consolidate transfers into weekly DC-to-Store backhaul or store-to-store courier | Logistics | — | Varies |
+| 5 | **Impact Review**: Measure sales lift at receiving store and holding cost reduction at sending store | Supply Planner | CFO | 2 hours |

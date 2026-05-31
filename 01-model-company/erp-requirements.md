@@ -243,6 +243,7 @@
 | FIN-022 | Bad Debt Write-Off & Recovery | Must Have | Bad debt write-off with tiered approval; BIR-compliant documentation (demand letter, collection report, court filing); write-off recovery posting; separate tracking from regular AR collections |
 | POS-020 | Layaway / Installment Sales | Should Have | Layaway agreement creation with deposit collection, installment schedule, inventory reservation (excluded from ATP), cancellation with fee, forfeiture with income recognition, and completion with revenue/COGS recognition |
 | POS-021 | Multi-DC Order Splitting (Ecommerce) | Should Have | For ecommerce orders where no single DC has ATP for all items, system splits order into sub-orders per fulfillment DC with separate tracking per sub-order while presenting unified customer experience |
+| POS-022 | Employee Discount at POS | Should Have | Configurable employee discount rate applied at POS via employee ID badge; monthly purchase limit per employee; per-SKU quantity limit; discount does not stack with promotional pricing (lower of employee discount or promo price applies); excluded from catch-weight and clearance items; employee purchases logged with employee ID and running monthly total |
 | HR-013 | Employee Loan & Advance Management | Must Have | Loan/advance request with eligibility validation, tiered approval, automatic payroll deduction with minimum wage protection, loan portfolio reporting, and final pay settlement at separation |
 | HR-014 | Employee Grievance & Whistleblower Case Management | Should Have | Grievance submission (identified and anonymous), case management with severity classification, investigation tracking, retaliation protection flagging, and resolution documentation |
 | CRM-009 | Government Procurement Compliance (PHILGEPS) | Should Have | PHILGEPS registration tracking, government bid/quotation management, government-specific billing and collection procedures, separate government receivable aging |
@@ -251,4 +252,4 @@
 
 ---
 
-*Document Version: 1.6 | Date: 2026-05-31 | Added FIN-020 (Duplicate Vendor Invoice Detection), FIN-021 (FX Hedging), FIN-022 (Bad Debt Write-Off), POS-020 (Layaway), POS-021 (Multi-DC Order Splitting), HR-013 (Employee Loans), HR-014 (Employee Grievance), CRM-009 (Government Procurement), DOC-007 (Hazardous Waste), PUR-016 (Configurable AQL)*
+*Document Version: 1.7 | Date: 2026-05-31 | Added POS-022 (Employee Discount at POS); updated to reflect gap closure Wave 17*

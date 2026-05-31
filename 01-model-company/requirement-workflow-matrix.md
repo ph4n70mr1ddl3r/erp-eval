@@ -119,6 +119,9 @@
 | POS-017 | Paint Mixing / Custom SKU at POS | M | W5b.3 (paint mixing) | — |
 | POS-018 | Age-Restricted Product Prompts | S | W5b.9 (age-restricted prompts) | — |
 | POS-019 | Warranty Claim Registration | S | W33 (warranty claim processing) | — |
+| POS-020 | Layaway / Installment Sales | S | W75 (layaway agreement lifecycle — exercises POS-004, POS-015, FIN-005) | — |
+| POS-021 | Multi-DC Order Splitting | S | W19 (multi-DC order splitting logic) | — |
+| POS-022 | Employee Discount at POS | S | W5b.12 (employee purchase with discount, limits, logging) | W17 (employee purchases excluded from loyalty points) |
 
 ## R6. Ecommerce Integration (ECOM)
 
@@ -259,4 +262,4 @@
 
 ---
 
-*Date: 2026-05-31 (v3 — added W75–W79 to coverage validation; added FX hedging, duplicate invoice detection, layaway, multi-DC order splitting, government procurement, employee loans, hazardous waste, employee grievance to coverage notes)*
+*Date: 2026-05-31 (v4 — added POS-020 through POS-022 to POS section; added gap closure cross-references for W22a, W27 dispute resolution, W38 trade account branch, W45 loyalty reassignment, W55 DR test failure remediation, W62b rate card maintenance, W79 anonymity controls)*

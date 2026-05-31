@@ -105,6 +105,7 @@
 | CTL-46 | Ensure loyalty fraud investigation and resolution | D | LPO flags suspected loyalty fraud patterns per W37; Loyalty Manager investigates within 2 business days; confirmed fraud results in account suspension with customer notification; points deducted per approval tier; monthly fraud resolution summary reviewed by Loyalty Manager; permanent ban requires Marketing Head approval | Loyalty Manager / LPO | W17, W37 | CRM-001, NFR-007 |
 | CTL-47 | Ensure ecommerce payment reconciliation accuracy | D | Daily reconciliation of payment gateway settlements (PayMongo, GCash, etc.) to ecommerce order records; gateway fees verified against contracted rates; unreconciled settlements investigated by Treasury Analyst; monthly ecommerce payment reconciliation included in bank reconciliation (W30 step 9) | Treasury Analyst / Controller | W19, W30 | ECOM-006, FIN-009 |
 | CTL-48 | Ensure vendor rebate dispute resolution | D | If vendor disputes rebate settlement amount, Buyer negotiates resolution; Category Manager approves any adjustment; if unresolved, Finance Manager mediates; adjusted settlement posted with Category Manager approval and documentation; rebate dispute frequency tracked in vendor scorecard (W44) | Buyer / Category Manager | W27 | FIN-019 |
+| CTL-49 | Prevent unauthorized gift card balance manipulation | P | All manual gift card balance adjustments (corrections, reloads without payment, balance transfers) require dual approval: Store Manager initiates and AP Supervisor approves; system logs adjustment with original balance, new balance, initiator ID, approver ID, reason code, and timestamp; monthly: AP Supervisor reviews gift card adjustment log as part of AP controls review; gift card fraud detection rules monitored by LPO per W37 | Store Manager / AP Supervisor | W28, W37 | POS-015 |
 
 ---
 
@@ -118,9 +119,9 @@
 | Asset Safeguarding | 2 | 4 | 6 |
 | Financial Reporting | 1 | 7 | 8 |
 | Operational Process | 2 | 4 | 6 |
-| Vendor & Customer Master Data | 2 | 0 | 2 |
-| **Total** | **23** | **26** | **49** |
+| Vendor & Customer Master Data | 2 | 1 | 3 |
+| **Total** | **23** | **27** | **50** |
 
 ---
 
-*Date: 2026-05-31 (v3 — added CTL-44: duplicate vendor invoice detection, CTL-45: layaway deposit safeguarding, CTL-46: loyalty fraud investigation & resolution, CTL-47: ecommerce payment reconciliation, CTL-48: vendor rebate dispute resolution; total controls: 49)*
+*Date: 2026-05-31 (v4 — added CTL-49: gift card balance manipulation prevention (dual approval, fraud detection, monthly review); total controls: 50)*

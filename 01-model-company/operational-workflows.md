@@ -191,6 +191,25 @@ Each workflow follows this format:
 
 **Contract coverage**: ~40–60 active blanket/contract POs at any time, representing ~45% of annual COGS (aligned with top-20 vendor concentration)
 
+### Vendor Rebate Dispute Resolution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Vendor disputes rebate settlement amount calculated by BuildRight's system (W27 step 6) |
+| **Frequency** | Occasional — estimated 5–10 disputes/year |
+| **Dispute SLA** | 15 business days from dispute raised to resolution |
+| **Owner** | Buyer |
+| **Participants** | Buyer, Category Manager, Cost Accountant, Finance Manager |
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|
+| 1 | Vendor disputes settlement amount: Buyer receives vendor's written objection with vendor's calculation | Buyer | Category Manager | 15 min |
+| 2 | Buyer and Cost Accountant jointly review: compare BuildRight's settlement data (qualifying volume, rebate rate applied) to vendor's claim; identify specific discrepancy (volume count difference, rate tier interpretation, timing gap, excluded transactions) | Buyer / Cost Accountant | Category Manager | 30–60 min |
+| 3 | If BuildRight calculation confirmed correct: Buyer responds to vendor with supporting data; dispute closed; no settlement adjustment | Buyer | Category Manager | 15 min |
+| 4 | If partial vendor claim valid: Buyer proposes adjusted settlement; Category Manager approves adjustment; Cost Accountant posts adjustment with Category Manager approval and documentation in system | Buyer / Category Manager / Cost Accountant | Finance Manager | 30 min |
+| 5 | If dispute unresolved within 15 business days: Buyer escalates to Finance Manager for mediation; Finance Manager reviews both calculations and makes binding recommendation within 5 business days | Finance Manager | CFO | 30 min |
+| 6 | Monthly: Cost Accountant tracks rebate dispute frequency and resolution time per vendor; feeds into vendor scorecard (W44); chronic disputing vendors flagged for contract renegotiation (W2c) | Cost Accountant | Controller | 15 min/month |
+
 ### System Touchpoints
 - Blanket/contract PO creation with SKU lines, pricing tiers, validity dates, and commitment quantities (W2c.4)
 - Contract pricing enforcement on release orders (W2c.5)
@@ -198,7 +217,7 @@ Each workflow follows this format:
 - Cumulative commitment tracking: released vs. minimum vs. maximum (W2c.9)
 - Contract utilization reporting (W2c.10)
 - Contract expiry alerting with release order blocking (W2c.12)
-- Integration with W27 (vendor rebates — rebates may be tied to contract commitment achievement)
+- Integration with W27 (vendor rebates — rebates may be tied to contract commitment achievement; rebate dispute resolution per W27 dispute SLA of 15 business days)
 
 ### Staffing Implication
 - **Buyers**: 40–60 contracts ÷ 10–12 buyers = ~4–5 contracts each. Monthly review adds ~1 hour/buyer/month. Quarterly evaluation adds ~2 hours/buyer/quarter. Absorbed within existing team.
@@ -363,6 +382,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 **Total cycle time**: 1–3 days from order creation to store shelf
 
 ### System Touchpoints
+- Dual-sourced item management: for SKUs that are replenished through both DC delivery (W4) and DSD (W18) — typically cement, lumber, and bulky building materials — system maintains a primary/secondary supply channel indicator per SKU per store; ATP calculation aggregates on-hand + incoming DC replenishment + incoming DSD orders; when auto-replenishment (W4.1) generates a transfer order for a dual-sourced SKU, system checks if a DSD delivery is already scheduled within the replenishment lead time and adjusts the transfer order quantity accordingly to avoid overstocking; Store Manager can override the default supply channel per SKU via handheld; monthly: Supply Planner reviews dual-sourced SKU inventory levels to identify overstocking or conflicting deliveries (W4, W18)
 - Replenishment calculation engine (min/max, forecast-based) (W4.1)
 - Constrained allocation rules: when available supply is insufficient for all stores, system applies configurable allocation logic (e.g., equal distribution, rank by store revenue, prioritize A-stores) — Planner reviews and adjusts before confirming (W4.2)
 - Store order creation and wave planning (W4.3)
@@ -466,6 +486,8 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 8 | Receipt printed; inventory deducted in real-time | System / Cashier | — | 15 sec |
 | 9 | Age-restricted items trigger cashier confirmation prompt | Cashier | Store Manager | 10 sec |
 | 10 | **Void transaction**: Cashier or Store Manager initiates void before transaction is finalized (pre-void) or after finalization (post-void); manager authorization (swipe/card) required for any void; system logs void with cashier ID, authorizing manager ID, original transaction number, void reason code, and timestamp; system reverses inventory deduction, payment, loyalty points earned/redeemed, and promo usage; voided transaction retained in full audit trail (not deleted) | Cashier / Store Manager | Store Manager | 1 min |
+| 11 | **Price dispute at POS**: customer claims the scanned price differs from the displayed shelf tag; Cashier visually verifies shelf tag; if discrepancy confirmed: (a) Cashier honors the shelf tag price (customer-friendly policy per DTI price tag accuracy requirements), (b) Cashier applies price override with reason code "Shelf Tag Discrepancy" — manager authorization required per standard W5b.4a override rules, (c) system logs dispute with original price, shelf tag price, cashier ID, authorizing manager ID, and item barcode; (d) system creates shelf tag discrepancy ticket auto-routed to Department Supervisor for immediate shelf tag correction (W63) and inclusion in next W69 price audit cycle; if the shelf tag price is higher than the scanned (system) price, Cashier informs customer that the lower system price applies — no override needed | Cashier / Store Manager | Store Manager | 2 min |
+| 12 | **Employee purchase**: employee presents employee ID badge at checkout; Cashier selects "Employee Purchase" tender type in POS; system applies configured employee discount (default 10% off SRP, configurable by company policy) and enforces purchase limits (max PHP 20,000/month per employee, max 3 units per SKU per month); discount does not stack with promotional pricing — lower of employee discount or promo price applies; employee discount excluded from catch-weight and clearance items; system logs employee purchase with employee ID, discount applied, and monthly running total; monthly: Store Manager receives employee purchase summary report; purchases exceeding monthly limit require Store Manager override with justification; employee purchases are not eligible for loyalty points earning | Cashier / Employee | Store Manager | 1 min additional |
 
 **Average transaction time**: ~3 minutes (checkout only); total customer visit ~20–30 min
 
@@ -522,7 +544,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | Scenario | Response | Minimum Viable Opening |
 |---|---|---|
 | **Power outage** | Store Manager contacts Meralco/utility provider for ETA; if generator available, start generator and open with reduced lighting in non-essential areas; POS runs on UPS/battery backup during generator switchover | Open with generator power; 3 of 5 POS terminals sufficient |
-| **POS system / network down** | Store Manager contacts IT Helpdesk (W48 P1); if estimated fix < 2 hours, delay opening until restored; if > 2 hours, open in manual mode (written receipts, manual price lookup from printed price list); reconcile per W5d offline recovery upon restoration | Open with manual receipts if < 2 hours; otherwise delay |
+| **POS system / network down** | Store Manager contacts IT Helpdesk (W48 P1); if estimated fix < 2 hours, delay opening until restored; if > 2 hours, open in manual mode (written receipts, manual price lookup from printed price list); reconcile per W5g offline recovery upon restoration | Open with manual receipts if < 2 hours; otherwise delay |
 | **Alarm malfunction** | Guard performs exterior walkthrough (W71.1); if no signs of intrusion, Store Manager enters and inspects; contacts alarm monitoring company for emergency repair; opens if interior verified safe | Open if security verified; alarm repair scheduled per W47 |
 | **Safety hazard found during walkthrough** (water leak, structural damage, gas smell) | Store Manager isolates affected area; contacts Facilities Coordinator for emergency repair per W47; if hazard is localized, open store with restricted access to affected zone; if hazard affects entire store (gas leak, major flooding), keep closed until resolved | Open partial if hazard isolated; full closure if building-wide |
 | **Late staff arrival** (multiple no-shows due to transport, weather) | Store Manager calls in available off-duty staff; opens with minimum crew: 1 cashier, 1 floor associate, 1 stock associate, 1 manager; remaining terminals closed | Open with 1 terminal + 1 floor associate + manager |
@@ -536,14 +558,14 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 3 | Store Manager decides: (a) delay opening by estimated fix time, or (b) open in minimum viable configuration per scenario table | Store Manager | Regional Manager | 5 min |
 | 4 | If delaying: Store Manager posts "Opening at [time]" signage on store entrance; updates store status in system; Regional Manager notified | Store Manager | — | 5 min |
 | 5 | If opening with reduced capacity: Store Manager assigns available staff to critical positions (minimum 1 cashier, 1 floor, 1 manager); remaining terminals shuttered; DSD receiving deferred | Store Manager | — | 10 min |
-| 6 | Upon issue resolution: Store Manager transitions to full operations; communicates "now open" via store signage and system update; reconciles manual transactions (if any) per W5d upon system restoration | Store Manager | — | 10 min |
+| 6 | Upon issue resolution: Store Manager transitions to full operations; communicates "now open" via store signage and system update; reconciles manual transactions (if any) per W5g upon system restoration | Store Manager | — | 10 min |
 | 7 | Store Manager documents delay incident in system: root cause, duration of delay, impact on sales (estimated lost revenue), corrective action taken; includes in daily report to Regional Manager | Store Manager | Regional Manager | 10 min |
 
 ### System Touchpoints
 - Store status management: Store Manager can set store status to "Delayed Opening" or "Partial Operations" in system; suppresses BOPIS order routing (W11) and ecommerce availability (W19) during delay; auto-restores when status set to "Open" (W5e.4, W5e.6)
-- Manual receipt reconciliation: upon system restoration, manual transactions entered as batch per W5d offline recovery process (W5e.6)
+- Manual receipt reconciliation: upon system restoration, manual transactions entered as batch per W5g offline recovery process (W5e.6)
 - Delay incident logging with root cause categorization and lost revenue estimation (W5e.7)
-- Integration with W5a (opening procedure), W5d (offline recovery), W47 (facility emergency repair), W48 (IT helpdesk P1), W49 (natural disaster — this is for non-disaster delays), W71 (security incidents)
+- Integration with W5a (opening procedure), W5g (offline recovery), W47 (facility emergency repair), W48 (IT helpdesk P1), W49 (natural disaster — this is for non-disaster delays), W71 (security incidents)
 
 ### Staffing Implication
 - No incremental headcount. Delay handling is a Store Manager responsibility. Estimated 2–4 delayed openings/store/year × ~30 min each = ~1–2 hours/year per store.
@@ -593,18 +615,18 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Catch-weight / variable measure selling with weight/length capture and auto-price calculation (W5b.2)
 - Custom SKU generation for paint mixing (W5b.3)
 - Age-restricted product prompts (W5b.9)
-- Void transaction with manager authorization: full audit trail (cashier, manager, reason, timestamp); automatic reversal of inventory, payment, loyalty points, and promo usage; voided transaction retained for loss prevention analysis (W5b.10)
+- Void transaction with manager authorization: full audit trail (cashier, manager, reason, timestamp); automatic reversal of inventory, payment, loyalty points, and promo usage; voided transaction retained for loss prevention analysis (W5b.10); BIR-compliant void document: system prints or records a void receipt referencing the original transaction number with void indicator, reason code, and authorizing manager ID per CAS permit requirements (W54a.8); void receipt retained for 7-year BIR retention period alongside the original transaction record
 - Void authorization roles and queuing: void authorization granted to Store Manager and Assistant Store Manager by default; Department Supervisors may be granted void authorization for their department's items up to a configurable threshold (e.g., ≤ PHP 5,000); if no authorized person is physically available at the time of void request, cashier can suspend the transaction and queue the void for next-available manager authorization; system enforces that all queued voids are authorized within the same business day; queued voids visible on Store Manager's terminal dashboard (W5b.10)
 - Z-report generation (W5c.2)
 - Cash reconciliation / variance reporting (W5c.3–4)
 - Electronic payment reconciliation: automated import of card acquirer and e-wallet settlement reports; comparison to Z-report by tender type; variance alerting (W5c.3a–b)
-- Cash-in-transit tracking: armored car pickup confirmation or bank deposit receipt capture per store; bag number and amount logging; deposit confirmation matching to Z-report totals; delayed pickup exception alerting (W5c.5a–b)
+- Cash-in-transit tracking: armored car pickup confirmation or bank deposit receipt capture per store; bag number and amount logging; deposit confirmation matching to Z-report totals; delayed pickup exception alerting (W5c.5a–b); deposit timing enforcement: system requires Store Manager to confirm deposit (armored car pickup or bank deposit) within 24 hours of store closing; unconfirmed deposits auto-escalate to Regional Manager on day 2; Regional Manager contacts Store Manager for explanation and resolution; system logs all deposit confirmation timestamps with variance from expected schedule
 - Daily sales dashboard (W5c.7)
 
 ### Staffing Implication
 - **6 Cashiers per store**: 5 terminals + 1 float. With 2 shifts (~10 hours total), each shift needs 3–4 cashiers. 6 covers shifts + days off with 1 relief. Tight but workable.
 - **16 Sales Associates**: Across 4 departments (Lumber, Plumbing/Electrical, Tiles, Tools/Hardware) = 4 per dept. 2 shifts. Handles floor coverage + specialty tasks (paint mixing, lumber cutting). Reasonable.
-- **3 Stock Associates**: Continuous replenishment + cycle counting. With ~700 SKUs to cycle count daily and ongoing shelf restocking, 3 is the minimum. Consider 4 during peak seasons.
+- **3 Stock Associates (+ 1 part-time relief recommended)**: Continuous replenishment + cycle counting + BOPIS picking + DSD shelving + transfer handling + shelf label updates + weekly price audit scanning (W69) + layaway staging (W75) + ship-from-store picking (W19b). With ~700 SKUs to cycle count daily and all additional duties, 3 is the absolute minimum with no slack for absenteeism. Recommend 4 Stock Associates per store (or 3 full-time + 1 part-time relief) to ensure coverage during peak seasons, absenteeism, and promotional periods.
 
 ---
 
@@ -643,7 +665,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Immutable audit trail for all adjustments (W6.8)
 - In-store damage discovery reporting with photo, cause code, and disposition workflow (W6.8a)
 - Near-expiry alerting: during cycle counts, system flags items approaching expiry (configurable threshold per category, e.g., 90 days for paint, 60 days for cement); Department Supervisor reviews flagged items and initiates disposition per W13.9a (markdown), W3.6a (RTV), or W13.9b (scrap/liquidation) (W6)
-- Negative inventory resolution: system generates daily negative inventory alert listing all SKU-locations where on-hand < 0; at store level, Stock Associate investigates root cause (timing lag from offline POS transactions per W5d, receiving error, mispick, or cycle count needed); at DC level, Inventory Control clerk investigates (pending GR posting, allocation error, picking error); resolution action depends on cause — recount and adjust (W6), wait for pending transaction posting, or force adjustment with supervisor approval; system blocks negative-inventory locations from ecommerce ATP availability until resolved; monthly report of negative inventory frequency by location feeds into inventory accuracy improvement initiatives
+- Negative inventory resolution: system generates daily negative inventory alert listing all SKU-locations where on-hand < 0; at store level, Stock Associate investigates root cause (timing lag from offline POS transactions per W5g, receiving error, mispick, or cycle count needed); at DC level, Inventory Control clerk investigates (pending GR posting, allocation error, picking error); resolution action depends on cause — recount and adjust (W6), wait for pending transaction posting, or force adjustment with supervisor approval; system blocks negative-inventory locations from ecommerce ATP availability until resolved; monthly report of negative inventory frequency by location feeds into inventory accuracy improvement initiatives
 
 ### Staffing Implication
 - **3 Stock Associates per store**: Each counts ~233 SKUs/day (~40 min), with remainder of time on replenishment, receiving, damage reporting, and BOPIS picking. Current count of 3 is adequate but has no slack for absenteeism.
@@ -701,7 +723,7 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - Evaluated Receipt Settlement (ERS): for configured VMI vendors (W20) and select blanket PO vendors (W2c), system auto-generates vendor invoice from PO + Goods Receipt data without requiring vendor invoice submission; AP Clerk validates auto-generated invoice against PO and GR; if within tolerance, auto-approved for payment; reduces GRNI accumulation and manual invoice processing for high-volume, trusted vendor relationships
 
 ### Staffing Implication
-- **8–10 AP Clerks**: total ~305–370 invoices/business-day across merchandise (~295/day per W7: 6,500 invoices/month ÷ 22 business days) and non-PO (~91–136/day per W7c: 2,000–3,000/month ÷ 22); at 5 min logging each = ~25–31 hours for basic processing; with ~20% requiring manual resolution at 25 min each = ~25–30 additional hours; total ~50–61 hours/business-day; with 10 clerks that's ~5–6 hours each; reasonable with payment runs, GRNI follow-up, vendor statement reconciliation (W7d), and other duties; note that month-end peaks (+50% per W7) push daily volume to ~460–550 invoices/day during close week, requiring temporary overtime or redeployment of other Finance staff to AP
+- **8–10 AP Clerks**: total ~305–370 invoices/business-day across merchandise (~295/day per W7: 6,500 invoices/month ÷ 22 business days) and non-PO (~91–136/day per W7c: 2,000–3,000/month ÷ 22); at 5 min logging each = ~25–31 hours for basic processing; with ~20% requiring manual resolution at 25 min each = ~25–30 additional hours; total ~50–61 hours/business-day; with 10 clerks that's ~5–6 hours each; reasonable with payment runs, GRNI follow-up, vendor statement reconciliation (W7d), and other duties; note that month-end peaks (+50% per W7) push daily volume to ~460–550 invoices/day during close week, requiring temporary overtime or redeployment of 2–3 other Finance staff (Cost Accountant, Treasury Analyst) to AP to maintain processing SLA; peak staffing contingency documented in W7
 - **1 AP Supervisor**: Oversight, aging review, GRNI escalation management, escalations.
 - **2 Treasury Analysts**: Payment approval, bank file transmission, LC management. Shared with AR and other treasury duties.
 
@@ -1204,6 +1226,18 @@ While the primary IC model is service-based, the following concrete scenarios wo
 
 For each goods-based IC transfer: system creates IC Sales Order (selling entity) and IC Purchase Order (buying entity) at configured transfer price; goods physically transferred from Depot Inc. stock; IC invoice auto-generated; IC elimination during consolidation per W9a.13. Estimated volume: < 20 goods-based IC transactions/year across all entity pairs.
 
+### Goods-Based IC System Flow Detail
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Requesting entity creates IC Purchase Requisition in system: item(s), quantity, justification, requesting entity, delivery location | Requesting entity staff | Requesting entity Dept. Head | 10 min |
+| 2 | System checks Depot Inc. inventory availability at nearest DC/store with ATP; if available, auto-creates IC Sales Order in Depot Inc. and linked IC Purchase Order in requesting entity at configured transfer pricing rule (cost + 5% markup for materials; SRP for small office supplies) | System | — | Automated |
+| 3 | If IC value > PHP 50,000: approval required from requesting entity Finance Manager and Depot Inc. Category Manager; if < PHP 50,000: auto-approved within contract parameters | Approver(s) | CFO | 15 min |
+| 4 | Depot Inc. DC or store picks goods; scan-confirms shipment; system reduces Depot Inc. inventory, creates in-transit inventory | DC/Store Staff | DC Supervisor / Store Manager | Per W3/W22 |
+| 5 | Requesting entity receives goods; scan-confirms receipt; system increases requesting entity inventory (if applicable) or posts directly to expense/consumption | Receiving Staff | Dept. Head | Per W3/W18 |
+| 6 | System auto-generates IC invoice from IC Sales Order at transfer price; simultaneous posting: Depot Inc. Dr. IC Receivable / Cr. IC Revenue + Cr. Inventory (at cost); requesting entity Dr. Expense/Inventory / Cr. IC Payable | System | — | Automated |
+| 7 | IC invoice included in monthly W14 IC reconciliation and settlement cycle | Chief Accountant | Controller | Per W14 |
+
 ### Annual IC Transfer Pricing Review
 
 ### IC Invoice Dispute Resolution
@@ -1284,6 +1318,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 | 1 | Hiring Manager submits staffing request with role, department, justification | Hiring Manager | Dept. Head | 15 min |
 | 2 | HR Recruitment Officer posts job on job boards, social media, walk-in postings | Recruitment Officer | HR Head | 30 min/role |
 | 3 | Screen applications; shortlist candidates | Recruitment Officer | HR Head | 2–4 hours/role |
+| 3a | **Applicant tracking detail**: system tracks all applicants through a structured pipeline — Applied → Phone Screen → Interview (1st) → Interview (2nd) → Offer → Hired / Rejected; each pipeline stage records date, recruiter notes, interviewer feedback (rating 1–5), and outcome; system auto-sends rejection email to unsuccessful candidates at each stage with configurable template; for high-volume store roles (Sales Associates, Cashiers, Stock Associates), Recruitment Officer may use a walk-in hiring event model with batch applicant entry and bulk status updates; system generates recruitment analytics: time-to-fill by role, sourcing channel effectiveness (job boards, walk-in, referral, social media), offer acceptance rate, interviewer assessment scores; applicant data retained for 1 year per RA 10173 (with candidate consent) for potential future openings | Recruitment Officer | HR Head | Ongoing |
 | 4 | Conduct interviews (1st: HR; 2nd: Hiring Manager) | Recruitment Officer + Hiring Manager | Dept. Head | 1 hour/candidate |
 | 5 | Select candidate; extend offer | Recruitment Officer | HR Head | 30 min |
 | 6 | New hire completes pre-employment requirements (SSS, PhilHealth, Pag-IBIG, TIN, medical, NBI clearance) | New Hire | Recruitment Officer | — |
@@ -1351,13 +1386,15 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | T-75 min (6:45 AM) | Cash floats loaded into all 5 terminals; opening Z-report baseline verified at zero | Cashier | Z-report shows zero opening balance per terminal |
 | T-60 min (7:00 AM) | Store Manager and IT conduct final walkthrough: verify shelf tags match system prices on 20 sample items across departments; verify signage, security systems, and alarm test | Store Manager + IT | Price verification checklist signed |
 | T-45 min (7:15 AM) | DC dispatch confirms final pre-opening delivery has been received and posted; system inventory matches physical count from soft opening (W16 step 12) | Receiving Clerk + IT | System on-hand = physical count |
-| T-30 min (7:30 AM) | Store Manager briefs all staff: operating procedures, escalation contacts for IT issues (W48 helpdesk), offline POS procedures (W5d) if connectivity fails | Store Manager | Staff acknowledgment |
+| T-30 min (7:30 AM) | Store Manager briefs all staff: operating procedures, escalation contacts for IT issues (W48 helpdesk), offline POS procedures (W5g) if connectivity fails | Store Manager | Staff acknowledgment |
 | T-15 min (7:45 AM) | IT performs live test transaction: scan item, process loyalty enrollment, complete payment by card; void test transaction; verify all entries posted correctly in ERP | IT Team + Cashier | Transaction, loyalty, payment, and void all verified in system |
 | T-0 (8:00 AM) | Doors open; first live customer transaction | All | Store Manager monitors first 10 transactions for anomalies |
 | T+60 min (9:00 AM) | IT Team confirms all POS terminals stable; real-time inventory deduction verified; helpdesk monitors for incident tickets from new store | IT Team | No P1/P2 tickets |
 | T+4 hrs (12:00 PM) | Store Manager runs midday spot-check: 5 random items scanned at POS — prices correct, inventory deducting | Store Manager | Spot-check log |
 | End of day | Store Manager runs standard closing procedure (W5c); IT reviews day-end Z-reports; all transactions reconciled; any exceptions logged as W48 tickets | Store Manager + IT | Z-report balances, no unresolved exceptions |
 | T+1 day | IT Team and Store Ops Director conduct post-go-live review: transaction volume, POS performance, any incidents, customer feedback | IT Team + Store Ops Director | Post-go-live report filed |
+| T+2 to T+7 days | **IT shadow period**: 1 dedicated IT support staff remains on-site or on-standby (remote with < 15 min response) for the first full operating week post-opening; monitors POS stability, transaction processing, offline mode readiness, and connectivity; any P1/P2 incidents during shadow period receive immediate on-site resolution; shadow staff logs all incidents and resolutions in W48 helpdesk; at end of shadow week, IT confirms store is stable and transitions to standard W48 remote support | IT Shadow Staff + Store Manager | CIO |
+| T+30 days | IT Team and Store Ops Director conduct 30-day post-go-live review: transaction volumes, system stability, incident history, store staff confidence assessment | IT Team + Store Ops Director | 30-day review filed |
 
 ### Staffing Implication
 - New store openings (10–15/year) are the primary growth driver of hiring volume.
@@ -1383,7 +1420,8 @@ The following hour-by-hour plan covers the system activation sequence on the day
 |---|---|---|
 | Earn rate | 1 point per PHP 100 spent | Applied to transaction value after discounts, before VAT |
 | Redemption value | PHP 1.00 per point | Each point can be redeemed for PHP 1.00 discount at checkout |
-| PFRS 15 deferred revenue allocation | ~1.0% of qualifying transaction value | Face value: (1 point × PHP 1.00) ÷ PHP 100 = 1%; actual PFRS 15 allocation rate may differ based on expected redemption rate (~75–85%) and breakage (~15–25%); the ~1.0% figure represents the standalone selling price allocation before breakage adjustment |
+| Face value of points | 1% of qualifying transaction value | Face value = (1 point × PHP 1.00) ÷ PHP 100 = 1% of spend |
+| PFRS 15 deferred revenue allocation | ~0.75–0.85% of qualifying transaction value | Standalone selling price allocation = face value (1%) × expected redemption rate (~75–85%); this is the actual amount allocated to deferred revenue at POS earning; the ~1.0% face value is NOT the PFRS 15 allocation rate — the allocation rate is lower because ~15–25% of points are expected to expire unredeemed (breakage) and are excluded from the standalone selling price of the points |
 | Estimated monthly points earned | ~50M points (PHP 5B revenue ÷ PHP 100 × 1 point) | Before breakage adjustment |
 | Estimated monthly deferred revenue allocation (PFRS 15) | ~PHP 50M/month (PHP 5B qualifying revenue × 1.0% allocation) | Monthly flow: new deferred revenue from points earned; recognized proportionally at redemption or as breakage at expiry |
 | Estimated cumulative loyalty points liability (balance sheet) | ~PHP 1.2–1.8B (outstanding unredeemed points × PHP 1.00 × expected redemption rate ~75–85%) | Cumulative stock: outstanding points not yet redeemed or expired; reconciled monthly by Cost Accountant per W17.11a |
@@ -1528,6 +1566,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | 11 | System marks order as "Delivered"; inventory formally deducted | System | — | Automated |
 | 12 | If delivery fails (customer unavailable): system initiates failed delivery lifecycle — (a) 1st attempt: delivery partner leaves notification (call/SMS); customer given 2-hour window to respond for same-day re-delivery attempt; (b) if no response or 2nd attempt fails: order returns to DC; system sends customer notification with reschedule options (next available date) or cancellation option; (c) if customer reschedules: system creates new delivery order with carrier; (d) if customer cancels: system initiates refund to original payment method (Dr. Revenue / Cr. Cash) and DC restocks item per W12a.7; (e) if customer does not respond within 3 business days after return-to-DC: system auto-cancels order and initiates refund | Delivery Partner / DC | DC Supervisor | 15 min + carrier transit time |
 | 12a | **Home delivery return (reverse logistics)**: for bulky/large items (appliances, lumber, tiles, fixtures) that the customer cannot transport to a store, system schedules carrier pickup via 3PL integration; carrier collects item from customer address and returns to originating DC; DC Receiving Clerk inspects returned item; if resalable: system processes refund to original payment method and restocks per W12a.7; if damaged: disposition per W6.8a (markdown, scrap, RTV); refund processed upon DC inspection confirmation | System / DC Receiving Clerk / CSR | DC Supervisor | 15 min/setup + carrier transit time
+12b | **Carrier damage vs. vendor defect liability assignment**: when a home delivery customer reports damaged goods, CSR creates a damage report at intake with customer-provided photos and damage description; system routes damage report for liability determination: (a) **carrier damage** — external packaging damage, dents/scratches consistent with transit handling, item damage on one side, water damage to outer carton — CSR files carrier damage claim via 3PL integration (W19.7); carrier's insurance covers loss; customer receives immediate replacement or refund; system posts Dr. Carrier Claim Receivable / Cr. Inventory; (b) **vendor/manufacturing defect** — item defective out of box with intact packaging, missing parts, functional failure without physical damage — CSR processes vendor warranty claim (W33) or RTV (W3.6a); system posts Dr. Vendor Claim Receivable / Cr. Inventory; (c) **undetermined** — if cause unclear from photos, DC inspects returned item and makes final determination; (d) monthly: DC Supervisor generates delivery damage report — carrier damage rate by carrier (feeds W44/W62b), vendor defect rate by vendor (feeds W44), customer impact (refund vs. replacement) | CSR / DC Receiving Clerk | DC Supervisor | 10 min/classification
 
 ### W19b. Ship from Store (Store-Fulfilled Home Delivery)
 
@@ -1705,7 +1744,21 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | 7 | Destination location receives items; scans against Transfer Order | Receiving Clerk | DC Supervisor / Store Manager | 15–30 min |
 | 8 | System updates: source inventory decreases, in-transit clears, destination inventory increases | System | — | Automated |
 | 9 | If discrepancy at destination: flag in system; source location notified for investigation | Receiving Clerk | DC Supervisor / Store Manager | 5 min if any |
-9a | Transfer discrepancy resolution: (a) if source picking error confirmed → source location absorbs loss (system posts inventory adjustment at source, Dr. Inventory Loss / Cr. Inventory at source location); (b) if carrier damage → DC Supervisor or Store Manager files carrier damage claim with photos and delivery receipt notation per W3.6a insurance claim process; (c) if unexplained shortage after investigation → destination writes off with approval per tier (Store Manager ≤ PHP 10,000, DC Manager ≤ PHP 50,000, Controller > PHP 50,000); system posts adjustment at destination (Dr. Inventory Loss / Cr. Inventory) | Receiving Clerk / DC Supervisor / Store Manager | Controller | 15–30 min |
+9a | Transfer discrepancy resolution: (a) if source picking error confirmed → source location absorbs loss (system posts inventory adjustment at source, Dr. Inventory Loss / Cr. Inventory at source location); (b) if carrier damage → DC Supervisor or Store Manager files carrier damage claim with photos and delivery receipt notation per W3.6a insurance claim process; (c) if unexplained shortage after investigation → destination writes off with approval per tier (Store Manager ≤ PHP 10,000, DC Manager ≤ PHP 50,000, Controller > PHP 50,000); system posts adjustment at destination (Dr. Inventory Loss / Cr. Inventory) | Receiving Clerk / DC Supervisor / Store Manager | Controller | 15–30 min
+
+### W22a. Store-Level Outbound Transfer Fulfillment
+
+When a store is the source location for a store-to-store transfer (W22 step 5), the picking, packing, and dispatch process differs from DC operations (no WMS). The following details the store-level outbound process:
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Store Manager or Dept. Supervisor receives transfer pick list on handheld/terminal from approved Transfer Order | Stock Associate | Dept. Supervisor | 2 min |
+| 2 | Stock Associate picks items from sales floor or backroom per pick list; scan-confirms each item using handheld barcode scanner; system validates scanned SKU and quantity against Transfer Order | Stock Associate | Dept. Supervisor | 15–45 min |
+| 3 | If item not found or short: Stock Associate enters actual quantity picked; system updates Transfer Order with partial quantity and notifies destination store | Stock Associate | Dept. Supervisor | 2 min |
+| 4 | Stock Associate packs items in available shipping cartons or bags; labels each package with destination store name, Transfer Order number, and item count | Stock Associate | Dept. Supervisor | 10–20 min |
+| 5 | **Dispatch options**: (a) **DC truck backhaul** (preferred): items ride on the next DC delivery truck returning from this store — Stock Associate stages packed items at receiving dock for driver pickup; (b) **Own fleet or 3PL**: if urgent or no DC truck scheduled within 2 days, Fleet Manager or DC Dispatch arranges separate pickup; (c) **Inter-store courier**: for same-city transfers, Store Manager may arrange direct courier delivery | Stock Associate / Driver | Store Manager | 5–10 min staging |
+| 6 | Driver or carrier confirms pickup by scanning transfer shipment barcode on handheld; system updates Transfer Order status to "Shipped" and creates in-transit inventory | Driver / Carrier | Store Manager | 5 min |
+| 7 | System deducts picked items from source store inventory at shipment confirmation | System | — | Automated | |
 
 **Transfer lead time**: Inter-DC: 3–7 days; Store-to-Store: 1–3 days (same city) or 3–5 days (inter-region)
 
@@ -2009,6 +2062,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 - Store credit redemption via barcode scanning (W28.9)
 - Scheduled expiry processing with breakage accounting (W28.10)
 - Gift card liability aging report (W28.11)
+- Gift card breakage accounting (PFRS 15 / PAS 20): buildRight recognizes gift card breakage (unredeemed expired balances) using the redemption-rate-based method — (a) system tracks historical redemption rates by gift card cohort (vintage analysis); estimated unredeemed portion = 1 − historical 24-month redemption rate (currently ~15–25%); (b) breakage is recognized proportionally over the expected redemption period as redemption occurs — for every redemption, system recognizes a proportional share of expected breakage (Dr. Deferred Revenue — Gift Cards / Cr. Breakage Income); (c) at 24-month expiry, any remaining unredeemed balance is recognized in full as breakage income; (d) Cost Accountant reviews breakage estimate quarterly against actual redemption experience and adjusts the recognition rate if actual redemption deviates by > 5% from estimate; (e) this method is distinct from the simpler expiry-based lump-sum approach and provides more accurate PFRS 15 revenue recognition over the gift card lifecycle
 - Cross-channel gift card redemption: gift cards can be redeemed both online (ecommerce) and in-store; system validates card balance in real-time via ERP integration regardless of channel; gift card liability is maintained centrally on Depot Inc.'s balance sheet; when redeemed online for a BOPIS or home delivery order, Digital Commerce Inc. fulfills the order but Depot Inc. reduces the gift card liability and recognizes revenue per standard IC model; IC settlement between Digital Commerce Inc. and Depot Inc. processed monthly via W14; customer experience is seamless — same card works in-store and online
 
 ### Staffing Implication
@@ -2091,23 +2145,23 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 
 ### System Touchpoints
 - Local product/price cache on each POS terminal with nightly refresh (W5a.3, W5a.5)
-- Offline transaction queuing and encrypted local storage (W5d.1)
-- Automated upload and inventory conflict detection on reconnection (W5d.2–3)
-- Offline-to-online GL and inventory reconciliation (W5d.5–6)
-- Loyalty points reconciliation for transactions processed offline (W5d.5)
-- Stale price detection for extended outages (W5d.8)
+- Offline transaction queuing and encrypted local storage (W5g.1)
+- Automated upload and inventory conflict detection on reconnection (W5g.2–3)
+- Offline-to-online GL and inventory reconciliation (W5g.5–6)
+- Loyalty points reconciliation for transactions processed offline (W5g.5)
+- Stale price detection for extended outages (W5g.8)
 
 ### Business Continuity — Operational Fallback
 
 During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per NFR-013), store operations continue in degraded mode:
 
-- **POS**: continues selling offline per W5d (up to 8+ hours with local cache)
+- **POS**: continues selling offline per W5g (up to 8+ hours with local cache)
 - **Goods receiving (W3/W18)**: stores suspend goods receipt processing until system restored; Receiving Clerk captures delivery details manually (DR number, vendor, item, quantity) on paper or offline spreadsheet for batch entry upon recovery
 - **Ecommerce**: Digital Commerce Inc. platform displays maintenance notification; new orders suspended; in-progress orders held for fulfillment upon recovery
 - **Loyalty**: points earning tracked offline at POS and reconciled upon reconnection; points redemption suspended during outage (cashier cannot verify balance)
 - **AP / Treasury**: payment runs delayed until system restored; AP Clerk communicates with vendors if payment deadlines are at risk
 - **Incident declaration**: IT Helpdesk declares DR event per incident response plan; CIO notified; Store Ops Director communicates to Regional Managers who notify Store Managers; estimated recovery time communicated within 30 minutes of declaration
-- **Recovery**: upon system restoration, all offline transactions upload per W5d; manual receiving entries batch-posted; ecommerce order processing resumes; loyalty reconciliation runs automatically
+- **Recovery**: upon system restoration, all offline transactions upload per W5g; manual receiving entries batch-posted; ecommerce order processing resumes; loyalty reconciliation runs automatically
 
 ### Staffing Implication
 - No incremental headcount. Outage recovery is a Store Manager responsibility with IT support.
@@ -2501,6 +2555,7 @@ Shrinkage target: < 1.5% of sales (~PHP 75M/month at risk). Exception-based repo
 - Exception threshold configuration and tuning (W37.9)
 - CCTV integration specification: (a) system captures POS transaction timestamp and terminal ID; (b) POS integration layer sends transaction event to CCTV system via API or middleware; (c) CCTV system bookmarks associated video clip (configurable: ± 2 minutes around transaction event); (d) LPO retrieves correlated video from LP investigation dashboard by clicking transaction exception — system deep-links to CCTV playback at the transaction timestamp; (e) CCTV recording retention: minimum 30 days online storage, 90 days archived; (f) CCTV access restricted to LPO, Store Manager, Regional Manager, and Internal Audit via role-based access control; (g) for new store openings (W16), IT configures POS-to-CCTV integration as part of go-live readiness checklist (W16.9a); (h) system does not store video — only stores timestamp reference and CCTV clip ID for retrieval from the CCTV system's own storage
 - Loyalty program fraud detection: system monitors for loyalty abuse patterns in addition to POS transaction exceptions; detection rules include: (a) cashier scanning the same loyalty card across > 20% of their transactions (self-scanning or family/friend farming), (b) loyalty points earned on subsequently voided transactions (points earned but not reversed), (c) unusually high points earning on single transaction (points-to-revenue ratio exceeding 3× normal), (d) multiple loyalty accounts with > 85% match on name, phone, or address (farming multiple accounts), (e) redemption velocity spike on dormant accounts; flagged patterns appear on LPO daily exception dashboard alongside POS exceptions; LPO investigates and escalates to Loyalty Manager for account action (W17 manual points adjustment); confirmed fraud cases result in account suspension per W17 manual adjustment approval tiers
+- Gift card / store credit fraud detection: system monitors gift card and store credit transactions for fraud patterns: (a) multiple gift card balance inquiries from same terminal within short time window (potential brute-force balance checking), (b) gift card redemption at a different store within 24 hours of activation (potential barcode photocopying or stolen card), (c) return-to-store-credit followed by immediate cash-out attempt (return fraud), (d) employee-associated gift card transactions (employee purchasing or reloading their own gift card with subsequent return manipulation), (e) high-value gift card purchases paid in cash (potential money laundering); flagged patterns appear on LPO daily exception dashboard; LPO investigates and escalates to Store Manager for card suspension and customer verification; confirmed fraud results in gift card deactivation and loss reporting; monthly: LPO includes gift card fraud metrics in shrinkage report (W37.7); any manual gift card balance adjustment requires dual approval (Store Manager + AP Supervisor) with full audit trail
 
 ### Staffing Implication
 - **2–3 Loss Prevention Officers** (reporting to Internal Audit or a dedicated LP function): Daily review (1–2 hours) + case investigation (5–10 active cases at any time) + monthly shrinkage reporting + quarterly reviews. This is a specialized role that may not exist in the current org chart. Recommend adding 2 LPOs to cover 200 stores (each covering ~70 stores, rotating through physical store visits).
@@ -2543,6 +2598,7 @@ When an LPO investigation confirms theft or irrecoverable loss:
 | 4 | Buyer identifies vendor, obtains quotation (price, lead time, minimum quantity); enters quote in system linked to the non-stock SKU | Buyer | Category Manager | 30–60 min |
 | 5 | CSR or Sales Rep communicates quote to customer: price, estimated delivery date, payment terms (typically 50% deposit, 50% on delivery) | CSR / Sales Rep | — | 10 min |
 | 6 | Customer confirms order and pays deposit; system records deposit as liability (Cr. Customer Deposits Payable / Dr. Cash); not recognized as revenue until delivery | Customer / Cashier | — | 5 min |
+| 6a | **Trade/corporate account customers**: if customer holds an active trade or corporate account (W24), deposit requirement is waived for orders within the customer's available credit limit; system checks credit limit at order creation — if credit available, Sales Associate or CSR selects "Charge to Account" and system posts order value to customer's AR account (W8) upon delivery (no deposit liability); if order exceeds available credit, system prompts for partial deposit covering the excess; for special orders > PHP 50,000 on account, system routes for AR Supervisor approval per W24 tiered matrix | Sales Associate / CSR | AR Supervisor | 2 min |
 | 7 | System creates Sales Order linked to non-stock SKU with customer deposit recorded; reservation created against incoming PO | System | — | Automated |
 | 8 | Buyer creates Special Order PO (links PO to Sales Order); routes for approval per standard tiered matrix (W2) | Buyer | Category Manager | Per W2 |
 | 9 | Buyer tracks PO; follows up with vendor on delivery schedule | Buyer | Buyer | Per W2 |
@@ -2816,7 +2872,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 | 19 | Internal Audit issues observation report with recommendations for count process improvement | Internal Audit | CFO | 1 week |
 
 ### System Touchpoints
-- System inventory transaction freeze per location (W42.6, W42.15)
+- System inventory transaction freeze per location (W42.6, W42.15); auto-replenishment orders for frozen stores are automatically queued by the system and released upon unfreeze — no replenishment orders are lost during the count window; queued orders visible on Supply Planner dashboard with "Pending — Store Count Freeze" status
 - Zone-based count sheet generation with blind count mode (W42.2, W42.7–8)
 - RF device / handheld count entry (W42.7)
 - Variance detection after count submission (W42.9)
@@ -2971,7 +3027,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 | 11 | Cost Accountant disposes store fixtures and fixed assets per W39 (disposal/retirement); capitalizes any leasehold improvement write-offs | Cost Accountant | Controller | Per W39 |
 | 12 | System deactivates store location master: location status set to "Closed"; no further transactions posted; location excluded from reports and dashboards | IT / Controller | CFO | Automated + 15 min |
 | 13 | Controller runs final store P&L and balance sheet reconciliation: all inventory cleared, all AP/AR settled, all assets disposed; final profit/loss on closure recognized | Controller | CFO | 1 day |
-| 13a | **Financial close-out checklist** — Controller and Store Manager verify the following location-specific commitments are resolved before final close: (a) petty cash float (PHP 20K) returned to Treasury via bank transfer or armored car; custodian reconciliation completed per W25; (b) gift cards / store credit vouchers issued by closing store — system reissuance to customer's nearest store location with customer notification; unredeemed store credit balance recognized as revenue upon closure; (c) pending special orders (W38) — customer deposits either fulfilled from alternative store/DC or refunded per W38.16 deposit refund process; (d) pending warranty claims (W33) — items at vendor for repair reassigned to customer's nearest store for pickup upon return; (e) pending backorders (W56) — allocation released or redirected to nearest store with customer notification; (f) store-specific vendor contracts (e.g., local maintenance, cleaning) — terminated per W62 with final payment; (g) store-specific service contracts — final invoice verified and paid | Controller / Store Manager / AR Clerk / AP Clerk | CFO | 1 day |
+| 13a | **Financial close-out checklist** — Controller and Store Manager verify the following location-specific commitments are resolved before final close: (a) petty cash float (PHP 20K) returned to Treasury via bank transfer or armored car; custodian reconciliation completed per W25; (b) gift cards / store credit vouchers issued by closing store — system reissuance to customer's nearest store location with customer notification; unredeemed store credit balance recognized as revenue upon closure; (c) pending special orders (W38) — customer deposits either fulfilled from alternative store/DC or refunded per W38.16 deposit refund process; (d) pending warranty claims (W33) — items at vendor for repair reassigned to customer's nearest store for pickup upon return; (e) pending backorders (W56) — allocation released or redirected to nearest store with customer notification; (f) store-specific vendor contracts (e.g., local maintenance, cleaning) — terminated per W62 with final payment; (g) store-specific service contracts — final invoice verified and paid; (h) **loyalty profile default-store reassignment**: system identifies all loyalty members whose registered default store is the closing store; system automatically reassigns each member's default store to the nearest active BuildRight store based on geographic proximity; affected members notified via SMS/email with new default store information; loyalty points, tier status, and transaction history unaffected by reassignment | Controller / Store Manager / AR Clerk / AP Clerk | CFO | 1 day |
 | 13b | **LGU permit retirement**: Regulatory Officer notifies LGU Business Permit and Licensing Office (BPLO) of store closure; files closure notification with final local business tax payment (covering period up to closure date); obtains LGU closure acknowledgment; system updates location master with closure date and LGU retirement confirmation per W54; failure to retire LGU permit may result in continued LBT billing — Regulatory Officer confirms retirement within 30 days of closure | Regulatory Officer | Legal Head | 2–4 hours/location |
 | 14 | Post-closure: system retains closed store data for 7-year retention period (BIR); historical data accessible for reporting but location excluded from active operations | System | — | Automated |
 
@@ -3149,7 +3205,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 - Ticket analytics dashboard: volume, SLA compliance, MTTR, top issues by location (W48.11)
 - SLA breach escalation protocol: (a) single P1 SLA miss (resolution > 4 hours): IT Helpdesk Lead conducts immediate root cause analysis and documents corrective action; (b) 2 consecutive P1 SLA misses on same issue category: Helpdesk Lead escalates to CIO with remediation plan within 24 hours; CIO reviews staffing, tooling, or vendor support adequacy; (c) 3 or more P1 SLA misses within 30 days (any category): CIO presents incident review to CEO with systemic improvement plan (may include additional headcount, vendor escalation, or infrastructure investment); (d) P2/P3 SLA misses trending > 20% breach rate for 2 consecutive months: Helpdesk Lead initiates category-specific improvement (process change, training, or automation); (e) all SLA breaches tracked in monthly ticket analytics dashboard with trend analysis and root cause classification; SLA performance included in IT team's quarterly performance review (W48)
 - IT asset tracking: system maintains asset register for all IT equipment (POS terminals, RF devices, servers, networking equipment, laptops, tablets) with location assignment, warranty status, maintenance history, and lifecycle status; supports IT asset planning and budgeting (cross-reference W21 for capex, W39 for disposal)
-- Integration with W5d (offline POS recovery), W16 (new store IT setup), W43 (employee separation — account deactivation)
+- Integration with W5g (offline POS recovery), W16 (new store IT setup), W43 (employee separation — account deactivation)
 
 ### Staffing Implication
 - **4–5 Helpdesk Agents (Tier 1)**: handle ~800–1,200 tickets/month ÷ 20 working days = ~40–60/day. At ~10 min average per ticket = ~7–10 hours/day. With shifts and coverage, 4–5 agents needed.
@@ -3182,7 +3238,7 @@ The Philippines experiences an average of 20 tropical cyclones per year, of whic
 | 2 | Regional Managers notify Store Managers in affected regions to begin preparations; Store Managers brief all staff | Regional Manager | Store Ops Director | 1 hour |
 | 3 | **Store preparations**: Store Manager directs staff to: (a) secure outdoor yard inventory — move lumber, cement, and building materials under cover or to higher ground; (b) protect floor-level merchandise from potential flooding (move to higher shelves or backroom); (c) secure display fixtures, signage, and loose items; (d) verify backup power (generator fuel level, battery backup for POS); (e) verify emergency supplies (flashlights, first aid kits, drinking water) | Store Manager | Regional Manager | 4–8 hours |
 | 4 | **DC preparations**: DC Manager directs staff to: (a) prioritize outbound shipments to stores in safe zones before transport disruption; (b) secure outdoor inventory and yard areas; (c) verify backup power systems; (d) coordinate with carriers to suspend inbound shipments to affected areas | DC Manager | Supply Chain Manager | 4–8 hours |
-| 5 | IT sends system advisory to all locations: reminder of offline POS procedures (W5d), system backup schedule accelerated | IT Team | CIO | 30 min |
+| 5 | IT sends system advisory to all locations: reminder of offline POS procedures (W5g), system backup schedule accelerated | IT Team | CIO | 30 min |
 | 6 | HR verifies emergency contact information for all employees in affected regions; prepares welfare check plan | HR Head | CHRO | 1 hour |
 | 7 | Supply Planner reviews inventory levels at stores and DCs in projected path; identifies potential stockout risks for essential items (tarps, waterproofing, cement, plywood, flashlights, batteries, generators) | Supply Planner | Supply Chain Manager | 1 hour |
 
@@ -3228,7 +3284,7 @@ The Philippines experiences an average of 20 tropical cyclones per year, of whic
 - Insurance claim tracking per W3.6a process (W49.17, 24)
 - Post-disaster inventory and financial reconciliation (W49.21, 23)
 - Employee welfare check tracking with HR case management (W49.19)
-- Integration with W5d (offline POS recovery), W3.6a (insurance claims), W22 (emergency transfers), W25 (emergency petty cash for cleanup supplies), W47 (facility emergency repair)
+- Integration with W5g (offline POS recovery), W3.6a (insurance claims), W22 (emergency transfers), W25 (emergency petty cash for cleanup supplies), W47 (facility emergency repair)
 
 ### Staffing Implication
 - No dedicated disaster response team. Response is a cross-functional effort managed by existing roles (COO leads, Regional Managers execute, Store Managers act).
@@ -3503,7 +3559,7 @@ Under BIR Revenue Regulations No. 11-2018 and Revenue Memorandum Order (RMO) No.
 
 ### System Touchpoints (BIR CAS)
 - CAS permit tracking in entity master: permit number, issue date, expiry date, authorized system name (W54a.7)
-- BIR-compliant sequential invoice/receipt numbering: system enforces non-skippable, sequential numbering per CAS permit per entity; voided transactions retain number with void indicator per BIR requirements (W54a.8)
+- BIR-compliant sequential invoice/receipt numbering: system enforces non-skippable, sequential numbering per CAS permit per entity; voided transactions retain number with void indicator per BIR requirements; system prints or records a BIR-compliant void receipt referencing the original transaction number, void reason code, and authorizing manager ID per CAS permit conditions (W54a.8)
 - BIR books of accounts generation: system produces general journal, general ledger, cash receipts journal, cash disbursements journal, sales journal, and purchases journal in BIR-prescribed format (per CAS registration commitment) (W54a.2)
 - Entity-level CAS permit number printed on all receipts, invoices, and official receipts alongside entity TIN (W54a.8)
 - Integration with W5b (BIR-registered receipt printing), W9a (books of accounts generation for close), W16 (new entity setup — CAS registration required before entity can transact), W54 (LGU permits — Regulatory Officer manages both)
@@ -3527,7 +3583,7 @@ Under BIR Revenue Regulations No. 11-2018 and Revenue Memorandum Order (RMO) No.
 
 ### Background
 
-This workflow covers the IT system recovery process, distinct from W49 (typhoon/facility business continuity) which covers physical location response. NFR-013 defines: RPO ≤ 1 hour (max 1 hour of data loss), RTO ≤ 4 hours (max 4 hours of core system unavailability). POS terminals operate offline for 8+ hours per W5d.
+This workflow covers the IT system recovery process, distinct from W49 (typhoon/facility business continuity) which covers physical location response. NFR-013 defines: RPO ≤ 1 hour (max 1 hour of data loss), RTO ≤ 4 hours (max 4 hours of core system unavailability). POS terminals operate offline for 8+ hours per W5g.
 
 ### Steps
 
@@ -3536,12 +3592,12 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 | 1 | IT Infrastructure monitoring detects or is alerted to system failure: error rates, service health checks, connectivity loss, or user reports of system unavailability | IT Infrastructure / System | CIO | Immediate (automated detection) |
 | 2 | IT Infrastructure assesses scope and severity: (a) single module failure (e.g., POS integration down), (b) full ERP outage, (c) data center / cloud region outage, (d) suspected cyber attack (ransomware, DDoS) | IT Infrastructure Lead | CIO | 15–30 min |
 | 3 | CIO declares DR event if severity exceeds RTO: notifies CEO, COO, CFO; communicates estimated recovery time; Store Ops Director notifies Regional Managers and Store Managers | CIO | CEO | 15 min |
-| 4 | **Stores**: continue selling in offline mode per W5d; POS transactions queue locally for upload upon recovery | Store Manager | Store Ops Director | Automated (W5d) |
+| 4 | **Stores**: continue selling in offline mode per W5g; POS transactions queue locally for upload upon recovery | Store Manager | Store Ops Director | Automated (W5g) |
 | 5 | **DCs**: DC operations shift to manual processing — Receiving Clerks record goods receipts on paper/spreadsheet for batch entry upon recovery; picking and shipping suspended for non-critical orders | DC Manager | Supply Chain Manager | Manual fallback |
 | 6 | **Ecommerce**: Digital Commerce platform displays maintenance notification; new orders suspended; in-progress orders held for fulfillment upon recovery | Ecom Team | CMO | 15 min |
 | 7 | **Recovery execution**: IT Infrastructure initiates failover to DR site or secondary cloud region: (a) verify DR environment is current (data replication lag ≤ RPO), (b) switch DNS and network routing to DR environment, (c) validate core services: authentication, POS sync, inventory, financial posting, (d) incremental data replay from primary if replication lag exists | IT Infrastructure | CIO | 1–3 hours |
 | 8 | If primary system restore (instead of failover): (a) identify root cause, (b) repair or restore from backup, (c) verify data integrity against last known good checkpoint, (d) bring services online sequentially (core first, then ancillary), (e) validate system health | IT Infrastructure | CIO | 2–4 hours |
-| 9 | System restored: CIO communicates "all clear" to business; stores begin uploading offline transactions per W5d; DCs batch-enter manual receipts; ecommerce resumes order processing | CIO | CEO | 15 min |
+| 9 | System restored: CIO communicates "all clear" to business; stores begin uploading offline transactions per W5g; DCs batch-enter manual receipts; ecommerce resumes order processing | CIO | CEO | 15 min |
 | 10 | **Data integrity verification**: IT runs reconciliation checks: (a) offline POS transactions vs. central inventory, (b) any manual DC entries vs. expected receipts, (c) database transaction logs for completeness, (d) financial posting integrity (no partial journal entries) | IT Infrastructure + Finance | Controller | 1–2 hours |
 | 11 | Post-recovery: CIO conducts root cause analysis within 5 business days; documents incident, root cause, recovery actions, data loss (if any), and preventive measures | CIO | CEO | 4 hours |
 | 12 | Quarterly: IT Infrastructure conducts scheduled DR failover test during maintenance window; validates RTO and RPO targets; documents test results; updates DR runbook based on findings | IT Infrastructure | CIO | 4 hours/quarter |
@@ -3550,10 +3606,11 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 - Automated system health monitoring with configurable alerting thresholds (W55.1)
 - DR environment: real-time data replication with RPO ≤ 1 hour (synchronous or near-synchronous); automated or one-click failover capability (W55.7)
 - Backup integrity verification: automated checksum validation on backup files; periodic restore testing (W55.8)
-- Offline POS transaction upload and reconciliation per W5d (W55.4, 10)
+- Offline POS transaction upload and reconciliation per W5g (W55.4, 10)
 - Incident logging and root cause documentation (W55.11)
 - DR test scheduling and results tracking (W55.12)
-- Integration with W5d (offline POS), W48 (helpdesk incident management), W49 (physical disaster response — this workflow is system-level, W49 is facility-level)
+- DR test failure remediation: if quarterly DR test fails to meet RTO (4 hours) or RPO (1 hour) targets — (a) IT Infrastructure Lead documents the specific failure (failover latency, data replication lag, service recovery sequence, single point of failure); (b) CIO convenes emergency remediation meeting with IT Infrastructure within 5 business days; (c) remediation plan created with specific actions, responsible owners, and target completion date; (d) retest scheduled within 30 days of remediation completion; (e) if retest also fails: CIO escalates to CEO with capital investment request for infrastructure upgrade; (f) all test results (pass and fail) retained in DR test log for audit evidence; (g) External auditor may request DR test results as part of annual audit (W42.19, W55.12)
+- Integration with W5g (offline POS), W48 (helpdesk incident management), W49 (physical disaster response — this workflow is system-level, W49 is facility-level)
 
 ### Staffing Implication
 - No incremental headcount. DR response is executed by existing IT Infrastructure team (part of the recommended ~28–30 IT staff in W48).
@@ -3595,8 +3652,9 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 - Allocation reservation against incoming PO/replenishment with backorder priority (W56.5)
 - Automated customer notification at each status change: created, allocated, in transit, ready for pickup (W56.8–9)
 - Backorder aging report with escalation triggers (W56.13)
+- Backorder price protection: if a promotional price (W13) or regular price reduction (W40) becomes effective between backorder creation and fulfillment, system automatically applies the lower price to the backorder at fulfillment (customer-friendly policy); system logs the price adjustment with original backorder price, new lower price, and price source (promo or price change); if price increases, the original backorder price is honored (locked at creation); this rule applies to both trade account and retail backorders
 - Auto-cancellation after maximum wait time with customer notification (W56.12)
-- Integration with W2 (PO creation trigger), W4 (replenishment allocation), W19 (home delivery option), W22 (inter-store transfer alternative), W38 (special order for non-stock items — backorder is for stock items, special order is for non-stock items)
+- Integration with W2 (PO creation trigger), W4 (replenishment allocation), W13 (promotional pricing — backorder price protection), W19 (home delivery option), W22 (inter-store transfer alternative), W38 (special order for non-stock items — backorder is for stock items, special order is for non-stock items), W68 (product discontinuation — system auto-cancels open backorders for discontinued SKUs and notifies customers)
 
 ### Staffing Implication
 - **Sales Associates**: ~2,000–3,000 backorders/month ÷ 200 stores = ~10–15/store/month × ~10 min each = ~2 hours/store/month. Absorbed.
@@ -3867,6 +3925,7 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 - Pilot order routing and monitoring dashboard (W62b.6)
 - Performance monitoring integrated into W19 3PL management dashboard and W44 vendor scorecard (W62b.8)
 - Partner deactivation: API disconnect, carrier removal, data deletion confirmation (W62b.9)
+- Carrier rate card maintenance: Fleet Manager receives rate change notification from carrier (quarterly or annual update); enters updated rate card per zone/weight/tier in carrier master record; Finance Manager approves rate card changes before activation (validates against contracted rates and budget impact); system stores rate card history with effective dates for audit trail; auto-calculated delivery fees in W5d and W19 use the currently active rate card; rate card changes effective on configured date — orders already in transit use the rate card active at time of order creation (W62b)
 - Integration with W19 (home delivery), W52 (fleet), W44 (vendor scorecard), W62 (non-PO contracts)
 
 ### Staffing Implication (3PL Partners)
@@ -4093,7 +4152,7 @@ BuildRight's 5-DC footprint spans the Philippine archipelago: DC1 Davao (Mindana
 | 2 | Buyer validates discontinuation impact per SKU: (a) remaining open POs — can they be cancelled or reduced?, (b) outstanding vendor commitments on blanket POs (W2c) — minimum commitment status, (c) active rebate agreements (W27) — impact on rebate tier achievement, (d) vendor relationship impact — is vendor sole-source for other SKUs? | Buyer | Category Manager | 3 hours/campaign |
 | 3 | VP Merchandising approves discontinuation list; system sets "Discontinued — Pending" status on approved SKUs | VP Merchandising | VP Merchandising | 30 min/campaign |
 | 4 | **Last buy decision**: for each discontinued SKU, Buyer determines: (a) cancel all open POs (standard action) or (b) place final buy order to cover estimated sell-through during clearance period if remaining stock is critically low and sufficient margin exists; final buy follows standard W2a PO process but flagged as "Last Buy" — no future auto-replenishment | Buyer | Category Manager | 1 hour/campaign |
-| 5 | Supply Planner disables auto-replenishment (ROP) for discontinued SKUs; system stops generating suggested POs; remaining store replenishment continues until DC stock is exhausted | Supply Planner | Supply Planning Manager | 30 min/campaign |
+| 5 | Supply Planner disables auto-replenishment (ROP) for discontinued SKUs; system stops generating suggested POs; remaining store replenishment continues until DC stock is exhausted; system auto-cancels all open backorders (W56) for discontinued SKUs across all stores; customers with cancelled backorders notified via SMS/email with apology and option to select a substitute item (directed to Sales Associate or CSR for assistance) | Supply Planner | Supply Planning Manager | 30 min/campaign |
 | 6 | Merchandise Planner flags SKU as "Discontinued" in item master with effective date; item hidden from planogram tools and new store assortment assignments (W16.5); item remains visible in POS and ecommerce for selling remaining stock | Merchandise Planner | Category Manager | 1 hour/campaign |
 | 7 | **Clearance execution**: Pricing Analyst sets clearance markdown per W13.9a — system applies clearance price at POS and ecommerce; POS displays clearance disclaimer; Dept. Supervisors move items to clearance section; clearance period typically 4–6 weeks (longer than promo clearance per W13.9a to allow complete sell-through) | Pricing Analyst / Dept. Supervisor | Category Manager | 2 hours/campaign |
 | 7a | **Pricing conflict during discontinuation clearance**: if a regular price increase (W40) occurs while an item is in discontinuation clearance, the clearance price is NOT recalculated from the new regular price — the clearance price remains fixed at its originally set level (typically a percentage below the pre-clearance regular price) until the clearance period ends; if a regular price decrease (W40) occurs during clearance and the new regular price falls below the clearance price, system alerts Pricing Analyst, who must either lower the clearance price below the new regular price or accelerate the item's disposition to post-clearance (W68.9); this rule extends the W13 pricing conflict resolution logic to the discontinuation context — clearance price overrides regular price during the clearance period, and clearance items are excluded from standard price change batches (W63)
@@ -4609,6 +4668,7 @@ Layaway ("reserved items, installment payment") is a standard practice in Philip
 - Retaliation protection: system flags adverse actions against grievance filers within 90-day lookback (W79.7)
 - Grievance/whistleblower analytics: volume, category, severity, location, resolution time (W79.8)
 - Integration with W10 (payroll — preventive suspension with pay), W43 (separation — pending grievance resolved before clearance), W47 (safety concerns), W51 (self-service portal, training improvements), W72 (corrective action and progressive discipline)
+- Whistleblower anonymity technical controls: the anonymous whistleblower channel (dedicated email or third-party hotline) is configured with the following technical safeguards: (a) no IP address logging on the whistleblower submission form; (b) no employee ID or session token capture on anonymous submissions; (c) if third-party hotline is used, the provider contractually commits to not disclosing reporter identity to BuildRight management; (d) system stores whistleblower case records with a pseudonymous case ID — the real identity is accessible only to the DPO and Internal Audit lead (dual-access control); (e) retaliation protection (W79.7) is extended to anonymous reporters where identity is later inferred or disclosed; (f) annual: DPO reviews whistleblower channel anonymity safeguards as part of privacy impact assessment (W53)
 
 ### Staffing Implication
 - **HR Head**: grievance investigation adds ~20–40 hours/year. Absorbed within existing role.
@@ -4621,13 +4681,13 @@ Layaway ("reserved items, installment payment") is a standard practice in Philip
 
 | Department | Roles | Count | Key Workflows | Validation |
 |---|---|---|---|---|
-| **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13, W20, W23, W27, W29, W32, W36, W40, W44, W68 | ✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight + rebate management + seasonal planning + vendor onboarding + price maintenance + product discontinuation lifecycle |
+| **Merchandising & Buying** | VP, Category Managers, Buyers, Pricing Analysts, Merch Planners | ~40 | W1, W2, W13, W20, W23, W27, W29, W32, W36, W40, W44, W68 | ✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight + rebate management + seasonal planning + vendor onboarding + price maintenance + product discontinuation lifecycle; includes 1–2 dedicated Buyers for trade/special orders (W38) within the ~40 team |
 | **Finance & Accounting** | Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax | ~35 | W7, W7d, W8, W9, W14, W21, W24, W25, W26, W27, W28, W30, W39, W42, W54a (CAS permit validation), W59, W60, W70, W74 | ✅ Stretched during close week; capex/credit/petty cash absorbed; treasury daily cycle manageable with 2–3 analysts; asset disposal and annual physical inventory absorbed; insurance lifecycle and emergency procurement review absorbed; credit/debit note reconciliation absorbed into month-end close and weekly AP/AR review; AP staffing recalculated on business-day basis: ~305–370 invoices/business-day (6,500 merchandise + 2,000–3,000 non-PO per month ÷ 22 business days) requiring 10 clerks at ~5–6 hrs each/day; month-end peak (+50%) requires overtime or Finance staff redeployment; vendor statement reconciliation (W7d) absorbed into monthly AP cycle; employee expense reimbursement (W74) adds ~25–42 hours/month absorbed across AP team |
 | **Supply Chain & Logistics** | Supply Planners, Demand Planners, Import Coordinator, Fleet Manager, DC Ops managers | ~31 | W3, W3c, W4, W4b, W19, W19b, W22, W22b, W31, W52, W56, W57, W62b, W66 | ✅ 2–3 planners handle replenishment + store-initiated requests + transfers + backorder fulfillment + promo allocation; home delivery and ship-from-store picked by DC/store staff; 1–2 dedicated demand planners handle forecasting; 1 Fleet Manager manages owned vehicles and 3PL relationships; Import Coordinator absorbs inter-island logistics; DC inbound scheduling (W3c) absorbed by DC Receiving Supervisor; 3PL partner onboarding (W62b) absorbed by Fleet Manager; allocation rule governance reviewed quarterly as part of W31.8 parameter cycle |
 | **HR & Payroll** | HR Head, Recruitment, Payroll, Training Officer, HR Assistants | ~16 | W10, W15, W51, W72 | ✅ 2–3 payroll officers + 2 recruiters + 1 Training Officer handle the volume; employee performance management absorbed by ~230 managers |
 | **Marketing** | Brand, Promo, Loyalty, Ecommerce, Digital, Content, CS Manager | ~24 | W13, W17, W50, W61, W65 | ✅ Loyalty is largely automated; promo work is cyclical; dedicated Content Manager + 2–3 Content Specialists for ecommerce product content; CS Manager owns customer satisfaction measurement; price match review absorbed by Pricing Analysts |
 | **Store Operations** | Director, Regional Managers, CS Manager, Ops Standards, Facilities Coordinator | ~23 | W5, W5d (in-store delivery), W5e (opening delay), W16, W29, W5f (offline recovery), W34, W37, W41, W47, W49, W54a, W67, W69, W71 | ✅ 4 Regional Managers × 50 stores each; oversee new openings and monthly store performance reviews; in-store delivery uses existing 3PL carrier infrastructure; opening delay procedure is Store Mgr responsibility; offline recovery is Store Mgr responsibility; shift scheduling and complaint handling absorbed; 2–3 LPOs recommended for loss prevention; 1 Facilities Coordinator manages store maintenance, disaster response, and physical security oversight; weekly price compliance audits absorbed by Dept. Supervisors and Stock Associates |
-| **IT** | Infrastructure, Apps, Data, Security, BI Analyst, Helpdesk | ~28–30 | W16 (store setups), W35 (reporting), W48 (helpdesk & IT ops) | ✅ 4–5 helpdesk agents + 3–4 specialists handle ~800–1,200 tickets/month; 2–3 per store setup + BAU support; 1 BI Analyst supports management reporting |
+| **IT** | Infrastructure, Apps, Data, Security, BI Analyst, Helpdesk | ~28–30 | W16 (store setups), W35 (reporting), W48 (helpdesk & IT ops) | ✅ 4–5 helpdesk agents + 3–4 specialists handle ~800–1,200 tickets/month; 2–3 per store setup + BAU support; 1 BI Analyst supports management reporting; note: for physical IT support across the Philippine archipelago (200 stores + 5 DCs across Mindanao, Visayas, Luzon), 1–2 dedicated field staff may not provide adequate same-day response for P1 incidents in remote locations — recommend (a) training designated Store Managers as first-level hardware troubleshooters (certified on basic POS terminal swap, cable reseat, network restart), (b) contracting regional IT service providers in each major region (Davao, Cebu, Manila, Clark) for emergency on-site support, and (c) maintaining a spare POS terminal and network equipment swap stock at each DC for rapid dispatch |
 | **Other** | Legal, Internal Audit, DPO, Regulatory Officer, Customer Service (call center), Executive | ~52 | W41 (complaints), W42 (audit observation), W53 (data privacy breach, DSAR lifecycle, data portability/erasure), W54 (LGU permits), W54a (BIR CAS registration), W62 (vendor contracts) | ✅ Support functions; call center handles multi-channel complaint intake; Legal expanded to include DPO (W53 with full DSAR lifecycle) and Regulatory Officer (W54 LGU + W54a BIR CAS); total Legal & Compliance expands from ~5 to ~7 |
 
 ### Per-Store Staffing (35 people)
@@ -4703,4 +4763,4 @@ Summary of which ERP modules support which workflows:
 
 ---
 
-*Document Version: 18.0 | Date: 2026-05-31 | Wave 16: gap closure — added W75 (layaway/installment sales), W76 (employee loans & advances), W77 (BIR tax audit response), W78 (government procurement), W79 (employee grievance & whistleblower); fixed W5d numbering conflict (second W5d → W5g); added AR legal collection escalation with bad debt write-off to W8; added loyalty fraud resolution to W17; added duplicate vendor invoice detection to W7; added multi-DC order splitting to W19; added FX hedging policy to W30; added non-stock SKU archival to W38; added hazardous waste disposal to W47; added competitive intelligence step to W67; fixed HR headcount (15→16)*
+*Document Version: 19.0 | Date: 2026-05-31 | Wave 17: comprehensive gap closure — GAP-01: added W22a store-level outbound transfer fulfillment; GAP-02: added price dispute resolution at POS (W5b.11); GAP-03: added carrier damage vs. vendor defect liability assignment (W19.12b); GAP-04: added goods-based IC system flow detail (W14); GAP-05: added vendor rebate dispute resolution with 15-day SLA (W27); GAP-06: added IT shadow protocol for new store first week (W16); GAP-07: added gift card fraud detection to W37; GAP-08: added employee purchase policy at POS (W5b.12); GAP-09: added dual-sourced item management (W4); GAP-10: added backorder price protection rule (W56); GAP-11: added trade account deposit waiver for special orders (W38.6a); GAP-12: added auto-replenishment queuing during count freeze (W42); GAP-13: added discontinued SKU backorder auto-cancellation (W68.5); GAP-14: added loyalty profile default-store reassignment on closure (W45.13a); GAP-15: expanded applicant tracking in W15; GAP-16: added whistleblower anonymity technical controls (W79); GAP-17: added carrier rate card maintenance with Finance approval (W62b); GAP-18: clarified PFRS 15 gift card breakage accounting method (W28); GAP-19: added DR test failure remediation (W55); GAP-20: fixed all W5d/W5g cross-reference inconsistencies; GAP-21: added AP peak staffing contingency note; GAP-22: separated loyalty face value from PFRS 15 allocation rate; GAP-23: recommended 4 Stock Associates (+1 part-time relief); GAP-24: updated HQ staffing for dedicated special order buyers; GAP-25: added regional IT support recommendations; GAP-26: added 24-hour deposit confirmation enforcement; GAP-27: added CTL-49 to internal controls; GAP-28: added BIR-compliant void receipt documentation*

@@ -238,6 +238,11 @@
 | NFR-015 | Batch Processing Windows | Month-end close, payroll runs, and bulk report generation must complete within defined off-peak windows (see [Data Volumes §5](data-volumes-and-integrations.md#5-batch-processing-windows)) |
 | NFR-016 | Data Privacy Breach Response | Must Have | Automated breach register, NPC notification workflow, forensic audit trail, data subject notification capability per RA 10173 |
 | NFR-017 | LGU Business Permit Tracking per Location | Must Have | Per-location permit calendar, renewal alerting, permit document storage, and permit status dashboard for 200+ LGU jurisdictions |
+| NFR-018 | ESG & Sustainability Reporting | Should Have | Track carbon footprint, waste redirection, social impact, and ethical vendor audit metrics |
+| NFR-019 | Advanced Fleet Optimization | Should Have | GPS/telematics tracking, fuel management, routing optimization, and port demurrage fee avoidance |
+| NFR-020 | AI & Innovation Framework | Nice to Have | AI personalization, RPA automation, predictive maintenance, and computer vision for stock audits |
+| NFR-021 | Smart Store Operations | Should Have | Mobile POS queue busting, Smart Safe cash reconciliation, 3D custom design rendering, and Smart Locker integration |
+| NFR-022 | Local & Partner Governance | Should Have | Barangay community relations, 3PL/install partner audits, ecommerce returns logistics, and BIR CAS compliance |
 | FIN-020 | Duplicate Vendor Invoice Detection | Must Have | System auto-detects duplicate vendor invoices by invoice number, vendor+amount+date, or PO reference+invoice number; blocks duplicates and alerts AP Clerk with matching reference |
 | FIN-021 | FX Hedging / Forward Contract Management | Should Have | Record and track USD forward contracts (notional amount, forward rate, maturity, counterparty bank); FX exposure reporting; no speculative positions — hedging for committed import payables only |
 | FIN-022 | Bad Debt Write-Off & Recovery | Must Have | Bad debt write-off with tiered approval; BIR-compliant documentation (demand letter, collection report, court filing); write-off recovery posting; separate tracking from regular AR collections |
@@ -252,4 +257,4 @@
 
 ---
 
-*Document Version: 1.8 | Date: 2026-05-31 | Added FIN-021 (FX Hedging) → W80, FIN-022 (Bad Debt Write-Off) → W81, DOC-007 (Hazardous Waste) → W82; updated traceability to requirement-workflow matrix v5*
+*Document Version: 1.9 | Date: 2026-05-31 | Added NFR-018 to NFR-022 to align with requirement-workflow-matrix; updated document version to 1.9*

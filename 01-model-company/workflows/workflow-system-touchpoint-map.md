@@ -49,4 +49,4 @@ Summary of which ERP modules support which workflows:
 
 ---
 
-*Document Version: 33.0 | Date: 2026-05-31 | Wave 33: Added W219–W222, W229, W246 (Quarantine, SLOB, Cross-docking, Container Yard, B2B Credit Override, Drop-ship Vendor). Total 274 workflows.*
+*Document Version: 33.1 | Date: 2026-05-31 | Wave 33: Added W219–W222, W229, W246 (Quarantine, SLOB, Cross-docking, Container Yard, B2B Credit Override, Drop-ship Vendor). Total 275 workflows.*

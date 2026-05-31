@@ -328,4 +328,4 @@ Workflows are organized by functional domain for easier navigation and gap analy
 
 ---
 
-*Total: 274 workflows across 23 domains. Expanded to include Treasury, Hazmat, Facilities Maintenance, Engineering & Construction, Legal, Sales Commission, Dispute Resolution, Smart Locker Fulfillment, LP Investigation, and Port Demurrage Management, alongside ESG, fleet optimization, digital innovation, and advanced regulatory compliance.*
+*Total: 275 workflows across 27 domains. Expanded to include Treasury, Hazmat, Facilities Maintenance, Engineering & Construction, Legal, Sales Commission, Dispute Resolution, Smart Locker Fulfillment, LP Investigation, and Port Demurrage Management, alongside ESG, fleet optimization, digital innovation, and advanced regulatory compliance.*

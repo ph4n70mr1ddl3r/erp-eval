@@ -274,4 +274,4 @@
 
 ---
 
-*Date: 2026-05-31 (v19 — gap analysis: added W219–W222, W229, W246; total now 274 workflows)*
+*Date: 2026-05-31 (v19 — gap analysis: added W219–W222, W229, W246; total now 275 workflows)*

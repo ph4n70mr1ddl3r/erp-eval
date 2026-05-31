@@ -21,21 +21,21 @@
 | Req ID | Requirement | Priority | Primary Workflows | Supporting Workflows |
 |---|---|---|---|---|
 | FIN-001 | Multi-entity GL | M | W9a (month-end close), W14 (IC transactions) | W10 (payroll GL posting), W30 (treasury) |
-| FIN-002 | Automated IC Elimination | M | W9a.13, W14.8 | — |
+| FIN-002 | Automated IC Elimination | M | W9a.13, W14.8, W234 (IC profit elimination) | — |
 | FIN-003 | Consolidated Financial Reporting | M | W9a.14, W35.8 | W26 (budget) |
 | FIN-004 | AP with 3-Way Match | M | W7 (AP processing), W18.9 (DSD 3-way) | W20.11 (VMI settlement), W23.9 (consignment) |
 | FIN-005 | AR for B2B | M | W8 (AR processing), W5b.4c (POS trade accounts) | W58 (corporate accounts), W94 (customer deposit management) |
-| FIN-006 | Philippine VAT (12%) | M | W5b (POS selling), W9a.16 (VAT return), W11/W19 (ecommerce VAT) | W12 (returns — VAT reversal) |
+| FIN-006 | Philippine VAT (12%) | M | W5b (POS selling), W9a.16 (VAT return), W11/W19 (ecommerce VAT), W217 (SC/PWD VAT-exemption), W239 (customs duty recon) | W12 (returns — VAT reversal) |
 | FIN-007 | Withholding Tax (Expanded) | M | W7.9a (EWT computation), W9a.16a (EWT remittance) | W7c (non-PO EWT on services) |
-| FIN-008 | BIR Tax Return Generation | M | W9a.16 (VAT, income tax), W9a.16a (EWT), W9a.16c (LBT) | W10.11 (statutory contribution files), W90 (monthly tax filing & statutory remittance) |
+| FIN-008 | BIR Tax Return Generation | M | W9a.16 (VAT, income tax), W9a.16a (EWT), W9a.16c (LBT), W216 (BIR CAS audit), W217 (SC/PWD reporting) | W10.11 (statutory contribution files), W90 (monthly tax filing & statutory remittance) |
 | FIN-009 | Multi-Bank Integration | S | W30.2 (bank statement import), W30.7 (cash sweeps) | W7.9 (payment file generation), W89 (bank reconciliation) |
-| FIN-010 | Cash Management / Treasury | S | W30 (daily treasury), W5f (store cash reconciliation) | W25 (petty cash), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
-| FIN-011 | Fixed Asset Management | M | W21.7–8 (asset creation & depreciation), W39 (disposal) | W16 (new store capex) |
+| FIN-010 | Cash Management / Treasury | S | W30 (daily treasury), W5f (store cash reconciliation), W232 (LC lifecycle), W233 (liquidity forecasting) | W25 (petty cash), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
+| FIN-011 | Fixed Asset Management | M | W21.7–8 (asset creation & depreciation), W39 (disposal), W240 (DC equipment PM), W241 (HQ asset PM) | W16 (new store capex) |
 | FIN-012 | Budgeting & Variance Analysis | S | W26 (annual budget), W35.9 (monthly variance) | W21.3 (budget check) |
-| FIN-013 | Landed Cost Calculation | M | W2b.12 (import landed cost) | W66.8 (inter-island freight allocation) |
-| FIN-014 | Multi-Currency | M | W2b.12–13 (import FX), W9a.5a (FX revaluation) | W30.10 (USD accounts) |
+| FIN-013 | Landed Cost Calculation | M | W2b.12 (import landed cost), W239 (customs duty tax recon) | W66.8 (inter-island freight allocation) |
+| FIN-014 | Multi-Currency | M | W2b.12–13 (import FX), W9a.5a (FX revaluation), W232 (LC lifecycle) | W30.10 (USD accounts) |
 | FIN-015 | Period-End Close Workflow | M | W9a (month-end close), W9b (year-end close) | — |
-| FIN-016 | Capex Workflow | M | W21 (capex request & approval) | W16 (new store capex) |
+| FIN-016 | Capex Workflow | M | W21 (capex request & approval), W226 (store renovation capex) | W16 (new store capex) |
 | FIN-017 | Petty Cash Management | M | W25 (petty cash lifecycle) | W47 (facility maintenance), W82 (small disposal costs) |
 | FIN-018 | Consignment Settlement | S | W23 (consignment operations) | W7 (AP settlement) |
 | FIN-019 | Vendor Rebate Management | S | W27 (rebate accrual & settlement) | W7.9b (credit memo) |
@@ -51,7 +51,7 @@
 | INV-002 | Real-Time Inventory Visibility | M | W4 (replenishment), W11.1 (BOPIS ATP), W19.1 (delivery ATP) | W22 (transfer availability check) |
 | INV-003 | Weighted Average Cost (WAC) | M | W3.7 (receipt WAC recalc), W9a.6a (WAC verification) | W46.7 (kit costing) |
 | INV-004 | ABC Classification | M | W31.8 (classification review), W42 (tiered count strategy) | W1 (assortment review) |
-| INV-005 | Multi-Location Stock Transfer | M | W4 (DC→Store), W22 (store-to-store, inter-DC), W204 (regional expedited transfer) | W45 (closure redistribution) |
+| INV-005 | Multi-Location Stock Transfer | M | W4 (DC→Store), W22 (store-to-store, inter-DC), W204 (regional expedited transfer), W214 (store-to-store expedited), W218 (inter-DC push) | W45 (closure redistribution) |
 | INV-006 | Cycle Counting | M | W6 (cycle counting) | W42 (annual physical inventory) |
 | INV-007 | Physical Inventory (Wall-to-Wall) | M | W42 (annual physical inventory) | W6 (cycle counts feed C-item validation) |
 | INV-008 | Lot & Serial Tracking | S | W5b.4b (POS batch capture), W29 (recall tracing) | W33 (warranty serial lookup) |
@@ -72,12 +72,12 @@
 |---|---|---|---|---|
 | PUR-001 | Purchase Order Management | M | W2a (auto-replenishment), W2b (import PO), W2c (blanket PO) | W38 (special order PO), W60 (emergency PO) |
 | PUR-002 | Automated Replenishment | M | W2a.1–2 (ROP/EOQ auto-generate), W31.6 (forecast release) | W57 (promo stock PO) |
-| PUR-003 | Vendor Management | M | W36 (vendor onboarding), W44 (vendor scorecard) | W62 (non-PO contracts) |
-| PUR-004 | Import Purchase Orders | M | W2b (import PO lifecycle) | W32 (seasonal import PO) |
+| PUR-003 | Vendor Management | M | W36 (vendor onboarding), W44 (vendor scorecard), W230 (legal contract review) | W62 (non-PO contracts) |
+| PUR-004 | Import Purchase Orders | M | W2b (import PO lifecycle), W232 (LC lifecycle), W239 (customs duty recon) | W32 (seasonal import PO) |
 | PUR-005 | 3-Way Matching | M | W7.2–3 (3-way match engine) | W18.9 (DSD 3-way) |
 | PUR-006 | Blanket/Contract POs | S | W2c (blanket PO lifecycle) | — |
 | PUR-007 | Vendor Portal | N | W2a.7 (vendor portal PO access), W36.9 (portal provisioning) | W20.1 (VMI data sharing) |
-| PUR-008 | Vendor Performance Scorecard | S | W44 (vendor performance review) | W18b.5 (DSD no-show tracking) |
+| PUR-008 | Vendor Performance Scorecard | S | W44 (vendor performance review), W242 (3PL performance review), W245 (supplier compliance chargebacks) | W18b.5 (DSD no-show tracking) |
 | PUR-009 | Multi-Entity Procurement | M | W2a (central buying), W14 (IC service fees) | — |
 | PUR-010 | Approval Workflow | M | W2a.5–6 (PO approval tiers), W21.4 (capex approval), W24.5 (credit approval) | W7c.3 (non-PO approval) |
 | PUR-011 | Goods Receipt Processing | M | W3 (DC receiving), W18 (store DSD receiving) | W20.6 (VMI receipt) |
@@ -110,7 +110,7 @@
 | POS-004 | Multi-Tender | M | W5b.7 (multi-tender payment), W12a.6 (split-tender refund) | — |
 | POS-005 | Loyalty Integration | M | W5b.5 (loyalty scan), W17 (loyalty program operations) | — |
 | POS-006 | Price Override (w/ Auth) | M | W5b.4a (price override with manager authorization) | W61 (competitor price match) |
-| POS-007 | Returns & Exchanges | M | W12a (in-store returns), W12b (online returns), W12c (cross-store returns) — loyalty points reversal on all return types | — |
+| POS-007 | Returns & Exchanges | M | W12a (in-store returns), W12b (online returns), W12c (cross-store returns), W215 (home delivery returns) | — |
 | POS-008 | Cash Drawer Management | M | W5a.4 (cash float), W5f.2–5 (Z-report & cash count), W212 (Smart Safe deposit) | W89 (bank reconciliation), W99 (payment settlement reconciliation) |
 | POS-009 | End-of-Day Reconciliation | M | W5f (store closing & EOD), W212.5 (Smart Safe reconciliation) | W30.4 (deposit auto-matching), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
 | POS-010 | Quantity Break Pricing | M | W5b.6 (auto quantity breaks), W40.15–19 (quantity break setup) | — |
@@ -137,12 +137,12 @@
 | ECOM-004 | Home Delivery Order Flow | M | W19 (home delivery fulfillment) | — |
 | ECOM-005 | Order Status Tracking | M | W19.9 (tracking link), W41.E (ecommerce issue resolution) | — |
 | ECOM-006 | Payment Gateway Integration | M | W19 (payment reconciliation), W11.1 (BOPIS payment) | — |
-| ECOM-007 | Return Initiation (Online) | M | W12b (online returns), W19.12a (home delivery reverse logistics) | — |
+| ECOM-007 | Return Initiation (Online) | M | W12b (online returns), W19.12a (home delivery reverse logistics), W215 (home delivery returns) | — |
 | ECOM-008 | Customer Data Sync | M | W17 (loyalty data), W41 (complaint data) | W24 (customer master) |
 | ECOM-009 | Product Catalog Sync | M | W50 (PIM / product content management) | — |
 | ECOM-010 | Promo/Coupon Integration | S | W13 (digital coupon management) | — |
 | ECOM-011 | Home Delivery Fulfillment | M | W19 (full home delivery lifecycle including failed delivery) | — |
-| ECOM-012 | Delivery Partner Integration | M | W19.7 (3PL API integration), W66 (inter-island logistics) | — |
+| ECOM-012 | Delivery Partner Integration | M | W19.7 (3PL API integration), W66 (inter-island logistics), W242 (3PL performance review) | — |
 
 ## R7. Supply Chain Planning (SCP)
 
@@ -169,7 +169,7 @@
 | HR-007 | Leave Management | M | W10.2 (leave verification), W34.1d (leave in scheduling) | — |
 | HR-008 | Employee Self-Service | N | W10.10 (payslip distribution), W17.5 (loyalty balance inquiry) | — |
 | HR-009 | Recruitment & Onboarding | N | W15 (recruitment & onboarding) | W16 (new store hiring) |
-| HR-010 | Overtime Calculation | M | W10.3 (OT calculation per Labor Code) | W34.8 (scheduled vs. actual hours) |
+| HR-010 | Overtime Calculation | M | W10.3 (OT calculation per Labor Code), W228 (sales commission calculation) | W34.8 (scheduled vs. actual hours) |
 | HR-011 | Holiday Pay Calculation | M | W10.3 (holiday pay rates) | — |
 | HR-012 | Bank File Generation | M | W10.7 (bank file for payroll crediting) | — |
 
@@ -190,24 +190,24 @@
 
 | Req ID | Requirement | Priority | Primary Workflows | Supporting Workflows |
 |---|---|---|---|---|
-| RPT-001 | Executive Dashboard | M | W35.2 (daily flash), W35.4 (weekly sales) | — |
+| RPT-001 | Executive Dashboard | M | W35.2 (daily flash), W35.4 (weekly sales), W231 (QBR reporting) | — |
 | RPT-002 | Store P&L | M | W35.10 (store P&L with occupancy allocation) | W26 (budget variance) |
 | RPT-003 | Sales Analytics | M | W35.4 (week-on-week sales), W13.8 (promo performance) | W31.7 (forecast vs. actual) |
 | RPT-004 | Inventory Reports | M | W6 (cycle count variance), W9a.6 (inventory valuation) | W42.17 (physical inventory summary) |
 | RPT-005 | Purchase Analysis | S | W44 (vendor scorecard), W27 (rebate analytics) | — |
-| RPT-006 | BIR-Compliant Tax Reports | M | W9a.16 (VAT returns), W9a.16a (EWT remittance) | — |
+| RPT-006 | BIR-Compliant Tax Reports | M | W9a.16 (VAT returns), W9a.16a (EWT remittance), W216 (BIR CAS audit), W235 (transfer pricing compliance) | — |
 | RPT-007 | Consolidated Financial Statements | M | W9a.14 (consolidated statements) | — |
 | RPT-008 | Ad-Hoc Reporting | S | W35.18–19 (ad-hoc reports & BI analyses) | — |
 | RPT-009 | Mobile Dashboard | N | W35.2 (CFO mobile dashboard) | — |
-| RPT-010 | Scheduled Report Distribution | S | W35 (full reporting rhythm — daily/weekly/monthly) | — |
+| RPT-010 | Scheduled Report Distribution | S | W35 (full reporting rhythm — daily/weekly/monthly), W231 (QBR reporting) | — |
 
 ## R11. Intercompany & Transfer Pricing (IC)
 
 | Req ID | Requirement | Priority | Primary Workflows | Supporting Workflows |
 |---|---|---|---|---|
 | IC-001 | IC AP/AR Automation | M | W14 (IC transactions & settlement) | — |
-| IC-002 | Arm's-Length Transfer Pricing | M | W14 (transfer pricing rules), W14 annual review | — |
-| IC-003 | IC Elimination on Consolidation | M | W9a.13 (IC elimination) | — |
+| IC-002 | Arm's-Length Transfer Pricing | M | W14 (transfer pricing rules), W14 annual review, W235 (transfer pricing compliance) | — |
+| IC-003 | IC Elimination on Consolidation | M | W9a.13 (IC elimination), W234 (IC profit elimination) | — |
 | IC-004 | IC Settlement | M | W14.6–7 (net settlement) | — |
 | IC-005 | IC Reconciliation | M | W14.4–5 (IC reconciliation) | — |
 
@@ -220,8 +220,8 @@
 | DOC-003 | Delivery Receipt Tracking | M | W18.7 (DR capture), W3 (DC receiving DR) | — |
 | DOC-004 | Import Document Management | M | W2b (BL, LC, customs docs), W36 (vendor permits) | — |
 | DOC-005 | Document Retention Policy | M | W35 quarterly review, W42 (7-year archive) | W53 (breach register 5-year retention), W81 (bad debt write-off 7-year retention) |
-| DOC-006 | Approval Workflow with Attachments | S | W21 (capex with quotes), W62 (contracts with attachments) | — |
-| DOC-007 | Hazardous Waste Disposal Tracking | S | W82 (DENR-compliant manifest tracking, per-location generator registration, quarterly reporting), W167 (Recycling / Circular Economy) | W52 (fleet — used oil/battery disposal), W68 (discontinued chemical waste) |
+| DOC-006 | Approval Workflow with Attachments | S | W21 (capex with quotes), W62 (contracts with attachments), W243 (POA board approval lifecycle) | — |
+| DOC-007 | Hazardous Waste Disposal Tracking | S | W82 (DENR-compliant manifest tracking, per-location generator registration, quarterly reporting), W167 (Recycling / Circular Economy), W236 (hazmat storage DC), W237 (hazmat handling store), W238 (hazmat spill incident) | W52 (fleet — used oil/battery disposal), W68 (discontinued chemical waste) |
 
 ## R13. Master Data Management (MDM)
 
@@ -245,9 +245,9 @@
 | NFR-004 | Report Generation | < 30 sec | W35 (management reporting) | — |
 | NFR-005 | Concurrent Users | 1,000–1,500 | W5b (1,000 POS terminals), W35 (HQ reporting) | — |
 | NFR-006 | Data Retention | 7 years | W42 (physical inventory archive), W35 quarterly retention review | Data Volumes §1.2 |
-| NFR-007 | Security | RBAC, audit trails | W37 (POS audit), W48 (change management), W186 (SOP governance) | W53 (breach response) |
-| NFR-008 | Scalability | 300+ stores | W16 (new store opening process), W45 (store closure) | — |
-| NFR-009 | Localization | Full PH | W9a (BIR compliance), W10 (payroll statutory), W54 (LGU permits) | — |
+| NFR-007 | Security | RBAC, audit trails | W37 (POS audit), W48 (change management), W186 (SOP governance), W230 (contract review), W236 (hazmat storage DC), W237 (hazmat handling store), W238 (hazmat spill incident), W243 (POA lifecycle) | W53 (breach response) |
+| NFR-008 | Scalability | 300+ stores | W16 (new store opening process), W45 (store closure), W223 (store design), W224 (contractor selection), W225 (construction supervision), W226 (store renovation capex), W227 (handover) | — |
+| NFR-009 | Localization | Full PH | W9a (BIR compliance), W10 (payroll statutory), W54 (LGU permits), W216 (BIR CAS audit), W217 (SC/PWD VAT-exemption) | — |
 | NFR-010 | Data Privacy | RA 10173 | W53 (breach response), W41 (DSAR handling), W17.2 (consent management) | — |
 | NFR-011 | Offline POS | ≥ 8 hours | W5g (offline POS recovery & reconciliation) | W49 (typhoon degraded mode) |
 | NFR-012 | Integration Capability | All touchpoints | W3–W7 (core integrations), W19 (3PL), W30 (banking) | Data Volumes §3 |
@@ -259,8 +259,8 @@
 | NFR-018 | ESG & Sustainability Reporting | S | W192 (GHG tracking), W193 (Waste diversion) | W194 (CSR), W195 (Ethical audit) |
 | NFR-019 | Advanced Fleet Optimization | S | W196 (Route optimization), W199 (Telematics) | W197 (Driver performance), W198 (Fuel) |
 | NFR-020 | AI & Innovation Framework | N | W200 (AI Personalization), W201 (RPA), W208 (AI Inventory Optimization) | W202 (Predictive maint), W203 (Computer vision) |
-| NFR-021 | Smart Store Operations | S | W206 (Mobile POS), W212 (Smart Safe), W211 (3D Rendering) | W205 (Employee purchase), W207 (CCTV audit) |
-| NFR-022 | Local & Partner Governance | S | W209 (Barangay relationship), W213 (Contractor audit) | W157 (E-waste), W210 (Dark store) |
+| NFR-021 | Smart Store Operations | S | W206 (Mobile POS), W212 (Smart Safe), W211 (3D Rendering), W214 (expedited transfer), W240 (DC facilities), W241 (HQ facilities), W247 (smart locker) | W205 (Employee purchase), W207 (CCTV audit) |
+| NFR-022 | Local & Partner Governance | S | W209 (Barangay relationship), W213 (Contractor audit), W215 (home delivery returns), W216 (BIR CAS audit), W242 (3PL performance review) | W157 (E-waste), W210 (Dark store) |
 
 ---
 
@@ -271,4 +271,4 @@
 
 ---
 
-*Date: 2026-05-31 (v16 — gap analysis: added W204–W213; total now 213 workflows)*
+*Date: 2026-05-31 (v17 — gap analysis: added W214–W247; total now 266 workflows)*

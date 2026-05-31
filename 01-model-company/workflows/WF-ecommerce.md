@@ -10,9 +10,12 @@
 
 - [W11. Ecommerce — BOPIS Order Fulfillment](#ecommerce-bopis-order-fulfillment)
 - [W19. Ecommerce — Home Delivery Fulfillment](#ecommerce-home-delivery-fulfillment)
+- [W19b. Ship from Store (Store-Fulfilled Home Delivery)](#ship-from-store-store-fulfilled-home-delivery)
 - [W98. Ecommerce Order Exception & Cancellation Management](#ecommerce-order-exception-cancellation-management)
 - [W180. E-commerce Marketplace Integration (Lazada/Shopee)](#e-commerce-marketplace-integration-lazada-shopee)
 - [W210. E-commerce Fulfillment Hub (Dark Store) Operations](#e-commerce-fulfillment-hub-dark-store-operations)
+- [W215. Customer Home Delivery Reverse Logistics (Returns)](#customer-home-delivery-reverse-logistics-returns)
+- [W247. BOPIS Smart Locker & Queue Management](#bopis-smart-locker--queue-management)
 
 ---
 
@@ -307,6 +310,35 @@ W11 (BOPIS) and W19 (Home Delivery) cover the happy-path fulfillment process fro
 - 3PL integration for reverse logistics booking
 - Linkage between Return ID and original Order ID
 - QC status integration with Refund trigger
+
+---
+
+## W247. BOPIS Smart Locker & Queue Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Ecommerce BOPIS order picked and staged (W11) |
+| **Frequency** | Ongoing (daily) |
+| **Volume** | ~50–100 transactions per store/day |
+| **Owner** | Store Customer Experience Supervisor |
+| **Participants** | Store Picker, Customer, Pro Desk Associate |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Staging**: Store Picker picks BOPIS order (W11 step 4). Stages the items in an in-store **Smart Locker** or **Expedited Pick-up Counter** rather than the backroom. | Store Picker | Store Mgr | 5 min |
+| 2 | **Locking & Sync**: Associate places the items in a designated smart locker; scans the locker QR code and links it to the order ID in the ERP system. | Store Associate | — | 3 min |
+| 3 | **Notification**: Locker system triggers an automated pickup PIN code and QR code to the customer's email and mobile app (W11 step 6). | System | — | Automated |
+| 4 | **Customer Arrival**: Customer arrives at the store. (a) For Smart Locker: Scans the QR/enters the PIN at the locker screen; the locker door pops open. (b) For Pickup Counter: Customer checks in on a tablet queueing screen; Pro Desk is alerted. | Customer | — | 2 min |
+| 5 | **Reconciliation**: The locker door closing or the associate hand-off scan triggers a real-time order completion status in the ERP (W11 step 8). | System / Associate | Store Mgr | Automated |
+| 6 | **Feedback Loop**: System sends an instant SMS survey asking for customer experience rating (CSAT W65). | System | — | Automated |
+
+### System Touchpoints
+- Smart Locker API integration (allocating locker space, tracking locker state)
+- In-store check-in tablet/queuing system linked to Pro Desk alert system
+- Real-time customer pickup notification (SMS/Email/App Push)
+- Integration with W11 (BOPIS) and W65 (CSAT)
 
 
 

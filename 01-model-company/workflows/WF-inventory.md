@@ -20,6 +20,8 @@
 - [W105. Multi-Channel Inventory Allocation & Priority Governance](#multi-channel-inventory-allocation--priority-governance)
 - [W154. Proactive Store Inventory Rebalancing (Stock Push)](#proactive-store-inventory-rebalancing-stock-push)
 - [W204. Regional Stock Rebalancing & Inter-Store Expedited Transfers](#regional-stock-rebalancing--inter-store-expedited-transfers)
+- [W214. Store-to-Store Expedited Transfers (Customer-Initiated)](#store-to-store-expedited-transfers-customer-initiated)
+- [W218. Inter-DC Stock Rebalancing (Stock Push)](#inter-dc-stock-rebalancing-stock-push)
 
 ---
 
@@ -669,6 +671,30 @@ Multiple workflows reference inventory allocation: W4 (store replenishment with 
 | 4 | **Pick & Stage**: Store B Staff picks and stages items in backroom; system records "In-Transit" status (W22) | Stock Associate | Store Manager | 15 min |
 | 5 | **Expedited Dispatch**: Local 3PL (Lalamove/Transportify) picks up from Store B; delivers to Store A within 4-8 hours | Logistics | — | 4-8 hours |
 | 6 | **Receipt**: Store A Receiving Clerk processes Goods Receipt; inventory available for sale immediately | Receiving Clerk | Store Manager | 10 min |
+
+---
+
+## W214. Store-to-Store Expedited Transfers (Customer-Initiated)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer requests an out-of-stock item at Store A that is in stock at Store B |
+| **Frequency** | Daily |
+| **Volume** | ~20–30 customer-initiated transfers per day |
+| **Owner** | Store Manager (Store A) |
+| **Participants** | Sales Associate, Store Manager B, 3PL Courier, Customer |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Inquiry**: Customer requests an out-of-stock item at Store A. Sales Associate checks real-time inventory in ERP and finds stock available at nearby Store B. | Sales Associate | — | 5 min |
+| 2 | **Order & Payment**: Sales Associate offers to have the item transferred from Store B via expedited courier. Customer agrees and pays for the item (plus optional transfer fee) at Store A; system generates a "Customer-Initiated Transfer Order" with status "Awaiting Pickup". | Sales Associate | Store Manager A | 10 min |
+| 3 | **Notification**: System automatically routes a high-priority pick task to Store B's terminal/handheld. | System | — | Automated |
+| 4 | **Pick & Pack**: Store B Stock Associate picks the item, places it in secure packaging, and prints an transfer label with Store A's order number and Customer details. | Stock Associate B | Store Manager B | 15 min |
+| 5 | **Dispatch**: Store B books a local 3PL courier (Lalamove/Grab/Transportify) via ERP integration to transport the item to Store A. | Store Manager B | — | 10 min |
+| 6 | **Transit & Arrival**: 3PL Courier transports item to Store A. Store A Receiving Clerk receives it in the system; ERP automatically triggers an SMS/email to the Customer ("Your order is ready for pickup!"). | Courier / Store A Clerk | Store Manager A | 1–3 hours |
+| 7 | **Customer Collection**: Customer arrives at Store A Pro Desk; Sales Associate scan-confirms collection and closes the transfer order. | Sales Associate | — | 5 min |
 
 ---
 

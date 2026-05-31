@@ -13,6 +13,7 @@
 - [W164. Staged Project Delivery & Call-Off Orders](#staged-project-delivery--call-off-orders)
 - [W165. Project Retention & Milestone Billing](#project-retention--milestone-billing)
 - [W166. Corporate / Institutional Tendering](#corporate--institutional-tendering)
+- [W228. Sales Commission Calculation (Trade & Project Sales)](#sales-commission-calculation-trade--project-sales)
 
 ---
 
@@ -119,22 +120,35 @@
 
 ---
 
-### System Touchpoints (Project Sales)
-- Quote-to-Contract (Master Sales Order) conversion
-- Project-specific Price Books with locked-in pricing
-- ATP (Available-to-Promise) check across multi-location inventory
-- Credit limit check including "In-Flight" project commitments
-- Staged delivery (Call-Off) management with balance tracking
-- Retention Receivable accounting
-- Integration with W19 (Logistics) and W8 (AR)
+## W228. Sales Commission Calculation (Trade & Project Sales)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly sales commission cycle (after month-end close and collection confirmation) |
+| **Frequency** | Monthly |
+| **Volume** | ~50 B2B/Trade Sales Reps and Store Account Managers |
+| **Owner** | Sales Operations Manager |
+| **Participants** | Sales Operations, Finance (Payroll), HR, Sales Director, Sales Reps |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Data Pull**: Sales Operations pulls monthly sales and collections report by Sales Rep / Account Manager from ERP. Commission is calculated based on realized collections (paid invoices), not just invoiced sales, to mitigate bad debt risk (W108). | Sales Operations | — | 2 hours |
+| 2 | **Tiered Calculation**: System applies tiered commission rates based on individual margin performance (higher margin items earn higher commission rates) and target achievement (e.g. 80-99% target gets standard commission, 100%+ gets accelerator). | System / Sales Ops | Sales Ops Mgr | 1 hour |
+| 3 | **Deductions & Adjustments**: System deducts returns (W12) or credit notes issued against original sales of the rep, and adjusts for any shared commission deals between reps. | System | Sales Ops Mgr | 30 min |
+| 4 | **Review & Approval**: Sales Operations generates commission sheets; routes to Sales Director and CFO for approval. | Sales Ops Mgr | CFO | 1 day |
+| 5 | **Dispute Window**: Approved sheets published to Sales Reps via portal/email; 3-day window for reps to raise disputes or missing deal inquiries. | Sales Reps | Sales Ops Mgr | 3 days |
+| 6 | **Payroll Integration**: Final commission figures approved and pushed to HR/Payroll module (W10) for inclusion in the mid-month payroll run. | Payroll Clerk | HR Manager | 2 hours |
 
 ---
 
-### System Touchpoints (Project Sales)
+### System Touchpoints (Project & Trade Sales)
 - Quote-to-Contract (Master Sales Order) conversion
 - Project-specific Price Books with locked-in pricing
 - ATP (Available-to-Promise) check across multi-location inventory
 - Credit limit check including "In-Flight" project commitments
 - Staged delivery (Call-Off) management with balance tracking
 - Retention Receivable accounting
+- Commission calculation engine integrated with AR collections and Payroll (W10)
 - Integration with W19 (Logistics) and W8 (AR)

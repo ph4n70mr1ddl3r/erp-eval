@@ -9,13 +9,17 @@
 ## Workflows in This Domain
 
 - [W2. Procurement — Purchase Order Cycle](#procurement-purchase-order-cycle)
+- [W2a. Procurement — Auto-Replenishment (ROP/MRP)](#procurement--auto-replenishment-ropmrp)
+- [W2b. Import Purchase Orders & Landed Cost](#import-purchase-orders--landed-cost)
+- [W2c. Blanket Purchase Orders](#blanket-purchase-orders)
 - [W20. Vendor Managed Inventory (VMI)](#vendor-managed-inventory-vmi)
 - [W36. Vendor Onboarding](#vendor-onboarding)
 - [W38. Special Order / Non-Stock Item Fulfillment](#special-order-non-stock-item-fulfillment)
 - [W44. Vendor Performance Review](#vendor-performance-review)
 - [W60. Emergency Procurement](#emergency-procurement)
 - [W62. Vendor Contract Lifecycle (Non-PO Contracts)](#vendor-contract-lifecycle-non-po-contracts)
-- [W88. Return to Vendor (RTV) Processing](#return-to-vendor-rtv-processing)
+- [W62b. 3PL / Logistics Partner Onboarding & Contract Lifecycle](#3pl--logistics-partner-onboarding--contract-lifecycle)
+- [W88. Return to Vendor (RTV) Processing](#rtv-processing)
 - [W110. Supplier Quality & CAPA (Corrective and Preventive Action)](#supplier-quality-capa-corrective-and-preventive-action)
 - [W115. Supplier Diversity & MSME Development Program](#supplier-diversity-msme-development-program)
 - [W136. Indirect / Non-Merchandise Procurement](#indirect-non-merchandise-procurement)
@@ -23,6 +27,8 @@
 - [W155. Vendor Strategic Collaboration & Joint Business Planning (JBP)](#vendor-strategic-collaboration--joint-business-planning-jbp)
 - [W160. Private Label Factory Audit & Social Compliance](#private-label-factory-audit--social-compliance)
 - [W161. Vendor Price Protection & Market Markdown Claims](#vendor-price-protection--market-markdown-claims)
+- [W244. Vendor Invoice Dispute & Discrepancy Resolution](#vendor-invoice-dispute--discrepancy-resolution)
+- [W245. Vendor Performance Chargebacks & Penalties Management](#vendor-performance-chargebacks--penalties-management)
 
 ---
 
@@ -776,4 +782,63 @@ The Philippine government actively promotes MSME development through the Magna C
 | 4 | **Vendor Validation**: Transmit claim report to vendor for verification and approval; negotiate discrepancies | Buyer | Category Manager | 3-5 days |
 | 5 | **Credit Note Issuance**: Vendor issues Credit Memo to offset future payables; or system auto-deducts from next PO payment if pre-authorized | Vendor / Finance | Buyer | 5-10 days |
 | 6 | **Margin Recovery**: Update product costing (W85) to reflect the recovered margin; update P&L for category (W102) | Finance | Category Manager | 1 hour |
+
+---
+
+## W244. Vendor Invoice Dispute & Discrepancy Resolution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | 3-Way Match fails (discrepancy between PO, GR, or Vendor Invoice in price or quantity) in W7 |
+| **Frequency** | Weekly |
+| **Volume** | ~50–100 invoice disputes per month |
+| **Owner** | AP Supervisor |
+| **Participants** | AP Clerk, Buyer (Merchandising), Vendor Account Manager |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Discrepancy Identification**: System flags 3-way match failure (W7 step 3). AP Clerk isolates invoice in "Disputed" status. | AP Clerk | — | 15 min |
+| 2 | **Categorization**: System classifies discrepancy: (a) Price variance (invoice price > PO price), or (b) Quantity variance (invoice quantity > GR quantity). | System | — | Automated |
+| 3 | **Internal Review**: AP Clerk routes price variance to the Buyer for review. Buyer either: (a) Approves invoice (PO was outdated, updates contract price books), or (b) Rejects price, generating a Debit Note request in ERP. | AP Clerk / Buyer | Category Manager | 1 day |
+| 4 | **Quantity Reconciliation**: For quantity variance, AP Clerk cross-references GR slip and DC warehouse log. If short-shipped, routes to Vendor for confirmation. | AP Clerk | AP Supervisor | 2 hours |
+| 5 | **Dispute Communication**: Buyer/AP Supervisor sends automated Dispute Notice with supporting system logs to the vendor via the Vendor Portal (W36). | AP Supervisor | — | 10 min |
+| 6 | **Settlement**: Vendor accepts debit note or issues corrected invoice/Credit Note. AP Clerk posts Credit/Debit Note in ERP to match the variance and approves invoice for payment run. | AP Clerk / Vendor | AP Supervisor | 2–5 days |
+
+### System Touchpoints
+- Automated 3-way match variance flags (price/qty)
+- Dispute workflow router (AP ↔ Buyer ↔ Vendor)
+- Debit/Credit Note generation and automated GL posting
+- Integration with W7 (AP processing) and W36 (Vendor Portal)
+
+---
+
+## W245. Vendor Performance Chargebacks & Penalties Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Incomplete shipment, late delivery, or poor product quality at GR (W3/W18) resulting in scorecard failure (W44) |
+| **Frequency** | Ongoing |
+| **Volume** | ~100–150 chargeback events/month across all DCs |
+| **Owner** | Supplier Compliance Manager |
+| **Participants** | DC Receiving Supervisor, Category Manager, Vendor Compliance, AP Specialist |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Log Discrepancy**: DC Receiving Supervisor logs delivery failure at GR (shortage, damage, packaging non-compliance) or late arrival (> 2 hours past SLA). | DC Supervisor | DC Manager | 15 min |
+| 2 | **Fines Engine Execution**: System references Supplier Compliance Agreement (W62) and auto-calculates fee/penalty: (a) Fill rate failure: 2% of unfulfilled value; (b) Late delivery: PHP 5,000 flat penalty; (c) Packaging non-compliance: PHP 2,500 penalty. | System | — | Automated |
+| 3 | **Notification**: System triggers a "Compliance Infraction Report" with photographs and receiving logs, sending it to the vendor via the Vendor Portal (W36) with copy to the Category Manager. | Supplier Compliance | — | 10 min |
+| 4 | **Dispute Window**: Vendor has 5 business days to dispute infraction by uploading carrier proof or force majeure evidence; compliance manager reviews and makes final ruling. | Vendor / Compliance Mgr | Supplier Compliance Mgr | 5 days |
+| 5 | **Chargeback Posting**: If infraction upheld, system automatically generates an AR invoice / AP Debit Note (Dr. Vendor Chargeback Receivable / Cr. Procurement Penalty Income) in the vendor's ledger. | System | — | Automated |
+| 6 | **Deduction Reconciliation**: At next AP payment cycle (W7), matching engine auto-applies debit note as deduction against vendor's invoice payment, netting the settlement. | AP Specialist | AP Supervisor | 10 min |
+
+### System Touchpoints
+- Supplier compliance fine/penalty calculation engine linked to receiving logs and contracts
+- Infraction workflow management dashboard with vendor portal linkage
+- Automated Debit Note / AR invoice posting in General Ledger
+- Auto-application of debit notes at payment cycle (W7)
+
 

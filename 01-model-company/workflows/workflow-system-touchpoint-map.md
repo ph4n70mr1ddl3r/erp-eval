@@ -26,7 +26,7 @@ Summary of which ERP modules support which workflows:
 | **Loss Prevention** | W37 (POS exception monitoring, shrinkage tracking, confirmed theft write-off, CCTV POS correlation), W171 (Store Physical Security & Yard Patrol Routine), W207 (Store-Level Security Camera Audit), W248 (Store Inventory Variance & LP Investigation) |
 | **Store Lifecycle** | W16 (new store opening, go-live cutover plan), W45 (store closure / relocation, financial close-out), W54a (BIR CAS registration), W67 (monthly store performance review), W71 (store physical security), W86 (Planogram Compliance & Store Layout Verification), W96 (store renovation & remodel), W111 (Store Energy & Utility Consumption Management), W171 (Store Physical Security & Yard Patrol Routine), W173 (Store-Level Solar Energy Monitoring), W176 (Store-to-DC Reverse Logistics consolidation), W177 (Vending & Concessionaire Management) |
 | **Facility Maintenance** | W47 (store & DC maintenance, work orders), W111 (Store Energy & Utility Consumption Management), W240 (preventive DC warehouse equipment maintenance), W241 (HQ offices facility and AV asset maintenance) |
-| **IT Operations** | W48 (helpdesk, incident management, IT asset tracking), W73 (Data Migration Validation & Parallel-Run Testing), W131 (asset lifecycle), W132 (change mgmt), W152 (Employee IT Provisioning & Access Lifecycle) |
+| **IT Operations** | W48 (helpdesk, incident management, IT asset tracking), W73 (Data Migration Validation & Parallel-Run Testing), W131 (asset lifecycle), W132 (change mgmt), W152 (Employee IT Provisioning & Access Lifecycle), W257 (Enterprise API & Systems Integration Lifecycle) |
 | **Business Continuity** | W49 (natural disaster preparation, response, recovery), W55 (IT DR), W158 (Business Continuity Drill & DR Testing) |
 | **Product Information** | W50 (PIM, content creation, ecommerce catalog management) |
 | **Training & Development** | W51 (training calendar, compliance tracking, LMS) |
@@ -36,7 +36,7 @@ Summary of which ERP modules support which workflows:
 | **Customer Order Management** | W56 (backorder creation, allocation against incoming PO, customer notification) |
 | **Corporate Account Management** | W58 (project record, project-specific pricing, cumulative budget tracking), W103 (Trade Sales Pipeline & Territory Management), W162 (Project Quotation & Bid Management), W163 (Contract Pricing & Project Price Books), W164 (Staged Project Delivery & Call-Off Orders), W165 (Project Retention & Milestone Billing), W166 (Corporate / Institutional Tendering), W228 (Sales Commission Calculation), W229 (B2B Customer Credit Limit Exception) |
 | **Vendor Contract Management** | W62 (non-PO service contract lifecycle), W62b (3PL / Delivery Partner Onboarding & Offboarding), W242 (3PL & Logistics Partner Performance Review) |
-| **Customer Experience** | W65 (CSAT/NPS measurement), W87 (Customer Feedback-to-Action Loop), W156 (Customer Data Platform & Hyper-Personalization) |
+| **Customer Experience** | W65 (CSAT/NPS measurement), W87 (Customer Feedback-to-Action Loop), W156 (Customer Data Platform & Hyper-Personalization), W258 (Omni-channel Customer Ticketing) |
 | **Marketing / Campaign** | W83 (campaign planning, execution), W104 (loyalty program financial governance), W134 (crisis communication), W135 (CSR program execution), W142 (Social Media & Influencer Management), W143 (Public Relations & Corporate Communications), W149 (Bank & Credit Card Partnership), W151 (CSR Impact Measurement & Reporting), W153 (Retail Media Network Operations), W190 (In-house Design & Creative Production) |
 | **Real Estate** | W116 (site selection & feasibility), W117 (lease admin), W118 (rent payment), W119 (real property tax) |
 | **Internal Audit** | W120 (audit planning, risk assessment), W121 (operational audit), W122 (ERM review), W123 (fraud investigation), W159 (Anti-Bribery & Corruption Monitoring & Audit) |
@@ -50,4 +50,4 @@ Summary of which ERP modules support which workflows:
 
 ---
 
-*Document Version: 35.0 | Date: 2026-05-31 | Wave 35: Added MDM (W252-W254) and DOC (W255-W256). Total 281 workflows.*
+*Document Version: 36.0 | Date: 2026-05-31 | Wave 36: Added IT Integration (W257) and Ticketing (W258). Total 283 workflows.*

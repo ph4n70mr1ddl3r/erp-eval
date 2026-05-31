@@ -482,3 +482,24 @@ Big-box home improvement retailers globally operate dedicated trade counters or 
 | 4 | **Personalized Offers**: Push unique promo codes to the Mobile App based on individual purchase history | Digital Mktg Mgr | CMO | 1 hour |
 
 ---
+
+## W258. Omni-channel Customer Ticketing & Support Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Customer reaches out via email, social media, phone, or live chat for inquiries, order status, or support |
+| **Frequency** | Continuous |
+| **Volume** | ~3,000 - 5,000 tickets/month |
+| **Owner** | Customer Service Manager |
+| **Participants** | CS Agents, Store Managers, DC Operations, Delivery Partners |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Ticket Creation**: System automatically consolidates omnichannel inputs (social, email, chat) into a single CRM ticketing queue | System | CS Manager | Automated |
+| 2 | **Triage & Assignment**: Auto-assign ticket to specific agent or queue (e.g., "Ecommerce Delivery", "Product Inquiry", "Store Feedback") based on keywords and customer tier | System | CS Manager | Automated |
+| 3 | **Resolution**: CS Agent reviews customer 360-degree profile (W156), accesses ERP for order status/inventory, and provides resolution or update | CS Agent | CS Manager | 10-15 min |
+| 4 | **Escalation**: If issue requires store action (e.g., missing BOPIS item) or logistics action (e.g., lost package), agent escalates ticket to respective department | CS Agent | CS Manager | 5 min |
+| 5 | **Closure & CSAT**: Ticket resolved; system automatically sends CSAT/NPS survey to customer (W65) to measure satisfaction with support | System | CS Manager | Automated |
+---

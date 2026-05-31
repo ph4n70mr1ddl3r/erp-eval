@@ -71,7 +71,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 
 ---
 
-## Complete Workflow Index (W1–W256)
+## Complete Workflow Index (W1–W258)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
@@ -356,7 +356,9 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W254 | Location Master Lifecycle & Hierarchy Management | [Master Data Management (MDM) Workflows](WF-master-data.md) |
 | W255 | Electronic Document Storage & Retrieval (ERP-wide) | [Document Management (DOC) Workflows](WF-document-management.md) |
 | W256 | Enterprise Document Retention & Archiving Policy | [Document Management (DOC) Workflows](WF-document-management.md) |
+| W257 | Enterprise API & Systems Integration Lifecycle Management | [IT Operations Workflows](WF-it-operations.md) |
+| W258 | Omni-channel Customer Ticketing & Support Management | [Customer Experience Workflows](WF-customer.md) |
 
 ---
 
-*Total: 281 workflows across 29 domains. Expanded to include Master Data Management and Document Management, alongside Treasury, Hazmat, Facilities Maintenance, Engineering & Construction, Legal, Sales Commission, Dispute Resolution, Smart Locker Fulfillment, LP Investigation, Port Demurrage Management, ESG, fleet optimization, digital innovation, and advanced regulatory compliance.*
+*Total: 283 workflows across 29 domains. Expanded to include Master Data Management, Document Management, IT Integrations, and Omni-channel Ticketing, alongside Treasury, Hazmat, Facilities Maintenance, Engineering & Construction, Legal, Sales Commission, Dispute Resolution, Smart Locker Fulfillment, LP Investigation, Port Demurrage Management, ESG, fleet optimization, digital innovation, and advanced regulatory compliance.*

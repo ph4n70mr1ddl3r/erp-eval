@@ -367,3 +367,26 @@ RPT-001 through RPT-010 define reporting requirements — executive dashboards, 
 | 5 | **Transfer / Change**: Upon employee transfer, review and revoke old permissions; add new ones within 24 hours | IT Helpdesk | Dept Head | 30 min |
 | 6 | **De-provisioning**: Upon separation (W43), immediate block on all accounts (T-minus 0); hardware retrieval | IT Helpdesk | CIO | 15 min |
 | 7 | **Audit**: Monthly reconciliation of Active Directory vs. HR Master to identify "ghost accounts" | Security Admin | CIO | 4 hours |
+
+---
+
+## W257. Enterprise API & Systems Integration Lifecycle Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Business requirement for a new software integration (e.g., 3PL carrier API, Ecommerce platform, new CRM tool) or update to existing API |
+| **Frequency** | 2-3 new integrations per quarter; ongoing maintenance |
+| **Volume** | Over 50 active integrations across the enterprise |
+| **Owner** | Integration Architect |
+| **Participants** | Business Owner, IT Developers, External Vendor, Security Admin |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Requirements Gathering**: Define data payload, frequency (real-time vs batch), mapping rules, and security requirements (OAuth, TLS) | Integration Arch | Business Owner | 1-2 weeks |
+| 2 | **Design & Security Review**: Security team reviews API endpoints, data privacy (RA 10173) implications, and rate limiting policies | Security Admin | CIO | 2 days |
+| 3 | **Development & Middleware Config**: Configure API Gateway / Enterprise Service Bus (ESB) for routing, transformation, and error handling | IT Developer | Integration Arch | 2-4 weeks |
+| 4 | **Testing**: Conduct unit testing, end-to-end integration testing in sandbox, and load testing for peak volumes | QA Team | Integration Arch | 1-2 weeks |
+| 5 | **Deployment & Monitoring**: Deploy to production; configure automated alerts for integration failures or latency spikes | DevOps | Integration Arch | 1 day |
+| 6 | **Maintenance & Versioning**: Monitor API performance; manage API version upgrades to avoid breaking downstream systems | Integration Arch | CIO | Ongoing |

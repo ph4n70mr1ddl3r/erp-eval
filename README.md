@@ -13,7 +13,7 @@ erpplans/
 │   ├── model-company-profile.md       Company profile, operations, financials
 │   ├── erp-requirements.md            ~200 requirements across 14 categories
 │   ├── data-volumes-and-integrations.md  Transaction volumes, integration map
-│   ├── workflows/                      79+ workflows organized by functional domain
+│   ├── workflows/                      115+ workflows organized by functional domain
 │   │   ├── README.md                         Workflow index & format guide
 │   │   ├── WF-merchandising.md               W1, W13, W27, W40, W50, W63, W64, W68
 │   │   ├── WF-procurement.md                 W2, W20, W36, W38, W44, W60, W62

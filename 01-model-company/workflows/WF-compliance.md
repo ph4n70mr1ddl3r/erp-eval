@@ -16,6 +16,7 @@
 - [W79. Employee Grievance & Whistleblower Process](#employee-grievance-whistleblower-process)
 - [W82. Hazardous Waste Disposal Tracking & DENR Compliance](#hazardous-waste-disposal-tracking-denr-compliance)
 - [W95. External Audit Coordination & Support](#external-audit-coordination-support)
+- [W114. Sustainability & Environmental Compliance Reporting](#sustainability-environmental-compliance-reporting)
 
 ---
 
@@ -530,3 +531,46 @@ As a Philippine corporation with 5 legal entities requiring consolidated financi
 
 ---
 
+
+## W114. Sustainability & Environmental Compliance Reporting
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual sustainability reporting cycle; quarterly environmental compliance review; DENR reporting deadline; or ad-hoc triggered by environmental incident or regulatory inquiry |
+| **Frequency** | Annual sustainability report; quarterly environmental metrics review; monthly waste and emissions tracking |
+| **Volume** | 200 stores + 5 DCs + HQ; environmental data collected per location across waste, energy, water, and emissions categories |
+| **Owner** | Facilities Manager (data collection); VP Legal & Compliance (regulatory reporting) |
+| **Participants** | Facilities Manager, VP Legal & Compliance, Regulatory Officer, Store Managers, DC Managers, Finance Manager, CSR Coordinator |
+
+### Background
+
+BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Environmental compliance is governed by the Philippine Clean Air Act (RA 8749), Clean Water Act (RA 9275), Ecological Solid Waste Management Act (RA 9003), Toxic Substances and Hazardous and Nuclear Wastes Control Act (RA 6969), and the Philippine Strategy for Sustainable Development. W82 covers hazardous waste disposal tracking and DENR compliance specifically. W111 covers energy and utility consumption management. However, there is no unified workflow for: (a) tracking environmental metrics beyond hazardous waste (solid waste diversion rate, water consumption, carbon emissions), (b) compiling sustainability data into regulatory reports and voluntary disclosures, (c) setting and monitoring environmental reduction targets, and (d) coordinating environmental compliance across 200+ locations. This workflow creates that comprehensive sustainability governance layer.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Monthly environmental data collection**: System aggregates environmental data per location from multiple sources: (a) **Waste**: hazardous waste manifests (W82), general solid waste collection volumes (from waste hauler invoices per W7c), recyclable materials recovered (cardboard bales, plastic, metal — from recycling vendor records); (b) **Energy**: electricity consumption (W111 utility data), diesel consumption (fleet per W52, generators per W47); (c) **Water**: water consumption per location (W111 utility data); (d) **Emissions**: estimated CO₂ from electricity (using DU emission factor) and diesel (using DEF emission factor) — system calculates carbon footprint estimate per location | System / Facilities Manager | VP Legal & Compliance | Automated (aggregation) + 2 hours/month (verification) |
+| 2 | **Quarterly environmental metrics review**: Facilities Manager reviews quarterly environmental dashboard: (a) **Solid waste diversion rate**: recycled waste ÷ total waste — target: ≥ 30%, (b) **Energy intensity**: kWh per sqm per month — target: reduce 2% year-over-year, (c) **Water intensity**: cubic meters per sqm per month — target: reduce 2% year-over-year, (d) **Carbon intensity**: tonnes CO₂ per PHP million revenue — target: reduce 3% year-over-year, (e) **Hazardous waste compliance**: 100% of hazardous waste disposed via DENR-accredited transporters with manifest tracking (W82), (f) per-location outliers flagged for investigation and corrective action | Facilities Manager | VP Legal & Compliance | 2 hours/quarter |
+| 3 | **Environmental compliance calendar**: Regulatory Officer maintains environmental compliance calendar per location: (a) **DENR hazardous waste generator registration** renewal per location (W82), (b) **DENR quarterly hazardous waste disposal report** per location, (c) **LGU environmental compliance certificate** renewal (for stores with Environmental Compliance Certificate requirement), (d) **Wastewater discharge permit** (for locations with discharge to waterways — paint/chemical areas), (e) **Air emissions permit** (for DCs with backup generators above threshold); system alerts Regulatory Officer 60 days before each deadline; expired permits escalated to VP Legal & Compliance | Regulatory Officer | VP Legal & Compliance | 2 hours/quarter (calendar maintenance) |
+| 4 | **Annual environmental reduction targets**: Facilities Manager and VP Legal & Compliance set annual environmental targets aligned with corporate sustainability strategy: (a) carbon emission reduction target (% year-over-year), (b) energy efficiency improvement target (% reduction in kWh/sqm), (c) water consumption reduction target, (d) solid waste diversion rate improvement, (e) hazardous waste volume reduction; targets approved by CEO; integrated into W26 annual budget as operational KPIs | Facilities Manager / VP Legal & Compliance | CEO | Annual (4 hours) |
+| 5 | **Annual sustainability report compilation**: CSR Coordinator compiles annual sustainability data for: (a) voluntary sustainability disclosure (if BuildRight pursues GRI or SASB reporting framework), (b) DENR annual environmental performance report (if required), (c) SEC sustainability reporting requirements (SEC Memorandum Circular No. 4, Series of 2019 requires publicly listed companies to submit sustainability reports — BuildRight is theoretical but prepares as if applicable), (d) internal stakeholder communication (sustainability section of annual report); Facilities Manager provides environmental metrics; Finance Manager provides utility spend data; VP Legal & Compliance reviews regulatory compliance status | CSR Coordinator / Facilities Manager | VP Legal & Compliance | Annual (20 hours) |
+| 6 | **Environmental incident response**: If environmental incident occurs (chemical spill at paint mixing station, hazardous waste container breach, wastewater discharge violation): (a) Store Manager / DC Supervisor initiates immediate containment per W82 emergency procedures; (b) Regulatory Officer notified within 24 hours; (c) Regulatory Officer assesses reporting requirement — incidents exceeding threshold require DENR notification within 24–72 hours per RA 6969; (d) Facilities Manager coordinates remediation; (e) system logs incident with location, date, type, quantity, response actions, and remediation cost; (f) incident included in quarterly metrics review and annual sustainability report | Store Manager / DC Supervisor / Regulatory Officer | VP Legal & Compliance | Per incident |
+| 7 | **Vendor environmental compliance**: Buyer evaluates vendor environmental practices for high-risk categories (paint, chemicals, treated lumber, cement): (a) during vendor onboarding (W36), check for environmental compliance certifications (ISO 14001, DENR compliance for Philippine manufacturers); (b) for import vendors: check compliance with applicable environmental standards in country of manufacture; (c) annual review of vendor environmental compliance as part of W44 vendor scorecard; (d) vendors with environmental violations flagged for CAPA per W110 or vendor exit per W44 termination | Buyer / Regulatory Officer | VP Merchandising | Absorbed within W36/W44 |
+
+### System Touchpoints
+- Monthly environmental data aggregation from utility bills (W111), waste manifests (W82), fleet records (W52), and generator maintenance records (W47) (W114.1)
+- Carbon footprint estimation calculator using DU emission factors for electricity and DEF factors for diesel (W114.1)
+- Quarterly environmental dashboard: waste diversion, energy intensity, water intensity, carbon intensity, hazardous waste compliance (W114.2)
+- Environmental compliance calendar per location with permit tracking and renewal alerting (W114.3)
+- Annual environmental reduction target configuration with year-over-year tracking (W114.4)
+- Environmental incident logging with DENR reporting workflow (W114.6)
+- Integration with W47 (facility maintenance — generator emissions, HVAC efficiency), W52 (fleet — fuel consumption and emissions), W60 (emergency procurement — environmental incident supplies), W82 (hazardous waste — manifests and DENR compliance), W111 (energy and utility — consumption data), W26 (annual budget — environmental targets as KPIs)
+
+### Staffing Implication
+- **Facilities Manager**: adds ~2 hours/month for data verification + ~2 hours/quarter for metrics review + ~4 hours/year for target setting = ~40 hours/year. Absorbed within existing Facilities Manager role (formalized in W111).
+- **Regulatory Officer**: adds ~2 hours/quarter for environmental compliance calendar maintenance. Absorbed within existing Regulatory Officer role (formalized in W54).
+- **CSR Coordinator** (within Marketing team): adds ~20 hours/year for annual sustainability report compilation. Absorbed.
+- **No incremental headcount.**
+
+---

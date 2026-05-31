@@ -16,6 +16,8 @@
 - [W60. Emergency Procurement](#emergency-procurement)
 - [W62. Vendor Contract Lifecycle (Non-PO Contracts)](#vendor-contract-lifecycle-non-po-contracts)
 - [W88. Return to Vendor (RTV) Processing](#return-to-vendor-rtv-processing)
+- [W110. Supplier Quality & CAPA (Corrective and Preventive Action)](#supplier-quality-capa-corrective-and-preventive-action)
+- [W115. Supplier Diversity & MSME Development Program](#supplier-diversity-msme-development-program)
 
 ---
 
@@ -558,3 +560,89 @@ PUR-012 (Return to Vendor) is a Must Have requirement. RTV is currently mentione
 
 ---
 
+
+## W110. Supplier Quality & CAPA (Corrective and Preventive Action)
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Quality failure at DC receiving (W3 AQL inspection failure); customer complaint about product quality (W41); product recall (W29); warranty claim spike (W33); or periodic quality trend review |
+| **Frequency** | ~20–30 CAPA cases/month (from AQL rejects, customer complaints, and warranty analysis); quarterly quality trend review |
+| **Volume** | ~200–300 quality failures/month from DC AQL inspection (W3); ~600–900 customer quality complaints/month (30% of W41 complaint volume); ~50–100 warranty claims/month potentially quality-related (W33) |
+| **Owner** | Buyer (vendor communication); Category Manager (escalation); Quality Coordinator (if dedicated role) |
+| **Participants** | Buyer, Category Manager, DC Receiving Supervisor, Quality Checker, VP Merchandising, Customer Service Manager |
+
+### Background
+
+W3 covers quality inspection at DC receiving with AQL sampling. W44 covers vendor scorecards with quality reject rate as a metric. W88 handles RTV processing for defective items. However, there is no systematic workflow for investigating the root cause of quality failures, implementing corrective and preventive actions (CAPA) with the vendor, tracking CAPA effectiveness, and feeding quality trends back into vendor management and assortment decisions. Without CAPA, quality failures recur, vendor scorecards penalize but don't improve performance, and the same defective products reach customers repeatedly.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **CAPA case creation**: System auto-generates CAPA case when: (a) AQL inspection fails at DC receiving (W3 — entire lot rejected or defect rate exceeds AQL), (b) customer quality complaint categorized as product defect (W41), (c) product recall initiated (W29 — systemic quality failure), (d) warranty claim rate for a SKU exceeds threshold (> 2% of units sold), (e) RTV rate for a vendor exceeds threshold (> 5% of PO lines per W88.10); alternatively, Buyer or Category Manager manually creates CAPA case for observed quality trends | System / Buyer / Category Manager | Category Manager | 5 min/case |
+| 2 | **Case classification and severity**: Buyer classifies CAPA case: (a) **Critical** — safety hazard (electrical defect, structural failure, chemical hazard), regulatory non-compliance, or widespread customer impact; requires immediate response; (b) **Major** — functional defect affecting usability, high return/complaint rate (> 5%), or significant financial impact (> PHP 100,000); requires vendor corrective action; (c) **Minor** — cosmetic defect, packaging quality, labeling errors; monitored for trend but may not require formal vendor CAPA | Buyer | Category Manager | 10 min/case |
+| 3 | **Immediate containment**: (a) For Critical/Major: system places quality hold on all on-hand inventory of affected SKU across all locations (blocked from sale and allocation pending investigation); (b) system blocks pending POs for the SKU from being confirmed (Buyer reviews); (c) if product already sold: Buyer coordinates with W29 recall process for consumer notification (Critical only); (d) DC Supervisor quarantines affected inventory in QC hold area per W3 quality hold process | Buyer / DC Supervisor | Category Manager | 1 hour/case (Critical); 30 min (Major) |
+| 4 | **Root cause investigation**: (a) Buyer collects evidence: AQL inspection report, defect photos, customer complaint details, warranty claim photos, lot/batch numbers, manufacturing dates; (b) Buyer contacts vendor with detailed quality failure report: defect description, affected lot/batch, quantity impacted, severity, and request for root cause analysis; (c) vendor conducts root cause investigation (typically 5–15 business days); (d) for Critical cases: Buyer may request on-site vendor factory visit or independent third-party inspection | Buyer | Category Manager | 2–4 hours/case |
+| 5 | **Corrective action plan**: Based on root cause findings, Buyer and vendor agree on corrective action: (a) **Process change** — vendor modifies manufacturing process, adds quality checkpoint, changes raw material supplier; (b) **Design change** — product specification modified to eliminate defect mode; (c) **Packaging change** — improved packaging to prevent transit damage; (d) **Batch replacement** — vendor replaces entire affected batch at vendor cost; (e) **Training** — vendor trains production staff on identified gap; Buyer documents agreed corrective actions with specific deliverables, responsible party, and completion deadline in CAPA case | Buyer / Vendor | Category Manager | 1–2 hours/case |
+| 6 | **Preventive action**: Buyer identifies systemic preventive measures to avoid recurrence across similar products or vendors: (a) update AQL inspection checklist for the category to catch similar defects (W3); (b) revise vendor onboarding quality requirements for new vendors in the category (W36); (c) update item specification or acceptance criteria in item master (MDM-002); (d) communicate learnings to other Buyers handling similar categories | Buyer | Category Manager | 30 min/case |
+| 7 | **Verification and closure**: (a) After corrective action deadline: Buyer verifies vendor implementation — request evidence (photos, updated process documents, test results); (b) for process/design changes: next 3 shipments inspected at tightened AQL level (Level III per ANSI Z1.4) to verify improvement; (c) if quality improvement confirmed: Buyer closes CAPA case with effectiveness verification notes; (d) if quality not improved: Buyer escalates to Category Manager for vendor improvement plan per W44 Warning/Probation/Termination tiers | Buyer | Category Manager | 30 min/case |
+| 8 | **Monthly CAPA dashboard**: Buyer generates monthly CAPA dashboard: (a) open CAPA cases by vendor, category, and severity; (b) average time to resolution by severity; (c) corrective action effectiveness rate (cases closed without recurrence ÷ total closed); (d) recurring quality issues (same defect mode from same vendor); (e) vendors with most open/past-due CAPA cases; dashboard shared with Category Managers and VP Merchandising | Buyer | VP Merchandising | 1 hour/month |
+| 9 | **Quarterly quality trend review**: Category Manager and VP Merchandising review quality trends quarterly: (a) quality reject rate trend by vendor and category, (b) customer complaint rate related to product quality, (c) CAPA case volume trend, (d) vendors with chronic quality issues (3+ CAPA cases in 12 months), (e) quality-driven assortment decisions — should BuildRight exit vendors with persistent quality failures?; feeds into W44 vendor scorecard and W1 assortment review | Category Manager | VP Merchandising | 2 hours/quarter |
+
+### System Touchpoints
+- CAPA case auto-generation from AQL failures, customer complaints, warranty claims, and RTV rate thresholds (W110.1)
+- Case classification with severity levels triggering appropriate containment actions (W110.2–3)
+- Quality hold on affected inventory across all locations with sales blocking (W110.3)
+- Root cause documentation with evidence attachment (photos, inspection reports, vendor communications) (W110.4)
+- Corrective action plan with deliverables, responsible party, and deadline tracking (W110.5)
+- Verification workflow with tightened inspection for post-CAPA shipments (W110.7)
+- Monthly CAPA dashboard with case aging, effectiveness rate, and vendor ranking (W110.8)
+- Integration with W1 (assortment — quality-driven vendor exit), W3 (AQL inspection — source of CAPA triggers and tightened inspection post-CAPA), W29 (product recall — Critical CAPA escalation), W33 (warranty — quality-related claims), W36 (vendor onboarding — quality requirements from CAPA learnings), W41 (customer complaints — product quality complaints feed CAPA), W44 (vendor scorecard — CAPA history as quality metric), W88 (RTV — CAPA from high RTV rate), W91 (damaged goods — disposition during containment)
+
+### Staffing Implication
+- **Buyers**: ~20–30 CAPA cases/month ÷ 10–12 buyers = ~2–3 cases/buyer/month × ~3 hours each = ~6–9 hours/buyer/month. This is a core part of vendor management. Absorbed.
+- **Category Managers**: 2 hours/quarter for trend review + 30 min/escalation case. Absorbed.
+- **No incremental headcount.**
+
+---
+
+## W115. Supplier Diversity & MSME Development Program
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual supplier diversity review; or ad-hoc triggered by corporate social responsibility (CSR) initiative, LGU requirement, or MSME vendor opportunity identification |
+| **Frequency** | Annual program review and target setting; quarterly progress tracking; continuous MSME vendor identification |
+| **Volume** | ~800–1,000 active vendors; target: ≥ 20% MSME (Micro, Small, Medium Enterprise) vendor participation by spend or count within 3 years |
+| **Owner** | Buyer (MSME identification and onboarding); VP Merchandising (program governance) |
+| **Participants** | Buyer, Category Manager, VP Merchandising, Finance, Legal, CSR Coordinator |
+
+### Background
+
+The Philippine government actively promotes MSME development through the Magna Carta for MSMEs (RA 9501) and the Go Negosyo Act (RA 10644). Large enterprises are encouraged to source from MSMEs, and government procurement (W78) has MSME participation requirements. BuildRight sources 60% of goods from local Philippine vendors — many of which may qualify as MSMEs. However, there is no formal program to track MSME vendor participation, identify opportunities to onboard MSME suppliers, or provide development support to help MSMEs meet BuildRight's quality and scale requirements. This workflow creates that governance framework, supporting PUR-003 (vendor management) and contributing to corporate social responsibility objectives.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **MSME vendor classification**: System classifies existing vendors as MSME or non-MSME based on DTI/SEC registration and annual revenue: (a) Micro: < PHP 3M annual revenue, (b) Small: PHP 3M–15M, (c) Medium: PHP 15M–100M, (d) Large: > PHP 100M; classification captured in vendor master during onboarding (W36) or updated annually from BIR tax filing data; system generates MSME vendor register with: vendor name, category, MSME size classification, annual spend, and year-first-onboarded | System / Buyer | VP Merchandising | Automated (classification) + 2 hours/year (verification) |
+| 2 | **Annual diversity target setting**: VP Merchandising and Category Managers set annual MSME sourcing targets by category: (a) overall target: ≥ 20% of active vendor count classified as MSME within 3 years, (b) category-specific targets based on MSME availability in the category (e.g., higher MSME % in home décor, garden, hardware where local artisans and manufacturers are prevalent; lower in power tools, appliances where scale requirements favor large manufacturers), (c) geographic diversity target: ensure MSME vendors are distributed across regions (Mindanao, Visayas, Luzon) not concentrated in one region | VP Merchandising | CEO | Annual (4 hours) |
+| 3 | **MSME vendor identification**: Buyer actively identifies potential MSME vendors through: (a) trade shows and MSME fairs (DTI-organized events, regional trade fairs), (b) LGU and DTI referrals (DTI has MSME directories per region), (c) industry associations (Chamber of Commerce, sector-specific associations), (d) existing vendor referrals (current vendors may know MSME sub-suppliers), (e) competitor and market scanning for local manufacturers not yet in BuildRight's vendor base | Buyer | Category Manager | Ongoing (~2 hours/week across all buyers) |
+| 4 | **MSME vendor evaluation**: Buyer evaluates MSME vendor candidates with modified criteria vs. large vendor onboarding (W36): (a) product quality — sample review (standard W36.4), (b) pricing competitiveness — may be slightly higher than large vendors but justified by uniqueness or local sourcing value, (c) production capacity — must meet minimum order quantity for BuildRight's needs (may be lower than standard MOQ to accommodate MSME scale), (d) delivery capability — must deliver to assigned DC or store within agreed lead time, (e) financial stability — review BIR registration and business permit (standard W36.2–3), (f) scalability potential — can the MSME grow with BuildRight's increasing demand? | Buyer | Category Manager | Per W36 (~4–6 hours/vendor) |
+| 5 | **MSME onboarding support**: For MSME vendors that meet quality and capacity requirements but need operational support: (a) Buyer provides guidance on BuildRight's packaging, labeling, and barcode requirements; (b) Category Manager may approve a trial period with smaller initial orders and more frequent quality checks (W3 tightened AQL); (c) Finance may offer shorter payment terms (Net 15 instead of Net 30) to support MSME cash flow — requires Finance Manager approval; (d) IT provides vendor portal access and training for order management (W36.9) | Buyer / Category Manager / Finance | VP Merchandising | 2–4 hours/vendor |
+| 6 | **Quarterly progress tracking**: Buyer generates quarterly MSME sourcing report: (a) total MSME vendor count and % of active vendors, (b) total MSME spend and % of total COGS, (c) new MSME vendors onboarded during quarter, (d) MSME vendor geographic distribution, (e) MSME vendor performance summary (quality, delivery, pricing vs. non-MSME benchmarks), (f) progress against annual targets | Buyer | VP Merchandising | 1 hour/quarter |
+| 7 | **Annual program review**: VP Merchandising and CEO review annual MSME program performance: (a) year-over-year MSME vendor count and spend trend, (b) MSME vendor retention rate (how many MSME vendors remain active after first year?), (c) MSME vendor success stories and challenges, (d) set next year's targets, (e) evaluate program's contribution to BuildRight's CSR objectives and community impact (especially in Mindanao and Visayas regions) | VP Merchandising | CEO | 2 hours/year |
+| 8 | **Government reporting**: If required for government procurement eligibility (W78) or LGU permit compliance (W54): Finance compiles MSME sourcing data for regulatory submissions; CSR Coordinator prepares MSME development program summary for annual CSR report | Finance / CSR Coordinator | VP Legal & Compliance | Annual (4 hours) |
+
+### System Touchpoints
+- MSME classification field in vendor master with size category (Micro, Small, Medium, Large) and annual revenue band (W115.1)
+- MSME vendor register with spend, category, region, and year-onboarded (W115.1)
+- Annual MSME sourcing target configuration by category and region (W115.2)
+- Quarterly MSME sourcing report with count, spend, geographic, and performance metrics (W115.6)
+- Integration with W36 (vendor onboarding — MSME classification at onboarding), W44 (vendor scorecard — MSME vs. non-MSME performance comparison), W62 (vendor contracts — MSME-specific payment terms), W78 (government procurement — MSME participation reporting), W26 (annual budget — MSME spend target)
+
+### Staffing Implication
+- **Buyers**: MSME identification adds ~2 hours/week total across all buyers (~10 min/buyer/week). Absorbed.
+- **VP Merchandising**: 4 hours/year for target setting + 2 hours/year for annual review. Absorbed.
+- **No incremental headcount.**
+
+---

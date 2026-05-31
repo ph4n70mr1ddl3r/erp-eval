@@ -12,6 +12,7 @@
 - [W53. Data Privacy Breach Response](#data-privacy-breach-response)
 - [W55. IT Disaster Recovery & System Failover](#it-disaster-recovery-system-failover)
 - [W73. Data Migration Validation & Parallel-Run Testing](#data-migration-validation-parallel-run-testing)
+- [W113. Business Intelligence & Data Governance](#business-intelligence-data-governance)
 
 ---
 
@@ -239,3 +240,48 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 
 ---
 
+
+## W113. Business Intelligence & Data Governance
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly BI governance review; ad-hoc report request; dashboard lifecycle milestone; or data quality issue identified |
+| **Frequency** | Monthly governance review; continuous report request management; quarterly dashboard lifecycle review |
+| **Volume** | ~50–100 ad-hoc report requests/month from across the organization; ~20–30 active dashboards at any time; ~8,060 potential users across 14 requirement categories |
+| **Owner** | BI Manager / Data Analyst |
+| **Participants** | BI Manager, Data Analysts, IT Manager, Department Heads, Controller, CIO |
+
+### Background
+
+RPT-001 through RPT-010 define reporting requirements — executive dashboards, store P&L, sales analytics, inventory reports, ad-hoc reporting, and scheduled distribution. W35 defines the management reporting rhythm. However, there is no workflow governing the BI layer itself: how reports and dashboards are created, maintained, and retired; how data quality is monitored; how ad-hoc requests are prioritized; who owns which data domain; and how the data dictionary and business rules are maintained. Without BI governance, reports proliferate (creating "Excel hell"), data definitions diverge across departments, and the same metric shows different values in different reports — undermining trust in data-driven decisions at PHP 62.3B scale.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Ad-hoc report request intake**: Department Head or Manager submits report request via BI request portal: (a) request description (what data is needed, for what purpose), (b) desired format (dashboard, scheduled report, one-time extract), (c) urgency (standard 5-day SLA, expedited 2-day SLA with Department Head justification, immediate — routed to BI Manager for triage), (d) intended audience (who will consume the report); BI Manager triages daily: (e) check if an existing report already covers the need (duplicate detection), (f) classify as: reuse existing, modify existing, or create new, (g) assign to Data Analyst with priority and deadline | BI Manager | CIO | 15 min/request (triage) |
+| 2 | **Report development and approval**: Data Analyst develops report per request: (a) uses approved data sources and definitions from data dictionary (step 5), (b) validates output against known data points (reconciliation with source system), (c) creates report with appropriate visualization and documentation (data source, calculation logic, filters, refresh frequency), (d) BI Manager reviews for accuracy, performance (query execution time < 30 seconds per NFR-004), and adherence to report design standards, (e) requestor reviews and confirms report meets need, (f) BI Manager publishes report to appropriate audience group with access controls | Data Analyst / BI Manager | CIO | 4–8 hours (new report); 1–2 hours (modify existing) |
+| 3 | **Data quality monitoring**: System runs automated daily data quality checks across critical data domains: (a) **Completeness**: are all expected records present? (e.g., every store should have daily sales data), (b) **Accuracy**: do totals reconcile? (e.g., sum of store sales = consolidated total), (c) **Timeliness**: is data current? (e.g., POS data loaded within 30 minutes of transaction), (d) **Consistency**: do cross-system metrics agree? (e.g., ERP inventory = WMS inventory), (e) anomalies generate data quality alerts to BI Manager and IT; BI Manager investigates and coordinates with IT for resolution; monthly: BI Manager generates data quality scorecard by domain (target: ≥ 98% quality score) | System / BI Manager | CIO | 30 min/day (alert review) + 2 hours/month (scorecard) |
+| 4 | **Dashboard lifecycle management**: Quarterly: BI Manager reviews all active dashboards: (a) **Usage analytics**: which dashboards are actively used (login frequency, view count)? — dashboards not accessed in 90 days flagged for retirement, (b) **Performance**: which dashboards have slow load times or query timeouts? — prioritize for optimization, (c) **Accuracy**: have underlying data sources changed (new GL accounts, new locations, new item categories) that require dashboard updates?, (d) **Retirement**: deprecated dashboards archived (not deleted) with retirement date and reason; users notified 30 days before retirement | BI Manager | CIO | 4 hours/quarter |
+| 5 | **Data dictionary and business rules maintenance**: BI Manager maintains master data dictionary: (a) **Metric definitions**: every KPI used in reports has a single documented definition (e.g., "Gross Margin = (Revenue − COGS) ÷ Revenue × 100; Revenue = net of returns; COGS = weighted average cost"), (b) **Data domain ownership**: each data domain has a designated owner (e.g., Finance owns financial metrics, Merchandising owns sales metrics, Supply Chain owns inventory metrics), (c) **Calculation logic**: documented and version-controlled for every report metric, (d) **Source system mapping**: every metric traced to its source system field, (e) updates to data dictionary require BI Manager approval and are logged with effective date and reason | BI Manager | CIO | Ongoing (~4 hours/month) |
+| 6 | **Monthly BI governance meeting**: BI Manager convenes monthly BI governance meeting with Department Head representatives: (a) review data quality scorecard, (b) review open report requests and backlog, (c) discuss upcoming reporting needs (new metrics, new data sources, organizational changes), (d) resolve data definition disputes (when departments disagree on metric calculation), (e) review report usage and identify opportunities to consolidate overlapping reports, (f) approve data dictionary changes | BI Manager / Department Heads | CIO | 1 hour/month |
+| 7 | **Access control and security**: BI Manager manages report and dashboard access per NFR-007 security requirements: (a) reports containing financial data restricted to Finance and authorized roles, (b) store-level P&L visible to Store Manager (own store only), Regional Manager (stores in region), and VP Operations (all stores), (c) customer data in reports masked per RA 10173 data privacy requirements (W53), (d) access changes logged with approver and reason; quarterly: BI Manager reviews access control list for appropriateness | BI Manager | CIO | 30 min/month + 4 hours/quarter (review) |
+| 8 | **Annual BI roadmap**: CIO and BI Manager prepare annual BI roadmap: (a) planned new reports and dashboards based on business priorities, (b) technology upgrades (BI tool versions, data warehouse performance), (c) self-service BI enablement — train power users in Department Heads to create own reports using governed data sets, (d) data integration roadmap — new data sources to onboard (3PL tracking data, ecommerce behavioral data, vendor portal data), (e) budget for BI tools, training, and external consulting | CIO / BI Manager | CEO | Annual (8 hours) |
+
+### System Touchpoints
+- BI report request portal with classification, priority, and SLA tracking (W113.1)
+- Report development standards and publishing workflow with approval gates (W113.2)
+- Automated daily data quality checks: completeness, accuracy, timeliness, consistency (W113.3)
+- Data quality scorecard by domain with trend tracking (W113.3)
+- Dashboard usage analytics with login frequency, view count, and load time metrics (W113.4)
+- Dashboard retirement workflow with 30-day user notification and archiving (W113.4)
+- Master data dictionary with metric definitions, domain ownership, calculation logic, and source mapping (W113.5)
+- Role-based access control for reports and dashboards per NFR-007 (W113.7)
+- Integration with W35 (management reporting — reports consumed in reporting rhythm), W48 (IT helpdesk — BI tool support), W53 (data privacy — customer data in reports), W55 (DR — BI system failover), W73 (data migration — BI data source validation post-migration)
+
+### Staffing Implication
+- **1 BI Manager** (within IT team of ~28): manages BI platform, governance, and team. This role is implied by RPT requirements but not formalized.
+- **2–3 Data Analysts** (within IT team): develop reports, manage data quality, maintain data dictionary. At ~50–100 requests/month × 4–8 hours each for new reports, plus ongoing maintenance = ~2–3 full-time equivalents. Redeployed from existing IT team or new hires within planned IT headcount.
+- **No incremental headcount beyond planned IT team.**
+
+---

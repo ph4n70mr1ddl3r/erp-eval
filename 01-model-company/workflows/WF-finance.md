@@ -1,6 +1,6 @@
 # Finance & Treasury Workflows
 
-> AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, and product costing & margin analysis.
+> AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, product costing & margin analysis, and customer credit collection & escalation.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -28,6 +28,7 @@
 - [W90. Monthly Tax Filing & Statutory Remittance](#monthly-tax-filing-statutory-remittance)
 - [W94. Customer Deposit & Advance Payment Management](#customer-deposit-advance-payment-management)
 - [W99. Payment Settlement Reconciliation (Card / E-Wallet / Online)](#payment-settlement-reconciliation-card-e-wallet-online)
+- [W108. Customer Credit Collection & Escalation](#customer-credit-collection-escalation)
 
 ---
 
@@ -1377,6 +1378,54 @@ Refund and credit processing is currently scattered across multiple workflows: W
 - **CSRs / Cashiers**: refund processing is part of existing return and cancellation workflows — no incremental effort
 - **AR Supervisor**: adds ~30 min/week for unsettled refund review. Absorbed.
 - **Controller**: adds 1 hour/month for refund analytics review. Absorbed.
+- **No incremental headcount.**
+
+---
+
+## W108. Customer Credit Collection & Escalation
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Trade or corporate account customer exceeds invoice payment terms (Net 30 or Net 60–90); or monthly scheduled collection review cycle |
+| **Frequency** | Daily collection activities; weekly escalation review; monthly portfolio review |
+| **Volume** | ~5,200 active AR accounts (5,000 trade + 200 corporate); ~3,500 AR invoices/month; ~30–40% of accounts typically carrying an overdue balance at any time |
+| **Owner** | AR Collector (daily); AR Supervisor (escalation); Finance Manager (legal escalation) |
+| **Participants** | AR Collector, AR Supervisor, Finance Manager, Sales Rep, Sales Manager, Controller, Legal, Collection Agency |
+
+### Background
+
+W8 covers AR processing — invoice generation, credit limit enforcement, and credit memo handling. W81 covers bad debt provisioning, write-off, and recovery. However, the active collection workflow between an invoice becoming overdue and reaching bad debt write-off is not detailed. At ~5,200 B2B accounts carrying ~30% of company revenue (~PHP 18.7B/year), effective collections directly impact cash flow and working capital. Philippine collections practice involves specific legal requirements (demand letters, BIR documentation) and cultural considerations (relationship-based collection approach). This workflow bridges W8 (AR processing) and W81 (bad debt write-off).
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Daily overdue identification**: System generates daily AR aging report with overdue accounts grouped by aging bucket: Current, 1–30 days overdue, 31–60 days, 61–90 days, 91–180 days, 181+ days; each account shows: customer name, account number, total overdue amount, oldest invoice date, assigned Sales Rep, last payment date, and last contact date | System | — | Automated |
+| 2 | **1–30 days overdue (soft collection)**: (a) System sends automated payment reminder via email/SMS on day 1 past due and day 15 past due with outstanding invoice details and payment instructions; (b) AR Collector reviews accounts > 15 days overdue; calls customer contact to confirm receipt of invoice and understand payment timeline; (c) AR Collector logs contact attempt, customer response, and committed payment date in system; (d) if customer disputes invoice: AR Collector coordinates with Sales Rep and Billing to resolve dispute within 5 business days | AR Collector / System | AR Supervisor | 10–15 min/account |
+| 3 | **31–60 days overdue (active collection)**: (a) AR Collector makes weekly follow-up call/email per account; (b) AR Collector and assigned Sales Rep make joint call to customer (Sales Rep relationship leverage); (c) if customer acknowledges debt but requests extension: AR Collector processes payment term extension request with AR Supervisor approval (maximum 30-day extension, one-time per invoice); (d) if customer is unresponsive after 3 contact attempts: system flags account as "Unresponsive" and escalates to AR Supervisor | AR Collector / Sales Rep | AR Supervisor | 20 min/account |
+| 4 | **61–90 days overdue (escalation)**: (a) AR Supervisor sends formal demand letter (first demand) via registered mail with return card — includes outstanding amount, invoice references, payment demand within 15 days, and notice of potential credit hold; (b) system places account on **credit hold** — new orders blocked until overdue balance resolved; credit hold override per CTL-05 requires Finance Manager approval; (c) AR Supervisor contacts customer's management (not just accounts payable contact) to negotiate payment plan; (d) if customer agrees to payment plan: AR Supervisor records plan in system with installment dates and amounts; system monitors compliance and auto-escalates if any installment missed | AR Supervisor | Finance Manager | 30 min/account |
+| 5 | **91–180 days overdue (legal escalation)**: (a) Finance Manager sends second demand letter via registered mail with notice of potential legal action; (b) Finance Manager and Sales Manager jointly evaluate account: (i) is the customer still active (recent orders, store visits)?, (ii) is there a legitimate dispute?, (iii) is the business still operating?, (iv) what is the total exposure including unbilled orders?; (c) for active customers with temporary cash flow issues: Finance Manager may approve structured payment plan (maximum 6 months) with personal guarantee or post-dated checks; (d) for unresponsive or unwilling customers: Finance Manager escalates to Legal for legal demand letter (third and final demand per Philippine legal practice); (e) Legal reviews account documentation (invoices, delivery receipts signed by customer, demand letters sent, contact logs) and issues final demand letter; (f) system reclassifies receivable to "Litigation" status | Finance Manager / Legal | Controller | 1 hour/account |
+| 6 | **181+ days overdue (external collection / write-off)**: (a) Controller reviews all accounts in 181+ day bucket monthly; (b) for accounts with total exposure > PHP 200,000: Controller recommends engagement of external collection agency per W62 service contract; (c) for accounts where Legal confirms no viable recovery path: Controller initiates bad debt write-off per W81 with supporting documentation (demand letters, contact logs, Legal opinion, agency report); (d) for accounts where customer has partially paid and committed to remaining balance: AR Supervisor monitors payment plan compliance; (e) system maintains full collection history per account for future credit decisions | Controller / AR Supervisor | CFO | 30 min/account review |
+| 7 | **Collection agency coordination**: (a) Finance Manager engages licensed collection agency per W62 non-PO contract; (b) AR Supervisor provides agency with complete account documentation package; (c) agency operates on contingency fee basis (typically 10–20% of recovered amount); (d) AR Supervisor monitors agency performance monthly; (e) recovered amounts posted by AR Collector against customer's outstanding balance; (f) agency fees invoiced and processed per W7 | AR Supervisor / Finance Manager | Controller | Ongoing |
+| 8 | **Weekly collection review**: AR Supervisor conducts weekly collection team meeting: (a) review accounts entering new aging buckets, (b) track contact completion rates (target: 100% of accounts contacted within SLA), (c) review payment plan compliance, (d) assign escalated accounts to collectors, (e) identify accounts requiring Sales Rep intervention | AR Supervisor | Finance Manager | 1 hour/week |
+| 9 | **Monthly collection performance reporting**: AR Supervisor prepares monthly collection performance report for Controller and CFO: (a) total AR aging by bucket and trend, (b) days sales outstanding (DSO) — target: < 45 days, (c) collection effectiveness index (CEI) — target: ≥ 85%, (d) bad debt write-off rate as % of revenue — target: < 0.3%, (e) accounts on credit hold — count and value, (f) payment plan portfolio — total value, compliance rate, (g) top 20 overdue accounts by value with status and action plan, (h) Sales Rep territory collection performance comparison | AR Supervisor | Controller | 2 hours/month |
+| 10 | **Quarterly credit review trigger**: Accounts that reached 61+ days overdue during the quarter are flagged for credit limit review in the next quarterly credit review cycle per W24; AR Supervisor provides collection history and recommendation (maintain limit, reduce limit, convert to COD-only, or close account) to Credit Committee | AR Supervisor | Finance Manager | Part of W24 quarterly cycle |
+
+### System Touchpoints
+- Automated daily AR aging report with customer contact details, Sales Rep assignment, and collection status (W108.1)
+- Automated payment reminders via email/SMS at configurable intervals (W108.2)
+- Collection activity logging: contact attempts, customer responses, committed payment dates, dispute notes (W108.2–3)
+- Payment term extension request workflow with AR Supervisor approval (W108.3c)
+- Credit hold automation: system places hold at 61 days overdue; manual override per CTL-05 (W108.4b)
+- Payment plan creation and compliance monitoring with auto-escalation on missed installments (W108.4d)
+- Demand letter generation with registered mail tracking (W108.4a, W108.5a)
+- Collection agency engagement and performance tracking (W108.7)
+- Monthly collection performance dashboard: DSO, CEI, aging trend, write-off rate (W108.9)
+- Integration with W7 (AP — collection agency fee processing), W8 (AR — invoice aging, credit memos, credit holds), W24 (credit application — credit limit review triggered by collection history), W58 (corporate accounts — project billing collection), W81 (bad debt write-off — accounts reaching write-off threshold), W84 (customer account reactivation — written-off accounts)
+
+### Staffing Implication
+- **2–3 AR Collectors** (within existing ~35-person Finance team): ~5,200 active accounts with ~30–40% overdue at any time = ~1,500–2,000 accounts requiring active collection management. At ~15 min average per account per month = ~375–500 hours/month. With 2–3 collectors that's ~150–250 hours each/month = ~8–15 hours/day. This is a full-time role for 2–3 staff. Current AR team can absorb with dedicated collectors.
+- **AR Supervisor**: adds ~1 hour/week for team meeting + ~2 hours/month for performance reporting + escalation handling. Absorbed within existing AR Supervisor role.
 - **No incremental headcount.**
 
 ---

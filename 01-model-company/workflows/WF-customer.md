@@ -14,6 +14,7 @@
 - [W65. Customer Satisfaction Measurement](#customer-satisfaction-measurement)
 - [W84. Customer Account Reactivation](#customer-account-reactivation)
 - [W87. Customer Feedback-to-Action Loop](#customer-feedback-to-action-loop)
+- [W112. Trade Counter / Pro Desk Operations](#trade-counter-pro-desk-operations)
 
 ---
 
@@ -406,5 +407,52 @@ W58 (Corporate/Project Account Management) covers the operational management of 
 - **10–12 Sales Reps** (Trade & Corporate): already assumed within the model company's ~310 HQ headcount; this workflow formalizes their operating cadence. Weekly pipeline maintenance (~30 min) + monthly territory review (~30 min) = ~4 hours/month per Sales Rep. This is core sales activity.
 - **1 Sales Manager**: manages 10–12 Sales Reps. Weekly pipeline review (~3 hours) + monthly territory reviews (~6 hours) + quarterly rebalancing (~3 hours) = ~12 hours/month. This is a full-time management role.
 - **No incremental headcount** — these roles are implied by the 30% B2B revenue but were not formalized in a workflow.
+
+---
+
+## W112. Trade Counter / Pro Desk Operations
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Professional trade customer (contractor, builder, architect, interior designer, electrician, plumber) arrives at store or contacts Sales Rep for project-level assistance |
+| **Frequency** | ~15–25 trade counter interactions per store per week; ~3,000–5,000/week chain-wide |
+| **Volume** | 30% of revenue from professional/trade B2B customers (~PHP 18.7B/year); avg trade transaction value ~PHP 5,000–25,000 |
+| **Owner** | Sales Associate (trade counter); Sales Rep (field/pro desk) |
+| **Participants** | Sales Associate, Sales Rep, Department Supervisor, Store Manager, Customer (trade professional) |
+
+### Background
+
+Big-box home improvement retailers globally operate dedicated trade counters or "pro desks" — specialized service points where professional customers (contractors, builders, tradespeople) receive tailored service: bulk pricing, project estimation, job site delivery coordination, account management, and credit access. BuildRight's trade customers represent 30% of revenue (~PHP 18.7B/year) across ~5,000 trade accounts, yet there is no workflow defining how trade counter service operates in-store. While W58 covers corporate/project account management and W103 covers sales pipeline, this workflow addresses the daily in-store operational process for serving trade customers at the pro desk — the physical touchpoint where most trade revenue is captured.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Customer check-in**: Trade customer arrives at store and proceeds to trade counter / pro desk (designated area near customer service counter with dedicated Sales Associate); Sales Associate identifies customer: (a) scans loyalty card or enters mobile number — system loads customer profile, trade account status, credit limit, and purchase history; (b) if not yet a trade account holder: Sales Associate provides W24 credit application form and explains trade account benefits (trade pricing, credit terms, bulk ordering); (c) system displays customer's open orders (W56 backorders, W38 special orders), recent purchases, and any account alerts (credit limit approaching, overdue balance) | Sales Associate | Department Supervisor | 2 min |
+| 2 | **Needs assessment**: Sales Associate conducts needs assessment: (a) **Project-based** — customer describes project (e.g., "building a 2-story residential, 150 sqm floor area, 3 bathrooms"); Sales Associate helps estimate material requirements using system's project estimation tool (pre-built project templates per project type: residential build, bathroom renovation, kitchen remodel, electrical wiring for a house); (b) **Replenishment** — customer provides material list (paper, digital, or photo); Sales Associate enters items in system for availability check and pricing; (c) **Emergency / same-day** — customer needs specific items immediately; Sales Associate checks real-time inventory and provides immediate availability | Sales Associate | Department Supervisor | 5–15 min |
+| 3 | **Material list and quotation**: (a) Sales Associate builds material list in system — adds items, quantities, checks real-time inventory at this store and nearby stores; (b) system applies trade account pricing (trade discount tier per W5b.4c); (c) for project-based orders: Sales Associate applies project-specific price list if customer has negotiated project pricing (W58); (d) system calculates total with trade discount, quantity breaks (W40.15–19), and VAT; (e) Sales Associate presents quotation to customer — printed or emailed; (f) for large projects (estimated > PHP 100,000): Sales Associate involves Sales Rep for on-site visit and detailed project estimation per W103 | Sales Associate / Sales Rep | Department Supervisor | 10–20 min |
+| 4 | **Order placement**: Customer confirms order: (a) **Immediate in-store purchase**: items in stock at this store — customer collects items or Sales Associate arranges store pickup staging; processed as standard POS transaction with trade account pricing (W5b.4c); (b) **Bulk delivery order**: items to be delivered to job site — Sales Associate creates Sales Order with delivery address, delivery date, and delivery instructions; delivery processed per W5d (in-store delivery scheduling) or W19 (home delivery) depending on item size and distance; (c) **Backorder / special order**: items not in stock — Sales Associate creates backorder per W56 or special order per W38; (d) **Project billing**: for corporate/project accounts — order charged to project account with project code; billing per W58 milestone/progress billing | Sales Associate | Store Manager | 5–10 min |
+| 5 | **Delivery coordination for trade orders**: For orders requiring job site delivery: (a) Sales Associate coordinates delivery date and time with customer (contractors often need early morning delivery before work starts); (b) system creates delivery order with job site address, contact person, special instructions (e.g., "deliver to 3rd floor under construction", "call 30 min before arrival"); (c) for recurring delivery orders (multi-phase construction project): Sales Associate sets up recurring delivery schedule in system — customer calls or emails when next batch of materials is needed; system retains project material list for easy reorder | Sales Associate | Store Manager | 5 min |
+| 6 | **Trade customer relationship management**: (a) Sales Associate or Sales Rep documents interaction in CRM: project type, estimated project value, competing supplier information, customer satisfaction; (b) for active construction projects: Sales Rep schedules periodic follow-up calls/visits to check material needs for next project phase; (c) Sales Associate tracks trade customer visit frequency and purchase pattern — alerts Sales Rep if regular trade customer hasn't visited in > 30 days (may have switched to competitor); (d) system tracks lifetime trade customer value (total spend, frequency, margin contribution) for loyalty tier and account management decisions | Sales Associate / Sales Rep | Sales Manager | 5 min/interaction |
+| 7 | **Trade account statement and payment**: (a) Trade customers on credit terms receive monthly statement per W8; (b) walk-in trade customers (COD/cash) can pay at trade counter via cash, card, or e-wallet; (c) Sales Associate can pull up customer's AR statement on request — outstanding balance, available credit, payment due dates; (d) for overdue accounts: Sales Associate informs customer of credit hold status and directs to AR for resolution per W108 | Sales Associate | Department Supervisor | 2 min |
+| 8 | **Weekly trade counter performance**: Store Manager reviews weekly trade counter metrics: (a) trade counter transactions — count and value, (b) average trade transaction value, (c) trade customer visit frequency and retention, (d) top 10 trade customers by spend (store-level), (e) conversion rate — quotations generated vs. orders placed, (f) material list completion rate — how often were all items on the customer's list available? | Store Manager | Regional Manager | 30 min/week |
+
+### System Touchpoints
+- Trade customer identification via loyalty card or mobile number with account profile and purchase history (W112.1)
+- Project estimation tool with pre-built templates per project type (residential build, bathroom renovation, electrical wiring) (W112.2)
+- Material list builder with real-time inventory check, trade pricing application, and quantity break auto-calculation (W112.3)
+- Quotation generation (print or email) with trade account pricing and VAT (W112.3)
+- Sales Order creation with delivery scheduling and job site address (W112.4)
+- Recurring delivery order setup for multi-phase construction projects (W112.5)
+- CRM interaction logging with project type, estimated value, and follow-up scheduling (W112.6)
+- Trade customer visit frequency tracking with inactivity alerting (W112.6)
+- AR statement access at trade counter for account balance and credit status (W112.7)
+- Weekly trade counter performance dashboard (W112.8)
+- Integration with W5b (POS selling — trade account pricing), W5d (in-store delivery scheduling), W8 (AR — credit limit check, statement), W12 (returns — trade customer returns), W17 (loyalty — trade customer points), W24 (credit application — new trade customer signup), W38 (special orders — non-stock items for trade), W56 (backorders — stock items not available), W58 (corporate/project accounts — project billing), W61 (price matching — trade customers may request), W103 (sales pipeline — trade counter is a primary lead source), W108 (collections — overdue trade accounts)
+
+### Staffing Implication
+- **1 dedicated Sales Associate per store** at the trade counter / pro desk during operating hours: handles ~15–25 trade interactions/week × 20 min average = ~5–8 hours/week; remainder of time on floor coverage, special order follow-up, and delivery coordination. This is a specialized role within the existing 16 Sales Associates per store — not incremental headcount but a designated assignment.
+- **Sales Reps** (10–12 at HQ): support large project quotes and on-site visits triggered from trade counter. Absorbed within existing W103 pipeline management.
+- **No incremental headcount.**
 
 ---

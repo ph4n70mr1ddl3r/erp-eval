@@ -25,6 +25,8 @@
 - [W75. Layaway / Installment Sales](#layaway-installment-sales)
 - [W86. Planogram Compliance & Store Layout Verification](#planogram-compliance-store-layout-verification)
 - [W96. Store Renovation & Remodel Project](#store-renovation-remodel-project)
+- [W109. Store-Level Inventory Receiving & Putaway](#store-level-inventory-receiving-putaway)
+- [W111. Store Energy & Utility Consumption Management](#store-energy-utility-consumption-management)
 
 ---
 
@@ -1184,6 +1186,110 @@ Store renovation and remodel projects sit between W16 (New Store Opening) and W4
 - **Facilities Manager**: serves as on-site construction supervisor; adds ~10 hours/week per active renovation. With 1–2 concurrent renovations, this is manageable.
 - **Visual Merchandiser**: design and layout work adds ~8–16 hours per renovation. Absorbed within existing Marketing team.
 - **IT Manager**: adds ~2–4 days per renovation for IT relocation. Absorbed with support from IT team.
+- **No incremental headcount.**
+
+---
+
+## W109. Store-Level Inventory Receiving & Putaway
+
+| Field | Detail |
+|---|---|
+| **Trigger** | DC delivery truck arrives at store; or DSD vendor delivery; or inter-store transfer arrives; or customer return processed for restocking |
+| **Frequency** | 2–3 DC deliveries per store per week; ~5–10 DSD deliveries per store per month; occasional transfers and returns |
+| **Volume** | ~6–10 receiving events per store per week; avg 20–50 lines per DC delivery; 5–15 lines per DSD |
+| **Owner** | Receiving Clerk (store) |
+| **Participants** | Receiving Clerk, Stock Associate, Department Supervisor, Store Manager, DC Driver |
+
+### Background
+
+W3 covers DC receiving in detail — barcode-directed putaway, quality inspection, cross-dock flows, and yard management. However, store-level receiving is fundamentally different: (a) no WMS-directed putaway — stores use handheld RF devices or mobile tablets, not full WMS; (b) putaway means moving stock to the sales floor (shelf replenishment) or backroom (overflow), not to bin locations; (c) stores receive from multiple sources (DC delivery, DSD vendor, inter-store transfer, customer return restocking); (d) receiving happens during store operating hours with customers present, unlike DC receiving which is a warehouse-only activity. This workflow fills the gap between DC outbound dispatch (W106) and store shelf availability.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Pre-arrival preparation**: System alerts Receiving Clerk of scheduled inbound deliveries for the day (from DC delivery schedule per W106, DSD schedule per W18b, or transfer ETA per W22); Clerk reviews expected receiving volume and coordinates with Stock Associates for putaway support | Receiving Clerk | Store Manager | 10 min/morning |
+| 2 | **Truck arrival and dock check**: Driver arrives at store receiving area; Receiving Clerk checks delivery manifest against system-scheduled deliveries; if unscheduled delivery (no matching PO/TO): Clerk checks with Store Manager before accepting | Receiving Clerk / Driver | Store Manager | 5 min |
+| 3 | **Unloading**: Receiving Clerk and Stock Associates unload truck; stage goods in receiving area sorted by department (lumber, plumbing, tiles, tools, hardware, paint, appliances); catch-weight items (lumber, wire) measured and verified at unload | Receiving Clerk / Stock Associate | Department Supervisor | 20–45 min/delivery |
+| 4 | **Scan receiving against Transfer Order / PO**: Receiving Clerk scans each case/tote/item barcode using handheld RF device against the Transfer Order (DC delivery) or PO (DSD); system displays expected SKU and quantity per line; Clerk confirms or enters actual quantity received | Receiving Clerk | Department Supervisor | 15–30 min/delivery |
+| 5 | **Discrepancy handling**: (a) **Shortage** (received less than expected): Clerk enters actual quantity; system posts partial receipt; shortage logged; if > 5% variance: Clerk notifies Store Manager and DC Dispatch per W22.9a; (b) **Overage** (received more than expected): Clerk flags in system; Store Manager decides to accept (updates TO/PO quantity) or reject excess; (c) **Wrong item** (SKU doesn't match TO/PO): Clerk rejects item; Driver takes back or DC Dispatch notified; (d) **Damage**: Clerk documents damage with photos per W91 damage report process; routes to disposition (W93 markdown, W88 RTV, or scrap) | Receiving Clerk | Store Manager | 5 min/discrepancy |
+| 6 | **Quality spot-check**: For DSD items (fresh delivery from vendor, no DC quality inspection): Department Supervisor spot-checks 3–5 items per delivery for damage, correct labeling, and shelf-life; DC-delivered items already inspected at W3 AQL checkpoint — no additional store inspection unless visibly damaged | Department Supervisor | Store Manager | 5 min/delivery |
+| 7 | **Confirm receipt in system**: Receiving Clerk confirms Goods Receipt in handheld; system posts: (a) store inventory increases (perpetual), (b) in-transit inventory clears (for DC deliveries), (c) inventory ownership at store confirmed (Depot Inc.), (d) receiving timestamp and Clerk ID logged | Receiving Clerk / System | Department Supervisor | 2 min |
+| 8 | **Putaway to sales floor (primary)**: Stock Associate moves received goods from receiving staging area to sales floor: (a) system provides shelf location guidance on handheld (aisle/bay) based on planogram (W86); (b) Stock Associate places items on shelf in designated location; scan-confirms shelf placement; (c) for promotional items (W57): Stock Associate places in designated promo display area, not regular shelf; (d) for catch-weight items: Stock Associate places in yard or designated cut-to-length area per store layout; (e) putaway priority: promotional items first, then A-items (fast movers), then B/C-items | Stock Associate | Department Supervisor | 30–60 min/delivery |
+| 9 | **Putaway to backroom (overflow)**: If sales floor shelf is full (no space for all received quantity): (a) Stock Associate places excess in backroom stock area; (b) system records backroom location (zone-level, not bin-level — stores do not have bin-level location tracking); (c) backroom inventory tracked separately from floor inventory in system; (d) Stock Associates replenish from backroom to floor during daily shelf restocking (W5a step 7) | Stock Associate | Department Supervisor | 10 min/delivery |
+| 10 | **Packaging and waste disposal**: Stock Associate breaks down empty cartons, pallets, and packaging materials; cardboard recycled or compacted; packaging waste disposed per store waste management protocol; wooden pallets stacked for DC truck backhaul on next delivery | Stock Associate | Department Supervisor | 10 min/delivery |
+| 11 | **Receiving completion**: Receiving Clerk closes receiving session in handheld; system generates receiving confirmation with: TO/PO number, total lines received, discrepancies noted, receiving completion timestamp; Driver signs delivery receipt (proof of delivery for DC) and departs | Receiving Clerk / Driver | Store Manager | 5 min |
+
+**Total time per DC delivery**: ~1.5–2.5 hours (unloading + scanning + putaway)
+**Total time per DSD delivery**: ~30–60 minutes
+
+### Receiving by Source
+
+| Source | Receiving Document | Scan Against | Discrepancy Route | Putaway Priority |
+|---|---|---|---|---|
+| **DC delivery** (W4, W106) | Transfer Order | TO lines | W22.9a (transfer discrepancy) | Promo → A-items → B/C-items |
+| **DSD vendor** (W18) | Purchase Order | PO lines | W18 discrepancy process | Direct to shelf/yard |
+| **Inter-store transfer** (W22) | Transfer Order | TO lines | W22.9a | Per dept priority |
+| **Customer return restock** (W12) | Return transaction | Return line items | N/A — already processed | Direct to shelf |
+| **RTV backhaul from vendor** (W88) | RTV shipment | RTV record | W88 vendor dispute | To RTV holding area |
+
+### System Touchpoints
+- Daily inbound delivery schedule from W106 DC dispatch, W18b DSD schedule, and W22 transfers (W109.1)
+- Handheld RF barcode scanning against Transfer Order or Purchase Order with line-level quantity confirmation (W109.4)
+- Partial receipt posting with discrepancy logging and auto-notification (W109.5)
+- Shelf location guidance from planogram integration (W86) on handheld (W109.8)
+- Dual inventory tracking: sales floor vs. backroom at zone level (W109.9)
+- Receiving confirmation with proof of delivery for DC truck (W109.11)
+- Catch-weight item measurement capture at receiving (W109.3)
+- Integration with W4 (replenishment — the orders being received), W18 (DSD — vendor delivery receiving), W22 (transfers — inter-store receiving), W42 (physical inventory — receiving affects count accuracy), W47 (facility — receiving dock maintenance), W86 (planogram — shelf placement guidance), W91 (damage handling), W106 (DC dispatch — proof of delivery loop), W63 (shelf labels — new items may need labels)
+
+### Staffing Implication
+- **2 Receiving Clerks per store**: already in staffing model (35/store). Each handles ~3–5 deliveries/week × 2 hours = ~6–10 hours/week. Remainder of time on backroom management, BOPIS staging, and other duties.
+- **3 Stock Associates per store**: putaway adds ~1–1.5 hours per delivery event × ~6–10 events/week = ~6–15 hours/week. Balanced with daily shelf replenishment (W5a.7), cycle counting (W6), and damage handling (W91).
+- **No incremental headcount.**
+
+---
+
+## W111. Store Energy & Utility Consumption Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly utility bill received; quarterly energy review calendar; or ad-hoc triggered by abnormal consumption alert |
+| **Frequency** | Monthly bill processing; quarterly consumption review; annual energy budget |
+| **Volume** | 200 stores × 3–4 utility types (electricity, water, internet, waste disposal) = ~600–800 utility bills/month; 5 DCs × 3–4 utility types = ~15–20 DC bills/month |
+| **Owner** | Store Manager (store-level); DC Manager (DC-level); Facilities Manager (chain-wide) |
+| **Participants** | Store Manager, DC Manager, Facilities Manager, AP Clerk, Finance Manager, VP Operations |
+
+### Background
+
+BuildRight operates 200 stores (8,000–15,000 sqm each) and 5 DCs (25,000–40,000 sqm each) across the Philippines. Utility costs — particularly electricity for lighting, HVAC, and equipment — are a significant operating expense. At an estimated PHP 80–150 per sqm per month for electricity in Philippine big-box retail, annual electricity cost alone is ~PHP 1.5–2.7B (3–4% of revenue). W7c processes utility bills as non-PO invoices, but there is no workflow for monitoring consumption trends, benchmarking across stores/DCs, identifying energy waste, and tracking sustainability KPIs. This workflow creates that operational layer.
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Utility bill processing**: AP Clerk receives utility bill (electricity, water, internet, waste disposal) per W7c non-PO invoice process; system captures: utility provider, meter reading (if available), consumption units (kWh, cubic meters), total amount, billing period, and store/DC location code; AP Clerk enters consumption data in utility tracking module alongside financial data | AP Clerk | AP Supervisor | Per W7c + 5 min/bill for consumption entry |
+| 2 | **Consumption normalization**: System calculates normalized consumption metrics per location: (a) kWh per sqm per month, (b) kWh per PHP revenue per month, (c) water consumption per sqm per month, (d) total utility cost as % of store revenue; normalizes for billing period length (some bills span 28–35 days) | System | — | Automated |
+| 3 | **Automated anomaly detection**: System compares each location's current month consumption to: (a) same month prior year (seasonal comparison), (b) trailing 3-month average (trend comparison), (c) peer group average (stores of similar size and format in same region); flags locations where consumption exceeds comparison by > 20%; generates anomaly alert to Store Manager and Facilities Manager | System | — | Automated |
+| 4 | **Store Manager anomaly response**: Upon receiving anomaly alert, Store Manager investigates: (a) check for operational causes — extended HVAC use during heat wave, new equipment added, construction/renovation activity (W96), increased lighting for promotional displays; (b) check for maintenance issues — HVAC running inefficiently, water leak, lighting left on during non-business hours; (c) if maintenance issue identified: Store Manager creates facility maintenance work order per W47; (d) response documented in system with root cause and corrective action | Store Manager | Regional Manager | 30 min/alert |
+| 5 | **Monthly utility dashboard**: Facilities Manager reviews monthly utility dashboard: (a) total utility spend by type and trend, (b) top 20 highest-consuming stores/DCs, (c) top 20 stores with highest utility cost as % of revenue, (d) anomaly alerts and resolution status, (e) comparison of actual utility spend to budget (W26); dashboard available to VP Operations, CFO, and Store Managers (own store only) | Facilities Manager | VP Operations | 1 hour/month |
+| 6 | **Quarterly energy review**: Facilities Manager conducts quarterly energy review with Store Ops Director and VP Operations: (a) chain-wide utility consumption trend and cost trajectory, (b) store-level benchmarking — best and worst performers by kWh/sqm and utility cost/revenue, (c) seasonal patterns and preparation for peak consumption periods (summer HVAC, holiday lighting), (d) energy efficiency project pipeline — proposed initiatives (LED lighting retrofit, HVAC upgrades, motion-sensor lighting in backroom, solar panel feasibility for select stores) with cost-benefit analysis, (e) review of approved energy efficiency capex projects (per W21) — actual vs. projected savings | Facilities Manager | VP Operations | 2 hours/quarter |
+| 7 | **Annual energy budget**: As part of W26 annual budget preparation, Facilities Manager prepares utility budget per location based on: (a) historical consumption by month (3-year trend), (b) planned changes (new store openings W16, renovations W96, equipment replacements), (c) known rate increases from utility providers (Meralco, Davao Light, VECO rate adjustments), (d) projected savings from energy efficiency initiatives; submits per-location utility budget to Finance Manager for consolidation into W26 | Facilities Manager / Finance Manager | VP Operations / CFO | Annual (8 hours) |
+| 8 | **DC utility management**: DC Manager monitors DC utility consumption with focus on: (a) refrigeration and cold-chain equipment (if applicable to paint/chemical storage), (b) warehouse lighting and ventilation, (c) charging stations for electric forklifts and handheld devices, (d) yard lighting for outdoor lumber/building materials area; DC utility benchmarking uses DC-specific metrics (kWh per sqm, kWh per TEU processed) | DC Manager | Supply Chain Manager | 30 min/month |
+
+### System Touchpoints
+- Utility bill processing with consumption data capture (kWh, cubic meters) alongside financial data per W7c (W111.1)
+- Automated consumption normalization: kWh/sqm, kWh/revenue, cost/revenue (W111.2)
+- Automated anomaly detection with configurable thresholds (> 20% deviation from seasonal, trend, or peer benchmarks) (W111.3)
+- Monthly utility dashboard with multi-dimensional benchmarking (W111.5)
+- Quarterly energy review with efficiency project pipeline and capex integration (W111.6)
+- Annual utility budget per location integrated with W26 budget module (W111.7)
+- Integration with W7c (utility bill processing), W16 (new store — initial utility setup), W21 (energy efficiency capex), W26 (annual budget), W47 (facility maintenance — HVAC/lighting repair), W67 (store performance — utility cost as P&L line), W86 (planogram — lighting for displays), W96 (renovation — utility impact)
+
+### Staffing Implication
+- **1 Facilities Manager** (within Store Operations team of ~23 at HQ): manages chain-wide energy management, utility vendor relationships, and energy efficiency projects. This role is already implied by W47 (facility maintenance coordination) but formalized here.
+- **Store Managers**: 30 min per anomaly alert (estimated 1–2 alerts/quarter/store). Absorbed.
+- **AP Clerks**: 5 min additional per utility bill for consumption data entry = ~60–80 hours/month for 800+ bills. Absorbed within existing AP team.
 - **No incremental headcount.**
 
 ---

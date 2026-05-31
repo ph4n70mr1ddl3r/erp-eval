@@ -29,7 +29,7 @@
 | FIN-007 | Withholding Tax (Expanded) | M | W7.9a (EWT computation), W9a.16a (EWT remittance) | W7c (non-PO EWT on services) |
 | FIN-008 | BIR Tax Return Generation | M | W9a.16 (VAT, income tax), W9a.16a (EWT), W9a.16c (LBT) | W10.11 (statutory contribution files), W90 (monthly tax filing & statutory remittance) |
 | FIN-009 | Multi-Bank Integration | S | W30.2 (bank statement import), W30.7 (cash sweeps) | W7.9 (payment file generation), W89 (bank reconciliation) |
-| FIN-010 | Cash Management / Treasury | S | W30 (daily treasury), W5c (store cash reconciliation) | W25 (petty cash), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
+| FIN-010 | Cash Management / Treasury | S | W30 (daily treasury), W5f (store cash reconciliation) | W25 (petty cash), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
 | FIN-011 | Fixed Asset Management | M | W21.7–8 (asset creation & depreciation), W39 (disposal) | W16 (new store capex) |
 | FIN-012 | Budgeting & Variance Analysis | S | W26 (annual budget), W35.9 (monthly variance) | W21.3 (budget check) |
 | FIN-013 | Landed Cost Calculation | M | W2b.12 (import landed cost) | W66.8 (inter-island freight allocation) |
@@ -105,18 +105,18 @@
 | Req ID | Requirement | Priority | Primary Workflows | Supporting Workflows |
 |---|---|---|---|---|
 | POS-001 | 1,000 POS Terminals | M | W5b (in-store selling), W16 (new store POS setup) | W45 (store closure decommission) |
-| POS-002 | Offline Mode | M | W5d (offline POS recovery & reconciliation) | W49 (typhoon — degraded mode) |
+| POS-002 | Offline Mode | M | W5g (offline POS recovery & reconciliation) | W49 (typhoon — degraded mode) |
 | POS-003 | Barcode Scanning | M | W5b.4 (barcode scanning at checkout) | W3.4 (receiving scan), W6.3 (cycle count scan) |
 | POS-004 | Multi-Tender | M | W5b.7 (multi-tender payment), W12a.6 (split-tender refund) | — |
 | POS-005 | Loyalty Integration | M | W5b.5 (loyalty scan), W17 (loyalty program operations) | — |
 | POS-006 | Price Override (w/ Auth) | M | W5b.4a (price override with manager authorization) | W61 (competitor price match) |
 | POS-007 | Returns & Exchanges | M | W12a (in-store returns), W12b (online returns), W12c (cross-store returns) — loyalty points reversal on all return types | — |
-| POS-008 | Cash Drawer Management | M | W5a.4 (cash float), W5c.2–5 (Z-report & cash count) | W89 (bank reconciliation), W99 (payment settlement reconciliation) |
-| POS-009 | End-of-Day Reconciliation | M | W5c (store closing & EOD) | W30.4 (deposit auto-matching), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
+| POS-008 | Cash Drawer Management | M | W5a.4 (cash float), W5f.2–5 (Z-report & cash count) | W89 (bank reconciliation), W99 (payment settlement reconciliation) |
+| POS-009 | End-of-Day Reconciliation | M | W5f (store closing & EOD) | W30.4 (deposit auto-matching), W89 (bank reconciliation), W99 (payment settlement reconciliation) |
 | POS-010 | Quantity Break Pricing | M | W5b.6 (auto quantity breaks), W40.15–19 (quantity break setup) | — |
 | POS-011 | Customer Display | S | W5b.4–7 (customer-facing display during checkout) | — |
 | POS-012 | Receipt Printing | M | W5b.8 (BIR-registered receipt) | — |
-| POS-013 | Real-Time Inventory Deduction | M | W5b.8 (inventory deduction at sale), W5d.5 (offline reconciliation) | — |
+| POS-013 | Real-Time Inventory Deduction | M | W5b.8 (inventory deduction at sale), W5g.5 (offline reconciliation) | — |
 | POS-014 | Promotional Pricing Auto-Apply | M | W13.7 (auto-apply at POS), W5b.6 (system calculates promos) | — |
 | POS-015 | Gift Card / Store Credit | S | W28 (gift card & store credit lifecycle) | W12a.6 (store credit from returns) |
 | POS-016 | Catch-Weight / Variable Measure at POS | M | W5b.2 (catch-weight selling) | W3b.3 (catch-weight receiving), W22 (catch-weight transfer) |
@@ -239,7 +239,7 @@
 
 | Req ID | Requirement | Target | Primary Workflows | Supporting Workflows |
 |---|---|---|---|---|
-| NFR-001 | POS Uptime | 99.9% | W5d (offline recovery), W55 (DR failover) | W48 (helpdesk P1 SLA) |
+| NFR-001 | POS Uptime | 99.9% | W5g (offline recovery), W55 (DR failover) | W48 (helpdesk P1 SLA) |
 | NFR-002 | Back-Office Uptime | 99.5% | W55 (IT disaster recovery) | W48 (incident management) |
 | NFR-003 | POS Transaction Speed | < 3 sec | W5b (POS selling) | — |
 | NFR-004 | Report Generation | < 30 sec | W35 (management reporting) | — |
@@ -249,7 +249,7 @@
 | NFR-008 | Scalability | 300+ stores | W16 (new store opening process), W45 (store closure) | — |
 | NFR-009 | Localization | Full PH | W9a (BIR compliance), W10 (payroll statutory), W54 (LGU permits) | — |
 | NFR-010 | Data Privacy | RA 10173 | W53 (breach response), W41 (DSAR handling), W17.2 (consent management) | — |
-| NFR-011 | Offline POS | ≥ 8 hours | W5d (offline POS recovery & reconciliation) | W49 (typhoon degraded mode) |
+| NFR-011 | Offline POS | ≥ 8 hours | W5g (offline POS recovery & reconciliation) | W49 (typhoon degraded mode) |
 | NFR-012 | Integration Capability | All touchpoints | W3–W7 (core integrations), W19 (3PL), W30 (banking) | Data Volumes §3 |
 | NFR-013 | Disaster Recovery | RPO ≤ 1h, RTO ≤ 4h | W55 (IT DR & failover) | W49 (physical disaster BC) |
 | NFR-014 | Data Migration | Legacy → ERP | Implementation Roadmap §3 (data migration plan) | — |
@@ -267,4 +267,4 @@
 
 ---
 
-*Date: 2026-05-31 (v9 — added W108 Customer Credit Collection & Escalation for FIN-005/CRM-003, W109 Store-Level Inventory Receiving & Putaway for INV-001/WMS-008, W110 Supplier Quality CAPA for PUR-003/PUR-016, W111 Store Energy & Utility Management for FIN-010, W112 Trade Counter / Pro Desk Operations for CRM-003/POS-004, W113 Business Intelligence & Data Governance for RPT-008/NFR-007, W114 Sustainability & Environmental Compliance for DOC-007/NFR-010, W115 Supplier Diversity & MSME Development for PUR-003/MDM-004; total now 115 workflows)*
+*Date: 2026-05-31 (v10 — gap analysis: added W107 Pricing Hierarchy Governance & Compliance Audit to index; fixed stale W5c→W5f and W5d→W5g cross-references across matrices; total now 116 workflows)*

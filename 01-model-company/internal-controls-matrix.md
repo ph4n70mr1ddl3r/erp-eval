@@ -54,7 +54,7 @@
 | CTL-17 | Ensure GRNI completeness | D | Weekly GRNI aging report; items > 30 days flagged for Buyer follow-up; > 60 days escalated; > 90 days reviewed for accrual | AP Supervisor / Controller | W7 GRNI aging | FIN-004 |
 | CTL-18 | Ensure IC balance agreement | D | Monthly IC reconciliation across all entity pairs; mismatches resolved before consolidation | Chief Accountant | W14.4–5 | IC-005 |
 | CTL-19 | Ensure bank reconciliation completeness | D | Daily bank statement import; Treasury auto-matches deposits; monthly full reconciliation per entity | Treasury Analyst / Controller | W30.2, W30.9, W89 | FIN-009 |
-| CTL-20 | Ensure POS cash accountability | D | Daily Z-report vs. physical cash count; variance > PHP 200 investigated and documented; electronic payment settlement auto-reconciled | Store Manager | W5c.2–4 | POS-009 |
+| CTL-20 | Ensure POS cash accountability | D | Daily Z-report vs. physical cash count; variance > PHP 200 investigated and documented; electronic payment settlement auto-reconciled | Store Manager | W5f.2–4 | POS-009 |
 | CTL-21 | Ensure inventory accuracy | D | Cycle counting with blind recounts; quarterly full coverage; adjustments require tiered approval; accuracy target ≥ 97% | Dept. Supervisor / Store Manager | W6, W42 | INV-006, INV-007 |
 | CTL-22 | Ensure correct VAT computation | D | System auto-computes VAT per transaction; VAT-exempt/zero-rated customers classified in customer master with supporting docs; monthly VAT return reconciliation | Tax Accountant | W5b.4c, W9a.16 | FIN-006 |
 

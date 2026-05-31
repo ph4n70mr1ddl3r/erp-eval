@@ -167,6 +167,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W104 | Loyalty Program Financial Governance & Periodic Review | [Marketing Campaign Workflows](WF-marketing.md) |
 | W105 | Multi-Channel Inventory Allocation & Priority Governance | [Inventory Management Workflows](WF-inventory.md) |
 | W106 | DC Outbound Dispatch & Load Planning | [Warehouse & Logistics Workflows](WF-warehouse.md) |
+| W107 | Pricing Hierarchy Governance & Compliance Audit | [Merchandising & Pricing Workflows](WF-merchandising.md) |
 | W108 | Customer Credit Collection & Escalation | [Finance & Treasury Workflows](WF-finance.md) |
 | W109 | Store-Level Inventory Receiving & Putaway | [Store Operations Workflows](WF-store-operations.md) |
 | W110 | Supplier Quality & CAPA (Corrective and Preventive Action) | [Procurement & Vendor Management Workflows](WF-procurement.md) |
@@ -178,4 +179,4 @@ Workflows are organized by functional domain for easier navigation and gap analy
 
 ---
 
-*Total: 115 workflows across 13 domains. Split from original monolithic file*
+*Total: 116 workflows across 13 domains. Split from original monolithic file*

@@ -107,36 +107,36 @@
 
 ---
 
-## W133. Sales & Operations Planning (S&OP) Cycle
+## W144. International Logistics & Import Operations
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Monthly management rhythm |
-| **Frequency** | Monthly |
-| **Volume** | Covers all 5 entities and 12 product categories |
-| **Owner** | VP for Supply Chain & Logistics |
-| **Participants** | COO, CFO, VP Merchandising, VP Store Ops, CMO |
+| **Trigger** | Import Purchase Order (W2b) approved and sent to overseas vendor |
+| **Frequency** | Weekly; ~20–30 containers/month |
+| **Volume** | Primary sourcing from China, Vietnam, Thailand, and Europe |
+| **Owner** | Import Coordinator |
+| **Participants** | Buyer, Import Coordinator, Freight Forwarder, Customs Broker, Finance, DC Receiving |
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | Sales Review: Compare actual sales (W5) vs. forecast (W31); update demand | Demand Planner | CMO | 2 days |
-| 2 | Supply Review: Assess inventory levels, lead times, and DC capacity | Supply Planner | VP Supply Chain | 2 days |
-| 3 | Financial Review: Evaluate margin (W85) and working capital vs. budget (W26) | Finance Manager | CFO | 1 day |
-| 4 | Pre-S&OP Meeting: Reconcile gaps between demand, supply, and finance | Supply/Demand | VP Supply Chain | 4 hours |
-| 5 | Executive S&OP: Approve final demand plan and supply constraints | C-Suite | CEO | 2 hours |
-| 6 | Cascade Plan: Adjust POs (W2), Replenishment (W4), and Promos (W13) | Dept Heads | — | Ongoing |
+| 1 | **Proforma Invoice (PI) Review**: Receive PI from vendor; verify against PO (W2b); check payment terms (L/C, T/T, CAD) | Buyer | Category Manager | 1 hour |
+| 2 | **L/C Opening (if applicable)**: Finance coordinates with Bank to open Letter of Credit; sends L/C to vendor bank | Finance (Treasury) | CFO | 2–3 days |
+| 3 | **Production & Booking**: Vendor confirms production completion; Import Coordinator coordinates with Freight Forwarder for vessel booking (FCL/LCL) | Import Coordinator | — | 2–5 days |
+| 4 | **Shipping Documents**: Receive set of documents: Bill of Lading (B/L), Commercial Invoice, Packing List, Certificate of Origin (for FTA benefits like ATIGA/ACFTA) | Import Coordinator | — | 1 day |
+| 5 | **In-Transit Tracking**: Update system with vessel name, container ID, and ETA; monitor "Estimated vs. Actual" arrival dates | Import Coordinator | — | Ongoing |
+| 6 | **Customs Entry**: Customs Broker files entry via BOC E2M system; calculates Duties & Taxes (VAT + Import Duty) | Customs Broker | Import Coordinator | 1–2 days |
+| 7 | **Payment of Duties**: Finance processes payment of duties/taxes to BOC via bank portal; system records as "Inventory in Transit" cost component | Finance | Controller | 4 hours |
+| 8 | **Release & Haulage**: BOC releases cargo; Forwarder coordinates haulage from Port to DC; monitor "Port Out" to avoid demurrage/detention fees | Import Coordinator | DC Manager | 1–3 days |
+| 9 | **DC Arrival & Stripping**: DC receives container; verifies seal integrity; strips container and performs "Blind Count" against Packing List | DC Receiving | DC Manager | 4 hours |
+| 10 | **Cost Finalization**: System aggregates all landed costs (Product + Freight + Duties + Brokerage + Wharfage) to calculate final Landed WAC | System / Finance | Cost Accountant | Automated |
 
----
-
-### System Touchpoints (Supply Chain Extensions)
-- Consolidated S&OP dashboard: Demand vs. Supply vs. Financials
-- Scenario modeling (What-if analysis for port delays or sales spikes)
-- Executive consensus forecast record
-- Automated alerts for S&OP plan vs. actual deviations (> 10%)
-
----
+### System Touchpoints
+- Import Shipment Tracker (Container level)
+- Landed Cost Module (aggregating multiple invoices to a single PO line)
+- Integration with BOC E2M (if via API) or manual entry of entry numbers
+- Demurrage/Detention alert system based on "Last Free Day"
 
 
 

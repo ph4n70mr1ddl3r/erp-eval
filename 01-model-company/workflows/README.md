@@ -45,21 +45,23 @@ Workflows are organized by functional domain for easier navigation and gap analy
 - **[Ecommerce Workflows](./WF-ecommerce.md)** (3 workflows) — BOPIS order fulfillment, home delivery fulfillment, and ecommerce order exception & cancellation management.
 - **[Finance & Treasury Workflows](./WF-finance.md)** (24 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, product costing & margin analysis, bank reconciliation, tax filing & statutory remittance, customer deposit management, payment settlement reconciliation, vendor statement reconciliation, customer refund & credit processing, customer credit collection, and intercompany loans/dividends.
 - **[HR & Payroll Workflows](./WF-hr.md)** (8 workflows) — Payroll, recruitment, shift scheduling, onboarding/offboarding, training, performance, expenses, and employee loans.
-- **[Supply Chain Planning Workflows](./WF-supply-chain.md)** (3 workflows) — Demand forecasting, seasonal buy planning, and S&OP cycle.
+- **[Supply Chain Planning Workflows](./WF-supply-chain.md)** (4 workflows) — Demand forecasting, seasonal buy planning, S&OP cycle, and international logistics/import operations.
 - **[Customer Experience Workflows](./WF-customer.md)** (8 workflows) — Complaint resolution, corporate/project accounts, price matching, satisfaction measurement, account reactivation, feedback-to-action loop, trade sales pipeline & territory management, and trade counter / pro desk operations.
 - **[IT Operations Workflows](./WF-it-operations.md)** (7 workflows) — Helpdesk, data privacy breach response, disaster recovery, data migration/parallel-run testing, business intelligence, IT asset management, and software change management.
 - **[Compliance & Governance Workflows](./WF-compliance.md)** (9 workflows) — Loss prevention, business continuity, LGU permits, BIR audit, government procurement, grievance/whistleblower, hazardous waste disposal, external audit coordination, and sustainability & environmental compliance reporting.
-
-- **[Marketing Campaign Workflows](./WF-marketing.md)** (4 workflows) — Campaign planning, creative production, multi-channel execution, budget tracking, performance measurement, loyalty program financial governance, crisis communication, and CSR program execution.
+- **[Marketing Campaign Workflows](./WF-marketing.md)** (6 workflows) — Campaign planning, creative production, multi-channel execution, budget tracking, performance measurement, loyalty program financial governance, crisis communication, CSR program execution, social media & influencer management, and PR & corporate communications.
 - **[Real Estate & Lease Management Workflows](./WF-property.md)** (4 workflows) — Site selection, lease administration, rent processing, and property tax management.
 - **[Internal Audit & Risk Management Workflows](./WF-audit.md)** (4 workflows) — Audit planning, execution, enterprise risk management, and fraud investigation.
 - **[Corporate Governance & Strategy Workflows](./WF-governance.md)** (5 workflows) — Board operations, legal case management, IP management, strategic planning, and project management.
+- **[Installation & Value-Added Services](./WF-services.md)** (2 workflows) — Home installation services (tiles, appliances, AC) and tool/equipment rental operations.
+- **[Health, Safety & Environment Workflows](./WF-health-safety.md)** (2 workflows) — Occupational health & safety (OHS) incident management and workplace safety inspection & audit.
+- **[Wholesale & Reseller Operations Workflows](./WF-wholesale.md)** (2 workflows) — Wholesale reseller onboarding, credit management, and bulk fulfillment/cross-docking.
 
 - **[Workflow-to-System Touchpoint Map](./workflow-system-touchpoint-map.md)** — ERP module-to-workflow cross-reference
 
 ---
 
-## Complete Workflow Index (W1–W99)
+## Complete Workflow Index (W1–W146)
 
 | ID | Workflow Name | Domain File |
 |---|---|---|
@@ -201,7 +203,19 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W135 | CSR Program Execution | [Marketing Campaign Workflows](WF-marketing.md) |
 | W136 | Indirect / Non-Merchandise Procurement | [Procurement & Vendor Management Workflows](WF-procurement.md) |
 | W137 | Intercompany Dividend & Loan Management | [Finance & Treasury Workflows](WF-finance.md) |
+| W138 | Home Installation Services Management | [Installation & Value-Added Services](WF-services.md) |
+| W139 | Tool & Equipment Rental Operations | [Installation & Value-Added Services](WF-services.md) |
+| W140 | OHS Incident Management | [Health, Safety & Environment Workflows](WF-health-safety.md) |
+| W141 | Workplace Safety Inspection & Audit | [Health, Safety & Environment Workflows](WF-health-safety.md) |
+| W142 | Social Media & Influencer Management | [Marketing Campaign Workflows](WF-marketing.md) |
+| W143 | Public Relations & Corporate Communications | [Marketing Campaign Workflows](WF-marketing.md) |
+| W144 | International Logistics & Import Operations | [Supply Chain Planning Workflows](WF-supply-chain.md) |
+| W145 | Wholesale Reseller Onboarding & Credit | [Wholesale & Reseller Operations Workflows](WF-wholesale.md) |
+| W146 | Bulk Fulfillment & Cross-Docking | [Wholesale & Reseller Operations Workflows](WF-wholesale.md) |
+| W147 | DIY Workshop & In-Store Event Management | [Installation & Value-Added Services](WF-services.md) |
+| W148 | Home Design & Consultancy Services | [Installation & Value-Added Services](WF-services.md) |
+| W149 | Bank & Credit Card Partnership Management | [Marketing Campaign Workflows](WF-marketing.md) |
 
 ---
 
-*Total: 138 workflows across 16 domains. Split from original monolithic file*
+*Total: 150 workflows across 19 domains. Expanded to include value-added services, HSE, international logistics, and B2B wholesale.*

@@ -214,11 +214,69 @@ W17 (Customer Loyalty Program Operations) covers day-to-day loyalty operations �
 
 ---
 
-### System Touchpoints (Marketing Extensions)
-- PR contact database (Media list)
-- Social media sentiment monitoring tools
-- CSR project tracking and budget monitoring in ERP
-- Internal communication portal for crisis alerts to employees
-- Integration with Sustainability reporting (W114)
+## W142. Social Media & Influencer Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Weekly content calendar; or influencer partnership agreement |
+| **Frequency** | Daily posts; monthly influencer activations |
+| **Volume** | Managing ~5–7 social channels (Facebook, TikTok, Instagram, YouTube, Viber) |
+| **Owner** | Social Media Manager |
+| **Participants** | Content Specialists, Influencers, Customer Service (for moderation), CMO |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Content Calendar**: Develop 4-week rolling calendar aligned with W83 campaigns and W13 promos | Social Media Mgr | CMO | 4 hours/month |
+| 2 | **Content Creation**: Produce short-form videos (TikTok/Reels), product feature posts, and DIY tips | Content Specialist | Social Media Mgr | Daily |
+| 3 | **Influencer Sourcing**: Identify DIY/Home-Improvement influencers; vet for audience fit and engagement rate | Social Media Mgr | CMO | 4 hours/month |
+| 4 | **Contracting**: Sign partnership agreements (W62); define deliverables (e.g., 2 videos, 3 stories) | Legal / Social Mgr | CMO | 2 hours/influencer |
+| 5 | **Campaign Execution**: Influencer posts content; system tracks referral traffic and promo code usage | Influencer / Social Mgr | — | Per campaign |
+| 6 | **Community Management**: Respond to comments/DMs; escalate complaints to W41; moderate "trolls" | CS Team / Social Mgr | — | Ongoing |
+| 7 | **Performance Review**: Monthly report on reach, engagement, sentiment, and conversion ROI | Social Media Mgr | CMO | 2 hours/month |
 
 ---
+
+## W143. Public Relations & Corporate Communications
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New store opening (W16); major company milestone; or crisis (W134) |
+| **Frequency** | Monthly press releases; ad-hoc media events |
+| **Volume** | ~12–15 press releases/year |
+| **Owner** | PR Manager |
+| **Participants** | CEO, CMO, Legal, external PR agency |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Media List Maintenance**: Manage database of reporters, editors, and industry bloggers | PR Manager | CMO | Ongoing |
+| 2 | **Press Release Drafting**: Write official statements for new store openings, CSR events, or financial results | PR Manager | CMO | 4 hours |
+| 3 | **Executive Briefing**: Prep CEO/C-suite for media interviews or press conferences | PR Manager | CMO | 2 hours |
+| 4 | **Distribution**: Send releases via wire services and direct media outreach | PR Manager | — | 1 hour |
+---
+
+## W149. Bank & Credit Card Partnership Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Seasonal promo planning; or bank-initiated partnership proposal |
+| **Frequency** | Quarterly campaigns |
+| **Volume** | Covers top 3–5 credit card issuers in the Philippines |
+| **Owner** | Partnerships Manager |
+| **Participants** | Marketing, Finance, Bank Partner, POS/IT |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Negotiation**: Define promo mechanics (e.g., 0% interest for 12 months, 5% rebate, or points multiplier) | Partnerships Mgr | CMO | 1–2 weeks |
+| 2 | **Financial Modeling**: Calculate cost-sharing (Bank vs. BuildRight) and impact on margin | Finance Mgr | CFO | 1 day |
+| 3 | **POS Configuration**: Setup Bank BIN (Bank Identification Number) ranges and promo codes in POS | IT / POS Team | Partnerships Mgr | 2 days |
+| 4 | **Communication**: Brief store staff on offer details and settlement process (e.g., specific card terminals) | Marketing | Store Mgr | 1 day |
+| 5 | **Execution**: Customer uses partner card at POS; system auto-applies benefit (rebate/points) | Cashier / System | — | Continuous |
+| 6 | **Settlement**: Reconcile partner bank statements vs. POS records; invoice bank for their cost share | Finance (AR) | Controller | Monthly |
+| 7 | **ROI Review**: Measure incremental sales and new customer acquisition from the partnership | Partnerships Mgr | CMO | 2 hours/campaign |
+

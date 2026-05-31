@@ -79,7 +79,12 @@ Summary of which ERP modules support which workflows:
 | **Marketing Extensions** | W134 (crisis comms), W135 (CSR execution) |
 | **Procurement Extensions** | W136 (indirect procurement requisition/bidding) |
 | **Finance Extensions** | W137 (intercompany dividend/loan) |
+| **Services / Rental** | W138 (installation services), W139 (tool rental) |
+| **HSE / Safety** | W140 (OHS incident mgmt), W141 (workplace safety inspection) |
+| **Logistics / Import** | W144 (international logistics & import ops) |
+| **Wholesale / B2B** | W145 (wholesale reseller onboarding), W146 (bulk fulfillment for wholesale) |
+| **Marketing / PR** | W142 (social media & influencer mgmt), W143 (PR & corporate communications) |
 
 ---
 
-*Document Version: 23.0 | Date: 2026-05-31 | Wave 21: Added W116–W137 across 16 domains. Total 138 workflows.*
+*Document Version: 24.0 | Date: 2026-05-31 | Wave 22: Added W138–W146 (Services, HSE, Import, Wholesale, Social Media). Total 147 workflows.*

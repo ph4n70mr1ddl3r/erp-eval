@@ -18,6 +18,7 @@
 - [W88. Return to Vendor (RTV) Processing](#return-to-vendor-rtv-processing)
 - [W110. Supplier Quality & CAPA (Corrective and Preventive Action)](#supplier-quality-capa-corrective-and-preventive-action)
 - [W115. Supplier Diversity & MSME Development Program](#supplier-diversity-msme-development-program)
+- [W136. Indirect / Non-Merchandise Procurement](#indirect-non-merchandise-procurement)
 
 ---
 
@@ -641,8 +642,39 @@ The Philippine government actively promotes MSME development through the Magna C
 - Integration with W36 (vendor onboarding — MSME classification at onboarding), W44 (vendor scorecard — MSME vs. non-MSME performance comparison), W62 (vendor contracts — MSME-specific payment terms), W78 (government procurement — MSME participation reporting), W26 (annual budget — MSME spend target)
 
 ### Staffing Implication
-- **Buyers**: MSME identification adds ~2 hours/week total across all buyers (~10 min/buyer/week). Absorbed.
-- **VP Merchandising**: 4 hours/year for target setting + 2 hours/year for annual review. Absorbed.
+- **Buyers**: MSME identification adds ~2 hours/week total across all buyers.
 - **No incremental headcount.**
+
+---
+
+## W136. Indirect / Non-Merchandise Procurement
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Requisition for supplies, services, or equipment not for resale |
+| **Frequency** | Ongoing |
+| **Volume** | ~300–400 indirect POs/month (supplies, fixtures, marketing materials) |
+| **Owner** | Indirect Procurement Manager |
+| **Participants** | Requesting Dept, Buyer, Vendor, Finance (AP) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Requisition: Dept user creates purchase request (PR) in ERP | Requestor | Dept Head | 15 min |
+| 2 | Sourcing / Bidding: Buyer obtains 3 quotes for non-contract items | Buyer | Procurement Mgr | 3–5 days |
+| 3 | Vendor Selection: Evaluate quotes based on TCO (Total Cost of Ownership) | Buyer | Procurement Mgr | 1 day |
+| 4 | PO Creation: Convert approved PR to PO and transmit to vendor | Buyer | Procurement Mgr | 15 min |
+| 5 | Receipt & Verification: Requestor confirms receipt of goods or service completion | Requestor | Dept Head | 30 min |
+| 6 | Invoice Processing: Finance matches Invoice to PO and Receipt (3-way match) | AP Specialist | AP Supervisor | 15 min |
+
+---
+
+### System Touchpoints (Procurement Extensions)
+- Requisition portal for all employees
+- Automated "3-quote" enforcement for indirect spend > threshold
+- Service Entry Sheet (SES) for non-physical services (consulting, cleaning)
+- Integration with Fixed Assets for equipment procurement (W21/W39)
+- Budget check (Commitment accounting) at Requisition stage
 
 ---

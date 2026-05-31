@@ -13,6 +13,8 @@
 - [W55. IT Disaster Recovery & System Failover](#it-disaster-recovery-system-failover)
 - [W73. Data Migration Validation & Parallel-Run Testing](#data-migration-validation-parallel-run-testing)
 - [W113. Business Intelligence & Data Governance](#business-intelligence-data-governance)
+- [W131. IT Asset Lifecycle Management](#it-asset-lifecycle-management)
+- [W132. Software Development & Change Management](#software-development-change-management)
 
 ---
 
@@ -283,5 +285,60 @@ RPT-001 through RPT-010 define reporting requirements — executive dashboards, 
 - **1 BI Manager** (within IT team of ~28): manages BI platform, governance, and team. This role is implied by RPT requirements but not formalized.
 - **2–3 Data Analysts** (within IT team): develop reports, manage data quality, maintain data dictionary. At ~50–100 requests/month × 4–8 hours each for new reports, plus ongoing maintenance = ~2–3 full-time equivalents. Redeployed from existing IT team or new hires within planned IT headcount.
 - **No incremental headcount beyond planned IT team.**
+
+---
+
+## W131. IT Asset Lifecycle Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | New hire (W15), hardware failure, or refresh cycle (every 3–4 years) |
+| **Frequency** | Ongoing |
+| **Volume** | Managing ~1,500 laptops/desktops, ~1,000 POS terminals, servers, and networking gear |
+| **Owner** | IT Asset Manager |
+| **Participants** | IT Helpdesk, Procurement (W2), Finance (Fixed Assets W39) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Sourcing: Procurement of IT hardware based on standard specs | IT Asset Mgr | CIO | 2 weeks |
+| 2 | Tagging & Registration: Assign Asset Tag and record in ITAM database and ERP Fixed Assets | IT Helpdesk | IT Asset Mgr | 30 min/unit |
+| 3 | Provisioning: Install OS, security software, and user-specific apps | IT Helpdesk | IT Asset Mgr | 2 hours/unit |
+| 4 | Assignment: Handover to employee and sign acknowledgment form | IT Helpdesk | Employee | 15 min |
+| 5 | Maintenance: Periodic updates and physical health checks | IT Helpdesk | IT Asset Mgr | Ongoing |
+| 6 | Retirement: Data wipe, asset decommissioning, and disposal (W39) | IT Helpdesk | IT Asset Mgr | 1 hour/unit |
+
+---
+
+## W132. Software Development & Change Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Business request for new feature, bug fix, or system update |
+| **Frequency** | Weekly release cycle |
+| **Volume** | ~5–10 changes per week |
+| **Owner** | Application Manager |
+| **Participants** | Developers, QA Team, Business Users (UAT), Change Advisory Board (CAB) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Requirement Analysis: Document functional and technical specs | Business Analyst | App Manager | 3–5 days |
+| 2 | Development: Code changes in sandbox/dev environment | Developer | App Manager | 1–2 weeks |
+| 3 | Unit & Integration Testing: Verify code in QA environment | QA Team | App Manager | 2–3 days |
+| 4 | User Acceptance Testing (UAT): Business users sign off on change | Dept Users | Dept Head | 2–5 days |
+| 5 | CAB Review: Evaluate risk and impact of the change | CAB | CIO | 1 hour |
+| 6 | Deployment: Release to Production environment during maintenance window | DevOps / IT Ops | App Manager | 2 hours |
+
+---
+
+### System Touchpoints (IT Extensions)
+- IT Asset Management (ITAM) database integrated with ERP Fixed Assets
+- Change Management / Jira tracking for software lifecycle
+- Automated deployment / CI/CD pipeline logs
+- Acknowledgment form digital signature capture
+- Hardware refresh schedule alerts
 
 ---

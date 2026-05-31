@@ -37,20 +37,23 @@ Each workflow follows this format:
 
 Workflows are organized by functional domain for easier navigation and gap analysis:
 
-- **[Merchandising & Pricing Workflows](./WF-merchandising.md)** (12 workflows) — Assortment planning, promotions, pricing, product lifecycle, PIM, vendor rebate management, markdown & clearance pricing, sample & demo inventory management, category performance review & P&L ownership, and pricing hierarchy governance & compliance audit.
-- **[Procurement & Vendor Management Workflows](./WF-procurement.md)** (10 workflows) — Purchase orders, vendor onboarding, VMI, special orders, vendor performance, contracts, return to vendor processing, supplier quality CAPA, and supplier diversity & MSME development.
+- **[Merchandising & Pricing Workflows](./WF-merchandising.md)** (14 workflows) — Assortment planning, promotions, pricing, product lifecycle, PIM, vendor rebate management, markdown & clearance pricing, sample & demo inventory management, category performance review & P&L ownership, pricing hierarchy governance, private label development, and competitor intelligence.
+- **[Procurement & Vendor Management Workflows](./WF-procurement.md)** (11 workflows) — Purchase orders, vendor onboarding, VMI, special orders, vendor performance, contracts, return to vendor processing, supplier quality CAPA, supplier diversity, and indirect procurement.
 - **[Warehouse & Logistics Workflows](./WF-warehouse.md)** (5 workflows) — Receiving, putaway, kit assembly, fleet management, inter-island logistics, and DC outbound dispatch & load planning.
 - **[Inventory Management Workflows](./WF-inventory.md)** (10 workflows) — Replenishment, cycle counting, transfers, consignment, physical inventory, backorders, promo stock allocation, damaged goods disposition, inventory adjustment authorization, and multi-channel inventory allocation governance.
 - **[Store Operations Workflows](./WF-store-operations.md)** (19 workflows) — Daily store selling, POS, returns, loyalty, DSD receiving, gift cards, new store opening/closure, warranty, facility maintenance, performance review, planogram compliance, store renovation projects, store-level inventory receiving & putaway, and store energy & utility consumption management.
 - **[Ecommerce Workflows](./WF-ecommerce.md)** (3 workflows) — BOPIS order fulfillment, home delivery fulfillment, and ecommerce order exception & cancellation management.
-- **[Finance & Treasury Workflows](./WF-finance.md)** (23 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, product costing & margin analysis, bank reconciliation, tax filing & statutory remittance, customer deposit management, payment settlement reconciliation, vendor statement reconciliation, customer refund & credit processing, and customer credit collection & escalation.
+- **[Finance & Treasury Workflows](./WF-finance.md)** (24 workflows) — AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, product costing & margin analysis, bank reconciliation, tax filing & statutory remittance, customer deposit management, payment settlement reconciliation, vendor statement reconciliation, customer refund & credit processing, customer credit collection, and intercompany loans/dividends.
 - **[HR & Payroll Workflows](./WF-hr.md)** (8 workflows) — Payroll, recruitment, shift scheduling, onboarding/offboarding, training, performance, expenses, and employee loans.
-- **[Supply Chain Planning Workflows](./WF-supply-chain.md)** (2 workflows) — Demand forecasting and seasonal buy planning.
+- **[Supply Chain Planning Workflows](./WF-supply-chain.md)** (3 workflows) — Demand forecasting, seasonal buy planning, and S&OP cycle.
 - **[Customer Experience Workflows](./WF-customer.md)** (8 workflows) — Complaint resolution, corporate/project accounts, price matching, satisfaction measurement, account reactivation, feedback-to-action loop, trade sales pipeline & territory management, and trade counter / pro desk operations.
-- **[IT Operations Workflows](./WF-it-operations.md)** (5 workflows) — Helpdesk, data privacy breach response, disaster recovery, data migration/parallel-run testing, and business intelligence & data governance.
+- **[IT Operations Workflows](./WF-it-operations.md)** (7 workflows) — Helpdesk, data privacy breach response, disaster recovery, data migration/parallel-run testing, business intelligence, IT asset management, and software change management.
 - **[Compliance & Governance Workflows](./WF-compliance.md)** (9 workflows) — Loss prevention, business continuity, LGU permits, BIR audit, government procurement, grievance/whistleblower, hazardous waste disposal, external audit coordination, and sustainability & environmental compliance reporting.
 
-- **[Marketing Campaign Workflows](./WF-marketing.md)** (2 workflows) — Campaign planning, creative production, multi-channel execution, budget tracking, performance measurement, and loyalty program financial governance & periodic review.
+- **[Marketing Campaign Workflows](./WF-marketing.md)** (4 workflows) — Campaign planning, creative production, multi-channel execution, budget tracking, performance measurement, loyalty program financial governance, crisis communication, and CSR program execution.
+- **[Real Estate & Lease Management Workflows](./WF-property.md)** (4 workflows) — Site selection, lease administration, rent processing, and property tax management.
+- **[Internal Audit & Risk Management Workflows](./WF-audit.md)** (4 workflows) — Audit planning, execution, enterprise risk management, and fraud investigation.
+- **[Corporate Governance & Strategy Workflows](./WF-governance.md)** (5 workflows) — Board operations, legal case management, IP management, strategic planning, and project management.
 
 - **[Workflow-to-System Touchpoint Map](./workflow-system-touchpoint-map.md)** — ERP module-to-workflow cross-reference
 
@@ -176,7 +179,29 @@ Workflows are organized by functional domain for easier navigation and gap analy
 | W113 | Business Intelligence & Data Governance | [IT Operations Workflows](WF-it-operations.md) |
 | W114 | Sustainability & Environmental Compliance Reporting | [Compliance & Governance Workflows](WF-compliance.md) |
 | W115 | Supplier Diversity & MSME Development Program | [Procurement & Vendor Management Workflows](WF-procurement.md) |
+| W116 | Site Selection & Feasibility Analysis | [Real Estate & Lease Management Workflows](WF-property.md) |
+| W117 | Lease Administration & Renewal | [Real Estate & Lease Management Workflows](WF-property.md) |
+| W118 | Rent & CAM Payment Processing | [Real Estate & Lease Management Workflows](WF-property.md) |
+| W119 | Real Property Tax (Amillaramento) Management | [Real Estate & Lease Management Workflows](WF-property.md) |
+| W120 | Internal Audit Planning & Risk Assessment | [Internal Audit & Risk Management Workflows](WF-audit.md) |
+| W121 | Operational Audit Execution (Store/DC/HQ) | [Internal Audit & Risk Management Workflows](WF-audit.md) |
+| W122 | Enterprise Risk Management (ERM) Review | [Internal Audit & Risk Management Workflows](WF-audit.md) |
+| W123 | Fraud Investigation | [Internal Audit & Risk Management Workflows](WF-audit.md) |
+| W124 | Corporate Secretarial & Entity Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W125 | Legal Case & Litigation Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W126 | Intellectual Property (IP) Portfolio Management | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W127 | Annual Strategic Planning & OKR Setting | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W128 | Enterprise Project Management (EPM) Lifecycle | [Corporate Governance & Strategy Workflows](WF-governance.md) |
+| W129 | Private Label / In-house Brand Development | [Merchandising & Pricing Workflows](WF-merchandising.md) |
+| W130 | Competitor Price Intelligence Gathering | [Merchandising & Pricing Workflows](WF-merchandising.md) |
+| W131 | IT Asset Lifecycle Management | [IT Operations Workflows](WF-it-operations.md) |
+| W132 | Software Development & Change Management | [IT Operations Workflows](WF-it-operations.md) |
+| W133 | Sales & Operations Planning (S&OP) Cycle | [Supply Chain Planning Workflows](WF-supply-chain.md) |
+| W134 | Crisis Communication & Brand Reputation Management | [Marketing Campaign Workflows](WF-marketing.md) |
+| W135 | CSR Program Execution | [Marketing Campaign Workflows](WF-marketing.md) |
+| W136 | Indirect / Non-Merchandise Procurement | [Procurement & Vendor Management Workflows](WF-procurement.md) |
+| W137 | Intercompany Dividend & Loan Management | [Finance & Treasury Workflows](WF-finance.md) |
 
 ---
 
-*Total: 116 workflows across 13 domains. Split from original monolithic file*
+*Total: 138 workflows across 16 domains. Split from original monolithic file*

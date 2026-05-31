@@ -10,6 +10,7 @@
 
 - [W31. Demand Forecasting Cycle](#demand-forecasting-cycle)
 - [W32. Seasonal Buy Planning](#seasonal-buy-planning)
+- [W133. Sales & Operations Planning (S&OP) Cycle](#sales-operations-planning-sop-cycle)
 
 ---
 
@@ -103,6 +104,37 @@
 - **Category Managers**: Seasonal planning is an extension of their existing W1 duties. Each seasonal cycle adds ~8–10 hours of work per category, spread over several weeks. With 5 Category Managers and 4 seasonal cycles, each handles ~1 major seasonal plan at a time. Absorbed within existing ~40-person Merchandising team.
 - **Buyers**: Import PO creation follows standard W2b. Seasonal volume adds ~20–30 import POs per season, concentrated in a few weeks. Manageable within existing team.
 - **Demand Planner**: Adds ~4 hours per seasonal cycle for forecast generation. With 4 cycles/year = 16 hours/year. Minimal impact.
+
+---
+
+## W133. Sales & Operations Planning (S&OP) Cycle
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Monthly management rhythm |
+| **Frequency** | Monthly |
+| **Volume** | Covers all 5 entities and 12 product categories |
+| **Owner** | VP for Supply Chain & Logistics |
+| **Participants** | COO, CFO, VP Merchandising, VP Store Ops, CMO |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Sales Review: Compare actual sales (W5) vs. forecast (W31); update demand | Demand Planner | CMO | 2 days |
+| 2 | Supply Review: Assess inventory levels, lead times, and DC capacity | Supply Planner | VP Supply Chain | 2 days |
+| 3 | Financial Review: Evaluate margin (W85) and working capital vs. budget (W26) | Finance Manager | CFO | 1 day |
+| 4 | Pre-S&OP Meeting: Reconcile gaps between demand, supply, and finance | Supply/Demand | VP Supply Chain | 4 hours |
+| 5 | Executive S&OP: Approve final demand plan and supply constraints | C-Suite | CEO | 2 hours |
+| 6 | Cascade Plan: Adjust POs (W2), Replenishment (W4), and Promos (W13) | Dept Heads | — | Ongoing |
+
+---
+
+### System Touchpoints (Supply Chain Extensions)
+- Consolidated S&OP dashboard: Demand vs. Supply vs. Financials
+- Scenario modeling (What-if analysis for port delays or sales spikes)
+- Executive consensus forecast record
+- Automated alerts for S&OP plan vs. actual deviations (> 10%)
 
 ---
 

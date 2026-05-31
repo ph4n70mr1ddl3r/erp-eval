@@ -20,6 +20,8 @@
 - [W97. Sample & Demo Inventory Management](#sample-demo-inventory-management)
 - [W102. Category Performance Review & P&L Ownership](#category-performance-review-pl-ownership)
 - [W107. Pricing Hierarchy Governance & Compliance Audit](#pricing-hierarchy-governance-compliance-audit)
+- [W129. Private Label / In-house Brand Development](#private-label-in-house-brand-development)
+- [W130. Competitor Price Intelligence Gathering](#competitor-price-intelligence-gathering)
 
 ---
 
@@ -641,5 +643,60 @@ BuildRight operates 5+ concurrent pricing mechanisms: regular SRP (W40), promoti
 - **Pricing Analysts**: adds ~3 hours/week for conflict log and override review + ~6 hours/quarter for shelf tag alignment and pricing rule review + ~1 hour/month for change audit = ~20 hours/month. With 3 Pricing Analysts, this is ~7 hours each/month. Absorbed.
 - **Internal Audit**: 40 hours/year for annual comprehensive pricing audit. Absorbed within annual audit plan.
 - **No incremental headcount.**
+
+---
+
+## W129. Private Label / In-house Brand Development
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Category strategy (white space identification) or high-volume item with margin expansion potential |
+| **Frequency** | Periodic; 10–20 new products per year |
+| **Volume** | Managing ~5–10 in-house brands |
+| **Owner** | Private Label Manager |
+| **Participants** | Category Manager, Quality Assurance (QA), Legal (IP), Sourcing |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Concept Design: Identify high-turn items for private label substitution/complement | Private Label Mgr | VP Merch | 1 week |
+| 2 | Sourcing: Identify and vet manufacturers (domestic or international) | Sourcing Spec | VP Merch | 2–4 weeks |
+| 3 | Product Specs & Sampling: Define quality benchmarks and review prototypes | QA Specialist | Private Label Mgr | 1–3 months |
+| 4 | Brand & Packaging: Design logo/packaging and file IP (W126) | Marketing / Legal | CMO | 2 weeks |
+| 5 | Initial Order & Quality Inspection: Place first PO (W2) and conduct AQL testing | Sourcing Spec | QA Specialist | 2 months |
+| 6 | Launch: Set price (W40), create PIM record (W50), and allocate to stores (W57) | Private Label Mgr | Category Mgr | 1 week |
+
+---
+
+## W130. Competitor Price Intelligence Gathering
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Weekly pricing review cycle |
+| **Frequency** | Weekly |
+| **Volume** | ~500–1,000 "KVIs" (Known Value Items) tracked per competitor |
+| **Owner** | Pricing Analyst |
+| **Participants** | Store Staff (manual checks), Web Scraping Tools (digital) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Define KVI List: Top 1,000 SKUs that drive price perception | Pricing Analyst | Category Mgr | Quarterly |
+| 2 | Manual Price Check: Store associates visit local competitors to record prices | Store Assoc | Store Manager | 4 hours/week |
+| 3 | Digital Price Check: Automated scraping of competitor ecommerce sites | Pricing Analyst | System | Daily |
+| 4 | Data Consolidation: Upload manual and digital prices into ERP/Pricing Tool | Pricing Analyst | Pricing Analyst | 1 day/week |
+| 5 | Gap Analysis: Identify items where BuildRight is > 5% above market | Pricing Analyst | Category Mgr | 2 hours/week |
+| 6 | Price Adjustment: Propose markdowns/updates per W40 or W61 | Pricing Analyst | Category Mgr | 1 hour/week |
+
+---
+
+### System Touchpoints (Merchandising Extensions)
+- Private label status flag in Item Master
+- Competitor price entry portal (mobile-ready for store associates)
+- Pricing gap analysis dashboard with "Actionable" alerts
+- Integration with IP management for brand protection (W126)
+- Quality Assurance test result logging for private label samples
 
 ---

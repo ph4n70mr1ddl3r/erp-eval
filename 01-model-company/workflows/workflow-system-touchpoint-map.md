@@ -70,7 +70,16 @@ Summary of which ERP modules support which workflows:
 | **BI & Data Governance** | W113 (business intelligence & data governance — ad-hoc report request intake with SLA, report development standards, automated daily data quality checks, dashboard lifecycle management with usage analytics, data dictionary maintenance, monthly BI governance meeting, access control management, annual BI roadmap) |
 | **Sustainability Reporting** | W114 (sustainability & environmental compliance reporting — monthly environmental data aggregation, quarterly metrics review with waste diversion/energy/water/carbon intensity targets, environmental compliance calendar, annual sustainability report compilation, environmental incident response, vendor environmental compliance evaluation) |
 | **Supplier Diversity** | W115 (supplier diversity & MSME development — MSME vendor classification in vendor master, annual diversity target setting, MSME vendor identification via trade shows/DTI referrals, modified MSME evaluation criteria, onboarding support, quarterly progress tracking, annual program review, government reporting) |
+| **Real Estate & Lease** | W116 (site selection), W117 (lease admin, expiry alerts), W118 (rent/CAM payment), W119 (property tax) |
+| **Internal Audit** | W120 (audit planning), W121 (operational audit), W122 (ERM review), W123 (fraud investigation) |
+| **Corporate Governance** | W124 (board/SEC filings), W125 (litigation management), W126 (IP management), W127 (strategic planning), W128 (project management) |
+| **Merchandising Extensions** | W129 (private label), W130 (competitor price tracking) |
+| **IT Extensions** | W131 (IT asset lifecycle), W132 (change management) |
+| **Supply Chain Extensions** | W133 (S&OP cycle) |
+| **Marketing Extensions** | W134 (crisis comms), W135 (CSR execution) |
+| **Procurement Extensions** | W136 (indirect procurement requisition/bidding) |
+| **Finance Extensions** | W137 (intercompany dividend/loan) |
 
 ---
 
-*Document Version: 22.1 | Date: 2026-05-31 | Wave 20: GAP-46 through GAP-53 (W108–W115). Gap analysis: added W107 to index; fixed stale W5c→W5f and W5d→W5g cross-references across matrices; root README tree updated with complete workflow index. 116 total workflows.*
+*Document Version: 23.0 | Date: 2026-05-31 | Wave 21: Added W116–W137 across 16 domains. Total 138 workflows.*

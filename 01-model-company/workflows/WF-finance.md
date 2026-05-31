@@ -31,6 +31,7 @@
 - [W100. Vendor Statement Reconciliation](#vendor-statement-reconciliation)
 - [W101. Customer Refund & Credit Processing](#customer-refund-credit-processing)
 - [W108. Customer Credit Collection & Escalation](#customer-credit-collection-escalation)
+- [W137. Intercompany Dividend & Loan Management](#intercompany-dividend-loan-management)
 
 ---
 
@@ -1429,5 +1430,36 @@ W8 covers AR processing — invoice generation, credit limit enforcement, and cr
 - **2–3 AR Collectors** (within existing ~35-person Finance team): ~5,200 active accounts with ~30–40% overdue at any time = ~1,500–2,000 accounts requiring active collection management. At ~15 min average per account per month = ~375–500 hours/month. With 2–3 collectors that's ~150–250 hours each/month = ~8–15 hours/day. This is a full-time role for 2–3 staff. Current AR team can absorb with dedicated collectors.
 - **AR Supervisor**: adds ~1 hour/week for team meeting + ~2 hours/month for performance reporting + escalation handling. Absorbed within existing AR Supervisor role.
 - **No incremental headcount.**
+
+---
+
+## W137. Intercompany Dividend & Loan Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Cash flow optimization or profit distribution request |
+| **Frequency** | Quarterly or Annual |
+| **Volume** | ~10–20 intercompany loan/dividend movements per year |
+| **Owner** | Treasury Manager |
+| **Participants** | CFO, CEO, Legal (W124), Tax Manager |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Cash Surplus Identification: Determine excess cash in subsidiary entities | Treasury Mgr | CFO | 2 days |
+| 2 | Loan/Dividend Structuring: Determine optimal transfer method (Loan vs. Dividend) | Tax Manager | CFO | 3 days |
+| 3 | Documentation: Draft loan agreement or board resolution (W124) | Legal Counsel | Corp Secretary | 3 days |
+| 4 | Execution: Process fund transfer and record in ERP (W14) | Treasury Analyst | Treasury Mgr | 1 day |
+| 5 | Monitoring: Track interest accruals (for loans) and withholding tax (for dividends) | GL Accountant | Tax Manager | Monthly |
+| 6 | Elimination: Ensure intercompany loans/dividends are eliminated in consolidation (W9) | Consolidation Mgr | CFO | Monthly |
+
+---
+
+### System Touchpoints (Finance Extensions)
+- Intercompany loan sub-ledger with auto-interest calculation
+- Withholding tax tracking for intercompany dividends (BIR Form 1601-E)
+- Automated IC elimination rules in Consolidation module
+- Treasury dashboard showing liquidity across all 5 legal entities
 
 ---

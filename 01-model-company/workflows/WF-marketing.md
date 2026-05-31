@@ -10,6 +10,8 @@
 
 - [W83. Marketing Campaign Planning, Execution & Performance Measurement](#marketing-campaign-planning-execution-performance-measurement)
 - [W104. Loyalty Program Financial Governance & Periodic Review](#loyalty-program-financial-governance-periodic-review)
+- [W134. Crisis Communication & Brand Reputation Management](#crisis-communication-brand-reputation-management)
+- [W135. CSR Program Execution](#csr-program-execution)
 
 ---
 
@@ -162,5 +164,61 @@ W17 (Customer Loyalty Program Operations) covers day-to-day loyalty operations �
 - **Loyalty Manager**: adds ~2 hours/quarter for engagement analysis + ~8 hours/year for annual review = ~16 hours/year. Absorbed.
 - **CMO / CFO**: 1 hour/quarter joint review + 2 hours/year annual review = ~6 hours/year. Absorbed.
 - **No incremental headcount.**
+
+---
+
+## W134. Crisis Communication & Brand Reputation Management
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Brand crisis (e.g., major safety issue, viral complaint, legal scandal) |
+| **Frequency** | Ad-hoc |
+| **Volume** | ~1–2 major crises managed per year |
+| **Owner** | CMO / Public Relations (PR) Manager |
+| **Participants** | CEO, Legal (W125), HR, Store Ops (if applicable) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Alert & Verification: Identify and verify the scale of the crisis | PR Manager | CMO | 1 hour |
+| 2 | Crisis Team Activation: Convene CEO, Legal, CMO, and relevant Dept Head | CMO | CEO | 2 hours |
+| 3 | Fact Finding: Gather details and internal reports on the incident | Dept Head | CEO | 4 hours |
+| 4 | Messaging: Develop official statement and FAQ for press/social media | PR Manager | CEO | 4 hours |
+| 5 | Channel Execution: Release statement via PR wires, website, and social media | PR Manager | CMO | 1 hour |
+| 6 | Monitoring: Track sentiment and response; adjust messaging as needed | PR Manager | CMO | 1–3 days |
+| 7 | Post-Crisis Review: Document impact and update crisis protocol | PR Manager | CMO | 1 day |
+
+---
+
+## W135. CSR Program Execution
+
+| Field | Detail |
+|---|---|
+| **Trigger** | Annual CSR calendar or emergency request (e.g., typhoon relief) |
+| **Frequency** | Periodic; ~4–6 major projects/year |
+| **Volume** | Budget PHP 10M–20M annually |
+| **Owner** | CSR Coordinator (within Marketing) |
+| **Participants** | Marketing, Finance, Store Managers (local execution) |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | Project Selection: Identify beneficiary communities or NGOs | CSR Coord | CMO | 2 weeks |
+| 2 | Budget Approval: Finalize project scope and fund allocation (W21) | CSR Coord | CEO | 1 week |
+| 3 | Procurement: Source materials (lumber, tools, supplies) at cost from stores | Buyer | CSR Coord | 1 week |
+| 4 | Implementation: Execute event (e.g., building a community center, relief distribution) | Store Staff | CSR Coord | 1–3 days |
+| 5 | Documentation: Capture photos/videos and prepare impact report | PR Manager | CMO | 3 days |
+| 6 | Publicity: Share CSR stories on social media and annual report (W114) | PR Manager | CMO | 1 week |
+
+---
+
+### System Touchpoints (Marketing Extensions)
+- PR contact database (Media list)
+- Social media sentiment monitoring tools
+- CSR project tracking and budget monitoring in ERP
+- Internal communication portal for crisis alerts to employees
+- Integration with Sustainability reporting (W114)
 
 ---

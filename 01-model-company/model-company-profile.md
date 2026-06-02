@@ -741,4 +741,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.9 | Date: 2026-05-30 | Reconciled DC headcount (~150/DC, ~750 total), HQ headcount (~310 baseline, ~320 with compliance roles), total ~8,060–8,070; clarified AP invoice volume breakdown*
+*Document Version: 2.10 | Date: 2026-06-02 | Reconciled DC headcount (~150/DC, ~750 total), HQ headcount (~310 baseline, ~320 with compliance roles), total ~8,060–8,070; clarified AP invoice volume breakdown*

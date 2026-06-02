@@ -35,6 +35,10 @@ In addition to per-requirement priority weights, each requirement category has a
 | Document Management | DOC | 0.9 | BIR compliance requires this |
 | Master Data Management | MDM | 1.0 | Foundational for data quality |
 | Non-Functional Requirements | NFR | 1.3 | Performance, uptime, scalability are deal-breakers |
+| Installation & Value-Added Services | SRV | 0.9 | Differentiation opportunity but secondary to core retail |
+| Wholesale & Reseller Operations | WSL | 0.9 | Growing channel; similar processes to retail |
+| Merchandising Execution | MER | 1.0 | Promotional and seasonal execution drives revenue |
+| Corporate Governance, Legal & Strategy | GOV | 0.8 | Operational governance; important for compliance but not revenue-critical |
 
 ### Scoring Formula
 
@@ -143,4 +147,4 @@ Each ERP subfolder should include a `*-scorecard.md` file using this template:
 
 ---
 
-*Document Version: 1.0 | Date: 2026-05-30*
+*Document Version: 1.1 | Date: 2026-06-02 | Added GOV, SRV, WSL, MER category weights to align with 18-category requirement structure*

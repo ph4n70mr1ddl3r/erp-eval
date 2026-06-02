@@ -58,7 +58,7 @@ The ERP must handle these non-negotiables:
 
 ## Evaluation Methodology
 
-- **~200 requirements** scored across 14 categories with weighted priorities
+- **261 requirements** scored across 18 categories with weighted priorities
 - **5 evaluation dimensions**: Functional Fit (40%), TCO (20%), Implementation Risk (15%), Scalability (15%), Local Support (10%)
 - **Phased rollout plan**: 26 months, pilot 5 stores → 7 waves nationwide
 
@@ -103,4 +103,4 @@ erpplans/
 
 ---
 
-*Date: 2026-05-30*
+*Date: 2026-06-02*

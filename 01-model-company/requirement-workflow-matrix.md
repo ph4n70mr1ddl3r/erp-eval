@@ -355,7 +355,6 @@
 | GOV-027 | 3PL & Delivery Partner Management | S | W62B (3PL/delivery partner onboarding & offboarding), W242 (3PL & logistics partner performance review) | W19 (home delivery — 3PL execution), W66 (inter-island logistics — 3PL partner) |
 | GOV-028 | Sample & Demo Inventory Management | S | W97 (sample & demo inventory management — separate tracking, issuance, disposition) | W1 (assortment — sample allocation), W46 (kit assembly — sample kit) |
 | GOV-029 | Markdown & Clearance Pricing Management | S | W93 (markdown & clearance pricing execution — trigger rules, approval, budget tracking, performance) | W13 (promotions — clearance promo), W220 (SLOB — markdown trigger) |
-| GOV-030 | ESG & Sustainability Reporting | S | W192 (GHG emissions tracking), W193 (waste management & circular economy), W194 (social impact & CSR), W195 (sustainable sourcing & ethical vendor audit), W167 (store & DC recycling program) | W114 (sustainability compliance reporting), W82 (hazardous waste — environmental data) |
 
 ## R18. New Workflows — Additional Requirements
 
@@ -373,10 +372,10 @@
 
 ## Coverage Validation
 
-- **Total requirements**: 237+ across 31 categories (R1–R18)
+- **Total requirements**: 261 across 18 categories (R1–R18)
 - **Requirements with primary workflow mapping**: All ✅
 - **Total workflows referenced**: 290 (all workflows in the README index)
 
 ---
 
-*Date: 2026-06-02 (v22 — added 7 new workflows W259–W265: Call Center Operations, BIR eFPS Filing, E-Wallet Settlement Reconciliation, Store Promotional Setup, Loyalty Enrollment, Seasonal Transition, POS Hardware Maintenance; added 7 new requirements (CRM-015–016, FIN-031–032, MER-001–002, NFR-028); standardized sub-workflow casing to uppercase; all 290 workflows now have full requirement traceability)*
+*Date: 2026-06-02 (v23 — removed duplicate GOV-030 (identical to GOV-008); corrected coverage count from 237+ to 261; corrected category count from 31 to 18; all 290 workflows retain full requirement traceability)*

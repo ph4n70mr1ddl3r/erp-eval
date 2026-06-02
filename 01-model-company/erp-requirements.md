@@ -239,7 +239,7 @@
 | NFR-015 | Batch Processing Windows | Month-end close, payroll runs, and bulk report generation must complete within defined off-peak windows (see [Data Volumes §5](data-volumes-and-integrations.md#5-batch-processing-windows)) |
 | NFR-016 | Data Privacy Breach Response | Must Have | Automated breach register, NPC notification workflow, forensic audit trail, data subject notification capability per RA 10173 |
 | NFR-017 | LGU Business Permit Tracking per Location | Must Have | Per-location permit calendar, renewal alerting, permit document storage, and permit status dashboard for 200+ LGU jurisdictions |
-| NFR-018 | ESG & Sustainability Reporting | Should Have | Track carbon footprint, waste redirection, social impact, and ethical vendor audit metrics |
+| NFR-018 | ESG & Sustainability Reporting | Should Have | System-level capability to track carbon footprint, waste redirection, social impact, and ethical vendor audit metrics (see GOV-008 for operational governance workflows) |
 | NFR-019 | Advanced Fleet Optimization | Should Have | GPS/telematics tracking, fuel management, routing optimization, and port demurrage fee avoidance |
 | NFR-020 | AI & Innovation Framework | Nice to Have | AI personalization, RPA automation, predictive maintenance, and computer vision for stock audits |
 | NFR-021 | Smart Store Operations | Should Have | Mobile POS queue busting, Smart Safe cash reconciliation, 3D custom design rendering, and Smart Locker integration |
@@ -350,11 +350,10 @@
 | GOV-027 | 3PL & Delivery Partner Management | Should Have | 3PL/delivery partner onboarding & offboarding, 3PL SLA monitoring & performance review, delivery partner contract management, partner invoice verification & settlement |
 | GOV-028 | Sample & Demo Inventory Management | Should Have | Sample/demo inventory tracking separate from saleable stock, sample issuance to stores, demo display lifecycle management, sample disposition (return, donate, destroy), sample inventory valuation exclusion |
 | GOV-029 | Markdown & Clearance Pricing Management | Should Have | Markdown trigger rules (aging, season-end, discontinuation), clearance pricing approval workflow, markdown budget tracking, clearance performance reporting, markdown cost allocation to margin analysis |
-| GOV-030 | ESG & Sustainability Reporting | Should Have | GHG emissions tracking per location, waste management & diversion reporting, social impact & community development tracking, sustainable sourcing & ethical vendor audit management, circular economy program management |
 
 ---
 
-## R18. New Workflows — Additional Requirements
+## R18. Additional Cross-Functional Requirements
 
 | Req ID | Requirement | Priority | Notes |
 |---|---|---|---|
@@ -368,5 +367,5 @@
 
 ---
 
-*Document Version: 4.1 | Date: 2026-06-02 | 262 requirements across 18 categories (R1–R18); 290 workflows. Added R15–R17 section headers for SRV, WSL, GOV requirements; corrected requirement count from 237+ to 262*
+*Document Version: 4.2 | Date: 2026-06-02 | 261 requirements across 18 categories (R1–R18). Removed duplicate GOV-030 (identical to GOV-008); clarified NFR-018 vs GOV-008 scope; renamed R18 section title*
 

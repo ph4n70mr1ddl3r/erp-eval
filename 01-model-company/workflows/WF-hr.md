@@ -1,6 +1,6 @@
 # HR & Payroll Workflows
 
-> Payroll, recruitment, shift scheduling, onboarding/offboarding, training, performance, expenses, and employee loans.
+> Payroll, recruitment, shift scheduling, onboarding/offboarding, training, performance, expenses, employee loans, PPE & uniform, succession & internal mobility, management trainee program, and statutory benefits & claims administration.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -19,6 +19,7 @@
 - [W172. Employee PPE & Uniform Lifecycle](#employee-ppe--uniform-lifecycle)
 - [W178. Employee Succession & Internal Mobility](#employee-succession--internal-mobility)
 - [W179. Management Trainee (Cadetship) Program](#management-trainee-cadetship-program)
+- [W251. Philippine Statutory Benefits & Claims Administration (SSS, PhilHealth, Pag-IBIG)](#philippine-statutory-benefits--claims-administration-sss-philhealth-pag-ibig)
 
 ---
 

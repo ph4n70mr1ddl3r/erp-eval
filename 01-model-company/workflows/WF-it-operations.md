@@ -1,6 +1,6 @@
 # IT Operations Workflows
 
-> Helpdesk, data privacy breach response, disaster recovery, and data migration/parallel-run testing.
+> Helpdesk, data privacy breach response, disaster recovery, data migration/parallel-run testing, business intelligence & data governance, IT asset lifecycle management, software development & change management, employee IT provisioning & access lifecycle, enterprise API & systems integration lifecycle, and POS terminal hardware maintenance & peripheral management.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -16,6 +16,8 @@
 - [W131. IT Asset Lifecycle Management](#it-asset-lifecycle-management)
 - [W132. Software Development & Change Management](#software-development--change-management)
 - [W152. Employee IT Provisioning & Access Lifecycle Management](#employee-it-provisioning--access-lifecycle-management)
+- [W257. Enterprise API & Systems Integration Lifecycle Management](#enterprise-api--systems-integration-lifecycle-management)
+- [W265. POS Terminal Hardware Maintenance & Peripheral Management](#pos-terminal-hardware-maintenance--peripheral-management)
 
 ---
 

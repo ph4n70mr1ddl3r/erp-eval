@@ -1,6 +1,6 @@
 # Finance & Treasury Workflows
 
-> AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, product costing & margin analysis, and customer credit collection & escalation.
+> AP, AR, financial close, intercompany, capex, budget, treasury, insurance, credit/debit notes, management reporting, FX hedging, bad debt management, product costing & margin analysis, bank reconciliation, tax filing & statutory remittance, customer deposit management, payment settlement reconciliation, vendor statement reconciliation, customer refund & credit processing, customer credit collection & escalation, intercompany loans/dividends, Senior Citizen/PWD VAT-exemption reporting, BIR eFPS filing & electronic payment submission, and e-wallet & digital payment settlement reconciliation.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -9,8 +9,12 @@
 ## Workflows in This Domain
 
 - [W7. Accounts Payable — Vendor Invoice Processing](#accounts-payable-vendor-invoice-processing)
+- [W7C. Non-PO / Recurring Expense Invoice Processing](#non-po--recurring-expense-invoice-processing)
+- [W7D. AP Vendor Statement Reconciliation](#ap-vendor-statement-reconciliation)
 - [W8. Accounts Receivable — Trade & Corporate Accounts](#accounts-receivable-trade-corporate-accounts)
 - [W9. Financial Close & Reporting](#financial-close-reporting)
+- [W9A. Month-End Close](#month-end-close)
+- [W9B. Year-End Close](#year-end-close)
 - [W14. Intercompany Transactions & Settlement](#intercompany-transactions-settlement)
 - [W21. Capital Expenditure (Capex) Request & Approval](#capital-expenditure-capex-request-approval)
 - [W24. Trade & Corporate Credit Application](#trade-corporate-credit-application)
@@ -35,6 +39,9 @@
 - [W174. Store-Level Cash-in-Transit (CIT) & Armored Car Management](#store-level-cash-in-transit-cit--armored-car-management)
 - [W175. Employee Gratuity & Retirement Fund Management (RA 7641)](#employee-gratuity--retirement-fund-management-ra-7641)
 - [W184. Fixed Asset Physical Verification (Audit)](#fixed-asset-physical-verification-audit)
+- [W217. Senior Citizen & PWD VAT-Exemption Audit & Reporting](#senior-citizen--pwd-vat-exemption-audit--reporting)
+- [W260. BIR eFPS Filing & Electronic Payment Submission](#bir-efps-filing--electronic-payment-submission)
+- [W261. E-Wallet & Digital Payment Settlement Reconciliation](#e-wallet--digital-payment-settlement-reconciliation)
 
 ---
 

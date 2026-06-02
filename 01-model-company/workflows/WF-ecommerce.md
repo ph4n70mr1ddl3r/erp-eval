@@ -1,6 +1,6 @@
 # Ecommerce Workflows
 
-> BOPIS order fulfillment and home delivery fulfillment.
+> BOPIS order fulfillment, home delivery fulfillment, ship-from-store, ecommerce order exception & cancellation management, marketplace integration (Lazada/Shopee), dark store operations, home delivery reverse logistics (returns), drop-ship vendor fulfillment, and BOPIS smart locker & queue management.
 > 
 > Back to [Workflow Index](README.md)
 

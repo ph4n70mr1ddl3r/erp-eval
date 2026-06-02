@@ -1,6 +1,6 @@
 # Warehouse & Logistics Workflows
 
-> Receiving, putaway, kit assembly, fleet management, and inter-island logistics.
+> Receiving, putaway, kit assembly, fleet management, inter-island logistics, DC outbound dispatch & load planning, fleet spare parts & preventive maintenance, cross-docking operations, and DC container yard & chassis management.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -9,6 +9,8 @@
 ## Workflows in This Domain
 
 - [W3. Warehouse Receiving & Putaway](#warehouse-receiving-putaway)
+- [W3B. Yard & Outdoor Inventory Management](#yard--outdoor-inventory-management)
+- [W3C. DC Inbound Delivery Scheduling](#dc-inbound-delivery-scheduling)
 - [W46. Kit / Bundle Assembly & Disassembly](#kit-bundle-assembly-disassembly)
 - [W52. Fleet Management](#fleet-management)
 - [W66. Inter-Island Logistics & Freight Management](#inter-island-logistics-freight-management)

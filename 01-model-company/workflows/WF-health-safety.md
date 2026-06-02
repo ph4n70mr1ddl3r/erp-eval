@@ -10,6 +10,7 @@
 
 - [W140. Occupational Health & Safety (OHS) Incident Management](#ohs-incident-management)
 - [W141. Workplace Safety Inspection & Audit](#workplace-safety-inspection--audit)
+- [W187. Contractor & Third-Party On-site Safety Orientation](#contractor--third-party-on-site-safety-orientation)
 
 ---
 

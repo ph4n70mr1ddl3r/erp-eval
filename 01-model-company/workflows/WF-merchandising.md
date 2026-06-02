@@ -1,6 +1,6 @@
 # Merchandising & Pricing Workflows
 
-> Assortment planning, promotions, pricing, product lifecycle, PIM, and vendor rebate management.
+> Assortment planning, promotions, pricing, product lifecycle, PIM, vendor rebate management, markdown & clearance pricing, sample & demo inventory management, category performance review & P&L ownership, pricing hierarchy governance, private label development, competitor intelligence, store-level price tag printing & verification, store promotional setup & visual merchandising, and seasonal merchandise transition & display rotation.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -23,6 +23,8 @@
 - [W129. Private Label / In-house Brand Development](#private-label-in-house-brand-development)
 - [W130. Competitor Price Intelligence Gathering](#competitor-price-intelligence-gathering)
 - [W181. Store-Level Price Tag Printing & Verification](#store-level-price-tag-printing--verification)
+- [W262. Store Promotional Setup & Visual Merchandising Execution](#store-promotional-setup--visual-merchandising-execution)
+- [W264. Seasonal Merchandise Transition & Display Rotation](#seasonal-merchandise-transition--display-rotation)
 
 ---
 

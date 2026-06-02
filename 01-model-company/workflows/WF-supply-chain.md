@@ -1,6 +1,6 @@
 # Supply Chain Planning Workflows
 
-> Demand forecasting and seasonal buy planning.
+> Demand forecasting, seasonal buy planning, S&OP cycle, international logistics & import operations, supply chain network optimization, global supply chain incoterm & marine insurance tracking, import port demurrage & detention management, and supply chain control tower & real-time shipment visibility.
 > 
 > Back to [Workflow Index](README.md)
 

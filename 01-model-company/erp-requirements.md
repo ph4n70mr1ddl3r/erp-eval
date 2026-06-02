@@ -296,10 +296,31 @@
 | NFR-027 | Omni-channel Customer Data Platform | Should Have | Unified customer profile across POS, ecommerce, loyalty, CRM, support tickets; identity resolution and deduplication; consent management per RA 10173; segment creation for marketing |
 | RPT-011 | Category Performance Review & P&L Ownership | Should Have | Category-level P&L with gross margin, shrinkage, markdown, and promotional cost allocation; buyer/category manager scorecard; assortment performance vs. plan |
 | RPT-012 | Pricing Hierarchy Governance & Compliance Audit | Should Have | Pricing rule validation across hierarchy (national → regional → store), promotional pricing compliance check, price override audit report, trade vs. retail price gap analysis |
+
+---
+
+## R15. Installation & Value-Added Services
+
+| Req ID | Requirement | Priority | Notes |
+|---|---|---|---|
 | SRV-001 | Installation & Value-Added Services Management | Should Have | Service order creation (installation, cutting, mixing), scheduling & resource allocation, service completion confirmation, service revenue recognition, service partner quality audit, service cost tracking |
 | SRV-002 | DIY Workshop & In-Store Event Management | Should Have | Event scheduling, attendee registration, material cost tracking, event attendance reporting, post-event CSAT survey, event ROI analysis |
+
+---
+
+## R16. Wholesale & Reseller Operations
+
+| Req ID | Requirement | Priority | Notes |
+|---|---|---|---|
 | WSL-001 | Wholesale & Reseller Operations | Should Have | Wholesale customer onboarding with credit check, bulk order fulfillment with cross-dock option, wholesale-specific pricing tiers, pallet-level picking & shipping, wholesale invoice & settlement |
 | WSL-002 | Trade Sales Pipeline & Territory Management | Should Have | Trade sales pipeline stages (lead → qualify → quote → negotiate → close), territory assignment, pipeline forecasting, sales rep performance tracking, trade counter / pro desk operations |
+
+---
+
+## R17. Corporate Governance, Legal & Strategy
+
+| Req ID | Requirement | Priority | Notes |
+|---|---|---|---|
 | GOV-001 | Corporate Governance & Legal Management | Should Have | Corporate secretarial management (board resolutions, SEC filings), legal case & litigation tracking, IP portfolio management, strategic planning & OKR tracking, enterprise project management lifecycle, SOP governance, legal contract review & approval |
 | GOV-002 | Internal Audit & Risk Management | Should Have | Annual audit planning & risk assessment, operational audit execution (store/DC/HQ), enterprise risk management review, fraud investigation protocol, anti-bribery & corruption monitoring, external audit coordination |
 | GOV-003 | Real Estate & Lease Management | Should Have | Site selection feasibility analysis, lease administration & renewal tracking, rent & CAM payment processing, real property tax (amillaramento) management per location |
@@ -347,5 +368,5 @@
 
 ---
 
-*Document Version: 4.0 | Date: 2026-06-02 | Added 7 new requirements (CRM-015–016, FIN-031–032, MER-001–002, NFR-028) for 7 new workflows (W259–W265); total now 290 workflows and 237+ requirements*
+*Document Version: 4.1 | Date: 2026-06-02 | 262 requirements across 18 categories (R1–R18); 290 workflows. Added R15–R17 section headers for SRV, WSL, GOV requirements; corrected requirement count from 237+ to 262*
 

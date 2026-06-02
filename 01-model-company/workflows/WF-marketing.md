@@ -1,6 +1,6 @@
 # Marketing Campaign Operations
 
-> Campaign planning, creative production, multi-channel execution, and performance measurement.
+> Campaign planning, creative production, multi-channel execution, budget tracking, performance measurement, loyalty program financial governance, crisis communication & brand reputation, CSR program execution, social media & influencer management, PR & corporate communications, bank & credit card partnership management, retail media network operations, referral program & brand ambassador management, and in-house design & creative production.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -17,6 +17,8 @@
 - [W149. Bank & Credit Card Partnership Management](#bank--credit-card-partnership-management)
 - [W151. Corporate Social Responsibility (CSR) Impact Measurement & Reporting](#corporate-social-responsibility-csr-impact-measurement--reporting)
 - [W153. Retail Media Network (RMN) Operations](#retail-media-network-rmn-operations)
+- [W189. Referral Program & Brand Ambassador Management](#referral-program--brand-ambassador-management)
+- [W190. In-house Design & Creative Production Management](#in-house-design--creative-production-management)
 
 ---
 

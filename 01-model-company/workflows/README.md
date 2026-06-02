@@ -58,7 +58,7 @@ Workflows are organized by functional domain for easier navigation and gap analy
 - **[Treasury & Corporate Finance Workflows](./WF-treasury.md)** (4 workflows) — LC management, cash flow forecasting, intercompany elimination, and transfer pricing.
 - **[Hazardous Materials (Hazmat) & Compliance](./WF-hazmat.md)** (4 workflows) — Hazmat storage, safety handling, spill response, and customs reconciliation.
 - **[Facility & Asset Maintenance (HQ & DC)](./WF-non-store-maintenance.md)** (4 workflows) — DC/HQ maintenance, 3PL performance, and POA/Board resolutions.
-- **[Health, Safety & Environment Workflows](./WF-health-safety.md)** (3 workflows) — Occupational health & safety (OHS) incident management and workplace safety inspection & audit.
+- **[Health, Safety & Environment Workflows](./WF-health-safety.md)** (3 workflows) — Occupational health & safety (OHS) incident management, workplace safety inspection & audit, and contractor & third-party on-site safety orientation.
 - **[Wholesale & Reseller Operations Workflows](./WF-wholesale.md)** (2 workflows) — Wholesale reseller onboarding and bulk fulfillment/cross-docking.
 - **[Project-Based B2B & Trade Sales Workflows](./WF-project-sales.md)** (7 workflows) — Quotations, bid management, contract pricing, staged deliveries, and project-specific logistics.
 - **[ESG & Sustainability Reporting Workflows](./WF-esg.md)** (4 workflows) — Carbon footprint, waste management, circular economy, and social impact.

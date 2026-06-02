@@ -1,6 +1,6 @@
 # Inventory Management Workflows
 
-> Replenishment, cycle counting, transfers, consignment, physical inventory, backorders, and promo stock allocation.
+> Replenishment, cycle counting, transfers, consignment, physical inventory, backorders, promo stock allocation, damaged & defective goods disposition, inventory adjustment & shrinkage authorization, multi-channel inventory allocation governance, inter-store/inter-DC stock rebalancing, quarantine & recertification, and SLOB provisioning & liquidation.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -9,8 +9,11 @@
 ## Workflows in This Domain
 
 - [W4. Store Replenishment (DC → Store)](#store-replenishment-dc-→-store)
+- [W4B. Store-Initiated Replenishment Request](#store-initiated-replenishment-request)
 - [W6. Cycle Counting & Inventory Accuracy](#cycle-counting-inventory-accuracy)
 - [W22. Stock Transfers (Store-to-Store & Inter-DC)](#stock-transfers-store-to-store-inter-dc)
+- [W22A. Store-Level Outbound Transfer Fulfillment](#store-level-outbound-transfer-fulfillment)
+- [W22B. Store-to-DC Return (Excess / Damaged Inventory)](#store-to-dc-return-excess--damaged-inventory)
 - [W23. Consignment Inventory Operations](#consignment-inventory-operations)
 - [W42. Annual Physical Inventory Execution](#annual-physical-inventory-execution)
 - [W56. Customer Backorder Management](#customer-backorder-management)

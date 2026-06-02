@@ -13,7 +13,7 @@
 - [W126. Intellectual Property (IP) Portfolio Management](#intellectual-property-ip-portfolio-management)
 - [W127. Annual Strategic Planning & OKRs](#annual-strategic-planning--okrs)
 - [W128. Enterprise Project Management (EPM) Lifecycle](#enterprise-project-management-epm-lifecycle)
-- [W129. (Reserved for Private Label - see Merchandising)](#)
+- [W186. Internal SOP & Policy Governance Lifecycle](#internal-sop--policy-governance-lifecycle)
 - [W230. Legal Contract Review & Approval](#legal-contract-review--approval)
 - [W231. Management Performance Reporting (QBR)](#management-performance-reporting)
 

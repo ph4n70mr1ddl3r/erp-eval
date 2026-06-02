@@ -1,6 +1,6 @@
 # Installation & Value-Added Services Workflows
 
-> Management of home installation services (tiles, appliances, plumbing, AC) and tool/equipment rental.
+> Home installation, tool rental, DIY workshops & in-store events, design consultancy, custom paint mixing & tinting, lumber & board cutting, in-store 3D kitchen/bathroom design rendering, and installation service partner quality audit.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -15,6 +15,7 @@
 - [W168. Custom Paint Mixing & Tinting Operations](#custom-paint-mixing--tinting-operations)
 - [W169. Lumber & Board Cutting Services](#lumber--board-cutting-services)
 - [W211. In-Store 3D Kitchen/Bathroom Design Rendering](#in-store-3d-kitchenbathroom-design-rendering)
+- [W213. Installation Service Partner Quality Audit](#installation-service-partner-quality-audit)
 
 ---
 

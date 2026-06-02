@@ -11,6 +11,7 @@
 - [W37. Loss Prevention & Exception Reporting](#loss-prevention-exception-reporting)
 - [W49. Natural Disaster / Typhoon Business Continuity](#natural-disaster-typhoon-business-continuity)
 - [W54. LGU Business Permit Renewal per Location](#lgu-business-permit-renewal-per-location)
+- [W54A. BIR Computerized Accounting System (CAS) Registration](#bir-computerized-accounting-system-cas-registration)
 - [W77. BIR Tax Audit Response](#bir-tax-audit-response)
 - [W78. Government / Institutional Procurement Participation](#government-institutional-procurement-participation)
 - [W79. Employee Grievance & Whistleblower Process](#employee-grievance-whistleblower-process)
@@ -23,6 +24,7 @@
 - [W185. Product Liability & Consumer Safety Incident Management](#product-liability--consumer-safety-incident-management)
 - [W207. Store-Level Security Camera (CCTV) Audit & LP Integration](#store-level-security-camera-cctv-audit--lp-integration)
 - [W209. Barangay & Local Community Relationship Management](#barangay--local-community-relationship-management)
+- [W216. BIR CAS (Computerized Accounting System) Compliance Audit](#bir-cas-computerized-accounting-system-compliance-audit)
 
 ---
 

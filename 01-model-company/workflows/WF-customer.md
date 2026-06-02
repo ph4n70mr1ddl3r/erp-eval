@@ -1,6 +1,6 @@
 # Customer Experience Workflows
 
-> Complaint resolution, corporate/project accounts, price matching, satisfaction measurement, account reactivation, and feedback-to-action loop.
+> Complaint resolution, corporate/project accounts, price matching, satisfaction measurement, account reactivation, feedback-to-action loop, trade sales pipeline & territory management, trade counter / pro desk operations, customer data platform, omni-channel customer ticketing & support, call center daily operations, and loyalty member enrollment & onboarding.
 > 
 > Back to [Workflow Index](README.md)
 
@@ -17,6 +17,9 @@
 - [W103. Trade Sales Pipeline & Territory Management](#trade-sales-pipeline-territory-management)
 - [W112. Trade Counter / Pro Desk Operations](#trade-counter--pro-desk-operations)
 - [W156. Customer Data Platform (CDP) & Hyper-Personalization](#customer-data-platform-cdp--hyper-personalization)
+- [W258. Omni-channel Customer Ticketing & Support Management](#omni-channel-customer-ticketing--support-management)
+- [W259. Call Center Daily Operations & Queue Management](#call-center-daily-operations--queue-management)
+- [W263. Loyalty Member Enrollment & Onboarding Journey](#loyalty-member-enrollment--onboarding-journey)
 - **[Project-Based B2B & Trade Sales Workflows (W162–W166)](./WF-project-sales.md)**
 
 ---

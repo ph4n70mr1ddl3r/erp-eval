@@ -241,7 +241,7 @@ The company operates through **5 legal entities** organized as follows:
 | **International / Import Vendors** | ~400 (40%) — China, Taiwan, Indonesia, Malaysia, Japan, Europe |
 | **Top 20 Vendors** | Account for ~45% of COGS |
 | **Vendor-Managed Inventory (VMI)** | ~300 SKUs from 12 key vendors |
-| **Monthly Trade Purchase Orders** | ~1,200 merchandise POs; ~1,400–1,600 total POs incl. blanket releases (W2c), imports (W2b), and non-merchandise (W7c) |
+| **Monthly Trade Purchase Orders** | ~1,200 merchandise POs; ~1,400–1,600 total POs incl. blanket releases (W2C), imports (W2B), and non-merchandise (W7C) |
 | **Annual Purchase Orders** | ~14,400 merchandise; ~17,000–19,000 total |
 
 ### 6.6 Purchasing Parameters
@@ -421,7 +421,7 @@ The company operates through **5 legal entities** organized as follows:
 
 | Parameter | Value |
 |---|---|
-| **Monthly Vendor Invoices** | ~6,500 merchandise (3-way match per W7); ~2,000–3,000 non-PO/recurring (2-way match per W7c); ~8,500–9,500 total |
+| **Monthly Vendor Invoices** | ~6,500 merchandise (3-way match per W7); ~2,000–3,000 non-PO/recurring (2-way match per W7C); ~8,500–9,500 total |
 | **Payment Terms (Typical)** | Net 30, Net 60 |
 | **Payment Methods** | Check, bank transfer, LC (imports) |
 | **3-Way Match** | Required for all PO-based purchases (PO → GR → Invoice) |

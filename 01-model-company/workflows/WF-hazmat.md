@@ -92,7 +92,7 @@
 |---|---|---|---|---|
 | 1 | **Payment**: Pay duties and taxes via bank (IPAY/Pass5 system) based on BOC assessment | Finance | — | 1 day |
 | 2 | **Receipt Aggregation**: Collect Official Receipts (BCOR) and Statement of Settlement of Duties and Taxes (SSDT) | Import Coord | — | 2 days |
-| 3 | **Reconciliation**: Compare BOC assessed values vs. ERP estimated landed cost (W2b.12) | Finance | Controller | 1 day |
+| 3 | **Reconciliation**: Compare BOC assessed values vs. ERP estimated landed cost (W2B.12) | Finance | Controller | 1 day |
 | 4 | **VAT Input Capture**: Ensure 12% Import VAT is correctly recorded for BIR credit (W90) | Tax Manager | — | 30 min |
 | 5 | **Variance Analysis**: Investigate significant variances in tariff classification or valuation | Import Coord | Tax Manager | 2 hours |
 
@@ -100,5 +100,5 @@
 - SDS (Safety Data Sheet) storage in Item Master
 - Hazmat zone location management in WMS
 - Incident management module (W140)
-- Landed cost calculation engine (W2b)
+- Landed cost calculation engine (W2B)
 - VAT Input/Output reconciliation (W90)

@@ -82,18 +82,18 @@
 - Payment file generation (bank formats) (W7.9–10)
 - Expanded Withholding Tax (EWT): auto-computation per ATC in vendor master, net payment calculation (invoice − EWT), EWT Payable tracking, BIR 1601-E file generation (W7.9a)
 - Vendor credit memo processing: credit note entry with source reference (RTV, rebate, price protection), auto-matching to original transactions, automatic application to open invoices, credit balance management (W7.9b)
-- Non-PO / recurring expense invoice processing: 2-way match (invoice vs. contract or budget), store manager / department head approval routing, cost center allocation, utility and service bill capture (W7c.1–6)
+- Non-PO / recurring expense invoice processing: 2-way match (invoice vs. contract or budget), store manager / department head approval routing, cost center allocation, utility and service bill capture (W7C.1–6)
 - Shelf-life / expiry date management: capture manufacturing date and shelf-life at GR for date-sensitive items; system tracks expiry per batch; FEFO (First Expired First Out) pick direction in DC; alerting for near-expiry items; periodic expiry review feeds into slow-mover disposition (W3, W4, W6)
-- GRNI aging management: AP Clerk runs weekly GRNI aging report showing all GRs without matching vendor invoices, grouped by aging bucket (0–30, 31–60, 61–90, 90+ days); items > 30 days flagged for Buyer follow-up with vendor; items > 60 days escalated to AP Supervisor for direct vendor contact; items > 90 days reviewed by Controller for potential permanent accrual or write-off; system tracks GRNI aging with vendor-level drill-down; weekly GRNI aging dashboard visible to AP Supervisor and Controller (W7, W9a.2a)
+- GRNI aging management: AP Clerk runs weekly GRNI aging report showing all GRs without matching vendor invoices, grouped by aging bucket (0–30, 31–60, 61–90, 90+ days); items > 30 days flagged for Buyer follow-up with vendor; items > 60 days escalated to AP Supervisor for direct vendor contact; items > 90 days reviewed by Controller for potential permanent accrual or write-off; system tracks GRNI aging with vendor-level drill-down; weekly GRNI aging dashboard visible to AP Supervisor and Controller (W7, W9A.2a)
 - Duplicate vendor invoice detection: system automatically checks incoming vendor invoices against the AP sub-ledger for duplicate invoice number, duplicate vendor + amount + date combinations, and duplicate PO reference + invoice number; if a potential duplicate is detected, system blocks the invoice and alerts AP Clerk with the matching existing invoice reference; AP Clerk investigates (true duplicate vs. sequential invoice numbers from same vendor) and either rejects the duplicate or overrides with documentation; monthly: AP Supervisor reviews duplicate detection override log as part of AP controls review (cross-reference CTL-42 in Internal Controls Matrix) (W7)
-- Evaluated Receipt Settlement (ERS): for configured VMI vendors (W20) and select blanket PO vendors (W2c), system auto-generates vendor invoice from PO + Goods Receipt data without requiring vendor invoice submission; AP Clerk validates auto-generated invoice against PO and GR; if within tolerance, auto-approved for payment; reduces GRNI accumulation and manual invoice processing for high-volume, trusted vendor relationships
+- Evaluated Receipt Settlement (ERS): for configured VMI vendors (W20) and select blanket PO vendors (W2C), system auto-generates vendor invoice from PO + Goods Receipt data without requiring vendor invoice submission; AP Clerk validates auto-generated invoice against PO and GR; if within tolerance, auto-approved for payment; reduces GRNI accumulation and manual invoice processing for high-volume, trusted vendor relationships
 
 ### Staffing Implication
-- **8–10 AP Clerks**: total ~305–370 invoices/business-day across merchandise (~295/day per W7: 6,500 invoices/month ÷ 22 business days) and non-PO (~91–136/day per W7c: 2,000–3,000/month ÷ 22); at 5 min logging each = ~25–31 hours for basic processing; with ~20% requiring manual resolution at 25 min each = ~25–30 additional hours; total ~50–61 hours/business-day; with 10 clerks that's ~5–6 hours each; reasonable with payment runs, GRNI follow-up, vendor statement reconciliation (W7d), and other duties; note that month-end peaks (+50% per W7) push daily volume to ~460–550 invoices/day during close week, requiring temporary overtime or redeployment of 2–3 other Finance staff (Cost Accountant, Treasury Analyst) to AP to maintain processing SLA; peak staffing contingency documented in W7
+- **8–10 AP Clerks**: total ~305–370 invoices/business-day across merchandise (~295/day per W7: 6,500 invoices/month ÷ 22 business days) and non-PO (~91–136/day per W7C: 2,000–3,000/month ÷ 22); at 5 min logging each = ~25–31 hours for basic processing; with ~20% requiring manual resolution at 25 min each = ~25–30 additional hours; total ~50–61 hours/business-day; with 10 clerks that's ~5–6 hours each; reasonable with payment runs, GRNI follow-up, vendor statement reconciliation (W7D), and other duties; note that month-end peaks (+50% per W7) push daily volume to ~460–550 invoices/day during close week, requiring temporary overtime or redeployment of 2–3 other Finance staff (Cost Accountant, Treasury Analyst) to AP to maintain processing SLA; peak staffing contingency documented in W7
 - **1 AP Supervisor**: Oversight, aging review, GRNI escalation management, escalations.
 - **2 Treasury Analysts**: Payment approval, bank file transmission, LC management. Shared with AR and other treasury duties.
 
-### W7c. Non-PO / Recurring Expense Invoice Processing
+### W7C. Non-PO / Recurring Expense Invoice Processing
 
 | Field | Detail |
 |---|---|
@@ -116,7 +116,7 @@
 
 **Match rate target**: ≥ 70% auto-matched for recurring expenses (contract-based)
 
-### W7d. AP Vendor Statement Reconciliation
+### W7D. AP Vendor Statement Reconciliation
 
 | Field | Detail |
 |---|---|
@@ -139,12 +139,12 @@
 | 7 | Quarterly: AP Supervisor includes vendor reconciliation metrics in AP controls review (cross-reference CTL-42 in Internal Controls Matrix); unreconciled balances > 90 days escalated to Controller for potential write-off or accrual adjustment | AP Supervisor | Controller | 30 min/quarter |
 
 ### System Touchpoints
-- Vendor statement import: AP Clerk uploads vendor statement (PDF, Excel, or EDI); system parses line items for auto-matching (W7d.1–2)
-- Auto-reconciliation engine: matches vendor statement lines to AP sub-ledger by invoice number, date, and amount with configurable tolerance (W7d.2)
-- Reconciliation summary dashboard: matched, unmatched (vendor-side), unmatched (AP-side), and variance items with drill-down (W7d.3)
-- Reconciliation documentation: auditor-ready log showing reconciliation result per vendor per period with aging of reconciling items (W7d.5)
-- Vendor reconciliation analytics: match rate, average reconciliation time, recurring discrepancy vendors, aging of unresolved items (W7d.6)
-- Integration with W7 (AP invoice processing), W7c (non-PO invoices), W44 (vendor performance — chronic reconciliation issues affect vendor scorecard)
+- Vendor statement import: AP Clerk uploads vendor statement (PDF, Excel, or EDI); system parses line items for auto-matching (W7D.1–2)
+- Auto-reconciliation engine: matches vendor statement lines to AP sub-ledger by invoice number, date, and amount with configurable tolerance (W7D.2)
+- Reconciliation summary dashboard: matched, unmatched (vendor-side), unmatched (AP-side), and variance items with drill-down (W7D.3)
+- Reconciliation documentation: auditor-ready log showing reconciliation result per vendor per period with aging of reconciling items (W7D.5)
+- Vendor reconciliation analytics: match rate, average reconciliation time, recurring discrepancy vendors, aging of unresolved items (W7D.6)
+- Integration with W7 (AP invoice processing), W7C (non-PO invoices), W44 (vendor performance — chronic reconciliation issues affect vendor scorecard)
 
 ---
 
@@ -205,7 +205,7 @@
 
 ## W9. Financial Close & Reporting
 
-### W9a. Month-End Close
+### W9A. Month-End Close
 
 | Field | Detail |
 |---|---|
@@ -240,14 +240,14 @@
 | 16 | Tax Accountant prepares VAT return (BIR 2550M) and withholding tax returns (1601-E, 1601-C) | Tax Accountant | CFO | 3 hours |
 16c | Local Business Tax (LBT) per LGU: system generates LBT payment schedule per location (200 stores + 5 DCs + HQ) based on configured LGU calendars (annual or quarterly per LGU); Tax Accountant reviews schedule, validates amounts per LGU rate schedules (typically 1–2% of gross receipts for retail, varies by LGU); processes payments per LGU (online, over-the-counter, or LGU office); system posts payment per location (Dr. Local Business Tax Expense / Cr. Cash); tracks payment status and receipt per location; flags locations with upcoming or overdue LBT payments on monthly dashboard | Tax Accountant | Controller | 4 hours/month (distributed across LGU due dates) |
 | 16a | EWT remittance: Tax Accountant generates EWT remittance file (BIR 1601-E) from accumulated Withholding Tax Payable per vendor per ATC; reconciles to vendor remittance list; transmits to BIR via eFPS; system posts remittance (Dr. Withholding Tax Payable / Cr. Cash) | Tax Accountant | CFO | 1 hour |
-| 16b | Inventory net realizable value (NRV) review: Cost Accountant runs inventory aging report (days since last sale); for slow-moving items (> 180 days), system compares WAC to estimated NRV (clearance price × sell-through probability); Cost Accountant proposes write-down per SKU where NRV < cost; Controller approves write-downs > PHP 50,000; system posts Dr. Inventory Write-Down Expense / Cr. Inventory Provision (contra-asset); **NRV reversal treatment**: when a written-down item is subsequently sold — (a) system recognizes revenue at selling price (standard), (b) system recognizes COGS at the written-down carrying amount (not the original WAC), (c) difference between original WAC and written-down carrying amount represents the write-down previously recognized; for partial sales of written-down lots, COGS per unit is the written-down unit cost; no additional journal entry is required at point of sale because the provision was already posted; at next quarterly NRV review (W9a.16b), Cost Accountant reassesses remaining written-down items — if NRV has recovered above carrying amount (e.g., market price increase), Cost Accountant may reverse the provision up to the original write-down amount per PAS 2.31 with Controller approval; system posts reversal as Dr. Inventory Provision / Cr. Inventory Write-Down Recovery (P&L); reversal is limited to the original write-down amount per SKU — carrying value cannot exceed original WAC | Cost Accountant / Controller | Controller | 2 hours |
+| 16b | Inventory net realizable value (NRV) review: Cost Accountant runs inventory aging report (days since last sale); for slow-moving items (> 180 days), system compares WAC to estimated NRV (clearance price × sell-through probability); Cost Accountant proposes write-down per SKU where NRV < cost; Controller approves write-downs > PHP 50,000; system posts Dr. Inventory Write-Down Expense / Cr. Inventory Provision (contra-asset); **NRV reversal treatment**: when a written-down item is subsequently sold — (a) system recognizes revenue at selling price (standard), (b) system recognizes COGS at the written-down carrying amount (not the original WAC), (c) difference between original WAC and written-down carrying amount represents the write-down previously recognized; for partial sales of written-down lots, COGS per unit is the written-down unit cost; no additional journal entry is required at point of sale because the provision was already posted; at next quarterly NRV review (W9A.16b), Cost Accountant reassesses remaining written-down items — if NRV has recovered above carrying amount (e.g., market price increase), Cost Accountant may reverse the provision up to the original write-down amount per PAS 2.31 with Controller approval; system posts reversal as Dr. Inventory Provision / Cr. Inventory Write-Down Recovery (P&L); reversal is limited to the original write-down amount per SKU — carrying value cannot exceed original WAC | Cost Accountant / Controller | Controller | 2 hours |
 | 16d | Inventory write-off (obsolete / damaged beyond recovery): distinct from NRV write-down (step 16b) — for items that will never be sold (fully obsolete, expired, irrevocably damaged, or vendor refuses RTV and item has no residual value); Cost Accountant prepares write-off list per SKU with supporting evidence (photos, aging, disposition attempts); tiered approval: Store Manager ≤ PHP 10,000, Controller ≤ PHP 50,000, CFO ≤ PHP 500,000, CEO > PHP 500,000; system posts Dr. Inventory Write-Off Expense (loss) / Cr. Inventory — removes items from inventory register entirely (not a provision — permanent removal); BIR documentation retained: write-off approval, supporting evidence, and physical destruction or disposal certificate | Cost Accountant / Controller | CFO | 1 hour |
 | 16e | Credit note / debit note reconciliation: Chief Accountant runs AP and AR credit note aging report — all unapplied credit memos and debit memos listed by entity, vendor/customer, age, and amount; credit memos > 60 days unapplied flagged for investigation; AP Clerk contacts vendor to resolve open AP credits (apply to next invoice, request refund, or confirm as settled); AR Clerk contacts customers to resolve open AR credits (apply to next sale, issue refund, or confirm as settled); unresolved items > 90 days escalated to Controller; summary of unapplied credit notes included in month-end close package | Chief Accountant / AP Clerk / AR Clerk | Controller | 1 hour |
 | 17 | Final close: lock period in system | Controller | CFO | 15 min |
 
 **Target**: Close within 5 working days of month-end
 
-### W9b. Year-End Close
+### W9B. Year-End Close
 
 Additional steps on top of month-end close (December):
 
@@ -261,20 +261,20 @@ Additional steps on top of month-end close (December):
 | 23 | SEC annual report preparation | Controller | 1 week |
 
 ### System Touchpoints
-- Store day-end posting monitoring (W9a.1)
-- GRNI reconciliation report and clearing account balance verification (W9a.2a)
-- Accrual and journal entry workflow (W9a.4–8, 11)
-- IC matching and elimination automation (W9a.5, 13)
-- Inventory valuation engine: perpetual WAC verification (not periodic recalculation); month-end reconciliation of inventory valuation to GL (W9a.6a)
-- Bank reconciliation (W9a.9)
-- Local Business Tax (LBT) per LGU: per-location LBT calendar, payment tracking and schedule; LGU-specific rate schedules and forms; payment status dashboard with overdue alerting; BIR retention of LBT receipts (W9a.16c)
-- Multi-entity financial statement generation (W9a.12–14)
-- Period lock / close controls (W9a.17)
-- BIR tax form generation (W9a.16)
-- EWT remittance file generation per BIR 1601-E with per-vendor per-ATC breakdown; eFPS transmission (W9a.16a)
-- Inventory NRV review: aging by days-since-last-sale, NRV calculator, write-down journal entry with approval, provision reversal on subsequent sale (PAS 2.31 compliant — reversal limited to original write-down; carrying value capped at original WAC; quarterly reassessment with Cost Accountant and Controller review) (W9a.16b)
-- Inventory write-off: complete removal from inventory register (not provision); tiered approval with BIR-compliant documentation (photos, aging, disposition evidence, destruction certificate); distinct from NRV write-down (W9a.16d)
-- Credit note / debit note reconciliation: AP and AR credit note aging report with unapplied memos > 60 days flagged; escalation at 90 days; resolution tracking (apply, refund, settle); summary in month-end close package (W9a.16e)
+- Store day-end posting monitoring (W9A.1)
+- GRNI reconciliation report and clearing account balance verification (W9A.2a)
+- Accrual and journal entry workflow (W9A.4–8, 11)
+- IC matching and elimination automation (W9A.5, 13)
+- Inventory valuation engine: perpetual WAC verification (not periodic recalculation); month-end reconciliation of inventory valuation to GL (W9A.6a)
+- Bank reconciliation (W9A.9)
+- Local Business Tax (LBT) per LGU: per-location LBT calendar, payment tracking and schedule; LGU-specific rate schedules and forms; payment status dashboard with overdue alerting; BIR retention of LBT receipts (W9A.16c)
+- Multi-entity financial statement generation (W9A.12–14)
+- Period lock / close controls (W9A.17)
+- BIR tax form generation (W9A.16)
+- EWT remittance file generation per BIR 1601-E with per-vendor per-ATC breakdown; eFPS transmission (W9A.16a)
+- Inventory NRV review: aging by days-since-last-sale, NRV calculator, write-down journal entry with approval, provision reversal on subsequent sale (PAS 2.31 compliant — reversal limited to original write-down; carrying value capped at original WAC; quarterly reassessment with Cost Accountant and Controller review) (W9A.16b)
+- Inventory write-off: complete removal from inventory register (not provision); tiered approval with BIR-compliant documentation (photos, aging, disposition evidence, destruction certificate); distinct from NRV write-down (W9A.16d)
+- Credit note / debit note reconciliation: AP and AR credit note aging report with unapplied memos > 60 days flagged; escalation at 90 days; resolution tracking (apply, refund, settle); summary in month-end close package (W9A.16e)
 
 ### Staffing Implication
 - **Controller**: Owns the close process. 1 person sufficient with support.
@@ -331,7 +331,7 @@ Additional steps on top of month-end close (December):
 - IC elimination automation during consolidation (W14.8)
 - Consolidated financial statement generation with IC lines eliminated (W14.9)
 - Transfer pricing rule maintenance with annual review documentation per BIR RR 19-2020 (W14.1)
-- Dual IC framework: BuildRight operates two intercompany models — (1) **Service-based IC** (primary): monthly fees for warehousing (Logistics Inc.), ecommerce fulfillment (Digital Commerce Inc.), rent (Property Mgmt Inc.), and management fees (Holdings Inc.) — no goods change ownership between entities; Depot Inc. owns all merchandise inventory throughout the supply chain; standard DC→Store replenishment (W4) and inter-DC transfers (W22) are intra-entity inventory movements, not IC goods transfers; (2) **Goods-based IC** (rare): if inter-entity goods transfer is needed (e.g., Digital Commerce Inc. purchases goods from Depot Inc. for direct resale, Property Mgmt Inc. purchases building materials for property maintenance), system creates IC sales order and IC purchase order at configured transfer price; IC invoice auto-generated at receipt; IC elimination during consolidation per W9a.13; system supports both models with different GL posting paths (W14)
+- Dual IC framework: BuildRight operates two intercompany models — (1) **Service-based IC** (primary): monthly fees for warehousing (Logistics Inc.), ecommerce fulfillment (Digital Commerce Inc.), rent (Property Mgmt Inc.), and management fees (Holdings Inc.) — no goods change ownership between entities; Depot Inc. owns all merchandise inventory throughout the supply chain; standard DC→Store replenishment (W4) and inter-DC transfers (W22) are intra-entity inventory movements, not IC goods transfers; (2) **Goods-based IC** (rare): if inter-entity goods transfer is needed (e.g., Digital Commerce Inc. purchases goods from Depot Inc. for direct resale, Property Mgmt Inc. purchases building materials for property maintenance), system creates IC sales order and IC purchase order at configured transfer price; IC invoice auto-generated at receipt; IC elimination during consolidation per W9A.13; system supports both models with different GL posting paths (W14)
 - IC settlement timing: all IC flows (service-based and goods-based) are settled on a single monthly net settlement date (typically 5th of the following month) as part of W14 step 6; Digital Commerce Inc. remits collected ecommerce payments to Depot Inc. on this same schedule (not daily or weekly), which means Depot Inc. carries up to 30 days of ecommerce revenue as an IC receivable from Digital Commerce Inc.; Treasury accounts for this timing in cash flow forecasting (W30 step 8); if ecommerce GMV grows significantly (Year 2–3 target of PHP 250–350M/month), consider moving ecommerce payment remittance to twice-monthly to reduce IC receivable exposure
 
 ### Goods-Based IC Trigger Scenarios
@@ -344,7 +344,7 @@ While the primary IC model is service-based, the following concrete scenarios wo
 | Digital Commerce Inc. purchases office supplies or IT peripherals for internal use | Depot Inc. | Digital Commerce Inc. | Digital Commerce Inc. office manager requests items not available through standard IT procurement | Standard SRP (small volumes; immaterial) | Digital Commerce Inc. Dept. Head |
 | Logistics Inc. purchases warehouse supplies (racking, safety equipment, packaging materials) from Depot Inc. inventory | Depot Inc. | Logistics Inc. | DC Supervisor identifies need for operational supplies stocked in Depot Inc. inventory | Depot Inc. cost + 5% markup | Logistics Inc. DC Manager + Depot Inc. Category Manager |
 
-For each goods-based IC transfer: system creates IC Sales Order (selling entity) and IC Purchase Order (buying entity) at configured transfer price; goods physically transferred from Depot Inc. stock; IC invoice auto-generated; IC elimination during consolidation per W9a.13. Estimated volume: < 20 goods-based IC transactions/year across all entity pairs.
+For each goods-based IC transfer: system creates IC Sales Order (selling entity) and IC Purchase Order (buying entity) at configured transfer price; goods physically transferred from Depot Inc. stock; IC invoice auto-generated; IC elimination during consolidation per W9A.13. Estimated volume: < 20 goods-based IC transactions/year across all entity pairs.
 
 ### Goods-Based IC System Flow Detail
 
@@ -394,7 +394,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 | 1 | Subsidiary Finance lead identifies funding need; submits IC loan request to CFO with amount, purpose, proposed repayment schedule, and cash flow justification | Entity Finance Lead | CFO | 30 min |
 | 2 | CFO approves IC loan; defines terms: principal, interest rate (at minimum the BIR-prescribed rate per RR 19-2020 for arm's-length compliance — currently 12% per annum or the applicable BIR rate), repayment schedule (lump sum or amortizing), and maturity date | CFO | CEO | 15 min |
 | 3 | Treasury Analyst executes inter-entity bank transfer; system posts IC loan entry (Dr. IC Loan Receivable in lending entity / Cr. Cash; Dr. Cash / Cr. IC Loan Payable in borrowing entity) | Treasury Analyst | CFO | 15 min |
-| 4 | System calculates monthly interest accrual per loan terms: Dr. IC Interest Receivable / Cr. IC Interest Income in lending entity; Dr. Interest Expense / Cr. IC Interest Payable in borrowing entity; interest accrual posts automatically at month-end as part of W9a close | System | Controller | Automated |
+| 4 | System calculates monthly interest accrual per loan terms: Dr. IC Interest Receivable / Cr. IC Interest Income in lending entity; Dr. Interest Expense / Cr. IC Interest Payable in borrowing entity; interest accrual posts automatically at month-end as part of W9A close | System | Controller | Automated |
 | 5 | Monthly: Chief Accountant reconciles IC loan balances (principal + accrued interest) across lending and borrowing entities as part of W14 step 4 IC reconciliation | Chief Accountant | Controller | Part of W14 |
 | 6 | At repayment: Treasury Analyst executes repayment transfer; system posts principal repayment and any remaining accrued interest; IC loan balance reduced accordingly | Treasury Analyst | CFO | 15 min |
 | 7 | At maturity: if loan not yet repaid, system alerts CFO 30 days before maturity; CFO decides to extend, demand repayment, or convert to equity (with Board approval if applicable) | System / CFO | CEO | Automated + 15 min decision |
@@ -406,7 +406,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 - IC loan balance tracking with maturity alerting at 30 days (W14 IC Loans step 7)
 - IC loan reconciliation integrated into monthly W14 IC matching (W14 IC Loans step 5)
 - BIR arm's-length interest rate compliance: system validates that IC loan interest rate meets or exceeds BIR-prescribed minimum; flags loans below threshold for CFO review (W14 IC Loans step 2)
-- Integration with W9a (interest accrual in month-end close), W14 (IC reconciliation), W30 (cash transfer execution), W26 (budget — IC borrowing planned in annual budget)
+- Integration with W9A (interest accrual in month-end close), W14 (IC reconciliation), W30 (cash transfer execution), W26 (budget — IC borrowing planned in annual budget)
 
 ### Annual IC Transfer Pricing Review (continued)
 
@@ -510,7 +510,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 ### System Touchpoints
 - Credit application form (online or in-store) (W24.1)
 - Customer master creation with credit limit, payment terms, entity assignment, and VAT treatment classification (W24.6)
-- VAT treatment per customer account: AR Clerk classifies account as Standard (12% VAT), VAT-Exempt (government agencies with BIR ruling, PEZA-registered entities), or Zero-Rated (export sales) during account setup based on supporting documents (BIR ruling, PEZA certificate, government purchase order, diplomatic note); system stores VAT treatment in customer master; applied automatically at POS (W5b.4c) and AR invoicing (W8) (W24.6)
+- VAT treatment per customer account: AR Clerk classifies account as Standard (12% VAT), VAT-Exempt (government agencies with BIR ruling, PEZA-registered entities), or Zero-Rated (export sales) during account setup based on supporting documents (BIR ruling, PEZA certificate, government purchase order, diplomatic note); system stores VAT treatment in customer master; applied automatically at POS (W5B.4c) and AR invoicing (W8) (W24.6)
 - Credit limit enforcement at POS/sales order (W24.6 → W8.3)
 - Annual credit review scheduling and workflow (W24.8)
 
@@ -629,7 +629,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | Store Managers prepare daily cash deposit from POS takings per W5f; armored car or bank branch deposit | Store Manager | COO | 30 min/day per store |
+| 1 | Store Managers prepare daily cash deposit from POS takings per W5F; armored car or bank branch deposit | Store Manager | COO | 30 min/day per store |
 | 2 | System imports daily bank statements from all bank accounts (BDO, BPI, Metrobank, Chinabank) via BPI BizLink, BDO Corporate, or equivalent bank APIs | System | Treasury Analyst | Automated (daily) |
 | 3 | Treasury Analyst reviews daily cash position report: bank balances per entity, pending inflows (store deposits), pending outflows (AP payment runs, payroll) | Treasury Analyst | CFO | 30 min/day |
 | 4 | System auto-matches store cash deposits to expected amounts from Z-reports; flags shortages or delayed deposits | System | Treasury Analyst | Automated |
@@ -639,24 +639,24 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 | 8 | Weekly: Treasury prepares cash flow forecast (2-week rolling) based on AP aging, AR collection schedule, payroll dates, and capex commitments | Treasury Analyst | CFO | 2 hours/week |
 | 9 | Monthly: Treasury reconciles all bank accounts per entity; posts bank charges, interest income, FX gains/losses | Treasury Analyst | Controller | 1 day/month |
 | 10 | Import payments: Treasury manages USD accounts; executes FX conversions for import vendor payments based on LC/TT schedule | Treasury Analyst | CFO | As needed |
-| 10a | **FX hedging policy**: CFO defines and documents the company's FX risk management strategy — (a) natural hedging: match USD payables (import POs per W2b) with USD receivables where possible; maintain USD bank account balances sufficient to cover near-term import payment obligations (typically 30–60 day forward cover); (b) forward contracts: for large committed import orders (> PHP 5M equivalent), Treasury Analyst may purchase USD forward contracts through the banking relationship to lock in exchange rate at PO creation date; forward contract details (notional amount, forward rate, maturity date, counterparty bank) recorded in system; (c) policy limits: unhedged FX exposure limited to 30-day rolling average of import payments; CFO approves all forward contracts; no speculative FX positions permitted (hedging only for committed import payables); (d) monthly: Treasury Analyst prepares FX exposure report — total USD payables outstanding, USD bank balances, forward contracts in place, net unhedged exposure, unrealized FX gain/loss on open forward contracts; included in weekly cash flow forecast (W30 step 8); (e) at forward contract maturity: Treasury settles with bank; system posts settlement with realized FX gain/loss vs. forward rate | Treasury Analyst / CFO | CFO | Monthly review + as needed for forward contracts |
+| 10a | **FX hedging policy**: CFO defines and documents the company's FX risk management strategy — (a) natural hedging: match USD payables (import POs per W2B) with USD receivables where possible; maintain USD bank account balances sufficient to cover near-term import payment obligations (typically 30–60 day forward cover); (b) forward contracts: for large committed import orders (> PHP 5M equivalent), Treasury Analyst may purchase USD forward contracts through the banking relationship to lock in exchange rate at PO creation date; forward contract details (notional amount, forward rate, maturity date, counterparty bank) recorded in system; (c) policy limits: unhedged FX exposure limited to 30-day rolling average of import payments; CFO approves all forward contracts; no speculative FX positions permitted (hedging only for committed import payables); (d) monthly: Treasury Analyst prepares FX exposure report — total USD payables outstanding, USD bank balances, forward contracts in place, net unhedged exposure, unrealized FX gain/loss on open forward contracts; included in weekly cash flow forecast (W30 step 8); (e) at forward contract maturity: Treasury settles with bank; system posts settlement with realized FX gain/loss vs. forward rate | Treasury Analyst / CFO | CFO | Monthly review + as needed for forward contracts |
 
 ### System Touchpoints
 - Multi-bank statement import (BDO, BPI, Metrobank, Chinabank) via file formats or API (W30.2)
 - Daily cash position dashboard per entity and consolidated (W30.3)
 - Store cash deposit auto-matching to Z-report amounts (W30.4)
-- Cash-in-transit confirmation: system records armored car pickup or bank deposit confirmation per store; auto-matches deposit amount to Z-report cash total; flags unmatched or short deposits for investigation (W30.4, cross-reference W5f.5a)
+- Cash-in-transit confirmation: system records armored car pickup or bank deposit confirmation per store; auto-matches deposit amount to Z-report cash total; flags unmatched or short deposits for investigation (W30.4, cross-reference W5F.5a)
 - Cash sweep scheduling and execution (W30.7)
 - Rolling cash flow forecast (W30.8)
-- Bank reconciliation per entity (W30.9; also linked to W9a step 9)
+- Bank reconciliation per entity (W30.9; also linked to W9A step 9)
 - Multi-currency (PHP/USD) account management with FX conversion tracking (W30.10)
 - Petty cash reconciliation link: store-level petty cash replenishments (W25) are included in the daily cash position report (W30 step 3) as pending outflows; Treasury Analyst sees replenishment requests in the weekly cash flow forecast (W30 step 8); replenishment payments confirmed via bank transfer are auto-matched to store deposit accounts during bank reconciliation (W30 step 9); monthly petty cash replenishment totals per store are visible on the Treasury dashboard for monitoring unusual patterns (W30)
-- Store-level cash position tracking: system aggregates per-store daily cash deposits (W5f), petty cash replenishments (W25), and store disbursement requests (W25 store disbursement) into a consolidated store cash movement report; Treasury Analyst reviews as part of daily cycle to detect unusual cash patterns at individual stores (W30)
+- Store-level cash position tracking: system aggregates per-store daily cash deposits (W5F), petty cash replenishments (W25), and store disbursement requests (W25 store disbursement) into a consolidated store cash movement report; Treasury Analyst reviews as part of daily cycle to detect unusual cash patterns at individual stores (W30)
 - Bank account lifecycle management: Treasury Analyst maintains bank account register across all entities (~210 accounts: 200 store deposit accounts, 5 DC operating accounts, 5 entity main operating accounts, 5 USD import accounts, and additional payroll, savings, and investment accounts); new account opening triggered by new store (W16), new entity setup, or new banking relationship — Treasury Analyst submits account opening request to bank with Board Resolution (per entity), authorized signatory list, and business registration documents; signatory management: system tracks authorized signatories per account with signatory tier (single signatory, dual signatory, any-two-of-three); when a signatory changes role or separates (W43), Treasury Analyst updates bank signatory list within 10 business days — system alerts on signatory staleness (no update in > 12 months); account closure triggered by store closure (W45), account consolidation, or bank relationship termination — Treasury Analyst confirms zero balance, obtains bank closure confirmation, and deactivates account in system; system logs all account openings, signatory changes, and closures with full audit trail (W30)
 
 ### Staffing Implication
 - **2–3 Treasury Analysts**: Daily cash position (30 min) + sweep execution (30 min × 2/week) + weekly forecast (2 hours) + monthly bank reconciliation (1 day) + import payments + inter-entity transfers. This is a full-time role for 2 analysts with a 3rd covering during peaks (month-end, import payment seasons).
-- **Store Managers**: Daily cash deposit preparation adds ~30 min to closing routine — absorbed into W5f.
+- **Store Managers**: Daily cash deposit preparation adds ~30 min to closing routine — absorbed into W5F.
 
 ---
 
@@ -703,7 +703,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 | 11 | Merchandising performance: category sales, margin, inventory turns, sell-through, vendor rebate realization | Pricing Analyst | VP Merchandising | Monthly (by day 7) |
 | 12 | AR aging and collections performance: DSO, overdue %, write-offs | AR Supervisor | CFO | Monthly |
 | 13 | HR metrics: turnover rate, time-to-fill, absenteeism, overtime hours, headcount vs. plan | HR Head | CHRO | Monthly |
-| 14a | Store utility consumption report: system aggregates per-store utility expense (electricity, water, internet) from non-PO invoice data (W7c); benchmarks kWh per sqm per store per month; flags stores with utility consumption > 20% above peer average (same store format, same region) for investigation — potential causes include equipment malfunction (W47), HVAC inefficiency, or unauthorized usage; Store Manager receives monthly utility scorecard as part of Store Performance Scorecard (W67); Facilities Coordinator investigates flagged stores and recommends corrective action (equipment upgrade, behavioral changes) | System / Facilities Coordinator | Store Ops Director | Automated + 2 hours/month review |
+| 14a | Store utility consumption report: system aggregates per-store utility expense (electricity, water, internet) from non-PO invoice data (W7C); benchmarks kWh per sqm per store per month; flags stores with utility consumption > 20% above peer average (same store format, same region) for investigation — potential causes include equipment malfunction (W47), HVAC inefficiency, or unauthorized usage; Store Manager receives monthly utility scorecard as part of Store Performance Scorecard (W67); Facilities Coordinator investigates flagged stores and recommends corrective action (equipment upgrade, behavioral changes) | System / Facilities Coordinator | Store Ops Director | Automated + 2 hours/month review |
 | 14 | Management committee meeting: CFO presents consolidated results; Department Heads present functional KPIs | CFO / Dept. Heads | CEO | Monthly (by day 10) |
 
 ### Quarterly
@@ -807,7 +807,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 | 3 | Treasury Analyst coordinates with insurance broker to obtain renewal quotation and market comparison; broker provides at least 2 alternative quotes for material policies (annual premium > PHP 500K) | Treasury Analyst | CFO | 1–2 hours/policy |
 | 4 | CFO reviews coverage adequacy annually: (a) property coverage vs. current replacement cost of stores and DCs, (b) inventory coverage vs. current inventory value, (c) fleet coverage vs. current vehicle count, (d) business interruption coverage vs. current revenue run rate, (e) cyber liability adequacy given data volumes | CFO | CEO | 2–4 hours/year |
 | 5 | CFO approves or adjusts coverage; authorizes Treasury Analyst to renew or switch insurer | CFO | CEO | 1 hour |
-| 6 | Treasury Analyst processes premium payment per W7c (non-PO invoice) or against insurance broker PO; system posts premium to GL (Dr. Prepaid Insurance / Cr. Cash); monthly amortization per W9a step 8 | Treasury Analyst | CFO | 15 min/policy |
+| 6 | Treasury Analyst processes premium payment per W7C (non-PO invoice) or against insurance broker PO; system posts premium to GL (Dr. Prepaid Insurance / Cr. Cash); monthly amortization per W9A step 8 | Treasury Analyst | CFO | 15 min/policy |
 | 7 | Claims: when an insured event occurs (W3.6a goods damage, W49 typhoon damage, W37 confirmed theft, W52 vehicle accident), the process owner files claim with supporting documentation; Treasury Analyst tracks claim status in system; upon settlement, Finance posts recovery (Dr. Cash / Cr. Insurance Recovery Income or Cr. relevant asset/expense account) | Process Owner / Treasury Analyst | CFO | Per event |
 | 8 | Monthly: Treasury Analyst reviews claims activity report: open claims, settlement status, claims vs. premiums ratio; flags policies where claims experience may affect renewal terms | Treasury Analyst | CFO | 30 min/month |
 | 9 | Annual: CFO and external broker review claims history, coverage adequacy, and market conditions; adjust policy structure for upcoming year | CFO + Broker | CEO | 2 hours/year |
@@ -834,7 +834,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Month-end close (W9a step 16e) and weekly AP/AR aging review |
+| **Trigger** | Month-end close (W9A step 16e) and weekly AP/AR aging review |
 | **Frequency** | Weekly aging review (AP and AR); monthly formal reconciliation during close; quarterly deep review in management reporting (W35) |
 | **Volume** | ~100–200 open credit/debit notes at any time across AP and AR |
 | **Owner** | Chief Accountant |
@@ -849,7 +849,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 | 3 | **AR credit memos** (customer credits): AR Clerk reviews unapplied customer credit memos weekly; for each: (a) if customer has open invoices, applies credit to oldest invoice; (b) if customer has no open invoices, contacts customer to arrange refund or confirm credit for next purchase; (c) if credit > 90 days and customer is unresponsive, escalates to AR Supervisor for write-off as other income | AR Clerk | AR Supervisor | 30 min/week |
 | 4 | **AP debit memos** (vendor chargebacks): AP Clerk reviews open debit memos — these represent amounts BuildRight is deducting from vendor payments (short shipments, damage claims, pricing disputes); confirms debit memos are resolved with next vendor payment; unresolved debits > 60 days escalated to Buyer for vendor negotiation | AP Clerk | AP Supervisor | 15 min/week |
 | 5 | **AR debit memos** (customer chargebacks): AR Clerk reviews open AR debit memos — these represent amounts owed by customers beyond normal invoices (bounced checks, disputed deductions); follows up with customer per W8 collection tiers; unresolved debits > 90 days escalated to Finance Manager for bad debt provision | AR Clerk | AR Supervisor | 15 min/week |
-| 6 | **Month-end reconciliation** (W9a step 16e): Chief Accountant reviews total unapplied credit/debit note balances; confirms AP credit memo sub-ledger agrees with GL Accounts Payable; confirms AR credit memo sub-ledger agrees with GL Accounts Receivable; unresolved items > 90 days summarized for Controller | Chief Accountant | Controller | 1 hour/month |
+| 6 | **Month-end reconciliation** (W9A step 16e): Chief Accountant reviews total unapplied credit/debit note balances; confirms AP credit memo sub-ledger agrees with GL Accounts Payable; confirms AR credit memo sub-ledger agrees with GL Accounts Receivable; unresolved items > 90 days summarized for Controller | Chief Accountant | Controller | 1 hour/month |
 | 7 | **Quarterly deep review** (W35 step 19): Chief Accountant presents credit/debit note aging summary to Controller and CFO; highlights chronic vendors/customers with recurring unapplied credits; recommends process improvements (e.g., auto-application rules, vendor/customer communication templates); material write-offs approved per standard tiers | Chief Accountant / Controller | CFO | 30 min/quarter |
 
 ### System Touchpoints
@@ -858,7 +858,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 - Sub-ledger to GL reconciliation: AP/AR credit memo sub-ledger totals reconcile to GL control accounts (W70.6)
 - Write-off workflow for stale credits/debits: tiered approval (AR/AP Supervisor ≤ PHP 50K, Controller ≤ PHP 200K, CFO > PHP 200K); system posts write-off with GL entry (W70.2–5)
 - Chronic vendor/customer analysis: identifies accounts with recurring unapplied credits over rolling 12-month period (W70.7)
-- Integration with W7 (AP credit memos from vendor), W7.9b (vendor credit memo processing), W8 (AR credit memos), W8.11 (customer credit memo processing), W9a.16e (month-end credit note reconciliation), W35.19 (quarterly review)
+- Integration with W7 (AP credit memos from vendor), W7.9b (vendor credit memo processing), W8 (AR credit memos), W8.11 (customer credit memo processing), W9A.16e (month-end credit note reconciliation), W35.19 (quarterly review)
 
 ### Staffing Implication
 - **AP Clerk**: adds ~30 min/week for AP credit memo review. Absorbed.
@@ -876,7 +876,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Import purchase order confirmed with USD vendor (W2b); or quarterly FX exposure review |
+| **Trigger** | Import purchase order confirmed with USD vendor (W2B); or quarterly FX exposure review |
 | **Frequency** | Forward contracts placed as needed (typically monthly or quarterly aligned with import PO schedule); quarterly exposure review |
 | **Volume** | ~40% of COGS from imports ≈ PHP 1.4B/month; USD-denominated payables ~PHP 600M–1B/month at current exchange rates; ~10–20 active forward contracts at any time |
 | **Owner** | Treasury Analyst |
@@ -884,31 +884,31 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 
 ### Background
 
-BuildRight's import purchasing (~40% of COGS) is primarily denominated in USD, exposing the company to PHP/USD exchange rate fluctuations. With import lead times of 45–90 days (W2b), the company faces FX risk from PO creation through LC payment. The company's FX hedging policy is conservative: hedging is limited to covering committed import payables (no speculative positions). Forward contracts are the primary hedging instrument.
+BuildRight's import purchasing (~40% of COGS) is primarily denominated in USD, exposing the company to PHP/USD exchange rate fluctuations. With import lead times of 45–90 days (W2B), the company faces FX risk from PO creation through LC payment. The company's FX hedging policy is conservative: hedging is limited to covering committed import payables (no speculative positions). Forward contracts are the primary hedging instrument.
 
 ### Policy
 - **Hedging scope**: Only committed import payables (POs confirmed with vendor) — no speculative positions
 - **Hedging ratio target**: 50–80% of forecasted USD payables for the next 90 days
 - **Counterparty banks**: BDO, BPI, Metrobank (same banks used for operational accounts per FIN-009)
-- **Maturity matching**: Forward contract maturity dates aligned with expected LC/TT payment dates per W2b
+- **Maturity matching**: Forward contract maturity dates aligned with expected LC/TT payment dates per W2B
 - **Approval**: Forward contracts ≤ USD 500K → CFO; > USD 500K → CEO
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Exposure identification**: system generates FX exposure report from open import POs (W2b) — for each open import PO with USD or other foreign-currency denomination: PO number, vendor, foreign currency amount, PHP equivalent at budget rate, expected payment date, current spot rate, unrealized FX gain/loss | System | Treasury Analyst | Automated (weekly) |
+| 1 | **Exposure identification**: system generates FX exposure report from open import POs (W2B) — for each open import PO with USD or other foreign-currency denomination: PO number, vendor, foreign currency amount, PHP equivalent at budget rate, expected payment date, current spot rate, unrealized FX gain/loss | System | Treasury Analyst | Automated (weekly) |
 | 2 | Treasury Analyst reviews FX exposure report; identifies payables requiring hedge coverage based on policy (hedging ratio target, maturity horizon) | Treasury Analyst | CFO | 30 min/week |
 | 3 | Treasury Analyst obtains forward contract quotations from 2–3 counterparty banks for required tenors and amounts | Treasury Analyst | CFO | 30 min/hedge |
 | 4 | Treasury Analyst selects bank based on: (a) forward rate competitiveness, (b) counterparty credit risk (bank credit rating), (c) existing facility limits and available margin; prepares forward contract recommendation: notional amount, forward rate, maturity date, counterparty bank, corresponding import PO reference(s) | Treasury Analyst | CFO | 15 min/hedge |
 | 5 | CFO approves forward contract; if notional > USD 500K, CEO approval required | CFO / CEO | CEO | 15 min/hedge |
 | 6 | Treasury Analyst executes forward contract with selected bank; receives contract confirmation; records forward contract in system: contract number, counterparty bank, notional amount (USD), forward rate (PHP/USD), trade date, maturity date, settlement type (physical delivery or cash net settlement), linked import PO reference(s) | Treasury Analyst | CFO | 15 min/hedge |
 | 7 | **Ongoing monitoring**: weekly, Treasury Analyst reviews forward contract portfolio vs. open USD payables — (a) hedge coverage ratio (total forward notional ÷ total USD payables), (b) MTM (mark-to-market) gain/loss per forward contract using current spot rate, (c) maturity ladder — forward contracts maturing in next 30 days flagged for settlement planning | Treasury Analyst | CFO | 30 min/week |
-| 8 | **Settlement at maturity**: when import LC/TT payment is due (W2b step 13), Treasury Analyst coordinates forward contract settlement — (a) for physical delivery: forward contract provides USD at contracted rate; bank debits PHP account at forward rate and credits USD for LC/TT payment; (b) for cash net settlement: if spot rate at maturity differs from forward rate, bank pays or receives the difference; Treasury Analyst settles the actual import payment at spot rate and separately receives/pays the forward contract settlement | Treasury Analyst | CFO | 30 min/settlement |
-| 9 | **System posting**: at settlement, system posts realized FX hedge result — (a) difference between forward rate and original PO budget rate allocated to the import PO's landed cost (W2b.12) or recognized as FX hedging gain/loss; (b) any premium or discount amortized over the contract period per PFRS 9; (c) system links forward contract settlement to corresponding AP payment for full audit trail | System / Treasury Analyst | Controller | Automated + 15 min review |
+| 8 | **Settlement at maturity**: when import LC/TT payment is due (W2B step 13), Treasury Analyst coordinates forward contract settlement — (a) for physical delivery: forward contract provides USD at contracted rate; bank debits PHP account at forward rate and credits USD for LC/TT payment; (b) for cash net settlement: if spot rate at maturity differs from forward rate, bank pays or receives the difference; Treasury Analyst settles the actual import payment at spot rate and separately receives/pays the forward contract settlement | Treasury Analyst | CFO | 30 min/settlement |
+| 9 | **System posting**: at settlement, system posts realized FX hedge result — (a) difference between forward rate and original PO budget rate allocated to the import PO's landed cost (W2B.12) or recognized as FX hedging gain/loss; (b) any premium or discount amortized over the contract period per PFRS 9; (c) system links forward contract settlement to corresponding AP payment for full audit trail | System / Treasury Analyst | Controller | Automated + 15 min review |
 | 10 | **Monthly**: Treasury Analyst includes forward contract portfolio summary in monthly cash position report (W30) — total notional, weighted average forward rate, MTM gain/loss, hedge coverage ratio, upcoming maturities | Treasury Analyst | CFO | 30 min/month |
 | 11 | **Quarterly**: CFO reviews hedging effectiveness — (a) actual FX cost (hedged vs. unhedged payables), (b) hedge coverage ratio vs. policy target, (c) counterparty concentration, (d) recommendations for hedging strategy adjustments; results presented to CEO quarterly | CFO | CEO | 1 hour/quarter |
-| 12 | **Early termination** (exception): if an import PO is cancelled (W2a PO cancellation) and linked forward contract no longer has an underlying payable, Treasury Analyst may: (a) hold forward contract to maturity and use for another import PO (if tenor matches), (b) terminate early with bank and recognize termination gain/loss, or (c) sell forward contract to offset new exposure; early termination requires CFO approval | Treasury Analyst | CFO | 30 min/occurrence |
+| 12 | **Early termination** (exception): if an import PO is cancelled (W2A PO cancellation) and linked forward contract no longer has an underlying payable, Treasury Analyst may: (a) hold forward contract to maturity and use for another import PO (if tenor matches), (b) terminate early with bank and recognize termination gain/loss, or (c) sell forward contract to offset new exposure; early termination requires CFO approval | Treasury Analyst | CFO | 30 min/occurrence |
 
 ### System Touchpoints
 - FX exposure report from open import POs with unrealized gain/loss (W80.1)
@@ -917,8 +917,8 @@ BuildRight's import purchasing (~40% of COGS) is primarily denominated in USD, e
 - Hedge coverage ratio dashboard: forward notional ÷ USD payables with trend (W80.7)
 - Settlement posting with realized FX hedge result and PFRS 9 accounting (W80.9)
 - Forward contract portfolio summary integrated into monthly cash position report (W80.10)
-- Linkage to import PO lifecycle (W2b) and AP payment (W7) for full audit trail
-- Integration with W2b (import POs — exposure source), W7 (AP payment), W9a.5a (month-end FX revaluation — forward contracts included in revaluation), W26 (budget — hedging costs budgeted), W30 (treasury — forward contract cash flows)
+- Linkage to import PO lifecycle (W2B) and AP payment (W7) for full audit trail
+- Integration with W2B (import POs — exposure source), W7 (AP payment), W9A.5a (month-end FX revaluation — forward contracts included in revaluation), W26 (budget — hedging costs budgeted), W30 (treasury — forward contract cash flows)
 
 ### Staffing Implication
 - **Treasury Analyst**: adds ~1–2 hours/week for FX exposure monitoring, forward contract management, and settlement. With 2 Treasury Analysts on the team, this is absorbed.
@@ -961,7 +961,7 @@ This workflow covers the complete bad debt lifecycle from initial provisioning t
 | 10 | **Recovery — partial or full**: if customer subsequently pays on a previously written-off account — (a) AR Clerk receives payment (cash, bank transfer, or settlement agreement), (b) system posts recovery: Dr. Cash / Cr. Bad Debt Recovery (income — P&L), (c) recovery tracked separately from regular AR collections in GL and reporting, (d) if partial recovery: remaining balance remains in written-off register; if full recovery: account closed | AR Clerk / AR Supervisor | Controller | 10 min/recovery |
 | 11 | **Recovery via settlement agreement**: if customer offers reduced settlement (e.g., 60% of outstanding), AR Supervisor negotiates; Finance Manager approves settlement terms; system posts: Dr. Cash (settled amount) / Cr. Bad Debt Recovery (settled amount); remaining written-off balance confirmed as final loss | AR Supervisor / Finance Manager | Controller | 30 min/settlement |
 | 12 | **Quarterly**: Controller presents bad debt summary to CFO — (a) provision movement (opening balance + new provisions − write-offs + recoveries), (b) write-off volume and root cause analysis (customer bankruptcy, fraud, collection failure), (c) recovery rate on previously written-off accounts, (d) AR aging trend, (e) adequacy of general provision rate, (f) recommendation for provision rate adjustment if loss experience changes | Controller | CFO | 30 min/quarter |
-| 13 | **Annual**: CFO reviews bad debt provisioning methodology with external auditors as part of year-end audit (W9b); auditors assess adequacy of provision against actual loss history; methodology adjustments documented and approved | CFO | Board | 2 hours/year |
+| 13 | **Annual**: CFO reviews bad debt provisioning methodology with external auditors as part of year-end audit (W9B); auditors assess adequacy of provision against actual loss history; methodology adjustments documented and approved | CFO | Board | 2 hours/year |
 
 ### BIR Documentation Requirements
 
@@ -986,7 +986,7 @@ For a bad debt write-off to be deductible for Philippine income tax purposes (pe
 - Written-off accounts register with separate tracking from active AR (W81.9)
 - Bad debt recovery posting: Dr. Cash / Cr. Bad Debt Recovery (separate P&L line from regular revenue) (W81.10–11)
 - Quarterly bad debt summary dashboard: provision movement, write-off analysis, recovery rate, aging trend (W81.12)
-- Integration with W8 (AR collections — W8.8a escalation feeds into W81 write-off trigger), W9a (month-end — provision posting included in close), W9b (year-end — bad debt methodology review with auditors), W24 (credit application — written-off customers blocked from new credit), W35 (management reporting — bad debt KPIs), W44 (vendor scorecard — recovery process mirrors vendor collection logic)
+- Integration with W8 (AR collections — W8.8a escalation feeds into W81 write-off trigger), W9A (month-end — provision posting included in close), W9B (year-end — bad debt methodology review with auditors), W24 (credit application — written-off customers blocked from new credit), W35 (management reporting — bad debt KPIs), W44 (vendor scorecard — recovery process mirrors vendor collection logic)
 
 ### Staffing Implication
 - **AR Supervisor**: adds ~2 hours/month for write-off initiation and documentation. Absorbed.
@@ -1005,7 +1005,7 @@ For a bad debt write-off to be deductible for Philippine income tax purposes (pe
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Monthly margin variance review during W9a close; or quarterly assortment review (W1); or ad-hoc triggered by significant vendor cost change (W40) or competitive pricing pressure (W61) |
+| **Trigger** | Monthly margin variance review during W9A close; or quarterly assortment review (W1); or ad-hoc triggered by significant vendor cost change (W40) or competitive pricing pressure (W61) |
 | **Frequency** | Monthly margin monitoring; quarterly deep-dive review; annual category-level strategy review |
 | **Volume** | 35,000 active SKUs across 200 stores + 5 DCs; ~20–25 product categories |
 | **Owner** | Cost Accountant |
@@ -1013,9 +1013,9 @@ For a bad debt write-off to be deductible for Philippine income tax purposes (pe
 
 ### Background
 
-Product costing and margin analysis is currently fragmented: WAC verification happens during month-end close (W9a.6a), margin impact assessment occurs during price changes (W40.2), and assortment review (W1) considers category-level margin targets. This workflow consolidates these into a structured periodic review that ensures margin erosion is detected early, cost changes are proactively managed, and pricing strategy decisions are data-driven. It bridges the Finance and Merchandising functions.
+Product costing and margin analysis is currently fragmented: WAC verification happens during month-end close (W9A.6a), margin impact assessment occurs during price changes (W40.2), and assortment review (W1) considers category-level margin targets. This workflow consolidates these into a structured periodic review that ensures margin erosion is detected early, cost changes are proactively managed, and pricing strategy decisions are data-driven. It bridges the Finance and Merchandising functions.
 
-### Monthly Margin Monitoring (by day 10, after W9a close)
+### Monthly Margin Monitoring (by day 10, after W9A close)
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
@@ -1046,7 +1046,7 @@ Product costing and margin analysis is currently fragmented: WAC verification ha
 - Quarterly category margin deep-dive: vendor-level analysis, import vs. domestic, promo vs. non-promo (W85.5)
 - Configurable margin thresholds per category with alerting (W85.8)
 - Annual margin strategy report with driver analysis and proposed targets (W85.9)
-- Integration with W1 (assortment review — margin is a key input to SKU add/drop decisions), W9a (WAC verification and month-end inventory valuation), W13 (promo margin impact), W27 (vendor rebate impact on effective margin), W40 (SRP changes — margin impact calculator), W44 (vendor cost negotiation), W61 (competitive pricing pressure), W68 (product discontinuation — margin as exit criterion), W83 (campaign ROI — margin data feeds campaign performance analysis)
+- Integration with W1 (assortment review — margin is a key input to SKU add/drop decisions), W9A (WAC verification and month-end inventory valuation), W13 (promo margin impact), W27 (vendor rebate impact on effective margin), W40 (SRP changes — margin impact calculator), W44 (vendor cost negotiation), W61 (competitive pricing pressure), W68 (product discontinuation — margin as exit criterion), W83 (campaign ROI — margin data feeds campaign performance analysis)
 
 ### Staffing Implication
 - **Cost Accountant**: adds ~4 hours/month for monthly review + ~12 hours/quarter for deep-dive + ~16 hours/year for annual review = ~100 hours/year. Absorbed within existing Finance team.
@@ -1078,8 +1078,8 @@ Bank reconciliation is a fundamental financial control ensuring that the general
 | 1 | **Statement import**: Treasury Analyst imports electronic bank statements (BDO, BPI, Metrobank, Chinabank formats) into ERP bank reconciliation module; for accounts receiving paper statements only, AP Clerk scans and enters key transactions manually | Treasury Analyst / AP Clerk | Controller | 30 min/account |
 | 2 | **Auto-matching — system level**: System attempts to auto-match bank statement lines to GL transactions: (a) vendor payment (W7) matched by payment reference and amount, (b) customer receipt (W8) matched by deposit reference, (c) payroll bank file (W10) matched by batch reference and total, (d) intercompany settlement (W14) matched by IC reference, (e) treasury sweeps and transfers (W30) matched by transfer reference, (f) tax payments (W90) matched by BIR payment reference, (g) capex payments (W21) matched by PO/invoice reference | System | — | Automated |
 | 3 | **Review auto-matched items**: Treasury Analyst reviews auto-matched items for accuracy; system displays match confidence score (high: exact reference + amount match; medium: amount match only; low: fuzzy match); high-confidence matches auto-accepted; medium and low reviewed manually | Treasury Analyst | Controller | 15 min/account |
-| 4 | **Manual matching — unmatched items**: Treasury Analyst investigates unmatched bank statement lines: (a) bank charges and fees (not in GL — post as bank charges expense), (b) deposit discrepancies (store cash deposit variance per W5f), (c) timing differences (checks issued but not yet cleared), (d) unknown items requiring investigation, (e) payment gateway settlement deposits (cross-reference W99), (f) interest income/expense (post as incurred) | Treasury Analyst | Controller | 30 min/account |
-| 5 | **Outstanding items review**: (a) Outstanding checks > 90 days: investigate with AP — stale check per Philippine law (6 months); if stale, AP re-issues or reverses; (b) Outstanding deposits > 7 days: investigate with store operations — missing deposit; (c) Unrecorded bank fees: post to bank charges expense; (d) FX gains/losses on USD accounts: post FX revaluation per W9a.5a | Treasury Analyst | Controller | 15 min/account |
+| 4 | **Manual matching — unmatched items**: Treasury Analyst investigates unmatched bank statement lines: (a) bank charges and fees (not in GL — post as bank charges expense), (b) deposit discrepancies (store cash deposit variance per W5F), (c) timing differences (checks issued but not yet cleared), (d) unknown items requiring investigation, (e) payment gateway settlement deposits (cross-reference W99), (f) interest income/expense (post as incurred) | Treasury Analyst | Controller | 30 min/account |
+| 5 | **Outstanding items review**: (a) Outstanding checks > 90 days: investigate with AP — stale check per Philippine law (6 months); if stale, AP re-issues or reverses; (b) Outstanding deposits > 7 days: investigate with store operations — missing deposit; (c) Unrecorded bank fees: post to bank charges expense; (d) FX gains/losses on USD accounts: post FX revaluation per W9A.5a | Treasury Analyst | Controller | 15 min/account |
 | 6 | **Reconciliation sign-off**: Treasury Analyst completes bank reconciliation per account; system generates reconciliation report showing: opening GL balance, plus/minus reconciling items, ending GL balance, ending bank balance, unreconciled difference (must be zero); Treasury Analyst signs off electronically | Treasury Analyst | Controller | 5 min/account |
 | 7 | **Controller review**: Controller reviews completed bank reconciliations for all accounts; focuses on: (a) accounts with high unmatched volume, (b) unusual items, (c) stale checks, (d) deposit discrepancies > PHP 5,000; approves or returns for correction | Controller | CFO | 1 hour/month |
 | 8 | **Journal entries**: System auto-generates journal entries for: (a) bank charges and fees, (b) interest income, (c) FX gains/losses on USD accounts, (d) stale check reversals, (e) deposit discrepancy adjustments; all auto-posted to GL with bank reconciliation reference | System | Controller | Automated |
@@ -1088,7 +1088,7 @@ Bank reconciliation is a fundamental financial control ensuring that the general
 ### Multi-Entity Considerations
 - Each entity's bank accounts reconciled separately
 - Intercompany bank transfers (W14 settlements) must clear in both entities' bank reconciliations in the same month
-- USD accounts (for import payments) reconciled with FX revaluation per W9a.5a
+- USD accounts (for import payments) reconciled with FX revaluation per W9A.5a
 - Ecommerce payment gateway accounts (PayMongo, Dragonpay) reconciled via W99 and cross-referenced here
 
 ### System Touchpoints
@@ -1127,25 +1127,25 @@ FIN-008 requires BIR tax return generation as a Must Have. W9 (Financial Close) 
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Tax data extraction** (after W9a month-end close day 3–4): Tax Accountant extracts from ERP: (a) VAT data — output VAT (sales) and input VAT (purchases) per entity; sales/purchases split by VAT-able, VAT-exempt, zero-rated; (b) EWT data — withholding tax per vendor per ATC (Alphanumeric Tax Code) from AP (W7.9a); (c) Withholding on compensation — per employee per entity from payroll (W10.4); (d) Local business tax — per LGU per location from W9a.16c | Tax Accountant | Controller | 2 hours/month |
-| 2 | **VAT return preparation** (BIR Form 2550M — monthly, or 2550Q — quarterly): (a) Tax Accountant reviews VAT data for completeness: all sales transactions captured, all purchase VAT claimed, intercompany VAT elimination correct per W14; (b) prepares 2550M per entity: gross sales, VAT-able sales, output VAT, total purchases, VAT-able purchases, input VAT, adjustments (prior period corrections), net VAT payable or refundable; (c) validates input VAT claims against supporting documents — BIR-registered sales invoices, official receipts, import entry declarations; (d) cross-references with W9a.16 VAT return schedule | Tax Accountant | Controller | 3 hours/month |
+| 1 | **Tax data extraction** (after W9A month-end close day 3–4): Tax Accountant extracts from ERP: (a) VAT data — output VAT (sales) and input VAT (purchases) per entity; sales/purchases split by VAT-able, VAT-exempt, zero-rated; (b) EWT data — withholding tax per vendor per ATC (Alphanumeric Tax Code) from AP (W7.9a); (c) Withholding on compensation — per employee per entity from payroll (W10.4); (d) Local business tax — per LGU per location from W9A.16c | Tax Accountant | Controller | 2 hours/month |
+| 2 | **VAT return preparation** (BIR Form 2550M — monthly, or 2550Q — quarterly): (a) Tax Accountant reviews VAT data for completeness: all sales transactions captured, all purchase VAT claimed, intercompany VAT elimination correct per W14; (b) prepares 2550M per entity: gross sales, VAT-able sales, output VAT, total purchases, VAT-able purchases, input VAT, adjustments (prior period corrections), net VAT payable or refundable; (c) validates input VAT claims against supporting documents — BIR-registered sales invoices, official receipts, import entry declarations; (d) cross-references with W9A.16 VAT return schedule | Tax Accountant | Controller | 3 hours/month |
 | 3 | **EWT return preparation** (BIR Form 1601-E): (a) Tax Accountant reviews EWT computations per vendor per ATC; validates against AP records (W7.9a); (b) reconciles total EWT withheld per entity vs. vendor creditable withholding tax certificates (BIR Form 2307) to be issued; (c) prepares 1601-E per entity: total withholding per ATC category, taxes remitted prior months, current month liability | Tax Accountant | Controller | 2 hours/month |
 | 4 | **Withholding on compensation** (BIR Form 1601-C): (a) Payroll Officer provides monthly withholding tax per entity from W10 payroll processing; (b) Tax Accountant validates against TRAIN law tax tables and payroll register; (c) prepares 1601-C per entity | Tax Accountant / Payroll Officer | Controller | 1 hour/month |
 | 5 | **Statutory remittance — SSS, PhilHealth, Pag-IBIG**: (a) Payroll Officer generates monthly contribution schedules per entity from W10: employer share, employee share, total per employee; (b) validates against PRN (Payment Reference Number) from each agency; (c) submits payment via bank transfer or agency portal per deadline (SSS by last day of month, PhilHealth by every 10th, Pag-IBIG by every 14th) | Payroll Officer | HR Manager | 2 hours/month |
 | 6 | **BIR eFPS filing**: Tax Accountant files returns via BIR Electronic Filing and Payment System (eFPS) or eBIRForms for non-eFPS-covered entities: (a) uploads prepared returns (2550M, 1601-E, 1601-C); (b) system validates return data against BIR validation rules; (c) receives confirmation and payment reference | Tax Accountant | Controller | 1 hour/month |
 | 7 | **Tax payment**: Treasury Analyst processes tax payments via bank: (a) eFPS auto-debit for covered entities; (b) manual bank transfer for non-eFPS entities; (c) verifies payment confirmation against filed return amounts | Treasury Analyst | Controller | 30 min/month |
 | 8 | **Tax certificate generation**: Tax Accountant generates and distributes: (a) BIR Form 2307 (creditable withholding tax certificates) to vendors — monthly for top vendors, quarterly for others; (b) BIR Form 2316 (certificate of compensation payment/tax withheld) to all employees — annually or upon separation (W43); (c) alphalist of payees (1604-E) and employees (1604-C) — annual | Tax Accountant | Controller | 2 hours/month |
-| 9 | **Tax reconciliation**: Monthly: Tax Accountant reconciles tax liability accounts (VAT payable, EWT payable, WTC payable) per entity: (a) beginning balance + current month liability − payments = ending balance; (b) ending balance must agree with GL (W9a); (c) investigates and resolves discrepancies before next filing cycle | Tax Accountant | Controller | 1 hour/month |
+| 9 | **Tax reconciliation**: Monthly: Tax Accountant reconciles tax liability accounts (VAT payable, EWT payable, WTC payable) per entity: (a) beginning balance + current month liability − payments = ending balance; (b) ending balance must agree with GL (W9A); (c) investigates and resolves discrepancies before next filing cycle | Tax Accountant | Controller | 1 hour/month |
 | 10 | **Tax calendar compliance dashboard**: System maintains tax compliance calendar per entity showing: filing deadline, filing status (pending/filed/paid), responsible person, penalty exposure for late filing; Controller reviews weekly | System / Controller | CFO | 15 min/week |
 
 ### Quarterly / Annual Filing Additions
 
 | # | Activity | Role (R) | Role (A) | Frequency |
 |---|---|---|---|---|
-| 11 | **Quarterly income tax return** (BIR Form 1702Q): Tax Accountant prepares quarterly corporate income tax return per entity: taxable income, tax due, quarterly installment; validates against quarterly financial statements (W9a) | Tax Accountant | Controller | Quarterly |
-| 12 | **Annual income tax return** (BIR Form 1702RT): Tax Accountant prepares annual corporate income tax return per entity; incorporates year-end adjustments from W9b; cross-references with external auditor's tax computations (W95) | Tax Accountant | Controller / CFO | Annual |
+| 11 | **Quarterly income tax return** (BIR Form 1702Q): Tax Accountant prepares quarterly corporate income tax return per entity: taxable income, tax due, quarterly installment; validates against quarterly financial statements (W9A) | Tax Accountant | Controller | Quarterly |
+| 12 | **Annual income tax return** (BIR Form 1702RT): Tax Accountant prepares annual corporate income tax return per entity; incorporates year-end adjustments from W9B; cross-references with external auditor's tax computations (W95) | Tax Accountant | Controller / CFO | Annual |
 | 13 | **Annual information returns** (BIR Forms 1604-C, 1604-E): Tax Accountant prepares and files annual alphalist of employees and payees; reconciles with full-year withholding records | Tax Accountant | Controller | Annual (January) |
-| 14 | **Local business tax reconciliation**: Tax Accountant reconciles quarterly LBT payments per LGU (from W9a.16c) against LGU assessment; prepares any variance explanations; LGU assessments reconciled during W54 permit renewals | Tax Accountant | Controller | Quarterly |
+| 14 | **Local business tax reconciliation**: Tax Accountant reconciles quarterly LBT payments per LGU (from W9A.16c) against LGU assessment; prepares any variance explanations; LGU assessments reconciled during W54 permit renewals | Tax Accountant | Controller | Quarterly |
 
 ### System Touchpoints
 - Automated tax data extraction: VAT, EWT, WTC per entity with intercompany elimination (W90.1)
@@ -1192,7 +1192,7 @@ Customer deposits (advance payments) are a common retail scenario for big-box ho
 | 5 | **Unclaimed deposit aging**: System monitors unapplied/unrefunded deposits with aging: (a) 0–90 days: normal; (b) 90–180 days: system sends customer notification (deposit reminder); (c) 180–365 days: CSR contacts customer for disposition (apply, refund, or forfeit); (d) > 365 days: per Philippine law and BuildRight policy, unclaimed deposits may be recognized as revenue with Controller approval; system generates unclaimed deposit report for Controller review | System / CSR | Controller | 15 min/week |
 | 6 | **Layaway deposit forfeiture** (W75 integration): (a) If customer cancels layaway or defaults on installment payments per W75 cancellation rules, system forfeits deposit per layaway agreement terms; (b) forfeiture amount posted as Dr. Customer Deposits / Cr. Other Income (cancellation fee) or Cr. Revenue (if goods retained); (c) inventory reservation released per W75 | System / CSR | Store Manager | Per W75 |
 | 7 | **Project account advance billing** (W58 integration): For corporate/project accounts with milestone billing: (a) project contract may specify advance payment (e.g., 30% down, 40% at delivery, 30% at completion); (b) each advance collected per step 1; (c) at each billing milestone (W58), system applies collected deposits to milestone invoice; (d) retention amounts (typically 10% held for 90–180 days post-completion) tracked separately in deposit register with scheduled release date | AR Accountant | Controller | Per W58 |
-| 8 | **Monthly reconciliation**: AR Accountant reconciles customer deposit liability account: (a) total deposit liability per GL must agree with deposit register total per system; (b) aging analysis of unapplied deposits; (c) investigate and resolve discrepancies; (d) report to Controller as part of W9a month-end close | AR Accountant | Controller | 2 hours/month |
+| 8 | **Monthly reconciliation**: AR Accountant reconciles customer deposit liability account: (a) total deposit liability per GL must agree with deposit register total per system; (b) aging analysis of unapplied deposits; (c) investigate and resolve discrepancies; (d) report to Controller as part of W9A month-end close | AR Accountant | Controller | 2 hours/month |
 
 ### System Touchpoints
 - Deposit receipt creation at POS or AR with linked order reference (W94.1)
@@ -1233,10 +1233,10 @@ With 51% of POS transactions paid via non-cash methods (credit/debit cards ~36%,
 | 2 | **Auto-matching**: System attempts to match settlement report lines to POS/ecommerce transactions: (a) match by transaction reference (card approval code, e-wallet reference, payment gateway order ID); (b) match by amount and date; (c) system calculates variance per settlement batch: gross transactions − refunds − chargebacks − fees = expected net settlement; compare to actual bank credit | System | — | Automated |
 | 3 | **Fee validation**: (a) System validates processing fees per transaction against contracted rates per payment processor: card acquiring fees (1.5–2.5% + PHP 10–15 per transaction), e-wallet fees (1.0–2.0% + PHP 5–10), payment gateway fees (2.0–3.5% + PHP 15–25); (b) flags transactions with fees exceeding contracted rate by > 0.5% for investigation; (c) monthly: Treasury Analyst compares actual effective fee rate (total fees ÷ total processed) vs. contracted blended rate per processor | System / Treasury Analyst | Controller | 15 min/day |
 | 4 | **Chargeback management**: (a) System receives chargeback notification from card acquirer; (b) creates chargeback case with transaction details; (c) Store Manager or CSR provides supporting documentation (signed receipt, delivery proof, CCTV if fraud); (d) Treasury Analyst submits representment (dispute) within acquirer deadline (typically 7–14 days); (e) if chargeback upheld: system posts Dr. Chargeback Expense / Cr. AR-Card Processor; if reversed: system posts Dr. AR-Card Processor / Cr. Chargeback Expense; (f) monthly chargeback rate monitored: target < 0.5% of card transaction volume | Treasury Analyst / CSR / Store Manager | Controller | 20 min/chargeback |
-| 5 | **Unreconciled items investigation**: Treasury Analyst investigates unmatched items: (a) settlement received but no matching POS transaction (possible: delayed posting from offline POS per W5g, multi-tender split transaction), (b) POS transaction but no matching settlement (possible: transaction on cutoff date, settlement in next day's batch), (c) amount discrepancy (partial refund, fee dispute, FX conversion for international cards) | Treasury Analyst | Controller | 30 min/day |
+| 5 | **Unreconciled items investigation**: Treasury Analyst investigates unmatched items: (a) settlement received but no matching POS transaction (possible: delayed posting from offline POS per W5G, multi-tender split transaction), (b) POS transaction but no matching settlement (possible: transaction on cutoff date, settlement in next day's batch), (c) amount discrepancy (partial refund, fee dispute, FX conversion for international cards) | Treasury Analyst | Controller | 30 min/day |
 | 6 | **GL posting**: System posts daily settlement entries: (a) Dr. Cash (net settlement received in bank) / Cr. AR-Card Processor (gross transactions); (b) Dr. Payment Processing Expense / Cr. AR-Card Processor (processing fees); (c) Dr. AR-Card Processor / Cr. Revenue (refunds/chargebacks); (d) net effect: system AR-Card Processor clearing account should net to zero daily; any residual balance investigated | System | Treasury Analyst | Automated |
 | 7 | **Weekly summary**: Treasury Analyst prepares weekly payment settlement summary: total processed per channel, total fees, effective fee rate per channel, chargeback count and rate, unreconciled items aging; submits to Controller | Treasury Analyst | Controller | 30 min/week |
-| 8 | **Monthly comprehensive reconciliation**: (a) Treasury Analyst reconciles monthly totals per payment channel: gross transactions (from POS/ecommerce system) vs. processed volume (from processor statements) vs. net settlement (from bank statements per W89); (b) validates monthly fee accrual vs. actual fees charged; adjusts accrual if variance > 2%; (c) confirms all chargeback cases resolved; (d) part of W9a month-end close supporting schedules | Treasury Analyst | Controller | 2 hours/month |
+| 8 | **Monthly comprehensive reconciliation**: (a) Treasury Analyst reconciles monthly totals per payment channel: gross transactions (from POS/ecommerce system) vs. processed volume (from processor statements) vs. net settlement (from bank statements per W89); (b) validates monthly fee accrual vs. actual fees charged; adjusts accrual if variance > 2%; (c) confirms all chargeback cases resolved; (d) part of W9A month-end close supporting schedules | Treasury Analyst | Controller | 2 hours/month |
 
 ### Per-Channel Settlement Timing
 
@@ -1256,7 +1256,7 @@ With 51% of POS transactions paid via non-cash methods (credit/debit cards ~36%,
 - Chargeback case management with document collection and deadline tracking (W99.4)
 - AR-Card Processor clearing account with daily zero-balance target (W99.6)
 - Weekly payment settlement summary and monthly comprehensive reconciliation (W99.7–8)
-- Integration with W5b (POS transactions — source of card/e-wallet payments), W5g (offline POS — delayed settlement), W11 (BOPIS payments), W12 (returns — refund processing), W19 (ecommerce payments), W25 (petty cash — small cash refunds), W30 (treasury — cash position includes settlement deposits), W89 (bank reconciliation — settlement deposits in bank statements)
+- Integration with W5B (POS transactions — source of card/e-wallet payments), W5G (offline POS — delayed settlement), W11 (BOPIS payments), W12 (returns — refund processing), W19 (ecommerce payments), W25 (petty cash — small cash refunds), W30 (treasury — cash position includes settlement deposits), W89 (bank reconciliation — settlement deposits in bank statements)
 
 ### Staffing Implication
 - **Treasury Analysts**: add ~1 hour/day for daily reconciliation + 30 min/week summary + 2 hours/month comprehensive = ~25 hours/month. With 2 Treasury Analysts, this is ~12.5 hours each/month. Absorbed within existing Finance team.
@@ -1279,7 +1279,7 @@ With 51% of POS transactions paid via non-cash methods (credit/debit cards ~36%,
 
 ### Background
 
-Referenced as "W7d" in W3 (RTV credit note aging report feeding into vendor statement reconciliation), this workflow fills a critical AP control gap. Without systematic vendor statement reconciliation, the company risks overpayment (duplicate invoices not caught by auto-matching), underpayment (vendor disputes damaging relationships), and inaccurate liability reporting (AP sub-ledger diverges from actual amounts owed). This is a standard month-end close control for any company with 800–1,000 active vendors and ~8,500–9,500 monthly invoices.
+Referenced as "W7D" in W3 (RTV credit note aging report feeding into vendor statement reconciliation), this workflow fills a critical AP control gap. Without systematic vendor statement reconciliation, the company risks overpayment (duplicate invoices not caught by auto-matching), underpayment (vendor disputes damaging relationships), and inaccurate liability reporting (AP sub-ledger diverges from actual amounts owed). This is a standard month-end close control for any company with 800–1,000 active vendors and ~8,500–9,500 monthly invoices.
 
 ### Steps
 
@@ -1350,7 +1350,7 @@ Refund and credit processing is currently scattered across multiple workflows: W
 | Gift Card | Reload to original gift card | Immediate in system | Dr. Revenue / Cr. Deferred Revenue-Gift Cards |
 | Trade Account (charge) | AR credit memo — reduces outstanding balance | Immediate in system | Dr. Revenue / Cr. AR-Trade |
 | Ecommerce (online payment) | Refund to original payment method via PayMongo/Dragonpay | T+2–5 business days settlement | Dr. Revenue / Cr. AR-Ecommerce |
-| Split Tender | Pro-rata refund to each method per W12a.6 | Combination of above | Split per method |
+| Split Tender | Pro-rata refund to each method per W12A.6 | Combination of above | Split per method |
 
 ### Steps
 
@@ -1378,7 +1378,7 @@ Refund and credit processing is currently scattered across multiple workflows: W
 - GL posting with VAT reversal and BIR-compliant credit memo / refund receipt generation (W101.8)
 - Unsettled electronic refund tracking with aging and processor follow-up (W101.9)
 - Monthly refund analytics dashboard with fraud indicators (W101.10)
-- Integration with W12 (in-store returns), W17 (loyalty reversal), W28 (gift card reload), W38 (deposit refund), W41 (complaint credit), W94 (advance payment refund), W98 (ecommerce cancellation), W99 (payment settlement reconciliation), W5b (POS refund processing)
+- Integration with W12 (in-store returns), W17 (loyalty reversal), W28 (gift card reload), W38 (deposit refund), W41 (complaint credit), W94 (advance payment refund), W98 (ecommerce cancellation), W99 (payment settlement reconciliation), W5B (POS refund processing)
 
 ### Staffing Implication
 - **CSRs / Cashiers**: refund processing is part of existing return and cancellation workflows — no incremental effort
@@ -1483,7 +1483,7 @@ W8 covers AR processing — invoice generation, credit limit enforcement, and cr
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Cash Consolidation**: Lead Cashier performs EOD cash count; reconciles with POS Z-reports (W5f) | Lead Cashier | Store Manager | 30 min |
+| 1 | **Cash Consolidation**: Lead Cashier performs EOD cash count; reconciles with POS Z-reports (W5F) | Lead Cashier | Store Manager | 30 min |
 | 2 | **Secure Bagging**: Reconciled cash placed in tamper-evident CIT bags with serialized seals; system logs seal numbers | Store Manager | Store Manager | 10 min |
 | 3 | **Pickup Verification**: Armoured car arrives; Store Manager verifies guard IDs and vehicle number against authorized list | Store Manager | Store Manager | 5 min |
 | 4 | **Handover**: Guard scans CIT bags; Store Manager and Guard sign electronic/physical manifest; copy stored in ERP | Store Manager / Guard | Store Manager | 5 min |
@@ -1591,3 +1591,90 @@ Philippine law (RA 9994 and RA 10754) requires 20% discount and VAT-exemption fo
 - Link to W39 (Disposal) for missing/damaged assets (W184.8)
 
 
+
+## W260. BIR eFPS Filing & Electronic Payment Submission
+
+| Field | Detail |
+|---|---|
+| **Workflow ID** | W260 |
+| **Name** | BIR eFPS Filing & Electronic Payment Submission |
+| **Trigger** | Tax filing deadline (monthly, quarterly, annually) |
+| **Frequency** | Monthly (2550M, 1601-E, 1601-C); Quarterly (2550Q, 1702Q); Annually (1702RT, 1604-C/E) |
+| **Volume** | ~15–20 filings/month across 5 entities; ~180–240 annual filings |
+| **Owner** | Tax Accountant |
+| **Participants** | Tax Accountant (2), Controller (1), Treasury Analyst (1) |
+| **Time Estimate** | 2–4 hours per filing cycle per entity |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Filing Calendar Check**: System alerts Tax Accountant of upcoming filing deadlines per BIR calendar: (a) 2550M — Monthly VAT Return (due 20th of following month), (b) 1601-E — Monthly EWT Remittance (due 10th of following month), (c) 1601-C — Monthly CWT Remittance (due 10th of following month), (d) 2550Q — Quarterly VAT Return, (e) 1702Q — Quarterly Income Tax Return, (f) 1604-C/E — Annual Information Return; alerts triggered 7 days before deadline | System | Controller | Automated |
+| 2 | **Data Extraction & Validation**: Tax Accountant runs tax data extraction from ERP: (a) for VAT returns: system pulls sales invoices (output VAT), purchase invoices (input VAT), import entries (VAT on imports per W239), adjustments (SC/PWD VAT-exemption per W217); (b) for EWT returns: system pulls all EWT-deducted vendor payments per ATC code (WI010, WI020, etc.); (c) for CWT returns: system pulls all compensation-related withholding per BIR tax tables; (d) system performs pre-validation: checks for missing TINs, duplicate entries, amount tolerance checks, and late-filed transactions | Tax Accountant | Controller | 1–2 hours |
+| 3 | **Return Preparation**: System auto-generates BIR tax return in prescribed format: (a) populated fields from ERP transaction data (sales, purchases, payments, withholding); (b) Tax Accountant reviews auto-populated return against source schedules; (c) manual adjustments for: late-registered transactions, tax credit certificates (TCC), prior-period adjustments, tax relief claims; (d) system validates arithmetic consistency and cross-field validation per BIR form rules | Tax Accountant | Controller | 1–2 hours |
+| 4 | **Controller Review**: Controller reviews prepared return: (a) verifies tax liability against GL accounts (VAT payable/receivable, EWT payable, CWT payable); (b) confirms tax credit utilization; (c) approves filing; (d) if adjustments needed, returns to Tax Accountant with comments | Controller | CFO | 30 min |
+| 5 | **eFPS Submission**: Tax Accountant logs into BIR Electronic Filing and Payment System (eFPS): (a) selects entity TIN and filing period; (b) uploads generated return file (or manually encodes if eFPS doesn't support batch upload for form type); (c) system validates submission and generates eFPS confirmation reference number; (d) Tax Accountant records confirmation number in ERP against filing record | Tax Accountant | Controller | 30 min |
+| 6 | **Payment via AAB**: For returns with tax due: (a) system calculates net tax payable after credits; (b) Tax Accountant initiates payment via eFPS-linked Authorized Agent Bank (AAB): electronic debit from enrolled bank account (BDO, BPI, or Metrobank per FIN-009); (c) for entities not enrolled in eFPS payment: Tax Accountant generates eFPS Payment Form and pays over-the-counter at AAB; (d) Payment Reference Number (PRN) generated and recorded in ERP | Tax Accountant / Treasury Analyst | Controller | 30 min |
+| 7 | **Confirmation & Reconciliation**: (a) Tax Accountant downloads eFS (electronic File Saved) confirmation from eFPS; (b) attaches confirmation and PRN to filing record in ERP; (c) system posts tax payment to GL (Dr. VAT/EWT/CWT Payable, Cr. Cash); (d) Treasury Analyst reconciles tax payment against bank statement per W89; (e) Tax Accountant files return in BIR CAS compliance archive per W216 | Tax Accountant / Treasury Analyst | Controller | 30 min |
+| 8 | **Quarterly/Annual Reconciliation**: At quarter-end and year-end: (a) Tax Accountant reconciles cumulative monthly filings against quarterly returns; (b) identifies discrepancies (additional transactions booked after monthly filing, classification corrections); (c) files adjustment returns if required per BIR rules; (d) at year-end: reconciles all quarterly filings against annual return (1702RT, 1604-C/E); (e) generates annual tax summary per entity for Controller and CFO review | Tax Accountant | Controller / CFO | 4–8 hours |
+
+### System Touchpoints
+- Tax return auto-generation engine per BIR form specifications (2550M/Q, 1601-E, 1601-C, 1702Q/RT, 1604-C/E)
+- eFPS integration module (direct submission or file export in BIR format)
+- Tax calendar with automated deadline alerts (configurable per entity)
+- Tax data validation engine (TIN verification, duplicate detection, arithmetic checks)
+- Payment gateway integration with AAB (BDO, BPI, Metrobank per FIN-009)
+- PRN tracking and reconciliation against GL
+- Tax filing archive per BIR CAS requirements (W216) with 7-year retention
+
+### Pain Points / Risks
+- **eFPS downtime**: BIR eFPS system frequently experiences downtime near filing deadlines; need contingency for over-the-counter filing with printed returns
+- **Manual encoding**: Some BIR forms cannot be batch-uploaded and must be manually encoded in eFPS; time-consuming and error-prone for multi-entity filing
+- **Late transactions**: Transactions booked after monthly filing cutoff require adjustment returns; tracking adjustments across periods is complex
+- **PRN expiration**: BIR Payment Reference Numbers have limited validity (typically 24 hours for eFPS-generated PRN); missed payment window requires new PRN generation
+- **Regulatory changes**: BIR frequently issues new Revenue Regulations affecting form formats, filing deadlines, and computation rules; ERP must support rapid form updates
+- **Multi-entity complexity**: 5 entities × multiple form types = 15–20 monthly filings; missing one entity's filing incurs penalties and compromise penalties
+
+## W261. E-Wallet & Digital Payment Settlement Reconciliation
+
+| Field | Detail |
+|---|---|
+| **Workflow ID** | W261 |
+| **Name** | E-Wallet & Digital Payment Settlement Reconciliation |
+| **Trigger** | Settlement report received from e-wallet provider (daily) |
+| **Frequency** | Daily reconciliation; monthly full review |
+| **Volume** | ~45,000 ecommerce orders/month × 40% e-wallet = ~18,000 e-wallet transactions/month + ~560,000 POS transactions/month × 30% e-wallet = ~168,000 POS e-wallet transactions/month = ~186,000 e-wallet transactions/month total |
+| **Owner** | Treasury Analyst |
+| **Participants** | Treasury Analyst (1), AR Supervisor (1), Controller (1), Store Manager (200) |
+| **Time Estimate** | 1–2 hours/day for reconciliation; 4 hours/month-end review |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Settlement Report Import**: Treasury Analyst imports daily settlement reports from e-wallet providers (GCash, Maya, GrabPay, ShopeePay): (a) system receives settlement file via SFTP or API (daily, T+1 or T+2 depending on provider); (b) file contains: gross transactions, provider fees/commissions, net settlement amount, settlement bank account, settlement reference; (c) system parses and loads into settlement staging table | Treasury Analyst | Controller | 20 min |
+| 2 | **Transaction Matching**: System auto-matches settlement line items to ERP transaction records: (a) POS e-wallet payments: match by terminal ID + transaction reference + date + amount; (b) ecommerce e-wallet payments: match by order ID + payment reference + amount; (c) QR code payments (POS): match by QR transaction ID + store location + amount; (d) system flags unmatched items for manual review | System | Controller | Automated |
+| 3 | **Fee & Commission Verification**: System reconciles provider fees against contracted rates: (a) GCash: MDR (merchant discount rate) typically 1.5–2.0% per transaction; (b) Maya: MDR typically 1.5–2.5%; (c) GrabPay: MDR typically 2.0–3.0%; (d) cross-border or promo-specific fees (e.g., 0% MDR during bank-partner promos per W149); (e) system flags fee variances > 0.1% from contracted rate | System / Treasury Analyst | Controller | 15 min |
+| 4 | **Unmatched Transaction Resolution**: Treasury Analyst investigates unmatched items: (a) **timing differences**: POS transaction on T, settlement report on T+1 or T+2 (carry forward for next-day matching); (b) **partial settlements**: provider settled net of disputed chargebacks; reverse chargeback amount to AR dispute queue; (c) **duplicate settlements**: provider sent duplicate file or duplicate line; verify with provider and reject duplicate; (d) **missing transactions**: POS shows e-wallet payment but provider has no record; escalate to Store Manager for proof-of-payment (customer screenshot) and contact provider; (e) **amount variances**: typically caused by promotional discounts absorbed by provider vs. merchant; cross-reference with promo calendar (W13) | Treasury Analyst | Controller | 30–60 min |
+| 5 | **Store-Level Reconciliation**: For POS e-wallet transactions: (a) system generates per-store daily e-wallet settlement summary; (b) compares POS Z-report e-wallet total (W5F) vs. settlement report e-wallet total per store; (c) variances > PHP 500 per store per day flagged and sent to Store Manager for investigation; (d) common causes: offline transactions synced late (W5G), cashier tendered to wrong e-wallet type, customer-initiated refund processed outside ERP | System / Treasury Analyst | Controller | 30 min |
+| 6 | **GL Posting**: System posts settlement entries: (a) Dr. Cash (bank account per settlement) for net settlement amount; (b) Dr. Merchant Discount Rate Expense for provider fees; (c) Cr. E-Wallet Clearing Account (interim account for unmatched); (d) matched transactions clear the interim account; unmatched items remain as reconciliation items | System | Controller | Automated |
+| 7 | **Monthly Provider Review**: Treasury Analyst prepares monthly e-wallet reconciliation summary: (a) total gross transactions per provider; (b) total fees paid per provider vs. contracted rates; (c) unmatched transaction aging (> 7 days escalate to provider; > 30 days write-off per FIN-022); (d) settlement timeliness (T+1 vs. T+2 vs. delayed); (e) fee negotiation recommendations for Controller based on volume thresholds | Treasury Analyst | Controller | 2 hours |
+| 8 | **Dispute Resolution with Provider**: For chargebacks and disputed transactions: (a) provider notifies of chargeback; system creates dispute case; (b) Treasury Analyst gathers evidence (POS transaction log, delivery proof, customer communication); (c) respond to provider within dispute window (typically 5–10 business days); (d) if dispute resolved in merchant favor: provider re-settles amount; (e) if dispute lost: system posts chargeback as expense; (f) dispute tracking feeds into provider scorecard for contract renewal (W149) | Treasury Analyst / AR Supervisor | Controller | 2–4 hours/dispute |
+
+### System Touchpoints
+- E-wallet provider API/SFTP integration for settlement file import (GCash, Maya, GrabPay, ShopeePay)
+- Auto-matching engine: settlement line items ↔ POS transactions ↔ ecommerce orders
+- Fee verification engine with contracted MDR rates per provider
+- Per-store settlement reconciliation dashboard
+- GL auto-posting for settlement, fees, and clearing entries
+- Dispute case management module with evidence attachment
+- Settlement aging report for unmatched items
+- Provider performance dashboard (settlement speed, fee accuracy, dispute rate)
+
+### Pain Points / Risks
+- **Volume complexity**: ~186,000 e-wallet transactions/month across multiple providers with different settlement cycles, file formats, and fee structures
+- **Provider file format changes**: E-wallet providers frequently change settlement report formats without notice; auto-import breaks and requires manual intervention
+- **Settlement delays**: Some providers settle T+2 or T+3; creates timing differences that complicate daily reconciliation and cash position reporting (W30)
+- **Promo confusion**: During bank/e-wallet partner promos (W149), MDR may be 0% (bank-subsidized) or reduced; if promo data not synced to ERP, fee verification generates false variances
+- **QR code matching**: QR PH (national QR standard) transactions may have different reference formats per issuing bank; matching logic must handle multiple reference formats
+- **Offline e-wallet**: When POS is offline (W5G), e-wallet transactions may be processed manually via customer's app screenshot; difficult to reconcile against settlement

@@ -9,7 +9,7 @@
 ## Workflows in This Domain
 
 - [W5. Daily Store Operations](#daily-store-operations)
-- [W5g. Offline POS Recovery & Reconciliation](#offline-pos-recovery-reconciliation)
+- [W5G. Offline POS Recovery & Reconciliation](#offline-pos-recovery-reconciliation)
 - [W12. Returns & Exchanges](#returns-exchanges)
 - [W16. New Store Opening](#new-store-opening)
 - [W17. Customer Loyalty Program Operations](#customer-loyalty-program-operations)
@@ -42,7 +42,7 @@
 
 ## W5. Daily Store Operations
 
-### W5a. Store Opening
+### W5A. Store Opening
 
 | Field | Detail |
 |---|---|
@@ -65,7 +65,7 @@
 
 **Total opening time**: ~45 minutes before doors open
 
-### W5b. In-Store Selling
+### W5B. In-Store Selling
 
 | Field | Detail |
 |---|---|
@@ -91,12 +91,12 @@
 | 8 | Receipt printed; inventory deducted in real-time | System / Cashier | — | 15 sec |
 | 9 | Age-restricted items trigger cashier confirmation prompt | Cashier | Store Manager | 10 sec |
 | 10 | **Void transaction**: Cashier or Store Manager initiates void before transaction is finalized (pre-void) or after finalization (post-void); manager authorization (swipe/card) required for any void; system logs void with cashier ID, authorizing manager ID, original transaction number, void reason code, and timestamp; system reverses inventory deduction, payment, loyalty points earned/redeemed, and promo usage; voided transaction retained in full audit trail (not deleted) | Cashier / Store Manager | Store Manager | 1 min |
-| 11 | **Price dispute at POS**: customer claims the scanned price differs from the displayed shelf tag; Cashier visually verifies shelf tag; if discrepancy confirmed: (a) Cashier honors the shelf tag price (customer-friendly policy per DTI price tag accuracy requirements), (b) Cashier applies price override with reason code "Shelf Tag Discrepancy" — manager authorization required per standard W5b.4a override rules, (c) system logs dispute with original price, shelf tag price, cashier ID, authorizing manager ID, and item barcode; (d) system creates shelf tag discrepancy ticket auto-routed to Department Supervisor for immediate shelf tag correction (W63) and inclusion in next W69 price audit cycle; if the shelf tag price is higher than the scanned (system) price, Cashier informs customer that the lower system price applies — no override needed | Cashier / Store Manager | Store Manager | 2 min |
+| 11 | **Price dispute at POS**: customer claims the scanned price differs from the displayed shelf tag; Cashier visually verifies shelf tag; if discrepancy confirmed: (a) Cashier honors the shelf tag price (customer-friendly policy per DTI price tag accuracy requirements), (b) Cashier applies price override with reason code "Shelf Tag Discrepancy" — manager authorization required per standard W5B.4a override rules, (c) system logs dispute with original price, shelf tag price, cashier ID, authorizing manager ID, and item barcode; (d) system creates shelf tag discrepancy ticket auto-routed to Department Supervisor for immediate shelf tag correction (W63) and inclusion in next W69 price audit cycle; if the shelf tag price is higher than the scanned (system) price, Cashier informs customer that the lower system price applies — no override needed | Cashier / Store Manager | Store Manager | 2 min |
 | 12 | **Employee purchase**: employee presents employee ID badge at checkout; Cashier selects "Employee Purchase" tender type in POS; system applies configured employee discount (default 10% off SRP, configurable by company policy) and enforces purchase limits (max PHP 20,000/month per employee, max 3 units per SKU per month); discount does not stack with promotional pricing — lower of employee discount or promo price applies; employee discount excluded from catch-weight and clearance items; system logs employee purchase with employee ID, discount applied, and monthly running total; monthly: Store Manager receives employee purchase summary report; purchases exceeding monthly limit require Store Manager override with justification; employee purchases are not eligible for loyalty points earning | Cashier / Employee | Store Manager | 1 min additional |
 
 **Average transaction time**: ~3 minutes (checkout only); total customer visit ~20–30 min
 
-### W5d. In-Store Customer Delivery Scheduling
+### W5D. In-Store Customer Delivery Scheduling
 
 | Field | Detail |
 |---|---|
@@ -113,32 +113,32 @@
 | 1 | Customer selects bulky/heavy items in store; Sales Associate identifies items needing delivery and confirms customer wants home delivery instead of self-transport | Sales Associate | — | 2 min |
 | 2 | Sales Associate opens delivery order in POS/terminal: scans items, confirms quantities, captures delivery address (street, barangay, city/municipality, province, landmark), customer name, mobile number, preferred delivery date (next available), and notes (gate code, floor level, elevator access) | Sales Associate | Dept. Supervisor | 5 min |
 | 3 | System calculates delivery fee based on delivery zone (distance from store using configured rate cards per zone/weight/tier — same carrier rate cards as W19 home delivery); displays fee to Sales Associate and customer; delivery fee added to transaction total | System | — | Automated |
-| 4 | Customer pays for merchandise + delivery fee at POS; system creates delivery order linked to POS transaction; delivery fee posted to Delivery Revenue (Cr.) / Cash (Dr.); merchandise revenue and COGS posted per standard W5b | Cashier / Customer | Store Manager | Part of checkout |
+| 4 | Customer pays for merchandise + delivery fee at POS; system creates delivery order linked to POS transaction; delivery fee posted to Delivery Revenue (Cr.) / Cash (Dr.); merchandise revenue and COGS posted per standard W5B | Cashier / Customer | Store Manager | Part of checkout |
 | 5 | System transmits delivery order to carrier pool: selects 3PL carrier per delivery zone (same W19 carrier selection logic — Lalamove, Transportify, or own fleet if available); creates carrier pickup request with store address as origin, customer address as destination, item description, estimated weight, and preferred delivery date/time | System | — | Automated |
 | 6 | Carrier accepts pickup request; driver dispatched to store; system sends tracking link to customer via SMS with estimated delivery window | Carrier / System | DC Dispatch | Automated |
 | 7 | Sales Associate or Stock Associate stages paid items at store dispatch area; hands items to carrier driver with delivery order printout; driver confirms pickup on carrier app | Sales Associate / Carrier | Store Manager | 5 min |
 | 8 | Carrier delivers to customer address; obtains proof of delivery (photo, signature); system marks delivery order as "Delivered" | Carrier | — | Varies by distance |
 | 9 | If delivery fails (customer unavailable): follows same failed delivery lifecycle as W19.12 — carrier attempts re-delivery or returns items to store; Sales Associate contacts customer to reschedule; if customer cancels, system refunds delivery fee and processes merchandise return per W12 | Carrier / Sales Associate | Store Manager | Per W19.12 |
-| 10 | Weekly: Store Manager reviews in-store delivery report — delivery count, revenue, delivery fee collected, carrier performance (on-time %, damage rate); flags high delivery fee refund rates for carrier escalation per W62b | Store Manager | Regional Manager | 15 min/week |
+| 10 | Weekly: Store Manager reviews in-store delivery report — delivery count, revenue, delivery fee collected, carrier performance (on-time %, damage rate); flags high delivery fee refund rates for carrier escalation per W62B | Store Manager | Regional Manager | 15 min/week |
 
 ### System Touchpoints (In-Store Delivery)
-- In-store delivery order creation at POS/terminal with delivery address capture, zone-based delivery fee calculation, and carrier selection (W5d.2–3, W5d.5)
-- Delivery fee as a separate line item on POS transaction with distinct GL posting (Dr. Cash / Cr. Delivery Revenue) (W5d.4)
-- 3PL carrier integration: reuses W19 carrier selection logic, rate cards, and API integration for order creation and tracking (W5d.5–8)
-- Customer notification with tracking link via SMS (W5d.6)
-- Failed delivery handling aligned with W19.12 lifecycle (W5d.9)
-- In-store delivery analytics: delivery count, revenue, fee collection, carrier performance per store (W5d.10)
-- Integration with W5b (POS checkout — delivery order linked to sales transaction), W19 (home delivery — same carrier infrastructure), W62b (3PL partner management), W63 (shelf labels — catch-weight items display unit pricing)
+- In-store delivery order creation at POS/terminal with delivery address capture, zone-based delivery fee calculation, and carrier selection (W5D.2–3, W5D.5)
+- Delivery fee as a separate line item on POS transaction with distinct GL posting (Dr. Cash / Cr. Delivery Revenue) (W5D.4)
+- 3PL carrier integration: reuses W19 carrier selection logic, rate cards, and API integration for order creation and tracking (W5D.5–8)
+- Customer notification with tracking link via SMS (W5D.6)
+- Failed delivery handling aligned with W19.12 lifecycle (W5D.9)
+- In-store delivery analytics: delivery count, revenue, fee collection, carrier performance per store (W5D.10)
+- Integration with W5B (POS checkout — delivery order linked to sales transaction), W19 (home delivery — same carrier infrastructure), W62B (3PL partner management), W63 (shelf labels — catch-weight items display unit pricing)
 
 ### Staffing Implication
 - **Sales Associates**: ~5–10 delivery orders/store/week × ~7 min each (address capture + staging) = ~35–70 min/week. Absorbed within existing Sales Associate duties.
-- **No incremental headcount**. Uses existing 3PL carrier relationships (W62b) and store staging process.
+- **No incremental headcount**. Uses existing 3PL carrier relationships (W62B) and store staging process.
 
-### W5e. Store Opening Delay Procedure
+### W5E. Store Opening Delay Procedure
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Issue discovered during W5a store opening sequence that prevents normal opening by scheduled store opening time |
+| **Trigger** | Issue discovered during W5A store opening sequence that prevents normal opening by scheduled store opening time |
 | **Frequency** | Occasional — estimated 2–4 delayed openings per store per year |
 | **Volume** | Variable — from 15-minute delay to full-day closure |
 | **Owner** | Store Manager |
@@ -149,7 +149,7 @@
 | Scenario | Response | Minimum Viable Opening |
 |---|---|---|
 | **Power outage** | Store Manager contacts Meralco/utility provider for ETA; if generator available, start generator and open with reduced lighting in non-essential areas; POS runs on UPS/battery backup during generator switchover | Open with generator power; 3 of 5 POS terminals sufficient |
-| **POS system / network down** | Store Manager contacts IT Helpdesk (W48 P1); if estimated fix < 2 hours, delay opening until restored; if > 2 hours, open in manual mode (written receipts, manual price lookup from printed price list); reconcile per W5g offline recovery upon restoration | Open with manual receipts if < 2 hours; otherwise delay |
+| **POS system / network down** | Store Manager contacts IT Helpdesk (W48 P1); if estimated fix < 2 hours, delay opening until restored; if > 2 hours, open in manual mode (written receipts, manual price lookup from printed price list); reconcile per W5G offline recovery upon restoration | Open with manual receipts if < 2 hours; otherwise delay |
 | **Alarm malfunction** | Guard performs exterior walkthrough (W71.1); if no signs of intrusion, Store Manager enters and inspects; contacts alarm monitoring company for emergency repair; opens if interior verified safe | Open if security verified; alarm repair scheduled per W47 |
 | **Safety hazard found during walkthrough** (water leak, structural damage, gas smell) | Store Manager isolates affected area; contacts Facilities Coordinator for emergency repair per W47; if hazard is localized, open store with restricted access to affected zone; if hazard affects entire store (gas leak, major flooding), keep closed until resolved | Open partial if hazard isolated; full closure if building-wide |
 | **Late staff arrival** (multiple no-shows due to transport, weather) | Store Manager calls in available off-duty staff; opens with minimum crew: 1 cashier, 1 floor associate, 1 stock associate, 1 manager; remaining terminals closed | Open with 1 terminal + 1 floor associate + manager |
@@ -158,24 +158,24 @@
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | Store Manager identifies delay issue during W5a opening sequence; assesses severity per delay scenario table above | Store Manager | — | 5 min |
+| 1 | Store Manager identifies delay issue during W5A opening sequence; assesses severity per delay scenario table above | Store Manager | — | 5 min |
 | 2 | Store Manager contacts appropriate support: IT Helpdesk (W48) for system issues, Facilities Coordinator (W47) for physical issues, alarm company for security issues | Store Manager | — | 5 min |
 | 3 | Store Manager decides: (a) delay opening by estimated fix time, or (b) open in minimum viable configuration per scenario table | Store Manager | Regional Manager | 5 min |
 | 4 | If delaying: Store Manager posts "Opening at [time]" signage on store entrance; updates store status in system; Regional Manager notified | Store Manager | — | 5 min |
 | 5 | If opening with reduced capacity: Store Manager assigns available staff to critical positions (minimum 1 cashier, 1 floor, 1 manager); remaining terminals shuttered; DSD receiving deferred | Store Manager | — | 10 min |
-| 6 | Upon issue resolution: Store Manager transitions to full operations; communicates "now open" via store signage and system update; reconciles manual transactions (if any) per W5g upon system restoration | Store Manager | — | 10 min |
+| 6 | Upon issue resolution: Store Manager transitions to full operations; communicates "now open" via store signage and system update; reconciles manual transactions (if any) per W5G upon system restoration | Store Manager | — | 10 min |
 | 7 | Store Manager documents delay incident in system: root cause, duration of delay, impact on sales (estimated lost revenue), corrective action taken; includes in daily report to Regional Manager | Store Manager | Regional Manager | 10 min |
 
 ### System Touchpoints
-- Store status management: Store Manager can set store status to "Delayed Opening" or "Partial Operations" in system; suppresses BOPIS order routing (W11) and ecommerce availability (W19) during delay; auto-restores when status set to "Open" (W5e.4, W5e.6)
-- Manual receipt reconciliation: upon system restoration, manual transactions entered as batch per W5g offline recovery process (W5e.6)
-- Delay incident logging with root cause categorization and lost revenue estimation (W5e.7)
-- Integration with W5a (opening procedure), W5g (offline recovery), W47 (facility emergency repair), W48 (IT helpdesk P1), W49 (natural disaster — this is for non-disaster delays), W71 (security incidents)
+- Store status management: Store Manager can set store status to "Delayed Opening" or "Partial Operations" in system; suppresses BOPIS order routing (W11) and ecommerce availability (W19) during delay; auto-restores when status set to "Open" (W5E.4, W5E.6)
+- Manual receipt reconciliation: upon system restoration, manual transactions entered as batch per W5G offline recovery process (W5E.6)
+- Delay incident logging with root cause categorization and lost revenue estimation (W5E.7)
+- Integration with W5A (opening procedure), W5G (offline recovery), W47 (facility emergency repair), W48 (IT helpdesk P1), W49 (natural disaster — this is for non-disaster delays), W71 (security incidents)
 
 ### Staffing Implication
 - No incremental headcount. Delay handling is a Store Manager responsibility. Estimated 2–4 delayed openings/store/year × ~30 min each = ~1–2 hours/year per store.
 
-### W5f. Store Closing & End-of-Day
+### W5F. Store Closing & End-of-Day
 
 | Field | Detail |
 |---|---|
@@ -203,25 +203,25 @@
 
 **Total closing time**: ~60 minutes
 
-> **Note**: W5f was previously numbered W5c in the document structure. W5d (In-Store Customer Delivery Scheduling), W5e (Store Opening Delay Procedure), and W5f (Store Closing & End-of-Day) are now sequential sub-sections of W5.
+> **Note**: W5F was previously numbered W5c in the document structure. W5D (In-Store Customer Delivery Scheduling), W5E (Store Opening Delay Procedure), and W5F (Store Closing & End-of-Day) are now sequential sub-sections of W5.
 
 ### System Touchpoints
-- POS cash float management and tracking (W5a.4)
-- POS terminals boot in offline-ready mode; product master and price file cached locally via nightly sync so selling can continue without network (W5a.3, W5a.5)
-- Real-time price and promo sync (W5a.5)
-- Barcode scanning, multi-tender, loyalty at POS (W5b.4–9)
-- BIR-registered receipt format: receipts printed on BIR-authorized thermal paper with TIN, registered invoice number, and compliant layout (W5b.8)
-- Customer-facing display (pole display or second screen) showing scanned items, running total, and payment amount during checkout (W5b.4–7)
-- Price override with manager authorization threshold and audit trail (W5b.4a)
-- Lot/batch capture at POS for lot-tracked items: system prompts for batch number, auto-extracts from GS1-128/2D barcode, records batch against transaction line for forward traceability (W5b.4b)
-- Trade / corporate account pricing at POS: Cashier identifies customer via card or mobile number; system loads customer's pricing tier (trade discount %, corporate contract price list, or project-specific pricing); applies account-specific pricing to scanned items; if promo price is lower than account price, system applies lower price; sale posted to customer AR account with real-time credit limit check (W5b.4c, cross-reference W8, W24)
-- VAT-exempt / zero-rated sales at POS: when a VAT-exempt or zero-rated customer account is identified at POS (per VAT treatment classification in W24.6), system automatically applies zero output VAT to the transaction; receipt prints "VAT-EXEMPT" or "ZERO-RATED" designation per BIR requirements; transaction recorded in separate VAT register for exempt/zero-rated sales; system segregates VATable, exempt, and zero-rated sales in BIR Form 2550M reporting (W9a.16); VAT-exempt customers include government agencies with supporting BIR ruling, PEZA-registered entities, and other entities with documented VAT exemption (W5b.4c)
+- POS cash float management and tracking (W5A.4)
+- POS terminals boot in offline-ready mode; product master and price file cached locally via nightly sync so selling can continue without network (W5A.3, W5A.5)
+- Real-time price and promo sync (W5A.5)
+- Barcode scanning, multi-tender, loyalty at POS (W5B.4–9)
+- BIR-registered receipt format: receipts printed on BIR-authorized thermal paper with TIN, registered invoice number, and compliant layout (W5B.8)
+- Customer-facing display (pole display or second screen) showing scanned items, running total, and payment amount during checkout (W5B.4–7)
+- Price override with manager authorization threshold and audit trail (W5B.4a)
+- Lot/batch capture at POS for lot-tracked items: system prompts for batch number, auto-extracts from GS1-128/2D barcode, records batch against transaction line for forward traceability (W5B.4b)
+- Trade / corporate account pricing at POS: Cashier identifies customer via card or mobile number; system loads customer's pricing tier (trade discount %, corporate contract price list, or project-specific pricing); applies account-specific pricing to scanned items; if promo price is lower than account price, system applies lower price; sale posted to customer AR account with real-time credit limit check (W5B.4c, cross-reference W8, W24)
+- VAT-exempt / zero-rated sales at POS: when a VAT-exempt or zero-rated customer account is identified at POS (per VAT treatment classification in W24.6), system automatically applies zero output VAT to the transaction; receipt prints "VAT-EXEMPT" or "ZERO-RATED" designation per BIR requirements; transaction recorded in separate VAT register for exempt/zero-rated sales; system segregates VATable, exempt, and zero-rated sales in BIR Form 2550M reporting (W9A.16); VAT-exempt customers include government agencies with supporting BIR ruling, PEZA-registered entities, and other entities with documented VAT exemption (W5B.4c)
 - VMI and consignment items at POS: system automatically identifies VMI and consignment items at scan via item master flags (no cashier intervention); standard items post Dr. COGS / Cr. Inventory; VMI items post Dr. COGS / Cr. VMI Vendor Payable (W20.8); consignment items post Dr. COGS / Cr. Consignment Vendor Payable (W23.6); cashier experience is identical regardless of item ownership type; different GL posting paths are transparent to the cashier
-- Catch-weight / variable measure selling with weight/length capture and auto-price calculation (W5b.2)
-- Custom SKU generation for paint mixing (W5b.3)
-- Age-restricted product prompts (W5b.9)
-- Void transaction with manager authorization: full audit trail (cashier, manager, reason, timestamp); automatic reversal of inventory, payment, loyalty points, and promo usage; voided transaction retained for loss prevention analysis (W5b.10); BIR-compliant void document: system prints or records a void receipt referencing the original transaction number with void indicator, reason code, and authorizing manager ID per CAS permit requirements (W54a.8); void receipt retained for 7-year BIR retention period alongside the original transaction record
-- Void authorization roles and queuing: void authorization granted to Store Manager and Assistant Store Manager by default; Department Supervisors may be granted void authorization for their department's items up to a configurable threshold (e.g., ≤ PHP 5,000); if no authorized person is physically available at the time of void request, cashier can suspend the transaction and queue the void for next-available manager authorization; system enforces that all queued voids are authorized within the same business day; queued voids visible on Store Manager's terminal dashboard (W5b.10)
+- Catch-weight / variable measure selling with weight/length capture and auto-price calculation (W5B.2)
+- Custom SKU generation for paint mixing (W5B.3)
+- Age-restricted product prompts (W5B.9)
+- Void transaction with manager authorization: full audit trail (cashier, manager, reason, timestamp); automatic reversal of inventory, payment, loyalty points, and promo usage; voided transaction retained for loss prevention analysis (W5B.10); BIR-compliant void document: system prints or records a void receipt referencing the original transaction number with void indicator, reason code, and authorizing manager ID per CAS permit requirements (W54A.8); void receipt retained for 7-year BIR retention period alongside the original transaction record
+- Void authorization roles and queuing: void authorization granted to Store Manager and Assistant Store Manager by default; Department Supervisors may be granted void authorization for their department's items up to a configurable threshold (e.g., ≤ PHP 5,000); if no authorized person is physically available at the time of void request, cashier can suspend the transaction and queue the void for next-available manager authorization; system enforces that all queued voids are authorized within the same business day; queued voids visible on Store Manager's terminal dashboard (W5B.10)
 - Z-report generation (W5c.2)
 - Cash reconciliation / variance reporting (W5c.3–4)
 - Electronic payment reconciliation: automated import of card acquirer and e-wallet settlement reports; comparison to Z-report by tender type; variance alerting (W5c.3a–b)
@@ -231,7 +231,7 @@
 ### Staffing Implication
 - **6 Cashiers per store**: 5 terminals + 1 float. With 2 shifts (~10 hours total), each shift needs 3–4 cashiers. 6 covers shifts + days off with 1 relief. Tight but workable.
 - **16 Sales Associates**: Across 4 departments (Lumber, Plumbing/Electrical, Tiles, Tools/Hardware) = 4 per dept. 2 shifts. Handles floor coverage + specialty tasks (paint mixing, lumber cutting). Reasonable.
-- **3 Stock Associates (+ 1 part-time relief recommended)**: Continuous replenishment + cycle counting + BOPIS picking + DSD shelving + transfer handling + shelf label updates + weekly price audit scanning (W69) + layaway staging (W75) + ship-from-store picking (W19b). With ~700 SKUs to cycle count daily and all additional duties, 3 is the absolute minimum with no slack for absenteeism. Recommend 4 Stock Associates per store (or 3 full-time + 1 part-time relief) to ensure coverage during peak seasons, absenteeism, and promotional periods.
+- **3 Stock Associates (+ 1 part-time relief recommended)**: Continuous replenishment + cycle counting + BOPIS picking + DSD shelving + transfer handling + shelf label updates + weekly price audit scanning (W69) + layaway staging (W75) + ship-from-store picking (W19B). With ~700 SKUs to cycle count daily and all additional duties, 3 is the absolute minimum with no slack for absenteeism. Recommend 4 Stock Associates per store (or 3 full-time + 1 part-time relief) to ensure coverage during peak seasons, absenteeism, and promotional periods.
 
 ---
 
@@ -239,7 +239,7 @@
 
 ---
 
-## W5g. Offline POS Recovery & Reconciliation
+## W5G. Offline POS Recovery & Reconciliation
 
 | Field | Detail |
 |---|---|
@@ -268,24 +268,24 @@ POS terminals must continue selling during network outages (NFR-011: ≥ 8 hours
 | 9 | IT Helpdesk reviews root cause of outage; updates incident log | IT Helpdesk | CIO | 15 min |
 
 ### System Touchpoints
-- Local product/price cache on each POS terminal with nightly refresh (W5a.3, W5a.5)
-- Offline transaction queuing and encrypted local storage (W5g.1)
-- Automated upload and inventory conflict detection on reconnection (W5g.2–3)
-- Offline-to-online GL and inventory reconciliation (W5g.5–6)
-- Loyalty points reconciliation for transactions processed offline (W5g.5)
-- Stale price detection for extended outages (W5g.8)
+- Local product/price cache on each POS terminal with nightly refresh (W5A.3, W5A.5)
+- Offline transaction queuing and encrypted local storage (W5G.1)
+- Automated upload and inventory conflict detection on reconnection (W5G.2–3)
+- Offline-to-online GL and inventory reconciliation (W5G.5–6)
+- Loyalty points reconciliation for transactions processed offline (W5G.5)
+- Stale price detection for extended outages (W5G.8)
 
 ### Business Continuity — Operational Fallback
 
 During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per NFR-013), store operations continue in degraded mode:
 
-- **POS**: continues selling offline per W5g (up to 8+ hours with local cache)
+- **POS**: continues selling offline per W5G (up to 8+ hours with local cache)
 - **Goods receiving (W3/W18)**: stores suspend goods receipt processing until system restored; Receiving Clerk captures delivery details manually (DR number, vendor, item, quantity) on paper or offline spreadsheet for batch entry upon recovery
 - **Ecommerce**: Digital Commerce Inc. platform displays maintenance notification; new orders suspended; in-progress orders held for fulfillment upon recovery
 - **Loyalty**: points earning tracked offline at POS and reconciled upon reconnection; points redemption suspended during outage (cashier cannot verify balance)
 - **AP / Treasury**: payment runs delayed until system restored; AP Clerk communicates with vendors if payment deadlines are at risk
 - **Incident declaration**: IT Helpdesk declares DR event per incident response plan; CIO notified; Store Ops Director communicates to Regional Managers who notify Store Managers; estimated recovery time communicated within 30 minutes of declaration
-- **Recovery**: upon system restoration, all offline transactions upload per W5g; manual receiving entries batch-posted; ecommerce order processing resumes; loyalty reconciliation runs automatically
+- **Recovery**: upon system restoration, all offline transactions upload per W5G; manual receiving entries batch-posted; ecommerce order processing resumes; loyalty reconciliation runs automatically
 
 ### Staffing Implication
 - No incremental headcount. Outage recovery is a Store Manager responsibility with IT support.
@@ -299,7 +299,7 @@ During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per
 
 ## W12. Returns & Exchanges
 
-### W12a. In-Store Returns
+### W12A. In-Store Returns
 
 | Field | Detail |
 |---|---|
@@ -322,7 +322,7 @@ During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per
 | 7 | Inventory returned to stock (if resalable) or flagged as damaged/defective | Stock Associate | Dept. Supervisor | 5 min |
 | 8 | Defective items flagged for Return to Vendor (RTV) process | CSR | Dept. Supervisor | 2 min |
 
-### W12b. Online-Initiated Returns
+### W12B. Online-Initiated Returns
 
 | Field | Detail |
 |---|---|
@@ -341,7 +341,7 @@ During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per
 | 5 | CSR accepts return; system processes refund to original payment method | CSR | — | 3 min |
 | 6 | Inventory returned to stock or flagged as damaged | Stock Associate | Dept. Supervisor | 5 min |
 
-### W12c. Cross-Store Returns (Purchased at Store A, Returned at Store B)
+### W12C. Cross-Store Returns (Purchased at Store A, Returned at Store B)
 
 | Field | Detail |
 |---|---|
@@ -357,32 +357,32 @@ During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per
 |---|---|---|---|---|
 | 1 | Customer presents item and receipt (or loyalty card for transaction lookup) at CSR counter of Store B (different from purchase Store A) | Customer | — | — |
 | 2 | CSR looks up original transaction in system by receipt number or loyalty card; system supports cross-store transaction lookup across all 200 locations | CSR | — | 2 min |
-| 3 | CSR inspects item condition (resalable, damaged, defective) per standard W12a.3 | CSR | — | 2 min |
+| 3 | CSR inspects item condition (resalable, damaged, defective) per standard W12A.3 | CSR | — | 2 min |
 | 4 | CSR processes cross-store return in system; Store Manager approval required for cross-store returns above PHP 5,000 (higher threshold than same-store due to fraud risk) | CSR | Store Manager | 3–5 min |
 | 5 | System posts financial reversal to original purchase store (Store A): reverses revenue and COGS at Store A for correct store P&L attribution | System | — | Automated |
 | 6 | System receives returned inventory at Store B: increases Store B inventory; system automatically creates an inter-store inventory adjustment to account for the physical inventory movement (Store B gains inventory, Store A's books already reflect the COGS reversal from step 5) | System | — | Automated |
-| 7 | System processes refund to original tender method per W12a.6 split-tender rules; refund debited from Store A's cash accountability (system-level, not physical cash at Store B) | System / CSR | — | 2 min |
-| 8 | Inventory returned to stock at Store B (if resalable) or flagged as damaged/defective per W12a.7–8 | Stock Associate | Dept. Supervisor | 5 min |
+| 7 | System processes refund to original tender method per W12A.6 split-tender rules; refund debited from Store A's cash accountability (system-level, not physical cash at Store B) | System / CSR | — | 2 min |
+| 8 | Inventory returned to stock at Store B (if resalable) or flagged as damaged/defective per W12A.7–8 | Stock Associate | Dept. Supervisor | 5 min |
 
 ### System Touchpoints (Cross-Store Returns)
-- Cross-store transaction lookup: system retrieves original transaction from any store location by receipt number or loyalty card (W12c.2)
-- Cross-location financial posting: revenue reversal and COGS adjustment posted to original purchase store (Store A) for correct P&L attribution; inventory received at return store (Store B) (W12c.5–6)
-- Automatic inter-store inventory adjustment: system accounts for physical inventory movement between locations without requiring a separate Transfer Order (W12c.6)
-- Cross-store refund processing: refund debited from original store's tender accountability; physical cash disbursed at return store reconciled via centralized treasury (W12c.7)
-- Manager approval threshold for cross-store returns (W12c.4)
+- Cross-store transaction lookup: system retrieves original transaction from any store location by receipt number or loyalty card (W12C.2)
+- Cross-location financial posting: revenue reversal and COGS adjustment posted to original purchase store (Store A) for correct P&L attribution; inventory received at return store (Store B) (W12C.5–6)
+- Automatic inter-store inventory adjustment: system accounts for physical inventory movement between locations without requiring a separate Transfer Order (W12C.6)
+- Cross-store refund processing: refund debited from original store's tender accountability; physical cash disbursed at return store reconciled via centralized treasury (W12C.7)
+- Manager approval threshold for cross-store returns (W12C.4)
 
 ### System Touchpoints (All Returns)
-- Transaction lookup by receipt number / loyalty card, including cross-store lookup (W12a.2, W12c.2)
-- Return policy enforcement (time window, condition rules) (W12a.4)
-- Manager override for policy exceptions (W12a.5)
-- Refund processing to original tender (W12a.6)
-- Inventory status change (saleable vs. damaged) (W12a.7)
-- RTV tracking (W12a.8)
-- Online return initiation with QR authorization (W12b.2)
-- Split-tender refund processing: pro-rata refund to each original tender method; cash availability threshold enforcement with automatic redirect to card/e-wallet for excess (W12a.6)
+- Transaction lookup by receipt number / loyalty card, including cross-store lookup (W12A.2, W12C.2)
+- Return policy enforcement (time window, condition rules) (W12A.4)
+- Manager override for policy exceptions (W12A.5)
+- Refund processing to original tender (W12A.6)
+- Inventory status change (saleable vs. damaged) (W12A.7)
+- RTV tracking (W12A.8)
+- Online return initiation with QR authorization (W12B.2)
+- Split-tender refund processing: pro-rata refund to each original tender method; cash availability threshold enforcement with automatic redirect to card/e-wallet for excess (W12A.6)
 - Home delivery return reverse logistics: for bulky items that cannot be transported to store, system schedules carrier pickup via 3PL integration (W19 delivery partners); tracks return shipment to DC; DC inspection and disposition; refund processed upon inspection confirmation (cross-reference W19.12a)
-- Loyalty points reversal on returns: when a return is processed (W12a, W12b, W12c), system automatically reverses loyalty points earned on the original transaction — points deducted from customer's loyalty balance based on the returned item's contribution to the original points earning (pro-rata for partial returns); if customer does not have sufficient points balance for reversal (points already redeemed), system creates a negative points balance (points debt) that is recovered from future earning; system logs points reversal with return transaction reference for audit; for cross-store returns (W12c), loyalty reversal posts to the loyalty account (chain-wide) not to a specific store; loyalty points reversal is enforced even for no-receipt returns where original transaction is identified via loyalty card lookup (W12a.5)
-- Cross-store return processing: cross-location transaction lookup, financial reversal at original store, inventory receipt at return store, inter-store inventory adjustment (W12c)
+- Loyalty points reversal on returns: when a return is processed (W12A, W12B, W12C), system automatically reverses loyalty points earned on the original transaction — points deducted from customer's loyalty balance based on the returned item's contribution to the original points earning (pro-rata for partial returns); if customer does not have sufficient points balance for reversal (points already redeemed), system creates a negative points balance (points debt) that is recovered from future earning; system logs points reversal with return transaction reference for audit; for cross-store returns (W12C), loyalty reversal posts to the loyalty account (chain-wide) not to a specific store; loyalty points reversal is enforced even for no-receipt returns where original transaction is identified via loyalty card lookup (W12A.5)
+- Cross-store return processing: cross-location transaction lookup, financial reversal at original store, inventory receipt at return store, inter-store inventory adjustment (W12C)
 
 ### Staffing Implication
 - Returns add ~15 min/day to CSR workload (1.4 in-store + ~0.5 online returns per store). Minimal impact on current headcount.
@@ -445,7 +445,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | T-75 min (6:45 AM) | Cash floats loaded into all 5 terminals; opening Z-report baseline verified at zero | Cashier | Z-report shows zero opening balance per terminal |
 | T-60 min (7:00 AM) | Store Manager and IT conduct final walkthrough: verify shelf tags match system prices on 20 sample items across departments; verify signage, security systems, and alarm test | Store Manager + IT | Price verification checklist signed |
 | T-45 min (7:15 AM) | DC dispatch confirms final pre-opening delivery has been received and posted; system inventory matches physical count from soft opening (W16 step 12) | Receiving Clerk + IT | System on-hand = physical count |
-| T-30 min (7:30 AM) | Store Manager briefs all staff: operating procedures, escalation contacts for IT issues (W48 helpdesk), offline POS procedures (W5g) if connectivity fails | Store Manager | Staff acknowledgment |
+| T-30 min (7:30 AM) | Store Manager briefs all staff: operating procedures, escalation contacts for IT issues (W48 helpdesk), offline POS procedures (W5G) if connectivity fails | Store Manager | Staff acknowledgment |
 | T-15 min (7:45 AM) | IT performs live test transaction: scan item, process loyalty enrollment, complete payment by card; void test transaction; verify all entries posted correctly in ERP | IT Team + Cashier | Transaction, loyalty, payment, and void all verified in system |
 | T-0 (8:00 AM) | Doors open; first live customer transaction | All | Store Manager monitors first 10 transactions for anomalies |
 | T+60 min (9:00 AM) | IT Team confirms all POS terminals stable; real-time inventory deduction verified; helpdesk monitors for incident tickets from new store | IT Team | No P1/P2 tickets |
@@ -572,13 +572,13 @@ The following hour-by-hour plan covers the system activation sequence on the day
 - DR capture and linking to PO for AP matching (W18.7, W18.9)
 - 3-way match including store-level GR (W18.9)
 - Real-time inventory visibility for DSD items (W18.6)
-- DSD GRNI follow-up: for DSD-related GRNI exceptions at month-end (W9a.2a), AP Clerk contacts the store Receiving Clerk who processed the original GR (W18.3) to confirm received quantities and resolve discrepancies with the vendor
+- DSD GRNI follow-up: for DSD-related GRNI exceptions at month-end (W9A.2a), AP Clerk contacts the store Receiving Clerk who processed the original GR (W18.3) to confirm received quantities and resolve discrepancies with the vendor
 - Shelf-life / expiry capture at DSD receiving: for date-sensitive DSD items (cement, paint, adhesives), Receiving Clerk captures manufacturing date and shelf-life at goods receipt; system records expiry date per batch; near-expiry items flagged for priority sale or markdown (W18)
 
 ### Staffing Implication
 - **2 Receiving Clerks per store** (already in staffing model): DSD adds 2–3 additional receiving events per week (~3–6 hours). Combined with DC replenishment receiving (2–3 trucks/week) and BOPIS, the 2 clerks in alternating shifts can handle the load. No additional headcount needed.
 
-### W18b. DSD Vendor Delivery Scheduling
+### W18B. DSD Vendor Delivery Scheduling
 
 | Field | Detail |
 |---|---|
@@ -598,10 +598,10 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | 5 | If vendor misses scheduled delivery: Receiving Clerk reports no-show to Buyer; Buyer follows up with vendor; reschedules within the same week if possible; tracks vendor delivery reliability in vendor scorecard (W44) | Receiving Clerk / Buyer | Category Manager | 10 min/occurrence |
 
 #### System Touchpoints (DSD Scheduling)
-- DSD vendor delivery calendar per vendor with assigned stores and frequency (W18b.1)
-- Weekly delivery schedule communication to store receiving (W18b.3)
-- Scheduling conflict alerting when DSD and DC deliveries overlap (W18b.4)
-- Vendor no-show tracking feeding into vendor scorecard (W44) (W18b.5)
+- DSD vendor delivery calendar per vendor with assigned stores and frequency (W18B.1)
+- Weekly delivery schedule communication to store receiving (W18B.3)
+- Scheduling conflict alerting when DSD and DC deliveries overlap (W18B.4)
+- Vendor no-show tracking feeding into vendor scorecard (W44) (W18B.5)
 - Integration with W18 (DSD receiving), W4 (DC replenishment scheduling), W44 (vendor performance)
 
 ---
@@ -687,7 +687,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | 12 | Per vendor instructions: initiate RTV or on-site destruction with documentation | Buyer / DC Supervisor | VP Merchandising | 1–2 weeks |
 | 13 | Legal prepares regulatory report (DTI/BPS) documenting recall scope, actions taken, and customer notifications | Legal | CEO | 1 week |
 | 14 | Post-recall: VP Merchandising and Legal conduct after-action review; update quality procedures | VP Merchandising + Legal | COO | 2 hours |
-| 15 | Annual mock recall exercise: VP Merchandising and Internal Audit conduct a simulated recall on 2–3 randomly selected lot-tracked items; test forward and backward traceability (W29.3), POS blocking speed (W29.5), ecommerce removal (W29.6), and customer notification completeness; measure time from recall activation to all stores confirming quarantine; results documented and shared with Category Managers and Buyers; vendor recall clause compliance verified — all vendor contracts (W2c, W36) must include recall cooperation obligations (response SLA, cost responsibility, product replacement or credit terms) | VP Merchandising + Internal Audit | COO | 4 hours/year |
+| 15 | Annual mock recall exercise: VP Merchandising and Internal Audit conduct a simulated recall on 2–3 randomly selected lot-tracked items; test forward and backward traceability (W29.3), POS blocking speed (W29.5), ecommerce removal (W29.6), and customer notification completeness; measure time from recall activation to all stores confirming quarantine; results documented and shared with Category Managers and Buyers; vendor recall clause compliance verified — all vendor contracts (W2C, W36) must include recall cooperation obligations (response SLA, cost responsibility, product replacement or credit terms) | VP Merchandising + Internal Audit | COO | 4 hours/year |
 
 ### System Touchpoints
 - Lot/batch/serial number traceability: forward (sold-to) and backward (received-from) tracing (W29.3)
@@ -827,7 +827,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | 4b | **External contractor**: Store Manager or Facilities Coordinator engages pre-approved contractor from approved vendor list; contractor scheduled for site visit; system tracks appointment and SLA | Facilities Coordinator / Store Manager | Store Ops Director | Scheduling: 15 min; repair: varies |
 | 4c | **Vendor service call**: Store Manager contacts equipment vendor for warranty or service contract repair; system links to vendor master and warranty records (W33 for warranty process, W21 for asset records) | Store Manager | Facilities Coordinator | 10 min (coordination) |
 | 5 | Work order completed: repair verified by Store Manager; work order closed in system with resolution code, actual labor hours, parts cost, and contractor/vendor cost | Store Manager / Maintenance | Store Manager | 10 min |
-| 6 | System posts maintenance costs: parts and labor to store maintenance expense GL; contractor invoices routed to AP per W7c (non-PO) or against maintenance contract PO | System | — | Automated |
+| 6 | System posts maintenance costs: parts and labor to store maintenance expense GL; contractor invoices routed to AP per W7C (non-PO) or against maintenance contract PO | System | — | Automated |
 | 7 | Monthly: Facilities Coordinator reviews maintenance report by location: total cost per store, top issue categories, contractor response time SLA compliance, recurring issues | Facilities Coordinator | Store Ops Director | 2 hours/month |
 
 ### Preventive Maintenance Schedule
@@ -853,7 +853,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 - Preventive maintenance scheduling with automated work order generation per equipment calendar (W47 preventive table)
 - Maintenance reporting by location, cost, issue category, contractor performance (W47.7)
 - Integration with W21 (capex routing for major repairs), W25 (petty cash for small parts), W33 (vendor warranty claims), W39 (asset retirement if equipment beyond repair), W48 (IT equipment maintenance)
-- Hazardous waste disposal: paint mixing stations (W5b.3), chemical receiving areas, and lumber treatment areas generate hazardous waste (waste paint, solvents, chemical containers, treated wood offcuts) regulated under DENR Administrative Order No. 2013-22 (Revised Procedures and Requirements for the Management of Hazardous Wastes); Facilities Coordinator maintains a hazardous waste storage area at each store and DC — clearly labeled, ventilated, and segregated from general waste; waste accumulates in approved containers with proper labeling (waste type, date of first accumulation, hazard class); when accumulation reaches threshold (per DENR guidelines or when 90-day storage limit approaches), Facilities Coordinator arranges pickup by DENR-accredited hazardous waste transporter; transporter provides manifests (manifest system per DENR: 6-copy form tracking waste from generator to transporter to treater/disposer); system records hazardous waste disposal events: waste type, quantity, transporter, manifest number, disposal facility, date; manifest copies scanned and attached to disposal record; quarterly: Facilities Coordinator generates hazardous waste disposal report per location for DENR compliance; annual: DENR hazardous waste generator registration renewal per location (separate from W54 LGU business permit but tracked in the same Regulatory Officer calendar); Facilities Coordinator ensures all locations with paint mixing or chemical operations are registered as hazardous waste generators with DENR-EMB Regional Office; first violation of hazardous waste disposal regulations carries penalties of PHP 10,000–200,000 per DENR
+- Hazardous waste disposal: paint mixing stations (W5B.3), chemical receiving areas, and lumber treatment areas generate hazardous waste (waste paint, solvents, chemical containers, treated wood offcuts) regulated under DENR Administrative Order No. 2013-22 (Revised Procedures and Requirements for the Management of Hazardous Wastes); Facilities Coordinator maintains a hazardous waste storage area at each store and DC — clearly labeled, ventilated, and segregated from general waste; waste accumulates in approved containers with proper labeling (waste type, date of first accumulation, hazard class); when accumulation reaches threshold (per DENR guidelines or when 90-day storage limit approaches), Facilities Coordinator arranges pickup by DENR-accredited hazardous waste transporter; transporter provides manifests (manifest system per DENR: 6-copy form tracking waste from generator to transporter to treater/disposer); system records hazardous waste disposal events: waste type, quantity, transporter, manifest number, disposal facility, date; manifest copies scanned and attached to disposal record; quarterly: Facilities Coordinator generates hazardous waste disposal report per location for DENR compliance; annual: DENR hazardous waste generator registration renewal per location (separate from W54 LGU business permit but tracked in the same Regulatory Officer calendar); Facilities Coordinator ensures all locations with paint mixing or chemical operations are registered as hazardous waste generators with DENR-EMB Regional Office; first violation of hazardous waste disposal regulations carries penalties of PHP 10,000–200,000 per DENR
 
 ### Staffing Implication
 - **1 Maintenance/Utility per store** (already in model): handles ~10–15 work orders/month including routine preventive tasks. Viable for standard repairs and routine maintenance; relies on external contractors for specialized work.
@@ -870,7 +870,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Monthly review calendar (by day 10 of each month, following W9a close and W35 monthly reporting) |
+| **Trigger** | Monthly review calendar (by day 10 of each month, following W9A close and W35 monthly reporting) |
 | **Frequency** | Monthly per store; conducted by Regional Manager |
 | **Volume** | 200 stores ÷ 4 Regional Managers = 50 stores/Regional Manager/month; ~2–3 reviews/day over 15–20 working days |
 | **Owner** | Regional Manager |
@@ -895,7 +895,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 - Monthly trend visualization with budget vs. actual vs. prior year comparison (W67.1)
 - Action item tracking per store with status, owner, and due date; visible to Regional Manager and Store Ops Director (W67.6)
 - Store portfolio dashboard for Regional Manager: heat map of store performance by KPI; drill-down to individual store scorecards (W67.2)
-- Integration with W6 (shrinkage data), W9a (financial data), W11 (BOPIS fill rate), W34 (labor cost), W35 (management reporting), W37 (POS exceptions, shrinkage), W51 (training completion), W65 (CSAT/NPS)
+- Integration with W6 (shrinkage data), W9A (financial data), W11 (BOPIS fill rate), W34 (labor cost), W35 (management reporting), W37 (POS exceptions, shrinkage), W51 (training completion), W65 (CSAT/NPS)
 
 ### Staffing Implication
 - **Regional Manager**: 50 stores × 45–60 min review = ~40–50 hours/month + 3–4 hours prep + 2 hours summary = ~45–55 hours/month. With 4 Regional Managers, this is ~12–14 hours each/month = ~3–4 hours/week. Tight but manageable with good time management and delegation to Assistant Store Managers for routine follow-ups.
@@ -942,7 +942,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 ### Staffing Implication
 - **Stock Associate**: 20–30 min/week for audit walk. Absorbed within existing 3 stock associates — can be rotated weekly (one associate audits each week on a 3-week rotation).
 - **Department Supervisor**: 10 min/week review. Absorbed.
-- **Store Manager**: 10 min/week dashboard review. Absorbed into opening routine (W5a) or weekly planning.
+- **Store Manager**: 10 min/week dashboard review. Absorbed into opening routine (W5A) or weekly planning.
 - No incremental headcount.
 
 ---
@@ -965,9 +965,9 @@ The following hour-by-hour plan covers the system activation sequence on the day
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | Opening: guard on duty disarms alarm (or receives handoff from night-shift guard); performs exterior walkthrough checking for signs of break-in, vandalism, or tampering with outdoor yard inventory; reports findings to Store Manager before staff arrival (W5a step 2) | Security Guard | Store Manager | 15 min |
+| 1 | Opening: guard on duty disarms alarm (or receives handoff from night-shift guard); performs exterior walkthrough checking for signs of break-in, vandalism, or tampering with outdoor yard inventory; reports findings to Store Manager before staff arrival (W5A step 2) | Security Guard | Store Manager | 15 min |
 | 2 | During operating hours: guard monitors store entrance/exit; controls access to receiving dock and backroom areas (only authorized personnel via access badge); assists with customer bag checks on exit per company policy | Security Guard | Store Manager | Continuous |
-| 3 | Closing: guard monitors final customer exit; secures receiving dock; performs exterior walkthrough; arms alarm system after Store Manager confirms all staff departed (W5f step 9) | Security Guard | Store Manager | 15 min |
+| 3 | Closing: guard monitors final customer exit; secures receiving dock; performs exterior walkthrough; arms alarm system after Store Manager confirms all staff departed (W5F step 9) | Security Guard | Store Manager | 15 min |
 | 4 | Night shift (if applicable): guard patrols exterior perimeter hourly; checks outdoor yard inventory area; monitors alarm system; responds to alarm activations per incident response protocol | Security Guard | Facilities Coordinator | Continuous |
 
 ### Key & Access Badge Management
@@ -993,7 +993,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
 | 13 | Break-in / robbery: Store Manager (or night guard) contacts PNP immediately; secures scene; Facilities Coordinator and Store Ops Director notified within 1 hour; Loss Prevention Officer activated for investigation; inventory loss assessed per W37 confirmed theft write-off process; insurance claim filed per W59 if loss exceeds deductible | Store Manager / LPO | Store Ops Director | Varies |
-| 14 | Vendor / contractor access: visiting vendors and contractors sign in at guard station; issued temporary visitor badge with time-limited access; guard verifies vendor identity against scheduled appointment list (W18b for DSD, W47 for maintenance contractors); visitor badge collected on exit; sign-in log retained for 90 days | Security Guard / Vendor | Store Manager | 5 min/visitor |
+| 14 | Vendor / contractor access: visiting vendors and contractors sign in at guard station; issued temporary visitor badge with time-limited access; guard verifies vendor identity against scheduled appointment list (W18B for DSD, W47 for maintenance contractors); visitor badge collected on exit; sign-in log retained for 90 days | Security Guard / Vendor | Store Manager | 5 min/visitor |
 | 15 | Monthly: Facilities Coordinator generates security incident summary per store: alarm events, break-in attempts, false alarm frequency, badge incidents, camera downtime; includes in monthly report to Store Ops Director | Facilities Coordinator | Store Ops Director | 2 hours/month |
 | 16 | Quarterly: LPO includes physical security incidents in loss prevention review (W37); Facilities Coordinator conducts physical security audit at 10–15 sampled stores per quarter (rotating): checks alarm functionality, camera coverage adequacy, key control compliance, guard force performance, and outdoor yard security | Facilities Coordinator / LPO | Store Ops Director | Quarterly audit |
 
@@ -1013,7 +1013,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 - Visitor/contractor sign-in log with temporary badge management (W71.14)
 - Guard force performance rating integrated into vendor contract SLA tracking (W62) (W71.18)
 - Key and badge inventory management with audit trail (W71.5–8)
-- Integration with W5a (opening security check), W5f (closing alarm activation), W37 (loss prevention — CCTV integration, confirmed theft), W47 (alarm system maintenance), W48 (IT helpdesk — CCTV camera restoration), W59 (insurance claims for theft/vandalism), W62 (security agency contract management)
+- Integration with W5A (opening security check), W5F (closing alarm activation), W37 (loss prevention — CCTV integration, confirmed theft), W47 (alarm system maintenance), W48 (IT helpdesk — CCTV camera restoration), W59 (insurance claims for theft/vandalism), W62 (security agency contract management)
 
 ### Staffing Implication
 - **Security guards**: 2 guards per store × 200 stores = 400 guards (contracted through security agency, not BuildRight employees); 3–4 guards per DC × 5 DCs = 15–20 guards; relief/absence coverage adds ~10% buffer; total contracted guard force: ~460–480 including reliefs.
@@ -1078,7 +1078,7 @@ Alternatively, for immediate receipt of items, customers utilize 3rd Party Insta
 - Price protection during layaway period — agreement price locked at creation (W75.10)
 - Layaway activity and liability reporting (W75.11)
 - 3rd Party Financing tender type at POS with reference code capture and weekly settlement reconciliation (W75.5)
-- Integration with W5b (POS selling), W6 (cycle counting — layaway items counted separately in backroom holding), W11 (ATP exclusion), W19 (ATP exclusion), W42 (physical inventory — layaway items counted as BuildRight inventory with reserved status)
+- Integration with W5B (POS selling), W6 (cycle counting — layaway items counted separately in backroom holding), W11 (ATP exclusion), W19 (ATP exclusion), W42 (physical inventory — layaway items counted as BuildRight inventory with reserved status)
 
 ### Staffing Implication
 - **CSR**: ~5–8 layaway agreements/store/month × ~10 min each (creation + payment processing) = ~1–1.5 hours/store/month. Absorbed.
@@ -1178,9 +1178,9 @@ Store renovation and remodel projects sit between W16 (New Store Opening) and W4
 | 2 | **Scope definition**: Store Ops Director, Store Manager, VP Merchandising, and Facilities Manager jointly define renovation scope: (a) **Light refresh**: repaint, new signage, updated lighting, repositioned checkout area (2–3 weeks, PHP 2–5M); (b) **Partial remodel**: department relocation, new fixtures, expanded category space, updated floor covering (4–6 weeks, PHP 5–15M); (c) **Full renovation**: complete layout redesign, all new fixtures, expanded selling area, new receiving area, major infrastructure (6–8 weeks, PHP 15–40M); (d) identify phasing options: full-store (temporary closure 2–8 weeks) vs. phased (store remains open, renovate department by department) | Store Ops Director / VP Merchandising | COO | 4–8 hours |
 | 3 | **Capex request and approval**: Store Ops Director submits capex request per W21: renovation scope, contractor bids (minimum 3 quotations), expected sales uplift, payback period, and timeline; approval follows W21 tiered approval matrix; budget charged to Store Renovation capex category in W26 | Store Ops Director | COO / CFO / CEO (per W21 tiers) | Per W21 |
 | 4 | **Design and planogram update**: (a) Visual Merchandiser creates revised store layout based on approved scope; (b) Merchandise Planner updates planogram per W86 for new layout; (c) IT Manager plans POS terminal relocation, network cabling, WiFi coverage adjustments; (d) Facilities Manager creates construction schedule with contractor | Visual Merchandiser / Merchandise Planner / IT Manager | Store Ops Director | 8–16 hours |
-| 5 | **Pre-renovation inventory management**: (a) If full-store closure: Supply Planner reduces replenishment orders 4–6 weeks before renovation start to draw down inventory; excess stock transferred to nearby stores per W22 or returned to DC per W22b; (b) If phased renovation: Merchandise Planner identifies affected departments; Stock Associates relocate merchandise to temporary display areas or backroom; system updates planogram temporarily to reflect reduced shelf space | Supply Planner / Merchandise Planner | VP Merchandising | 4–8 hours |
+| 5 | **Pre-renovation inventory management**: (a) If full-store closure: Supply Planner reduces replenishment orders 4–6 weeks before renovation start to draw down inventory; excess stock transferred to nearby stores per W22 or returned to DC per W22B; (b) If phased renovation: Merchandise Planner identifies affected departments; Stock Associates relocate merchandise to temporary display areas or backroom; system updates planogram temporarily to reflect reduced shelf space | Supply Planner / Merchandise Planner | VP Merchandising | 4–8 hours |
 | 6 | **Construction execution**: (a) Contractor mobilizes per agreed schedule; (b) Facilities Manager supervises construction on behalf of BuildRight; (c) weekly construction progress meetings: Facilities Manager, Store Manager (if open), contractor; (d) construction quality checkpoints: Facilities Manager inspects at foundation, framing, electrical rough-in, and finishing stages; (e) if store is open during phased renovation: Store Manager ensures customer safety (barriers, signage, dust control, noise management) | Facilities Manager / Contractor | Store Ops Director | Ongoing (2–8 weeks) |
-| 7 | **IT and systems setup** (during final construction phase): (a) IT team installs/relocates POS terminals, network equipment, CCTV (W71), WiFi access points, handheld charging stations; (b) IT verifies POS connectivity and offline capability (W5g); (c) system updates location master if selling area changes | IT Manager | CIO | 2–4 days |
+| 7 | **IT and systems setup** (during final construction phase): (a) IT team installs/relocates POS terminals, network equipment, CCTV (W71), WiFi access points, handheld charging stations; (b) IT verifies POS connectivity and offline capability (W5G); (c) system updates location master if selling area changes | IT Manager | CIO | 2–4 days |
 | 8 | **Restocking and planogram execution**: (a) Stock Associates stock shelves per updated planogram (W86.4 — scan-verified placement); (b) DC resumes replenishment to store (W4); (c) Merchandise Planner verifies initial stock levels per planogram; (d) new shelf labels generated per W63 | Stock Associates / Merchandise Planner | Store Manager | 1–3 days |
 | 9 | **Reopening / reveal**: (a) If store was closed: "Grand Reopening" event coordinated with W83 marketing campaign; (b) Store Manager conducts full store walkthrough with Dept. Supervisors; (c) verify all planogram positions correct, all POS terminals operational, all safety features in place (fire exits, emergency lighting, CCTV); (d) store opens to customers | Store Manager | Store Ops Director | 1 day |
 | 10 | **Post-renovation monitoring** (first 90 days): (a) Weekly sales tracking vs. pre-renovation baseline and vs. projected uplift from capex request (W21); (b) W67 monthly store performance review includes renovation ROI tracking; (c) Merchandise Planner monitors category sales in expanded/renovated sections vs. expectations; (d) if sales uplift < 50% of projection by day 90: Store Ops Director and VP Merchandising conduct diagnostic review; (e) at day 90: Facilities Manager conducts post-renovation punch list walk — any construction defects reported to contractor for rectification under warranty | Store Ops Director / Store Manager | COO | 2 hours/week for 90 days |
@@ -1193,7 +1193,7 @@ Store renovation and remodel projects sit between W16 (New Store Opening) and W4
 - POS and IT infrastructure relocation tracking (W96.7)
 - Post-renovation sales monitoring vs. projected uplift (W96.10)
 - Capex vs. budget tracking and fixed asset capitalization (W96.11)
-- Integration with W4 (replenishment — resume/adjust for renovation), W16 (new store — shares setup procedures for IT, planogram, restocking), W21 (capex — renovation funding), W22 (transfers — excess inventory redistribution), W22b (store-to-DC returns — inventory draw-down), W47 (facility maintenance — renovation scope may originate from maintenance assessment), W63 (shelf labels — updated for new layout), W67 (store performance — renovation ROI tracking), W83 (marketing — re-opening campaign), W86 (planogram — updated layout), W97 (sample/demo — reinstall or replace display samples)
+- Integration with W4 (replenishment — resume/adjust for renovation), W16 (new store — shares setup procedures for IT, planogram, restocking), W21 (capex — renovation funding), W22 (transfers — excess inventory redistribution), W22B (store-to-DC returns — inventory draw-down), W47 (facility maintenance — renovation scope may originate from maintenance assessment), W63 (shelf labels — updated for new layout), W67 (store performance — renovation ROI tracking), W83 (marketing — re-opening campaign), W86 (planogram — updated layout), W97 (sample/demo — reinstall or replace display samples)
 
 ### Staffing Implication
 - **Store Ops Director**: oversees ~10–15 renovation projects/year; each project requires ~8–16 hours of planning + ~2 hours/week during construction + ~8 hours post-renovation. With staggered projects, peak load is 2–3 concurrent renovations = ~10–15 hours/week during peak. May delegate day-to-day supervision to Facilities Manager for smaller projects.
@@ -1222,7 +1222,7 @@ W3 covers DC receiving in detail — barcode-directed putaway, quality inspectio
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Pre-arrival preparation**: System alerts Receiving Clerk of scheduled inbound deliveries for the day (from DC delivery schedule per W106, DSD schedule per W18b, or transfer ETA per W22); Clerk reviews expected receiving volume and coordinates with Stock Associates for putaway support | Receiving Clerk | Store Manager | 10 min/morning |
+| 1 | **Pre-arrival preparation**: System alerts Receiving Clerk of scheduled inbound deliveries for the day (from DC delivery schedule per W106, DSD schedule per W18B, or transfer ETA per W22); Clerk reviews expected receiving volume and coordinates with Stock Associates for putaway support | Receiving Clerk | Store Manager | 10 min/morning |
 | 2 | **Truck arrival and dock check**: Driver arrives at store receiving area; Receiving Clerk checks delivery manifest against system-scheduled deliveries; if unscheduled delivery (no matching PO/TO): Clerk checks with Store Manager before accepting | Receiving Clerk / Driver | Store Manager | 5 min |
 | 3 | **Unloading**: Receiving Clerk and Stock Associates unload truck; stage goods in receiving area sorted by department (lumber, plumbing, tiles, tools, hardware, paint, appliances); catch-weight items (lumber, wire) measured and verified at unload | Receiving Clerk / Stock Associate | Department Supervisor | 20–45 min/delivery |
 | 4 | **Scan receiving against Transfer Order / PO**: Receiving Clerk scans each case/tote/item barcode using handheld RF device against the Transfer Order (DC delivery) or PO (DSD); system displays expected SKU and quantity per line; Clerk confirms or enters actual quantity received | Receiving Clerk | Department Supervisor | 15–30 min/delivery |
@@ -1230,7 +1230,7 @@ W3 covers DC receiving in detail — barcode-directed putaway, quality inspectio
 | 6 | **Quality spot-check**: For DSD items (fresh delivery from vendor, no DC quality inspection): Department Supervisor spot-checks 3–5 items per delivery for damage, correct labeling, and shelf-life; DC-delivered items already inspected at W3 AQL checkpoint — no additional store inspection unless visibly damaged | Department Supervisor | Store Manager | 5 min/delivery |
 | 7 | **Confirm receipt in system**: Receiving Clerk confirms Goods Receipt in handheld; system posts: (a) store inventory increases (perpetual), (b) in-transit inventory clears (for DC deliveries), (c) inventory ownership at store confirmed (Depot Inc.), (d) receiving timestamp and Clerk ID logged | Receiving Clerk / System | Department Supervisor | 2 min |
 | 8 | **Putaway to sales floor (primary)**: Stock Associate moves received goods from receiving staging area to sales floor: (a) system provides shelf location guidance on handheld (aisle/bay) based on planogram (W86); (b) Stock Associate places items on shelf in designated location; scan-confirms shelf placement; (c) for promotional items (W57): Stock Associate places in designated promo display area, not regular shelf; (d) for catch-weight items: Stock Associate places in yard or designated cut-to-length area per store layout; (e) putaway priority: promotional items first, then A-items (fast movers), then B/C-items | Stock Associate | Department Supervisor | 30–60 min/delivery |
-| 9 | **Putaway to backroom (overflow)**: If sales floor shelf is full (no space for all received quantity): (a) Stock Associate places excess in backroom stock area; (b) system records backroom location (zone-level, not bin-level — stores do not have bin-level location tracking); (c) backroom inventory tracked separately from floor inventory in system; (d) Stock Associates replenish from backroom to floor during daily shelf restocking (W5a step 7) | Stock Associate | Department Supervisor | 10 min/delivery |
+| 9 | **Putaway to backroom (overflow)**: If sales floor shelf is full (no space for all received quantity): (a) Stock Associate places excess in backroom stock area; (b) system records backroom location (zone-level, not bin-level — stores do not have bin-level location tracking); (c) backroom inventory tracked separately from floor inventory in system; (d) Stock Associates replenish from backroom to floor during daily shelf restocking (W5A step 7) | Stock Associate | Department Supervisor | 10 min/delivery |
 | 10 | **Packaging and waste disposal**: Stock Associate breaks down empty cartons, pallets, and packaging materials; cardboard recycled or compacted; packaging waste disposed per store waste management protocol; wooden pallets stacked for DC truck backhaul on next delivery | Stock Associate | Department Supervisor | 10 min/delivery |
 | 11 | **Receiving completion**: Receiving Clerk closes receiving session in handheld; system generates receiving confirmation with: TO/PO number, total lines received, discrepancies noted, receiving completion timestamp; Driver signs delivery receipt (proof of delivery for DC) and departs | Receiving Clerk / Driver | Store Manager | 5 min |
 
@@ -1248,7 +1248,7 @@ W3 covers DC receiving in detail — barcode-directed putaway, quality inspectio
 | **RTV backhaul from vendor** (W88) | RTV shipment | RTV record | W88 vendor dispute | To RTV holding area |
 
 ### System Touchpoints
-- Daily inbound delivery schedule from W106 DC dispatch, W18b DSD schedule, and W22 transfers (W109.1)
+- Daily inbound delivery schedule from W106 DC dispatch, W18B DSD schedule, and W22 transfers (W109.1)
 - Handheld RF barcode scanning against Transfer Order or Purchase Order with line-level quantity confirmation (W109.4)
 - Partial receipt posting with discrepancy logging and auto-notification (W109.5)
 - Shelf location guidance from planogram integration (W86) on handheld (W109.8)
@@ -1259,7 +1259,7 @@ W3 covers DC receiving in detail — barcode-directed putaway, quality inspectio
 
 ### Staffing Implication
 - **2 Receiving Clerks per store**: already in staffing model (35/store). Each handles ~3–5 deliveries/week × 2 hours = ~6–10 hours/week. Remainder of time on backroom management, BOPIS staging, and other duties.
-- **3 Stock Associates per store**: putaway adds ~1–1.5 hours per delivery event × ~6–10 events/week = ~6–15 hours/week. Balanced with daily shelf replenishment (W5a.7), cycle counting (W6), and damage handling (W91).
+- **3 Stock Associates per store**: putaway adds ~1–1.5 hours per delivery event × ~6–10 events/week = ~6–15 hours/week. Balanced with daily shelf replenishment (W5A.7), cycle counting (W6), and damage handling (W91).
 - **No incremental headcount.**
 
 ---
@@ -1276,13 +1276,13 @@ W3 covers DC receiving in detail — barcode-directed putaway, quality inspectio
 
 ### Background
 
-BuildRight operates 200 stores (8,000–15,000 sqm each) and 5 DCs (25,000–40,000 sqm each) across the Philippines. Utility costs — particularly electricity for lighting, HVAC, and equipment — are a significant operating expense. At an estimated PHP 80–150 per sqm per month for electricity in Philippine big-box retail, annual electricity cost alone is ~PHP 1.5–2.7B (3–4% of revenue). W7c processes utility bills as non-PO invoices, but there is no workflow for monitoring consumption trends, benchmarking across stores/DCs, identifying energy waste, and tracking sustainability KPIs. This workflow creates that operational layer.
+BuildRight operates 200 stores (8,000–15,000 sqm each) and 5 DCs (25,000–40,000 sqm each) across the Philippines. Utility costs — particularly electricity for lighting, HVAC, and equipment — are a significant operating expense. At an estimated PHP 80–150 per sqm per month for electricity in Philippine big-box retail, annual electricity cost alone is ~PHP 1.5–2.7B (3–4% of revenue). W7C processes utility bills as non-PO invoices, but there is no workflow for monitoring consumption trends, benchmarking across stores/DCs, identifying energy waste, and tracking sustainability KPIs. This workflow creates that operational layer.
 
 ### Steps
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Utility bill processing**: AP Clerk receives utility bill (electricity, water, internet, waste disposal) per W7c non-PO invoice process; system captures: utility provider, meter reading (if available), consumption units (kWh, cubic meters), total amount, billing period, and store/DC location code; AP Clerk enters consumption data in utility tracking module alongside financial data | AP Clerk | AP Supervisor | Per W7c + 5 min/bill for consumption entry |
+| 1 | **Utility bill processing**: AP Clerk receives utility bill (electricity, water, internet, waste disposal) per W7C non-PO invoice process; system captures: utility provider, meter reading (if available), consumption units (kWh, cubic meters), total amount, billing period, and store/DC location code; AP Clerk enters consumption data in utility tracking module alongside financial data | AP Clerk | AP Supervisor | Per W7C + 5 min/bill for consumption entry |
 | 2 | **Consumption normalization**: System calculates normalized consumption metrics per location: (a) kWh per sqm per month, (b) kWh per PHP revenue per month, (c) water consumption per sqm per month, (d) total utility cost as % of store revenue; normalizes for billing period length (some bills span 28–35 days) | System | — | Automated |
 | 3 | **Automated anomaly detection**: System compares each location's current month consumption to: (a) same month prior year (seasonal comparison), (b) trailing 3-month average (trend comparison), (c) peer group average (stores of similar size and format in same region); flags locations where consumption exceeds comparison by > 20%; generates anomaly alert to Store Manager and Facilities Manager | System | — | Automated |
 | 4 | **Store Manager anomaly response**: Upon receiving anomaly alert, Store Manager investigates: (a) check for operational causes — extended HVAC use during heat wave, new equipment added, construction/renovation activity (W96), increased lighting for promotional displays; (b) check for maintenance issues — HVAC running inefficiently, water leak, lighting left on during non-business hours; (c) if maintenance issue identified: Store Manager creates facility maintenance work order per W47; (d) response documented in system with root cause and corrective action | Store Manager | Regional Manager | 30 min/alert |
@@ -1292,13 +1292,13 @@ BuildRight operates 200 stores (8,000–15,000 sqm each) and 5 DCs (25,000–40,
 | 8 | **DC utility management**: DC Manager monitors DC utility consumption with focus on: (a) refrigeration and cold-chain equipment (if applicable to paint/chemical storage), (b) warehouse lighting and ventilation, (c) charging stations for electric forklifts and handheld devices, (d) yard lighting for outdoor lumber/building materials area; DC utility benchmarking uses DC-specific metrics (kWh per sqm, kWh per TEU processed) | DC Manager | Supply Chain Manager | 30 min/month |
 
 ### System Touchpoints
-- Utility bill processing with consumption data capture (kWh, cubic meters) alongside financial data per W7c (W111.1)
+- Utility bill processing with consumption data capture (kWh, cubic meters) alongside financial data per W7C (W111.1)
 - Automated consumption normalization: kWh/sqm, kWh/revenue, cost/revenue (W111.2)
 - Automated anomaly detection with configurable thresholds (> 20% deviation from seasonal, trend, or peer benchmarks) (W111.3)
 - Monthly utility dashboard with multi-dimensional benchmarking (W111.5)
 - Quarterly energy review with efficiency project pipeline and capex integration (W111.6)
 - Annual utility budget per location integrated with W26 budget module (W111.7)
-- Integration with W7c (utility bill processing), W16 (new store — initial utility setup), W21 (energy efficiency capex), W26 (annual budget), W47 (facility maintenance — HVAC/lighting repair), W67 (store performance — utility cost as P&L line), W86 (planogram — lighting for displays), W96 (renovation — utility impact)
+- Integration with W7C (utility bill processing), W16 (new store — initial utility setup), W21 (energy efficiency capex), W26 (annual budget), W47 (facility maintenance — HVAC/lighting repair), W67 (store performance — utility cost as P&L line), W86 (planogram — lighting for displays), W96 (renovation — utility impact)
 
 ### Staffing Implication
 - **1 Facilities Manager** (within Store Operations team of ~23 at HQ): manages chain-wide energy management, utility vendor relationships, and energy efficiency projects. This role is already implied by W47 (facility maintenance coordination) but formalized here.

@@ -101,7 +101,7 @@ BuildRight's ~24-person Marketing team operates across brand, promotions, loyalt
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
 | 25 | At campaign brief approval (step 4), Campaign Manager creates campaign purchase requisitions for external costs: (a) creative agency fees per W62 contract, (b) media placement costs, (c) printing and production costs, (d) distribution / logistics costs; all costs tagged to campaign cost center | Campaign Manager | CMO | 1 hour/campaign |
-| 26 | AP Clerk processes campaign vendor invoices per W7c (non-PO) or against campaign PO; system tags expense to campaign cost center; Campaign Manager confirms goods/services received before AP approval | AP Clerk / Campaign Manager | AP Supervisor | Per W7 |
+| 26 | AP Clerk processes campaign vendor invoices per W7C (non-PO) or against campaign PO; system tags expense to campaign cost center; Campaign Manager confirms goods/services received before AP approval | AP Clerk / Campaign Manager | AP Supervisor | Per W7 |
 | 27 | Monthly: Campaign Manager generates campaign budget utilization report — total spend by campaign, spend by channel, budget vs. actual per campaign, and remaining budget for active campaigns | Campaign Manager | CMO | 1 hour/month |
 
 ### System Touchpoints

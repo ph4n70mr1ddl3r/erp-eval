@@ -32,7 +32,7 @@
 | 1 | **Data Collection (Scope 1 - Direct)**: System pulls fuel consumption data from fleet management (W196) and backup generators | Fleet Manager | Sustainability Lead | 1 hour |
 | 2 | **Data Collection (Scope 2 - Indirect)**: System pulls electricity (kWh) consumption from utility invoices (W7) and solar generation data (W173) | AP Clerk | Finance Manager | 1 hour |
 | 3 | **Emission Calculation**: Sustainability Lead applies Philippine-specific emission factors (from DOE/DENR) to convert fuel and electricity data into CO2e (CO2 equivalent) | Sustainability Lead | — | 2 hours |
-| 4 | **Scope 3 (Supply Chain)**: (Optional) Estimate emissions from 3PL logistics (W62b) and employee travel (W74) | Sustainability Lead | — | 4 hours |
+| 4 | **Scope 3 (Supply Chain)**: (Optional) Estimate emissions from 3PL logistics (W62B) and employee travel (W74) | Sustainability Lead | — | 4 hours |
 | 5 | **Validation**: Internal Audit or external consultant verifies the calculations for accuracy | Internal Audit | — | Annual |
 | 6 | **Dashboard**: System updates "Environmental Scorecard" showing emissions intensity (CO2e per PHP 1M revenue) | System | Sustainability Lead | Automated |
 

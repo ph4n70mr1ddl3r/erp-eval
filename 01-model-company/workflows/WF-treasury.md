@@ -19,7 +19,7 @@
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Approved Import PO (W2b) requiring LC; or contract requirement for Bank Guarantee |
+| **Trigger** | Approved Import PO (W2B) requiring LC; or contract requirement for Bank Guarantee |
 | **Frequency** | 10–20 LCs/month (imports); 5–10 Bank Guarantees/year |
 | **Volume** | High-value import shipments (Machinery, bulk construction materials) |
 | **Owner** | Treasury Manager |
@@ -107,4 +107,4 @@
 - Cash Flow Forecasting tool (direct/indirect methods)
 - Consolidation Engine with automated elimination rules
 - Intercompany matching workbench
-- Integration with W2b (Import PO), W7 (Payments), W8 (Receipts), W14 (Logistics Billing)
+- Integration with W2B (Import PO), W7 (Payments), W8 (Receipts), W14 (Logistics Billing)

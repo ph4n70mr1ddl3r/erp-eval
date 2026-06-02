@@ -333,5 +333,19 @@
 
 ---
 
-*Document Version: 3.0 | Date: 2026-06-02 | Added 40+ new requirements (FIN-023–030, HR-016–017, POS-023, ECOM-013–016, INV-019–020, PUR-017–024, DOC-008, MDM-008, NFR-023–027, RPT-011–012, SRV-001–002, WSL-001–002, GOV-001–030) for complete workflow-to-requirement traceability across all 283 workflows; total now 230+ requirements*
+## R18. New Workflows — Additional Requirements
+
+| Req ID | Requirement | Priority | Notes |
+|---|---|---|---|
+| CRM-015 | Call Center Daily Operations & Queue Management | Should Have | Omnichannel queue management (phone, chat, email, social), IVR self-service, skill-based routing, callback queue, real-time agent monitoring, SLA tracking (80% calls < 60 sec), per-agent CSAT measurement |
+| FIN-031 | BIR eFPS Filing & Electronic Payment Submission | Must Have | Automated tax return generation per BIR form specifications (2550M/Q, 1601-E, 1601-C, 1702Q/RT, 1604-C/E), eFPS submission integration, PRN generation, AAB payment integration, filing calendar with deadline alerts, multi-entity filing management |
+| FIN-032 | E-Wallet & Digital Payment Settlement Reconciliation | Must Have | Settlement file import from GCash, Maya, GrabPay, ShopeePay; auto-matching settlement to POS/ecommerce transactions; MDR fee verification against contracted rates; per-store e-wallet reconciliation; chargeback dispute management; settlement aging tracking |
+| MER-001 | Store Promotional Setup & Visual Merchandising Execution | Should Have | Promotional setup brief distribution (HQ to store), planogram compliance tracking with photo upload, promotional stock pick list generation, signage and shelf tag auto-generation, display teardown workflow, post-promotion sell-through summary |
+| CRM-016 | Loyalty Member Enrollment & Onboarding Journey | Should Have | Multi-channel enrollment (in-store, online, call center, event), real-time deduplication during enrollment, RA 10173 consent management with granular opt-in, digital loyalty card generation, automated welcome communication sequence, enrollment-to-first-purchase conversion tracking |
+| MER-002 | Seasonal Merchandise Transition & Display Rotation | Should Have | Seasonal assortment planning with store clustering, seasonal markdown trigger engine, seasonal setup brief with planogram distribution, display build and teardown workflow, in-season sell-through monitoring, post-season review and carry-forward analysis |
+| NFR-028 | POS Terminal Hardware Maintenance & Peripheral Management | Should Have | POS hardware incident ticketing with priority matrix, remote diagnostics and remediation, spare peripheral inventory tracking per store, quarterly preventive maintenance scheduling, peripheral vendor warranty and RMA tracking, hardware failure analytics (MTBF, MTTR) |
+
+---
+
+*Document Version: 4.0 | Date: 2026-06-02 | Added 7 new requirements (CRM-015–016, FIN-031–032, MER-001–002, NFR-028) for 7 new workflows (W259–W265); total now 290 workflows and 237+ requirements*
 

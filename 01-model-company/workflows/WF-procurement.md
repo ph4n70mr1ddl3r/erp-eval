@@ -9,16 +9,16 @@
 ## Workflows in This Domain
 
 - [W2. Procurement — Purchase Order Cycle](#procurement-purchase-order-cycle)
-- [W2a. Procurement — Auto-Replenishment (ROP/MRP)](#procurement--auto-replenishment-ropmrp)
-- [W2b. Import Purchase Orders & Landed Cost](#import-purchase-orders--landed-cost)
-- [W2c. Blanket Purchase Orders](#blanket-purchase-orders)
+- [W2A. Procurement — Auto-Replenishment (ROP/MRP)](#procurement--auto-replenishment-ropmrp)
+- [W2B. Import Purchase Orders & Landed Cost](#import-purchase-orders--landed-cost)
+- [W2C. Blanket Purchase Orders](#blanket-purchase-orders)
 - [W20. Vendor Managed Inventory (VMI)](#vendor-managed-inventory-vmi)
 - [W36. Vendor Onboarding](#vendor-onboarding)
 - [W38. Special Order / Non-Stock Item Fulfillment](#special-order-non-stock-item-fulfillment)
 - [W44. Vendor Performance Review](#vendor-performance-review)
 - [W60. Emergency Procurement](#emergency-procurement)
 - [W62. Vendor Contract Lifecycle (Non-PO Contracts)](#vendor-contract-lifecycle-non-po-contracts)
-- [W62b. 3PL / Logistics Partner Onboarding & Contract Lifecycle](#3pl--logistics-partner-onboarding--contract-lifecycle)
+- [W62B. 3PL / Logistics Partner Onboarding & Contract Lifecycle](#3pl--logistics-partner-onboarding--contract-lifecycle)
 - [W88. Return to Vendor (RTV) Processing](#rtv-processing)
 - [W110. Supplier Quality & CAPA (Corrective and Preventive Action)](#supplier-quality-capa-corrective-and-preventive-action)
 - [W115. Supplier Diversity & MSME Development Program](#supplier-diversity-msme-development-program)
@@ -34,15 +34,15 @@
 
 ## W2. Procurement — Purchase Order Cycle
 
-### W2a. Auto-Replenishment (Stocking Items)
+### W2A. Auto-Replenishment (Stocking Items)
 
 | Field | Detail |
 |---|---|
 | **Trigger** | SKU hits reorder point (ROP) in system |
 | **Frequency** | Daily review; POs generated daily |
-| **Volume** | ~1,200 merchandise POs/month (auto-replenishment + ad-hoc); ~18,000 PO lines/month; excludes ~80–240 blanket/contract release orders/month (W2c), ~20–30 import POs/month (W2b), and ~30–50 non-merchandise POs/month (capex, IT, supplies); total all types: ~1,400–1,600 POs/month |
+| **Volume** | ~1,200 merchandise POs/month (auto-replenishment + ad-hoc); ~18,000 PO lines/month; excludes ~80–240 blanket/contract release orders/month (W2C), ~20–30 import POs/month (W2B), and ~30–50 non-merchandise POs/month (capex, IT, supplies); total all types: ~1,400–1,600 POs/month |
 
-> **PO-to-GR ratio**: ~1,200 merchandise POs generate ~6,000 DC goods receipts/month (W3) — an average of ~5 GRs per PO. This ratio reflects partial shipments (vendors delivering across multiple drops), scheduled phased deliveries for large POs, and blanket PO releases each generating a separate GR. Import POs (W2b) typically generate 1 GR per container. DSD POs delivered to stores generate store-level GRs (W18) outside the DC receiving workflow.
+> **PO-to-GR ratio**: ~1,200 merchandise POs generate ~6,000 DC goods receipts/month (W3) — an average of ~5 GRs per PO. This ratio reflects partial shipments (vendors delivering across multiple drops), scheduled phased deliveries for large POs, and blanket PO releases each generating a separate GR. Import POs (W2B) typically generate 1 GR per container. DSD POs delivered to stores generate store-level GRs (W18) outside the DC receiving workflow.
 | **Owner** | Buyer |
 | **Participants** | System (auto-suggest), Buyer, Category Manager (approval if > PHP 50K) |
 
@@ -65,20 +65,20 @@
 
 | Activity | Trigger | Approval | System Action |
 |---|---|---|---|
-| **PO Amendment** | Buyer needs to change quantity, delivery date, price, or add/remove lines on an approved PO | Re-approval per tiered matrix (same thresholds as original PO: > PHP 50K → Category Manager, > PHP 500K → VP Merchandising, > PHP 2M → CFO for imports) if change exceeds materiality threshold (quantity change > 20%, price change > 5%, or any delivery date change); minor changes (within threshold) auto-approved with Buyer note | System transmits amendment to vendor (email, EDI, or portal); tracks amendment history with full audit trail (original values, amended values, reason code, approver ID, timestamp); for import POs (W2b), Finance notifies bank if LC amendment is required for value changes |
+| **PO Amendment** | Buyer needs to change quantity, delivery date, price, or add/remove lines on an approved PO | Re-approval per tiered matrix (same thresholds as original PO: > PHP 50K → Category Manager, > PHP 500K → VP Merchandising, > PHP 2M → CFO for imports) if change exceeds materiality threshold (quantity change > 20%, price change > 5%, or any delivery date change); minor changes (within threshold) auto-approved with Buyer note | System transmits amendment to vendor (email, EDI, or portal); tracks amendment history with full audit trail (original values, amended values, reason code, approver ID, timestamp); for import POs (W2B), Finance notifies bank if LC amendment is required for value changes |
 | **PO Cancellation** | Vendor cannot deliver, demand drops, item discontinued, or PO no longer needed | Buyer initiates with reason code; Category Manager approval required for cancellations > PHP 50K; VP Merchandising for > PHP 500K | System checks for existing GR against PO: if no GR, auto-cancels with vendor notification; if partial GR, Buyer confirms close of remaining quantity; system releases budget commitment; cancelled PO retained in audit trail |
 | **PO Auto-Close** | PO fully received (GR quantity matches ordered quantity within tolerance) or PO open beyond configured age limit | Automated | System auto-closes fully received POs; system flags POs open > 90 days for Buyer review (dashboard alert); Buyer reviews aged POs weekly and decides: close remaining quantity, extend delivery date (amendment), or escalate to Category Manager |
 
 ### System Touchpoints (PO Lifecycle)
-- PO amendment workflow with materiality thresholds triggering re-approval (W2a)
-- Amendment history with full audit trail: original vs. amended values, reason, approver (W2a)
-- Vendor notification on amendment (email/EDI/portal) (W2a)
-- Import PO LC amendment trigger (cross-reference W2b) (W2a)
-- PO cancellation with reason code and budget release (W2a)
-- Partial-receipt PO close workflow (W2a)
-- Auto-close rules: tolerance-based for fully received POs; aging threshold for open POs (W2a)
+- PO amendment workflow with materiality thresholds triggering re-approval (W2A)
+- Amendment history with full audit trail: original vs. amended values, reason, approver (W2A)
+- Vendor notification on amendment (email/EDI/portal) (W2A)
+- Import PO LC amendment trigger (cross-reference W2B) (W2A)
+- PO cancellation with reason code and budget release (W2A)
+- Partial-receipt PO close workflow (W2A)
+- Auto-close rules: tolerance-based for fully received POs; aging threshold for open POs (W2A)
 
-### W2b. Import Purchase Orders
+### W2B. Import Purchase Orders
 
 | Field | Detail |
 |---|---|
@@ -109,17 +109,17 @@
 **Total cycle time**: 45–90 days from PO to receipt
 
 ### System Touchpoints
-- ROP/EOQ auto-calculation per SKU per location (W2a.1–2)
-- PO creation with multi-tier approval workflow (W2a.5–6)
-- Vendor PO transmission (W2a.7)
-- Open PO tracking / overdue alerts (W2a.8)
-- Import PO tracking with LC/BL/container fields (W2b.1–9)
-- Landed cost calculation engine (W2b.12)
-- 3-way match: PO → Goods Receipt → Vendor Invoice (W2b.13)
-- FX rate capture at PO creation (budget rate), goods receipt (spot rate or BSR), and invoice (actual rate); automatic FX gain/loss posting (W2b.12–13)
-- Month-end FX revaluation of open foreign-currency balances at BIR exchange rate with unrealized FX gain/loss posting and auto-reversal (W9a.5a)
+- ROP/EOQ auto-calculation per SKU per location (W2A.1–2)
+- PO creation with multi-tier approval workflow (W2A.5–6)
+- Vendor PO transmission (W2A.7)
+- Open PO tracking / overdue alerts (W2A.8)
+- Import PO tracking with LC/BL/container fields (W2B.1–9)
+- Landed cost calculation engine (W2B.12)
+- 3-way match: PO → Goods Receipt → Vendor Invoice (W2B.13)
+- FX rate capture at PO creation (budget rate), goods receipt (spot rate or BSR), and invoice (actual rate); automatic FX gain/loss posting (W2B.12–13)
+- Month-end FX revaluation of open foreign-currency balances at BIR exchange rate with unrealized FX gain/loss posting and auto-reversal (W9A.5a)
 
-### W2c. Blanket / Contract Purchase Orders
+### W2C. Blanket / Contract Purchase Orders
 
 | Field | Detail |
 |---|---|
@@ -139,7 +139,7 @@
 | 4 | Buyer creates Blanket PO in system: vendor, SKU lines with contract price, validity period (typically 1 year), min/max commitment quantities, agreed delivery schedule or release parameters | Buyer | Category Manager | 30–60 min |
 | 5 | System enforces contract pricing on all release orders; alerts Buyer if release quantity would exceed maximum commitment | System | — | Automated |
 | 6 | Buyer or system creates Release Order against Blanket PO (per agreed schedule or triggered by ROP): specifies exact quantity and delivery date for this release | Buyer / System | Buyer | 10 min |
-| 7 | Release Order follows standard PO approval (W2a.5–6) if release value exceeds threshold; otherwise auto-approved within contract parameters | System | — | Automated |
+| 7 | Release Order follows standard PO approval (W2A.5–6) if release value exceeds threshold; otherwise auto-approved within contract parameters | System | — | Automated |
 | 8 | Vendor ships per release order; standard receiving (W3) and AP matching (W7) apply | Vendor | Buyer | Per W3/W7 |
 | 9 | System tracks cumulative released quantity and value against contract commitment; Buyer monitors to ensure min-commit targets are met | System | Buyer | Automated |
 | 10 | Monthly: Buyer reviews contract utilization report; identifies contracts below minimum commitment pace (risk of penalty or unfavorable renegotiation) | Buyer | Category Manager | 1 hour/month |
@@ -165,15 +165,15 @@
 | 3 | If BuildRight calculation confirmed correct: Buyer responds to vendor with supporting data; dispute closed; no settlement adjustment | Buyer | Category Manager | 15 min |
 | 4 | If partial vendor claim valid: Buyer proposes adjusted settlement; Category Manager approves adjustment; Cost Accountant posts adjustment with Category Manager approval and documentation in system | Buyer / Category Manager / Cost Accountant | Finance Manager | 30 min |
 | 5 | If dispute unresolved within 15 business days: Buyer escalates to Finance Manager for mediation; Finance Manager reviews both calculations and makes binding recommendation within 5 business days | Finance Manager | CFO | 30 min |
-| 6 | Monthly: Cost Accountant tracks rebate dispute frequency and resolution time per vendor; feeds into vendor scorecard (W44); chronic disputing vendors flagged for contract renegotiation (W2c) | Cost Accountant | Controller | 15 min/month |
+| 6 | Monthly: Cost Accountant tracks rebate dispute frequency and resolution time per vendor; feeds into vendor scorecard (W44); chronic disputing vendors flagged for contract renegotiation (W2C) | Cost Accountant | Controller | 15 min/month |
 
 ### System Touchpoints
-- Blanket/contract PO creation with SKU lines, pricing tiers, validity dates, and commitment quantities (W2c.4)
-- Contract pricing enforcement on release orders (W2c.5)
-- Release order creation against blanket PO with quantity tracking (W2c.6–7)
-- Cumulative commitment tracking: released vs. minimum vs. maximum (W2c.9)
-- Contract utilization reporting (W2c.10)
-- Contract expiry alerting with release order blocking (W2c.12)
+- Blanket/contract PO creation with SKU lines, pricing tiers, validity dates, and commitment quantities (W2C.4)
+- Contract pricing enforcement on release orders (W2C.5)
+- Release order creation against blanket PO with quantity tracking (W2C.6–7)
+- Cumulative commitment tracking: released vs. minimum vs. maximum (W2C.9)
+- Contract utilization reporting (W2C.10)
+- Contract expiry alerting with release order blocking (W2C.12)
 - Integration with W27 (vendor rebates — rebates may be tied to contract commitment achievement; rebate dispute resolution per W27 dispute SLA of 15 business days)
 
 ### Staffing Implication
@@ -317,7 +317,7 @@
 | 13 | If customer cancels before PO is placed: CSR cancels Sales Order; deposit refunded; no PO created | CSR | Store Manager | 5 min |
 | 14 | If customer cancels after PO is placed but before shipment: Buyer negotiates with vendor (restocking fee, return); Finance processes partial refund less any costs | Buyer + Finance | Category Manager | 30 min |
 | 15 | Unclaimed deposit management: system tracks age of customer deposits linked to completed special orders (goods received but not picked up); after 30 days with no customer response post-delivery notification, system sends reminder notification (SMS/email); after 90 days with no response, system flags deposit for review; Store Manager or Finance approves recognition of abandoned deposit as other income (Dr. Customer Deposits Payable / Cr. Other Income); goods dispositioned per standard clearance (W13.9a), RTV (W3.6a), or return to shelf | System / Store Manager / Finance | Controller | Automated + 5 min/review |
-| 16 | **Customer deposit refund (before goods receipt)**: if customer requests cancellation and refund before goods are received from vendor — (a) CSR processes deposit refund in system with reason code (customer cancellation, vendor cannot deliver, project cancelled); (b) system cancels linked Sales Order and triggers Buyer to cancel or reduce the linked PO per W2a PO cancellation process (if PO not yet shipped by vendor); (c) refund issued to original payment method: if deposit paid by cash, CSR disburses from cash drawer with Store Manager authorization; if paid by card/e-wallet, system processes electronic refund (Dr. Customer Deposits Payable / Cr. Cash); if paid by trade account credit, system applies deposit back to customer's AR account; (d) system logs refund with customer ID, original deposit transaction, refund amount, refund method, CSR ID, authorizing manager ID, and reason code; (e) BIR-compliant documentation: system generates official receipt for the refund transaction with all required BIR fields (TIN, registered invoice number, description "Refund of customer deposit — Sales Order #[number]"); refund receipts retained per 7-year BIR retention policy | CSR / Store Manager | Controller | 10 min/refund |
+| 16 | **Customer deposit refund (before goods receipt)**: if customer requests cancellation and refund before goods are received from vendor — (a) CSR processes deposit refund in system with reason code (customer cancellation, vendor cannot deliver, project cancelled); (b) system cancels linked Sales Order and triggers Buyer to cancel or reduce the linked PO per W2A PO cancellation process (if PO not yet shipped by vendor); (c) refund issued to original payment method: if deposit paid by cash, CSR disburses from cash drawer with Store Manager authorization; if paid by card/e-wallet, system processes electronic refund (Dr. Customer Deposits Payable / Cr. Cash); if paid by trade account credit, system applies deposit back to customer's AR account; (d) system logs refund with customer ID, original deposit transaction, refund amount, refund method, CSR ID, authorizing manager ID, and reason code; (e) BIR-compliant documentation: system generates official receipt for the refund transaction with all required BIR fields (TIN, registered invoice number, description "Refund of customer deposit — Sales Order #[number]"); refund receipts retained per 7-year BIR retention policy | CSR / Store Manager | Controller | 10 min/refund |
 
 **Total cycle time**: 7–30 days from order to delivery (depends on vendor lead time and whether domestic or import)
 
@@ -474,12 +474,12 @@
 - SLA tracking with performance documentation per review period (W62.7)
 - Auto-renewal management: system flags auto-renewal contracts 90 days before renewal for Dept. Head decision (W62.6)
 - Invoice blocking after contract expiry (W62.8)
-- Integration with W2c (blanket/contract POs for merchandise vendors), W7c (non-PO invoice processing), W36 (vendor onboarding), W44 (vendor performance review — service vendors included in annual review), W59 (insurance tracking for vendor insurance certificates)
+- Integration with W2C (blanket/contract POs for merchandise vendors), W7C (non-PO invoice processing), W36 (vendor onboarding), W44 (vendor performance review — service vendors included in annual review), W59 (insurance tracking for vendor insurance certificates)
 
 ### Staffing Implication
 - No incremental headcount. Contract management is distributed across Department Heads as part of their operational responsibility. Legal reviews add ~1–2 hours/contract — absorbed within Legal team.
 
-### W62b. 3PL / Delivery Partner Onboarding & Offboarding
+### W62B. 3PL / Delivery Partner Onboarding & Offboarding
 
 | Field | Detail |
 |---|---|
@@ -502,13 +502,13 @@
 | 9 | **Offboarding**: if partner termination required (performance, contract expiry, or business decision) — Fleet Manager coordinates with DC Dispatch to redirect order volume to alternative partners; IT deactivates API integration; system removes partner from carrier selection; Finance settles outstanding carrier invoices; Legal confirms data deletion per RA 10173 (partner must delete customer data collected during service); system archives partner record with termination date, reason, and performance history | Fleet Manager / IT / Finance / Legal | Supply Chain Manager | 1–2 weeks |
 
 ### System Touchpoints (3PL Partners)
-- Carrier master record with rate cards per zone/weight/tier, SLA terms, API credentials, insurance details, and integration status (W62b.2, W62b.7)
-- API integration: order creation, real-time tracking, status callbacks, proof of delivery capture (W62b.3, W62b.6)
-- Carrier selection logic: automated carrier assignment by delivery zone, package weight, and cost (W62b.7)
-- Pilot order routing and monitoring dashboard (W62b.6)
-- Performance monitoring integrated into W19 3PL management dashboard and W44 vendor scorecard (W62b.8)
-- Partner deactivation: API disconnect, carrier removal, data deletion confirmation (W62b.9)
-- Carrier rate card maintenance: Fleet Manager receives rate change notification from carrier (quarterly or annual update); enters updated rate card per zone/weight/tier in carrier master record; Finance Manager approves rate card changes before activation (validates against contracted rates and budget impact); system stores rate card history with effective dates for audit trail; auto-calculated delivery fees in W5d and W19 use the currently active rate card; rate card changes effective on configured date — orders already in transit use the rate card active at time of order creation (W62b)
+- Carrier master record with rate cards per zone/weight/tier, SLA terms, API credentials, insurance details, and integration status (W62B.2, W62B.7)
+- API integration: order creation, real-time tracking, status callbacks, proof of delivery capture (W62B.3, W62B.6)
+- Carrier selection logic: automated carrier assignment by delivery zone, package weight, and cost (W62B.7)
+- Pilot order routing and monitoring dashboard (W62B.6)
+- Performance monitoring integrated into W19 3PL management dashboard and W44 vendor scorecard (W62B.8)
+- Partner deactivation: API disconnect, carrier removal, data deletion confirmation (W62B.9)
+- Carrier rate card maintenance: Fleet Manager receives rate change notification from carrier (quarterly or annual update); enters updated rate card per zone/weight/tier in carrier master record; Finance Manager approves rate card changes before activation (validates against contracted rates and budget impact); system stores rate card history with effective dates for audit trail; auto-calculated delivery fees in W5D and W19 use the currently active rate card; rate card changes effective on configured date — orders already in transit use the rate card active at time of order creation (W62B)
 - Integration with W19 (home delivery), W52 (fleet), W44 (vendor scorecard), W62 (non-PO contracts)
 
 ### Staffing Implication (3PL Partners)
@@ -542,7 +542,7 @@ PUR-012 (Return to Vendor) is a Must Have requirement. RTV is currently mentione
 | 2 | **Root cause classification**: Initiator classifies the issue: (a) defective/quality failure (vendor manufacturing defect, packaging damage in transit from vendor), (b) wrong item shipped (SKU mismatch vs. PO), (c) overage (vendor shipped more than PO quantity), (d) damaged in transit to DC (carrier damage — see W19.12b for carrier vs. vendor liability), (e) recall-related return (W29), (f) consignment return (W23.10), (g) warranty return (W33.6) | Initiator / Buyer | Buyer | 5 min/case |
 | 3 | **Quarantine**: System moves identified items to "RTV Quarantine" inventory status (not available for sale, not available for allocation); physical items moved to designated quarantine area at DC or store backroom | Receiving Clerk / Stock Associate | DC Supervisor / Store Manager | 10 min/case |
 | 4 | **Buyer review and authorization**: Buyer reviews RTV request with supporting evidence (photos, inspection report, PO vs. GR discrepancy); determines return action: (a) **Return to vendor** — vendor must physically take back goods and issue credit or replacement, (b) **Vendor-authorized disposal** — vendor authorizes BuildRight to dispose/destroy goods and issues credit memo (saves return freight cost for low-value items), (c) **Vendor-authorized markdown** — vendor agrees to partial credit; BuildRight sells at reduced price per W93 markdown process, (d) **No vendor liability** — damage caused by BuildRight handling (in-transit between DC and store, or in-store damage); disposition per W91 damaged goods process; no vendor credit sought | Buyer | Category Manager | 15 min/case |
-| 5 | **Vendor notification**: Buyer contacts vendor (email or vendor portal W36.9) with RTV request: original PO reference, GR reference, item details, quantity, defect description, photos, and requested resolution (credit memo, replacement, or disposal authorization); for blanket/contract PO vendors (W2c), checks contract terms for RTV provisions and return shipping responsibility | Buyer | — | 15 min/case |
+| 5 | **Vendor notification**: Buyer contacts vendor (email or vendor portal W36.9) with RTV request: original PO reference, GR reference, item details, quantity, defect description, photos, and requested resolution (credit memo, replacement, or disposal authorization); for blanket/contract PO vendors (W2C), checks contract terms for RTV provisions and return shipping responsibility | Buyer | — | 15 min/case |
 | 6 | **Vendor credit memo or replacement**: (a) If vendor agrees to credit: Buyer obtains vendor credit memo reference; (b) If vendor agrees to replacement: Buyer creates replacement PO with reference to original PO and RTV; (c) If vendor disputes: Buyer escalates to Category Manager for negotiation; unresolved disputes > 30 days escalated to VP Merchandising | Buyer / Category Manager | VP Merchandising | 30 min/dispute |
 | 7 | **Physical return logistics** (if vendor requires physical return): (a) **DC-initiated**: DC consolidates RTV items by vendor; DC creates outbound shipment; ships via own fleet (W52) or 3PL carrier; (b) **Store-initiated**: Store sends RTV items to assigned DC via next scheduled DC→Store truck backhaul (W22); DC consolidates with other RTV items for same vendor before shipping; (c) **Vendor pickup**: Some vendors (especially local DSD vendors) pick up RTV items directly from store or DC by arrangement | DC Receiving Clerk / Store Receiving Clerk | DC Supervisor / Store Manager | 30 min/consolidated shipment |
 | 8 | **Financial settlement**: (a) AP Clerk receives vendor credit memo (from Buyer); posts credit memo against original PO/invoice; system reduces vendor payable and posts GL entry (Dr. AP / Cr. COGS or Inventory); (b) If replacement PO: AP matches replacement invoice against replacement PO and GR per standard W7 3-way match; (c) If vendor-authorized disposal: AP posts credit memo and inventory write-off simultaneously; system removes items from RTV quarantine and posts disposal (Dr. AP / Cr. Inventory — at WAC value) | AP Clerk | AP Supervisor | 10 min/credit memo |

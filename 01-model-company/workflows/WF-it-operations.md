@@ -75,7 +75,7 @@
 - Ticket analytics dashboard: volume, SLA compliance, MTTR, top issues by location (W48.11)
 - SLA breach escalation protocol: (a) single P1 SLA miss (resolution > 4 hours): IT Helpdesk Lead conducts immediate root cause analysis and documents corrective action; (b) 2 consecutive P1 SLA misses on same issue category: Helpdesk Lead escalates to CIO with remediation plan within 24 hours; CIO reviews staffing, tooling, or vendor support adequacy; (c) 3 or more P1 SLA misses within 30 days (any category): CIO presents incident review to CEO with systemic improvement plan (may include additional headcount, vendor escalation, or infrastructure investment); (d) P2/P3 SLA misses trending > 20% breach rate for 2 consecutive months: Helpdesk Lead initiates category-specific improvement (process change, training, or automation); (e) all SLA breaches tracked in monthly ticket analytics dashboard with trend analysis and root cause classification; SLA performance included in IT team's quarterly performance review (W48)
 - IT asset tracking: system maintains asset register for all IT equipment (POS terminals, RF devices, servers, networking equipment, laptops, tablets) with location assignment, warranty status, maintenance history, and lifecycle status; supports IT asset planning and budgeting (cross-reference W21 for capex, W39 for disposal)
-- Integration with W5g (offline POS recovery), W16 (new store IT setup), W43 (employee separation — account deactivation)
+- Integration with W5G (offline POS recovery), W16 (new store IT setup), W43 (employee separation — account deactivation)
 
 ### Staffing Implication
 - **4–5 Helpdesk Agents (Tier 1)**: handle ~800–1,200 tickets/month ÷ 20 working days = ~40–60/day. At ~10 min average per ticket = ~7–10 hours/day. With shifts and coverage, 4–5 agents needed.
@@ -152,7 +152,7 @@ Under RA 10173 and its Implementing Rules and Regulations (IRR), BuildRight Depo
 
 ### Background
 
-This workflow covers the IT system recovery process, distinct from W49 (typhoon/facility business continuity) which covers physical location response. NFR-013 defines: RPO ≤ 1 hour (max 1 hour of data loss), RTO ≤ 4 hours (max 4 hours of core system unavailability). POS terminals operate offline for 8+ hours per W5g.
+This workflow covers the IT system recovery process, distinct from W49 (typhoon/facility business continuity) which covers physical location response. NFR-013 defines: RPO ≤ 1 hour (max 1 hour of data loss), RTO ≤ 4 hours (max 4 hours of core system unavailability). POS terminals operate offline for 8+ hours per W5G.
 
 ### Steps
 
@@ -161,12 +161,12 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 | 1 | IT Infrastructure monitoring detects or is alerted to system failure: error rates, service health checks, connectivity loss, or user reports of system unavailability | IT Infrastructure / System | CIO | Immediate (automated detection) |
 | 2 | IT Infrastructure assesses scope and severity: (a) single module failure (e.g., POS integration down), (b) full ERP outage, (c) data center / cloud region outage, (d) suspected cyber attack (ransomware, DDoS) | IT Infrastructure Lead | CIO | 15–30 min |
 | 3 | CIO declares DR event if severity exceeds RTO: notifies CEO, COO, CFO; communicates estimated recovery time; Store Ops Director notifies Regional Managers and Store Managers | CIO | CEO | 15 min |
-| 4 | **Stores**: continue selling in offline mode per W5g; POS transactions queue locally for upload upon recovery | Store Manager | Store Ops Director | Automated (W5g) |
+| 4 | **Stores**: continue selling in offline mode per W5G; POS transactions queue locally for upload upon recovery | Store Manager | Store Ops Director | Automated (W5G) |
 | 5 | **DCs**: DC operations shift to manual processing — Receiving Clerks record goods receipts on paper/spreadsheet for batch entry upon recovery; picking and shipping suspended for non-critical orders | DC Manager | Supply Chain Manager | Manual fallback |
 | 6 | **Ecommerce**: Digital Commerce platform displays maintenance notification; new orders suspended; in-progress orders held for fulfillment upon recovery | Ecom Team | CMO | 15 min |
 | 7 | **Recovery execution**: IT Infrastructure initiates failover to DR site or secondary cloud region: (a) verify DR environment is current (data replication lag ≤ RPO), (b) switch DNS and network routing to DR environment, (c) validate core services: authentication, POS sync, inventory, financial posting, (d) incremental data replay from primary if replication lag exists | IT Infrastructure | CIO | 1–3 hours |
 | 8 | If primary system restore (instead of failover): (a) identify root cause, (b) repair or restore from backup, (c) verify data integrity against last known good checkpoint, (d) bring services online sequentially (core first, then ancillary), (e) validate system health | IT Infrastructure | CIO | 2–4 hours |
-| 9 | System restored: CIO communicates "all clear" to business; stores begin uploading offline transactions per W5g; DCs batch-enter manual receipts; ecommerce resumes order processing | CIO | CEO | 15 min |
+| 9 | System restored: CIO communicates "all clear" to business; stores begin uploading offline transactions per W5G; DCs batch-enter manual receipts; ecommerce resumes order processing | CIO | CEO | 15 min |
 | 10 | **Data integrity verification**: IT runs reconciliation checks: (a) offline POS transactions vs. central inventory, (b) any manual DC entries vs. expected receipts, (c) database transaction logs for completeness, (d) financial posting integrity (no partial journal entries) | IT Infrastructure + Finance | Controller | 1–2 hours |
 | 11 | Post-recovery: CIO conducts root cause analysis within 5 business days; documents incident, root cause, recovery actions, data loss (if any), and preventive measures | CIO | CEO | 4 hours |
 | 12 | Quarterly: IT Infrastructure conducts scheduled DR failover test during maintenance window; validates RTO and RPO targets; documents test results; updates DR runbook based on findings | IT Infrastructure | CIO | 4 hours/quarter |
@@ -175,11 +175,11 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 - Automated system health monitoring with configurable alerting thresholds (W55.1)
 - DR environment: real-time data replication with RPO ≤ 1 hour (synchronous or near-synchronous); automated or one-click failover capability (W55.7)
 - Backup integrity verification: automated checksum validation on backup files; periodic restore testing (W55.8)
-- Offline POS transaction upload and reconciliation per W5g (W55.4, 10)
+- Offline POS transaction upload and reconciliation per W5G (W55.4, 10)
 - Incident logging and root cause documentation (W55.11)
 - DR test scheduling and results tracking (W55.12)
 - DR test failure remediation: if quarterly DR test fails to meet RTO (4 hours) or RPO (1 hour) targets — (a) IT Infrastructure Lead documents the specific failure (failover latency, data replication lag, service recovery sequence, single point of failure); (b) CIO convenes emergency remediation meeting with IT Infrastructure within 5 business days; (c) remediation plan created with specific actions, responsible owners, and target completion date; (d) retest scheduled within 30 days of remediation completion; (e) if retest also fails: CIO escalates to CEO with capital investment request for infrastructure upgrade; (f) all test results (pass and fail) retained in DR test log for audit evidence; (g) External auditor may request DR test results as part of annual audit (W42.19, W55.12)
-- Integration with W5g (offline POS), W48 (helpdesk incident management), W49 (physical disaster response — this workflow is system-level, W49 is facility-level)
+- Integration with W5G (offline POS), W48 (helpdesk incident management), W49 (physical disaster response — this workflow is system-level, W49 is facility-level)
 
 ### Staffing Implication
 - No incremental headcount. DR response is executed by existing IT Infrastructure team (part of the recommended ~28–30 IT staff in W48).
@@ -220,10 +220,10 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
 | 8 | **Payroll parallel run**: for 1 payroll cycle (semi-monthly), Payroll Officer processes payroll in both legacy and new ERP simultaneously; compares output per employee — gross pay, deductions, net pay, employer contributions; discrepancies > PHP 100 per employee flagged for investigation; Finance validates GL postings match between systems | Payroll Officer / Finance | CFO | 1 payroll cycle |
-| 9 | **Month-end close parallel run**: for 1 month-end period, Chief Accountant performs close steps (W9a) in both systems; compares trial balance, financial statements, and key reconciliation outputs (bank rec, GRNI, AR aging, AP aging) | Chief Accountant | Controller | 1 close cycle |
+| 9 | **Month-end close parallel run**: for 1 month-end period, Chief Accountant performs close steps (W9A) in both systems; compares trial balance, financial statements, and key reconciliation outputs (bank rec, GRNI, AR aging, AP aging) | Chief Accountant | Controller | 1 close cycle |
 | 10 | **POS parallel run** (pilot stores only): during pilot go-live (Implementation Roadmap Phase 3), pilot store Cashiers process live transactions in new POS while legacy POS runs in shadow mode; Store Manager compares daily Z-reports (transaction count, revenue by tender, cash total) between systems; discrepancies > 1% by revenue flagged for investigation | Cashier / Store Manager | Store Ops Director | 2–4 weeks |
 | 11 | **Inventory transaction parallel run**: for pilot stores and serving DC, Receiving Clerks and Stock Associates process key inventory transactions (goods receipt, transfer receipt, cycle count, POS sales deduction) in both systems; Cost Accountant compares ending inventory balances | Receiving Clerk / Cost Accountant | Controller | 2–4 weeks |
-| 12 | **User acceptance testing (UAT)**: before each go-live wave, designated power users from each department execute scripted UAT test cases covering their critical workflows (AP clerk tests W7, Buyer tests W2, Cashier tests W5b, etc.); all test cases must pass with zero critical defects for wave go-live approval | Department power users | Project Manager | 1–2 weeks/wave |
+| 12 | **User acceptance testing (UAT)**: before each go-live wave, designated power users from each department execute scripted UAT test cases covering their critical workflows (AP clerk tests W7, Buyer tests W2, Cashier tests W5B, etc.); all test cases must pass with zero critical defects for wave go-live approval | Department power users | Project Manager | 1–2 weeks/wave |
 | 13 | **Sign-off**: after successful parallel run and UAT, Department Heads sign off on their domain's readiness per go-live wave; Controller signs off on financial accuracy; CFO gives final go/no-go for each wave | Department Heads / CFO | CEO | 1 day/wave |
 
 ### System Touchpoints
@@ -390,3 +390,47 @@ RPT-001 through RPT-010 define reporting requirements — executive dashboards, 
 | 4 | **Testing**: Conduct unit testing, end-to-end integration testing in sandbox, and load testing for peak volumes | QA Team | Integration Arch | 1-2 weeks |
 | 5 | **Deployment & Monitoring**: Deploy to production; configure automated alerts for integration failures or latency spikes | DevOps | Integration Arch | 1 day |
 | 6 | **Maintenance & Versioning**: Monitor API performance; manage API version upgrades to avoid breaking downstream systems | Integration Arch | CIO | Ongoing |
+
+## W265. POS Terminal Hardware Maintenance & Peripheral Management
+
+| Field | Detail |
+|---|---|
+| **Workflow ID** | W265 |
+| **Name** | POS Terminal Hardware Maintenance & Peripheral Management |
+| **Trigger** | POS hardware failure or scheduled preventive maintenance |
+| **Frequency** | ~50–80 hardware incidents/day across 200 stores (1,000 terminals); PM cycle: quarterly per terminal |
+| **Volume** | ~1,500–2,400 incidents/month; 4,000 PM events/quarter |
+| **Owner** | IT Support Specialist |
+| **Participants** | IT Support Specialist (4 field), Store Manager (200), IT Helpdesk (5), IT Asset Manager (1) |
+| **Time Estimate** | 15–60 min per incident (remote); 2–4 hours (on-site); 30 min per PM event |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Incident Reporting**: Store staff reports POS hardware issue via: (a) IT Helpdesk ticket (W48 P2/P3 priority — POS down at specific terminal impacts checkout capacity but store remains operational with remaining terminals); (b) common issues: (i) receipt printer jam or failure (most frequent, ~40% of incidents), (ii) barcode scanner not reading (laser/CMOS degradation, ~25%), (iii) cash drawer stuck or sensor failure (~15%), (iv) PIN pad / card reader communication error (~10%), (v) touchscreen unresponsive or display failure (~5%), (vi) cable/connector damage (power, network, USB, ~5%) | Store Staff | Store Manager | 5 min |
+| 2 | **Remote Diagnosis**: IT Helpdesk receives ticket and performs remote diagnosis: (a) checks POS terminal status via remote management console; (b) reviews error logs for specific peripheral; (c) attempts remote remediation: (i) restart printer spooler service, (ii) recalibrate barcode scanner, (iii) reset PIN pad communication, (iv) clear cash drawer sensor jam via software; (d) if remote fix successful: close ticket and log resolution; (e) if remote fix unsuccessful: escalate to on-site response | IT Helpdesk | IT Support Lead | 10–20 min |
+| 3 | **Spare Part Dispatch or On-Site Visit**: For issues requiring physical intervention: (a) **peripheral swap (most common)**: Helpdesk authorizes Store Manager to swap failed peripheral with store's spare unit (each store maintains 1 spare receipt printer, 1 spare scanner, 1 spare PIN pad per NFR-024 IT asset management); (b) **on-site visit**: if spare swap doesn't resolve or issue is terminal-level (touchscreen, motherboard), IT Support Specialist schedules on-site visit (next business day for P2; same-day for P1 if > 2 terminals down at one store); (c) **central depot repair**: for complex failures, IT Support Specialist ships terminal to central IT depot (Davao HQ or regional hub) for repair | IT Helpdesk / IT Support Specialist | IT Support Lead | 15 min (swap) or 2–4 hours (on-site) |
+| 4 | **Repair or Replacement Execution**: IT Support Specialist performs on-site or depot repair: (a) diagnoses hardware failure (component-level: print head, laser diode, touchscreen digitizer, cable connector); (b) if repairable on-site: replace component from IT spare parts inventory (W131 IT asset lifecycle); (c) if unrepairable: replace entire unit from IT asset pool; (d) defective unit tagged for depot repair or disposal per W39; (e) system updated: IT asset register (W131) records asset status change, repair history, and replacement serial number | IT Support Specialist | IT Support Lead | 30–60 min |
+| 5 | **Configuration & Testing**: After swap or repair: (a) configure replacement peripheral: pair with POS terminal via Bluetooth/USB, load printer driver, set scanner configuration, configure PIN pad merchant ID and encryption keys; (b) test all functions: print test receipt, scan 5 test barcodes (1D and 2D), process test card transaction (PHP 1.00 authorization and void), open/close cash drawer, verify customer display output; (c) Store Manager confirms terminal operational and signs off ticket | IT Support Specialist / Store Manager | IT Support Lead | 20 min |
+| 6 | **IT Asset Register Update**: IT Asset Manager updates asset records: (a) replaced peripheral: serial number, date of replacement, reason code, store location, replaced-by IT staff ID; (b) defective unit: tagged for depot repair (status: "In Repair"), disposed (status: "Disposed" per W39), or returned to vendor under warranty (W33 warranty claim per peripheral); (c) asset lifecycle cost tracking: repair cost, downtime hours, replacement cost per terminal/peripheral | IT Asset Manager | IT Support Lead | 10 min |
+| 7 | **Preventive Maintenance (Quarterly)**: Per PM schedule: (a) IT Support Specialist visits each store quarterly (rotating schedule across 200 stores = ~15 stores/week); (b) per-terminal PM checklist: (i) clean receipt printer print head and paper path, (ii) clean barcode scanner lens and test read rate, (iii) inspect cash drawer rails and sensors, (iv) check PIN pad keypad responsiveness and update firmware, (v) clean touchscreen, (vi) inspect all cables and connectors for wear, (vii) verify UPS battery charge level (critical for W5G offline capability); (c) PM results logged in asset register; issues found during PM create follow-up tickets | IT Support Specialist | IT Support Lead | 30 min/terminal |
+| 8 | **Vendor Warranty & RMA Management**: For peripherals under manufacturer warranty: (a) IT Asset Manager tracks warranty expiration per serial number; (b) for in-warranty failures: initiate RMA (Return Merchandise Authorization) with vendor; (c) ship defective unit to vendor; use spare pool unit as replacement; (d) track RMA status and vendor turnaround time; (e) vendor SLA: replacement or repair within 10–15 business days; (f) feed vendor RMA performance into vendor scorecard (W44) for peripheral vendor contract renewal | IT Asset Manager | IT Support Lead | 30 min/RMA |
+
+### System Touchpoints
+- IT Helpdesk ticketing system (W48) with POS hardware incident category and priority matrix
+- Remote POS management console for diagnostics and peripheral restart
+- IT Asset Register (W131) with serial-number-level tracking, warranty dates, and repair history
+- Store spare inventory tracking (spare peripherals per store)
+- Automated PM scheduling engine (quarterly rotation across 200 stores)
+- Peripheral configuration management (drivers, encryption keys, firmware versions)
+- RMA tracking module linked to vendor warranty database
+- Hardware incident analytics: failure rate by peripheral type, by store, by vendor, mean time between failures (MTBF), mean time to repair (MTTR)
+
+### Pain Points / Risks
+- **Spare pool depletion**: If multiple stores in same region have simultaneous failures, spare pool can be depleted; need regional spare hubs (one per DC region)
+- **Peripheral vendor diversity**: Different store generations may have different peripheral brands/models; IT team must maintain expertise and spare parts for multiple brands
+- **Firmware update coordination**: PIN pad firmware updates (PCI-DSS compliance) must be coordinated across 1,000 terminals without disrupting checkout; typically done overnight but some stores operate extended hours
+- **Island logistics**: On-site visits to Visayas and Mindanao stores require air travel; response time for non-spare-fixable issues can be 2–3 days; need regional IT support contractors as backup
+- **Annual cost**: ~1,500–2,400 hardware incidents/month × average repair/replacement cost of PHP 2,000–5,000 = ~PHP 3.6–14.4M annual POS hardware maintenance budget; IT must track cost per terminal for budgeting
+- **End-of-life planning**: POS terminals and peripherals typically have 5–7 year useful life; planning replacement cycles across 1,000 terminals requires capital budget planning per W21

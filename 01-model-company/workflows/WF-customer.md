@@ -57,7 +57,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 |---|---|---|---|---|
 | E1 | Customer contacts call center (phone, chat, email) or submits issue via self-service portal/online form: order not received, wrong item received, item damaged in transit, wants to change delivery address, wants to cancel order, didn't receive BOPIS pickup notification | Customer / CSR | CS Manager | 3 min |
 | E2 | System creates issue ticket linked to original order number; displays full order lifecycle (placement, payment, fulfillment status, carrier tracking) | CSR / System | CS Manager | 2 min |
-| E3 | CSR resolves per issue type: (a) cancel-and-refund: system cancels unfulfilled order, initiates refund to original payment method (Dr. Revenue / Cr. Cash); (b) redelivery: system reschedules carrier pickup via 3PL integration (W19); (c) wrong/damaged item: initiates W12b return process and arranges replacement; (d) address change: updates delivery address if order not yet shipped; (e) BOPIS pickup issue: confirms correct store, resends notification, or extends hold period | CSR | CS Manager | 5–15 min |
+| E3 | CSR resolves per issue type: (a) cancel-and-refund: system cancels unfulfilled order, initiates refund to original payment method (Dr. Revenue / Cr. Cash); (b) redelivery: system reschedules carrier pickup via 3PL integration (W19); (c) wrong/damaged item: initiates W12B return process and arranges replacement; (d) address change: updates delivery address if order not yet shipped; (e) BOPIS pickup issue: confirms correct store, resends notification, or extends hold period | CSR | CS Manager | 5–15 min |
 | E4 | For partial refunds (damaged but usable item): CSR issues partial refund with CS Manager approval (Dr. Revenue / Cr. Cash); system logs partial refund with reason code and photo evidence if available | CSR / CS Manager | CS Manager | 10 min |
 | E5 | System tracks issue SLA: target resolution within 24 hours for delivery issues, 48 hours for damaged/wrong items; escalated to CS Manager if SLA breached | System | CS Manager | Automated |
 | E6 | Automated customer notifications at each status change: issue acknowledged, resolution proposed, refund processed, redelivery scheduled | System | — | Automated |
@@ -99,7 +99,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
 | 1 | Sales Rep onboards new corporate account post-credit approval (W24): assigns dedicated Sales Rep, default store for pickup, delivery preferences, billing contact, and project delivery schedule | Sales Rep | AR Supervisor | 2 hours/account |
-| 1a | **Customer project quotation**: when a trade or corporate customer (existing or prospect) requests a materials quotation — (a) Sales Rep receives customer's materials list (bill of materials, project specifications, or verbal requirements) via email, site visit, or walk-in; (b) Sales Rep creates Quotation in system — selects SKUs, enters quantities, and selects pricing basis: standard SRP, trade discount tier, or project-specific pricing (to be negotiated); (c) system calculates line totals, applies current pricing, and shows margin per line and total; (d) Sales Prop adds delivery cost estimate using carrier rate card per delivery zone (W5d/W19); (e) Sales Rep submits quotation for Category Manager approval if discounted below standard trade discount; (f) system generates quotation document (PDF) with BuildRight letterhead, validity period (typically 30 days), quotation number, customer details, line items, pricing, delivery terms, and payment terms; (g) Sales Rep sends quotation to customer via email or provides printed copy; (h) system tracks quotation lifecycle: Draft → Submitted → Accepted → Converted to Sales Order / Expired / Rejected; (i) if customer accepts: Sales Rep converts Quotation to Sales Order with one click — system carries all line items, quantities, pricing, and delivery details to the order; if customer negotiates changes, Sales Rep creates revised quotation (versioned) and re-submits; (j) expired quotations (beyond validity period) flagged for Sales Rep follow-up or archival; (k) monthly: Sales Rep reviews quotation conversion report — win rate by customer, category, and average quotation-to-order cycle time | Sales Rep / Category Manager | VP Merchandising | 30–60 min/quotation |
+| 1a | **Customer project quotation**: when a trade or corporate customer (existing or prospect) requests a materials quotation — (a) Sales Rep receives customer's materials list (bill of materials, project specifications, or verbal requirements) via email, site visit, or walk-in; (b) Sales Rep creates Quotation in system — selects SKUs, enters quantities, and selects pricing basis: standard SRP, trade discount tier, or project-specific pricing (to be negotiated); (c) system calculates line totals, applies current pricing, and shows margin per line and total; (d) Sales Prop adds delivery cost estimate using carrier rate card per delivery zone (W5D/W19); (e) Sales Rep submits quotation for Category Manager approval if discounted below standard trade discount; (f) system generates quotation document (PDF) with BuildRight letterhead, validity period (typically 30 days), quotation number, customer details, line items, pricing, delivery terms, and payment terms; (g) Sales Rep sends quotation to customer via email or provides printed copy; (h) system tracks quotation lifecycle: Draft → Submitted → Accepted → Converted to Sales Order / Expired / Rejected; (i) if customer accepts: Sales Rep converts Quotation to Sales Order with one click — system carries all line items, quantities, pricing, and delivery details to the order; if customer negotiates changes, Sales Rep creates revised quotation (versioned) and re-submits; (j) expired quotations (beyond validity period) flagged for Sales Rep follow-up or archival; (k) monthly: Sales Rep reviews quotation conversion report — win rate by customer, category, and average quotation-to-order cycle time | Sales Rep / Category Manager | VP Merchandising | 30–60 min/quotation |
 | 2 | For project-based accounts: Sales Rep creates project record in system — project name, location, estimated total material requirement, project timeline (start date, phases, completion date), project manager contact, billing milestones | Sales Rep | Finance Manager | 1 hour/project |
 | 3 | Category Manager sets up project-specific pricing (if negotiated): discounted price list per SKU category, validity period aligned with project timeline, minimum commitment quantity (if any) | Category Manager / Pricing Analyst | VP Merchandising | 2–4 hours/project |
 | 4 | Sales Rep creates material requirement plan per project phase: estimated SKU quantities by month; system generates forward demand signal for Supply Planner to pre-position stock at the serving DC/store | Sales Rep | Supply Planner | 2–4 hours/project |
@@ -116,12 +116,12 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 - Corporate account master with project sub-accounts, project-specific pricing, and delivery preferences (W58.1–3)
 - Quotation management: quotation creation with SKU selection and pricing; margin visibility per line; Category Manager approval for below-standard pricing; quotation document generation (PDF) with validity period; quotation lifecycle tracking (Draft → Submitted → Accepted → Converted / Expired / Rejected); one-click conversion from Quotation to Sales Order; versioned revisions; quotation conversion analytics (win rate, cycle time, by customer and category) (W58.1a)
 - Project record with timeline, material requirements, and billing milestones (W58.2)
-- Project-specific pricing linked to POS (W5b.4c) and Sales Order entry (W58.3, 5)
+- Project-specific pricing linked to POS (W5B.4c) and Sales Order entry (W58.3, 5)
 - Cumulative project spending and budget tracking with automated alerts (W58.6)
 - Project billing summary generation (W58.7)
 - Project close-out with financial summary (W58.9)
 - Corporate account portfolio analytics (W58.10)
-- Integration with W5b.4c (corporate pricing at POS), W8 (AR and collections), W19 (delivery), W24 (credit application), W56 (backorder priority for corporate accounts)
+- Integration with W5B.4c (corporate pricing at POS), W8 (AR and collections), W19 (delivery), W24 (credit application), W56 (backorder priority for corporate accounts)
 
 ### Staffing Implication
 - **3–4 Sales Reps (Trade & Corporate)**: 200 corporate accounts ÷ 3–4 reps = ~50–70 accounts each. With ~50–100 active projects, each rep manages ~15–25 active projects. At ~4–6 hours/project/month for order management and billing = ~60–150 hours/month. 3–4 dedicated trade/corporate Sales Reps can manage this within the Store Operations team or as a separate B2B sales team under the CMO.
@@ -159,17 +159,17 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 |---|---|---|---|---|
 | 1 | Customer requests price match at checkout; presents competitor price proof (ad, screenshot, catalog) | Customer | — | — |
 | 2 | Cashier verifies eligibility per policy rules: (a) competitor is on eligible list, (b) item is identical (brand, model, size), (c) proof is current (within 7 days), (d) quantity within limit | Cashier | — | 2 min |
-| 3 | Cashier enters price override in POS with reason code "Competitor Price Match"; system prompts for competitor name and matched price; if override > 10% or > PHP 500: manager authorization required per W5b.4a | Cashier | Store Manager | 1 min |
+| 3 | Cashier enters price override in POS with reason code "Competitor Price Match"; system prompts for competitor name and matched price; if override > 10% or > PHP 500: manager authorization required per W5B.4a | Cashier | Store Manager | 1 min |
 | 4 | If matched price is below BuildRight's cost (WAC): system blocks override and alerts Store Manager; Store Manager contacts Category Manager for authorization; Category Manager may approve as strategic decision (customer retention, competitive response) with written justification in system | Store Manager / Category Manager | VP Merchandising | 5–10 min |
-| 5 | System records price match transaction: original price, matched price, competitor name, cashier ID, authorizer ID, item, quantity, and reason code (W5b.4a audit trail) | System | — | Automated |
+| 5 | System records price match transaction: original price, matched price, competitor name, cashier ID, authorizer ID, item, quantity, and reason code (W5B.4a audit trail) | System | — | Automated |
 | 6 | Weekly: Pricing Analyst reviews price match report: frequency by SKU, competitor, and store; identifies items with high price match frequency (> 5 requests/week) for potential SRP adjustment (W40) or competitive response strategy | Pricing Analyst | Category Manager | 1 hour/week |
 
 ### System Touchpoints
-- Price match reason code in POS price override workflow with competitor name capture (W61.3, W5b.4a)
+- Price match reason code in POS price override workflow with competitor name capture (W61.3, W5B.4a)
 - System enforces WAC floor price — blocks price match below cost without Category Manager override (W61.4)
 - Price match analytics: frequency by SKU, competitor, store, and margin impact (W61.6)
 - Eligible competitor list maintained by Pricing Analyst in system (configurable per region if needed) (W61 policy rules)
-- Integration with W5b.4a (price override), W40 (potential SRP adjustment triggered by price match frequency)
+- Integration with W5B.4a (price override), W40 (potential SRP adjustment triggered by price match frequency)
 
 ### Staffing Implication
 - No incremental headcount. Price match adds ~2 min to occasional POS transactions. Weekly review by Pricing Analyst adds ~1 hour/week — absorbed within existing Pricing Analyst duties (team of 3).
@@ -217,7 +217,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 - Survey response linked to transaction number, store, and customer account (where identifiable) for drill-down analysis (W65.2)
 - CSAT/NPS calculation and trending per store, region, and chain-wide (W65.3–4)
 - Mystery shopping results entry and reporting (W65.7)
-- Integration with W5b (POS receipt printing — QR code), W17 (loyalty points incentive for survey completion), W35 (management reporting), W41 (complaint correlation — low CSAT stores often correlate with high complaint volume)
+- Integration with W5B (POS receipt printing — QR code), W17 (loyalty points incentive for survey completion), W35 (management reporting), W41 (complaint correlation — low CSAT stores often correlate with high complaint volume)
 
 ### Staffing Implication
 - No incremental headcount. Survey management adds ~2–3 hours/month to CS Manager duties. Mystery shopping costs ~PHP 100–150K/quarter (external agency) — budgeted within Marketing operations.
@@ -433,8 +433,8 @@ Big-box home improvement retailers globally operate dedicated trade counters or 
 |---|---|---|---|---|
 | 1 | **Customer check-in**: Trade customer arrives at store and proceeds to trade counter / pro desk (designated area near customer service counter with dedicated Sales Associate); Sales Associate identifies customer: (a) scans loyalty card or enters mobile number — system loads customer profile, trade account status, credit limit, and purchase history; (b) if not yet a trade account holder: Sales Associate provides W24 credit application form and explains trade account benefits (trade pricing, credit terms, bulk ordering); (c) system displays customer's open orders (W56 backorders, W38 special orders), recent purchases, and any account alerts (credit limit approaching, overdue balance) | Sales Associate | Department Supervisor | 2 min |
 | 2 | **Needs assessment**: Sales Associate conducts needs assessment: (a) **Project-based** — customer describes project (e.g., "building a 2-story residential, 150 sqm floor area, 3 bathrooms"); Sales Associate helps estimate material requirements using system's project estimation tool (pre-built project templates per project type: residential build, bathroom renovation, kitchen remodel, electrical wiring for a house); (b) **Replenishment** — customer provides material list (paper, digital, or photo); Sales Associate enters items in system for availability check and pricing; (c) **Emergency / same-day** — customer needs specific items immediately; Sales Associate checks real-time inventory and provides immediate availability | Sales Associate | Department Supervisor | 5–15 min |
-| 3 | **Material list and quotation**: (a) Sales Associate builds material list in system — adds items, quantities, checks real-time inventory at this store and nearby stores; (b) system applies trade account pricing (trade discount tier per W5b.4c); (c) for project-based orders: Sales Associate applies project-specific price list if customer has negotiated project pricing (W58); (d) system calculates total with trade discount, quantity breaks (W40.15–19), and VAT; (e) Sales Associate presents quotation to customer — printed or emailed; (f) for large projects (estimated > PHP 100,000): Sales Associate involves Sales Rep for on-site visit and detailed project estimation per W103 | Sales Associate / Sales Rep | Department Supervisor | 10–20 min |
-| 4 | **Order placement**: Customer confirms order: (a) **Immediate in-store purchase**: items in stock at this store — customer collects items or Sales Associate arranges store pickup staging; processed as standard POS transaction with trade account pricing (W5b.4c); (b) **Bulk delivery order**: items to be delivered to job site — Sales Associate creates Sales Order with delivery address, delivery date, and delivery instructions; delivery processed per W5d (in-store delivery scheduling) or W19 (home delivery) depending on item size and distance; (c) **Backorder / special order**: items not in stock — Sales Associate creates backorder per W56 or special order per W38; (d) **Project billing**: for corporate/project accounts — order charged to project account with project code; billing per W58 milestone/progress billing | Sales Associate | Store Manager | 5–10 min |
+| 3 | **Material list and quotation**: (a) Sales Associate builds material list in system — adds items, quantities, checks real-time inventory at this store and nearby stores; (b) system applies trade account pricing (trade discount tier per W5B.4c); (c) for project-based orders: Sales Associate applies project-specific price list if customer has negotiated project pricing (W58); (d) system calculates total with trade discount, quantity breaks (W40.15–19), and VAT; (e) Sales Associate presents quotation to customer — printed or emailed; (f) for large projects (estimated > PHP 100,000): Sales Associate involves Sales Rep for on-site visit and detailed project estimation per W103 | Sales Associate / Sales Rep | Department Supervisor | 10–20 min |
+| 4 | **Order placement**: Customer confirms order: (a) **Immediate in-store purchase**: items in stock at this store — customer collects items or Sales Associate arranges store pickup staging; processed as standard POS transaction with trade account pricing (W5B.4c); (b) **Bulk delivery order**: items to be delivered to job site — Sales Associate creates Sales Order with delivery address, delivery date, and delivery instructions; delivery processed per W5D (in-store delivery scheduling) or W19 (home delivery) depending on item size and distance; (c) **Backorder / special order**: items not in stock — Sales Associate creates backorder per W56 or special order per W38; (d) **Project billing**: for corporate/project accounts — order charged to project account with project code; billing per W58 milestone/progress billing | Sales Associate | Store Manager | 5–10 min |
 | 5 | **Delivery coordination for trade orders**: For orders requiring job site delivery: (a) Sales Associate coordinates delivery date and time with customer (contractors often need early morning delivery before work starts); (b) system creates delivery order with job site address, contact person, special instructions (e.g., "deliver to 3rd floor under construction", "call 30 min before arrival"); (c) for recurring delivery orders (multi-phase construction project): Sales Associate sets up recurring delivery schedule in system — customer calls or emails when next batch of materials is needed; system retains project material list for easy reorder | Sales Associate | Store Manager | 5 min |
 | 6 | **Trade customer relationship management**: (a) Sales Associate or Sales Rep documents interaction in CRM: project type, estimated project value, competing supplier information, customer satisfaction; (b) for active construction projects: Sales Rep schedules periodic follow-up calls/visits to check material needs for next project phase; (c) Sales Associate tracks trade customer visit frequency and purchase pattern — alerts Sales Rep if regular trade customer hasn't visited in > 30 days (may have switched to competitor); (d) system tracks lifetime trade customer value (total spend, frequency, margin contribution) for loyalty tier and account management decisions | Sales Associate / Sales Rep | Sales Manager | 5 min/interaction |
 | 7 | **Trade account statement and payment**: (a) Trade customers on credit terms receive monthly statement per W8; (b) walk-in trade customers (COD/cash) can pay at trade counter via cash, card, or e-wallet; (c) Sales Associate can pull up customer's AR statement on request — outstanding balance, available credit, payment due dates; (d) for overdue accounts: Sales Associate informs customer of credit hold status and directs to AR for resolution per W108 | Sales Associate | Department Supervisor | 2 min |
@@ -451,7 +451,7 @@ Big-box home improvement retailers globally operate dedicated trade counters or 
 - Trade customer visit frequency tracking with inactivity alerting (W112.6)
 - AR statement access at trade counter for account balance and credit status (W112.7)
 - Weekly trade counter performance dashboard (W112.8)
-- Integration with W5b (POS selling — trade account pricing), W5d (in-store delivery scheduling), W8 (AR — credit limit check, statement), W12 (returns — trade customer returns), W17 (loyalty — trade customer points), W24 (credit application — new trade customer signup), W38 (special orders — non-stock items for trade), W56 (backorders — stock items not available), W58 (corporate/project accounts — project billing), W61 (price matching — trade customers may request), W103 (sales pipeline — trade counter is a primary lead source), W108 (collections — overdue trade accounts)
+- Integration with W5B (POS selling — trade account pricing), W5D (in-store delivery scheduling), W8 (AR — credit limit check, statement), W12 (returns — trade customer returns), W17 (loyalty — trade customer points), W24 (credit application — new trade customer signup), W38 (special orders — non-stock items for trade), W56 (backorders — stock items not available), W58 (corporate/project accounts — project billing), W61 (price matching — trade customers may request), W103 (sales pipeline — trade counter is a primary lead source), W108 (collections — overdue trade accounts)
 
 ### Staffing Implication
 - **1 dedicated Sales Associate per store** at the trade counter / pro desk during operating hours: handles ~15–25 trade interactions/week × 20 min average = ~5–8 hours/week; remainder of time on floor coverage, special order follow-up, and delivery coordination. This is a specialized role within the existing 16 Sales Associates per store — not incremental headcount but a designated assignment.
@@ -503,3 +503,87 @@ Big-box home improvement retailers globally operate dedicated trade counters or 
 | 4 | **Escalation**: If issue requires store action (e.g., missing BOPIS item) or logistics action (e.g., lost package), agent escalates ticket to respective department | CS Agent | CS Manager | 5 min |
 | 5 | **Closure & CSAT**: Ticket resolved; system automatically sends CSAT/NPS survey to customer (W65) to measure satisfaction with support | System | CS Manager | Automated |
 ---
+
+## W259. Call Center Daily Operations & Queue Management
+
+| Field | Detail |
+|---|---|
+| **Workflow ID** | W259 |
+| **Name** | Call Center Daily Operations & Queue Management |
+| **Trigger** | Shift start (daily) |
+| **Frequency** | Daily (2 shifts, 7 AM–10 PM) |
+| **Volume** | ~400–600 inbound contacts/day (calls 60%, chat 25%, email 10%, social 5%) |
+| **Owner** | CS Manager |
+| **Participants** | CS Agent (~30), CS Supervisor (3), CS Manager (1) |
+| **Time Estimate** | 8–12 min average per interaction |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Shift Start**: CS Agents log into unified communications platform (telephony, chat, email, social queue); system loads agent profile with skill-based routing assignments; CS Supervisor reviews overnight queue backlog and distributes priority tickets | CS Agent / CS Supervisor | CS Manager | 10 min |
+| 2 | **Queue Management**: System routes inbound contacts based on: (a) customer tier (Platinum/Gold → priority queue; Silver/Bronze → standard), (b) issue type (order status → general; complaint → senior agent; credit/billing → finance-trained agent), (c) language preference (English, Filipino, Visayan/Bisaya for Mindanao/Visayas customers), (d) agent availability and skill set | System | CS Manager | Automated |
+| 3 | **IVR Self-Service**: For calls, IVR handles routine inquiries without agent: (a) order status (system reads tracking via ECOM-005), (b) store hours and locations (MDM-006), (c) loyalty points balance (CRM-001), (d) return policy information; estimated 25–30% of calls resolved by IVR | System | CS Manager | Automated |
+| 4 | **Live Interaction**: Agent handles customer inquiry using unified workspace: (a) customer 360 view (W156) with purchase history, loyalty tier, open orders, recent tickets, account alerts; (b) ERP access for real-time inventory check (ECOM-001), order status, delivery tracking; (c) knowledge base for product info, return policies, warranty terms | CS Agent | CS Supervisor | 8–12 min avg |
+| 5 | **Callback Queue**: During peak periods (sale events, holidays), if wait time exceeds 3 minutes, system offers callback option; callback queue managed with estimated wait time; callback scheduled within 2 hours; customer receives SMS confirmation with callback window | System / CS Agent | CS Manager | 2 min setup |
+| 6 | **Real-Time Monitoring**: CS Supervisor monitors agent dashboard with live metrics: queue depth, average wait time, average handle time, abandonment rate, CSAT rolling average; flags agents needing assistance; rebalances queue assignments during volume spikes | CS Supervisor | CS Manager | Continuous |
+| 7 | **Escalation Handling**: For issues requiring other departments: (a) store-level issues → routed to Store Manager via ticket (W258), (b) billing/credit disputes → routed to AR (W108), (c) product quality/safety → routed to Quality (W110) and LP (W37), (d) data privacy → routed to DPO (W53); agent retains ownership for follow-up | CS Agent | CS Manager | 5 min |
+| 8 | **Shift End**: CS Agent wraps open tickets, logs after-call work, reviews personal CSAT and handle time metrics; CS Supervisor generates end-of-shift report: total contacts handled, queue clearance rate, SLA compliance (80% of calls answered within 60 seconds, 90% of chats within 90 seconds, emails within 24 hours), top issue categories | CS Agent / CS Supervisor | CS Manager | 15 min |
+
+### System Touchpoints
+- Unified Communications Platform with omnichannel queue management (telephony, chat, email, social)
+- IVR system with ERP data integration (order status, inventory, loyalty balance)
+- Customer 360 workspace (W156) embedded in agent console
+- Real-time agent monitoring dashboard with SLA tracking
+- Knowledge base with product info, policies, and decision trees
+- Callback scheduling engine with SMS notification integration
+- Workforce management integration for agent scheduling (W34)
+
+### Pain Points / Risks
+- **Peak volume spikes**: Sale events (6x/year per §13.3) can triple call volume; need temporary staffing surge plan
+- **Language coverage**: Visayan/Bisaya-speaking agents needed for Mindanao/Visayas customers; limited pool
+- **System fragmentation**: If agent console doesn't fully integrate ERP data, agents toggle between systems, increasing handle time
+- **Agent burnout**: Repetitive complaint handling (delivery issues, returns) leads to turnover; rotation and training programs needed
+- **SLA breaches**: Abandonment rate target < 5%; requires real-time monitoring and dynamic queue rebalancing
+
+## W263. Loyalty Member Enrollment & Onboarding Journey
+
+| Field | Detail |
+|---|---|
+| **Workflow ID** | W263 |
+| **Name** | Loyalty Member Enrollment & Onboarding Journey |
+| **Trigger** | Customer requests loyalty membership (in-store or online) |
+| **Frequency** | ~500–800 new enrollments/day (target: grow from 600K to 800K members in Year 1) |
+| **Volume** | ~15,000–24,000 new enrollments/month |
+| **Owner** | CS Agent / Sales Associate |
+| **Participants** | Sales Associate (store), CS Agent (online/call center), CS Supervisor (1), Marketing Team (data quality) |
+| **Time Estimate** | 3–5 min per enrollment |
+
+### Steps
+
+| # | Activity | Role (R) | Role (A) | Duration |
+|---|---|---|---|---|
+| 1 | **Enrollment Trigger**: Customer initiates enrollment via: (a) **in-store**: Sales Associate or Customer Service Rep offers enrollment during checkout or at dedicated enrollment kiosk; (b) **online**: customer self-registers on ecommerce website or mobile app during account creation; (c) **call center**: CS Agent assists enrollment during inbound call; (d) **event**: DIY workshop (W147) or store event registration includes loyalty opt-in | Sales Associate / CS Agent / Customer | CS Supervisor | 1 min |
+| 2 | **Data Capture**: Customer provides enrollment data: (a) full name (first, last), (b) mobile number (primary identifier for PH consumers), (c) email address, (d) birthday (optional, for birthday promo targeting), (e) home store preference (optional); for in-store: Sales Associate enters data into POS enrollment screen; for online: customer fills form on website/app; system validates: mobile number format (+63), email format, minimum age (18+) | Sales Associate / Customer | CS Supervisor | 2 min |
+| 3 | **Deduplication Check**: System performs real-time deduplication: (a) matches against existing loyalty database by mobile number (primary key), email, or name + birthday combination; (b) if existing member found: system retrieves existing account, alerts associate/customer, and offers account recovery (reset PIN, update email) instead of new enrollment; (c) if duplicate prevented, logs attempt for fraud monitoring (W37); (d) deduplication prevents inflated member counts and ensures CRM-002 data quality per W253 | System | CS Supervisor | Automated |
+| 4 | **Consent Management**: System presents Data Privacy consent per RA 10173: (a) customer reads privacy notice (digital on screen or printed copy in-store); (b) customer explicitly consents to: (i) collection and processing of personal data for loyalty program, (ii) receiving promotional communications (SMS, email, push — with granular opt-in per channel), (iii) sharing data with partnered merchants (if applicable); (c) consent recorded with timestamp, consent version, and channel; (d) customer can modify consent at any time via app, website, or in-store | System / Customer | CS Supervisor / DPO | 1 min |
+| 5 | **Account Creation**: System creates loyalty account: (a) assigns unique loyalty ID (numeric or alphanumeric); (b) generates digital loyalty card in mobile app (QR code + barcode for POS scanning per POS-005); (c) sets initial tier to Bronze per CRM-005; (d) opens points balance at 0; (e) creates customer master record per MDM-003; (f) for in-store: prints temporary physical card or provides QR code printout until app download | System | CS Supervisor | Automated |
+| 6 | **Welcome Communication**: System triggers automated welcome sequence: (a) immediate: SMS confirmation with loyalty ID, welcome message, and app download link; (b) within 1 hour: welcome email with program overview (tier benefits, points earning rates, redemption options, partner discounts); (c) within 24 hours: push notification (if app downloaded) with first-purchase incentive coupon (e.g., "Earn 2x points on your first purchase within 7 days!"); (d) welcome communications tracked in customer 360 profile (W156) | System / Marketing Team | CS Supervisor | Automated |
+| 7 | **First Purchase Incentive Tracking**: System tracks enrollment-to-first-purchase conversion: (a) monitors whether new member makes first qualifying purchase within 7 days (welcome coupon validity); (b) if no purchase within 7 days: triggers reminder SMS/push on day 5; (c) if no purchase within 14 days: triggers re-engagement email with curated product recommendations; (d) first-purchase conversion rate tracked as enrollment KPI for Marketing and Store Ops | System / Marketing Team | CS Manager | Automated |
+| 8 | **Monthly Enrollment Quality Review**: CS Supervisor and Marketing review enrollment metrics: (a) total new enrollments per channel (in-store vs. online vs. call center vs. event); (b) enrollment-to-first-purchase conversion rate (target: 70% within 14 days); (c) data quality metrics: % complete profiles (all fields filled), % email verified, % app downloaded; (d) deduplication rate (% of enrollment attempts blocked as duplicates — target: < 5%); (e) consent rate (% opting into all communication channels); (f) per-store enrollment leaderboard for Store Manager incentives | CS Supervisor / Marketing | CS Manager | 2 hours/month |
+
+### System Touchpoints
+- POS enrollment screen with real-time deduplication (CRM-002, MDM-003)
+- Ecommerce / mobile app self-registration flow with RA 10173 consent management
+- Loyalty ID generation and digital card creation (CRM-001, CRM-005)
+- Automated welcome communication engine (SMS, email, push) integrated with CDP (W156)
+- First-purchase incentive coupon system with expiration tracking
+- Enrollment analytics dashboard per channel and per store
+- Deduplication engine (W253) with real-time matching
+
+### Pain Points / Risks
+- **Data quality at store level**: Sales Associates may rush enrollment, entering incomplete or incorrect data; degrades CRM-002 quality and impacts personalization effectiveness
+- **Duplicate suppression resistance**: Some customers deliberately create multiple accounts for welcome bonuses; need fraud detection logic (same mobile, same device)
+- **Low app download conversion**: In-store customers may enroll but not download app, reducing engagement channel; need in-store app download prompts (QR codes at checkout, store WiFi landing page)
+- **Consent fatigue**: Lengthy consent forms reduce enrollment completion; balance RA 10173 compliance with conversion-friendly UX
+- **Enrollment staff incentives**: If Sales Associates are incentivized per enrollment, risk of fake or low-quality enrollments; quality metrics must accompany volume targets

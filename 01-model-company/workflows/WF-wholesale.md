@@ -55,7 +55,7 @@ While BuildRight is primarily retail, it acts as a regional distributor for cert
 |---|---|---|---|---|
 | 1 | **SO Entry**: Sales Rep enters wholesale order; system checks DC inventory (skipping store-level pools) | Sales Rep | B2B Sales Mgr | 15 min |
 | 2 | **Fulfillment Strategy**: (a) If stock in DC: Pick from bulk zone; (b) If stock coming from vendor: Flag for "Cross-Dock" (no putaway) | DC Manager | — | 30 min |
-| 3 | **Transportation Booking**: Book 10-wheeler or tractor head via 3PL (W62b); specify "Wholesale Delivery" SLA | Logistics | Fleet Manager | 1 hour |
+| 3 | **Transportation Booking**: Book 10-wheeler or tractor head via 3PL (W62B); specify "Wholesale Delivery" SLA | Logistics | Fleet Manager | 1 hour |
 | 4 | **Loading & Tally**: Physical tally during loading; driver signs "Wholesale Tally Sheet" and B/L | DC Team / Driver | DC Manager | 2 hours |
 | 5 | **Direct Shipment**: Delivery from DC or Vendor direct to Reseller site (bypassing BuildRight stores) | Driver | — | Varies |
 | 6 | **Proof of Delivery (POD)**: Reseller signs POD and provides BIR 2307 (if applicable); driver uploads via mobile app | Driver | AR Clerk | 10 min |

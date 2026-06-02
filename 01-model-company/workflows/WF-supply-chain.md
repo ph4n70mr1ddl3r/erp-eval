@@ -38,9 +38,9 @@
 | 3 | Demand Planner reviews forecast exception report: SKUs with forecast error > 30%, SKUs with insufficient history, new SKUs with no history, SKUs with sudden demand spikes or drops | Demand Planner | Supply Planning Manager | 2–3 hours/week |
 | 4 | Demand Planner adjusts flagged forecasts manually: overrides algorithm, inputs qualitative intelligence (vendor intel, market trends, competitive activity) | Demand Planner | Supply Planning Manager | 1–2 hours/week |
 | 5 | Demand Planner reviews forecast accuracy metrics (MAPE, bias) by category; identifies systematic over/under-forecasting patterns | Demand Planner | Supply Planning Manager | 1 hour/week |
-| 6 | Adjusted forecast released to replenishment engine (W4.1, W2a.1); system uses forecast instead of simple min/max for forecasted SKUs | System | — | Automated |
+| 6 | Adjusted forecast released to replenishment engine (W4.1, W2A.1); system uses forecast instead of simple min/max for forecasted SKUs | System | — | Automated |
 | 7 | Monthly: Demand Planner presents forecast vs. actual report to Category Managers; discusses upcoming demand shifts | Demand Planner | VP Merchandising | 1 hour/category/month |
-| 8 | Quarterly: Demand Planner recalibrates forecast model parameters (alpha, beta, gamma for exponential smoothing); updates seasonal indices based on latest year of data; reviews and updates safety stock parameters per SKU-location based on forecast error and demand variability changes (feeds into W2a.1 ROP/safety stock calculation); reviews ROP parameter governance: (a) lead time accuracy per vendor — compares actual delivery lead time vs. system lead time and updates for vendors with > 20% variance, flagging chronic late vendors for W44 review; (b) demand averaging period appropriateness by SKU volatility class; (c) service level targets by ABC class (e.g., A-items: 98%, B-items: 95%, C-items: 90% or as configured); (d) order multiple / MOQ accuracy per vendor-SKU; cross-references vendor lead time variance to vendor scorecard (W44) | Demand Planner | Supply Planning Manager | 4–6 hours/quarter |
+| 8 | Quarterly: Demand Planner recalibrates forecast model parameters (alpha, beta, gamma for exponential smoothing); updates seasonal indices based on latest year of data; reviews and updates safety stock parameters per SKU-location based on forecast error and demand variability changes (feeds into W2A.1 ROP/safety stock calculation); reviews ROP parameter governance: (a) lead time accuracy per vendor — compares actual delivery lead time vs. system lead time and updates for vendors with > 20% variance, flagging chronic late vendors for W44 review; (b) demand averaging period appropriateness by SKU volatility class; (c) service level targets by ABC class (e.g., A-items: 98%, B-items: 95%, C-items: 90% or as configured); (d) order multiple / MOQ accuracy per vendor-SKU; cross-references vendor lead time variance to vendor scorecard (W44) | Demand Planner | Supply Planning Manager | 4–6 hours/quarter |
 
 **Total Demand Planner effort**: ~8–12 hours/week + 4–6 hours/quarter for model recalibration
 
@@ -53,10 +53,10 @@
 - Forecast release to replenishment/MRP engine (W31.6)
 - Forecast vs. actual variance reporting by category (W31.7)
 - Model parameter maintenance and seasonal index recalculation (W31.8)
-- Safety stock parameter review and update linked to ROP calculation in W2a (W31.8)
-- Multi-echelon DC replenishment sourcing: when a DC's inventory for a SKU drops below ROP, system evaluates available stock at other DCs, inter-DC transfer cost and lead time, vs. vendor PO cost and lead time; recommends optimal source; if transfer recommended, auto-generates Transfer Order per W22; if PO recommended, auto-generates suggested PO per W2a; Supply Planner reviews sourcing recommendations as part of daily replenishment review (W31.6, W4.2)
+- Safety stock parameter review and update linked to ROP calculation in W2A (W31.8)
+- Multi-echelon DC replenishment sourcing: when a DC's inventory for a SKU drops below ROP, system evaluates available stock at other DCs, inter-DC transfer cost and lead time, vs. vendor PO cost and lead time; recommends optimal source; if transfer recommended, auto-generates Transfer Order per W22; if PO recommended, auto-generates suggested PO per W2A; Supply Planner reviews sourcing recommendations as part of daily replenishment review (W31.6, W4.2)
 - ROP parameter governance and accuracy reporting: quarterly parameter review as part of W31.8 covering (a) lead time variance report per vendor (actual vs. system lead time); (b) service level target monitoring by ABC class; (c) demand averaging period appropriateness by volatility class; (d) order multiple / MOQ accuracy; (e) ROP exception report: SKUs where ROP parameters have not been reviewed in > 6 months; parameter accuracy feeds into vendor scorecard (W44) for lead time performance tracking
-- DC multi-dimensional capacity planning dashboard: system aggregates all competing demands on DC resources into a single view per DC — (a) **inbound receiving capacity**: scheduled receipts (W3c) vs. dock door availability vs. receiving crew capacity (labor hours); (b) **outbound pick/pack capacity**: store replenishment orders (W4) + home delivery orders (W19) + promotional pre-positioning (W57) + backorder fulfillment (W56) — total pick lines and labor hours required vs. available pick/pack crew; (c) **outbound dock capacity**: scheduled dispatches vs. dock door availability vs. loading crew capacity; (d) **storage capacity**: current bin utilization vs. incoming inventory from POs and transfers; dashboard shows 3-day forward view with capacity utilization percentage per dimension; Supply Planner and DC Supervisor review daily during morning planning meeting; if any dimension exceeds 90% utilization, system highlights in amber; if exceeds 100%, system highlights in red and suggests mitigation (defer non-critical replenishment waves, redirect home delivery to alternate DC, schedule overtime, or engage agency workers per W10); during peak periods (Christmas season, bi-monthly sale events), Supply Planning Manager reviews capacity dashboard weekly with DC Manager and VP Supply Chain to proactively adjust labor scheduling (W34) and carrier capacity (W52/W62b) (W31)
+- DC multi-dimensional capacity planning dashboard: system aggregates all competing demands on DC resources into a single view per DC — (a) **inbound receiving capacity**: scheduled receipts (W3C) vs. dock door availability vs. receiving crew capacity (labor hours); (b) **outbound pick/pack capacity**: store replenishment orders (W4) + home delivery orders (W19) + promotional pre-positioning (W57) + backorder fulfillment (W56) — total pick lines and labor hours required vs. available pick/pack crew; (c) **outbound dock capacity**: scheduled dispatches vs. dock door availability vs. loading crew capacity; (d) **storage capacity**: current bin utilization vs. incoming inventory from POs and transfers; dashboard shows 3-day forward view with capacity utilization percentage per dimension; Supply Planner and DC Supervisor review daily during morning planning meeting; if any dimension exceeds 90% utilization, system highlights in amber; if exceeds 100%, system highlights in red and suggests mitigation (defer non-critical replenishment waves, redirect home delivery to alternate DC, schedule overtime, or engage agency workers per W10); during peak periods (Christmas season, bi-monthly sale events), Supply Planning Manager reviews capacity dashboard weekly with DC Manager and VP Supply Chain to proactively adjust labor scheduling (W34) and carrier capacity (W52/W62B) (W31)
 
 ### Staffing Implication
 - **1–2 Demand Planners** (within the 30-person Supply Chain team): This is a specialized analytical role. With 35,000 SKUs across 5 DCs, weekly review of forecast exceptions + monthly category reviews + quarterly recalibration requires a dedicated person. A 2nd demand planner provides coverage and can focus on new-item forecasting (no history) and promotional lift modeling.
@@ -88,7 +88,7 @@
 | 4 | Category Manager creates seasonal buy plan: SKU-level quantities, vendor allocation, delivery schedule (phased receipts vs. single drop) | Category Manager | VP Merchandising | 4 hours/season |
 | 5 | Finance validates seasonal buy plan against working capital budget and inventory plan (max inventory days target) | Controller | CFO | 2 hours/season |
 | 6 | VP Merchandising approves seasonal buy plan | VP Merchandising | VP Merchandising | 1 hour/season |
-| 7 | Buyer creates import POs (W2b) or domestic POs (W2a) per the seasonal buy plan; times orders to arrive 6–8 weeks before season start | Buyer | Category Manager | Per W2 |
+| 7 | Buyer creates import POs (W2B) or domestic POs (W2A) per the seasonal buy plan; times orders to arrive 6–8 weeks before season start | Buyer | Category Manager | Per W2 |
 | 8 | System tracks seasonal PO commitments vs. seasonal buy plan budget; alerts if over-committed | System | — | Automated |
 | 9 | As season approaches: Pricing Analyst sets up seasonal pricing and promotions (W13) | Pricing Analyst | Category Manager | Per W13 |
 | 10 | Mid-season: Category Manager and Buyer review sell-through vs. plan; trigger re-orders for hot items or accelerate markdowns for slow movers | Category Manager | VP Merchandising | 1 hour/week during season |
@@ -107,7 +107,7 @@
 
 ### Staffing Implication
 - **Category Managers**: Seasonal planning is an extension of their existing W1 duties. Each seasonal cycle adds ~8–10 hours of work per category, spread over several weeks. With 5 Category Managers and 4 seasonal cycles, each handles ~1 major seasonal plan at a time. Absorbed within existing ~40-person Merchandising team.
-- **Buyers**: Import PO creation follows standard W2b. Seasonal volume adds ~20–30 import POs per season, concentrated in a few weeks. Manageable within existing team.
+- **Buyers**: Import PO creation follows standard W2B. Seasonal volume adds ~20–30 import POs per season, concentrated in a few weeks. Manageable within existing team.
 - **Demand Planner**: Adds ~4 hours per seasonal cycle for forecast generation. With 4 cycles/year = 16 hours/year. Minimal impact.
 
 ---
@@ -149,7 +149,7 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Import Purchase Order (W2b) approved and sent to overseas vendor |
+| **Trigger** | Import Purchase Order (W2B) approved and sent to overseas vendor |
 | **Frequency** | Weekly; ~20–30 containers/month |
 | **Volume** | Primary sourcing from China, Vietnam, Thailand, and Europe |
 | **Owner** | Import Coordinator |
@@ -159,7 +159,7 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Proforma Invoice (PI) Review**: Receive PI from vendor; verify against PO (W2b); check payment terms (L/C, T/T, CAD) | Buyer | Category Manager | 1 hour |
+| 1 | **Proforma Invoice (PI) Review**: Receive PI from vendor; verify against PO (W2B); check payment terms (L/C, T/T, CAD) | Buyer | Category Manager | 1 hour |
 | 2 | **L/C Opening (if applicable)**: Finance coordinates with Bank to open Letter of Credit; sends L/C to vendor bank | Finance (Treasury) | CFO | 2–3 days |
 | 3 | **Production & Booking**: Vendor confirms production completion; Import Coordinator coordinates with Freight Forwarder for vessel booking (FCL/LCL) | Import Coordinator | — | 2–5 days |
 | 4 | **Shipping Documents**: Receive set of documents: Bill of Lading (B/L), Commercial Invoice, Packing List, Certificate of Origin (for FTA benefits like ATIGA/ACFTA) | Import Coordinator | — | 1 day |
@@ -212,7 +212,7 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Import PO creation (W2b) or Shipment Booking (W144) |
+| **Trigger** | Import PO creation (W2B) or Shipment Booking (W144) |
 | **Frequency** | Ongoing per import shipment |
 | **Volume** | ~400–600 TEUs/month |
 | **Owner** | Import Coordinator |
@@ -222,7 +222,7 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 
 | # | Activity | Role (R) | Role (A) | Duration |
 |---|---|---|---|---|
-| 1 | **Incoterm Selection**: Buyer selects Incoterm (EXW, FOB, CFR, CIF) during PO negotiation (W2b); system calculates risk transfer point | Buyer | — | 15 min |
+| 1 | **Incoterm Selection**: Buyer selects Incoterm (EXW, FOB, CFR, CIF) during PO negotiation (W2B); system calculates risk transfer point | Buyer | — | 15 min |
 | 2 | **Insurance Booking**: If Incoterm requires BuildRight to provide insurance (EXW, FOB, CFR), Import Coordinator issues "Marine Insurance Declaration" | Import Coordinator | — | 30 min |
 | 3 | **Risk Monitoring**: System tracks shipment location vs. risk transfer point (e.g., "On Board" for FOB); alerts if insurance coverage gap exists | System | — | Automated |
 | 4 | **Claim Initiation**: If damage/loss occurs during transit (W3.6a), Import Coordinator gathers B/L, Survey Report, and Invoice | Import Coordinator | — | 2 hours |
@@ -262,7 +262,7 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 - Port Authority vessel tracking API integration
 - Automated demurrage/detention free-time calculations and system alerting
 - Hauler empty container gate-in/gate-out logs tracking
-- Landed cost integration for port penalty allocations (W2b/W13)
+- Landed cost integration for port penalty allocations (W2B/W13)
 
 ---
 
@@ -270,7 +270,7 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 
 | Field | Detail |
 |---|---|
-| **Trigger** | Shipment of import PO (W144 / W2b) or inter-island freight dispatch (W66) |
+| **Trigger** | Shipment of import PO (W144 / W2B) or inter-island freight dispatch (W66) |
 | **Frequency** | Ongoing per shipment |
 | **Volume** | ~20–30 import containers and ~40–50 inter-island shipments/month |
 | **Owner** | Supply Chain Director |

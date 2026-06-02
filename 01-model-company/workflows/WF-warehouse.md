@@ -74,7 +74,7 @@ For high-velocity items (A-class), steps 8–9 are skipped. Instead:
 - Allocated to pending store replenishment orders
 - Loaded onto outbound trucks same day
 
-### W3b. Yard & Outdoor Inventory Management
+### W3B. Yard & Outdoor Inventory Management
 
 For lumber, building materials, and other bulky items stored in outdoor yard areas (present at all DCs and stores per the Lumber & Building Materials Yard zone):
 
@@ -89,13 +89,13 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 7 | Yard-to-sales-floor movement: when yard stock is needed indoors (e.g., small lumber pieces moved to indoor display), Stock Associate transfers items in system from yard zone to indoor location | Stock Associate | Dept. Supervisor | 10 min |
 
 ### System Touchpoints (Yard)
-- Zone-level location master for yard areas (not bin-level) (W3b.2)
-- Catch-weight/variable-length receipt and tracking in yard zones (W3b.3)
-- Weather damage reporting and disposition (W3b.6)
-- Yard-to-indoor inventory transfer (W3b.7)
-- Yard inventory visible in real-time alongside indoor inventory (W3b.2)
+- Zone-level location master for yard areas (not bin-level) (W3B.2)
+- Catch-weight/variable-length receipt and tracking in yard zones (W3B.3)
+- Weather damage reporting and disposition (W3B.6)
+- Yard-to-indoor inventory transfer (W3B.7)
+- Yard inventory visible in real-time alongside indoor inventory (W3B.2)
 
-### W3c. DC Inbound Delivery Scheduling
+### W3C. DC Inbound Delivery Scheduling
 
 | Field | Detail |
 |---|---|
@@ -116,12 +116,12 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 | 7 | Monthly: DC Receiving Supervisor reviews appointment compliance report — vendor on-time arrival %, no-show rate, unscheduled delivery rate; feeds into vendor scorecard (W44) and carrier performance review (W52) | DC Receiving Supervisor | DC Manager | 30 min/month |
 
 ### System Touchpoints (DC Scheduling)
-- Inbound delivery forecast from open PO data with dock door requirements (W3c.1)
-- Delivery appointment booking with vendor confirmation tracking (W3c.3–4)
-- Dock door utilization dashboard with real-time capacity visibility (W3c.6)
-- Appointment compliance reporting feeding vendor scorecard (W3c.7)
-- Unscheduled delivery handling with PO validation at gate (W3c.5)
-- Integration with W3 (DC receiving — appointments feed step 1 guard check), W2a (auto-replenishment POs generate appointments), W2b (import container appointments), W18b (DSD scheduling — store equivalent), W44 (vendor scorecard — appointment compliance), W52 (carrier performance)
+- Inbound delivery forecast from open PO data with dock door requirements (W3C.1)
+- Delivery appointment booking with vendor confirmation tracking (W3C.3–4)
+- Dock door utilization dashboard with real-time capacity visibility (W3C.6)
+- Appointment compliance reporting feeding vendor scorecard (W3C.7)
+- Unscheduled delivery handling with PO validation at gate (W3C.5)
+- Integration with W3 (DC receiving — appointments feed step 1 guard check), W2A (auto-replenishment POs generate appointments), W2B (import container appointments), W18B (DSD scheduling — store equivalent), W44 (vendor scorecard — appointment compliance), W52 (carrier performance)
 - Barcode/RF scanning against PO (W3.4)
 - Discrepancy flagging and Buyer notification (W3.6)
 - Damage disposition workflow: RTV initiation, scrap authorization, insurance claim capture (W3.6a–c)
@@ -131,10 +131,10 @@ For lumber, building materials, and other bulky items stored in outdoor yard are
 - DC forward-pick zone replenishment: system monitors forward-pick (fast-pick) location quantities in real-time; when quantity drops below minimum threshold, generates replenishment task (move from reserve/bulk storage to forward-pick); replenishment staff receives task on RF device, moves stock, scan-confirms at both locations; replenishment prioritized ahead of picking waves to avoid picker idle time (W3.8 post-putaway, integrated with W4 picking)
 - Shelf-life / expiry date management: at Goods Receipt, Receiving Clerk captures manufacturing date and shelf-life duration for date-sensitive items (paint, adhesives, sealants, chemicals, cement, grout); system calculates and records expiry date per batch/lot; items with remaining shelf life below configurable threshold (e.g., < 30%) flagged for priority picking or markdown; expired items blocked from dispatch (W3.4)
 - Inventory ownership: all merchandise received into DCs is owned by BuildRight Depot Inc. even though DC facilities are operated by BuildRight Logistics Inc.; Logistics Inc. provides warehousing and distribution services billed monthly per W14; goods are Depot Inc. inventory throughout the DC→Store flow
-- RTV physical logistics and tracking: Receiving Clerk stages RTV items in designated RTV holding area at DC; system creates RTV shipment record with lifecycle tracking (Initiated → Packed → Shipped → In Transit → Vendor Received → Credit Note Issued → Settled); DC dispatch arranges carrier pickup or vendor pickup per agreement with Buyer coordination; system tracks RTV aging by status; for store-initiated RTVs (W6.8a, W12a.8, W33.6), Stock Associate stages items in backroom and system creates RTV shipment record; Buyer coordinates with vendor for direct pickup from store or shipment to DC for consolidation; vendor credit note triggered upon vendor confirmation of receipt; if vendor disputes, Buyer negotiates resolution per W3.6b; system maintains RTV tracking dashboard with aging by status
-- RTV vendor credit note SLA: system enforces configurable credit note SLA per vendor — default 15 business days from vendor receipt of returned goods to credit note issuance; if credit note not received within SLA, system escalates to Buyer with auto-notification; Buyer contacts vendor for resolution; if unresolved after 30 days, Buyer escalates to Category Manager for vendor scorecard impact (W44); credit note SLA compliance tracked as a metric in vendor scorecard (W44 invoice accuracy metric); monthly: AP Clerk generates RTV credit note aging report showing all open RTVs awaiting vendor credit note with days outstanding, feeding into W7d vendor statement reconciliation
+- RTV physical logistics and tracking: Receiving Clerk stages RTV items in designated RTV holding area at DC; system creates RTV shipment record with lifecycle tracking (Initiated → Packed → Shipped → In Transit → Vendor Received → Credit Note Issued → Settled); DC dispatch arranges carrier pickup or vendor pickup per agreement with Buyer coordination; system tracks RTV aging by status; for store-initiated RTVs (W6.8a, W12A.8, W33.6), Stock Associate stages items in backroom and system creates RTV shipment record; Buyer coordinates with vendor for direct pickup from store or shipment to DC for consolidation; vendor credit note triggered upon vendor confirmation of receipt; if vendor disputes, Buyer negotiates resolution per W3.6b; system maintains RTV tracking dashboard with aging by status
+- RTV vendor credit note SLA: system enforces configurable credit note SLA per vendor — default 15 business days from vendor receipt of returned goods to credit note issuance; if credit note not received within SLA, system escalates to Buyer with auto-notification; Buyer contacts vendor for resolution; if unresolved after 30 days, Buyer escalates to Category Manager for vendor scorecard impact (W44); credit note SLA compliance tracked as a metric in vendor scorecard (W44 invoice accuracy metric); monthly: AP Clerk generates RTV credit note aging report showing all open RTVs awaiting vendor credit note with days outstanding, feeding into W7D vendor statement reconciliation
 - RTV freight cost allocation: freight cost for returning goods to vendor is borne by the party responsible for the return reason — (a) defective/wrong items (vendor fault): vendor bears freight cost; deducted from credit note amount negotiated by Buyer; (b) buyer-initiated returns (overstock, discontinuation): BuildRight bears freight cost; posted to inventory write-down or return-to-vendor expense; (c) carrier damage: freight cost claimed from carrier insurance per W3.6a; system captures RTV freight cost as a separate line on the RTV shipment record; AP Clerk reconciles freight cost allocation during credit note processing (W7.9b)
-- DC RTV consolidation & vendor return shipment batching: with 200 stores returning defective/damaged/discontinued items to 5 DCs (W22b), DC Receiving Clerks accumulate RTV items in a designated RTV holding area organized by vendor; system maintains a DC-level RTV consolidation dashboard showing accumulated items per vendor, total value, and aging; weekly, Buyer reviews the consolidation dashboard and determines batch shipment timing per vendor — (a) for high-volume vendors (weekly returns): Buyer schedules weekly vendor pickup or carrier shipment when accumulated value exceeds a configurable threshold (e.g., PHP 20,000 per vendor), (b) for low-volume vendors: items held until accumulated value justifies shipment cost, or consolidated with next regular vendor delivery truck for backhaul; system generates RTV shipment manifest per vendor listing all items, source locations (store or DC), quantities, credit note expected per item, and total claim value; Buyer transmits manifest to vendor for advance confirmation; upon vendor pickup or shipment, system updates RTV lifecycle status per W3 RTV tracking; AP Clerk uses consolidated manifest for credit note reconciliation per W7.9b; monthly: Buyer reviews DC RTV aging dashboard for items in RTV holding > 30 days and escalates to Category Manager for alternative disposition if vendor is unresponsive
+- DC RTV consolidation & vendor return shipment batching: with 200 stores returning defective/damaged/discontinued items to 5 DCs (W22B), DC Receiving Clerks accumulate RTV items in a designated RTV holding area organized by vendor; system maintains a DC-level RTV consolidation dashboard showing accumulated items per vendor, total value, and aging; weekly, Buyer reviews the consolidation dashboard and determines batch shipment timing per vendor — (a) for high-volume vendors (weekly returns): Buyer schedules weekly vendor pickup or carrier shipment when accumulated value exceeds a configurable threshold (e.g., PHP 20,000 per vendor), (b) for low-volume vendors: items held until accumulated value justifies shipment cost, or consolidated with next regular vendor delivery truck for backhaul; system generates RTV shipment manifest per vendor listing all items, source locations (store or DC), quantities, credit note expected per item, and total claim value; Buyer transmits manifest to vendor for advance confirmation; upon vendor pickup or shipment, system updates RTV lifecycle status per W3 RTV tracking; AP Clerk uses consolidated manifest for credit note reconciliation per W7.9b; monthly: Buyer reviews DC RTV aging dashboard for items in RTV holding > 30 days and escalates to Category Manager for alternative disposition if vendor is unresponsive
 
 ### Staffing Implication
 - Per DC: 3–4 Receiving Clerks (handling ~40 receipts/day in shifts, ~1.5–3 hrs each)
@@ -268,7 +268,7 @@ BuildRight's 5-DC footprint spans the Philippine archipelago: DC1 Davao (Mindana
 | 5 | Import Coordinator books shipment with carrier; provides container number or truck plate number, commodity description, and destination DC; receives booking confirmation and estimated arrival date | Import Coordinator | Fleet Manager | 30 min/shipment |
 | 6 | In-transit tracking: Import Coordinator monitors shipment status via carrier tracking or direct communication; updates system ETA; for ro-ro: monitors ferry schedule (weather delays common during typhoon season — W49) | Import Coordinator | Supply Chain Manager | 15 min/day per shipment |
 | 7 | Goods arrive at destination port/DC; destination DC receives and processes Goods Receipt per W22 step 7; system records inter-island freight cost allocation to transferred inventory | Receiving Clerk (DC) | DC Supervisor | Per W22 |
-| 8 | System allocates inter-island freight cost to transferred items: freight cost ÷ total transferred value × per-item value added to destination inventory cost (similar to landed cost allocation in W2b.12 but for domestic inter-island movement) | System | Finance | Automated |
+| 8 | System allocates inter-island freight cost to transferred items: freight cost ÷ total transferred value × per-item value added to destination inventory cost (similar to landed cost allocation in W2B.12 but for domestic inter-island movement) | System | Finance | Automated |
 | 9 | Monthly: Import Coordinator and Fleet Manager review inter-island logistics cost and performance: cost per TEU by route, on-time delivery %, damage rate, carrier comparison; recommends route or carrier optimization | Import Coordinator / Fleet Manager | Supply Chain Manager | 1 hour/month |
 
 ### System Touchpoints
@@ -277,10 +277,10 @@ BuildRight's 5-DC footprint spans the Philippine archipelago: DC1 Davao (Mindana
 - In-transit tracking with ETA updates (W66.6)
 - Freight cost allocation to transferred inventory (W66.8)
 - Inter-island logistics cost and performance reporting by route and carrier (W66.9)
-- Integration with W22 (inter-DC transfers — this is the inter-island variant), W2b (import logistics — similar carrier booking process), W49 (typhoon season — ferry disruptions), W52 (fleet — owned vehicles on ro-ro), W59 (cargo insurance)
+- Integration with W22 (inter-DC transfers — this is the inter-island variant), W2B (import logistics — similar carrier booking process), W49 (typhoon season — ferry disruptions), W52 (fleet — owned vehicles on ro-ro), W59 (cargo insurance)
 
 ### Staffing Implication
-- **Import Coordinator**: absorbs inter-island coordination as an extension of existing import logistics duties. ~10–15 shipments/month × ~2 hours each = ~20–30 hours/month. Manageable given the Import Coordinator's existing workload managing ~20–30 import POs/month (W2b), as inter-island shipments use similar logistics skills.
+- **Import Coordinator**: absorbs inter-island coordination as an extension of existing import logistics duties. ~10–15 shipments/month × ~2 hours each = ~20–30 hours/month. Manageable given the Import Coordinator's existing workload managing ~20–30 import POs/month (W2B), as inter-island shipments use similar logistics skills.
 - **Fleet Manager**: coordinates owned vehicle ro-ro transport when applicable. Absorbed.
 
 ---
@@ -318,7 +318,7 @@ W4 (Store Replenishment) covers the pick/pack/ship process from the perspective 
 | 7 | **Store delivery execution**: (a) Driver arrives at store; presents load manifest to Receiving Clerk, (b) Receiving Clerk scans each case/tote against transfer order per W4.10, (c) Driver obtains signed delivery receipt (proof of delivery), (d) if short shipment or damage at delivery: noted on delivery receipt; Driver reports to DC Dispatch for resolution per W22.9a, (e) Driver proceeds to next stop | Driver / Receiving Clerk | DC Dispatch Supervisor / Store Manager | 15–30 min/stop |
 | 8 | **Delivery confirmation**: (a) Upon completing all stops, Driver returns to DC (or proceeds to next dispatch wave), (b) Driver submits signed delivery receipts and exception reports to DC Dispatch, (c) DC Dispatch scans delivery receipts into system; system updates transfer order status to "Delivered" or "Partially Delivered" per receiving confirmation, (d) system triggers store inventory receipt posting (W4.12) | Driver / DC Dispatch Supervisor | DC Supervisor | 15 min/truck |
 | 9 | **Afternoon wave** (1:00 PM): Repeat steps 1–8 for second dispatch wave using afternoon replenishment orders and remaining home delivery batches; typically lighter volume than morning wave | DC Dispatch Supervisor | DC Supervisor | Per steps 1–8 |
-| 10 | **End-of-day dispatch summary**: DC Dispatch Supervisor generates daily dispatch report: (a) total orders dispatched, (b) on-time departure rate (target: ≥ 95% of trucks depart within 30 min of scheduled time), (c) on-time delivery rate (target: ≥ 95% of stores receive within delivery window), (d) truck utilization rate (loaded volume ÷ truck capacity), (e) exceptions and resolution, (f) 3PL carrier performance for the day (feeds W52.9 and W62b) | DC Dispatch Supervisor | DC Supervisor | 15 min/day |
+| 10 | **End-of-day dispatch summary**: DC Dispatch Supervisor generates daily dispatch report: (a) total orders dispatched, (b) on-time departure rate (target: ≥ 95% of trucks depart within 30 min of scheduled time), (c) on-time delivery rate (target: ≥ 95% of stores receive within delivery window), (d) truck utilization rate (loaded volume ÷ truck capacity), (e) exceptions and resolution, (f) 3PL carrier performance for the day (feeds W52.9 and W62B) | DC Dispatch Supervisor | DC Supervisor | 15 min/day |
 | 11 | **Weekly**: DC Dispatch Supervisor and Fleet Manager review route efficiency metrics: (a) cost per delivery by route, (b) stops per route, (c) average delivery time per stop, (d) route optimization opportunities (new store additions, traffic pattern changes), (e) 3PL vs. owned fleet cost comparison per route; recommendations for route rebalancing or carrier changes | DC Dispatch Supervisor / Fleet Manager | DC Supervisor | 1 hour/week |
 
 ### System Touchpoints
@@ -332,7 +332,7 @@ W4 (Store Replenishment) covers the pick/pack/ship process from the perspective 
 - Delivery receipt capture and transfer order status update (W106.8)
 - Daily dispatch report: departure rate, delivery rate, utilization, exceptions (W106.10)
 - Weekly route efficiency analytics (W106.11)
-- Integration with W4 (store replenishment — the orders being dispatched), W19 (home delivery — ecommerce dispatch), W22 (inter-DC transfers), W52 (fleet management — owned vehicle dispatch), W62b (3PL carrier management), W66 (inter-island logistics)
+- Integration with W4 (store replenishment — the orders being dispatched), W19 (home delivery — ecommerce dispatch), W22 (inter-DC transfers), W52 (fleet management — owned vehicle dispatch), W62B (3PL carrier management), W66 (inter-island logistics)
 
 ### Staffing Implication
 - **1 DC Dispatch Supervisor per DC** (within existing ~150 DC headcount): manages daily dispatch planning, loading coordination, and driver management. This role likely already exists but was not formalized.
@@ -357,7 +357,7 @@ W4 (Store Replenishment) covers the pick/pack/ship process from the perspective 
 |---|---|---|---|---|
 | 1 | System tracks odometer/hours for each vehicle; triggers "Maintenance Alert" (W52.4) | System | — | Automated |
 | 2 | Fleet Manager reviews spare parts inventory (tires, batteries, oil, filters, brake pads) | Fleet Manager | — | 30 min |
-| 3 | If parts below reorder point: System generates PO for parts (W2a) | System | — | Automated |
+| 3 | If parts below reorder point: System generates PO for parts (W2A) | System | — | Automated |
 | 4 | Vehicle sent to workshop; Fleet Manager issues "Maintenance Work Order" | Fleet Manager | — | 15 min |
 | 5 | Workshop performs service; consumes spare parts from fleet inventory | Workshop Staff | — | 4-8 hours |
 | 6 | Record maintenance details: parts used, labor hours, costs, next service interval | Fleet Manager | — | 20 min |

@@ -137,18 +137,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Weekly forecast recalculation schedule (Sunday batch)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Weekly recalculation; monthly review; quarterly adjustment</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>35,000 active SKUs × 5 DCs × 200 stores = up to 7.2M SKU-location forecasts; typically forecasted at DC level (175,000 SKU-DC combinations) and disaggregated to stores</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Demand Planner</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Demand Planner, Supply Planner, Category Manager, Pricing Analyst</td>
 </tr>
@@ -163,48 +168,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>System runs automated forecast engine: statistical algorithms (exponential smoothing, seasonal decomposition) applied to 2+ years of historical sales data per SKU per DC</td>
 <td>System</td>
 <td>—</td>
 <td>Automated (Sunday batch, 1–3 hours)</td>
 </tr>
+<tr>
 <td>2</td>
 <td>System adjusts raw statistical forecast for known events: promotional calendar (W13), seasonal calendar, new store openings (W16), planned store closures, one-time events (typhoons, pandemic)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Demand Planner reviews forecast exception report: SKUs with forecast error > 30%, SKUs with insufficient history, new SKUs with no history, SKUs with sudden demand spikes or drops</td>
 <td>Demand Planner</td>
 <td>Supply Planning Manager</td>
 <td>2–3 hours/week</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Demand Planner adjusts flagged forecasts manually: overrides algorithm, inputs qualitative intelligence (vendor intel, market trends, competitive activity)</td>
 <td>Demand Planner</td>
 <td>Supply Planning Manager</td>
 <td>1–2 hours/week</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Demand Planner reviews forecast accuracy metrics (MAPE, bias) by category; identifies systematic over/under-forecasting patterns</td>
 <td>Demand Planner</td>
 <td>Supply Planning Manager</td>
 <td>1 hour/week</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Adjusted forecast released to replenishment engine (W4.1, W2A.1); system uses forecast instead of simple min/max for forecasted SKUs</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Monthly: Demand Planner presents forecast vs. actual report to Category Managers; discusses upcoming demand shifts</td>
 <td>Demand Planner</td>
 <td>VP Merchandising</td>
 <td>1 hour/category/month</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Quarterly: Demand Planner recalibrates forecast model parameters (alpha, beta, gamma for exponential smoothing); updates seasonal indices based on latest year of data; reviews and updates safety stock parameters per SKU-location based on forecast error and demand variability changes (feeds into W2A.1 ROP/safety stock calculation); reviews ROP parameter governance: (a) lead time accuracy per vendor — compares actual delivery lead time vs. system lead time and updates for vendors with > 20% variance, flagging chronic late vendors for W44 review; (b) demand averaging period appropriateness by SKU volatility class; (c) service level targets by ABC class (e.g., A-items: 98%, B-items: 95%, C-items: 90% or as configured); (d) order multiple / MOQ accuracy per vendor-SKU; cross-references vendor lead time variance to vendor scorecard (W44)</td>
 <td>Demand Planner</td>
@@ -249,18 +262,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Seasonal calendar milestones (6 months before each season peak)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>4 major seasonal planning cycles/year: Christmas (plan in Jun), Summer/March (plan in Oct), Back-to-School (plan in Nov), Rainy Season/ typhoon prep (plan in Jan)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~3,000–5,000 seasonal SKUs per major event; ~20–30 import POs per season</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Category Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Category Manager, Buyer, Demand Planner, Import Coordinator, VP Merchandising, Finance (budget)</td>
 </tr>
@@ -275,66 +293,77 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Demand Planner generates seasonal forecast: prior-year sales by SKU for the season period, adjusted for current trend and planned promotions</td>
 <td>Demand Planner</td>
 <td>Category Manager</td>
 <td>4 hours/season</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Category Manager reviews seasonal forecast; identifies SKUs to carry forward, new items to add, items to drop</td>
 <td>Category Manager</td>
 <td>VP Merchandising</td>
 <td>2 hours/season</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Buyer solicits vendor quotations for seasonal items; negotiates volume discounts, early-order incentives, and return/excess-stock terms</td>
 <td>Buyer</td>
 <td>Category Manager</td>
 <td>1 week/season</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Category Manager creates seasonal buy plan: SKU-level quantities, vendor allocation, delivery schedule (phased receipts vs. single drop)</td>
 <td>Category Manager</td>
 <td>VP Merchandising</td>
 <td>4 hours/season</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Finance validates seasonal buy plan against working capital budget and inventory plan (max inventory days target)</td>
 <td>Controller</td>
 <td>CFO</td>
 <td>2 hours/season</td>
 </tr>
+<tr>
 <td>6</td>
 <td>VP Merchandising approves seasonal buy plan</td>
 <td>VP Merchandising</td>
 <td>VP Merchandising</td>
 <td>1 hour/season</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Buyer creates import POs (W2B) or domestic POs (W2A) per the seasonal buy plan; times orders to arrive 6–8 weeks before season start</td>
 <td>Buyer</td>
 <td>Category Manager</td>
 <td>Per W2</td>
 </tr>
+<tr>
 <td>8</td>
 <td>System tracks seasonal PO commitments vs. seasonal buy plan budget; alerts if over-committed</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>9</td>
 <td>As season approaches: Pricing Analyst sets up seasonal pricing and promotions (W13)</td>
 <td>Pricing Analyst</td>
 <td>Category Manager</td>
 <td>Per W13</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Mid-season: Category Manager and Buyer review sell-through vs. plan; trigger re-orders for hot items or accelerate markdowns for slow movers</td>
 <td>Category Manager</td>
 <td>VP Merchandising</td>
 <td>1 hour/week during season</td>
 </tr>
+<tr>
 <td>11</td>
 <td>Post-season: Buyer and Category Manager conduct post-mortem: actual vs. plan sales, margin, leftover inventory disposition (clearance, return to vendor, carry forward to next year)</td>
 <td>Buyer + Category Manager</td>
@@ -371,18 +400,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Monthly planning calendar (typically starting 10th business day)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Monthly</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Covers all product categories and all 5 DCs</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>VP for Supply Chain</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>CEO, COO, CFO, VP Merchandising, VP Store Ops, Supply Planning Manager, Demand Planner, Category Managers</td>
 </tr>
@@ -401,36 +435,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Demand Review</strong>: Demand Planner and Category Managers review the unconstrained forecast (W31); adjust for planned promos (W83) and new store openings (W16); sign off on "Consensus Demand Plan"</td>
 <td>Demand Planner</td>
 <td>VP Merch</td>
 <td>2 days</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Supply Review</strong>: Supply Planner and DC Managers evaluate ability to meet demand; check vendor lead times (W44), DC storage/labor capacity, and port congestion (W144); identify supply gaps</td>
 <td>Supply Planner</td>
 <td>VP Supply Chain</td>
 <td>2 days</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Financial Integration</strong>: Finance translates the volume plan into PHP; compares against budget (W26) and revenue targets; highlights margin risks if high-cost logistics (W66) are needed</td>
 <td>Controller</td>
 <td>CFO</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Pre-S&OP Meeting</strong>: Managers reconcile demand/supply gaps; develop scenarios (e.g., "Air-freight vs. Out-of-stock") for leadership</td>
 <td>Supply Planning Mgr</td>
 <td>VP Supply Chain</td>
 <td>4 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Executive S&OP Meeting</strong>: C-Suite reviews scenarios; makes trade-off decisions; approves the "Consensus Operating Plan" for the next 3–12 months</td>
 <td>CEO</td>
 <td>CEO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Disaggregation</strong>: Approved plan is pushed back to replenishment systems (W4) and Buy Plans (W32) to drive execution</td>
 <td>Supply Planner</td>
@@ -455,18 +495,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Import Purchase Order (W2B) approved and sent to overseas vendor</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Weekly; ~20–30 containers/month</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Primary sourcing from China, Vietnam, Thailand, and Europe</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Import Coordinator</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Buyer, Import Coordinator, Freight Forwarder, Customs Broker, Finance, DC Receiving</td>
 </tr>
@@ -481,60 +526,70 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Proforma Invoice (PI) Review</strong>: Receive PI from vendor; verify against PO (W2B); check payment terms (L/C, T/T, CAD)</td>
 <td>Buyer</td>
 <td>Category Manager</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>L/C Opening (if applicable)</strong>: Finance coordinates with Bank to open Letter of Credit; sends L/C to vendor bank</td>
 <td>Finance (Treasury)</td>
 <td>CFO</td>
 <td>2–3 days</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Production & Booking</strong>: Vendor confirms production completion; Import Coordinator coordinates with Freight Forwarder for vessel booking (FCL/LCL)</td>
 <td>Import Coordinator</td>
 <td>—</td>
 <td>2–5 days</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Shipping Documents</strong>: Receive set of documents: Bill of Lading (B/L), Commercial Invoice, Packing List, Certificate of Origin (for FTA benefits like ATIGA/ACFTA)</td>
 <td>Import Coordinator</td>
 <td>—</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>In-Transit Tracking</strong>: Update system with vessel name, container ID, and ETA; monitor "Estimated vs. Actual" arrival dates</td>
 <td>Import Coordinator</td>
 <td>—</td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Customs Entry</strong>: Customs Broker files entry via BOC E2M system; calculates Duties & Taxes (VAT + Import Duty)</td>
 <td>Customs Broker</td>
 <td>Import Coordinator</td>
 <td>1–2 days</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Payment of Duties</strong>: Finance processes payment of duties/taxes to BOC via bank portal; system records as "Inventory in Transit" cost component</td>
 <td>Finance</td>
 <td>Controller</td>
 <td>4 hours</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Release & Haulage</strong>: BOC releases cargo; Forwarder coordinates haulage from Port to DC; monitor "Port Out" to avoid demurrage/detention fees</td>
 <td>Import Coordinator</td>
 <td>DC Manager</td>
 <td>1–3 days</td>
 </tr>
+<tr>
 <td>9</td>
 <td><strong>DC Arrival & Stripping</strong>: DC receives container; verifies seal integrity; strips container and performs "Blind Count" against Packing List</td>
 <td>DC Receiving</td>
 <td>DC Manager</td>
 <td>4 hours</td>
 </tr>
+<tr>
 <td>10</td>
 <td><strong>Cost Finalization</strong>: System aggregates all landed costs (Product + Freight + Duties + Brokerage + Wharfage) to calculate final Landed WAC</td>
 <td>System / Finance</td>
@@ -564,12 +619,15 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Annual strategic review; or significant change in logistics costs/fuel prices</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>COO</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Supply Chain Director, Logistics Manager, Finance Analyst, External Logistics Consultant</td>
 </tr>
@@ -584,30 +642,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Data Extraction</strong>: Pull historical store sales, DC throughput, and transport costs by route</td>
 <td>Finance Analyst</td>
 <td>—</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Modeling</strong>: Use "Center of Gravity" and "Network Optimization" tools to simulate optimal DC locations vs. 200-store footprint</td>
 <td>SC Director</td>
 <td>—</td>
 <td>1 week</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Cost Analysis</strong>: Compare current "5-DC" cost vs. potential "6-DC" or "Consolidated DC" scenarios; include lease exit costs (W117)</td>
 <td>Logistics Mgr</td>
 <td>CFO</td>
 <td>3 days</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Recommendation</strong>: Present optimal network configuration (e.g., "Open DC6 in North Luzon") to Board</td>
 <td>COO</td>
 <td>CEO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Implementation Plan</strong>: If approved, trigger W116 (Site Selection) for the new DC</td>
 <td>Supply Chain Mgr</td>
@@ -631,18 +694,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Import PO creation (W2B) or Shipment Booking (W144)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Ongoing per import shipment</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~400–600 TEUs/month</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Import Coordinator</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Buyer, Insurance Provider, Finance, Freight Forwarder</td>
 </tr>
@@ -657,36 +725,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Incoterm Selection</strong>: Buyer selects Incoterm (EXW, FOB, CFR, CIF) during PO negotiation (W2B); system calculates risk transfer point</td>
 <td>Buyer</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Insurance Booking</strong>: If Incoterm requires BuildRight to provide insurance (EXW, FOB, CFR), Import Coordinator issues "Marine Insurance Declaration"</td>
 <td>Import Coordinator</td>
 <td>—</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Risk Monitoring</strong>: System tracks shipment location vs. risk transfer point (e.g., "On Board" for FOB); alerts if insurance coverage gap exists</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Claim Initiation</strong>: If damage/loss occurs during transit (W3.6a), Import Coordinator gathers B/L, Survey Report, and Invoice</td>
 <td>Import Coordinator</td>
 <td>—</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Claim Filing</strong>: Submit claim to Marine Insurance provider; track status in ERP</td>
 <td>Import Coordinator</td>
 <td>Finance Mgr</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Settlement</strong>: Finance records insurance recovery; offsets against inventory loss (W3.6a)</td>
 <td>Finance</td>
@@ -711,18 +785,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Import container vessel arrival at Philippine port (Manila/Cebu/Davao) (W144)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Ongoing per import shipment (~20–30 shipments/month)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Covers ~400–600 TEUs/month</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Logistics Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Import Coordinator, Customs Broker, Finance Specialist, Shipping Line</td>
 </tr>
@@ -737,36 +816,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Vessel Arrival</strong>: System pulls actual arrival time from Port Authority API; calculates free-time expiration date (standard: 5 days demurrage, 3 days detention).</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Clearance Tracking</strong>: Import Coordinator monitors customs brokerage clearance progress (W239). If delayed (> 3 days), triggers warning.</td>
 <td>Import Coordinator</td>
 <td>Logistics Mgr</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Demurrage Alert</strong>: System auto-calculates potential demurrage fees if containers are not gate-outed before free-time expiry; alerts Logistics Manager to prioritize pickup.</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Gate-Out & Return</strong>: Containers are hauled to DC (W3). Hauler returns empty container to designated port yard within shipping line's free-time window.</td>
 <td>Hauler / DC Clerk</td>
 <td>Logistics Mgr</td>
 <td>1–2 days</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Charges Auditing</strong>: If demurrage/detention occurs: Shipping line issues invoice; Finance Specialist audits charges against system-captured arrival/gate-out/gate-in logs.</td>
 <td>Finance Specialist</td>
 <td>Controller</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Dispute / Payment</strong>: If charges valid, approve payment to avoid port hold; if invalid, initiate dispute via shipping line portal with log evidence.</td>
 <td>Finance Specialist</td>
@@ -791,18 +876,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Shipment of import PO (W144 / W2B) or inter-island freight dispatch (W66)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Ongoing per shipment</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~20–30 import containers and ~40–50 inter-island shipments/month</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Supply Chain Director</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Logistics Manager, Import Coordinator, Store Operations Rep, 3PL Partners</td>
 </tr>
@@ -817,42 +907,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Shipment Dispatch</strong>: 3PL partner dispatches shipment and transmits Container ID / GPS tracker link via API/EDI to BuildRight.</td>
 <td>3PL Partner</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Milestones Tracking</strong>: Control Tower system aggregates tracking data (vessel GPS, port gate-out/gate-in, inland truck GPS) to trace shipment in transit.</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Dynamic ETA Update</strong>: System dynamically recalculates estimated time of arrival (ETA) based on weather, port speed, and transit history.</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Geofence Alerts</strong>: System detects container entering port/DC zone; auto-alerts DC gate crew (W3) and Import Coordinator to prepare receiving.</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Exception Trigger</strong>: If a shipment is delayed > 24 hours from original ETA, system triggers alert. Import Coordinator investigates bottleneck.</td>
 <td>Import Coordinator</td>
 <td>Logistics Mgr</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Re-routing / Mitigation</strong>: If critical delay threatens store stockout, Supply Chain Director authorizes inventory reallocation (W105) or alternative local sourcing (W60).</td>
 <td>Supply Chain Director</td>
 <td>VP Supply Chain</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Carrier Review</strong>: Monthly, Logistics Manager reviews carrier lead-time performance and delay metrics in S&OP dashboard (W133).</td>
 <td>Logistics Manager</td>

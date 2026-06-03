@@ -127,30 +127,39 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Component</th>
 <th>Reference Spec</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Terminal Type</strong></td>
 <td>All-in-one POS terminal (touchscreen)</td>
 </tr>
+<tr>
 <td><strong>Screen Size</strong></td>
 <td>15" touchscreen (cashier) + customer-facing display</td>
 </tr>
+<tr>
 <td><strong>Barcode Scanner</strong></td>
 <td>Integrated 2D imager (1D + 2D: QR, DataMatrix) + handheld scanner</td>
 </tr>
+<tr>
 <td><strong>Receipt Printer</strong></td>
 <td>80mm thermal printer (BIR-registered format)</td>
 </tr>
+<tr>
 <td><strong>Cash Drawer</strong></td>
 <td>Triggered by POS; 4-bill / 8-coin compartments</td>
 </tr>
+<tr>
 <td><strong>Payment Device</strong></td>
 <td>PIN pad for card (EMV/chip & contactless); e-wallet QR support</td>
 </tr>
+<tr>
 <td><strong>Offline Storage</strong></td>
 <td>Must store ≥ 8 hours of transactions locally (~4,700 txns per store per day)</td>
 </tr>
+<tr>
 <td><strong>Connectivity</strong></td>
 <td>Primary link + failover connectivity</td>
 </tr>
+<tr>
 <td><strong>Central Management</strong></td>
 <td>Centrally managed (MDM or equivalent); OTA updates across 1,000 terminals</td>
 </tr>
@@ -164,36 +173,43 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Qty</th>
 <th>Total (PHP)</th>
 </tr></thead><tbody>
+<tr>
 <td>POS Terminal (all-in-one)</td>
 <td>~20,000</td>
 <td>1,000</td>
 <td>20,000,000</td>
 </tr>
+<tr>
 <td>Barcode Scanner (handheld)</td>
 <td>~5,000</td>
 <td>1,000</td>
 <td>5,000,000</td>
 </tr>
+<tr>
 <td>Receipt Printer</td>
 <td>~8,000</td>
 <td>1,000</td>
 <td>8,000,000</td>
 </tr>
+<tr>
 <td>Cash Drawer</td>
 <td>~5,000</td>
 <td>1,000</td>
 <td>5,000,000</td>
 </tr>
+<tr>
 <td>Payment PIN Pad</td>
 <td>~15,000</td>
 <td>1,000</td>
 <td>15,000,000</td>
 </tr>
+<tr>
 <td><strong>Per-Store Total (5 terminals)</strong></td>
 <td></td>
 <td></td>
 <td><strong>~PHP 265,000</strong></td>
 </tr>
+<tr>
 <td><strong>All 200 Stores</strong></td>
 <td></td>
 <td></td>
@@ -216,21 +232,27 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Consideration</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td>200 store locations with POS</td>
 <td>Requires reliable connectivity or robust offline mode</td>
 </tr>
+<tr>
 <td>5 DCs with WMS/RF guns</td>
 <td>Low-latency connection needed for real-time pick/ship</td>
 </tr>
+<tr>
 <td>1,000 POS terminals</td>
 <td>Centralized management is essential</td>
 </tr>
+<tr>
 <td>7,050 employees</td>
 <td>HR/payroll can be cloud-hosted</td>
 </tr>
+<tr>
 <td>Philippine regulatory filing</td>
 <td>BIR, SSS, PhilHealth, Pag-IBIG file generation</td>
 </tr>
+<tr>
 <td>Data residency</td>
 <td>No strict PH data residency requirement, but Asia-Pacific hosting recommended for latency</td>
 </tr>
@@ -247,21 +269,25 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Reference Bandwidth</th>
 <th>Rationale</th>
 </tr></thead><tbody>
+<tr>
 <td>Store</td>
 <td>200</td>
 <td>≥ 2 Mbps stable + failover link</td>
 <td>POS sync, price updates, inventory updates</td>
 </tr>
+<tr>
 <td>DC</td>
 <td>5</td>
 <td>≥ 10 Mbps stable, redundant</td>
 <td>WMS real-time operations, 150 RF guns per DC</td>
 </tr>
+<tr>
 <td>HQ</td>
 <td>1</td>
 <td>≥ 100 Mbps</td>
 <td>300 users, reporting, batch processing</td>
 </tr>
+<tr>
 <td><strong>Total WAN</strong></td>
 <td><strong>206</strong></td>
 <td><strong>~550 Mbps aggregate</strong></td>
@@ -276,26 +302,32 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Target</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td>RPO (back-office)</td>
 <td>≤ 1 hour</td>
 <td>Financial data, inventory</td>
 </tr>
+<tr>
 <td>RTO (back-office)</td>
 <td>≤ 4 hours</td>
 <td>Core ERP functions</td>
 </tr>
+<tr>
 <td>POS offline endurance</td>
 <td>≥ 8 hours</td>
 <td>Must continue selling without connectivity</td>
 </tr>
+<tr>
 <td>POS sync on reconnection</td>
 <td>Automatic</td>
 <td>No manual intervention; reconcile all offline transactions</td>
 </tr>
+<tr>
 <td>Data backup</td>
 <td>Daily</td>
 <td>30-day rolling + 7-year archive</td>
 </tr>
+<tr>
 <td>Data retention</td>
 <td>7 years</td>
 <td>BIR requirement</td>
@@ -317,42 +349,52 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Suggested Method</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td>POS ↔ ERP</td>
 <td>API (real-time or near-real-time)</td>
 <td>Batch fallback every 15 min if real-time unavailable</td>
 </tr>
+<tr>
 <td>Ecommerce ↔ ERP</td>
 <td>REST API</td>
 <td>Real-time for orders; near-real-time for inventory</td>
 </tr>
+<tr>
 <td>Payment Gateway → ERP</td>
 <td>Webhook / API</td>
 <td>Real-time payment confirmation</td>
 </tr>
+<tr>
 <td>Bank ↔ ERP</td>
 <td>File-based (CSV/XML) or API</td>
 <td>Bank-specific formats (BDO, BPI, Metrobank)</td>
 </tr>
+<tr>
 <td>BIR eFPS ← ERP</td>
 <td>File export</td>
 <td>BIR-formatted tax return files</td>
 </tr>
+<tr>
 <td>SSS / PhilHealth / Pag-IBIG ← ERP</td>
 <td>File export</td>
 <td>Monthly contribution files with PRN</td>
 </tr>
+<tr>
 <td>Delivery Partners ↔ ERP</td>
 <td>API</td>
 <td>Real-time order dispatch and status tracking</td>
 </tr>
+<tr>
 <td>Loyalty Engine ↔ ERP</td>
 <td>API</td>
 <td>Real-time points earn/redeem</td>
 </tr>
+<tr>
 <td>WMS ↔ ERP</td>
 <td>API or middleware</td>
 <td>Real-time for pick/ship confirmations</td>
 </tr>
+<tr>
 <td>Supplier Portal ↔ ERP</td>
 <td>Web portal / EDI</td>
 <td>PO viewing, ASN, invoice submission</td>
@@ -404,24 +446,31 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Area</th>
 <th>Expectation</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Access Control</strong></td>
 <td>Role-based access control (RBAC) with per-entity, per-location, per-function permissions</td>
 </tr>
+<tr>
 <td><strong>Audit Trail</strong></td>
 <td>All financial and inventory transactions must have immutable audit logs</td>
 </tr>
+<tr>
 <td><strong>Data Encryption</strong></td>
 <td>Encryption at rest and in transit for all sensitive data</td>
 </tr>
+<tr>
 <td><strong>POS Security</strong></td>
 <td>Endpoint protection on all POS devices; tamper-resistant payment processing</td>
 </tr>
+<tr>
 <td><strong>Customer Data</strong></td>
 <td>RA 10173 (Data Privacy Act) compliance; consent management; data subject access requests</td>
 </tr>
+<tr>
 <td><strong>Vulnerability Management</strong></td>
 <td>Regular patching; annual penetration testing</td>
 </tr>
+<tr>
 <td><strong>Compliance</strong></td>
 <td>SOC 2 Type II or ISO 27001 certification target for ERP provider</td>
 </tr>

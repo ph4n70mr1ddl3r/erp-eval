@@ -136,18 +136,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Customer requests a quote for a specific construction project or bulk purchase</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~300–500 quotes/month</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Quote value: PHP 100K to PHP 10M+</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Sales Rep (B2B)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Sales Rep, Category Manager (for deep discounts), Project Manager (Client)</td>
 </tr>
@@ -162,48 +167,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Sales Rep receives Bill of Quantities (BOQ) or item list from client project</td>
 <td>Sales Rep</td>
 <td>—</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Sales Rep creates Quote in system: selects items, specifies quantities, sets validity period (typically 15–30 days)</td>
 <td>Sales Rep</td>
 <td>—</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td>System checks current stock (ATP) across all DCs/Stores; flags items with insufficient stock for the project timeline</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Pricing Strategy</strong>: (a) If standard B2B price list used: auto-approved; (b) If additional discount requested (> 5% off B2B list): route to Category Manager for approval; (c) If "Loss Leader" pricing for strategic bid: route to VP Merchandising</td>
 <td>Sales Rep / Cat. Manager</td>
 <td>VP Merchandising</td>
 <td>1–4 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td>System generates Quotation PDF with terms (payment, delivery, lead times, force majeure)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Sales Rep presents quote to client; negotiates terms</td>
 <td>Sales Rep</td>
 <td>Sales Manager</td>
 <td>1–5 days</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Client accepts: Sales Rep converts Quote to <strong>Project Contract / Master Sales Order</strong> in system</td>
 <td>Sales Rep</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>8</td>
 <td>If Quote expires: system auto-cancels; Sales Rep can "re-quote" with updated pricing</td>
 <td>System</td>
@@ -220,9 +233,11 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Project Contract signed; requires locked-in pricing for duration of project (6–18 months)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Pricing Analyst</td>
 </tr>
@@ -237,24 +252,28 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Pricing Analyst creates a <strong>Project Price Book</strong> linked to the specific Customer + Project ID</td>
 <td>Pricing Analyst</td>
 <td>Category Manager</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Enters locked-in prices for the agreed BOQ items; sets price validity end date</td>
 <td>Pricing Analyst</td>
 <td>Category Manager</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td>System ensures that when this Customer orders for this Project, the Project Price Book takes precedence over standard B2B or Promo price lists</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Price Escalation Clause</strong>: If contract allows for price adjustment (e.g., fuel/commodity surcharge), Pricing Analyst updates Price Book based on formula; triggers notification to client</td>
 <td>Pricing Analyst</td>
@@ -271,15 +290,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Project site requests a partial delivery (Call-Off) against the Master Sales Order</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Weekly/Bi-weekly per project</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Total project may have 10–50 partial deliveries</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Sales Coordinator</td>
 </tr>
@@ -294,36 +317,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Client Project Site sends "Call-Off" request (Item, Quantity, Site Location, Date)</td>
 <td>Client / Sales Rep</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Sales Coordinator creates <strong>Release Order (Delivery Order)</strong> against the Master Sales Order</td>
 <td>Sales Coordinator</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td>System validates: (a) Quantity is within Master Order balance, (b) Customer has available credit limit, (c) Customer has no overdue invoices</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td>System reserves stock at the designated DC or Store for this release</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Logistics processes the delivery per W19 (Dispatch)</td>
 <td>Logistics Team</td>
 <td>—</td>
 <td>Per W19</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Upon delivery: System updates Master Order "Remaining Quantity"; posts to AR (W8) if on-account</td>
 <td>System</td>
@@ -340,9 +369,11 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Project milestone achieved; or final billing with retention</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>AR Clerk</td>
 </tr>
@@ -357,24 +388,28 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Sales Rep confirms milestone achievement with client (e.g., "Structural Phase Complete")</td>
 <td>Sales Rep</td>
 <td>—</td>
 <td>—</td>
 </tr>
+<tr>
 <td>2</td>
 <td>AR Clerk generates Milestone Invoice per contract terms (e.g., 20% of total project value)</td>
 <td>AR Clerk</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Retention Management</strong>: If contract specifies retention (typically 5–10% held until final acceptance), system automatically deducts retention from each milestone invoice and posts to "Retention Receivable" account</td>
 <td>System / AR Clerk</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Final Acceptance: Client signs off; AR Clerk invoices for the total accumulated Retention balance</td>
 <td>AR Clerk</td>
@@ -391,9 +426,11 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Government (PhilGEPS) or Private Institutional RFP/RFQ issued</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Bid & Tender Manager</td>
 </tr>
@@ -408,36 +445,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Bid Manager monitors PhilGEPS/Tender boards; downloads RFP</td>
 <td>Bid Manager</td>
 <td>—</td>
 <td>Daily</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Initial Go/No-Go: Evaluate capability, capacity, and margin potential</td>
 <td>Bid Manager</td>
 <td>Sales Director</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Coordinate with Legal (Tender Bonds, JV agreements) and Finance (Performance Bonds, Cash Flow)</td>
 <td>Bid Manager</td>
 <td>Legal / CFO</td>
 <td>3–5 days</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Compile Bid Package: Pricing (W162), Technical Specs (W50), Corporate Docs</td>
 <td>Bid Manager</td>
 <td>—</td>
 <td>1–2 weeks</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Submit Bid (Electronic or Physical); track bid opening results</td>
 <td>Bid Manager</td>
 <td>—</td>
 <td>Per RFP</td>
 </tr>
+<tr>
 <td>6</td>
 <td>If won: Transition to W163 (Contract Pricing) and W164 (Fulfillment)</td>
 <td>Bid Manager</td>
@@ -454,18 +497,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Monthly sales commission cycle (after month-end close and collection confirmation)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Monthly</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~50 B2B/Trade Sales Reps and Store Account Managers</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Sales Operations Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Sales Operations, Finance (Payroll), HR, Sales Director, Sales Reps</td>
 </tr>
@@ -480,36 +528,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Data Pull</strong>: Sales Operations pulls monthly sales and collections report by Sales Rep / Account Manager from ERP. Commission is calculated based on realized collections (paid invoices), not just invoiced sales, to mitigate bad debt risk (W108).</td>
 <td>Sales Operations</td>
 <td>—</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Tiered Calculation</strong>: System applies tiered commission rates based on individual margin performance (higher margin items earn higher commission rates) and target achievement (e.g. 80-99% target gets standard commission, 100%+ gets accelerator).</td>
 <td>System / Sales Ops</td>
 <td>Sales Ops Mgr</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Deductions & Adjustments</strong>: System deducts returns (W12) or credit notes issued against original sales of the rep, and adjusts for any shared commission deals between reps.</td>
 <td>System</td>
 <td>Sales Ops Mgr</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Review & Approval</strong>: Sales Operations generates commission sheets; routes to Sales Director and CFO for approval.</td>
 <td>Sales Ops Mgr</td>
 <td>CFO</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Dispute Window</strong>: Approved sheets published to Sales Reps via portal/email; 3-day window for reps to raise disputes or missing deal inquiries.</td>
 <td>Sales Reps</td>
 <td>Sales Ops Mgr</td>
 <td>3 days</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Payroll Integration</strong>: Final commission figures approved and pushed to HR/Payroll module (W10) for inclusion in the mid-month payroll run.</td>
 <td>Payroll Clerk</td>
@@ -540,18 +594,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Staged delivery (Call-Off) (W164) is blocked at release because customer exceeds credit limit or has overdue invoices</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~30–50 exception requests/month</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Exception values: PHP 100K to PHP 5M+</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>B2B Credit Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>B2B Credit Manager, Sales Rep, Credit Control Clerk, VP Sales, CFO, Customer</td>
 </tr>
@@ -566,36 +625,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>System Hold</strong>: System automatically blocks Release Order (W164.3) due to credit limit breach or overdue balance; triggers alert to Sales Rep and Credit Control Clerk</td>
 <td>System</td>
 <td>B2B Credit Manager</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Status Verification</strong>: Credit Control Clerk reviews account (AR ledger, average payment days, credit utilization); consults with Sales Rep to check for payments in transit or bank guarantees</td>
 <td>Credit Control Clerk</td>
 <td>—</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Escalation Request</strong>: Sales Rep submits "Credit Exception Request" in system, detailing project urgency, invoice value, payment commitment date, and attachment of client commitment letter</td>
 <td>Sales Rep</td>
 <td>B2B Credit Manager</td>
 <td>20 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Tiered Routing</strong>: System routes the request based on exception value for digital approval:<br>• Up to PHP 100K: Approved by Credit Manager;<br>• PHP 100K to PHP 1M: Approved by Credit Manager + VP Sales;<br>• Above PHP 1M: Approved by CFO</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Temporary Release</strong>: Approver grants exception; Credit Manager enters a "Temporary Credit Override" in ERP with a strict expiry date (typically 7–14 days); system releases blocked order for dispatch</td>
 <td>B2B Credit Manager / CFO</td>
 <td>—</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Auto-Lock Enforcement</strong>: System tracks payment; if commitment not fulfilled within override window, system automatically locks B2B customer account and suspends all subsequent deliveries</td>
 <td>System</td>

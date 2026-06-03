@@ -123,18 +123,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Parameter</th>
 <th>Decision</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>App Type</strong></td>
 <td>Native mobile app (iOS + Android)</td>
 </tr>
+<tr>
 <td><strong>Architecture</strong></td>
 <td>Mobile app → API gateway → ERP backend + ecommerce platform</td>
 </tr>
+<tr>
 <td><strong>Authentication</strong></td>
 <td>Email/phone registration; optional social login (Google, Facebook); biometric login (fingerprint/face)</td>
 </tr>
+<tr>
 <td><strong>Minimum OS</strong></td>
 <td>iOS 15+; Android 10+</td>
 </tr>
+<tr>
 <td><strong>Distribution</strong></td>
 <td>Apple App Store + Google Play Store</td>
 </tr>
@@ -148,76 +153,91 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>ERP Integration</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Product browsing & search</strong></td>
 <td>Must Have</td>
 <td>ECOM-009 (catalog sync), MDM-002 (attributes)</td>
 <td>Full 35K SKU catalog with category navigation, keyword search, filters</td>
 </tr>
+<tr>
 <td><strong>Real-time inventory check</strong></td>
 <td>Must Have</td>
 <td>ECOM-001 (inventory sync)</td>
 <td>Per-store availability; "Select your store" selector</td>
 </tr>
+<tr>
 <td><strong>BOPIS ordering</strong></td>
 <td>Must Have</td>
 <td>ECOM-003 (BOPIS flow)</td>
 <td>Select store → add to cart → pay online → receive pickup notification</td>
 </tr>
+<tr>
 <td><strong>Home delivery ordering</strong></td>
 <td>Must Have</td>
 <td>ECOM-004 (delivery flow)</td>
 <td>Enter address → select items → choose delivery slot → pay online</td>
 </tr>
+<tr>
 <td><strong>Order tracking</strong></td>
 <td>Must Have</td>
 <td>ECOM-005 (order status)</td>
 <td>Real-time tracking for home delivery; pickup status for BOPIS</td>
 </tr>
+<tr>
 <td><strong>Loyalty account management</strong></td>
 <td>Must Have</td>
 <td>CRM-001, CRM-005</td>
 <td>Points balance, tier status, transaction history, digital loyalty card</td>
 </tr>
+<tr>
 <td><strong>Payment integration</strong></td>
 <td>Must Have</td>
 <td>ECOM-006 (payment gateway)</td>
 <td>GCash, Maya, credit/debit card, bank transfer, COD</td>
 </tr>
+<tr>
 <td><strong>Returns initiation</strong></td>
 <td>Must Have</td>
 <td>ECOM-007 (online return)</td>
 <td>Submit return request with photos; QR code authorization for in-store drop-off</td>
 </tr>
+<tr>
 <td><strong>Personalized promotions</strong></td>
 <td>Should Have</td>
 <td>RPT-003, CRM-007</td>
 <td>Push notifications for deals based on purchase history and tier</td>
 </tr>
+<tr>
 <td><strong>Digital receipts</strong></td>
 <td>Should Have</td>
 <td>POS-012</td>
 <td>Access historical transaction receipts</td>
 </tr>
+<tr>
 <td><strong>Store locator</strong></td>
 <td>Must Have</td>
 <td>MDM-006 (location master)</td>
 <td>Map view with store hours, contact, directions, real-time stock check</td>
 </tr>
+<tr>
 <td><strong>Wishlist / save for later</strong></td>
 <td>Nice to Have</td>
 <td>—</td>
 <td>Local storage + server sync</td>
 </tr>
+<tr>
 <td><strong>Barcode scanner</strong></td>
 <td>Should Have</td>
 <td>ECOM-001, MDM-001</td>
 <td>Scan item in-store to view product details, specs, reviews, and stock</td>
 </tr>
+<tr>
 <td><strong>Project lists</strong></td>
 <td>Nice to Have</td>
 <td>—</td>
 <td>Create material lists for home projects; share with trade account</td>
 </tr>
+<tr>
 <td><strong>Push notifications</strong></td>
 <td>Should Have</td>
 <td>—</td>
@@ -259,41 +279,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>ERP Integration</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Daily sales dashboard</strong></td>
 <td>Must Have</td>
 <td>RPT-001, RPT-002</td>
 <td>Real-time store revenue, transactions, ATV, vs. target</td>
 </tr>
+<tr>
 <td><strong>Exception alerts</strong></td>
 <td>Must Have</td>
 <td>W37 (loss prevention)</td>
 <td>Void alerts, price override alerts, high-value return alerts</td>
 </tr>
+<tr>
 <td><strong>Approval inbox</strong></td>
 <td>Must Have</td>
 <td>PUR-010, POS-006</td>
 <td>Approve POs, price overrides, voids, returns above threshold</td>
 </tr>
+<tr>
 <td><strong>Staff schedule view</strong></td>
 <td>Should Have</td>
 <td>HR-006 (shift scheduling)</td>
 <td>View weekly schedule, approve swap requests</td>
 </tr>
+<tr>
 <td><strong>Inventory alerts</strong></td>
 <td>Should Have</td>
 <td>INV-002</td>
 <td>Stockout alerts, negative inventory, low-stock warnings</td>
 </tr>
+<tr>
 <td><strong>Store P&L summary</strong></td>
 <td>Should Have</td>
 <td>RPT-002</td>
 <td>Monthly store P&L with variance to budget</td>
 </tr>
+<tr>
 <td><strong>BOPIS management</strong></td>
 <td>Should Have</td>
 <td>ECOM-003</td>
 <td>View pending BOPIS picks, monitor SLA compliance</td>
 </tr>
+<tr>
 <td><strong>Receiving schedule</strong></td>
 <td>Should Have</td>
 <td>W4, W18</td>
@@ -309,26 +337,31 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>ERP Integration</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Cross-store inventory lookup</strong></td>
 <td>Must Have</td>
 <td>INV-002</td>
 <td>Real-time stock check at nearby stores for customer requests</td>
 </tr>
+<tr>
 <td><strong>Product information lookup</strong></td>
 <td>Must Have</td>
 <td>MDM-001, MDM-002</td>
 <td>Scan barcode → view specs, price, stock, alternatives</td>
 </tr>
+<tr>
 <td><strong>Customer-initiated transfer request</strong></td>
 <td>Should Have</td>
 <td>W22</td>
 <td>Create inter-store transfer for customer</td>
 </tr>
+<tr>
 <td><strong>Backorder creation</strong></td>
 <td>Should Have</td>
 <td>W56</td>
 <td>Create backorder for out-of-stock item</td>
 </tr>
+<tr>
 <td><strong>Special order intake</strong></td>
 <td>Should Have</td>
 <td>W38</td>
@@ -344,21 +377,25 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>ERP Integration</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Chain-wide KPI dashboard</strong></td>
 <td>Must Have</td>
 <td>RPT-001</td>
 <td>Revenue, margin, transactions, same-store sales</td>
 </tr>
+<tr>
 <td><strong>Store heat map</strong></td>
 <td>Should Have</td>
 <td>RPT-003</td>
 <td>Performance by region/store on map</td>
 </tr>
+<tr>
 <td><strong>Cash position</strong></td>
 <td>Should Have</td>
 <td>FIN-010</td>
 <td>Real-time cash position per entity</td>
 </tr>
+<tr>
 <td><strong>Alert inbox</strong></td>
 <td>Should Have</td>
 <td>—</td>
@@ -374,31 +411,37 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>ERP Integration</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>PO/TO lookup</strong></td>
 <td>Must Have</td>
 <td>PUR-011, WMS-004</td>
 <td>Pull up expected receipt on handheld</td>
 </tr>
+<tr>
 <td><strong>Barcode scanning</strong></td>
 <td>Must Have</td>
 <td>WMS-001</td>
 <td>Scan items against PO</td>
 </tr>
+<tr>
 <td><strong>Goods receipt posting</strong></td>
 <td>Must Have</td>
 <td>INV-001</td>
 <td>Post GR in real-time</td>
 </tr>
+<tr>
 <td><strong>Putaway direction</strong></td>
 <td>Must Have</td>
 <td>WMS-004</td>
 <td>System-directed putaway location</td>
 </tr>
+<tr>
 <td><strong>Cycle count entry</strong></td>
 <td>Must Have</td>
 <td>INV-006</td>
 <td>Enter count quantities on device</td>
 </tr>
+<tr>
 <td><strong>Discrepancy flagging</strong></td>
 <td>Must Have</td>
 <td>PUR-011</td>
@@ -416,24 +459,31 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Question</th>
 <th>Relevance</th>
 </tr></thead><tbody>
+<tr>
 <td>Does the ERP provide native mobile apps for store managers, or must they be custom-built?</td>
 <td>Affects implementation cost and timeline</td>
 </tr>
+<tr>
 <td>What is the mobile API strategy (REST, GraphQL, SDK)?</td>
 <td>Determines mobile development flexibility</td>
 </tr>
+<tr>
 <td>Can the POS system be extended to handheld devices for floor selling?</td>
 <td>Enables line-busting during peak periods</td>
 </tr>
+<tr>
 <td>Does the ERP vendor offer a customer-facing mobile commerce SDK?</td>
 <td>Reduces custom development for the customer app</td>
 </tr>
+<tr>
 <td>How do mobile devices authenticate (SSO, OAuth, biometric)?</td>
 <td>Security and user experience</td>
 </tr>
+<tr>
 <td>Is offline capability available on employee mobile apps?</td>
 <td>Store connectivity during outages</td>
 </tr>
+<tr>
 <td>What is the push notification architecture?</td>
 <td>Real-time alerting for managers and customers</td>
 </tr>
@@ -448,22 +498,27 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Recommendation</th>
 <th>Rationale</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Customer mobile app</strong></td>
 <td>Build (with ERP API backend)</td>
 <td>Customer experience is a brand differentiator; native app provides best UX, push notifications, and biometric login; backend data from ERP via APIs</td>
 </tr>
+<tr>
 <td><strong>Store manager app</strong></td>
 <td>ERP-native or configure</td>
 <td>Most ERPs offer manager dashboards; prefer configuring ERP-provided app to reduce custom development</td>
 </tr>
+<tr>
 <td><strong>RF / warehouse mobile</strong></td>
 <td>ERP-native (WMS module)</td>
 <td>Must use ERP's WMS mobile client for real-time integration; RF device compatibility is a selection criterion</td>
 </tr>
+<tr>
 <td><strong>Executive dashboard</strong></td>
 <td>ERP-native or Power BI / embedded</td>
 <td>Use ERP's built-in executive dashboards or BI tool integration (e.g., Power BI for D365, SAC for SAP)</td>
 </tr>
+<tr>
 <td><strong>Sales associate handheld</strong></td>
 <td>Build (lightweight)</td>
 <td>Simple inventory lookup and transfer request; can be built as a responsive web app or native app using ERP APIs</td>

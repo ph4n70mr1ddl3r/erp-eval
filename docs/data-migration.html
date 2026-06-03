@@ -125,31 +125,37 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Migration Approach</th>
 <th>Timing</th>
 </tr></thead><tbody>
+<tr>
 <td>Legacy on-premise accounting</td>
 <td>GL, AP, AR, FA</td>
 <td>Balance migration as of go-live; open items individually</td>
 <td>Pilot go-live weekend</td>
 </tr>
+<tr>
 <td>Standalone POS</td>
 <td>Sales history, item master</td>
 <td>Summarized daily by store (12 months); detailed last 3 months</td>
 <td>Pilot go-live weekend</td>
 </tr>
+<tr>
 <td>Spreadsheet purchasing</td>
 <td>Vendor master, open POs</td>
 <td>Active POs migrated; vendor master cleansed</td>
 <td>Pilot go-live weekend</td>
 </tr>
+<tr>
 <td>Separate payroll software</td>
 <td>Employee master, YTD earnings</td>
 <td>Full employee master + year-to-date for BIR reconciliation</td>
 <td>Pilot go-live weekend</td>
 </tr>
+<tr>
 <td>Custom ecommerce</td>
 <td>Customer/loyalty accounts, order history</td>
 <td>Full loyalty member migration; order history last 6 months</td>
 <td>Phase 5 (optimization)</td>
 </tr>
+<tr>
 <td>Manual inventory</td>
 <td>On-hand quantities per location</td>
 <td>Full wall-to-wall count at go-live; counts loaded as opening balances</td>
@@ -169,56 +175,67 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Cleansing Rule</th>
 <th>Validation</th>
 </tr></thead><tbody>
+<tr>
 <td>Item Code / SKU</td>
 <td>POS item master</td>
 <td>Assign new ERP item codes if format changes; maintain cross-reference table</td>
 <td>Uniqueness check; no duplicates</td>
 </tr>
+<tr>
 <td>Item Description</td>
 <td>POS item master</td>
 <td>Standardize naming convention; trim whitespace; max length per ERP</td>
 <td>Non-blank; length check</td>
 </tr>
+<tr>
 <td>Category / Subcategory</td>
 <td>Spreadsheet / manual mapping</td>
 <td>Map to new hierarchical category tree (MDM-007); validate all items assigned</td>
 <td>Every item in valid category</td>
 </tr>
+<tr>
 <td>Unit of Measure (UOM)</td>
 <td>POS item master</td>
 <td>Standardize UOM codes (EA, KG, M, BF, PK); validate catch-weight flag</td>
 <td>Valid UOM code; catch-weight items flagged</td>
 </tr>
+<tr>
 <td>Barcode / GTIN</td>
 <td>POS item master</td>
 <td>Validate check digits; flag duplicates; standardize to GS1 format</td>
 <td>Uniqueness; valid check digit</td>
 </tr>
+<tr>
 <td>Item Type</td>
 <td>Manual classification</td>
 <td>Classify as: Standard Stock, Seasonal, Consignment, Non-Stock, Kit, Service, Catch-Weight</td>
 <td>Valid type; consignment items linked to vendor</td>
 </tr>
+<tr>
 <td>Active / Inactive status</td>
 <td>POS item master + manual</td>
 <td>Items with sales in last 12 months = Active; otherwise = Inactive (retained for history)</td>
 <td>Total active = ~35,000</td>
 </tr>
+<tr>
 <td>WAC unit cost</td>
 <td>Legacy accounting</td>
 <td>Take last known cost from accounting system; will be recalculated at first GR in new system</td>
 <td>Positive value; reasonable range check</td>
 </tr>
+<tr>
 <td>SRP (Selling Price)</td>
 <td>POS item master</td>
 <td>Validate as positive; flag items with margin < 10% for review</td>
 <td>Positive; margin check</td>
 </tr>
+<tr>
 <td>Tax classification</td>
 <td>Manual (VATable by default)</td>
 <td>Default to VATable; manually classify VAT-exempt items</td>
 <td>Valid tax code</td>
 </tr>
+<tr>
 <td>Catch-weight indicator</td>
 <td>Manual classification</td>
 <td>Flag items sold by weight/length (lumber, wire, bulk nails)</td>
@@ -236,56 +253,67 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Cleansing Rule</th>
 <th>Validation</th>
 </tr></thead><tbody>
+<tr>
 <td>Vendor Code</td>
 <td>Accounting vendor list</td>
 <td>Assign new ERP codes or retain existing; maintain cross-reference</td>
 <td>Uniqueness</td>
 </tr>
+<tr>
 <td>Vendor Name</td>
 <td>Accounting + PO data</td>
 <td>Standardize: trim whitespace, proper case; deduplicate</td>
 <td>Non-blank; no duplicates</td>
 </tr>
+<tr>
 <td>TIN (Tax Identification Number)</td>
 <td>Accounting vendor list</td>
 <td>Validate format (XXX-XXX-XXX-XXX); flag missing TIN</td>
 <td>Valid TIN format; non-blank</td>
 </tr>
+<tr>
 <td>Business Address</td>
 <td>Accounting vendor list</td>
 <td>Standardize address format; validate city/province</td>
 <td>Non-blank</td>
 </tr>
+<tr>
 <td>Payment Terms</td>
 <td>PO data / contracts</td>
 <td>Map to standard terms (Net 30, Net 60, LC, TT); default Net 30</td>
 <td>Valid term code</td>
 </tr>
+<tr>
 <td>Currency</td>
 <td>PO data</td>
 <td>PHP for local; USD for import vendors</td>
 <td>Valid currency code</td>
 </tr>
+<tr>
 <td>Bank Account Details</td>
 <td>Accounting vendor list</td>
 <td>Validate bank name, account number format; flag missing</td>
 <td>Format validation</td>
 </tr>
+<tr>
 <td>EWT Alphanumeric Tax Code (ATC)</td>
 <td>Manual classification</td>
 <td>Map vendor to correct ATC (WI010 for goods 1%, WI020 for services 2%, etc.) per BIR</td>
 <td>Valid ATC code</td>
 </tr>
+<tr>
 <td>Lead Time (days)</td>
 <td>PO data analysis</td>
 <td>Calculate average actual lead time from historical POs; validate reasonableness</td>
 <td>Positive integer; 1–180 days</td>
 </tr>
+<tr>
 <td>Vendor Category</td>
 <td>Manual mapping</td>
 <td>Link to merchandise category for reporting</td>
 <td>Valid category</td>
 </tr>
+<tr>
 <td>Status (Active/Inactive)</td>
 <td>Accounting + PO data</td>
 <td>Vendors with POs in last 12 months = Active; flag others for review</td>
@@ -303,41 +331,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Cleansing Rule</th>
 <th>Validation</th>
 </tr></thead><tbody>
+<tr>
 <td>Customer ID</td>
 <td>Ecommerce platform</td>
 <td>Assign new ERP IDs; maintain cross-reference</td>
 <td>Uniqueness</td>
 </tr>
+<tr>
 <td>Name</td>
 <td>Ecommerce registration</td>
 <td>Proper case; split into first/last name; deduplicate per W17 dedup rules</td>
 <td>Non-blank</td>
 </tr>
+<tr>
 <td>Email</td>
 <td>Ecommerce registration</td>
 <td>Lowercase; validate format; deduplicate</td>
 <td>Valid email format; unique</td>
 </tr>
+<tr>
 <td>Mobile Number</td>
 <td>Ecommerce registration</td>
 <td>Standardize to +63 format; validate 11-digit PH mobile</td>
 <td>Valid PH mobile format</td>
 </tr>
+<tr>
 <td>Loyalty Tier</td>
 <td>Ecommerce platform</td>
 <td>Default Bronze; recalculate based on trailing 12-month spend after migration</td>
 <td>Valid tier</td>
 </tr>
+<tr>
 <td>Points Balance</td>
 <td>Ecommerce platform</td>
 <td>Migrate current outstanding points balance; validate against source total</td>
 <td>Non-negative; sum matches source</td>
 </tr>
+<tr>
 <td>Data Privacy Consent</td>
 <td>Ecommerce registration</td>
 <td>Migrate consent flag with date and version per RA 10173</td>
 <td>Boolean + date</td>
 </tr>
+<tr>
 <td>Registration Date</td>
 <td>Ecommerce platform</td>
 <td>Retain original registration date for tenure calculation</td>
@@ -355,66 +391,79 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Cleansing Rule</th>
 <th>Validation</th>
 </tr></thead><tbody>
+<tr>
 <td>Employee ID</td>
 <td>Payroll system</td>
 <td>Retain or assign new; maintain cross-reference</td>
 <td>Uniqueness</td>
 </tr>
+<tr>
 <td>Name</td>
 <td>Payroll system</td>
 <td>Proper case; split first/middle/last</td>
 <td>Non-blank</td>
 </tr>
+<tr>
 <td>Entity Assignment</td>
 <td>Payroll system</td>
 <td>Map to correct legal entity (5 entities)</td>
 <td>Valid entity</td>
 </tr>
+<tr>
 <td>Department / Position</td>
 <td>Payroll system</td>
 <td>Map to new department structure and position codes</td>
 <td>Valid dept + position</td>
 </tr>
+<tr>
 <td>Hire Date</td>
 <td>Payroll system</td>
 <td>Retain original hire date for seniority/benefits</td>
 <td>Valid date</td>
 </tr>
+<tr>
 <td>Salary / Rate</td>
 <td>Payroll system</td>
 <td>Migrate current basic salary; validate range</td>
 <td>Positive; reasonable range</td>
 </tr>
+<tr>
 <td>Tax Status (BIR)</td>
 <td>Payroll system</td>
 <td>Map to BIR tax status codes (ME, S, HF, etc.)</td>
 <td>Valid tax status</td>
 </tr>
+<tr>
 <td>SSS / PhilHealth / Pag-IBIG numbers</td>
 <td>Payroll system</td>
 <td>Validate format; flag missing</td>
 <td>Valid format per agency</td>
 </tr>
+<tr>
 <td>TIN</td>
 <td>Payroll system</td>
 <td>Validate format (XXX-XXX-XXX)</td>
 <td>Valid TIN format</td>
 </tr>
+<tr>
 <td>Bank Account</td>
 <td>Payroll system</td>
 <td>Validate bank name + account number</td>
 <td>Format validation</td>
 </tr>
+<tr>
 <td>Employee Type</td>
 <td>Payroll system</td>
 <td>Regular, Probationary, Fixed-term, Project-based</td>
 <td>Valid type</td>
 </tr>
+<tr>
 <td>YTD Earnings & Deductions</td>
 <td>Payroll system</td>
 <td>Migrate year-to-date for BIR annual reconciliation (1702/1604)</td>
 <td>Sum validates to payroll register</td>
 </tr>
+<tr>
 <td>Leave Balances</td>
 <td>Payroll system</td>
 <td>Migrate VL/SL balances as of go-live</td>
@@ -432,31 +481,37 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Cleansing Rule</th>
 <th>Validation</th>
 </tr></thead><tbody>
+<tr>
 <td>GL Account Balances</td>
 <td>Legacy trial balance</td>
 <td>Map to new COA; load as opening balances per entity</td>
 <td>Trial balance balances (debit = credit)</td>
 </tr>
+<tr>
 <td>Open AP Invoices</td>
 <td>Legacy AP subledger</td>
 <td>Migrate individually with vendor, amount, due date, PO reference</td>
 <td>AP subledger = GL AP balance</td>
 </tr>
+<tr>
 <td>Open AR Invoices</td>
 <td>Legacy AR subledger</td>
 <td>Migrate individually with customer, amount, due date</td>
 <td>AR subledger = GL AR balance</td>
 </tr>
+<tr>
 <td>Fixed Asset Register</td>
 <td>Legacy FA register</td>
 <td>Migrate per asset: cost, accumulated depreciation, NBV, useful life remaining</td>
 <td>FA register = GL FA balances</td>
 </tr>
+<tr>
 <td>Open Purchase Orders</td>
 <td>Spreadsheet purchasing</td>
 <td>Migrate active POs with line items, quantities received and remaining</td>
 <td>PO liability = GRNI balance</td>
 </tr>
+<tr>
 <td>Bank Account Balances</td>
 <td>Legacy GL + bank statements</td>
 <td>Reconcile to most recent bank statement before migration</td>
@@ -474,36 +529,43 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Cleansing Rule</th>
 <th>Validation</th>
 </tr></thead><tbody>
+<tr>
 <td>Location</td>
 <td>Physical count sheet</td>
 <td>Map to new location master (200 stores + 5 DCs + HQ)</td>
 <td>Valid location code</td>
 </tr>
+<tr>
 <td>Item / SKU</td>
 <td>Physical count</td>
 <td>Match to migrated item master</td>
 <td>Valid item code</td>
 </tr>
+<tr>
 <td>Quantity on Hand</td>
 <td>Physical count (wall-to-wall)</td>
 <td>Load as opening balance per location per SKU</td>
 <td>Positive or zero</td>
 </tr>
+<tr>
 <td>Unit Cost (WAC)</td>
 <td>Migrated item master</td>
 <td>Apply current WAC from item master to opening quantity</td>
 <td>Positive; WAC × qty = total inventory value</td>
 </tr>
+<tr>
 <td>Consignment flag</td>
 <td>Physical count + vendor master</td>
 <td>Flag vendor-owned items separately from owned inventory</td>
 <td>Boolean; linked to vendor</td>
 </tr>
+<tr>
 <td>Batch / Lot (if applicable)</td>
 <td>Physical count</td>
 <td>Capture lot/batch numbers for lot-tracked items during count</td>
 <td>Alphanumeric; non-blank for lot items</td>
 </tr>
+<tr>
 <td>Expiry Date (if applicable)</td>
 <td>Physical count</td>
 <td>Capture for date-sensitive items during count</td>
@@ -522,30 +584,37 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Applies To</th>
 <th>Description</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Deduplication</strong></td>
 <td>Items, Vendors, Customers</td>
 <td>Fuzzy matching on name + key attribute (items: barcode, vendors: TIN, customers: email/phone); merge duplicates before migration; retain most recently active record</td>
 </tr>
+<tr>
 <td><strong>TIN Validation</strong></td>
 <td>Vendors, Employees</td>
 <td>Validate Philippine TIN format (XXX-XXX-XXX or XXX-XXX-XXX-XXX); flag invalid for manual correction</td>
 </tr>
+<tr>
 <td><strong>Blanket Default Values</strong></td>
 <td>All masters</td>
 <td>Where source data is missing, apply configured defaults (e.g., payment terms = Net 30, currency = PHP, UOM = EA, tax = VATable)</td>
 </tr>
+<tr>
 <td><strong>Trim & Standardize</strong></td>
 <td>All text fields</td>
 <td>Remove leading/trailing whitespace; standardize casing (proper case for names, uppercase for codes)</td>
 </tr>
+<tr>
 <td><strong>Range Validation</strong></td>
 <td>Numeric fields</td>
 <td>Validate that costs, prices, and quantities are within reasonable ranges; flag outliers for manual review</td>
 </tr>
+<tr>
 <td><strong>Referential Integrity</strong></td>
 <td>All transactional data</td>
 <td>Every transaction must reference valid master records (vendor, customer, item, location, employee)</td>
 </tr>
+<tr>
 <td><strong>Historical Data Cutoff</strong></td>
 <td>Transactions</td>
 <td>Summarize historical data older than 12 months at daily level; keep detailed records for last 3–12 months only</td>
@@ -561,42 +630,52 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Method</th>
 <th>Success Criteria</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Record count reconciliation</strong></td>
 <td>Source count = Target count for each data domain</td>
 <td>100% match</td>
 </tr>
+<tr>
 <td><strong>Financial balance reconciliation</strong></td>
 <td>Legacy trial balance = New system opening trial balance (per entity)</td>
 <td>Debits = Credits; net income matches</td>
 </tr>
+<tr>
 <td><strong>AP subledger reconciliation</strong></td>
 <td>Open AP in legacy = Open AP in new system</td>
 <td>Total matches; vendor-level detail matches</td>
 </tr>
+<tr>
 <td><strong>AR subledger reconciliation</strong></td>
 <td>Open AR in legacy = Open AR in new system</td>
 <td>Total matches; customer-level detail matches</td>
 </tr>
+<tr>
 <td><strong>Inventory valuation reconciliation</strong></td>
 <td>Legacy inventory value = New system opening inventory (per location)</td>
 <td>Total matches within 1% (tolerance for count adjustments)</td>
 </tr>
+<tr>
 <td><strong>Employee master completeness</strong></td>
 <td>All active employees migrated with valid mandatory fields</td>
 <td>Zero employees missing SSS/PhilHealth/Pag-IBIG/TIN</td>
 </tr>
+<tr>
 <td><strong>Loyalty points reconciliation</strong></td>
 <td>Source total outstanding points = New system total points liability</td>
 <td>Total matches</td>
 </tr>
+<tr>
 <td><strong>Vendor master completeness</strong></td>
 <td>All active vendors migrated with valid TIN and payment terms</td>
 <td>Zero vendors missing TIN</td>
 </tr>
+<tr>
 <td><strong>Parallel run: payroll</strong></td>
 <td>One payroll cycle in both legacy and new system</td>
 <td>Net pay matches per employee within PHP 1</td>
 </tr>
+<tr>
 <td><strong>Parallel run: month-end</strong></td>
 <td>One month-end close in both systems</td>
 <td>Financial statements match within tolerance</td>
@@ -612,34 +691,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Activity</th>
 <th>When</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>T-12 weeks</strong></td>
 <td>Data cleansing begins (items, vendors, customers, employees)</td>
 <td>During Phase 1 (Design)</td>
 </tr>
+<tr>
 <td><strong>T-8 weeks</strong></td>
 <td>First test migration load; identify issues</td>
 <td>During Phase 2 (Build)</td>
 </tr>
+<tr>
 <td><strong>T-4 weeks</strong></td>
 <td>Second test migration load; validate transformations</td>
 <td>During Phase 2 (Build)</td>
 </tr>
+<tr>
 <td><strong>T-2 weeks</strong></td>
 <td>Dry run migration; full reconciliation</td>
 <td>End of Phase 2</td>
 </tr>
+<tr>
 <td><strong>T-1 week</strong></td>
 <td>Physical inventory count at pilot locations</td>
 <td>Before pilot go-live</td>
 </tr>
+<tr>
 <td><strong>Go-live weekend</strong></td>
 <td>Final delta migration + opening balance load + reconciliation</td>
 <td>Pilot go-live</td>
 </tr>
+<tr>
 <td><strong>T+1 week</strong></td>
 <td>Parallel run: payroll cycle and week of transactions</td>
 <td>During pilot hypercare</td>
 </tr>
+<tr>
 <td><strong>Per wave</strong></td>
 <td>Incremental data loads for new wave locations</td>
 <td>Per implementation roadmap waves</td>

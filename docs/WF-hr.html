@@ -141,18 +141,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Semi-monthly payroll calendar (14th and 28th/30th)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>10 payroll runs/month (5 entities × 2)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~7,050 employees total</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Payroll Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Payroll Officer, HR Assistant, Department Heads (OT/leave approval), Finance (bank file)</td>
 </tr>
@@ -167,90 +172,105 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Payroll Officer pulls time & attendance data from biometric/RFID system</td>
 <td>Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>30 min/run</td>
 </tr>
+<tr>
 <td>2</td>
 <td>HR Assistant verifies approved leaves, overtime, and schedule adjustments are posted</td>
 <td>HR Assistant</td>
 <td>Payroll Manager</td>
 <td>2 hours/run</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Payroll Officer validates: basic salary + OT + night differential + holiday pay + allowances</td>
 <td>Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>1 hour/run</td>
 </tr>
+<tr>
 <td>4</td>
 <td>System calculates deductions: SSS, PhilHealth, Pag-IBIG, withholding tax (TRAIN law), loans, advances</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Payroll Officer reviews computed payroll for anomalies (negative net pay, unusually high OT)</td>
 <td>Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>1 hour/run</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Payroll Manager reviews and approves payroll register</td>
 <td>Payroll Manager</td>
 <td>CHRO</td>
 <td>30 min/run</td>
 </tr>
+<tr>
 <td>7</td>
 <td>System generates bank file for payroll crediting (BDO, BPI, etc.)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Finance/Treasury reviews bank file; transmits to bank</td>
 <td>Treasury Analyst</td>
 <td>CFO</td>
 <td>30 min/run</td>
 </tr>
+<tr>
 <td>9</td>
 <td>System posts payroll journal entries to GL (salary expense, payable, deductions)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Payslips generated; distributed via email or employee self-service portal</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>11</td>
 <td>Monthly: generate SSS PRN, PhilHealth contribution, Pag-IBIG contribution files for remittance</td>
 <td>Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>1 hour/month</td>
 </tr>
+<tr>
 <td>11a</td>
 <td>Payroll Officer reconciles statutory contribution schedule (per-employee breakdown) to generated remittance file and bank payment confirmation; investigates and resolves discrepancies before remittance deadline; system flags employees with missing or incomplete statutory data</td>
 <td>Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>30 min/month</td>
 </tr>
+<tr>
 <td>11b</td>
 <td>Contractual / fixed-term workers: system tracks contract start/end dates and auto-alerts HR Assistant 30 days before expiry; payroll computes pro-rated 13th month pay and statutory benefits per contract duration; end-of-contract settlement computed similar to final pay (W10 step 12) but with different legal basis; if employee converts to regular status, HR Assistant updates employee type in system and payroll adjusts benefit computation accordingly</td>
 <td>HR Assistant / Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>15 min/employee</td>
 </tr>
+<tr>
 <td>12</td>
 <td>Final pay computation (upon employee separation): system calculates pro-rated 13th month pay, converted unused leave credits, less outstanding loans/advances and clearance deductions</td>
 <td>Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>30 min/employee</td>
 </tr>
+<tr>
 <td>13</td>
 <td>System posts final pay as separate payroll run or adjustment; generates final payslip</td>
 <td>System</td>
@@ -289,6 +309,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Responsible</th>
 <th>Cross-Reference</th>
 </tr></thead><tbody>
+<tr>
 <td>SSS employee + employer contributions</td>
 <td>Monthly</td>
 <td>Last day of following month (or 10th of second month per SSS schedule)</td>
@@ -296,6 +317,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Payroll Officer</td>
 <td>W10.11</td>
 </tr>
+<tr>
 <td>PhilHealth contributions</td>
 <td>Monthly</td>
 <td>Every 10th of the following month</td>
@@ -303,6 +325,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Payroll Officer</td>
 <td>W10.11</td>
 </tr>
+<tr>
 <td>Pag-IBIG contributions</td>
 <td>Monthly</td>
 <td>Every 10th of the following month</td>
@@ -310,6 +333,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Payroll Officer</td>
 <td>W10.11</td>
 </tr>
+<tr>
 <td>BIR Withholding Tax on Compensation (1601-C)</td>
 <td>Monthly</td>
 <td>10th of following month</td>
@@ -317,6 +341,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Tax Accountant</td>
 <td>W9A.16</td>
 </tr>
+<tr>
 <td>BIR Expanded Withholding Tax (1601-E)</td>
 <td>Monthly</td>
 <td>10th of following month</td>
@@ -324,6 +349,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Tax Accountant</td>
 <td>W9A.16a</td>
 </tr>
+<tr>
 <td>BIR VAT Return (2550M)</td>
 <td>Monthly</td>
 <td>20th or 25th of following month (per BIR filing threshold)</td>
@@ -331,6 +357,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Tax Accountant</td>
 <td>W9A.16</td>
 </tr>
+<tr>
 <td>BIR Quarterly VAT / Income Tax (2550Q / 1702Q)</td>
 <td>Quarterly</td>
 <td>25th of month following quarter end</td>
@@ -338,6 +365,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Tax Accountant</td>
 <td>W9A.16</td>
 </tr>
+<tr>
 <td>Local Business Tax per LGU</td>
 <td>Per LGU calendar (annual or quarterly)</td>
 <td>Per LGU deadline</td>
@@ -345,6 +373,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Tax Accountant</td>
 <td>W9A.16c</td>
 </tr>
+<tr>
 <td>13th Month Pay distribution</td>
 <td>Annual</td>
 <td>On or before December 24</td>
@@ -352,6 +381,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>Payroll Officer</td>
 <td>W10, W9B.18</td>
 </tr>
+<tr>
 <td>BIR Annual Income Tax Return (1702RT)</td>
 <td>Annual</td>
 <td>April 15 (or as extended)</td>
@@ -383,18 +413,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Vacancy created (resignation, new position, new store opening)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~100–130 hires/month (1,200–1,600/year including turnover + growth)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Peaks during new store openings (35 hires per new store)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>HR Recruitment Officer</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Recruitment Officer, HR Assistant, Hiring Manager, HR Head</td>
 </tr>
@@ -409,72 +444,84 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Hiring Manager submits staffing request with role, department, justification</td>
 <td>Hiring Manager</td>
 <td>Dept. Head</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>HR Recruitment Officer posts job on job boards, social media, walk-in postings</td>
 <td>Recruitment Officer</td>
 <td>HR Head</td>
 <td>30 min/role</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Screen applications; shortlist candidates</td>
 <td>Recruitment Officer</td>
 <td>HR Head</td>
 <td>2–4 hours/role</td>
 </tr>
+<tr>
 <td>3a</td>
 <td><strong>Applicant tracking detail</strong>: system tracks all applicants through a structured pipeline — Applied → Phone Screen → Interview (1st) → Interview (2nd) → Offer → Hired / Rejected; each pipeline stage records date, recruiter notes, interviewer feedback (rating 1–5), and outcome; system auto-sends rejection email to unsuccessful candidates at each stage with configurable template; for high-volume store roles (Sales Associates, Cashiers, Stock Associates), Recruitment Officer may use a walk-in hiring event model with batch applicant entry and bulk status updates; system generates recruitment analytics: time-to-fill by role, sourcing channel effectiveness (job boards, walk-in, referral, social media), offer acceptance rate, interviewer assessment scores; applicant data retained for 1 year per RA 10173 (with candidate consent) for potential future openings</td>
 <td>Recruitment Officer</td>
 <td>HR Head</td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Conduct interviews (1st: HR; 2nd: Hiring Manager)</td>
 <td>Recruitment Officer + Hiring Manager</td>
 <td>Dept. Head</td>
 <td>1 hour/candidate</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Select candidate; extend offer</td>
 <td>Recruitment Officer</td>
 <td>HR Head</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td>New hire completes pre-employment requirements (SSS, PhilHealth, Pag-IBIG, TIN, medical, NBI clearance)</td>
 <td>New Hire</td>
 <td>Recruitment Officer</td>
 <td>—</td>
 </tr>
+<tr>
 <td>7</td>
 <td>HR Assistant creates employee record in system (personal info, position, salary, entity, tax status); employee type classified as regular, probationary, fixed-term, or project-based with contract start/end dates for non-regular employees</td>
 <td>HR Assistant</td>
 <td>HR Head</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>8</td>
 <td>System generates employee ID; enrolls in payroll with correct statutory deductions</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Assign biometric/RFID credentials for time & attendance</td>
 <td>HR Assistant</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Onboarding: safety orientation, company policies, POS/system training</td>
 <td>Dept. Supervisor + HR</td>
 <td>Hiring Manager</td>
 <td>2–3 days</td>
 </tr>
+<tr>
 <td>11</td>
 <td>First payroll: system computes pro-rated salary for partial month</td>
 <td>System</td>
@@ -501,18 +548,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Weekly schedule creation cycle</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Weekly per store; published 1 week in advance</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>30 staff × 200 stores = 6,000 weekly shift assignments; 2–3 shifts per day (opening: 7 AM–2 PM, mid: 10 AM–6 PM, closing: 2 PM–10 PM)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Store Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Store Manager, Assistant Store Manager, Department Supervisors, HR Assistant</td>
 </tr>
@@ -527,60 +579,70 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>System generates draft schedule based on: (a) store operating hours, (b) staffing model per shift (min cashiers, floor associates, receiving), (c) historical sales volume by day and hour, (d) approved leave requests, (e) labor budget (max hours per employee per week)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Store Manager reviews draft schedule; adjusts for: expected delivery days (DSD receiving), upcoming promotions, special events, employee skill mix per shift</td>
 <td>Store Manager</td>
 <td>Store Ops Director</td>
 <td>1 hour/week</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Department Supervisors review shift assignments for their departments; flag conflicts or coverage gaps</td>
 <td>Dept. Supervisor</td>
 <td>Store Manager</td>
 <td>30 min/week</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Store Manager finalizes and publishes schedule in system; employees receive notification (mobile app, SMS, or bulletin board)</td>
 <td>Store Manager</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Employee views schedule; submits swap requests to Store Manager if needed</td>
 <td>Employee</td>
 <td>—</td>
 <td>Self-service</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Store Manager approves or denies shift swap requests; updates schedule</td>
 <td>Store Manager</td>
 <td>—</td>
 <td>15 min/week</td>
 </tr>
+<tr>
 <td>7</td>
 <td>During the week: if unplanned absence (sick leave, emergency): Store Manager activates contingency (call in off-duty employee, redistribute floor staff, cover cashier shift personally)</td>
 <td>Store Manager</td>
 <td>—</td>
 <td>Ad hoc</td>
 </tr>
+<tr>
 <td>8</td>
 <td>System tracks actual hours worked (biometric/RFID clock-in/out) vs. scheduled hours; flags overtime and undertime</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Weekly: Store Manager reviews schedule adherence report; adjusts next week's plan based on actuals</td>
 <td>Store Manager</td>
 <td>Regional Manager</td>
 <td>15 min/week</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Monthly: Regional Manager reviews overtime hours per store vs. labor budget; flags stores consistently exceeding targets</td>
 <td>Regional Manager</td>
@@ -622,18 +684,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Employee submits resignation, or management initiates termination, or employee retires</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~100–130 separations/month (1,200–1,600/year at 15–20% annual turnover)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Peaks in January (post-13th month pay resignations) and during store opening months (transfer to new store vs. separation)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>HR Assistant</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>HR Assistant, HR Head, Department Head, Payroll Officer, IT, Employee</td>
 </tr>
@@ -648,90 +715,105 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Employee submits resignation letter (or management issues termination notice)</td>
 <td>Employee / Dept. Head</td>
 <td>Dept. Head</td>
 <td>—</td>
 </tr>
+<tr>
 <td>2</td>
 <td>HR Assistant creates separation record in system: resignation date, last working day (30-day notice per Labor Code or garden leave), separation type (resignation, termination, retirement, end of contract)</td>
 <td>HR Assistant</td>
 <td>HR Head</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Department Head conducts exit interview; documents feedback (work conditions, compensation, management, reason for leaving)</td>
 <td>Dept. Head</td>
 <td>HR Head</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td>HR Assistant initiates clearance process: system generates clearance form routed to all relevant departments</td>
 <td>System</td>
 <td>HR Assistant</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>IT clearance</strong>: IT confirms return of laptop/tablet/phone (if issued); deactivates system accounts (ERP, POS, email, VPN); revokes access badges</td>
 <td>IT Team</td>
 <td>CIO</td>
 <td>15 min/employee</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Department clearance</strong>: Dept. Head confirms return of company property (uniforms, tools, keys); approves final leave usage</td>
 <td>Dept. Head</td>
 <td>Dept. Head</td>
 <td>10 min/employee</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Finance clearance</strong>: AP Clerk confirms no outstanding cash advances or loans; AR confirms no corporate account exposure</td>
 <td>AP / AR Clerk</td>
 <td>AP/AR Supervisor</td>
 <td>10 min/employee</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Store Operations clearance</strong> (if store employee): Store Manager confirms no pending inventory accountability issues, cash drawer reconciled</td>
 <td>Store Manager</td>
 <td>Store Ops Director</td>
 <td>10 min/employee</td>
 </tr>
+<tr>
 <td>9</td>
 <td>HR Assistant collects all signed clearances; marks clearance as complete in system</td>
 <td>HR Assistant</td>
 <td>HR Head</td>
 <td>10 min/employee</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Payroll Officer computes final pay per W10 step 12: pro-rated salary for final pay period, pro-rated 13th month pay (1/12 of annual basic salary × months worked ÷ 12), converted unused leave credits (VL to cash per company policy), less outstanding loans/advances and clearance deductions; final pay computation varies by separation type — resignation: pro-rated salary + 13th month + VL conversion; termination for cause: pro-rated salary + 13th month (VL conversion per company discretion); retirement: pro-rated salary + 13th month + VL conversion + retirement pay per Labor Code or company plan (whichever is higher); end of contract: pro-rated salary + 13th month + VL conversion + separation pay if applicable per DOLE; system auto-calculates final pay based on separation type classification from W43.2 with Payroll Officer review and validation</td>
 <td>Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>Per W10</td>
 </tr>
+<tr>
 <td>11</td>
 <td>System generates final pay as separate payroll run or adjustment; final payslip issued (W10 step 13)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>12</td>
 <td>System updates employee status to "Separated"; deactivates payroll processing; retains record for regulatory retention (7 years)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>13</td>
 <td>System generates COE (Certificate of Employment) on request: dates of employment, position, compensation range (optional)</td>
 <td>System / HR Assistant</td>
 <td>HR Head</td>
 <td>5 min/request</td>
 </tr>
+<tr>
 <td>14</td>
 <td>HR Head includes separation data in monthly turnover report: rate by department, store, and separation type; exit interview themes</td>
 <td>HR Head</td>
 <td>CHRO</td>
 <td>1 hour/month</td>
 </tr>
+<tr>
 <td>15</td>
 <td>Cross-entity employee transfer (between legal entities, e.g., Depot Inc. → Logistics Inc.): HR Assistant initiates transfer with effective date, destination entity, and new position; system processes as simultaneous separation from source entity and onboarding in destination entity with continuity of service — accumulated leave credits, 13th month pay pro-ration, and seniority carry forward; system deactivates employee in source entity payroll, creates employee record in destination entity with transferred balances, reassigns SSS/PhilHealth/Pag-IBIG to new entity's remittance, and switches BIR withholding tax to new entity's TIN registration; final pay computed at source entity (pro-rated) and first pay at destination entity for the same period; no break in employment continuity</td>
 <td>HR Assistant / Payroll Officer</td>
@@ -775,18 +857,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>New hire onboarding (W15), new system rollout, compliance requirement, periodic schedule, performance review finding</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Continuous; formal training sessions monthly per store; compliance training quarterly</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~7,050 employees; ~1,200–1,600 new hires/year requiring onboarding training; all employees require periodic refresher</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>HR — Training Officer</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Training Officer, Department Supervisors, Store Managers, Category Managers (product knowledge), IT (system training), external trainers</td>
 </tr>
@@ -801,42 +888,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Training Officer maintains annual training calendar: (a) new hire onboarding (W15 step 10 — continuous), (b) quarterly compliance refreshers (safety, BIR procedures, data privacy), (c) semi-annual product knowledge updates (aligned with W1 assortment review and W32 seasonal planning), (d) annual system refresher (POS, ERP updates), (e) leadership development for supervisors and managers</td>
 <td>Training Officer</td>
 <td>HR Head</td>
 <td>4 hours/quarter (planning)</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Training Officer develops or sources training materials per category: (a) creates in-house materials for company-specific processes (POS operations, returns handling, safety procedures, customer service standards), (b) sources external content for compliance topics (fire safety, first aid, hazmat handling for paint/chemicals), (c) coordinates with Category Managers for product knowledge content (new product features, seasonal items)</td>
 <td>Training Officer</td>
 <td>HR Head</td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Training delivery methods by audience: (a) <strong>Store staff (6,000)</strong>: monthly 30-minute department huddles led by Department Supervisors using provided materials; quarterly 2-hour group sessions at store level; (b) <strong>DC staff (~750)</strong>: quarterly safety and equipment training at DC; (c) <strong>HQ staff (~300)</strong>: quarterly system and process training at HQ; (d) <strong>New hires</strong>: W15 onboarding program (2–3 days); (e) <strong>Managers and supervisors</strong>: semi-annual leadership and management skills workshops</td>
 <td>Training Officer / Dept. Supervisors / External Trainers</td>
 <td>HR Head</td>
 <td>Per schedule</td>
 </tr>
+<tr>
 <td>4</td>
 <td>System tracks training completion per employee: attendance recording, quiz/assessment scores (where applicable), certification status and expiry dates</td>
 <td>System / HR Assistant</td>
 <td>Training Officer</td>
 <td>Automated + 15 min/session</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Training Officer generates compliance dashboard: completion rates by training type, overdue trainings by location, certification expiries (e.g., forklift license, fire safety)</td>
 <td>Training Officer</td>
 <td>HR Head</td>
 <td>1 hour/month</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Department Supervisors and Store Managers identify training needs from performance observations (W34 schedule adherence, W37 exception patterns, W41 complaint root causes) and submit training requests to Training Officer</td>
 <td>Dept. Supervisor / Store Manager</td>
 <td>HR Head</td>
 <td>As needed</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Annual: HR Head reviews training program effectiveness: training hours per employee, correlation between training completion and key metrics (POS accuracy, shrinkage rate, customer satisfaction), budget utilization</td>
 <td>HR Head</td>
@@ -854,48 +948,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Delivery Method</th>
 <th>Assessment</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>New hire onboarding</strong></td>
 <td>Per W15</td>
 <td>New employees</td>
 <td>In-person at store/DC + e-learning modules</td>
 <td>POS competency test, safety quiz</td>
 </tr>
+<tr>
 <td><strong>POS operations</strong></td>
 <td>Annual refresher; ad-hoc for system updates</td>
 <td>Cashiers, CSRs</td>
 <td>Hands-on at POS terminal</td>
 <td>Speed and accuracy test</td>
 </tr>
+<tr>
 <td><strong>Product knowledge</strong></td>
 <td>Quarterly (aligned with W1 assortment review)</td>
 <td>Sales Associates, Dept. Supervisors</td>
 <td>Department huddle with Category Manager materials</td>
 <td>Informal — supervisor observation</td>
 </tr>
+<tr>
 <td><strong>Safety & compliance</strong></td>
 <td>Quarterly</td>
 <td>All employees</td>
 <td>E-learning (LMS) + annual practical drill</td>
 <td>Mandatory quiz (pass/fail)</td>
 </tr>
+<tr>
 <td><strong>Hazmat handling</strong></td>
 <td>Annual (for paint/chemical departments)</td>
 <td>Paint dept. staff, receiving clerks</td>
 <td>In-person with certified trainer</td>
 <td>Written test + practical demo</td>
 </tr>
+<tr>
 <td><strong>Loss prevention awareness</strong></td>
 <td>Semi-annual</td>
 <td>All store staff</td>
 <td>E-learning + LP officer presentation (W37)</td>
 <td>Awareness quiz</td>
 </tr>
+<tr>
 <td><strong>Leadership development</strong></td>
 <td>Semi-annual</td>
 <td>Store Managers, Dept. Supervisors, Asst. Managers</td>
 <td>Workshop (2 days)</td>
 <td>360 feedback</td>
 </tr>
+<tr>
 <td><strong>IT system updates</strong></td>
 <td>Per system change (W48 change management)</td>
 <td>Affected users</td>
@@ -936,18 +1038,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Annual performance review cycle; or periodic performance improvement need</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Annual formal review; quarterly check-in; ongoing performance coaching</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~7,050 employees; all employees reviewed annually</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Department Head (for direct reports); Store Manager (for store staff)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Store Manager, Department Supervisors, Department Heads, HR Head, employees</td>
 </tr>
@@ -962,54 +1069,63 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Annual goal-setting</strong> (January): Department Heads and Store Managers set performance goals for each direct report aligned with department/store KPIs — (a) quantitative goals (sales targets, accuracy rates, shrinkage targets for Dept. Supervisors; transaction speed, cash variance for Cashiers; receiving accuracy for Receiving Clerks; cycle count accuracy for Stock Associates), (b) qualitative goals (customer service standards, teamwork, adherence to company policies), (c) development goals (training completion per W51, skill acquisition, cross-training); goals entered in system with measurable targets and timeline</td>
 <td>Dept. Head / Store Manager</td>
 <td>VP / Store Ops Director</td>
 <td>30 min/employee</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Quarterly check-in</strong>: Store Manager or Department Supervisor conducts 15-minute check-in with each direct report — review progress against goals, identify obstacles, adjust goals if business conditions changed; system sends quarterly reminder to managers; check-in notes documented in system</td>
 <td>Store Manager / Dept. Supervisor</td>
 <td>Dept. Head</td>
 <td>15 min/employee/quarter</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Mid-year calibration</strong> (June): Store Ops Director conducts calibration session with Regional Managers to ensure consistent performance standards across stores; HR Head provides aggregate performance data by department and region; significant rating adjustments documented</td>
 <td>Store Ops Director / HR Head</td>
 <td>COO</td>
 <td>4 hours/year</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Annual performance review</strong> (December): manager completes formal assessment per employee — (a) rates performance against each goal (Exceeds Expectations, Meets Expectations, Needs Improvement, Does Not Meet Expectations), (b) documents key achievements and areas for development, (c) proposes overall rating, (d) submits to next-level manager for review and approval</td>
 <td>Store Manager / Dept. Supervisor</td>
 <td>Dept. Head / Store Ops Director</td>
 <td>45 min/employee</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Employee acknowledgment</strong>: employee reviews assessment in system; provides written comments (optional); signs acknowledgment (digital signature); if employee disagrees, may submit written rebuttal retained in system alongside the assessment</td>
 <td>Employee</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Rating confirmation and compensation action</strong>: Dept. Head or Store Ops Director confirms final rating; HR Head approves ratings distribution (ensures no grade inflation); ratings linked to: (a) merit increase (if budgeted — typically 3–5% for Meets Expectations, 5–8% for Exceeds), (b) 13th month pay is statutory and not performance-linked, (c) promotional readiness identification, (d) performance improvement plan trigger for Needs Improvement/Does Not Meet</td>
 <td>HR Head / CFO</td>
 <td>CEO</td>
 <td>1 week/year</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Performance Improvement Plan (PIP)</strong>: for employees rated Needs Improvement or Does Not Meet — (a) manager creates PIP in system with specific improvement targets, timeline (typically 30–60 days), and support resources (training per W51, closer supervision, mentoring), (b) employee acknowledges PIP, (c) manager conducts weekly check-ins during PIP period, (d) at PIP conclusion: manager assesses outcome — improved (close PIP, continue standard monitoring), insufficient improvement (extend PIP 30 days or initiate separation per W43 with HR Head approval), (e) system tracks PIP status and outcomes for HR reporting</td>
 <td>Store Manager / Dept. Head</td>
 <td>HR Head</td>
 <td>2 hours/PIP</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Promotion and transfer identification</strong>: during annual review cycle, managers identify employees meeting promotion criteria — (a) consistent Exceeds Expectations ratings for 2+ years, (b) demonstrated readiness for next-level responsibilities, (c) completed required training per W51; promotion recommendations submitted to HR Head for review and inclusion in annual headcount plan; inter-store or inter-entity transfers processed per W43.15 (cross-entity transfer) or simplified location transfer within same entity</td>
 <td>Store Manager / Dept. Head</td>
 <td>HR Head</td>
 <td>Part of annual review</td>
 </tr>
+<tr>
 <td>9</td>
 <td><strong>Analytics</strong>: HR Head generates annual performance dashboard — rating distribution by department, store, region, and entity; year-over-year rating trend; correlation between training completion (W51) and performance ratings; PIP completion rate and outcomes; promotion rate; turnover rate by performance tier</td>
 <td>HR Head</td>
@@ -1048,18 +1164,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Employee incurs business expense not covered by petty cash (W25), purchase order (W2), or corporate card</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~300–500 expense claims/month across all locations; peaks at month-end and during travel periods</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Average claim value PHP 1,000–5,000; primarily travel, meals, training materials, field supplies, client entertainment</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Employee (claimant); Department Head (approval)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Employee, Department Head / Store Manager, AP Clerk, Finance</td>
 </tr>
@@ -1074,42 +1195,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Employee submits expense claim in system (self-service portal or mobile app): expense date, category (travel, meals, supplies, training, entertainment, other), amount, business purpose, cost center, and receipt attachment (photo or PDF)</td>
 <td>Employee</td>
 <td>—</td>
 <td>10 min/claim</td>
 </tr>
+<tr>
 <td>2</td>
 <td>System validates claim: (a) receipt amount matches claimed amount, (b) expense date within allowable claim window (typically 30 days from expense date), (c) expense category is valid for employee's role, (d) total monthly claims for employee do not exceed department expense budget allocation</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td>System routes claim for approval per tier: (a) ≤ PHP 5,000: immediate supervisor, (b) PHP 5,001–20,000: Department Head / Store Manager, (c) > PHP 20,000: VP / C-Suite; entertainment expenses always require Department Head approval regardless of amount</td>
 <td>System</td>
 <td>—</td>
 <td>Automated routing</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Approver reviews claim: validates business purpose, checks receipt authenticity, confirms expense is within policy (meal per diem limits, travel class restrictions, entertainment pre-approval); approves, returns for correction, or rejects with reason</td>
 <td>Approver</td>
 <td>Finance Manager</td>
 <td>5 min/claim</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Approved claim routed to AP Clerk for processing; AP Clerk validates GL coding and cost center; posts expense to GL (Dr. Department Expense / Cr. Employee Payable)</td>
 <td>AP Clerk</td>
 <td>AP Supervisor</td>
 <td>5 min/claim</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Reimbursement: system includes approved expense reimbursement in the next semi-monthly payroll run (W10) as a separate line item on the payslip — not taxed as compensation if supported by receipts per BIR rules; alternatively, for large reimbursements (> PHP 20,000), AP Clerk processes via separate bank transfer per W7 payment run</td>
 <td>Payroll Officer / AP Clerk</td>
 <td>AP Supervisor</td>
 <td>Per W10 / W7</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Monthly: AP Supervisor generates expense report by department, category, and employee; Finance Manager reviews for policy compliance and unusual patterns; includes in department budget variance report per W26</td>
 <td>AP Supervisor</td>
@@ -1125,34 +1253,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Limit</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Meal per diem</strong></td>
 <td>PHP 500/day (local); PHP 1,000/day (provincial travel)</td>
 <td>Receipt required for amounts exceeding per diem; per diem is non-taxable per BIR rules with supporting travel order</td>
 </tr>
+<tr>
 <td><strong>Travel — airfare</strong></td>
 <td>Economy class for domestic; requires pre-approved travel order</td>
 <td>Receipt required; booked through admin or approved booking platform</td>
 </tr>
+<tr>
 <td><strong>Travel — lodging</strong></td>
 <td>PHP 2,000/night maximum (provincial); requires hotel receipt</td>
 <td>Exceptions require VP approval</td>
 </tr>
+<tr>
 <td><strong>Transportation</strong></td>
 <td>Taxi, grab, or shuttle receipts</td>
 <td>Fuel claims only for authorized vehicle users per W52</td>
 </tr>
+<tr>
 <td><strong>Client entertainment</strong></td>
 <td>PHP 3,000/event maximum; requires pre-approval from Dept. Head</td>
 <td>Must specify client name, attendees, and business purpose</td>
 </tr>
+<tr>
 <td><strong>Training materials</strong></td>
 <td>Per approved training plan per W51</td>
 <td>Requires training enrollment confirmation</td>
 </tr>
+<tr>
 <td><strong>Claim window</strong></td>
 <td>30 days from expense date</td>
 <td>Claims > 30 days require Finance Manager approval</td>
 </tr>
+<tr>
 <td><strong>Monthly claim limit</strong></td>
 <td>PHP 20,000 per employee (standard)</td>
 <td>Exceptions require VP approval</td>
@@ -1190,18 +1326,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Employee requests salary advance, calamity loan, or company-internal loan</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~100–200 loan/advance requests/month chain-wide; spikes after typhoons (W49) and during enrollment season (May–August)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Salary advances: PHP 5,000–20,000; Calamity loans: PHP 10,000–50,000; Company loans: PHP 10,000–100,000</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>HR Assistant (intake); Payroll Officer (processing)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Employee, Department Head / Store Manager, HR Assistant, Payroll Officer, Finance Manager</td>
 </tr>
@@ -1216,48 +1357,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Employee submits loan/advance request in self-service portal (W51) or paper form to HR Assistant: type (salary advance, calamity loan, company loan), amount, reason, proposed repayment period</td>
 <td>Employee</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>HR Assistant verifies eligibility: (a) salary advance — employee must be regular status, employed ≥ 6 months, no outstanding salary advance; limit = 1× basic monthly salary; (b) calamity loan — triggered by declared natural disaster (W49) affecting employee's residence; limit = 2× basic monthly salary; requires disaster declaration or barangay certification; (c) company loan — employee must be regular status, employed ≥ 1 year, no outstanding loan delinquency; limit = 3× basic monthly salary; requires documented purpose (medical, education, housing repair)</td>
 <td>HR Assistant</td>
 <td>HR Head</td>
 <td>15 min/request</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Approval per tier: (a) salary advance ≤ PHP 20,000: Store Manager / Dept. Head; (b) calamity loan ≤ PHP 50,000: HR Head + Finance Manager; (c) company loan ≤ PHP 100,000: HR Head + CFO; (d) > PHP 100,000: CEO</td>
 <td>Approver</td>
 <td>Approver</td>
 <td>10 min/request</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Payroll Officer creates loan record in system: principal amount, disbursement date, repayment schedule (typically 3–6 monthly installments for salary advance; 6–12 months for calamity/company loan), interest rate (salary advance: 0% per company policy; calamity loan: 0% per DOLE guidance; company loan: 6% per annum or BIR-prescribed minimum per arm's-length rules if officer/owner), monthly deduction amount</td>
 <td>Payroll Officer</td>
 <td>Payroll Manager</td>
 <td>10 min/loan</td>
 </tr>
+<tr>
 <td>5</td>
 <td>System disburses loan: salary advance included in next semi-monthly payroll run as a separate non-taxable line item (Dr. Employee Loans Receivable / Cr. Cash); calamity and company loans processed via separate bank transfer (Dr. Employee Loans Receivable / Cr. Cash) within 3 business days of approval</td>
 <td>System / Treasury Analyst</td>
 <td>Payroll Manager</td>
 <td>Automated + 15 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td>System automatically deducts monthly loan repayment from employee's payroll per schedule (Dr. Cash / Cr. Employee Loans Receivable); deduction appears as separate line on payslip; if employee's net pay would fall below minimum wage after deduction, system reduces deduction amount and extends repayment period</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Monthly: Payroll Officer generates loan portfolio report — total outstanding loans by type, aging (current vs. overdue), delinquency rate, new disbursements, collections; Finance Manager reviews for provisioning adequacy</td>
 <td>Payroll Officer</td>
 <td>Finance Manager</td>
 <td>1 hour/month</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Employee separation with outstanding loan</strong>: at separation (W43), Payroll Officer settles outstanding loan balance from final pay (W10 step 12) — system deducts remaining principal and accrued interest from final pay before other deductions; if final pay insufficient to cover full loan balance, employee signs promissory note for remaining balance and Payroll Officer tracks post-employment collection; write-off per Controller approval if uncollectible</td>
 <td>Payroll Officer / Controller</td>
@@ -1294,18 +1443,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>New hire onboarding; or periodic replacement schedule; or damage/loss report</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Annual mass distribution; semi-annual replenishment; ad-hoc for new hires</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~8,000 employees; ~24,000 sets of uniforms (3 per employee) + safety gear</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>HR Operations Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>HR Assistant, Store/DC Manager, Procurement, Vendor, Employee</td>
 </tr>
@@ -1324,36 +1478,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Sizing & Allocation</strong>: During onboarding (W15), HR Assistant captures employee sizes (shirt, pants, shoes); system assigns standard entitlement (e.g., 3 shirts, 2 pants, 1 pair of safety shoes, 1 helmet)</td>
 <td>HR Assistant</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Issuance</strong>: HR Assistant issues gear from store/DC stock; employee signs "Property Acknowledgment" in the system/portal; system links items to employee ID for accountability</td>
 <td>HR Assistant</td>
 <td>Store/DC Mgr</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Inventory Tracking</strong>: System tracks PPE/Uniform stock as "Internal Use Inventory"; replenishment triggered via W4 when stock falls below reorder point</td>
 <td>HR Assistant</td>
 <td>Procurement</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Replacement</strong>: (a) <strong>Periodic</strong>: Every 12 months, employees are eligible for a new set; (b) <strong>Damage</strong>: If gear is damaged in the line of duty, employee returns old item for a free replacement; (c) <strong>Loss</strong>: If lost, employee pays a replacement fee via payroll deduction (W10)</td>
 <td>HR Assistant</td>
 <td>Store/DC Mgr</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Return at Separation</strong>: Upon separation (W43), employee must return all non-consumable gear (helmets, vests, badges); HR Assistant verifies return before final clearance approval</td>
 <td>HR Assistant</td>
 <td>Dept Head</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Audit</strong>: Quarterly: HR Ops Manager audits PPE compliance on the floor (ensuring correct shoes/helmets worn); feeds into W72 Performance Review</td>
 <td>HR Ops Mgr</td>
@@ -1384,12 +1544,15 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Retirement of key leader; store expansion; or high-potential (HiPo) identification</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>CHRO</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>CEO, Department Heads, HR Manager, High-Potential Employees</td>
 </tr>
@@ -1404,30 +1567,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>HiPo Identification</strong>: Annual review of performance (W72) and potential; tag employees for "Internal Mobility" in ERP</td>
 <td>HR Manager</td>
 <td>CHRO</td>
 <td>2 weeks</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Succession Mapping</strong>: Identify "Ready Now" and "Ready in 1–2 Years" successors for all Store Manager and HQ Director roles</td>
 <td>Department Head</td>
 <td>CEO</td>
 <td>1 week</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Individual Development Plan (IDP)</strong>: Successors assigned to specific training (W51) and cross-functional rotations</td>
 <td>HR Manager</td>
 <td>—</td>
 <td>1 year</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Internal Posting</strong>: Vacancies posted internally for 5 days before external search; system alerts eligible internal candidates</td>
 <td>System</td>
 <td>HR Manager</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Transfer/Promotion</strong>: Selected candidate's contract and payroll (W10) updated; system auto-triggers offboarding from old role and onboarding to new</td>
 <td>System / HR</td>
@@ -1451,18 +1619,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Annual corporate strategy (10–15 new stores/year growth)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Annual intake (Cohort-based)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~30–50 trainees per year</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>CHRO</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Store Managers (Mentors), Trainees, Learning & Development Team</td>
 </tr>
@@ -1477,30 +1650,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Recruitment</strong>: Campus hiring and assessment centers targeting fresh graduates</td>
 <td>HR Manager</td>
 <td>—</td>
 <td>2 months</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Orientation</strong>: 1-week corporate orientation at HQ</td>
 <td>L&D Team</td>
 <td>CHRO</td>
 <td>1 week</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Rotational Training</strong>: 6-month rotation through all store departments (Receiving, Sales, Cashier, Operations)</td>
 <td>Trainee</td>
 <td>Store Manager</td>
 <td>6 months</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Project Assignment</strong>: Trainees assigned a "Process Improvement" project in a specific store</td>
 <td>Trainee</td>
 <td>Dept Head</td>
 <td>2 months</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Graduation & Deployment</strong>: Successful trainees deployed as "Assistant Store Managers" or "Department Supervisors" in new stores</td>
 <td>CHRO</td>
@@ -1524,18 +1702,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Employee sickness event, maternity event, or application for SSS/Pag-IBIG statutory loan</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Continuous; daily processing of claims and semi-monthly reconciliation</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~7,060 employee base; average ~120–180 sickness claims/month, ~40–60 maternity leaves/month, and ~250–350 loan applications/month</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>HR Benefits Specialist</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Employee, HR Benefits Specialist, Payroll Specialist, Finance (Treasury)</td>
 </tr>
@@ -1550,48 +1733,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Claim Submission</strong>: Employee uploads medical certificate, SSS Maternity Notification, or loan request documents to the HRIS/ERP system via Employee Self-Service (ESS) portal (W251.1)</td>
 <td>Employee</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Eligibility Verification</strong>: HR Benefits Specialist reviews the uploaded documents; system auto-checks employee contribution history against SSS/PhilHealth criteria to verify eligibility (W251.2)</td>
 <td>HR Benefits</td>
 <td>CHRO</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Agency Portal Certification</strong>: HR Benefits Specialist logs into the government agency's online portal (SSS Sickness/Maternity portal, Pag-IBIG Virtual Employer portal) to certify the employee's leave or confirm the employer endorsement for a salary/calamity loan (W251.3)</td>
 <td>HR Benefits</td>
 <td>—</td>
 <td>20 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Benefit Advance Computation</strong>: For SSS Sickness/Maternity, under Philippine law, the employer must advance the SSS benefit. System automatically computes the daily SSS benefit rate based on the employee's average daily salary credit and schedules the advance payment (W251.4)</td>
 <td>System</td>
 <td>Payroll Mgr</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Payroll Disbursal</strong>: Payroll Specialist reviews the computed statutory advance and approves it for inclusion in the next semi-monthly payroll run (W10) (W251.5)</td>
 <td>Payroll Spec</td>
 <td>Payroll Mgr</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Reimbursement Claim Submission</strong>: After the employee returns or the leave completes, HR Benefits Specialist submits a digitized SSS Reimbursement Claim via the online portal to recover the advanced amount from the government (W251.6)</td>
 <td>HR Benefits</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Reconciliation & Settlement</strong>: SSS releases the reimbursement via direct deposit to the company's bank account. Finance reconciles the incoming bank settlement against the SSS Receivable ledger to close the transaction loop (W251.7)</td>
 <td>Treasury / Accountant</td>
 <td>Controller</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Loan Deduction Scheduling</strong>: For SSS/Pag-IBIG loans, once approved, the system imports the monthly electronic billing files from SSS/Pag-IBIG, matches loan accounts with active employee profiles, and schedules the statutory semi-monthly deductions in the payroll system, ensuring compliance with minimum wage take-home pay rules (W251.8)</td>
 <td>System</td>

@@ -146,18 +146,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Daily exception report generation; or real-time alert triggered by POS exception</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Daily review; real-time alerts for high-severity exceptions</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~500–1,000 exception events/day chain-wide across all 200 stores</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Loss Prevention Officer (LPO)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>LPO, Store Manager, Regional Manager, Internal Audit, Cashier, Department Supervisor</td>
 </tr>
@@ -176,60 +181,70 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>System automatically monitors POS transactions in real-time and generates exception alerts for: (a) excessive voids/cancels per cashier, (b) high-value refunds without manager override, (c) manual price overrides, (d) sweet-hearting (repeated transactions with loyalty card of same employee or family), (e) excessive no-sale drawer opens, (f) post-void patterns, (g) high ratio of discount transactions</td>
 <td>System</td>
 <td>—</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>2</td>
 <td>System generates daily exception summary report per store: top exception categories, top cashiers by exception count, transaction drill-down capability</td>
 <td>System</td>
 <td>—</td>
 <td>Automated (daily)</td>
 </tr>
+<tr>
 <td>3</td>
 <td>LPO reviews daily exception report; prioritizes investigation of high-risk patterns (e.g., one cashier with 5× average void rate)</td>
 <td>LPO</td>
 <td>Internal Audit</td>
 <td>1–2 hours/day</td>
 </tr>
+<tr>
 <td>4</td>
 <td>For flagged exceptions: LPO pulls transaction details, CCTV timestamps (cross-reference with security footage), and employee history</td>
 <td>LPO</td>
 <td>Internal Audit</td>
 <td>30 min/case</td>
 </tr>
+<tr>
 <td>5</td>
 <td>If investigation confirms irregularity: LPO documents findings; escalates to Regional Manager and Internal Audit for disciplinary action</td>
 <td>LPO</td>
 <td>Internal Audit</td>
 <td>1 hour/case</td>
 </tr>
+<tr>
 <td>6</td>
 <td>For receiving dock exceptions: system monitors GR short shipments, frequent damage claims from same vendor, and receiving patterns outside scheduled appointments</td>
 <td>System</td>
 <td>DC Manager</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Monthly: LPO generates shrinkage report per store (inventory adjustment value ÷ sales); flags stores exceeding 1.5% threshold</td>
 <td>LPO</td>
 <td>Internal Audit</td>
 <td>2 hours/month</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Monthly: LPO and Regional Manager review top shrinkage stores; develop action plans (additional training, CCTV repositioning, staffing adjustments)</td>
 <td>LPO + Regional Manager</td>
 <td>Internal Audit</td>
 <td>1 hour/month per high-shrinkage store</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Quarterly: Internal Audit includes POS exception trends in audit findings; recommends system configuration changes (e.g., tighten void approval rules)</td>
 <td>Internal Audit</td>
 <td>CFO</td>
 <td>Quarterly report</td>
 </tr>
+<tr>
 <td>10</td>
 <td>System tracks all investigation cases: status (open/investigating/closed), resolution, recovery amount, disciplinary action taken</td>
 <td>System</td>
@@ -271,36 +286,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>W37.11</td>
 <td>LPO documents confirmed loss: investigation findings, supporting evidence (CCTV footage, transaction records, witness statements); for theft, files police report with local PNP station</td>
 <td>LPO</td>
 <td>Internal Audit</td>
 <td>1 hour/case</td>
 </tr>
+<tr>
 <td>W37.12</td>
 <td>LPO submits inventory write-off request: SKU, quantity, value at WAC, root cause classification (internal theft, external shoplifting, vendor fraud, unexplained loss)</td>
 <td>LPO</td>
 <td>Internal Audit</td>
 <td>15 min/case</td>
 </tr>
+<tr>
 <td>W37.13</td>
 <td>Approval per tier: (a) total loss ≤ PHP 10,000: Store Manager, (b) PHP 10,001–50,000: Regional Manager + Internal Audit, (c) PHP 50,001–500,000: Controller + Internal Audit, (d) > PHP 500,000: CFO + CEO</td>
 <td>Approver</td>
 <td>Approver</td>
 <td>15 min/case</td>
 </tr>
+<tr>
 <td>W37.14</td>
 <td>System posts write-off: Dr. Inventory Loss / Cr. Inventory; removes items from inventory register; records loss in shrinkage tracking for store KPI</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>W37.15</td>
 <td>If loss is insured (e.g., large robbery, transit theft): LPO files insurance claim per W3.6a insurance claim process; Finance posts recovery upon settlement</td>
 <td>LPO / Finance</td>
 <td>Controller</td>
 <td>Per W3.6a</td>
 </tr>
+<tr>
 <td>W37.16</td>
 <td>Quarterly: LPO includes confirmed theft and write-off totals in shrinkage report (W37.7); feeds into store KPI scoring and loss prevention action plans</td>
 <td>LPO</td>
@@ -321,18 +342,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>PAGASA raises tropical cyclone warning signal over a store/DC location; or earthquake, flooding, or volcanic activity alert</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~10–20 typhoon-related events/year requiring action across Philippine store network; 2–4 significant events/year with store closures</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Variable — from 1–2 stores affected (localized flooding) to 50+ stores (major typhoon crossing multiple regions)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>COO (overall response); Store Manager (store-level execution)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>COO, Store Ops Director, Regional Managers, Store Managers, DC Managers, IT, HR, Finance, Supply Chain, Marketing, Logistics</td>
 </tr>
@@ -351,42 +377,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>COO monitors PAGASA bulletins and NDRRMC advisories; activates disaster monitoring protocol when Signal 1 is raised over any operating region</td>
 <td>COO</td>
 <td>CEO</td>
 <td>Ongoing during typhoon season</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Regional Managers notify Store Managers in affected regions to begin preparations; Store Managers brief all staff</td>
 <td>Regional Manager</td>
 <td>Store Ops Director</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Store preparations</strong>: Store Manager directs staff to: (a) secure outdoor yard inventory — move lumber, cement, and building materials under cover or to higher ground; (b) protect floor-level merchandise from potential flooding (move to higher shelves or backroom); (c) secure display fixtures, signage, and loose items; (d) verify backup power (generator fuel level, battery backup for POS); (e) verify emergency supplies (flashlights, first aid kits, drinking water)</td>
 <td>Store Manager</td>
 <td>Regional Manager</td>
 <td>4–8 hours</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>DC preparations</strong>: DC Manager directs staff to: (a) prioritize outbound shipments to stores in safe zones before transport disruption; (b) secure outdoor inventory and yard areas; (c) verify backup power systems; (d) coordinate with carriers to suspend inbound shipments to affected areas</td>
 <td>DC Manager</td>
 <td>Supply Chain Manager</td>
 <td>4–8 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td>IT sends system advisory to all locations: reminder of offline POS procedures (W5G), system backup schedule accelerated</td>
 <td>IT Team</td>
 <td>CIO</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td>HR verifies emergency contact information for all employees in affected regions; prepares welfare check plan</td>
 <td>HR Head</td>
 <td>CHRO</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Supply Planner reviews inventory levels at stores and DCs in projected path; identifies potential stockout risks for essential items (tarps, waterproofing, cement, plywood, flashlights, batteries, generators)</td>
 <td>Supply Planner</td>
@@ -404,30 +437,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>8</td>
 <td>COO makes store closure decision based on: PAGASA signal level (Signal 2+ triggers automatic closure), LGU advisory, road conditions, staff safety assessment; decisions made by region, not chain-wide</td>
 <td>COO</td>
 <td>CEO</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Marketing communicates closure to customers: update website, social media, Google Business listings; send SMS/email to loyalty members in affected areas</td>
 <td>Marketing</td>
 <td>CMO</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Ecommerce platform: Digital Commerce Inc. suspends BOPIS and delivery orders for closed stores/DCs; displays closure notice</td>
 <td>Ecom Team</td>
 <td>CMO</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>11</td>
 <td>Store Manager executes early closing procedure (abbreviated W5F): expedited Z-report, cash secured in safe (do NOT send with armored car during typhoon — hold in safe), POS shut down, building secured</td>
 <td>Store Manager</td>
 <td>Regional Manager</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>12</td>
 <td>Store Manager sends staff home with safety instructions; confirms all staff have departed safely</td>
 <td>Store Manager</td>
@@ -445,54 +483,63 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>13</td>
 <td>Store Manager or designated contact conducts visual assessment of store exterior (drive-by or walk-by) as soon as safely possible after event passes; reports to Regional Manager: structural damage, flooding, power status, yard inventory status</td>
 <td>Store Manager</td>
 <td>Regional Manager</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>14</td>
 <td>Regional Manager compiles damage assessment across affected stores; reports to COO and Store Ops Director</td>
 <td>Regional Manager</td>
 <td>COO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>15</td>
 <td>COO makes reopening decision per store: (a) open immediately if no damage and power/connectivity restored, (b) delayed opening for minor cleanup and repair, (c) remain closed for significant damage requiring repair or insurance assessment</td>
 <td>COO</td>
 <td>CEO</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>16</td>
 <td><strong>If inventory damaged</strong>: Store Manager conducts damage inventory with photos; system creates damage report; disposition per W6.8a (scrap, markdown, RTV, insurance claim)</td>
 <td>Store Manager / Maintenance</td>
 <td>Regional Manager</td>
 <td>2–4 hours</td>
 </tr>
+<tr>
 <td>17</td>
 <td><strong>If facility damaged</strong>: Facilities Coordinator engages contractors for emergency repair; Store Manager initiates insurance claim per W3.6a process (photos, documentation, claim filing)</td>
 <td>Facilities Coordinator / Store Manager</td>
 <td>Store Ops Director</td>
 <td>Varies</td>
 </tr>
+<tr>
 <td>18</td>
 <td>Supply Planner triggers emergency replenishment for disaster-response items (tarps, plywood, cement, paint, waterproofing, tools, generators) to reopened stores; coordinates with DC for expedited shipment</td>
 <td>Supply Planner</td>
 <td>Supply Chain Manager</td>
 <td>2–4 hours</td>
 </tr>
+<tr>
 <td>19</td>
 <td>HR conducts welfare check on all employees in affected regions within 24 hours; provides assistance (advance salary, emergency loan, temporary shelter) per company policy</td>
 <td>HR Head</td>
 <td>CHRO</td>
 <td>4–8 hours</td>
 </tr>
+<tr>
 <td>20</td>
 <td>Marketing communicates reopening to customers; update website and social media; potential "rebuilding supplies" promotion to serve community needs</td>
 <td>Marketing</td>
 <td>CMO</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>21</td>
 <td>System reconciles: process any offline POS transactions from pre-closure; reverse pending ecommerce orders for closed stores; update inventory for damaged/scrapped items</td>
 <td>IT / Finance</td>
@@ -510,24 +557,28 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>22</td>
 <td>COO conducts after-action review: preparation adequacy, response time, damage extent, recovery speed, staff safety outcomes</td>
 <td>COO</td>
 <td>CEO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>23</td>
 <td>Finance quantifies total loss: inventory damage, facility repair costs, revenue loss from closure days, insurance recovery</td>
 <td>Controller</td>
 <td>CFO</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>24</td>
 <td>Insurance claims finalized for major events; Finance tracks claim status and settlement</td>
 <td>Treasury Analyst</td>
 <td>CFO</td>
 <td>Varies</td>
 </tr>
+<tr>
 <td>25</td>
 <td>Store Ops Director updates disaster response procedures based on lessons learned</td>
 <td>Store Ops Director</td>
@@ -569,18 +620,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>LGU business permit renewal calendar (typically annual, per LGU)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Annual per location; 200 stores + 5 DCs + HQ = ~206 renewals/year, staggered across LGU calendars</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~206 locations across ~150 different LGUs (some LGUs have multiple stores); most LGUs require renewal in January–March</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Legal & Compliance — Regulatory Officer</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Regulatory Officer, Store Manager, DC Manager, Finance, Facilities Coordinator</td>
 </tr>
@@ -599,66 +655,77 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>System maintains LGU permit calendar per location: renewal deadline, LGU name, LGU-specific requirements, required documents, fee schedule (based on LGU rate × estimated gross receipts), prior year permit reference</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>4 hours/year (setup)</td>
 </tr>
+<tr>
 <td>2</td>
 <td>System alerts Regulatory Officer 60 days before each location's permit renewal deadline</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Regulatory Officer prepares renewal package per LGU requirements: (a) current year business permit, (b) SEC/DTI registration, (c) BIR registration, (d) lease contract or proof of occupancy, (e) barangay clearance, (f) fire safety inspection certificate (BFP), (g) sanitary/health permit (if applicable), (h) local business tax payment receipt, (i) authorized representative letter if not store manager filing</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>1–2 hours/location</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Regulatory Officer coordinates with Store Manager: Store Manager obtains barangay clearance (requires physical visit to barangay hall), confirms fire safety inspection is current (W47 preventive maintenance — BFP annual inspection), and verifies physical signage matches registered business name</td>
 <td>Store Manager</td>
 <td>Regulatory Officer</td>
 <td>1–2 hours/location</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Finance processes local business tax payment per LGU schedule (separate from W9A.16c LBT payment — the permit renewal requires payment first or concurrently)</td>
 <td>Treasury Analyst</td>
 <td>Controller</td>
 <td>30 min/location</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Regulatory Officer (or designated Store Manager) submits renewal application to LGU Business Permit and Licensing Office (BPLO); many LGUs now accept online renewal via Business One-Stop Shop (BOSS) portals</td>
 <td>Regulatory Officer / Store Manager</td>
 <td>Legal Head</td>
 <td>1–4 hours/location</td>
 </tr>
+<tr>
 <td>7</td>
 <td>LGU processes renewal; may require inspection or hearing; issues new business permit</td>
 <td>LGU</td>
 <td>—</td>
 <td>External (1–30 days)</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Store Manager receives new permit; displays original in store (BIR and LGU requirement); sends copy to Regulatory Officer for system upload</td>
 <td>Store Manager</td>
 <td>Regulatory Officer</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Regulatory Officer uploads permit copy to system; updates location master with new permit number, issue date, and expiry date</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>5 min/location</td>
 </tr>
+<tr>
 <td>10</td>
 <td>System alerts Regulatory Officer if permit not received within 30 days of renewal deadline; escalates to Legal Head</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>11</td>
 <td>Monthly: Regulatory Officer generates permit status dashboard: active, pending renewal, expired, at-risk locations; Legal Head reviews expired permits as priority escalation</td>
 <td>Regulatory Officer</td>
@@ -689,18 +756,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>New entity incorporation, new ERP system deployment, major system upgrade requiring re-registration, or annual permit renewal</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Initial registration per entity (5 entities); annual renewal per BIR requirements; re-registration if system undergoes major changes</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>5 entity registrations initially; 5 annual renewals thereafter</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Regulatory Officer</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Regulatory Officer, CIO, Controller, CFO, external ERP vendor, BIR Regional Office</td>
 </tr>
@@ -719,60 +791,70 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Regulatory Officer obtains BIR CAS registration forms: BIR Form 1907 (Application for Registration of Books of Accounts), together with system documentation package</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>4 hours/entity</td>
 </tr>
+<tr>
 <td>2</td>
 <td>IT and ERP vendor prepare system documentation package per BIR requirements: (a) system overview and architecture diagram, (b) data flow diagram showing transaction processing from source to GL, (c) security and access control documentation, (d) sample outputs: BIR-registered receipt format, sales invoice, purchase invoice, journal voucher, official receipt, books of accounts (general journal, general ledger, cash receipts/disbursements journals, sales/purchases journals), (e) data retention and backup procedures, (f) audit trail documentation, (g) BIR permit application letter signed by entity's authorized representative</td>
 <td>IT Team / ERP Vendor</td>
 <td>CIO</td>
 <td>2–3 weeks/entity</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Controller reviews and validates sample outputs for accounting accuracy: GL account mapping, journal entry formatting, books of accounts layout compliance with BIR-prescribed format</td>
 <td>Controller</td>
 <td>CFO</td>
 <td>4 hours/entity</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Regulatory Officer submits CAS registration application to BIR Regional Office (or Revenue District Office) where the entity is registered; pays registration fee per BIR schedule</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>1 day/entity</td>
 </tr>
+<tr>
 <td>5</td>
 <td>BIR evaluates application; may conduct system demonstration or on-site inspection at BuildRight office; IT and Finance present system capabilities to BIR evaluators</td>
 <td>BIR / IT / Finance</td>
 <td>CFO</td>
 <td>1–2 days/entity (if inspection required)</td>
 </tr>
+<tr>
 <td>6</td>
 <td>BIR issues CAS Permit (Authority to Use Computerized Accounting System) per entity; permit includes registered system name, entity TIN, permit number, and conditions of use</td>
 <td>BIR</td>
 <td>—</td>
 <td>External (2–6 months from submission)</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Regulatory Officer records CAS permit in system: permit number, issue date, expiry date (if applicable — some permits are perpetual unless system changes), entity TIN, authorized system name; uploads permit document to entity master</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>15 min/entity</td>
 </tr>
+<tr>
 <td>8</td>
 <td>IT configures ERP to print BIR-registered receipt/invoice numbers per CAS permit: system generates sequential, non-skippable invoice/receipt numbers per BIR requirements; TIN, registered business name, and CAS permit number printed on all receipts per BIR format</td>
 <td>IT Team</td>
 <td>CIO</td>
 <td>2–3 days/entity</td>
 </tr>
+<tr>
 <td>9</td>
 <td><strong>Annual renewal</strong> (if required per BIR ruling): Regulatory Officer submits renewal documentation before expiry; confirms no material system changes since last registration</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>2 hours/entity/year</td>
 </tr>
+<tr>
 <td>10</td>
 <td><strong>Re-registration triggers</strong>: if ERP system undergoes major version upgrade, change of ERP platform, or change of entity legal name, Regulatory Officer files amended CAS registration with updated system documentation</td>
 <td>Regulatory Officer / IT</td>
@@ -809,18 +891,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>BIR issues Letter of Authority (LOA) or audit notification to any BuildRight entity</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Occasional; estimated 1–2 BIR audits/year across 5 entities; higher probability for entities with large revenue or import activity</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Audit scope varies — from specific tax type (VAT only) to comprehensive (income tax, VAT, withholding tax) for 1–3 taxable years</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Tax Accountant (operational); Controller (oversight); CFO (escalation)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Tax Accountant, Controller, CFO, Chief Accountant, AP Clerk, AR Clerk, IT, Legal, external tax advisor, BIR Revenue Officers</td>
 </tr>
@@ -835,66 +922,77 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>BIR Revenue Officer presents Letter of Authority (LOA) at entity's registered office or BIR Regional Office; Tax Accountant receives and logs LOA in system: LOA number, audit period, tax types under audit, assigned Revenue Officers, deadline for submission</td>
 <td>Tax Accountant</td>
 <td>Controller</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Controller and CFO assess audit scope and risk; engage external tax advisor (CPA firm) for audit representation if assessment is complex or potential exposure is material (> PHP 1M)</td>
 <td>Controller / CFO</td>
 <td>CEO</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Tax Accountant gathers documents per BIR requirements — system generates: (a) books of accounts (general journal, general ledger, cash receipts/disbursements journals, sales/purchases journals) per BIR format and CAS permit (W54A), (b) VAT returns and supporting schedules for audit period, (c) withholding tax returns (1601-E, 1601-C) and alphalist of payees, (d) income tax returns and supporting financial statements, (e) summary of credit/debit notes, (f) list of related-party transactions and IC pricing documentation per W14, (g) fixed asset register and depreciation schedules, (h) inventory records and physical count reports (W42)</td>
 <td>Tax Accountant / Chief Accountant</td>
 <td>Controller</td>
 <td>2–5 days</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Tax Accountant prepares working papers reconciling tax returns to books of accounts; identifies and documents any discrepancies or areas of exposure before submission to BIR</td>
 <td>Tax Accountant</td>
 <td>Controller</td>
 <td>3–5 days</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Tax Accountant or external tax advisor submits documents to BIR Revenue Officers per LOA deadline; logs submission date and receipt confirmation in system</td>
 <td>Tax Accountant</td>
 <td>Controller</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>6</td>
 <td>BIR conducts examination: Revenue Officers may request additional documents, clarifications, or schedule meetings/walkthroughs; Tax Accountant coordinates responses within 5 business days per BIR practice</td>
 <td>Tax Accountant / Controller</td>
 <td>CFO</td>
 <td>Varies (weeks to months)</td>
 </tr>
+<tr>
 <td>7</td>
 <td>BIR issues Preliminary Assessment Notice (PAN) if deficiencies found; Tax Accountant and external tax advisor review PAN; prepare protest or rebuttal within 15 days of receipt if assessment is disputed</td>
 <td>Tax Accountant / External Advisor</td>
 <td>CFO</td>
 <td>3–5 days</td>
 </tr>
+<tr>
 <td>8</td>
 <td>If protest accepted by BIR: case closed; Tax Accountant documents final resolution. If BIR issues Final Assessment Notice (FAN): Tax Accountant evaluates options — (a) accept assessment and pay deficiency tax + surcharge + interest; (b) escalate to Court of Tax Appeals or file motion for reconsideration within 30 days</td>
 <td>Tax Accountant / CFO / Legal</td>
 <td>CEO</td>
 <td>3–10 days</td>
 </tr>
+<tr>
 <td>9</td>
 <td>If payment required: Treasury processes payment per W30; system posts payment (Dr. Tax Payable / Dr. Tax Penalty Expense / Cr. Cash); Tax Accountant files amended returns if applicable</td>
 <td>Treasury Analyst / Tax Accountant</td>
 <td>CFO</td>
 <td>Per W30</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Post-audit: Controller and Tax Accountant conduct lessons-learned review; document findings and corrective actions to prevent recurrence; update internal tax compliance procedures (W9A) if needed; include audit outcomes in next quarterly management committee meeting (W35.14)</td>
 <td>Controller / Tax Accountant</td>
 <td>CFO</td>
 <td>2 hours/audit</td>
 </tr>
+<tr>
 <td>11</td>
 <td>Quarterly: Tax Accountant maintains BIR audit readiness checklist: confirm books of accounts are current and BIR-compliant, withholding tax alphalists reconcile to returns, IC transfer pricing documentation is complete per W14, CAS permit is current per W54A, all tax returns filed on time</td>
 <td>Tax Accountant</td>
@@ -932,18 +1030,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Government agency, LGU, or state-owned enterprise issues Invitation to Bid or Request for Quotation (RFQ) for construction materials, hardware, or related supplies</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~20–40 government procurement opportunities/year; primarily infrastructure agencies (DPWH), LGUs, DepEd, DOH, and state universities</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Individual contract values PHP 500K–20M; represents ~5–8% of total revenue</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Sales Rep (Trade & Corporate) — dedicated government accounts representative</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Sales Rep, Category Manager, Pricing Analyst, Legal, Finance, Supply Planner</td>
 </tr>
@@ -958,54 +1061,63 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Sales Rep monitors government procurement opportunities: PHILGEPS (Philippine Government Electronic Procurement System) portal, agency websites, and newspaper postings per RA 9184 (Government Procurement Reform Act); identifies opportunities matching BuildRight's product range</td>
 <td>Sales Rep</td>
 <td>VP Merchandising</td>
 <td>2 hours/week</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Sales Rep evaluates opportunity viability: (a) product match — does BuildRight carry the specified items or equivalents, (b) delivery capability — can BuildRight deliver to the agency's required locations within the specified timeline, (c) pricing competitiveness — can BuildRight meet the Approved Budget for the Contract (ABC), (d) eligibility — does BuildRight meet PHILGEPS registration, BIR tax compliance, and other bidder eligibility requirements</td>
 <td>Sales Rep</td>
 <td>Category Manager</td>
 <td>1–2 hours/opportunity</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Sales Rep prepares bid/quote documents per agency requirements: (a) PHILGEPS registration certificate, (b) BIR tax compliance certificate, (c) business permits per W54, (d) audited financial statements (most recent year from W9B), (e) similar completed projects or supply contracts, (f) product specifications and pricing, (g) delivery schedule and terms, (h) bid security (if required)</td>
 <td>Sales Rep / Legal</td>
 <td>VP Merchandising</td>
 <td>4–8 hours/bid</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Category Manager and Pricing Analyst review proposed pricing: ensure margin is adequate (minimum gross margin target for government contracts, typically 10–15%); verify that pricing does not violate any existing contract pricing or trade agreements</td>
 <td>Category Manager / Pricing Analyst</td>
 <td>VP Merchandising</td>
 <td>1–2 hours/bid</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Sales Rep submits bid/quote per agency deadline (sealed bid, electronic submission, or direct quotation depending on procurement method per RA 9184)</td>
 <td>Sales Rep</td>
 <td>VP Merchandising</td>
 <td>Per deadline</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>If awarded</strong>: Sales Rep creates Sales Order in system linked to government Purchase Order; applies government-specific pricing and delivery schedule; system creates delivery plan per W19 or in-store pickup per W11 (BOPIS); revenue recognized at delivery per standard process</td>
 <td>Sales Rep</td>
 <td>Finance Manager</td>
 <td>Per W58</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Billing</strong>: Sales Rep generates billing documents per government agency requirements — (a) standard sales invoice with BIR-registered format, (b) delivery receipt signed by agency receiving officer, (c) collection receipt per agency's accounting procedures; government accounts typically on Net 30–60 terms; collection requires submission of complete billing documents per agency-specific procedures (some agencies require liquidation documents or progress reports)</td>
 <td>Sales Rep / AR Clerk</td>
 <td>AR Supervisor</td>
 <td>Per W8</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Collection</strong>: AR Clerk follows up on government receivables per W8 collection tiers; government payments may be delayed due to budget processing — Sales Rep coordinates with agency procurement officer and accounting division; system tracks government receivable aging separately from trade accounts for reporting</td>
 <td>AR Clerk / Sales Rep</td>
 <td>AR Supervisor</td>
 <td>Per W8</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Quarterly: Sales Rep and Category Manager review government account portfolio: win rate, revenue, margin, collection timeliness, and bid pipeline; VP Merchandising reviews as part of corporate account portfolio (W58.10)</td>
 <td>Sales Rep / Category Manager</td>
@@ -1041,18 +1153,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Employee files a grievance regarding workplace conditions, policy violations, harassment, discrimination, or unethical conduct; or whistleblower report of fraud, corruption, or legal non-compliance</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Estimated 20–50 grievance/whistleblower reports/year across all locations</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Grievance categories: workplace conflict (30%), policy/procedure concern (25%), compensation/benefits dispute (20%), harassment/discrimination (15%), safety concern (10%)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>HR Head (grievance); Internal Audit (whistleblower reports involving management)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Employee, HR Head, Internal Audit, Legal, Department Head / Store Manager, CHRO</td>
 </tr>
@@ -1067,54 +1184,63 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Employee submits grievance or whistleblower report; or incident reported (theft, misconduct, policy violation)</td>
 <td>Employee / Manager</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>HR Head (grievance) or Internal Audit (whistleblower) acknowledges receipt within 24 hours; assigns case number; classifies severity (Minor, Serious, Grave, Critical)</td>
 <td>HR Head / Internal Audit</td>
 <td>CHRO</td>
 <td>15 min/case</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Due Process: Notice to Explain (NTE)</strong>: For disciplinary cases, HR issues NTE to employee; provides 120 hours (5 business days) to submit written response per Philippine Labor Code</td>
 <td>HR ER Officer</td>
 <td>—</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Employee submits written explanation; system records date/time received; HR reviews explanation</td>
 <td>Employee</td>
 <td>—</td>
 <td>—</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Administrative Hearing</strong>: For Serious/Grave offenses, HR conducts hearing; documents proceedings in system; respondent allowed counsel or union representative</td>
 <td>HR ER Officer</td>
 <td>Dept Head</td>
 <td>1–2 hours</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Decision / Notice of Decision (NOD)</strong>: HR and Dept Head determine outcome (Exoneration, Warning, Suspension, or Termination) per company table of offenses</td>
 <td>HR Head</td>
 <td>Dept Head</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>7</td>
 <td>System generates NOD; issued to employee; system updates employee record with disciplinary status; if Suspension: System auto-blocks timekeeping for suspension dates</td>
 <td>HR ER Officer</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Whistleblower / High Severity Investigation</strong>: For harassment, fraud, or corruption — HR Head and Legal/Audit jointly investigate; whistleblower identity protected; retaliation protection flagged (W79.7)</td>
 <td>HR Head / Legal / Internal Audit</td>
 <td>CHRO / CEO</td>
 <td>8–20 hours/case</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Monthly: HR Head generates grievance/whistleblower summary; reports to CHRO and CEO</td>
 <td>HR Head</td>
@@ -1152,48 +1278,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Key Workflows</th>
 <th>Validation</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Merchandising & Buying</strong></td>
 <td>VP, Category Managers, Buyers, Pricing Analysts, Merch Planners</td>
 <td>~40</td>
 <td>W1, W2, W13, W20, W23, W27, W29, W32, W36, W40, W44, W68</td>
 <td>✅ Adequate for daily PO review + quarterly assortment cycles + VMI/consignment oversight + rebate management + seasonal planning + vendor onboarding + price maintenance + product discontinuation lifecycle; includes 1–2 dedicated Buyers for trade/special orders (W38) within the ~40 team</td>
 </tr>
+<tr>
 <td><strong>Finance & Accounting</strong></td>
 <td>Controller, Chief Accountant, AP/AR Clerks, Treasury, Tax</td>
 <td>~35</td>
 <td>W7, W7D, W8, W9, W14, W21, W24, W25, W26, W27, W28, W30, W39, W42, W54A (CAS permit validation), W59, W60, W70, W74</td>
 <td>✅ Stretched during close week; capex/credit/petty cash absorbed; treasury daily cycle manageable with 2–3 analysts; asset disposal and annual physical inventory absorbed; insurance lifecycle and emergency procurement review absorbed; credit/debit note reconciliation absorbed into month-end close and weekly AP/AR review; AP staffing recalculated on business-day basis: ~305–370 invoices/business-day (6,500 merchandise + 2,000–3,000 non-PO per month ÷ 22 business days) requiring 10 clerks at ~5–6 hrs each/day; month-end peak (+50%) requires overtime or Finance staff redeployment; vendor statement reconciliation (W7D) absorbed into monthly AP cycle; employee expense reimbursement (W74) adds ~25–42 hours/month absorbed across AP team</td>
 </tr>
+<tr>
 <td><strong>Supply Chain & Logistics</strong></td>
 <td>Supply Planners, Demand Planners, Import Coordinator, Fleet Manager, DC Ops managers</td>
 <td>~31</td>
 <td>W3, W3C, W4, W4B, W19, W19B, W22, W22B, W31, W52, W56, W57, W62B, W66</td>
 <td>✅ 2–3 planners handle replenishment + store-initiated requests + transfers + backorder fulfillment + promo allocation; home delivery and ship-from-store picked by DC/store staff; 1–2 dedicated demand planners handle forecasting; 1 Fleet Manager manages owned vehicles and 3PL relationships; Import Coordinator absorbs inter-island logistics; DC inbound scheduling (W3C) absorbed by DC Receiving Supervisor; 3PL partner onboarding (W62B) absorbed by Fleet Manager; allocation rule governance reviewed quarterly as part of W31.8 parameter cycle</td>
 </tr>
+<tr>
 <td><strong>HR & Payroll</strong></td>
 <td>HR Head, Recruitment, Payroll, Training Officer, HR Assistants</td>
 <td>~16</td>
 <td>W10, W15, W51, W72</td>
 <td>✅ 2–3 payroll officers + 2 recruiters + 1 Training Officer handle the volume; employee performance management absorbed by ~230 managers</td>
 </tr>
+<tr>
 <td><strong>Marketing</strong></td>
 <td>Brand, Promo, Loyalty, Ecommerce, Digital, Content, CS Manager</td>
 <td>~24</td>
 <td>W13, W17, W50, W61, W65</td>
 <td>✅ Loyalty is largely automated; promo work is cyclical; dedicated Content Manager + 2–3 Content Specialists for ecommerce product content; CS Manager owns customer satisfaction measurement; price match review absorbed by Pricing Analysts</td>
 </tr>
+<tr>
 <td><strong>Store Operations</strong></td>
 <td>Director, Regional Managers, CS Manager, Ops Standards, Facilities Coordinator</td>
 <td>~23</td>
 <td>W5, W5D (in-store delivery), W5E (opening delay), W16, W29, W5G (offline recovery), W34, W37, W41, W47, W49, W54A, W67, W69, W71</td>
 <td>✅ 4 Regional Managers × 50 stores each; oversee new openings and monthly store performance reviews; in-store delivery uses existing 3PL carrier infrastructure; opening delay procedure is Store Mgr responsibility; offline recovery is Store Mgr responsibility; shift scheduling and complaint handling absorbed; 2–3 LPOs recommended for loss prevention; 1 Facilities Coordinator manages store maintenance, disaster response, and physical security oversight; weekly price compliance audits absorbed by Dept. Supervisors and Stock Associates</td>
 </tr>
+<tr>
 <td><strong>IT</strong></td>
 <td>Infrastructure, Apps, Data, Security, BI Analyst, Helpdesk</td>
 <td>~28–30</td>
 <td>W16 (store setups), W35 (reporting), W48 (helpdesk & IT ops)</td>
 <td>✅ 4–5 helpdesk agents + 3–4 specialists handle ~800–1,200 tickets/month; 2–3 per store setup + BAU support; 1 BI Analyst supports management reporting; note: for physical IT support across the Philippine archipelago (200 stores + 5 DCs across Mindanao, Visayas, Luzon), 1–2 dedicated field staff may not provide adequate same-day response for P1 incidents in remote locations — recommend (a) training designated Store Managers as first-level hardware troubleshooters (certified on basic POS terminal swap, cable reseat, network restart), (b) contracting regional IT service providers in each major region (Davao, Cebu, Manila, Clark) for emergency on-site support, and (c) maintaining a spare POS terminal and network equipment swap stock at each DC for rapid dispatch</td>
 </tr>
+<tr>
 <td><strong>Other</strong></td>
 <td>Legal, Internal Audit, DPO, Regulatory Officer, Customer Service (call center), Executive</td>
 <td>~52</td>
@@ -1210,51 +1344,61 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Key Workflows</th>
 <th>Workload Validation</th>
 </tr></thead><tbody>
+<tr>
 <td>Store Manager</td>
 <td>1</td>
 <td>W5 (open/close), W5D (in-store delivery coordination), W5E (opening delay handling), W6 (approvals), W12 (returns), W16 (opening), W22B (store-to-DC returns), W54 (LGU permit coordination), W67 (monthly performance review), W69 (price audit review)</td>
 <td>Manageable; delegates floor ops to supervisors</td>
 </tr>
+<tr>
 <td>Asst. Store Manager</td>
 <td>1</td>
 <td>W5 (open/close backup), W6, W12</td>
 <td>Shares management load; covers days off</td>
 </tr>
+<tr>
 <td>Dept. Supervisors</td>
 <td>4</td>
 <td>W5B (floor selling), W6 (cycle count review), W12 (restock), W69 (price compliance audit execution and review)</td>
 <td>4 depts × 1 supervisor; handles floor + counts + weekly price audits</td>
 </tr>
+<tr>
 <td>Sales Associates</td>
 <td>16</td>
 <td>W5B (selling, paint mixing, lumber cutting), W5D (in-store delivery staging), W11 (BOPIS pick), W56 (backorder intake), W61 (price match verification)</td>
 <td>4/dept × 2 shifts = adequate for floor coverage</td>
 </tr>
+<tr>
 <td>Cashiers</td>
 <td>6</td>
 <td>W5B (checkout), W17 (loyalty scan), W28 (gift card sell/reload)</td>
 <td>5 terminals + 1 float; 2 shifts of 3; tight on coverage</td>
 </tr>
+<tr>
 <td>Receiving Clerks</td>
 <td>2</td>
 <td>W4 (store receiving from DC), W18 (DSD receiving), W22 (transfer receiving), W22B (store-to-DC return staging)</td>
 <td>2–3 DC trucks/week + 2–3 DSD/week + transfers + return staging; 2 clerks in shifts handle it</td>
 </tr>
+<tr>
 <td>Stock Associates</td>
 <td>3</td>
 <td>W4 (shelf stocking), W4B (store replenishment request), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD shelving), W19B (ship-from-store picking), W22 (transfer pick/receive), W22B (store-to-DC return packing), W34 (shift adherence), W42 (annual count), W57 (promo stock staging), W63 (shelf label application), W69 (price audit scanning)</td>
 <td>700 SKUs/day counting + stocking + DSD + transfers + label updates + weekly price audit; adequate but minimal slack</td>
 </tr>
+<tr>
 <td>Customer Service Rep</td>
 <td>1</td>
 <td>W11 (BOPIS handoff), W12 (returns), W24 (credit application assistance), W28 (store credit), W29 (recall returns), W33 (warranty claims), W38 (special order intake), W41 (complaints)</td>
 <td>~4 BOPIS + ~2 returns + ~0.5 gift cards + ~2 warranty claims + ~0.5 special orders + ~10 complaints/day = moderate; also handles special orders</td>
 </tr>
+<tr>
 <td>Maintenance</td>
 <td>1</td>
 <td>W5F (closing checklist), W47 (facility maintenance & work orders), general upkeep</td>
 <td>Standard for big-box format; handles ~10–15 maintenance work orders/month including preventive tasks; external contractors engaged for specialized repairs</td>
 </tr>
+<tr>
 <td><strong>Total</strong></td>
 <td><strong>35</strong></td>
 <td></td>
@@ -1270,41 +1414,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Key Workflows</th>
 <th>Workload Validation</th>
 </tr></thead><tbody>
+<tr>
 <td>DC Manager + Supervisors</td>
 <td>5</td>
 <td>W3, W4 (oversight)</td>
 <td>1 manager + 4 shift/area supervisors</td>
 </tr>
+<tr>
 <td>Receiving</td>
 <td>10–13</td>
 <td>W3 (receiving & putaway), W20 (VMI receipt)</td>
 <td>~40 receipts/day × 1.5–3 hrs; 3–4 clerks + 4–6 putaway + 1–2 QC</td>
 </tr>
+<tr>
 <td>Picking & Packing</td>
 <td>25–30</td>
 <td>W4 (pick/pack/ship), W19 (home delivery pick/pack)</td>
 <td>~33 store orders + ~115 home delivery orders/day; 15–20 pickers + 8–10 packers; 3–4 dedicated to home delivery; peak ecommerce periods may require surge staffing</td>
 </tr>
+<tr>
 <td>Loading & Dispatch</td>
 <td>6–8</td>
 <td>W4 (loading)</td>
 <td>Multi-drop truck loading; 4–6 crew + dispatch</td>
 </tr>
+<tr>
 <td>Inventory Control</td>
 <td>2–3</td>
 <td>W6 (DC cycle counts)</td>
 <td>DC-level accuracy monitoring</td>
 </tr>
+<tr>
 <td>Admin & Support</td>
 <td>5–8</td>
 <td>Admin, safety, maintenance</td>
 <td>Office, security, equipment maintenance</td>
 </tr>
+<tr>
 <td>Special Handling (lumber, tiles, paint)</td>
 <td>8–10</td>
 <td>W3, W4 (special areas)</td>
 <td>Dedicated teams for heavy/hazardous goods</td>
 </tr>
+<tr>
 <td><strong>Total</strong></td>
 <td><strong>~150</strong></td>
 <td></td>
@@ -1324,18 +1476,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Hazardous waste accumulation at location reaches disposal threshold; or quarterly disposal schedule; or DENR reporting deadline</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Disposal: quarterly per location (minimum); DENR reporting: quarterly; Permit renewal: annual per location</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Hazardous waste categories: paint/chemical waste (sludge, expired products, solvent rags), used oils and lubricants (from fleet maintenance W52, forklift maintenance), broken fluorescent lamps and LED tubes (mercury content), used batteries (lead-acid from forklifts, UPS systems), aerosol cans (residual propellant); ~200 stores + 5 DCs each generating small but regulated quantities</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Regulatory Officer (HQ); Store Manager / DC Manager (location-level execution)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Regulatory Officer, Store Manager, DC Manager, Maintenance Staff, accredited transporter, DENR-accredited treatment/disposal facility, Finance (disposal cost), Legal</td>
 </tr>
@@ -1354,78 +1511,91 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Location registration</strong>: for each new store (W16) or DC, Regulatory Officer applies for DENR Hazardous Waste Generator Registration (HWGR) — submits required documents (business permit, location map, waste management plan, emergency response plan) to DENR-EMB regional office; receives HWGR certificate with generator ID number; system records HWGR number, registration date, and expiry date per location</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>2–4 hours/location (initial)</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Annual renewal</strong>: system alerts Regulatory Officer 90 days before HWGR expiry per location; Regulatory Officer submits renewal documents to DENR-EMB; renewed certificate uploaded to location document management (W54-style permit tracking)</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>1 hour/location/year</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Ongoing accumulation at location</strong>: Maintenance Staff (or designated Stock Associate at stores) segregates hazardous waste by category in designated, properly labeled storage containers — (a) <strong>paint/chemical waste</strong>: expired paint, adhesives, solvents, contaminated rags — stored in sealed drums in ventilated area away from ignition sources, (b) <strong>used oils</strong>: from forklift maintenance at DCs and vehicle maintenance per W52 — stored in sealed containers in bunded area, (c) <strong>fluorescent lamps</strong>: broken or expired tubes — stored in original packaging or dedicated collection boxes, (d) <strong>used batteries</strong>: lead-acid batteries from forklifts and UPS systems — stored upright on spill containment pallets, (e) <strong>aerosol cans</strong>: residual product cans — stored in vented containers</td>
 <td>Maintenance Staff / Stock Associate</td>
 <td>Store Manager / DC Manager</td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Accumulation monitoring</strong>: system tracks hazardous waste accumulation per location per waste category — Maintenance Staff logs waste additions (category, estimated quantity, date) in system via handheld or terminal; system flags location when accumulated quantity approaches disposal threshold (configurable per category based on DENR storage limits — typically 90 days maximum storage)</td>
 <td>Maintenance Staff</td>
 <td>Store Manager / DC Manager</td>
 <td>5 min/entry</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Disposal scheduling</strong>: when location reaches disposal threshold or quarterly schedule triggers — Regulatory Officer coordinates disposal with DENR-accredited transporter and DENR-accredited treatment/storage/disposal (TSD) facility; obtains quotations from accredited providers; selects based on: DENR accreditation status, cost, proximity, service reliability</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>1–2 hours/disposal event</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Transporter accreditation verification</strong>: before each shipment, Regulatory Officer verifies transporter's DENR accreditation (PCO license, transport permit, vehicle registration with DENR) is current and valid; system maintains accredited transporter registry with accreditation expiry tracking and auto-alerting</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>15 min/verification</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Hazardous waste manifest (DENR Form)</strong>: Regulatory Officer prepares DENR-compliant hazardous waste manifest per shipment — (a) generator information (BuildRight location name, address, HWGR number), (b) waste description (category, quantity, physical state, hazard characteristics), (c) transporter information (company name, DENR transport permit number, vehicle plate, driver name), (d) TSD facility information (company name, DENR permit number, facility address), (e) six-copy manifest per DENR format — signed by generator, transporter, and TSD facility</td>
 <td>Regulatory Officer</td>
 <td>Store Manager / DC Manager</td>
 <td>30 min/manifest</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Physical pickup</strong>: accredited transporter arrives at location; Maintenance Staff and transporter representative jointly verify waste quantity and category against manifest; both sign manifest copies; transporter loads waste</td>
 <td>Maintenance Staff / Transporter</td>
 <td>Store Manager / DC Manager</td>
 <td>30–60 min/pickup</td>
 </tr>
+<tr>
 <td>9</td>
 <td><strong>Manifest tracking</strong>: system tracks manifest lifecycle — (a) <strong>Generated</strong>: manifest created and signed by generator, (b) <strong>In Transit</strong>: transporter departs with waste, (c) <strong>Received by TSD</strong>: TSD facility signs manifest confirming receipt and treatment/disposal, (d) <strong>Closed</strong>: TSD returns signed manifest copy (generator copy) to Regulatory Officer within 30 days; if manifest not returned within 30 days, system alerts Regulatory Officer for follow-up with transporter and TSD</td>
 <td>Regulatory Officer / System</td>
 <td>Legal Head</td>
 <td>15 min/manifest tracking</td>
 </tr>
+<tr>
 <td>10</td>
 <td><strong>Disposal cost processing</strong>: Finance processes disposal invoice from transporter/TSD — (a) invoice matched to manifest number and location, (b) cost allocated to location's operating expense (Dr. Waste Disposal Expense / Cr. Cash), (c) system tracks disposal cost per location per quarter for budgeting (W26)</td>
 <td>AP Clerk / Finance</td>
 <td>Controller</td>
 <td>Per W7</td>
 </tr>
+<tr>
 <td>11</td>
 <td><strong>Quarterly reporting</strong>: Regulatory Officer prepares DENR quarterly disposal report (due within 30 days after end of quarter) — (a) total waste generated by category per location, (b) total waste disposed by category per location with manifest references, (c) transporter and TSD facility details, (d) current on-site waste inventory per location; report submitted to DENR-EMB regional office per location jurisdiction</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>4 hours/quarter</td>
 </tr>
+<tr>
 <td>12</td>
 <td><strong>Annual waste management plan update</strong>: Regulatory Officer reviews and updates the waste management plan per location — (a) projected waste generation by category, (b) disposal schedule and budget, (c) transporter and TSD facility list, (d) emergency response procedures for spills or accidents; updated plan submitted to DENR as part of HWGR renewal</td>
 <td>Regulatory Officer</td>
 <td>Legal Head</td>
 <td>8 hours/year</td>
 </tr>
+<tr>
 <td>13</td>
 <td><strong>Spill / accidental release response</strong>: if hazardous material spills or is accidentally released at a location — (a) Maintenance Staff contains spill using location's spill kit (positioned at paint area, chemical storage, and battery storage areas), (b) reports spill to Store Manager / DC Manager and Regulatory Officer, (c) Regulatory Officer assesses severity — minor spill (contained on-site, cleaned with standard PPE): location staff handles cleanup with proper disposal of contaminated materials per W82; major spill (spreading, off-site risk, or personnel exposure): Regulatory Officer engages DENR-accredited emergency response contractor and notifies DENR-EMB within 24 hours, (d) system logs spill event with date, location, material, quantity, response actions, and disposal of contaminated cleanup materials</td>
 <td>Maintenance Staff / Regulatory Officer</td>
@@ -1464,18 +1634,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Annual external audit engagement per SEC requirement; quarterly review (if required by lenders or board); or special audit (M&A due diligence, regulatory investigation)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Annual statutory audit (Q1 following fiscal year-end); quarterly interim review (if applicable)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>1 annual audit covering 5 entities + consolidated; quarterly reviews if required</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Controller</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Controller, CFO, Cost Accountant, AP Supervisor, AR Accountant, Treasury Analyst, Tax Accountant, Internal Audit, IT Manager, external auditors (CPA firm)</td>
 </tr>
@@ -1494,60 +1669,70 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Audit planning — engagement letter</strong>: (a) CFO and Controller review and sign annual audit engagement letter from external auditors (typically signed Q4 for the following year's audit); (b) agree on audit scope (5 entities + consolidated), timeline (fieldwork in February, report by March–April), materiality thresholds, and audit fee; (c) Controller coordinates audit planning meeting with external audit partner and manager</td>
 <td>CFO / Controller</td>
 <td>CEO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Pre-audit preparation</strong> (January — after W9B year-end close): Controller assigns preparation tasks across Finance team: (a) <strong>AP Supervisor</strong>: finalize AP aging reconciliation, open GRNI analysis, vendor confirmation letters (send to top 50 vendors requesting confirmation of balances); (b) <strong>AR Accountant</strong>: finalize AR aging, send customer confirmation letters (top 50 trade/corporate accounts), prepare bad debt provision analysis (W81); (c) <strong>Treasury Analyst</strong>: complete all bank reconciliations (W89) through December 31, prepare bank confirmation requests (send to all 4 banks for all 25 accounts); (d) <strong>Tax Accountant</strong>: prepare annual tax reconciliation (W90), reconcile tax liability accounts, compile all BIR filings for the year; (e) <strong>Cost Accountant</strong>: prepare inventory valuation report (W9A.6), inventory reserve analysis (obsolescence, NRV), fixed asset register with depreciation schedule (W39); (f) <strong>IT Manager</strong>: prepare IT general controls documentation (access controls, change management, backup procedures per W48/W55)</td>
 <td>Controller</td>
 <td>CFO</td>
 <td>8 hours</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>PBC (Prepared by Client) list fulfillment</strong>: External auditors provide a PBC list of documents and schedules required for the audit; Controller assigns each item with deadline (typically 1–2 weeks before fieldwork start): (a) trial balance per entity, (b) consolidated elimination entries (W14), (c) intercompany reconciliation (W14.4–5), (d) revenue and expense analysis by category, (e) journal entry listing with supporting documentation for all manual JEs > materiality, (f) bank reconciliation reports (W89), (g) inventory count documentation from W42 annual physical inventory, (h) capex additions and disposals (W21, W39), (i) insurance schedule (W59), (j) related party transactions schedule, (k) contingent liabilities (pending litigation, tax assessments from W77), (l) subsequent events review (transactions after year-end through audit report date)</td>
 <td>Finance Team</td>
 <td>Controller</td>
 <td>20–30 hours total</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>External audit fieldwork</strong> (February — typically 2–3 weeks on-site at HQ): (a) <strong>Opening meeting</strong>: Controller, CFO, and external audit team agree on fieldwork schedule, key contact persons per area, and logistics; (b) <strong>Substantive testing</strong>: auditors test revenue (POS transaction sampling — W5B), purchases (PO and invoice sampling — W2/W7), inventory (observe physical count — W42, or rely on count documentation), bank balances (confirmations from W89), fixed assets (physical verification of additions), intercompany (W14 reconciliation), payroll (W10 sampling); (c) <strong>Internal controls testing</strong>: auditors test key controls — PO approval (W2.5–6), 3-way match (W7.2–3), credit approval (W24), physical security (W71), IT access controls (W48); (d) <strong>Entity walkthroughs</strong>: auditors may visit 1–2 stores and 1 DC for physical observation; Controller coordinates visits with Store Managers and DC Supervisors</td>
 <td>External Auditors / Controller</td>
 <td>CFO</td>
 <td>2–3 weeks</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Audit queries and information requests</strong> (throughout fieldwork): (a) External auditors issue queries and additional information requests as testing proceeds; Controller triages and routes to appropriate Finance team member; (b) target response time: 2 business days for standard queries, 5 business days for complex analysis; (c) weekly status meetings between Controller and audit manager to track open queries and issues</td>
 <td>Controller / Finance Team</td>
 <td>CFO</td>
 <td>Ongoing during fieldwork</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Draft financial statements review</strong>: (a) External auditors present draft audited financial statements (per entity and consolidated) to Controller and CFO; (b) Controller reviews for accuracy vs. internal records, proper PFRS/IFRS presentation, and adequate disclosure; (c) Controller provides comments and corrections within 1 week</td>
 <td>Controller / CFO</td>
 <td>CEO</td>
 <td>4–6 hours</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Audit adjustments and passed adjustments</strong>: (a) <strong>Proposed audit adjustments</strong>: external auditors propose correcting entries for any misstatements found during testing; Controller reviews and posts agreed adjustments per W9B year-end close; (b) <strong>Passed adjustments (unadjusted differences)</strong>: misstatements below materiality that auditors note but do not require correction; Controller logs passed adjustments in audit summary for future reference and potential cumulative materiality assessment</td>
 <td>Controller</td>
 <td>CFO</td>
 <td>2–4 hours</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Exit meeting and management letter</strong>: (a) External auditors conduct exit meeting with Controller, CFO, and CEO to present audit findings, significant observations, and recommendations; (b) external auditors issue management letter with internal control recommendations (e.g., segregation of duties improvements, system access issues, process inefficiencies); (c) Controller prepares management response and action plan for each recommendation with deadlines and responsible persons; (d) management response reviewed and approved by CFO</td>
 <td>Controller / CFO / CEO</td>
 <td>CEO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>9</td>
 <td><strong>Audit report issuance</strong>: External auditors issue audit opinion and audited financial statements; Controller files with SEC per regulatory deadline (typically within 120 days of fiscal year-end for corporations); files with BIR as part of 1702RT annual return (W90)</td>
 <td>Controller / External Auditors</td>
 <td>CFO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>10</td>
 <td><strong>Management letter follow-up</strong>: Controller tracks implementation of management letter recommendations: (a) assigns each recommendation to responsible person, (b) tracks implementation progress quarterly, (c) reports status to CFO and Audit Committee, (d) unresolved items > 6 months escalated to CEO; external auditors review prior year recommendations in next year's audit</td>
 <td>Controller</td>
@@ -1587,18 +1772,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Annual sustainability reporting cycle; quarterly environmental compliance review; DENR reporting deadline; or ad-hoc triggered by environmental incident or regulatory inquiry</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Annual sustainability report; quarterly environmental metrics review; monthly waste and emissions tracking</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>200 stores + 5 DCs + HQ; environmental data collected per location across waste, energy, water, and emissions categories</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Facilities Manager (data collection); VP Legal & Compliance (regulatory reporting)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Facilities Manager, VP Legal & Compliance, Regulatory Officer, Store Managers, DC Managers, Finance Manager, CSR Coordinator</td>
 </tr>
@@ -1617,42 +1807,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Monthly environmental data collection</strong>: System aggregates environmental data per location from multiple sources: (a) <strong>Waste</strong>: hazardous waste manifests (W82), general solid waste collection volumes (from waste hauler invoices per W7C), recyclable materials recovered (cardboard bales, plastic, metal — from recycling vendor records); (b) <strong>Energy</strong>: electricity consumption (W111 utility data), diesel consumption (fleet per W52, generators per W47); (c) <strong>Water</strong>: water consumption per location (W111 utility data); (d) <strong>Emissions</strong>: estimated CO₂ from electricity (using DU emission factor) and diesel (using DEF emission factor) — system calculates carbon footprint estimate per location</td>
 <td>System / Facilities Manager</td>
 <td>VP Legal & Compliance</td>
 <td>Automated (aggregation) + 2 hours/month (verification)</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Quarterly environmental metrics review</strong>: Facilities Manager reviews quarterly environmental dashboard: (a) <strong>Solid waste diversion rate</strong>: recycled waste ÷ total waste — target: ≥ 30%, (b) <strong>Energy intensity</strong>: kWh per sqm per month — target: reduce 2% year-over-year, (c) <strong>Water intensity</strong>: cubic meters per sqm per month — target: reduce 2% year-over-year, (d) <strong>Carbon intensity</strong>: tonnes CO₂ per PHP million revenue — target: reduce 3% year-over-year, (e) <strong>Hazardous waste compliance</strong>: 100% of hazardous waste disposed via DENR-accredited transporters with manifest tracking (W82), (f) per-location outliers flagged for investigation and corrective action</td>
 <td>Facilities Manager</td>
 <td>VP Legal & Compliance</td>
 <td>2 hours/quarter</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Environmental compliance calendar</strong>: Regulatory Officer maintains environmental compliance calendar per location: (a) <strong>DENR hazardous waste generator registration</strong> renewal per location (W82), (b) <strong>DENR quarterly hazardous waste disposal report</strong> per location, (c) <strong>LGU environmental compliance certificate</strong> renewal (for stores with Environmental Compliance Certificate requirement), (d) <strong>Wastewater discharge permit</strong> (for locations with discharge to waterways — paint/chemical areas), (e) <strong>Air emissions permit</strong> (for DCs with backup generators above threshold); system alerts Regulatory Officer 60 days before each deadline; expired permits escalated to VP Legal & Compliance</td>
 <td>Regulatory Officer</td>
 <td>VP Legal & Compliance</td>
 <td>2 hours/quarter (calendar maintenance)</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Annual environmental reduction targets</strong>: Facilities Manager and VP Legal & Compliance set annual environmental targets aligned with corporate sustainability strategy: (a) carbon emission reduction target (% year-over-year), (b) energy efficiency improvement target (% reduction in kWh/sqm), (c) water consumption reduction target, (d) solid waste diversion rate improvement, (e) hazardous waste volume reduction; targets approved by CEO; integrated into W26 annual budget as operational KPIs</td>
 <td>Facilities Manager / VP Legal & Compliance</td>
 <td>CEO</td>
 <td>Annual (4 hours)</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Annual sustainability report compilation</strong>: CSR Coordinator compiles annual sustainability data for: (a) voluntary sustainability disclosure (if BuildRight pursues GRI or SASB reporting framework), (b) DENR annual environmental performance report (if required), (c) SEC sustainability reporting requirements (SEC Memorandum Circular No. 4, Series of 2019 requires publicly listed companies to submit sustainability reports — BuildRight is theoretical but prepares as if applicable), (d) internal stakeholder communication (sustainability section of annual report); Facilities Manager provides environmental metrics; Finance Manager provides utility spend data; VP Legal & Compliance reviews regulatory compliance status</td>
 <td>CSR Coordinator / Facilities Manager</td>
 <td>VP Legal & Compliance</td>
 <td>Annual (20 hours)</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Environmental incident response</strong>: If environmental incident occurs (chemical spill at paint mixing station, hazardous waste container breach, wastewater discharge violation): (a) Store Manager / DC Supervisor initiates immediate containment per W82 emergency procedures; (b) Regulatory Officer notified within 24 hours; (c) Regulatory Officer assesses reporting requirement — incidents exceeding threshold require DENR notification within 24–72 hours per RA 6969; (d) Facilities Manager coordinates remediation; (e) system logs incident with location, date, type, quantity, response actions, and remediation cost; (f) incident included in quarterly metrics review and annual sustainability report</td>
 <td>Store Manager / DC Supervisor / Regulatory Officer</td>
 <td>VP Legal & Compliance</td>
 <td>Per incident</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Vendor environmental compliance</strong>: Buyer evaluates vendor environmental practices for high-risk categories (paint, chemicals, treated lumber, cement): (a) during vendor onboarding (W36), check for environmental compliance certifications (ISO 14001, DENR compliance for Philippine manufacturers); (b) for import vendors: check compliance with applicable environmental standards in country of manufacture; (c) annual review of vendor environmental compliance as part of W44 vendor scorecard; (d) vendors with environmental violations flagged for CAPA per W110 or vendor exit per W44 termination</td>
 <td>Buyer / Regulatory Officer</td>
@@ -1690,18 +1887,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Customer brings end-of-life products (batteries, old tools, appliances) to store collection points</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Covers all 200 stores</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Sustainability Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Store Staff, Logistics, Accredited Recyclers, DENR</td>
 </tr>
@@ -1716,30 +1918,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Collection</strong>: Customer drops off items at designated in-store bins; Store Staff record weight/type in system</td>
 <td>Store Staff</td>
 <td>Store Manager</td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Incentive</strong>: System issues "Green Points" to customer loyalty account (W17) for participating</td>
 <td>System</td>
 <td>—</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Consolidation</strong>: DC delivery trucks backhaul e-waste to the nearest Hub (W4)</td>
 <td>Logistics</td>
 <td>—</td>
 <td>Weekly</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Certified Disposal</strong>: Accredited 3rd-party recycler collects waste from DC; provide Certificate of Treatment</td>
 <td>Recycler</td>
 <td>Sustainability Mgr</td>
 <td>Monthly</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Impact Reporting</strong>: Track total tonnage diverted from landfills for ESG report (W114)</td>
 <td>Sustainability Mgr</td>
@@ -1756,18 +1963,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Annual BC/DR schedule or major system change</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Semi-annual for IT DR; Annual for full BC drill</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Covers all 5 legal entities and critical sites (HQ, DCs, 200 stores)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>VP Legal & Compliance</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>IT Infrastructure Team, DC Managers, Store Managers, HR, Finance</td>
 </tr>
@@ -1782,36 +1994,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Scenario Planning</strong>: Define the drill scenario (e.g., total network outage, major typhoon landfall in Visayas, fire at DC3)</td>
 <td>Compliance Officer</td>
 <td>VP Legal & Compliance</td>
 <td>4 hours</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>IT Disaster Recovery Test</strong>: Execute "failover" to backup data center; verify data integrity and POS transaction synchronization (W55)</td>
 <td>IT Manager</td>
 <td>CIO</td>
 <td>8-12 hours</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Communication Drill</strong>: Activate emergency notification tree; verify response times from Store Managers and DC Supervisors</td>
 <td>HR Manager</td>
 <td>CHRO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Operational Workarounds</strong>: Stores practice manual sales recording (W5G) and manual inventory logging for 4 hours; DCs practice manual load manifest creation</td>
 <td>Store Manager / DC Supervisor</td>
 <td>COO</td>
 <td>4 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Post-Drill Review</strong>: Document gaps, system performance issues, and communication bottlenecks; update Business Continuity Plan (BCP)</td>
 <td>Compliance Officer</td>
 <td>VP Legal & Compliance</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Board Reporting</strong>: Present DR/BC readiness status and improvement plan to the Board of Directors</td>
 <td>VP Legal & Compliance</td>
@@ -1828,12 +2046,15 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Accumulation of secondary packaging (cartons, plastics, broken pallets)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Weekly</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>DC Supervisor / Store Manager</td>
 </tr>
@@ -1848,30 +2069,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Store/DC Associates segregate waste: Carton, Stretch Film (Plastic), Wood (Pallets), Scrap Metal</td>
 <td>Associates</td>
 <td>—</td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Materials baled (for carton/plastic) or stacked (for pallets) at DC/Store dock</td>
 <td>Stock Associate</td>
 <td>—</td>
 <td>30 min/day</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Logistics collects recyclables from Stores via <strong>Reverse Logistics</strong> trucks returning to DC</td>
 <td>Logistics Team</td>
 <td>—</td>
 <td>Weekly</td>
 </tr>
+<tr>
 <td>4</td>
 <td>DC consolidates recyclables; sells to accredited recycling partners</td>
 <td>DC Supervisor</td>
 <td>Supply Chain Mgr</td>
 <td>Monthly</td>
 </tr>
+<tr>
 <td>5</td>
 <td>System records "Recycling Revenue" and weight diverted from landfill; feeds into W114 Sustainability Report</td>
 <td>DC Supervisor</td>
@@ -1886,18 +2112,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Report of property damage, personal injury, or safety hazard related to a sold product</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>As occurred</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>< 10 incidents/month</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Legal & Compliance Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Customer Service Manager, Risk Manager, Store Manager, Vendor (Supplier)</td>
 </tr>
@@ -1912,48 +2143,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Customer Service Rep receives report; records incident details, product SKU, batch/lot (if available), and photos in ERP</td>
 <td>CS Rep</td>
 <td>CS Manager</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>System flags product; if multiple reports occur for same SKU, alerts Merchandising for potential stop-sell</td>
 <td>System</td>
 <td>Merchandising Mgr</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Store Manager/Risk Manager conducts physical inspection of incident site or product remains</td>
 <td>Risk Manager</td>
 <td>Legal Manager</td>
 <td>4 hours</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Legal Manager reviews documentation; determines liability and coordinates with insurance (W59)</td>
 <td>Legal Manager</td>
 <td>CFO</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Formal notice sent to Vendor; request for investigation and indemnity</td>
 <td>Legal Manager</td>
 <td>—</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Coordinate with DTI (Dept of Trade and Industry) if mandatory product recall is triggered (W29)</td>
 <td>Legal Manager</td>
 <td>—</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Resolve claim: settlement, replacement, or legal defense</td>
 <td>Legal Manager</td>
 <td>CFO</td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Document "Lessons Learned"; feed into Vendor Performance Review (W44)</td>
 <td>Risk Manager</td>
@@ -1979,18 +2218,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Scheduled audit or suspected internal/external theft incident</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Weekly audits of high-risk transactions</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Covers all 200 stores and 5 DCs</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Loss Prevention (LP) Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>LP Analyst, Store Manager, IT (for system access)</td>
 </tr>
@@ -2005,36 +2249,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Exception Identification</strong>: System identifies high-risk POS transactions (e.g., voids, high-value returns, employee discounts) via automated exception reports (W37)</td>
 <td>System</td>
 <td>LP Analyst</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>CCTV Reconciliation</strong>: LP Analyst retrieves CCTV footage synced with POS transaction timestamps; verifies physical action matches system record</td>
 <td>LP Analyst</td>
 <td>LP Manager</td>
 <td>30 min/event</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Discrepancy Logging</strong>: If "phantom return" or unrecorded sale discovered, log as a "Confirmed Incident" in LP module</td>
 <td>LP Analyst</td>
 <td>LP Manager</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Investigation</strong>: Confront staff or review external footage for identification; coordinate with HR for disciplinary action (W79)</td>
 <td>LP Manager</td>
 <td>CHRO</td>
 <td>2-4 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>System Update</strong>: Write off confirmed theft inventory (W37.6); update shrinkage metrics in P&L (W102)</td>
 <td>Finance</td>
 <td>LP Manager</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Security Hardening</strong>: Adjust camera angles or POS procedures based on audit findings</td>
 <td>IT / Store Manager</td>
@@ -2051,18 +2301,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Store opening (W16); annual local permit cycle (W54); or community grievance</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Quarterly check-ins; or as needed</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>One relationship per store/DC location (205+ barangays)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Store Manager / DC Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Barangay Captain, LGU Officials, Legal Manager</td>
 </tr>
@@ -2077,36 +2332,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Stakeholder Mapping</strong>: Identify key local officials (Barangay Captain, LGU licensing office, local police)</td>
 <td>Store Manager</td>
 <td>Legal Manager</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Permit Coordination</strong>: Liaise with Barangay for "Barangay Clearance" required for LGU Business Permit renewal (W54)</td>
 <td>Store Manager</td>
 <td>Regulatory Officer</td>
 <td>4 hours/year</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Local Employment</strong>: Coordinate with Barangay for local hiring requirements/quotas as part of social responsibility and LGU agreements</td>
 <td>HR / Store Manager</td>
 <td>—</td>
 <td>Monthly</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Community Support</strong>: Manage local CSR requests (e.g., school repair donations, neighborhood cleaning) via CSR Program Execution (W135)</td>
 <td>Store Manager</td>
 <td>CSR Coordinator</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Dispute Resolution</strong>: Address community complaints (e.g., truck noise, parking congestion) via direct dialogue; document resolution in Legal Case Management (W125)</td>
 <td>Store Manager</td>
 <td>Legal Manager</td>
 <td>Varies</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Annual Appreciation</strong>: Conduct "Community Day" or stakeholder briefing on store performance and local impact</td>
 <td>Store Manager</td>
@@ -2123,18 +2384,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Periodic compliance review; or BIR post-evaluation/inspection of the ERP system</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Annual internal review; or as scheduled by BIR</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Covers all 5 legal entities and centralized accounting</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>VP Legal & Compliance / CIO</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Tax Manager, IT Manager, External Audit, BIR Officers</td>
 </tr>
@@ -2153,42 +2419,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>System Documentation Update</strong>: Maintain up-to-date system architecture, data flow diagrams, and functional descriptions for BIR submission</td>
 <td>IT Manager</td>
 <td>CIO</td>
 <td>4 hours</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Audit Trail Verification</strong>: Verify that all transactions (GL, AP, AR, Inventory) have immutable audit trails (who, when, what, previous value)</td>
 <td>IT Manager</td>
 <td>Internal Audit</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Standard Report Generation</strong>: Generate and validate "Books of Accounts" in BIR-required formats (General Journal, Sales Journal, Purchase Journal, etc.)</td>
 <td>Tax Manager</td>
 <td>Controller</td>
 <td>4 hours</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>E-Invoicing Compliance</strong>: Verify that system-generated Invoices and Official Receipts (OR) comply with BIR serial numbering and mandatory field requirements</td>
 <td>Tax Manager</td>
 <td>VP Compliance</td>
 <td>2 hours</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>CAS Permit Review</strong>: Verify that any significant system changes (W132) have been reported to the BIR as "System Enhancements" per regulation</td>
 <td>VP Compliance</td>
 <td>—</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Mock Inspection</strong>: Conduct mock BIR walk-through: demonstrate system navigation, report generation, and data archival for BIR officers</td>
 <td>Tax Manager</td>
 <td>CIO</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Archival & Retention</strong>: Verify 7-year data retention and accessibility of archived accounting data (W15.3)</td>
 <td>IT Manager</td>

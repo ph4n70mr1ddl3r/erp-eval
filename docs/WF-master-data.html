@@ -132,15 +132,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Merchandising department requests a new SKU/Item to be added to the assortment</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Daily (approx. 50–100 new SKUs/week across all categories)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Master Data Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Category Manager, Pricing Analyst, Supply Chain Planner, Master Data Analyst</td>
 </tr>
@@ -155,30 +159,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Request Initiation</strong>: Category Manager submits a New Item Request via the ERP MDM portal, filling in mandatory commercial attributes (supplier, brand, hierarchy category, unit of measure, standard cost)</td>
 <td>Category Manager</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Attribute Enrichment — Supply Chain</strong>: Supply Chain Planner adds logistical attributes (dimensions, weight, pallet tie/high, default supply DC, lead time, minimum order quantity)</td>
 <td>Supply Chain Planner</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Attribute Enrichment — Pricing</strong>: Pricing Analyst adds retail pricing parameters (base retail price, price family grouping, initial margin)</td>
 <td>Pricing Analyst</td>
 <td>—</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Validation & Quality Check</strong>: Master Data Analyst reviews the completed request, ensuring no duplicates exist (checking GTIN/UPC/EAN) and all naming conventions are strictly followed</td>
 <td>Master Data Analyst</td>
 <td>Master Data Manager</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Approval & Activation</strong>: Master Data Manager approves the item. System assigns internal SKU number, activates the item across the relevant location matrix (store assortments), and syncs to POS and Ecommerce platforms</td>
 <td>Master Data Manager</td>
@@ -208,15 +217,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Ongoing customer data ingestion from POS loyalty sign-ups, Ecommerce registrations, and B2B Trade Account creations</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Continuous automated ingestion; Monthly manual deduplication review</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>CRM Data Steward</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Store Cashier, B2B Sales Rep, Customer Service Rep, CRM Data Steward</td>
 </tr>
@@ -231,30 +244,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Data Ingestion</strong>: Customer data is captured at POS (phone number lookup/creation), Ecommerce (email registration), or B2B Portal. System performs real-time validation (e.g., regex checks for PH mobile numbers +639XX)</td>
 <td>Store Cashier / System</td>
 <td>—</td>
 <td>2 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Automated Matching</strong>: ERP/CDP runs daily batch matching algorithms (Levenshtein distance on names, exact match on email/mobile) to flag potential duplicate profiles</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Exception Management</strong>: CRM Data Steward reviews the "Potential Duplicates" queue</td>
 <td>CRM Data Steward</td>
 <td>—</td>
 <td>15 min/batch</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Merge & Consolidate</strong>: Steward executes a merge. System consolidates loyalty points, purchase history, and contact details into the surviving "Golden Record", and leaves a tombstone on the deprecated record</td>
 <td>CRM Data Steward</td>
 <td>CRM Data Steward</td>
 <td>10 min/merge</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Downstream Sync</strong>: The Golden Record updates are pushed to Ecommerce, POS offline databases, and Marketing Automation tools</td>
 <td>System</td>
@@ -284,15 +302,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Real estate team confirms a new store/DC opening, relocation, or closure</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>5–10 times per year</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>IT ERP Administrator</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Real Estate Manager, Operations Director, Finance Controller, Master Data Manager</td>
 </tr>
@@ -307,30 +329,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Location Request</strong>: Operations submits a Location Master request specifying store type, region, GL company code, and tax registration details (TIN/Branch Code)</td>
 <td>Operations Director</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Financial Setup</strong>: Finance Controller defines the cost center, profit center, and fixed asset location mappings for the new entity</td>
 <td>Finance Controller</td>
 <td>—</td>
 <td>20 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Logistical Setup</strong>: Supply Chain assigns the supplying DC, default transit times, and delivery schedules to the location profile</td>
 <td>Supply Chain Planner</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Hierarchy Assignment</strong>: Master Data Manager places the location in the enterprise hierarchy (e.g., Region: Visayas → Area: Cebu → Store: Mandaue City)</td>
 <td>Master Data Manager</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>System Activation</strong>: ERP Administrator activates the location. This triggers automated setup in POS polling routines, replenishment MRP runs, and financial reporting roll-ups</td>
 <td>IT ERP Administrator</td>

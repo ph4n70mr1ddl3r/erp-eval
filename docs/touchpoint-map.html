@@ -123,111 +123,147 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>ERP Module</th>
 <th>Workflows Supported</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>POS / Retail</strong></td>
 <td>W5 (store selling, void transactions, trade/corporate pricing), W5A (Store Opening), W5B (In-Store Selling), W5D (In-Store Customer Delivery), W5E (Store Opening Delay), W5F (Store Closing & End-of-Day), W5G (Offline POS Recovery & Reconciliation), W12 (returns & exchanges), W12A (In-Store Returns), W12B (Online-Initiated Returns), W12C (Cross-Store Returns), W17 (loyalty at POS), W18 (DSD receiving), W18B (DSD Vendor Delivery Scheduling), W23 (consignment sale), W28 (gift card/store credit), W29 (recall blocking), W33 (warranty claims), W38 (special order deposit, customer deposit refund), W58 (quotation-to-order conversion at POS), W61 (competitor price match), W69 (price compliance audit), W75 (layaway / installment sales), W86 (planogram compliance verification), W93 (clearance markdown price), W94 (customer deposit collection), W109 (Store-Level Inventory Receiving & Putaway), W112 (Trade Counter / Pro Desk Operations), W138 (service sale at POS), W139 (rental agreement & deposit), W149 (bank-BIN promo triggers), W205 (employee purchase), W206 (mPOS queue busting), W212 (Smart Safe deposit)</td>
 </tr>
+<tr>
 <td><strong>Inventory Management</strong></td>
 <td>W3 (GR posting, shelf-life/expiry tracking, perpetual WAC at receipt, inventory ownership), W3B (Yard & Outdoor Inventory Management), W4 (replenishment calculation), W4B (Store-Initiated Replenishment Request), W6 (cycle counting, near-expiry alerting), W11 (BOPIS pick), W12C (cross-store return inventory adjustment), W18 (DSD GR, shelf-life capture), W18B (DSD Vendor Delivery Scheduling), W20 (VMI stock), W22 (transfers, transfer discrepancy resolution), W22A (Store-Level Outbound Transfer Fulfillment), W22B (Store-to-DC Return), W23 (consignment tracking, consignment returns), W29 (recall quarantine), W37 (confirmed theft write-off, shrinkage tracking), W42 (annual physical inventory, vendor-owned inventory count), W46 (kit assembly/disassembly), W56 (backorder allocation and reservation), W57 (promo stock allocation tracking), W66 (inter-island freight cost allocation), W68 (product discontinuation status lifecycle), W69 (price audit — shelf tag accuracy), W91 (damaged/defective goods quarantine), W92 (inventory adjustment authorization, shrinkage reporting), W97 (sample/demo inventory status), W105 (Multi-Channel Inventory Allocation & Priority Governance), W109 (Store-Level Inventory Receiving & Putaway), W146 (bulk fulfillment/cross-docking), W154 (Proactive Store Inventory Rebalancing), W168 (real-time colorant consumption tracking), W169 (scrap/remnant inventory tracking), W176 (Store-to-DC Reverse Logistics), W204 (regional rebalancing), W214 (expedited transfers), W218 (inter-DC push), W219 (store inventory quarantine), W220 (slow-moving & obsolete inventory tracking)</td>
 </tr>
+<tr>
 <td><strong>Procurement</strong></td>
 <td>W2 (PO cycle, PO amendment/cancellation/close), W2A (Auto-Replenishment), W2B (Import Purchase Orders), W2C (Blanket / Contract Purchase Orders), W3 (receiving vs. PO), W18 (DSD PO/GR), W20 (VMI ASN), W21 (capex PO), W36 (vendor onboarding, lead time master data), W38 (special order PO), W57 (expedited promo stock PO), W60 (emergency procurement), W88 (return to vendor — RTV request, vendor credit memo), W110 (Supplier Quality & CAPA), W115 (Supplier Diversity & MSME Development), W136 (Indirect / Non-Merchandise Procurement), W144 (import PO management), W150 (vendor quality certification tracking), W155 (Vendor Strategic Collaboration & JBP), W160 (Private Label Factory Audit & Social Compliance), W161 (price protection claims), W244 (vendor invoice dispute resolution), W245 (supplier compliance chargebacks), W246 (drop-ship back-to-back PO auto-generation)</td>
 </tr>
+<tr>
 <td><strong>Warehouse Management</strong></td>
 <td>W3 (putaway, cross-dock, forward-pick replenishment), W3B (Yard & Outdoor Inventory Management), W3C (DC Inbound Delivery Scheduling), W4 (pick/pack/ship), W19 (home delivery pick/pack), W22 (transfer pick), W42 (DC count), W46 (kit assembly), W106 (dispatch planning), W144 (import container receiving), W176 (Store-to-DC Reverse Logistics consolidation), W221 (cross-dock fast-moving staging bypass), W222 (DC yard slot visual coordinates tracking)</td>
 </tr>
+<tr>
 <td><strong>Financials (GL/AP/AR)</strong></td>
 <td>W7 (AP, EWT, vendor credit memos, total AP reconciliation), W7C (Non-PO / Recurring Expense Invoice Processing), W7D (AP Vendor Statement Reconciliation), W8 (AR, credit hold override, dormant account management), W9 (close, NRV review, WAC verification, inventory write-off), W9A (Month-End Close), W9B (Year-End Close), W14 (intercompany, IC settlement timing, IC dispute resolution), W21 (capex & FA), W24 (credit approval, VAT treatment classification), W25 (petty cash, store disbursement), W26 (budget), W27 (rebates), W28 (gift card liability, cross-channel redemption IC), W30 (treasury & cash management, cash-in-transit, store cash tracking), W37 (confirmed theft write-off), W39 (asset disposal), W42 (inventory adjustments), W59 (insurance policy lifecycle, claims tracking), W60 (emergency procurement regularization), W70 (credit/debit note aging reconciliation, write-off workflow), W74 (Employee Expense Reimbursement), W76 (Employee Loans & Advances), W80 (FX Hedging & Forward Contract Management), W81 (Bad Debt Provisioning, Write-Off & Recovery), W85 (Product Costing & Margin Analysis Review), W89 (bank reconciliation), W90 (monthly tax filing & statutory remittance), W94 (customer deposit & advance payment), W99 (payment settlement reconciliation), W100 (Vendor Statement Reconciliation), W101 (Customer Refund & Credit Processing), W108 (Customer Credit Collection & Escalation), W137 (intercompany loans), W145 (wholesale EWT config), W149 (bank settlement), W161 (markdown claims), W170 (SC/PWD tax reconciliation), W172 (lost PPE payroll deduction), W174 (Cash-in-Transit), W175 (Retirement Fund), W177 (Vending & Concessionaire Management), W184 (Fixed Asset Audit), W212 (Smart Safe reconciliation), W217 (SC/PWD reporting), W219 (quarantine write-offs), W220 (SLOB provisioning), W229 (B2B temporary credit override approvals), W232 (LC and bank guarantees), W233 (cash flow forecasting), W234 (consolidated profit elimination), W235 (transfer pricing tax compliance), W239 (customs duty recon), W244 (disputed invoice resolution), W245 (performance fine deductions), W246 (drop-ship virtual goods receipt 3-way match), W249 (demurrage & detention charge settlement), W251 (Philippine statutory benefits & claims cash settlement), W260 (BIR eFPS filing & electronic payment submission), W261 (e-wallet & digital payment settlement reconciliation)</td>
 </tr>
+<tr>
 <td><strong>Supply Chain Planning</strong></td>
 <td>W2A (auto-replenishment), W4 (replenishment calculation), W4B (Store-Initiated Replenishment Request), W22 (transfer planning), W22B (Store-to-DC Return approval), W27 (rebate accrual triggers), W31 (demand forecasting, multi-echelon DC replenishment sourcing), W32 (seasonal buy planning), W56 (backorder demand linkage to PO), W57 (promo stock allocation), W64 (new product pilot store allocation), W66 (inter-island freight planning), W105 (Multi-Channel Inventory Allocation & Priority Governance), W133 (S&OP cycle), W144 (import tracking), W183 (Network Optimization), W191 (Incoterms), W220 (monthly inventory aging review & SLOB planning), W221 (cross-dock pre-allocation engine), W222 (carrier free-time tracking), W249 (import port demurrage & detention management), W250 (supply chain control tower)</td>
 </tr>
+<tr>
 <td><strong>HR & Payroll</strong></td>
 <td>W10 (payroll), W15 (onboarding), W34 (shift scheduling, attendance exception), W43 (separation & offboarding), W72 (employee performance management), W74 (Employee Expense Reimbursement), W76 (Employee Loans & Advances), W172 (Employee PPE & Uniform Lifecycle), W178 (Succession Planning), W179 (Management Trainee), W228 (trade and project sales commission), W251 (Philippine statutory benefits & claims administration)</td>
 </tr>
+<tr>
 <td><strong>Ecommerce</strong></td>
 <td>W11 (BOPIS order flow, IC settlement, ecommerce VAT), W12B (online returns), W19 (home delivery fulfillment, 3PL management), W19B (ship from store — multi-origin fulfillment), W98 (ecommerce order exception & cancellation), W180 (Marketplace Integration), W210 (dark store fulfillment), W215 (reverse logistics), W246 (drop-ship direct routing), W247 (Smart Locker and customer pickup queuing)</td>
 </tr>
+<tr>
 <td><strong>CRM / Loyalty</strong></td>
 <td>W17 (loyalty program, manual points adjustment, customer deduplication), W24 (credit application), W41 (complaint management), W56 (backorder customer notifications), W58 (corporate/project account management), W65 (CSAT/NPS measurement), W84 (Customer Account Reactivation), W87 (feedback loop), W103 (Trade Sales Pipeline & Territory Management), W112 (Trade Counter / Pro Desk Operations), W147 (workshop registration), W148 (design consultancy leads), W156 (CDP), W182 (Gift Registry), W189 (Referral Program), W259 (Call Center Daily Operations & Queue Management), W263 (Loyalty Member Enrollment & Onboarding Journey)</td>
 </tr>
+<tr>
 <td><strong>Pricing / Merchandising</strong></td>
 <td>W1 (SKU planning), W13 (promotions, pricing conflict rules), W27 (vendor rebates), W40 (regular price changes, quantity break pricing), W61 (competitor price match), W63 (shelf label generation), W64 (pilot store test), W68 (product discontinuation status), W86 (planogram layout pricing alignment), W93 (markdown & clearance pricing), W102 (Category Performance Review & P&L), W107 (Pricing Hierarchy Governance), W129 (Private Label Brand Development), W130 (Competitor Price Intelligence Gathering), W181 (Price Tag Printing), W262 (Store Promotional Setup & Visual Merchandising Execution), W264 (Seasonal Merchandise Transition & Display Rotation)</td>
 </tr>
+<tr>
 <td><strong>Master Data</strong></td>
 <td>W1 (SKU lifecycle, sample/demo inventory), W16 (new store/location creation), W20 (VMI item setup), W23 (consignment item setup), W36 (vendor onboarding, lead time master data), W38 (non-stock item creation), W46 (kit BOM), W54 (LGU permit data per location), W64 (pilot SKU status flag), W68 (product discontinuation status lifecycle), W97 (sample/demo inventory classification), W252 (Centralized Item Master Creation), W253 (Customer Master Data Deduplication), W254 (Location Master Lifecycle)</td>
 </tr>
+<tr>
 <td><strong>Reporting / Analytics</strong></td>
 <td>W1 (assortment analysis, competitive intelligence), W9 (financial statements), W9A (Month-End Close), W9B (Year-End Close), W13 (promo analysis), W19 (delivery performance), W21 (capex vs. budget), W26 (budget variance), W27 (rebate ROI), W28 (gift card liability), W29 (recall tracking), W30 (cash flow forecast), W31 (forecast accuracy), W35 (management reporting rhythm), W37 (shrinkage/exception reports), W40 (price change analytics), W41 (complaint analytics), W42 (physical inventory summary), W44 (vendor scorecards), W56 (backorder aging), W59 (insurance claims vs. premiums), W60 (emergency procurement frequency), W61 (price match analytics), W65 (CSAT/NPS trending), W66 (inter-island logistics cost), W85 (Product Costing & Margin Analysis Review), W88 (RTV analytics), W92 (shrinkage reporting), W93 (clearance performance), W98 (ecommerce exception analytics), W99 (payment settlement), W102 (Category Performance Review & P&L), W113 (Business Intelligence & Data Governance), W231 (QBR executive dashboard reporting), W233 (weekly cash flow forecasting analysis), W249 (demurrage and detention analysis)</td>
 </tr>
+<tr>
 <td><strong>Loss Prevention</strong></td>
 <td>W37 (POS exception monitoring, shrinkage tracking, confirmed theft write-off, CCTV POS correlation), W171 (Store Physical Security & Yard Patrol Routine), W207 (Store-Level Security Camera Audit), W248 (Store Inventory Variance & LP Investigation)</td>
 </tr>
+<tr>
 <td><strong>Store Lifecycle</strong></td>
 <td>W16 (new store opening, go-live cutover plan), W45 (store closure / relocation, financial close-out), W54A (BIR CAS registration), W67 (monthly store performance review), W71 (store physical security), W86 (Planogram Compliance & Store Layout Verification), W96 (store renovation & remodel), W111 (Store Energy & Utility Consumption Management), W171 (Store Physical Security & Yard Patrol Routine), W173 (Store-Level Solar Energy Monitoring), W176 (Store-to-DC Reverse Logistics consolidation), W177 (Vending & Concessionaire Management)</td>
 </tr>
+<tr>
 <td><strong>Facility Maintenance</strong></td>
 <td>W47 (store & DC maintenance, work orders), W111 (Store Energy & Utility Consumption Management), W240 (preventive DC warehouse equipment maintenance), W241 (HQ offices facility and AV asset maintenance)</td>
 </tr>
+<tr>
 <td><strong>IT Operations</strong></td>
 <td>W48 (helpdesk, incident management, IT asset tracking), W73 (Data Migration Validation & Parallel-Run Testing), W131 (asset lifecycle), W132 (change mgmt), W152 (Employee IT Provisioning & Access Lifecycle), W257 (Enterprise API & Systems Integration Lifecycle), W265 (POS Terminal Hardware Maintenance & Peripheral Management)</td>
 </tr>
+<tr>
 <td><strong>Business Continuity</strong></td>
 <td>W49 (natural disaster preparation, response, recovery), W55 (IT DR), W158 (Business Continuity Drill & DR Testing)</td>
 </tr>
+<tr>
 <td><strong>Product Information</strong></td>
 <td>W50 (PIM, content creation, ecommerce catalog management)</td>
 </tr>
+<tr>
 <td><strong>Training & Development</strong></td>
 <td>W51 (training calendar, compliance tracking, LMS)</td>
 </tr>
+<tr>
 <td><strong>Fleet Management</strong></td>
 <td>W52 (vehicle lifecycle, fuel management, maintenance scheduling), W188 (Fleet Spare Parts & Preventive Maintenance), W196 (Route Planning & Dispatch Optimization), W197 (Driver Performance & Safety Management), W198 (Fuel Management & Consumption Monitoring), W199 (Fleet Telematics & Real-Time Tracking), W242 (3PL & Logistics Partner Performance Review)</td>
 </tr>
+<tr>
 <td><strong>Data Privacy & Compliance</strong></td>
 <td>W53 (data privacy breach response, breach register, NPC notification), W54A (BIR CAS registration, permit tracking), W77 (BIR Tax Audit Response), W78 (Government / Institutional Procurement Participation), W79 (Employee Grievance & Whistleblower Process), W82 (Hazardous Waste Disposal Tracking), W95 (External Audit Coordination), W114 (Sustainability & Environmental Compliance Reporting), W157 (E-waste Collection & Circular Economy Operations), W158 (Business Continuity Drill & DR Testing), W159 (Anti-Bribery & Corruption Monitoring & Audit), W160 (Private Label Factory Audit & Social Compliance), W167 (Store & DC Recycling Program), W185 (Product Liability), W187 (Contractor & Third-Party On-site Safety Orientation), W192 (Greenhouse Gas Emissions Tracking), W193 (Waste Management & Circular Economy), W194 (Social Impact & Community Development), W195 (Sustainable Sourcing & Ethical Vendor Audit), W207 (Store-Level Security Camera Audit), W209 (Barangay & Local Community Relationship Management), W216 (BIR CAS Compliance Audit), W230 (Legal Contract Review & Approval), W236 (Hazmat Storage & Segregation Compliance), W237 (Hazmat Handling & Safety Training), W238 (Hazmat Spill Response & Incident Management), W239 (Customs Duty & Tax Reconciliation), W243 (Power of Attorney & Board Resolution Lifecycle), W251 (Philippine statutory benefits & claims administration data privacy)</td>
 </tr>
+<tr>
 <td><strong>Regulatory Operations</strong></td>
 <td>W54 (LGU business permit renewal per location, permit status dashboard)</td>
 </tr>
+<tr>
 <td><strong>Customer Order Management</strong></td>
 <td>W56 (backorder creation, allocation against incoming PO, customer notification)</td>
 </tr>
+<tr>
 <td><strong>Corporate Account Management</strong></td>
 <td>W58 (project record, project-specific pricing, cumulative budget tracking), W103 (Trade Sales Pipeline & Territory Management), W162 (Project Quotation & Bid Management), W163 (Contract Pricing & Project Price Books), W164 (Staged Project Delivery & Call-Off Orders), W165 (Project Retention & Milestone Billing), W166 (Corporate / Institutional Tendering), W228 (Sales Commission Calculation), W229 (B2B Customer Credit Limit Exception)</td>
 </tr>
+<tr>
 <td><strong>Vendor Contract Management</strong></td>
 <td>W62 (non-PO service contract lifecycle), W62B (3PL / Delivery Partner Onboarding & Offboarding), W242 (3PL & Logistics Partner Performance Review)</td>
 </tr>
+<tr>
 <td><strong>Customer Experience</strong></td>
 <td>W65 (CSAT/NPS measurement), W87 (Customer Feedback-to-Action Loop), W156 (Customer Data Platform & Hyper-Personalization), W258 (Omni-channel Customer Ticketing), W259 (Call Center Daily Operations & Queue Management), W263 (Loyalty Member Enrollment & Onboarding Journey)</td>
 </tr>
+<tr>
 <td><strong>Marketing / Campaign</strong></td>
 <td>W83 (campaign planning, execution), W104 (loyalty program financial governance), W134 (crisis communication), W135 (CSR program execution), W142 (Social Media & Influencer Management), W143 (Public Relations & Corporate Communications), W149 (Bank & Credit Card Partnership), W151 (CSR Impact Measurement & Reporting), W153 (Retail Media Network Operations), W190 (In-house Design & Creative Production)</td>
 </tr>
+<tr>
 <td><strong>Real Estate</strong></td>
 <td>W116 (site selection & feasibility), W117 (lease admin), W118 (rent payment), W119 (real property tax)</td>
 </tr>
+<tr>
 <td><strong>Internal Audit</strong></td>
 <td>W120 (audit planning, risk assessment), W121 (operational audit), W122 (ERM review), W123 (fraud investigation), W159 (Anti-Bribery & Corruption Monitoring & Audit)</td>
 </tr>
+<tr>
 <td><strong>Governance / Strategy</strong></td>
 <td>W124 (corp sec), W125 (litigation), W126 (IP portfolio), W127 (strat plan / OKRs), W128 (EPM), W129 (Private Label Brand Development), W135 (CSR Program Execution), W186 (Internal SOP & Policy Governance), W230 (Legal Contract Review & Approval), W243 (Power of Attorney & Board Resolution Lifecycle)</td>
 </tr>
+<tr>
 <td><strong>Engineering & Construction</strong></td>
 <td>W223 (new store design), W224 (construction bidding), W225 (store construction management), W226 (store renovation & retrofitting), W227 (commissioning & operational handover)</td>
 </tr>
+<tr>
 <td><strong>HSE / Safety</strong></td>
 <td>W140 (OHS incident management), W141 (workplace safety inspection), W187 (Contractor & Third-Party On-site Safety Orientation)</td>
 </tr>
+<tr>
 <td><strong>Services / Rental</strong></td>
 <td>W138 (installation services), W139 (tool rental), W147 (DIY workshop), W148 (home design consultancy), W168 (Custom Paint Mixing & Tinting), W169 (Lumber & Board Cutting), W211 (In-Store 3D Kitchen/Bathroom Design), W213 (Installation Service Partner Quality Audit)</td>
 </tr>
+<tr>
 <td><strong>Wholesale / B2B</strong></td>
 <td>W145 (wholesale reseller onboarding), W146 (bulk fulfillment)</td>
 </tr>
+<tr>
 <td><strong>Innovation & Digital Transformation</strong></td>
 <td>W200 (AI Personalization), W201 (RPA Lifecycle), W202 (Predictive Maintenance), W203 (Computer Vision for planogram audit), W208 (Retail Analytics & AI-Driven Inventory Optimization)</td>
 </tr>
+<tr>
 <td><strong>Document Management</strong></td>
 <td>W255 (Electronic Document Storage), W256 (Enterprise Document Retention)</td>
 </tr>

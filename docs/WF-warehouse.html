@@ -139,18 +139,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Vendor delivery truck arrives at DC (or container from port)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~6,000 goods receipts/month across all DCs; ~1,200/DC/month; ~40/day per DC</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~15 lines per receipt on average</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>DC Receiving Supervisor</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Receiving Clerk, Quality Checker, Putaway Staff, DC Supervisor, Buyer (if discrepancy)</td>
 </tr>
@@ -165,78 +170,91 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Truck arrives at DC gate; guard checks delivery schedule vs. appointment log</td>
 <td>Guard</td>
 <td>DC Supervisor</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Receiving Clerk pulls up expected PO or Transfer Order in system</td>
 <td>Receiving Clerk</td>
 <td>DC Supervisor</td>
 <td>2 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Unload truck; stage in receiving area</td>
 <td>Unloading Crew (3–4)</td>
 <td>Receiving Clerk</td>
 <td>30–60 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Scan/verify each item against PO: SKU, quantity, lot/batch (if applicable)</td>
 <td>Receiving Clerk</td>
 <td>DC Supervisor</td>
 <td>20–40 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Quality check on sampled items (damage, correctness, expiry if applicable) per category-specific inspection checklist (see Quality Inspection Standards below)</td>
 <td>Quality Checker</td>
 <td>DC Supervisor</td>
 <td>10–20 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td>If discrepancy (shortage, damage, wrong item): flag in system; notify Buyer</td>
 <td>Receiving Clerk</td>
 <td>DC Supervisor</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>6a</td>
 <td>If damaged goods: Receiving Clerk creates damage report with photos; initiates one of: (a) Return to Vendor (RTV) via Buyer, (b) scrap with DC Supervisor authorization, or (c) insurance claim for insured shipments. For insurance claims: Receiving Clerk documents damage with photos and notes on delivery receipt; Import Coordinator or DC Supervisor files claim with insurance provider within required notification window (typically 3–5 business days); system tracks claim status; upon settlement, Finance posts insurance recovery to income and reduces inventory loss</td>
 <td>Receiving Clerk</td>
 <td>DC Supervisor</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>6b</td>
 <td>Buyer reviews RTV request; coordinates with vendor for credit note or replacement shipment</td>
 <td>Buyer</td>
 <td>Category Manager</td>
 <td>15 min/occurrence</td>
 </tr>
+<tr>
 <td>6c</td>
 <td>If scrap authorized: DC Supervisor approves scrap disposition; system removes inventory and posts loss to damage/scrapping account</td>
 <td>DC Supervisor</td>
 <td>DC Manager</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Confirm Goods Receipt in system; inventory increases in real-time</td>
 <td>Receiving Clerk</td>
 <td>DC Supervisor</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>8</td>
 <td>System suggests putaway location based on zone, bin capacity, item velocity</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Putaway staff moves goods to assigned bin; scan-confirm in system</td>
 <td>Putaway Staff</td>
 <td>DC Supervisor</td>
 <td>15–30 min</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Update PO/TO status; trigger vendor invoice matching (AP)</td>
 <td>System</td>
@@ -258,42 +276,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>AQL</th>
 <th>Reject Action</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Tiles & ceramics</strong></td>
 <td>Visual defects (chips, cracks, glaze inconsistencies on sampled pieces); color consistency vs. reference sample; dimensional check (±1mm tolerance on length/width); PEI rating confirmation per packaging</td>
 <td>Per lot: ≤ 100 pcs → inspect 5; 101–500 → inspect 20; 501+ → inspect 32</td>
 <td>2.5%</td>
 <td>Reject entire lot if defect rate exceeds AQL; Buyer notifies vendor</td>
 </tr>
+<tr>
 <td><strong>Lumber & wood</strong></td>
 <td>Moisture content spot-check (if meter available); warping/bowing check (visual); species/treatment verification; grade stamp verification; length/piece count</td>
 <td>Per bundle: inspect 5 pieces from each bundle</td>
 <td>4.0% (visual)</td>
 <td>Reject non-conforming pieces; accept remainder; Buyer adjusts PO quantity</td>
 </tr>
+<tr>
 <td><strong>Paint & chemicals</strong></td>
 <td>Manufacturing date and shelf-life capture (mandatory per shelf-life management); container integrity (dents, leaks, tamper seal); color match for tinted items; safety data sheet availability check</td>
 <td>Per delivery: inspect 10% of cartons, minimum 2</td>
 <td>1.5% (critical: leaks/tamper)</td>
 <td>Reject entire lot if critical defect found; quarantine for Buyer review</td>
 </tr>
+<tr>
 <td><strong>Cement & masonry</strong></td>
 <td>Bag integrity (no tears, moisture damage, hardened lumps); manufacturing date check (cement shelf-life typically 3 months); weight spot-check on sampled bags</td>
 <td>Per pallet: inspect 5 bags from top, middle, bottom</td>
 <td>2.5%</td>
 <td>Reject damaged bags; accept sound bags; Buyer adjusts PO quantity</td>
 </tr>
+<tr>
 <td><strong>Plumbing & electrical</strong></td>
 <td>Visual defect check (finish, threads, connectors); brand/model verification against PO; quantity count; packaging integrity</td>
 <td>Per line item: inspect 10% of units, minimum 2</td>
 <td>2.5%</td>
 <td>Reject non-conforming units; Buyer coordinates with vendor</td>
 </tr>
+<tr>
 <td><strong>Power tools & appliances</strong></td>
 <td>External packaging check; serial number capture for high-value items (> PHP 10,000); physical damage check; accessory completeness vs. product spec</td>
 <td>Per unit: 100% inspection for high-value; 10% for standard</td>
 <td>1.0% (high-value); 2.5% (standard)</td>
 <td>Reject damaged units; serial-tracked items logged for warranty (W33)</td>
 </tr>
+<tr>
 <td><strong>Hardware & fasteners</strong></td>
 <td>Quantity count (weigh-count or piece count); rust/corrosion check; grade/size verification against PO</td>
 <td>Per line: weigh-count verification</td>
@@ -326,42 +351,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Goods received at yard gate (separate from indoor receiving); Receiving Clerk verifies against PO/TO using handheld</td>
 <td>Receiving Clerk</td>
 <td>DC Supervisor / Dept. Supervisor</td>
 <td>20–40 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td>System records receipt into yard zone (zone-level tracking, not individual bin); inventory tracked by yard zone (e.g., Yard-A: Lumber, Yard-B: Cement/Blocks, Yard-C: Steel/Rebar)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td>For catch-weight items (lumber, rebar): associate measures and records actual length/piece count at receipt; system calculates quantity in board feet / linear meters / pieces</td>
 <td>Receiving Clerk</td>
 <td>Dept. Supervisor</td>
 <td>10–20 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Goods staged in designated yard zone; organized by SKU type and length/size for easy retrieval</td>
 <td>Yard Staff</td>
 <td>DC Supervisor</td>
 <td>15–30 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Physical counting: yard items counted by zone during cycle counts (W6) and annual physical inventory (W42); counted by piece/bundle rather than individual bin scan</td>
 <td>Stock Associate</td>
 <td>Dept. Supervisor</td>
 <td>Per W6/W42</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Weather damage discovered during daily yard walkthrough: Stock Associate reports damage (warped lumber, water-damaged cement, rusted rebar); DC Supervisor/Dept. Supervisor approves disposition (markdown, scrap, RTV, insurance claim) per W3.6a process</td>
 <td>Stock Associate</td>
 <td>DC Supervisor / Dept. Supervisor</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Yard-to-sales-floor movement: when yard stock is needed indoors (e.g., small lumber pieces moved to indoor display), Stock Associate transfers items in system from yard zone to indoor location</td>
 <td>Stock Associate</td>
@@ -385,18 +417,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Purchase order confirmed with vendor or import shipment ETA confirmed</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Daily; ~40 receipts/day per DC</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~1,200 merchandise receipts/month + ~80–240 blanket releases + ~20–30 import containers + ~30–50 non-merchandise receipts per DC per month</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>DC Receiving Supervisor</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Buyer, Import Coordinator, DC Receiving Supervisor, DC Dispatch, Vendor/Carrier</td>
 </tr>
@@ -409,42 +446,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>System generates inbound delivery forecast from open POs: PO number, vendor, expected delivery date (from PO promised date or import ETA), number of lines, estimated pallet/cube count, and dock door requirements (refrigerated none; hazardous materials for paint/chemicals; standard for general merchandise)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated (nightly)</td>
 </tr>
+<tr>
 <td>2</td>
 <td>DC Receiving Supervisor reviews next 3-day inbound forecast each morning; identifies days with high receiving volume (> 50 receipts) or overlapping large deliveries; adjusts dock door assignments and staff scheduling</td>
 <td>DC Receiving Supervisor</td>
 <td>DC Manager</td>
 <td>15 min/day</td>
 </tr>
+<tr>
 <td>3</td>
 <td>For domestic vendor deliveries: Buyer or system transmits delivery appointment to vendor with requested delivery date and time window (typically 8:00 AM – 4:00 PM, 2-hour windows); vendor confirms or proposes alternative; system logs appointment confirmation</td>
 <td>Buyer / System</td>
 <td>DC Receiving Supervisor</td>
 <td>5 min/PO</td>
 </tr>
+<tr>
 <td>4</td>
 <td>For import containers: Import Coordinator books delivery appointment with DC once container is released from port; provides container number, commodity, estimated weight, and special handling requirements; DC Receiving Supervisor confirms appointment and assigns dock door</td>
 <td>Import Coordinator</td>
 <td>DC Receiving Supervisor</td>
 <td>10 min/container</td>
 </tr>
+<tr>
 <td>5</td>
 <td>If vendor arrives without appointment: guard checks against open PO list; if valid PO exists, Receiving Supervisor accepts on a space-available basis (may result in extended wait time); if no valid PO, guard turns delivery away with Buyer notification</td>
 <td>Guard / DC Receiving Supervisor</td>
 <td>DC Manager</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td>System maintains dock door utilization dashboard per DC: shows scheduled appointments, completed receipts, and available capacity by time slot; Receiving Supervisor uses dashboard to optimize dock assignments and avoid congestion</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Monthly: DC Receiving Supervisor reviews appointment compliance report — vendor on-time arrival %, no-show rate, unscheduled delivery rate; feeds into vendor scorecard (W44) and carrier performance review (W52)</td>
 <td>DC Receiving Supervisor</td>
@@ -497,18 +541,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Kit demand (auto-assembly) or planned batch assembly schedule</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~200–400 kit assemblies/month across DCs; primarily tool sets, bathroom combo kits, paint starter kits</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~50–100 active kit SKUs</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>DC Supervisor</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Merchandise Planner (BOM setup), DC Assembly Staff, DC Supervisor</td>
 </tr>
@@ -523,54 +572,63 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Merchandise Planner defines kit Bill of Materials (BOM) in item master: kit SKU + component SKUs with quantities per unit; kit item type = 'Kit / Bundle'</td>
 <td>Merchandise Planner</td>
 <td>Category Manager</td>
 <td>15 min/kit</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Assembly triggered by: (a) demand-driven — system auto-generates assembly order when kit is ordered (ecommerce) or picked (store replenishment) but insufficient kit stock exists, or (b) planned batch — DC Supervisor schedules weekly assembly of popular kits based on forecast</td>
 <td>System / DC Supervisor</td>
 <td>DC Supervisor</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td>System creates assembly order: lists required component quantities; checks component availability at DC; reserves components against assembly order</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td>If component shortage: DC Supervisor alerts Buyer for expedited replenishment or suggests substitution (with Merchandise Planner approval)</td>
 <td>DC Supervisor</td>
 <td>Supply Planning Manager</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Assembly Staff picks components from DC bins per assembly order; scan-confirms each component</td>
 <td>Assembly Staff</td>
 <td>DC Supervisor</td>
 <td>10–30 min/kit</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Assembly Staff assembles kit (physical packaging, labeling, shrink-wrap); applies kit barcode label</td>
 <td>Assembly Staff</td>
 <td>DC Supervisor</td>
 <td>5–15 min/kit</td>
 </tr>
+<tr>
 <td>7</td>
 <td>System consumes component inventory (decreases) and creates kit inventory (increases); kit cost = sum of component WAC at time of assembly</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Kit received into finished goods storage location in DC; available for picking and shipping</td>
 <td>Assembly Staff</td>
 <td>DC Supervisor</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Kit disassembly (if components needed individually): DC Supervisor initiates disassembly order; system reverses process — consumes kit inventory, restores component inventory at original component WAC; disassembly labor posted to overhead</td>
 <td>DC Supervisor</td>
@@ -607,18 +665,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Vehicle registration renewal, scheduled maintenance, fuel purchase, driver assignment, route planning review</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Continuous; daily operations + periodic scheduled maintenance</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~30–40 owned vehicles (20% of total fleet); remainder 80% third-party (Lalamove, Transportify, contracted carriers)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Fleet Manager (within Supply Chain team)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Fleet Manager, Drivers, DC Dispatch, Finance, External carriers</td>
 </tr>
@@ -637,60 +700,70 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Driver assignment</strong>: Fleet Manager assigns drivers to owned vehicles based on route schedule, driver qualifications (LTO license type — professional driver's license with restriction codes for heavy vehicles), and duty hour limits</td>
 <td>Fleet Manager</td>
 <td>Supply Chain Manager</td>
 <td>30 min/week</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Daily pre-trip inspection</strong>: Driver conducts vehicle inspection checklist (tires, brakes, lights, fluid levels, cargo area, safety equipment) before departure; records in system via mobile app; vehicle not cleared for dispatch if critical items fail</td>
 <td>Driver</td>
 <td>Fleet Manager</td>
 <td>15 min/vehicle/day</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Fuel management</strong>: Driver refuels at designated fuel stations using company fuel card; system captures fuel volume, odometer reading, and cost per transaction; Fleet Manager reviews fuel consumption per vehicle monthly (km/L benchmark per vehicle type; flags vehicles > 15% below benchmark for maintenance investigation)</td>
 <td>Driver / Fleet Manager</td>
 <td>Fleet Manager</td>
 <td>5 min/refuel + 1 hour/month review</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Scheduled maintenance</strong>: Fleet Manager maintains maintenance calendar per vehicle based on manufacturer intervals (typically every 5,000–10,000 km or 3–6 months): (a) oil change and basic service, (b) tire rotation and replacement, (c) brake inspection, (d) annual comprehensive service; system alerts Fleet Manager 1 week before service due</td>
 <td>Fleet Manager</td>
 <td>DC Manager</td>
 <td>Per schedule</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Unscheduled repair</strong>: Driver reports vehicle issue; Fleet Manager assesses severity: (a) minor — schedule repair at next available slot, substitute 3PL for pending deliveries, (b) major — vehicle taken out of service, substitute vehicle or 3PL arranged</td>
 <td>Fleet Manager</td>
 <td>DC Manager</td>
 <td>30 min/occurrence</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Maintenance or repair executed at company-approved workshop per region; Fleet Manager approves work order and cost; system tracks maintenance history per vehicle</td>
 <td>Fleet Manager</td>
 <td>DC Manager</td>
 <td>Varies</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Vehicle registration & insurance</strong>: Fleet Manager maintains calendar for LTO registration renewal (annual per vehicle), CTPL insurance renewal, and comprehensive insurance; system alerts 60 days before expiry; vehicles with expired registration blocked from dispatch</td>
 <td>Fleet Manager</td>
 <td>DC Manager</td>
 <td>30 min/vehicle/year</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Route performance review</strong>: monthly, Fleet Manager reviews route metrics per vehicle: km driven, fuel efficiency, delivery punctuality (on-time % per W4 SLA), maintenance cost per km; identifies vehicles with declining performance for maintenance escalation or replacement planning</td>
 <td>Fleet Manager</td>
 <td>Supply Chain Manager</td>
 <td>2 hours/month</td>
 </tr>
+<tr>
 <td>9</td>
 <td><strong>3PL carrier performance</strong>: Fleet Manager monitors third-party carrier performance per W19 (on-time delivery, damage rate, cost per delivery) in coordination with DC Dispatch; quarterly carrier review per W44 vendor scorecard methodology</td>
 <td>Fleet Manager / DC Dispatch</td>
 <td>Supply Chain Manager</td>
 <td>Per W19/W44</td>
 </tr>
+<tr>
 <td>10</td>
 <td><strong>Vehicle replacement planning</strong>: annually, Fleet Manager evaluates vehicles > 5 years or > 300,000 km for replacement; submits capex request per W21; considers total cost of ownership (maintenance cost trajectory, fuel efficiency decline, reliability) vs. new vehicle cost plus financing</td>
 <td>Fleet Manager</td>
@@ -732,18 +805,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Inter-DC transfer (W22) between islands (e.g., DC3 Luzon → DC2 Visayas, DC1 Mindanao → DC2 Visayas), or direct-to-store delivery to island locations not served by a DC on the same island</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~10–15 inter-island shipments/month (supplementing ~30–40 inter-DC transfers/month in W22); additional ad-hoc shipments during peak season and disaster response (W49)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Typically 1–5 TEU containers per shipment; some loose cargo (LCL) for smaller transfers</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Import Coordinator / Fleet Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Import Coordinator, Fleet Manager, DC Supervisor, Supply Planner, carrier (ro-ro or cargo vessel), Customs (if applicable)</td>
 </tr>
@@ -762,54 +840,63 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Supply Planner identifies need for inter-island transfer (W22) when demand at a DC cannot be met from same-island supply and vendor PO lead time is too long; or when seasonal inventory rebalancing requires inter-island movement</td>
 <td>Supply Planner</td>
 <td>Supply Planning Manager</td>
 <td>Per W22</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Import Coordinator or Fleet Manager selects inter-island carrier and route: (a) <strong>ro-ro ferry</strong> — for truck-loaded cargo; vehicle driven onto ferry; 12–36 hours transit; routes: Manila→Cebu, Cebu→Davao, Manila→Davao (via Matnog); (b) <strong>container vessel</strong> — for containerized cargo; 3–7 days transit depending on route and vessel schedule; (c) <strong>LCL consolidator</strong> — for small transfers that don't fill a container</td>
 <td>Import Coordinator / Fleet Manager</td>
 <td>Supply Chain Manager</td>
 <td>1–2 hours/shipment</td>
 </tr>
+<tr>
 <td>3</td>
 <td>System creates Transfer Order per W22 with "Inter-Island" transport mode flag; extended lead time applied (3–7 days vs. 1–3 days for same-island); in-transit insurance coverage confirmed per W59 (cargo/in-transit policy)</td>
 <td>Supply Planner</td>
 <td>Supply Planning Manager</td>
 <td>Per W22</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Source DC picks and loads goods; for container shipments: DC packs into container and seals; for ro-ro: goods loaded on owned or 3PL truck</td>
 <td>DC Team</td>
 <td>DC Supervisor</td>
 <td>Per W3/W4</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Import Coordinator books shipment with carrier; provides container number or truck plate number, commodity description, and destination DC; receives booking confirmation and estimated arrival date</td>
 <td>Import Coordinator</td>
 <td>Fleet Manager</td>
 <td>30 min/shipment</td>
 </tr>
+<tr>
 <td>6</td>
 <td>In-transit tracking: Import Coordinator monitors shipment status via carrier tracking or direct communication; updates system ETA; for ro-ro: monitors ferry schedule (weather delays common during typhoon season — W49)</td>
 <td>Import Coordinator</td>
 <td>Supply Chain Manager</td>
 <td>15 min/day per shipment</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Goods arrive at destination port/DC; destination DC receives and processes Goods Receipt per W22 step 7; system records inter-island freight cost allocation to transferred inventory</td>
 <td>Receiving Clerk (DC)</td>
 <td>DC Supervisor</td>
 <td>Per W22</td>
 </tr>
+<tr>
 <td>8</td>
 <td>System allocates inter-island freight cost to transferred items: freight cost ÷ total transferred value × per-item value added to destination inventory cost (similar to landed cost allocation in W2B.12 but for domestic inter-island movement)</td>
 <td>System</td>
 <td>Finance</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Monthly: Import Coordinator and Fleet Manager review inter-island logistics cost and performance: cost per TEU by route, on-time delivery %, damage rate, carrier comparison; recommends route or carrier optimization</td>
 <td>Import Coordinator / Fleet Manager</td>
@@ -848,18 +935,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Daily outbound dispatch planning cycle (initiated each morning after W4 replenishment orders confirmed)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Daily per DC; 2–3 dispatch waves per day (morning, midday, afternoon)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~33 replenishment orders/DC/day + ~115 home delivery orders/DC/day + occasional inter-DC transfers (W22); loaded onto ~6–10 outbound trucks per DC per day</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>DC Dispatch Supervisor</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>DC Dispatch Supervisor, DC Supervisor, Loaders, Drivers, Fleet Manager, Supply Planner</td>
 </tr>
@@ -878,66 +970,77 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Morning dispatch planning</strong> (6:00 AM): System generates daily outbound dispatch plan from confirmed pick/pack outputs: (a) store replenishment orders ready for dispatch (grouped by destination store and delivery route), (b) home delivery orders packed and staged (grouped by delivery zone), (c) inter-DC transfer orders (W22) if any, (d) promotional pre-positioning shipments (W57) with priority flag</td>
 <td>System</td>
 <td>—</td>
 <td>Automated (nightly batch)</td>
 </tr>
+<tr>
 <td>2</td>
 <td>DC Dispatch Supervisor reviews dispatch plan and assigns loads to trucks: (a) <strong>Route optimization</strong>: system suggests optimal multi-stop route per truck based on store delivery addresses, traffic patterns (Metro Manila vs. provincial), and delivery time windows; Dispatch Supervisor accepts or adjusts, (b) <strong>Load consolidation</strong>: system groups multiple store replenishment orders on one truck where stores are on the same route (typical: 3–5 stores per truck for provincial routes; 5–8 for Metro Manila), (c) <strong>Truck assignment</strong>: owned fleet (W52) for regular scheduled routes; 3PL trucks for overflow, home delivery bulk, and inter-island, (d) <strong>Home delivery batching</strong>: system batches home delivery orders by delivery zone; assigns to 3PL carriers per W19 rate cards and zone coverage</td>
 <td>DC Dispatch Supervisor</td>
 <td>DC Supervisor</td>
 <td>30–60 min/day</td>
 </tr>
+<tr>
 <td>3</td>
 <td>DC Dispatch Supervisor prints or transmits load manifests to loaders and drivers: (a) <strong>Load manifest</strong>: truck ID, driver name, stop sequence (store name, address, delivery time window, order number, number of cases/totes, special instructions), (b) <strong>Loading sequence</strong>: system directs loading in reverse stop order (last stop loaded first, first stop loaded last) for efficient unloading at each stop, (c) <strong>Special handling flags</strong>: fragile items, hazardous materials (paint/chemicals), catch-weight items (lumber), temperature-sensitive items</td>
 <td>DC Dispatch Supervisor</td>
 <td>DC Supervisor</td>
 <td>15 min/truck</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Loading crew</strong> loads truck per load manifest and loading sequence: (a) scan-confirm each case/tote against manifest during loading, (b) secure loads with straps/bars for transit, (c) load hazardous materials per DOT/DENR segregation rules (paint/chemicals separated from general merchandise), (d) load catch-weight items (lumber, rebar) last for easy access and to prevent damage to other goods</td>
 <td>Loading Crew</td>
 <td>DC Dispatch Supervisor</td>
 <td>30–60 min/truck</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Driver pre-departure</strong>: (a) Driver reviews load manifest and route, (b) signs dispatch confirmation acknowledging load received and route assigned, (c) conducts vehicle pre-trip check per W52.2 (if owned vehicle), (d) departs DC per scheduled departure time (target: first truck departs by 8:00 AM for morning wave)</td>
 <td>Driver</td>
 <td>DC Dispatch Supervisor</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>In-transit tracking</strong>: System tracks truck location via GPS (owned fleet) or 3PL carrier tracking API; DC Dispatch Supervisor monitors real-time delivery progress dashboard: (a) trucks en-route, (b) stops completed, (c) deliveries behind schedule (ETE > planned ETA by > 30 min flagged), (d) exceptions (traffic delay, road closure, vehicle breakdown)</td>
 <td>System / DC Dispatch Supervisor</td>
 <td>DC Supervisor</td>
 <td>Continuous (15 min review every 2 hours)</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Store delivery execution</strong>: (a) Driver arrives at store; presents load manifest to Receiving Clerk, (b) Receiving Clerk scans each case/tote against transfer order per W4.10, (c) Driver obtains signed delivery receipt (proof of delivery), (d) if short shipment or damage at delivery: noted on delivery receipt; Driver reports to DC Dispatch for resolution per W22.9a, (e) Driver proceeds to next stop</td>
 <td>Driver / Receiving Clerk</td>
 <td>DC Dispatch Supervisor / Store Manager</td>
 <td>15–30 min/stop</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Delivery confirmation</strong>: (a) Upon completing all stops, Driver returns to DC (or proceeds to next dispatch wave), (b) Driver submits signed delivery receipts and exception reports to DC Dispatch, (c) DC Dispatch scans delivery receipts into system; system updates transfer order status to "Delivered" or "Partially Delivered" per receiving confirmation, (d) system triggers store inventory receipt posting (W4.12)</td>
 <td>Driver / DC Dispatch Supervisor</td>
 <td>DC Supervisor</td>
 <td>15 min/truck</td>
 </tr>
+<tr>
 <td>9</td>
 <td><strong>Afternoon wave</strong> (1:00 PM): Repeat steps 1–8 for second dispatch wave using afternoon replenishment orders and remaining home delivery batches; typically lighter volume than morning wave</td>
 <td>DC Dispatch Supervisor</td>
 <td>DC Supervisor</td>
 <td>Per steps 1–8</td>
 </tr>
+<tr>
 <td>10</td>
 <td><strong>End-of-day dispatch summary</strong>: DC Dispatch Supervisor generates daily dispatch report: (a) total orders dispatched, (b) on-time departure rate (target: ≥ 95% of trucks depart within 30 min of scheduled time), (c) on-time delivery rate (target: ≥ 95% of stores receive within delivery window), (d) truck utilization rate (loaded volume ÷ truck capacity), (e) exceptions and resolution, (f) 3PL carrier performance for the day (feeds W52.9 and W62B)</td>
 <td>DC Dispatch Supervisor</td>
 <td>DC Supervisor</td>
 <td>15 min/day</td>
 </tr>
+<tr>
 <td>11</td>
 <td><strong>Weekly</strong>: DC Dispatch Supervisor and Fleet Manager review route efficiency metrics: (a) cost per delivery by route, (b) stops per route, (c) average delivery time per stop, (d) route optimization opportunities (new store additions, traffic pattern changes), (e) 3PL vs. owned fleet cost comparison per route; recommendations for route rebalancing or carrier changes</td>
 <td>DC Dispatch Supervisor / Fleet Manager</td>
@@ -976,18 +1079,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Scheduled maintenance interval or spare part depletion</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Managing parts for ~40 owned vehicles</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Fleet Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Driver, Workshop Supervisor, Procurement (for parts)</td>
 </tr>
@@ -1002,48 +1110,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>System tracks odometer/hours for each vehicle; triggers "Maintenance Alert" (W52.4)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Fleet Manager reviews spare parts inventory (tires, batteries, oil, filters, brake pads)</td>
 <td>Fleet Manager</td>
 <td>—</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td>If parts below reorder point: System generates PO for parts (W2A)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Vehicle sent to workshop; Fleet Manager issues "Maintenance Work Order"</td>
 <td>Fleet Manager</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Workshop performs service; consumes spare parts from fleet inventory</td>
 <td>Workshop Staff</td>
 <td>—</td>
 <td>4-8 hours</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Record maintenance details: parts used, labor hours, costs, next service interval</td>
 <td>Fleet Manager</td>
 <td>—</td>
 <td>20 min</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Update vehicle status in Fleet Module: "Available"</td>
 <td>Fleet Manager</td>
 <td>—</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Quarterly: Analyze maintenance cost per km across all vehicle brands/models</td>
 <td>Fleet Manager</td>
@@ -1065,18 +1181,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Advance Shipping Notice (ASN) or incoming import container contains fast-moving bulk items (cement, steel rebar, standard tiles) with active store replenishment demands or backorders</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Daily at Distribution Centers</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~10–20 container-loads cross-docked per day</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>DC Operations Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Receiving Clerk, Cross-Dock Coordinator, Forklift Operator, Shipping Clerk</td>
 </tr>
@@ -1091,36 +1212,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Pre-Allocation Matching</strong>: System evaluates incoming container ASN against active store replenishment orders (W4) and customer backorders (W56); identifies high-matching fast-moving SKUs suitable for cross-docking</td>
 <td>System</td>
 <td>DC Operations Mgr</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Dock Assignment</strong>: Cross-Dock Coordinator assigns inbound container to a receiving dock adjacent to outbound store dispatch doors</td>
 <td>Cross-Dock Coord</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Unloading & Direct Scan</strong>: Forklift Operator unloads pallets; scan-confirms receipt via WMS terminal; system detects pre-allocation and flags pallet for "Direct Cross-Dock Staging" (bypassing normal bulk putaway racks)</td>
 <td>Forklift Operator</td>
 <td>Receiving Supervisor</td>
 <td>15 min/pallet</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Sorting & Routing</strong>: Receiving Clerk scan-confirms pallet; system generates store-specific routing labels and prints destination tags; Forklift Operator moves pallets directly to the designated outbound lane</td>
 <td>Receiving Clerk</td>
 <td>—</td>
 <td>5 min/pallet</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Load Integration</strong>: System automatically merges cross-docked pallets into the active outbound DC load planning schedule (W106) for store deliveries</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Outbound Loading</strong>: Forklift Operator loads the pallets directly onto the designated store delivery truck; scan-confirms loading; Shipping Clerk generates Outbound Transfer document</td>
 <td>Forklift Operator / Shipping Clerk</td>
@@ -1145,18 +1272,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Import container arrives at DC gate, or empty container requires scheduling for port return</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>20–50 container movements per day</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>200-slot yard capacity</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Yard Superintendent</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Gate Guard, Yard Coordinator, Reach Stacker Operator, Dispatcher, 3PL Truck Driver</td>
 </tr>
@@ -1171,36 +1303,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Gate-In Registration</strong>: Gate Guard inspects seal integrity, container physical state, and chassis lease records; scan-registers container number in Yard Management System (YMS); records gate-in timestamp</td>
 <td>Gate Guard</td>
 <td>Yard Superintendent</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Yard Slot Assignment</strong>: YMS automatically assigns slot coordinates (grid lane, stack height) based on container status (Full Import, Empty Return, Hazmat quarantine) and priority</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Physical Stacking</strong>: Reach Stacker Operator picks container from truck chassis; places in assigned yard slot; scan-confirms the grid coordinates in YMS to update the real-time yard map</td>
 <td>Reach Stacker Operator</td>
 <td>Yard Coordinator</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Demurrage & Detention Tracking</strong>: YMS starts carrier-specific free-time countdown timers (e.g., 4 days yard free time, 7 days container lease); triggers daily priority warnings to Import Logistics team</td>
 <td>System</td>
 <td>Yard Superintendent</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Stripping Scheduling</strong>: Yard Coordinator assigns yard container to a warehouse dock; Reach Stacker Operator moves container to dock chassis; Receiving Clerk scan-registers goods receipt (W3)</td>
 <td>Yard Coordinator / Reach Stacker Operator</td>
 <td>—</td>
 <td>20 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Empty Container Gate-Out</strong>: System marks container "Empty"; Dispatcher books return logistics; Reach Stacker Operator loads empty container to carrier chassis; Gate Guard records gate-out, verifies empty status, and registers time in YMS</td>
 <td>Reach Stacker Operator / Gate Guard</td>

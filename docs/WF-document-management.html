@@ -131,15 +131,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>A transaction is executed that requires supporting documentation (e.g., Goods Receipt, AP Invoice, Capex Request)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Continuous (thousands of documents attached daily)</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Respective Department Heads (Finance, Procurement, Logistics)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>End Users, ERP Administrator</td>
 </tr>
@@ -154,30 +158,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Document Capture</strong>: User receives a physical document (e.g., vendor delivery receipt) and scans it, or receives a digital PDF (e.g., supplier invoice via email)</td>
 <td>End User</td>
 <td>—</td>
 <td>2 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Transaction Attachment</strong>: User drags-and-drops or uploads the document directly to the relevant ERP transaction screen (e.g., attaching the scanned DR to the ERP Goods Receipt record)</td>
 <td>End User</td>
 <td>—</td>
 <td>1 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Metadata Tagging</strong>: System automatically inherits metadata from the transaction (Transaction ID, Vendor Name, Date, Amount, User ID) for searchability</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Storage & Linking</strong>: The document is stored in the ERP's secure document repository (or linked cloud storage) and visually indicated with a paperclip/attachment icon on the transaction record</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Retrieval</strong>: Approvers or Auditors click the attachment icon during workflow review or audit processes to view the source document without requesting physical copies</td>
 <td>Approver / Auditor</td>
@@ -206,15 +215,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>End of fiscal year and periodic archiving schedules</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Annual batch process</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Legal & Compliance Officer</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Finance Controller, IT Database Administrator</td>
 </tr>
@@ -229,30 +242,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Policy Definition</strong>: Legal Officer defines retention rules in the ERP DMS (e.g., Financial Invoices: 10 years per BIR regulation; HR records: 5 years post-separation)</td>
 <td>Legal Officer</td>
 <td>Legal Officer</td>
 <td>2–4 hours</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Automated Aging</strong>: ERP DMS continuously monitors document creation dates against the retention policy matrix</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Archiving Run</strong>: At fiscal year-end, IT DBA triggers the archiving utility. Documents exceeding the "active" threshold (e.g., 2 years) are compressed and moved to cold storage (cheaper storage tier), but remain accessible via slow-retrieval query</td>
 <td>IT DBA</td>
 <td>IT DBA</td>
 <td>4–8 hours</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Legal Hold</strong>: For entities under active BIR audit or litigation, Legal Officer places a "Legal Hold" on the location/vendor, overriding automated deletion rules</td>
 <td>Legal Officer</td>
 <td>—</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Purge/Destruction</strong>: Documents reaching the absolute end of their legal retention period (e.g., 10 years + 1 day) are permanently purged from all tiers. IT generates a Certificate of Digital Destruction for compliance records</td>
 <td>System</td>

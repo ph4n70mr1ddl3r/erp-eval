@@ -121,22 +121,27 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Fit Score</th>
 <th>Meaning</th>
 </tr></thead><tbody>
+<tr>
 <td>✅</td>
 <td>4 — Native Fit</td>
 <td>Available out-of-the-box, no customization needed</td>
 </tr>
+<tr>
 <td>⚙️</td>
 <td>3 — Configured Fit</td>
 <td>Achievable through admin configuration (no code)</td>
 </tr>
+<tr>
 <td>🔧</td>
 <td>2 — Custom/3rd-Party</td>
 <td>Requires custom development or third-party add-on</td>
 </tr>
+<tr>
 <td>⚠️</td>
 <td>1 — Partial</td>
 <td>Only partially addressed; significant workaround needed</td>
 </tr>
+<tr>
 <td>❌</td>
 <td>0 — Not Available</td>
 <td>Not available and no viable workaround</td>
@@ -153,41 +158,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Microsoft Dynamics 365</th>
 <th>Oracle Fusion Cloud</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Products in Scope</strong></td>
 <td>S/4HANA Cloud, BTP, Customer Checkout, IBP, SuccessFactors, Commerce Cloud</td>
 <td>D365 Finance, SCM, Commerce, HR, Power Platform, Azure</td>
 <td>Fusion Cloud ERP, SCM, HCM, CX, Warehouse Management, NetSuite Retail (POS)</td>
 </tr>
+<tr>
 <td><strong>Must Have Requirements (≈110)</strong></td>
 <td>~85 ✅/⚙️ · ~18 🔧 · ~5 ⚠️ · ~2 ❌</td>
 <td>~80 ✅/⚙️ · ~20 🔧 · ~7 ⚠️ · ~3 ❌</td>
 <td>~75 ✅/⚙️ · ~22 🔧 · ~9 ⚠️ · ~4 ❌</td>
 </tr>
+<tr>
 <td><strong>Philippine Localization</strong></td>
 <td>⚠️ Growing — BIR forms need ISV/partner</td>
 <td>⚠️ Limited — needs ISV payroll & tax add-on</td>
 <td>⚠️ Limited — needs partner localization</td>
 </tr>
+<tr>
 <td><strong>Retail POS Maturity</strong></td>
 <td>🔧 SAP Customer Checkout is immature for big-box</td>
 <td>✅ D365 Commerce POS is retail-native with offline</td>
 <td>❌ No native POS; must integrate third-party</td>
 </tr>
+<tr>
 <td><strong>Multi-Entity Consolidation</strong></td>
 <td>✅ Best-in-class</td>
 <td>✅ Strong</td>
 <td>✅ Strong</td>
 </tr>
+<tr>
 <td><strong>Scalability (2.8M txns/mo)</strong></td>
 <td>✅ HANA in-memory, proven at scale</td>
 <td>✅ Azure cloud, Commerce Scale Unit for POS</td>
 <td>✅ OCI cloud, but POS aggregation needed</td>
 </tr>
+<tr>
 <td><strong>Implementation Complexity</strong></td>
 <td>High — large ecosystem, long timeline</td>
 <td>Medium — modular, but 5-app suite to integrate</td>
 <td>High — multiple Oracle Cloud modules to orchestrate</td>
 </tr>
+<tr>
 <td><strong>5-Year TCO Estimate</strong></td>
 <td>High ($$$)</td>
 <td>Medium-High ($$)</td>
@@ -207,6 +220,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>FIN-001</td>
 <td>Multi-entity GL (5 entities)</td>
 <td>Must</td>
@@ -214,6 +228,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Multiple legal entities with shared COA</td>
 <td>✅ Multi-ledger, multi-entity with shared segments</td>
 </tr>
+<tr>
 <td>FIN-002</td>
 <td>Automated IC Elimination</td>
 <td>Must</td>
@@ -221,6 +236,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Intercompany accounting with auto elimination</td>
 <td>✅ Intercompany elimination rules in consolidation</td>
 </tr>
+<tr>
 <td>FIN-003</td>
 <td>Consolidated Financial Reporting</td>
 <td>Must</td>
@@ -228,6 +244,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Financial consolidation in D365 Finance</td>
 <td>✅ Oracle Enterprise Performance Management (EPM)</td>
 </tr>
+<tr>
 <td>FIN-004</td>
 <td>AP with 3-Way Match</td>
 <td>Must</td>
@@ -235,6 +252,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native 3-way match in Procurement</td>
 <td>✅ 3-way match in Fusion Payables</td>
 </tr>
+<tr>
 <td>FIN-005</td>
 <td>AR for B2B</td>
 <td>Must</td>
@@ -242,6 +260,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ AR module with credit management</td>
 <td>✅ Fusion Receivables with credit management</td>
 </tr>
+<tr>
 <td>FIN-006</td>
 <td>Philippine VAT (12%)</td>
 <td>Must</td>
@@ -249,6 +268,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Tax engine configurable; PH rates set up</td>
 <td>⚙️ Tax engine supports VAT; PH configuration</td>
 </tr>
+<tr>
 <td>FIN-007</td>
 <td>Withholding Tax (Expanded)</td>
 <td>Must</td>
@@ -256,6 +276,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Configurable withholding tax per vendor</td>
 <td>⚙️ Withholding tax setup per supplier</td>
 </tr>
+<tr>
 <td>FIN-008</td>
 <td>BIR Tax Return Generation</td>
 <td>Must</td>
@@ -263,6 +284,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 ISV partner needed for BIR-specific forms</td>
 <td>🔧 Partner localization for BIR forms</td>
 </tr>
+<tr>
 <td>FIN-009</td>
 <td>Multi-Bank Integration</td>
 <td>Should</td>
@@ -270,6 +292,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Advanced bank account management; formats configurable</td>
 <td>✅ Oracle Banking formats; PH bank format config</td>
 </tr>
+<tr>
 <td>FIN-010</td>
 <td>Cash Management / Treasury</td>
 <td>Should</td>
@@ -277,6 +300,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Cash management in D365 Finance</td>
 <td>✅ Oracle Cash Management & Treasury</td>
 </tr>
+<tr>
 <td>FIN-011</td>
 <td>Fixed Asset Management</td>
 <td>Must</td>
@@ -284,6 +308,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Fixed assets with configurable depreciation</td>
 <td>✅ Oracle Assets with depreciation methods</td>
 </tr>
+<tr>
 <td>FIN-012</td>
 <td>Budgeting & Variance Analysis</td>
 <td>Should</td>
@@ -291,6 +316,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Budget control with variance reporting</td>
 <td>✅ Budgetary control & variance analysis</td>
 </tr>
+<tr>
 <td>FIN-013</td>
 <td>Landed Cost Calculation</td>
 <td>Must</td>
@@ -298,6 +324,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Landed cost module in D365 SCM; configuration needed</td>
 <td>⚙️ Landed cost in Fusion Cost Accounting; config needed</td>
 </tr>
+<tr>
 <td>FIN-014</td>
 <td>Multi-Currency</td>
 <td>Must</td>
@@ -305,6 +332,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Multi-currency with exchange rate types</td>
 <td>✅ Multi-currency with daily rates</td>
 </tr>
+<tr>
 <td>FIN-015</td>
 <td>Period-End Close Workflow</td>
 <td>Must</td>
@@ -312,6 +340,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Period close workspace with checklist</td>
 <td>✅ Financial close management in EPM</td>
 </tr>
+<tr>
 <td>FIN-016</td>
 <td>Capex Workflow</td>
 <td>Must</td>
@@ -319,6 +348,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Capex via Power Automate approval workflow</td>
 <td>⚙️ Capex via approval workflow in Fusion</td>
 </tr>
+<tr>
 <td>FIN-017</td>
 <td>Petty Cash Management</td>
 <td>Must</td>
@@ -326,6 +356,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Petty cash via cash accounts & journals</td>
 <td>⚙️ Configure petty cash accounts & journals</td>
 </tr>
+<tr>
 <td>FIN-018</td>
 <td>Consignment Settlement</td>
 <td>Should</td>
@@ -333,6 +364,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 D365 consignment via vendor consignment inventory</td>
 <td>🔧 Consignment via custom process in Fusion</td>
 </tr>
+<tr>
 <td>FIN-019</td>
 <td>Vendor Rebate Management</td>
 <td>Should</td>
@@ -340,6 +372,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Rebate management via D365 Trade Allowances</td>
 <td>⚙️ Oracle Trade Management for rebates</td>
 </tr>
+<tr>
 <td>FIN-020</td>
 <td>Duplicate Vendor Invoice Detection</td>
 <td>Must</td>
@@ -347,6 +380,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Duplicate invoice detection in AP</td>
 <td>✅ Duplicate invoice validation in Payables</td>
 </tr>
+<tr>
 <td>FIN-021</td>
 <td>FX Hedging / Forward Contracts</td>
 <td>Should</td>
@@ -354,6 +388,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Requires third-party or custom Power App</td>
 <td>✅ Oracle Treasury includes FX hedging</td>
 </tr>
+<tr>
 <td>FIN-022</td>
 <td>Bad Debt Write-Off & Recovery</td>
 <td>Must</td>
@@ -361,6 +396,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Bad debt write-off via AR write-off function</td>
 <td>⚙️ Bad debt write-off via AR adjustments</td>
 </tr>
+<tr>
 <td>FIN-023</td>
 <td>Insurance Policy Lifecycle</td>
 <td>Should</td>
@@ -368,6 +404,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power App for insurance registry</td>
 <td>🔧 Custom object / extension in Fusion</td>
 </tr>
+<tr>
 <td>FIN-024</td>
 <td>Employee Gratuity / Retirement (RA 7641)</td>
 <td>Must</td>
@@ -375,6 +412,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 ISV payroll or custom calculation</td>
 <td>🔧 PH-specific; custom HCM calculation</td>
 </tr>
+<tr>
 <td>FIN-025</td>
 <td>Cash-in-Transit / Armored Car</td>
 <td>Should</td>
@@ -382,6 +420,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power App for CIT management</td>
 <td>🔧 Custom extension</td>
 </tr>
+<tr>
 <td>FIN-026</td>
 <td>Product Costing & Margin Analysis</td>
 <td>Should</td>
@@ -389,6 +428,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Cost accounting module; margin analysis</td>
 <td>⚙️ Oracle Cost Management & profitability</td>
 </tr>
+<tr>
 <td>FIN-027</td>
 <td>Customer Refund & Credit Processing</td>
 <td>Must</td>
@@ -396,6 +436,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Credit notes with approval workflow</td>
 <td>✅ Credit memos with approval</td>
 </tr>
+<tr>
 <td>FIN-028</td>
 <td>Customer Credit Collection & Escalation</td>
 <td>Must</td>
@@ -403,6 +444,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Collections in AR with aging & letters</td>
 <td>✅ Oracle Collections with aging escalation</td>
 </tr>
+<tr>
 <td>FIN-029</td>
 <td>IC Dividend & Loan Management</td>
 <td>Should</td>
@@ -410,6 +452,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ IC loan setup via manual journal/process</td>
 <td>⚙️ IC loan via custom process</td>
 </tr>
+<tr>
 <td>FIN-030</td>
 <td>Fixed Asset Physical Verification</td>
 <td>Should</td>
@@ -417,6 +460,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power App for asset physical count</td>
 <td>🔧 Custom extension for asset verification</td>
 </tr>
+<tr>
 <td>FIN-031</td>
 <td>BIR eFPS Filing & e-Payment</td>
 <td>Must</td>
@@ -424,6 +468,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 ISV partner for eFPS submission</td>
 <td>🔧 Partner localization for eFPS</td>
 </tr>
+<tr>
 <td>FIN-032</td>
 <td>E-Wallet Settlement Reconciliation</td>
 <td>Must</td>
@@ -447,6 +492,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>INV-001</td>
 <td>Perpetual Inventory (all locations)</td>
 <td>Must</td>
@@ -454,6 +500,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Perpetual across all warehouses/sites</td>
 <td>✅ Perpetual across all subinventories</td>
 </tr>
+<tr>
 <td>INV-002</td>
 <td>Real-Time Inventory Visibility</td>
 <td>Must</td>
@@ -461,6 +508,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Real-time inventory across sites</td>
 <td>✅ Real-time inventory visibility</td>
 </tr>
+<tr>
 <td>INV-003</td>
 <td>Weighted Average Cost (WAC)</td>
 <td>Must</td>
@@ -468,6 +516,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Supports WAC (weighted average)</td>
 <td>✅ Supports WAC valuation</td>
 </tr>
+<tr>
 <td>INV-004</td>
 <td>ABC Classification</td>
 <td>Must</td>
@@ -475,6 +524,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ ABC classification via inventory policies</td>
 <td>✅ ABC classification in inventory</td>
 </tr>
+<tr>
 <td>INV-005</td>
 <td>Multi-Location Stock Transfer</td>
 <td>Must</td>
@@ -482,6 +532,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Transfer orders across warehouses/sites</td>
 <td>✅ Inter-org transfers across subinventories</td>
 </tr>
+<tr>
 <td>INV-006</td>
 <td>Cycle Counting</td>
 <td>Must</td>
@@ -489,6 +540,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Cycle counting in warehouse management</td>
 <td>✅ Cycle counting in Oracle Inventory</td>
 </tr>
+<tr>
 <td>INV-007</td>
 <td>Physical Inventory (Wall-to-Wall)</td>
 <td>Must</td>
@@ -496,6 +548,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Full physical inventory process</td>
 <td>✅ Full physical inventory process</td>
 </tr>
+<tr>
 <td>INV-008</td>
 <td>Lot & Serial Tracking</td>
 <td>Should</td>
@@ -503,6 +556,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Batch and serial tracking in inventory</td>
 <td>✅ Lot and serial tracking</td>
 </tr>
+<tr>
 <td>INV-009</td>
 <td>Consignment Inventory</td>
 <td>Should</td>
@@ -510,6 +564,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Vendor consignment inventory</td>
 <td>🔧 Consignment via custom process</td>
 </tr>
+<tr>
 <td>INV-010</td>
 <td>Catch-Weight / Variable Measure</td>
 <td>Must</td>
@@ -517,6 +572,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚠️ Product variants with catch-weight; needs config</td>
 <td>⚠️ Variable measure via UOM conversion; limited</td>
 </tr>
+<tr>
 <td>INV-011</td>
 <td>Inventory Aging Analysis</td>
 <td>Should</td>
@@ -524,6 +580,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Aging via inventory reports / Power BI</td>
 <td>⚙️ Aging reports via OTBI/BI Publisher</td>
 </tr>
+<tr>
 <td>INV-012</td>
 <td>Safety Stock & Reorder Point</td>
 <td>Must</td>
@@ -531,6 +588,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Safety stock & min/max in inventory</td>
 <td>✅ Safety stock & reorder planning</td>
 </tr>
+<tr>
 <td>INV-013</td>
 <td>Batch/Lot for Paint</td>
 <td>Should</td>
@@ -538,6 +596,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Batch tracking with attributes</td>
 <td>✅ Lot tracking with attributes</td>
 </tr>
+<tr>
 <td>INV-014</td>
 <td>In-Transit Inventory</td>
 <td>Must</td>
@@ -545,6 +604,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ In-transit inventory with transfer orders</td>
 <td>✅ In-transit inventory visibility</td>
 </tr>
+<tr>
 <td>INV-015</td>
 <td>Inventory Valuation Reports</td>
 <td>Must</td>
@@ -552,6 +612,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Valuation reports per site/category</td>
 <td>✅ Valuation reports by subinventory</td>
 </tr>
+<tr>
 <td>INV-016</td>
 <td>Product Recall Tracking</td>
 <td>Should</td>
@@ -559,6 +620,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Recall process via custom workflow</td>
 <td>🔧 Custom recall tracking process</td>
 </tr>
+<tr>
 <td>INV-017</td>
 <td>Consignment Tracking (non-valuated)</td>
 <td>Must</td>
@@ -566,6 +628,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Consignment with ownership transfer config</td>
 <td>🔧 Consignment tracking via custom extension</td>
 </tr>
+<tr>
 <td>INV-018</td>
 <td>VMI Inventory Tracking</td>
 <td>Should</td>
@@ -573,6 +636,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ VMI via vendor collaboration features</td>
 <td>⚙️ VMI via supplier collaboration</td>
 </tr>
+<tr>
 <td>INV-019</td>
 <td>Multi-Channel Inventory Allocation</td>
 <td>Should</td>
@@ -580,6 +644,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Channel inventory allocation via D365 Commerce</td>
 <td>⚙️ Inventory allocation rules in Fusion</td>
 </tr>
+<tr>
 <td>INV-020</td>
 <td>Proactive Store Inventory Rebalancing</td>
 <td>Should</td>
@@ -603,6 +668,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>PUR-001</td>
 <td>Purchase Order Management</td>
 <td>Must</td>
@@ -610,6 +676,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Full PO lifecycle</td>
 <td>✅ Full PO lifecycle</td>
 </tr>
+<tr>
 <td>PUR-002</td>
 <td>Automated Replenishment (MRP/ROP)</td>
 <td>Must</td>
@@ -617,6 +684,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ MRP with auto-firming to POs</td>
 <td>✅ MRP/Min-Max auto-generate POs</td>
 </tr>
+<tr>
 <td>PUR-003</td>
 <td>Vendor Management (800–1,000)</td>
 <td>Must</td>
@@ -624,6 +692,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Vendor management at scale</td>
 <td>✅ Supplier management at scale</td>
 </tr>
+<tr>
 <td>PUR-004</td>
 <td>Import Purchase Orders (LC, customs)</td>
 <td>Must</td>
@@ -631,6 +700,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Import PO with landed cost; LC via config</td>
 <td>⚙️ Import POs; LC tracking via Treasury</td>
 </tr>
+<tr>
 <td>PUR-005</td>
 <td>3-Way Matching</td>
 <td>Must</td>
@@ -638,6 +708,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native 3-way match</td>
 <td>✅ Native 3-way match</td>
 </tr>
+<tr>
 <td>PUR-006</td>
 <td>Blanket/Contract POs</td>
 <td>Should</td>
@@ -645,6 +716,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Purchase agreements / blanket POs</td>
 <td>✅ Blanket purchase agreements</td>
 </tr>
+<tr>
 <td>PUR-007</td>
 <td>Vendor Portal</td>
 <td>Nice</td>
@@ -652,6 +724,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Vendor collaboration portal in D365</td>
 <td>✅ Oracle Supplier Portal</td>
 </tr>
+<tr>
 <td>PUR-008</td>
 <td>Vendor Performance Scorecard</td>
 <td>Should</td>
@@ -659,6 +732,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Vendor rating via custom metrics/Power BI</td>
 <td>⚙️ Supplier performance via OTBI/BI reports</td>
 </tr>
+<tr>
 <td>PUR-009</td>
 <td>Multi-Entity Procurement</td>
 <td>Must</td>
@@ -666,6 +740,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Central procurement across legal entities</td>
 <td>✅ Shared procurement across business units</td>
 </tr>
+<tr>
 <td>PUR-010</td>
 <td>Approval Workflow</td>
 <td>Must</td>
@@ -673,6 +748,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Workflow engine with tiered approvals</td>
 <td>✅ Approval workflows with AMX rules</td>
 </tr>
+<tr>
 <td>PUR-011</td>
 <td>Goods Receipt Processing</td>
 <td>Must</td>
@@ -680,6 +756,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Product receipt against PO at site</td>
 <td>✅ Receipt against PO at subinventory</td>
 </tr>
+<tr>
 <td>PUR-012</td>
 <td>Return to Vendor (RTV)</td>
 <td>Must</td>
@@ -687,6 +764,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Return order process</td>
 <td>✅ Return to supplier process</td>
 </tr>
+<tr>
 <td>PUR-013</td>
 <td>Direct Store Delivery (DSD)</td>
 <td>Must</td>
@@ -694,6 +772,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ DSD receipt at store location; config needed</td>
 <td>⚙️ DSD receipt at store subinventory; config</td>
 </tr>
+<tr>
 <td>PUR-014</td>
 <td>Vendor Managed Inventory</td>
 <td>Should</td>
@@ -701,6 +780,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ VMI via vendor collaboration features</td>
 <td>⚙️ VMI via supplier collaboration in Fusion</td>
 </tr>
+<tr>
 <td>PUR-015</td>
 <td>Vendor Rebate Management</td>
 <td>Should</td>
@@ -708,6 +788,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Rebate management in Trade Allowances</td>
 <td>⚙️ Oracle Trade Management</td>
 </tr>
+<tr>
 <td>PUR-016</td>
 <td>AQL Sampling per SKU Category</td>
 <td>Should</td>
@@ -715,6 +796,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Quality management via custom inspection</td>
 <td>⚙️ Quality inspection with sampling in Fusion</td>
 </tr>
+<tr>
 <td>PUR-017</td>
 <td>Supplier Quality & CAPA</td>
 <td>Should</td>
@@ -722,6 +804,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Quality management via custom Power App</td>
 <td>⚙️ Quality management in Fusion SCM</td>
 </tr>
+<tr>
 <td>PUR-018</td>
 <td>Indirect / Non-Merchandise Procurement</td>
 <td>Must</td>
@@ -729,6 +812,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Procurement categories for indirect spend</td>
 <td>✅ Procurement categories for indirect spend</td>
 </tr>
+<tr>
 <td>PUR-019</td>
 <td>Vendor Invoice Dispute</td>
 <td>Must</td>
@@ -736,6 +820,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Invoice hold with dispute notes/workflow</td>
 <td>✅ Invoice hold with dispute resolution</td>
 </tr>
+<tr>
 <td>PUR-020</td>
 <td>Vendor Price Protection Claims</td>
 <td>Should</td>
@@ -743,6 +828,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom workflow for price protection</td>
 <td>🔧 Custom process for price protection</td>
 </tr>
+<tr>
 <td>PUR-021</td>
 <td>Vendor Strategic Collaboration & JBP</td>
 <td>Should</td>
@@ -750,6 +836,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Supplier collaboration portal / Power BI</td>
 <td>🔧 Custom supplier collaboration workspace</td>
 </tr>
+<tr>
 <td>PUR-022</td>
 <td>PL Factory Audit & Social Compliance</td>
 <td>Should</td>
@@ -757,6 +844,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power App for factory audit tracking</td>
 <td>🔧 Custom supplier audit management</td>
 </tr>
+<tr>
 <td>PUR-023</td>
 <td>Supplier Diversity / MSME Program</td>
 <td>Should</td>
@@ -764,6 +852,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power BI + custom vendor attributes</td>
 <td>🔧 Custom supplier diversity tracking</td>
 </tr>
+<tr>
 <td>PUR-024</td>
 <td>Product Quality Testing & Certification</td>
 <td>Should</td>
@@ -787,6 +876,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>WMS-001</td>
 <td>RF/Barcode Directed Operations</td>
 <td>Must</td>
@@ -794,6 +884,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Warehouse Mgmt with mobile device directed</td>
 <td>✅ Oracle WMS Cloud with RF/barcode</td>
 </tr>
+<tr>
 <td>WMS-002</td>
 <td>Cross-Dock Capability</td>
 <td>Should</td>
@@ -801,6 +892,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Cross-docking in warehouse management</td>
 <td>✅ Cross-dock in WMS Cloud</td>
 </tr>
+<tr>
 <td>WMS-003</td>
 <td>Wave/Zone Picking</td>
 <td>Should</td>
@@ -808,6 +900,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Wave/zone picking in D365 WMS</td>
 <td>✅ Wave planning in WMS Cloud</td>
 </tr>
+<tr>
 <td>WMS-004</td>
 <td>Receiving & Putaway</td>
 <td>Must</td>
@@ -815,6 +908,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Receiving & directed putaway</td>
 <td>✅ Receiving & putaway in WMS Cloud</td>
 </tr>
+<tr>
 <td>WMS-005</td>
 <td>Shipping & Dispatch</td>
 <td>Must</td>
@@ -822,6 +916,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Shipping & load management</td>
 <td>✅ Shipping & dispatch in WMS Cloud</td>
 </tr>
+<tr>
 <td>WMS-006</td>
 <td>Yard Management (Lumber)</td>
 <td>Should</td>
@@ -829,6 +924,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom yard management via Power App</td>
 <td>🔧 Yard management via custom extension</td>
 </tr>
+<tr>
 <td>WMS-007</td>
 <td>Label Printing</td>
 <td>Must</td>
@@ -836,6 +932,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Label printing / SSRS reports</td>
 <td>✅ Label printing in WMS Cloud</td>
 </tr>
+<tr>
 <td>WMS-008</td>
 <td>WMS-ERP Integration</td>
 <td>Must</td>
@@ -859,6 +956,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>POS-001</td>
 <td>1,000 POS Terminals</td>
 <td>Must</td>
@@ -866,6 +964,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Commerce POS scales to 1,000+ terminals</td>
 <td>❌ No native POS; third-party POS required</td>
 </tr>
+<tr>
 <td>POS-002</td>
 <td>Offline Mode</td>
 <td>Must</td>
@@ -873,6 +972,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Commerce Scale Unit (CSU) enables full offline</td>
 <td>❌ Third-party POS must provide offline</td>
 </tr>
+<tr>
 <td>POS-003</td>
 <td>Barcode Scanning</td>
 <td>Must</td>
@@ -880,6 +980,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native barcode scanning</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-004</td>
 <td>Multi-Tender</td>
 <td>Must</td>
@@ -887,6 +988,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native multi-tender with split payment</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-005</td>
 <td>Loyalty Integration</td>
 <td>Must</td>
@@ -894,6 +996,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native loyalty in D365 Commerce</td>
 <td>🔧 Custom integration with loyalty engine</td>
 </tr>
+<tr>
 <td>POS-006</td>
 <td>Price Override (w/ Auth)</td>
 <td>Must</td>
@@ -901,6 +1004,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Price override with permission</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-007</td>
 <td>Returns & Exchanges</td>
 <td>Must</td>
@@ -908,6 +1012,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native returns & exchanges</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-008</td>
 <td>Cash Drawer Management</td>
 <td>Must</td>
@@ -915,6 +1020,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native cash drawer management</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-009</td>
 <td>End-of-Day Reconciliation</td>
 <td>Must</td>
@@ -922,6 +1028,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native shift/close reporting</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-010</td>
 <td>Quantity Break Pricing</td>
 <td>Must</td>
@@ -929,6 +1036,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native quantity breaks in D365 Commerce</td>
 <td>🔧 Third-party POS / custom pricing</td>
 </tr>
+<tr>
 <td>POS-011</td>
 <td>Customer Display</td>
 <td>Should</td>
@@ -936,6 +1044,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native customer display support</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-012</td>
 <td>Receipt Printing</td>
 <td>Must</td>
@@ -943,6 +1052,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Receipt printing; BIR format needs customization</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-013</td>
 <td>Real-Time Inventory Deduction</td>
 <td>Must</td>
@@ -950,6 +1060,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Real-time via Commerce Scale Unit</td>
 <td>🔧 Third-party POS integration latency</td>
 </tr>
+<tr>
 <td>POS-014</td>
 <td>Promotional Pricing Auto-Apply</td>
 <td>Must</td>
@@ -957,6 +1068,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native retail discounts/auto-apply</td>
 <td>🔧 Third-party POS + custom promo engine</td>
 </tr>
+<tr>
 <td>POS-014a</td>
 <td>Senior/PWD Discount (PH Legal)</td>
 <td>Must</td>
@@ -964,6 +1076,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom discount rules for SC/PWD</td>
 <td>🔧 Custom PH discount logic</td>
 </tr>
+<tr>
 <td>POS-015</td>
 <td>Gift Card / Store Credit</td>
 <td>Should</td>
@@ -971,6 +1084,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native gift card in D365 Commerce</td>
 <td>🔧 Custom gift card module</td>
 </tr>
+<tr>
 <td>POS-016</td>
 <td>Catch-Weight at POS</td>
 <td>Must</td>
@@ -978,6 +1092,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Variable weight items in D365 Commerce</td>
 <td>🔧 Custom catch-weight in third-party POS</td>
 </tr>
+<tr>
 <td>POS-017</td>
 <td>Paint Mixing / Custom SKU</td>
 <td>Must</td>
@@ -985,6 +1100,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Product configurator or custom POS extension</td>
 <td>🔧 Custom SKU generation at POS</td>
 </tr>
+<tr>
 <td>POS-018</td>
 <td>Age-Restricted Prompts</td>
 <td>Should</td>
@@ -992,6 +1108,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Age-restriction prompts in D365 Commerce</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>POS-019</td>
 <td>Warranty Claim Registration</td>
 <td>Should</td>
@@ -999,6 +1116,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom via Power App at POS</td>
 <td>🔧 Custom warranty process</td>
 </tr>
+<tr>
 <td>POS-020</td>
 <td>Layaway / Installment Sales</td>
 <td>Should</td>
@@ -1006,6 +1124,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom via POS extension</td>
 <td>🔧 Custom layaway process</td>
 </tr>
+<tr>
 <td>POS-021</td>
 <td>Multi-DC Order Splitting (Ecom)</td>
 <td>Should</td>
@@ -1013,6 +1132,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Order splitting via D365 Commerce</td>
 <td>⚙️ Split fulfillment in Order Management</td>
 </tr>
+<tr>
 <td>POS-022</td>
 <td>Employee Discount at POS</td>
 <td>Should</td>
@@ -1020,6 +1140,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Employee discount group in D365</td>
 <td>🔧 Custom employee discount logic</td>
 </tr>
+<tr>
 <td>POS-023</td>
 <td>Store-Level Delivery Scheduling</td>
 <td>Should</td>
@@ -1027,6 +1148,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Delivery scheduling in D365 Commerce</td>
 <td>🔧 Custom delivery scheduling</td>
 </tr>
+<tr>
 <td>POS-028</td>
 <td>POS Hardware Maintenance</td>
 <td>Should</td>
@@ -1050,6 +1172,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>ECOM-001</td>
 <td>Real-Time Inventory Sync</td>
 <td>Must</td>
@@ -1057,6 +1180,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Commerce native real-time inventory</td>
 <td>⚙️ Oracle Commerce integration via API</td>
 </tr>
+<tr>
 <td>ECOM-002</td>
 <td>Real-Time Price Sync</td>
 <td>Must</td>
@@ -1064,6 +1188,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native price sync in D365 Commerce</td>
 <td>⚙️ Price sync via integration layer</td>
 </tr>
+<tr>
 <td>ECOM-003</td>
 <td>BOPIS Order Flow</td>
 <td>Must</td>
@@ -1071,6 +1196,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native BOPIS in D365 Commerce</td>
 <td>⚙️ BOPIS via Oracle Commerce / custom</td>
 </tr>
+<tr>
 <td>ECOM-004</td>
 <td>Home Delivery Order Flow</td>
 <td>Must</td>
@@ -1078,6 +1204,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Home delivery in D365 Commerce</td>
 <td>⚙️ Delivery via Oracle Order Management</td>
 </tr>
+<tr>
 <td>ECOM-005</td>
 <td>Order Status Tracking</td>
 <td>Must</td>
@@ -1085,6 +1212,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native order tracking</td>
 <td>✅ Order tracking in Order Management</td>
 </tr>
+<tr>
 <td>ECOM-006</td>
 <td>Payment Gateway (PayMongo etc.)</td>
 <td>Must</td>
@@ -1092,6 +1220,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom payment connector for PH gateways</td>
 <td>🔧 Custom payment integration for PH gateways</td>
 </tr>
+<tr>
 <td>ECOM-007</td>
 <td>Return Initiation (Online)</td>
 <td>Must</td>
@@ -1099,6 +1228,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native returns initiation</td>
 <td>⚙️ Returns via Oracle Commerce</td>
 </tr>
+<tr>
 <td>ECOM-008</td>
 <td>Customer Data Sync</td>
 <td>Must</td>
@@ -1106,6 +1236,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native customer sync in D365</td>
 <td>⚙️ Customer sync via integration</td>
 </tr>
+<tr>
 <td>ECOM-009</td>
 <td>Product Catalog Sync</td>
 <td>Must</td>
@@ -1113,6 +1244,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native catalog sync</td>
 <td>⚙️ Catalog sync via integration</td>
 </tr>
+<tr>
 <td>ECOM-010</td>
 <td>Promo/Coupon Integration</td>
 <td>Should</td>
@@ -1120,6 +1252,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native promotion sync</td>
 <td>⚙️ Promo sync via integration</td>
 </tr>
+<tr>
 <td>ECOM-011</td>
 <td>Home Delivery Fulfillment</td>
 <td>Must</td>
@@ -1127,6 +1260,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Fulfillment with carrier integration</td>
 <td>⚙️ Fulfillment via Order Management</td>
 </tr>
+<tr>
 <td>ECOM-012</td>
 <td>Delivery Partner Integration</td>
 <td>Must</td>
@@ -1134,6 +1268,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom carrier connector</td>
 <td>🔧 API integration with PH carriers</td>
 </tr>
+<tr>
 <td>ECOM-013</td>
 <td>Marketplace (Lazada/Shopee)</td>
 <td>Should</td>
@@ -1141,6 +1276,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom marketplace integration</td>
 <td>🔧 Custom marketplace integration</td>
 </tr>
+<tr>
 <td>ECOM-014</td>
 <td>Ship-from-Store</td>
 <td>Should</td>
@@ -1148,6 +1284,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Ship-from-store in D365 Commerce</td>
 <td>🔧 Custom ship-from-store process</td>
 </tr>
+<tr>
 <td>ECOM-015</td>
 <td>Omni-channel Ticketing & Support</td>
 <td>Should</td>
@@ -1155,6 +1292,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ D365 Customer Service integration</td>
 <td>⚙️ Oracle Service Center integration</td>
 </tr>
+<tr>
 <td>ECOM-016</td>
 <td>Order Exception & Cancellation</td>
 <td>Should</td>
@@ -1178,6 +1316,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>SCP-001</td>
 <td>Demand Forecasting</td>
 <td>Should</td>
@@ -1185,6 +1324,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Demand forecasting in D365 Planning Optimization</td>
 <td>✅ Oracle Demand Management</td>
 </tr>
+<tr>
 <td>SCP-002</td>
 <td>Replenishment Planning (DC→Store)</td>
 <td>Must</td>
@@ -1192,6 +1332,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Planning Optimization for replenishment</td>
 <td>⚙️ Oracle Supply Planning for replenishment</td>
 </tr>
+<tr>
 <td>SCP-003</td>
 <td>Reorder Point Calculation</td>
 <td>Must</td>
@@ -1199,6 +1340,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Min/max and safety stock calculations</td>
 <td>✅ Reorder planning per item/location</td>
 </tr>
+<tr>
 <td>SCP-004</td>
 <td>Safety Stock Optimization</td>
 <td>Should</td>
@@ -1206,6 +1348,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Safety stock calculations in Planning</td>
 <td>⚙️ Safety stock optimization in Planning</td>
 </tr>
+<tr>
 <td>SCP-005</td>
 <td>Seasonal Planning</td>
 <td>Should</td>
@@ -1213,6 +1356,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Seasonal via forecast adjustments</td>
 <td>⚙️ Seasonal planning in Supply Planning</td>
 </tr>
+<tr>
 <td>SCP-006</td>
 <td>Allocation Management</td>
 <td>Should</td>
@@ -1220,6 +1364,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Allocation in D365 via reservation</td>
 <td>⚙️ Allocation in Oracle Supply Chain</td>
 </tr>
+<tr>
 <td>SCP-007</td>
 <td>Purchase Recommendation</td>
 <td>Must</td>
@@ -1243,6 +1388,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>HR-001</td>
 <td>Multi-Entity Payroll (5 entities)</td>
 <td>Must</td>
@@ -1250,6 +1396,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚠️ D365 HR limited for payroll; needs ISV</td>
 <td>✅ Oracle HCM Payroll multi-entity</td>
 </tr>
+<tr>
 <td>HR-002</td>
 <td>PH Statutory Deductions (SSS etc.)</td>
 <td>Must</td>
@@ -1257,6 +1404,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 ISV partner for PH statutory (e.g., Itsubmit)</td>
 <td>⚠️ Oracle HCM PH payroll localization</td>
 </tr>
+<tr>
 <td>HR-003</td>
 <td>BIR Withholding Tax (Compensation)</td>
 <td>Must</td>
@@ -1264,6 +1412,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 ISV partner for BIR compensation tax</td>
 <td>⚠️ PH tax tables via localization</td>
 </tr>
+<tr>
 <td>HR-004</td>
 <td>13th Month Pay</td>
 <td>Must</td>
@@ -1271,6 +1420,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Configure in payroll / ISV</td>
 <td>⚙️ Configure 13th month in payroll</td>
 </tr>
+<tr>
 <td>HR-005</td>
 <td>Time & Attendance Integration</td>
 <td>Should</td>
@@ -1278,6 +1428,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ T&A integration via D365 or third-party</td>
 <td>✅ Oracle Time & Labor with biometric</td>
 </tr>
+<tr>
 <td>HR-006</td>
 <td>Shift Scheduling</td>
 <td>Should</td>
@@ -1285,6 +1436,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Shift scheduling via D365 or third-party</td>
 <td>✅ Oracle Workforce Scheduling</td>
 </tr>
+<tr>
 <td>HR-007</td>
 <td>Leave Management</td>
 <td>Must</td>
@@ -1292,6 +1444,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Leave management in D365 HR</td>
 <td>✅ Oracle Absence Management</td>
 </tr>
+<tr>
 <td>HR-008</td>
 <td>Employee Self-Service</td>
 <td>Nice</td>
@@ -1299,6 +1452,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Employee self-service</td>
 <td>✅ Oracle HCM ESS</td>
 </tr>
+<tr>
 <td>HR-009</td>
 <td>Recruitment & Onboarding</td>
 <td>Nice</td>
@@ -1306,6 +1460,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ D365 Talent or LinkedIn integration</td>
 <td>✅ Oracle Recruiting & Onboarding</td>
 </tr>
+<tr>
 <td>HR-010</td>
 <td>Overtime Calculation</td>
 <td>Must</td>
@@ -1313,6 +1468,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Configure overtime in payroll/ISV</td>
 <td>⚙️ Configure PH overtime rules</td>
 </tr>
+<tr>
 <td>HR-011</td>
 <td>Holiday Pay Calculation</td>
 <td>Must</td>
@@ -1320,6 +1476,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Configure holiday pay rules</td>
 <td>⚙️ Configure PH holiday pay rates</td>
 </tr>
+<tr>
 <td>HR-012</td>
 <td>Bank File Generation</td>
 <td>Must</td>
@@ -1327,6 +1484,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Bank file via payroll / ISV</td>
 <td>✅ Payroll bank file generation</td>
 </tr>
+<tr>
 <td>HR-013</td>
 <td>Employee Loan & Advance</td>
 <td>Must</td>
@@ -1334,6 +1492,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom loan management in D365</td>
 <td>⚙️ Configure loan deductions in payroll</td>
 </tr>
+<tr>
 <td>HR-014</td>
 <td>Grievance & Whistleblower</td>
 <td>Should</td>
@@ -1341,6 +1500,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power App for grievance tracking</td>
 <td>🔧 Custom case management</td>
 </tr>
+<tr>
 <td>HR-015</td>
 <td>PH Statutory Benefits & Claims</td>
 <td>Must</td>
@@ -1348,6 +1508,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 ISV partner for PH statutory claims</td>
 <td>⚙️ Configure statutory benefits in payroll</td>
 </tr>
+<tr>
 <td>HR-016</td>
 <td>Employee Expense Reimbursement</td>
 <td>Must</td>
@@ -1355,6 +1516,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Expense Management</td>
 <td>✅ Oracle Expenses Management</td>
 </tr>
+<tr>
 <td>HR-017</td>
 <td>PPE & Uniform Lifecycle</td>
 <td>Should</td>
@@ -1378,6 +1540,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>CRM-001</td>
 <td>Loyalty Points Engine</td>
 <td>Must</td>
@@ -1385,6 +1548,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Native loyalty in D365 Commerce</td>
 <td>🔧 Oracle Loyalty (separate cloud) or custom</td>
 </tr>
+<tr>
 <td>CRM-002</td>
 <td>Customer Master (B2C, 600K)</td>
 <td>Must</td>
@@ -1392,6 +1556,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Customer master in D365</td>
 <td>✅ Oracle Customer Data Management</td>
 </tr>
+<tr>
 <td>CRM-003</td>
 <td>Trade Account Management (B2B)</td>
 <td>Must</td>
@@ -1399,6 +1564,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Customer accounts with credit limits</td>
 <td>✅ Oracle Receivables with trade accounts</td>
 </tr>
+<tr>
 <td>CRM-004</td>
 <td>Corporate Account Mgmt</td>
 <td>Must</td>
@@ -1406,6 +1572,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Corporate accounts with negotiated pricing</td>
 <td>✅ Corporate accounts in Fusion</td>
 </tr>
+<tr>
 <td>CRM-005</td>
 <td>Tiered Loyalty</td>
 <td>Should</td>
@@ -1413,6 +1580,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Tiered loyalty in D365 Commerce</td>
 <td>⚙️ Tiered loyalty via Oracle Loyalty Cloud</td>
 </tr>
+<tr>
 <td>CRM-006</td>
 <td>Customer Purchase History</td>
 <td>Should</td>
@@ -1420,6 +1588,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Purchase history in D365 Commerce</td>
 <td>⚙️ Customer analytics in Oracle CX</td>
 </tr>
+<tr>
 <td>CRM-007</td>
 <td>Marketing Campaign Integration</td>
 <td>Nice</td>
@@ -1427,6 +1596,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Marketing / Customer Insights</td>
 <td>✅ Oracle CX Marketing integration</td>
 </tr>
+<tr>
 <td>CRM-008</td>
 <td>Credit Application Workflow</td>
 <td>Must</td>
@@ -1434,6 +1604,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Credit management in D365</td>
 <td>✅ Oracle Credit Management</td>
 </tr>
+<tr>
 <td>CRM-009</td>
 <td>PHILGEPS Compliance</td>
 <td>Should</td>
@@ -1441,6 +1612,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom Power App for gov't bids</td>
 <td>🔧 Custom government procurement module</td>
 </tr>
+<tr>
 <td>CRM-010</td>
 <td>Customer Account Reactivation</td>
 <td>Should</td>
@@ -1448,6 +1620,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom via D365 Marketing/Power BI</td>
 <td>🔧 Custom reactivation campaigns</td>
 </tr>
+<tr>
 <td>CRM-011</td>
 <td>Customer Feedback-to-Action</td>
 <td>Should</td>
@@ -1455,6 +1628,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ D365 Customer Service + Voice of Customer</td>
 <td>⚙️ Oracle Service Center feedback</td>
 </tr>
+<tr>
 <td>CRM-012</td>
 <td>Trade Sales Pipeline & Territory</td>
 <td>Should</td>
@@ -1462,6 +1636,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Sales pipeline management</td>
 <td>✅ Oracle Sales Cloud pipeline</td>
 </tr>
+<tr>
 <td>CRM-013</td>
 <td>Trade Counter / Pro Desk</td>
 <td>Should</td>
@@ -1469,6 +1644,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom POS extension for trade</td>
 <td>🔧 Custom trade counter process</td>
 </tr>
+<tr>
 <td>CRM-014</td>
 <td>Customer Data Platform</td>
 <td>Should</td>
@@ -1476,6 +1652,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Customer Insights (CDP)</td>
 <td>✅ Oracle CX Unity (CDP)</td>
 </tr>
+<tr>
 <td>CRM-015</td>
 <td>Call Center Queue Management</td>
 <td>Should</td>
@@ -1483,6 +1660,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Customer Service omnichannel</td>
 <td>✅ Oracle Service Center omnichannel</td>
 </tr>
+<tr>
 <td>CRM-016</td>
 <td>Loyalty Enrollment Journey</td>
 <td>Should</td>
@@ -1506,6 +1684,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>RPT-001</td>
 <td>Executive Dashboard</td>
 <td>Must</td>
@@ -1513,6 +1692,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI dashboards</td>
 <td>✅ Oracle BI / OTBI dashboards</td>
 </tr>
+<tr>
 <td>RPT-002</td>
 <td>Store P&L</td>
 <td>Must</td>
@@ -1520,6 +1700,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI with financial data</td>
 <td>⚙️ P&L by cost center / segment</td>
 </tr>
+<tr>
 <td>RPT-003</td>
 <td>Sales Analytics</td>
 <td>Must</td>
@@ -1527,6 +1708,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI + D365 sales data</td>
 <td>⚙️ Oracle Sales Analytics</td>
 </tr>
+<tr>
 <td>RPT-004</td>
 <td>Inventory Reports</td>
 <td>Must</td>
@@ -1534,6 +1716,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI + D365 inventory reports</td>
 <td>✅ Standard inventory reports</td>
 </tr>
+<tr>
 <td>RPT-005</td>
 <td>Purchase Analysis</td>
 <td>Should</td>
@@ -1541,6 +1724,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI procurement analytics</td>
 <td>⚙️ Oracle Procurement analytics</td>
 </tr>
+<tr>
 <td>RPT-006</td>
 <td>BIR-Compliant Tax Reports</td>
 <td>Must</td>
@@ -1548,6 +1732,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 ISV/partner for BIR-specific formats</td>
 <td>🔧 Partner localization for BIR reports</td>
 </tr>
+<tr>
 <td>RPT-007</td>
 <td>Consolidated Financial Statements</td>
 <td>Must</td>
@@ -1555,6 +1740,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Financial reporting in D365 Finance</td>
 <td>✅ Oracle Financial Reporting Studio</td>
 </tr>
+<tr>
 <td>RPT-008</td>
 <td>Ad-Hoc Reporting</td>
 <td>Should</td>
@@ -1562,6 +1748,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI self-service</td>
 <td>✅ Oracle BI ad-hoc analysis</td>
 </tr>
+<tr>
 <td>RPT-009</td>
 <td>Mobile Dashboard</td>
 <td>Nice</td>
@@ -1569,6 +1756,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI mobile app</td>
 <td>✅ Oracle BI mobile</td>
 </tr>
+<tr>
 <td>RPT-010</td>
 <td>Scheduled Report Distribution</td>
 <td>Should</td>
@@ -1576,6 +1764,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI scheduled refresh + email</td>
 <td>✅ Oracle BI scheduling</td>
 </tr>
+<tr>
 <td>RPT-011</td>
 <td>Category Performance Review</td>
 <td>Should</td>
@@ -1583,6 +1772,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Power BI category dashboards</td>
 <td>⚙️ Oracle BI category analytics</td>
 </tr>
+<tr>
 <td>RPT-012</td>
 <td>Pricing Hierarchy Audit</td>
 <td>Should</td>
@@ -1606,6 +1796,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>IC-001</td>
 <td>IC AP/AR Automation</td>
 <td>Must</td>
@@ -1613,6 +1804,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Intercompany AP/AR automation</td>
 <td>✅ Intercompany invoicing in Fusion</td>
 </tr>
+<tr>
 <td>IC-002</td>
 <td>Arm's-Length Transfer Pricing</td>
 <td>Must</td>
@@ -1620,6 +1812,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ IC pricing rules in trade agreements</td>
 <td>✅ IC transfer pricing rules</td>
 </tr>
+<tr>
 <td>IC-003</td>
 <td>IC Elimination on Consolidation</td>
 <td>Must</td>
@@ -1627,6 +1820,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Auto elimination in consolidation</td>
 <td>✅ Auto elimination in consolidation</td>
 </tr>
+<tr>
 <td>IC-004</td>
 <td>IC Settlement</td>
 <td>Must</td>
@@ -1634,6 +1828,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ IC settlement via centralized payments</td>
 <td>✅ IC settlement via payment process</td>
 </tr>
+<tr>
 <td>IC-005</td>
 <td>IC Reconciliation</td>
 <td>Must</td>
@@ -1657,6 +1852,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>DOC-001</td>
 <td>Electronic Document Storage</td>
 <td>Must</td>
@@ -1664,6 +1860,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ SharePoint / D365 document attachments</td>
 <td>✅ Oracle WebCenter / document attachments</td>
 </tr>
+<tr>
 <td>DOC-002</td>
 <td>BIR-Compliant Invoice Format</td>
 <td>Must</td>
@@ -1671,6 +1868,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom BIR invoice format in D365</td>
 <td>🔧 Custom BIR invoice format in Fusion</td>
 </tr>
+<tr>
 <td>DOC-003</td>
 <td>Delivery Receipt Tracking</td>
 <td>Must</td>
@@ -1678,6 +1876,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Delivery notes linked to orders</td>
 <td>✅ Delivery tracking linked to orders</td>
 </tr>
+<tr>
 <td>DOC-004</td>
 <td>Import Document Management</td>
 <td>Must</td>
@@ -1685,6 +1884,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Attach documents to PO in SharePoint</td>
 <td>✅ Attach import documents to PO</td>
 </tr>
+<tr>
 <td>DOC-005</td>
 <td>Document Retention Policy</td>
 <td>Must</td>
@@ -1692,6 +1892,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Retention via SharePoint policies</td>
 <td>⚙️ Retention via Oracle records management</td>
 </tr>
+<tr>
 <td>DOC-006</td>
 <td>Approval with Attachments</td>
 <td>Should</td>
@@ -1699,6 +1900,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power Automate with file attachments</td>
 <td>✅ Approval workflow with attachments</td>
 </tr>
+<tr>
 <td>DOC-007</td>
 <td>Hazardous Waste Disposal Tracking</td>
 <td>Should</td>
@@ -1706,6 +1908,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power App for hazmat tracking</td>
 <td>🔧 Custom hazmat tracking extension</td>
 </tr>
+<tr>
 <td>DOC-008</td>
 <td>Enterprise Retention & Archiving</td>
 <td>Must</td>
@@ -1729,6 +1932,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>MDM-001</td>
 <td>Centralized Item Master (55K SKUs)</td>
 <td>Must</td>
@@ -1736,6 +1940,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Product master with shared products</td>
 <td>✅ Item master with governance</td>
 </tr>
+<tr>
 <td>MDM-002</td>
 <td>Item Attribute Management</td>
 <td>Must</td>
@@ -1743,6 +1948,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Product attributes and attributes in D365</td>
 <td>⚙️ Item descriptors and attribute groups</td>
 </tr>
+<tr>
 <td>MDM-003</td>
 <td>Customer Data Quality</td>
 <td>Must</td>
@@ -1750,6 +1956,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Customer dedup rules in D365</td>
 <td>⚙️ Customer data quality in Fusion</td>
 </tr>
+<tr>
 <td>MDM-004</td>
 <td>Vendor Onboarding Workflow</td>
 <td>Should</td>
@@ -1757,6 +1964,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Vendor approval workflow in D365</td>
 <td>⚙️ Supplier onboarding workflow</td>
 </tr>
+<tr>
 <td>MDM-005</td>
 <td>Pricing Master Governance</td>
 <td>Must</td>
@@ -1764,6 +1972,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Trade agreements with approval</td>
 <td>⚙️ Price lists with approval workflow</td>
 </tr>
+<tr>
 <td>MDM-006</td>
 <td>Location Master</td>
 <td>Must</td>
@@ -1771,6 +1980,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Site/warehouse master</td>
 <td>✅ Organization/subinventory master</td>
 </tr>
+<tr>
 <td>MDM-007</td>
 <td>Hierarchical Category Structure</td>
 <td>Must</td>
@@ -1778,6 +1988,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Product category hierarchy</td>
 <td>✅ Item category hierarchy</td>
 </tr>
+<tr>
 <td>MDM-008</td>
 <td>Vendor Master Data Governance</td>
 <td>Must</td>
@@ -1801,6 +2012,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>NFR-001</td>
 <td>POS Uptime (99.9%)</td>
 <td>Must</td>
@@ -1808,6 +2020,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ CSU offline ensures POS availability</td>
 <td>❌ Third-party POS must ensure uptime</td>
 </tr>
+<tr>
 <td>NFR-002</td>
 <td>Back-Office Uptime (99.5%)</td>
 <td>Must</td>
@@ -1815,6 +2028,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure SLA > 99.9%</td>
 <td>✅ OCI SLA > 99.9%</td>
 </tr>
+<tr>
 <td>NFR-003</td>
 <td>POS Transaction Speed (< 3s)</td>
 <td>Must</td>
@@ -1822,6 +2036,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Commerce POS optimized for speed</td>
 <td>🔧 Third-party POS dependent</td>
 </tr>
+<tr>
 <td>NFR-004</td>
 <td>Report Generation (< 30s)</td>
 <td>Must</td>
@@ -1829,6 +2044,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Power BI with DirectQuery</td>
 <td>✅ Oracle BI with OTBI</td>
 </tr>
+<tr>
 <td>NFR-005</td>
 <td>Concurrent Users (1,000–1,500)</td>
 <td>Must</td>
@@ -1836,6 +2052,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure auto-scales for users</td>
 <td>✅ OCI auto-scales for users</td>
 </tr>
+<tr>
 <td>NFR-006</td>
 <td>Data Retention (7 years)</td>
 <td>Must</td>
@@ -1843,6 +2060,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Azure + D365 retention policies</td>
 <td>⚙️ Oracle data retention policies</td>
 </tr>
+<tr>
 <td>NFR-007</td>
 <td>Security (RBAC, audit, encryption)</td>
 <td>Must</td>
@@ -1850,6 +2068,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure security + D365 RBAC</td>
 <td>✅ Oracle security framework</td>
 </tr>
+<tr>
 <td>NFR-008</td>
 <td>Scalability (300+ stores)</td>
 <td>Must</td>
@@ -1857,6 +2076,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure cloud scales dynamically</td>
 <td>✅ OCI scales for enterprise</td>
 </tr>
+<tr>
 <td>NFR-009</td>
 <td>PH Localization</td>
 <td>Must</td>
@@ -1864,6 +2084,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚠️ Limited PH localization; ISV needed</td>
 <td>⚠️ Limited PH localization; partner needed</td>
 </tr>
+<tr>
 <td>NFR-010</td>
 <td>Data Privacy (RA 10173)</td>
 <td>Must</td>
@@ -1871,6 +2092,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Azure complies; D365 configured for DPA</td>
 <td>⚙️ Oracle configured for PH DPA</td>
 </tr>
+<tr>
 <td>NFR-011</td>
 <td>Offline POS (≥ 8 hours)</td>
 <td>Must</td>
@@ -1878,6 +2100,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ CSU full offline for extended periods</td>
 <td>❌ Third-party POS must provide this</td>
 </tr>
+<tr>
 <td>NFR-012</td>
 <td>Integration Capability</td>
 <td>Must</td>
@@ -1885,6 +2108,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure API Management + Logic Apps</td>
 <td>✅ Oracle Integration Cloud</td>
 </tr>
+<tr>
 <td>NFR-013</td>
 <td>Disaster Recovery</td>
 <td>Must</td>
@@ -1892,6 +2116,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure Site Recovery</td>
 <td>✅ OCI disaster recovery</td>
 </tr>
+<tr>
 <td>NFR-014</td>
 <td>Data Migration</td>
 <td>Must</td>
@@ -1899,6 +2124,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ D365 Data Management Framework</td>
 <td>⚙️ Oracle FBDI / data import tools</td>
 </tr>
+<tr>
 <td>NFR-015</td>
 <td>Batch Processing Windows</td>
 <td>Must</td>
@@ -1906,6 +2132,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure batch processing</td>
 <td>✅ Oracle scheduled processes</td>
 </tr>
+<tr>
 <td>NFR-016</td>
 <td>Data Privacy Breach Response</td>
 <td>Must</td>
@@ -1913,6 +2140,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Configure breach response in D365</td>
 <td>⚙️ Configure breach response in Fusion</td>
 </tr>
+<tr>
 <td>NFR-017</td>
 <td>LGU Business Permit Tracking</td>
 <td>Must</td>
@@ -1920,6 +2148,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power App for LGU permits</td>
 <td>🔧 Custom permit tracking extension</td>
 </tr>
+<tr>
 <td>NFR-018</td>
 <td>ESG & Sustainability Reporting</td>
 <td>Should</td>
@@ -1927,6 +2156,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power BI + custom ESG tracking</td>
 <td>🔧 Custom ESG reporting</td>
 </tr>
+<tr>
 <td>NFR-019</td>
 <td>Fleet Optimization</td>
 <td>Should</td>
@@ -1934,6 +2164,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Azure Maps + custom fleet app</td>
 <td>🔧 Custom fleet optimization</td>
 </tr>
+<tr>
 <td>NFR-020</td>
 <td>AI & Innovation Framework</td>
 <td>Nice</td>
@@ -1941,6 +2172,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure AI / Copilot</td>
 <td>✅ Oracle AI / OCI AI Services</td>
 </tr>
+<tr>
 <td>NFR-021</td>
 <td>Smart Store Operations</td>
 <td>Should</td>
@@ -1948,6 +2180,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Azure IoT + Power Apps</td>
 <td>🔧 Custom smart store solutions</td>
 </tr>
+<tr>
 <td>NFR-022</td>
 <td>Local & Partner Governance</td>
 <td>Should</td>
@@ -1955,6 +2188,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power Apps for partner management</td>
 <td>🔧 Custom partner governance</td>
 </tr>
+<tr>
 <td>NFR-022a</td>
 <td>BIR CAS Registration per Location</td>
 <td>Must</td>
@@ -1962,6 +2196,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Power App for BIR CAS tracking</td>
 <td>🔧 Custom BIR CAS registration</td>
 </tr>
+<tr>
 <td>NFR-023</td>
 <td>Enterprise API Management</td>
 <td>Should</td>
@@ -1969,6 +2204,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure API Management</td>
 <td>✅ Oracle API Gateway</td>
 </tr>
+<tr>
 <td>NFR-024</td>
 <td>IT Asset Lifecycle</td>
 <td>Should</td>
@@ -1976,6 +2212,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Custom IT asset tracking in D365</td>
 <td>🔧 Custom IT asset tracking</td>
 </tr>
+<tr>
 <td>NFR-025</td>
 <td>Employee IT Provisioning</td>
 <td>Must</td>
@@ -1983,6 +2220,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ D365 HR → Azure AD provisioning</td>
 <td>⚙️ Oracle HCM → OCI IAM provisioning</td>
 </tr>
+<tr>
 <td>NFR-026</td>
 <td>BI & Data Governance</td>
 <td>Should</td>
@@ -1990,6 +2228,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ Azure Synapse + Power BI</td>
 <td>✅ Oracle Autonomous DW + BI</td>
 </tr>
+<tr>
 <td>NFR-027</td>
 <td>Omni-channel CDP</td>
 <td>Should</td>
@@ -1997,6 +2236,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>✅ D365 Customer Insights</td>
 <td>✅ Oracle CX Unity</td>
 </tr>
+<tr>
 <td>NFR-028</td>
 <td>POS Hardware Maintenance</td>
 <td>Should</td>
@@ -2022,6 +2262,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Oracle Fusion</th>
 <th>Notes</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>R15. Installation & Services</strong></td>
 <td>SRV-001, SRV-002</td>
 <td>🔧 Custom service order + scheduling</td>
@@ -2029,6 +2270,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Oracle Field Service / custom</td>
 <td>None have turnkey DIY workshop mgmt</td>
 </tr>
+<tr>
 <td><strong>R16. Wholesale & Reseller</strong></td>
 <td>WSL-001, WSL-002</td>
 <td>✅ SAP SD wholesale pricing</td>
@@ -2036,6 +2278,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>⚙️ Oracle Order Management wholesale</td>
 <td>Core wholesale is supported; pro desk needs custom</td>
 </tr>
+<tr>
 <td><strong>R17. Governance & Legal</strong></td>
 <td>GOV-001 to GOV-029</td>
 <td>🔧 Mostly custom / SAP GRC for some</td>
@@ -2043,6 +2286,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>🔧 Mostly custom extensions</td>
 <td>Corporate governance is niche; no ERP handles natively</td>
 </tr>
+<tr>
 <td><strong>R18. Merchandising & Cross-Func</strong></td>
 <td>MER-001, MER-002, CRM-015, CRM-016, FIN-031, FIN-032</td>
 <td>🔧 Custom workflows</td>
@@ -2063,90 +2307,105 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td>R1. Financial Management (FIN)</td>
 <td>22</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅✅</td>
 </tr>
+<tr>
 <td>R2. Inventory (INV)</td>
 <td>12</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R3. Procurement (PUR)</td>
 <td>12</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R4. Warehouse (WMS)</td>
 <td>5</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R5. POS & Retail (POS)</td>
 <td>17</td>
 <td>⚠️⚠️⚠️</td>
 <td>✅✅✅✅✅</td>
 <td>❌❌❌</td>
 </tr>
+<tr>
 <td>R6. Ecommerce (ECOM)</td>
 <td>9</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅</td>
 </tr>
+<tr>
 <td>R7. Supply Chain (SCP)</td>
 <td>3</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R8. HR & Payroll (HR)</td>
 <td>11</td>
 <td>✅✅✅✅</td>
 <td>⚠️⚠️⚠️</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R9. CRM & Loyalty (CRM)</td>
 <td>5</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅</td>
 </tr>
+<tr>
 <td>R10. Analytics (RPT)</td>
 <td>5</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R11. Intercompany (IC)</td>
 <td>5</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅✅</td>
 </tr>
+<tr>
 <td>R12. Document Mgmt (DOC)</td>
 <td>5</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R13. Master Data (MDM)</td>
 <td>5</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R14. Non-Functional (NFR)</td>
 <td>14</td>
 <td>✅✅✅✅</td>
 <td>✅✅✅✅✅</td>
 <td>✅✅✅✅</td>
 </tr>
+<tr>
 <td>R15–R18. Cross-Functional</td>
 <td>6</td>
 <td>⚠️⚠️</td>
@@ -2167,36 +2426,43 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>MS D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>1,000 POS terminals with offline</strong></td>
 <td>⚠️ Risk — SAP CCO not proven at this scale</td>
 <td>✅ Pass — D365 Commerce POS proven</td>
 <td>❌ Fail — No native POS</td>
 </tr>
+<tr>
 <td><strong>BIR tax compliance (VAT, WHT, forms)</strong></td>
 <td>⚠️ Risk — Needs ISV add-on</td>
 <td>⚠️ Risk — Needs ISV add-on</td>
 <td>⚠️ Risk — Needs partner localization</td>
 </tr>
+<tr>
 <td><strong>PH payroll (SSS, PhilHealth, Pag-IBIG)</strong></td>
 <td>⚠️ Risk — Needs localization partner</td>
 <td>⚠️ Risk — Needs ISV payroll partner</td>
 <td>⚠️ Risk — Needs localization partner</td>
 </tr>
+<tr>
 <td><strong>2.8M POS transactions/month</strong></td>
 <td>✅ Pass — HANA handles volume</td>
 <td>✅ Pass — Azure + CSU handles volume</td>
 <td>⚠️ Risk — Depends on third-party POS</td>
 </tr>
+<tr>
 <td><strong>5-entity consolidation</strong></td>
 <td>✅ Pass — Best-in-class</td>
 <td>✅ Pass — Strong</td>
 <td>✅ Pass — Strong</td>
 </tr>
+<tr>
 <td><strong>Catch-weight / variable measure</strong></td>
 <td>⚠️ Risk — Needs EWM config</td>
 <td>⚠️ Risk — Needs product variant config</td>
 <td>⚠️ Risk — Limited native support</td>
 </tr>
+<tr>
 <td><strong>Real-time inventory (200 stores + 5 DCs)</strong></td>
 <td>✅ Pass — Real-time in HANA</td>
 <td>✅ Pass — Real-time in D365</td>
@@ -2214,31 +2480,37 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Microsoft D365</th>
 <th>Oracle Fusion</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Best for</strong></td>
 <td>Largest enterprises; complex supply chain; deep financials</td>
 <td>Mid-to-large retail; unified commerce; fastest time-to-value</td>
 <td>Enterprise-grade with Oracle ecosystem preference</td>
 </tr>
+<tr>
 <td><strong>Biggest strength</strong></td>
 <td>End-to-end breadth; IBP; consolidation; MDM</td>
 <td>Native retail POS + Commerce; Power Platform; Azure</td>
 <td>Strong HCM & ERP; OCI cloud; EPM for consolidation</td>
 </tr>
+<tr>
 <td><strong>Biggest risk</strong></td>
 <td>POS immaturity; highest TCO; longest implementation</td>
 <td>PH payroll gaps; less mature supply chain planning</td>
 <td>No native POS; fragmented cloud modules; integration complexity</td>
 </tr>
+<tr>
 <td><strong>Philippine readiness</strong></td>
 <td>⚠️ Growing — partners available</td>
 <td>⚠️ Limited — ISV ecosystem emerging</td>
 <td>⚠️ Limited — partner ecosystem smaller</td>
 </tr>
+<tr>
 <td><strong>Retail fitness</strong></td>
 <td>⚠️ Acceptable — POS is weak link</td>
 <td>✅ Strong — native retail suite</td>
 <td>❌ Weak — no native POS/retail</td>
 </tr>
+<tr>
 <td><strong>Overall verdict</strong></td>
 <td><strong>Conditional</strong> — strong ERP but POS needs third-party</td>
 <td><strong>Proceed</strong> — best retail fit; address PH gaps</td>

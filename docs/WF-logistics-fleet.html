@@ -133,18 +133,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Released Home Delivery orders (W19) or Store Replenishment orders (W4)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Daily (Morning and Evening waves)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~115 home deliveries/DC/day; ~33 store replenishments/DC/day</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Logistics Planner</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Logistics Planner, DC Dispatch, Drivers, 3PL Partners</td>
 </tr>
@@ -159,30 +164,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Batching</strong>: System aggregates all pending deliveries by zone, weight, and volume (CBM)</td>
 <td>System</td>
 <td>Logistics Planner</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Vehicle Allocation</strong>: System recommends vehicle type (10-wheeler vs. 6-wheeler vs. small van) based on load and delivery access restrictions (e.g., "Truck Ban" zones)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Optimization</strong>: Route optimization engine calculates most efficient sequence to minimize kilometers and fuel; accounts for traffic patterns and delivery windows</td>
 <td>System</td>
 <td>Logistics Planner</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Manifest Generation</strong>: Finalize route; system generates Trip Manifest and Load List; assigns to Driver/Vehicle</td>
 <td>Logistics Planner</td>
 <td>DC Manager</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Driver Briefing</strong>: Driver receives digital manifest on mobile app; verifies load; starts trip</td>
 <td>Driver</td>
@@ -199,18 +209,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>New driver onboarding; or monthly performance review cycle</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Continuous monitoring; Monthly review</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~250–300 company drivers</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Fleet Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Driver, Fleet Manager, Safety Officer, HR</td>
 </tr>
@@ -225,30 +240,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Licensing & Compliance</strong>: System tracks Driver License expiries and professional certifications (e.g., Hazmat for paint)</td>
 <td>System</td>
 <td>Fleet Manager</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Safety Monitoring</strong>: Telematics system logs events: Harsh braking, over-speeding, idling, and unauthorized stops</td>
 <td>System</td>
 <td>—</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Incident Review</strong>: Safety Officer reviews telematics alerts daily; conducts "Coaching Session" for frequent offenders</td>
 <td>Safety Officer</td>
 <td>—</td>
 <td>20 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Performance Scoring</strong>: Monthly "Driver Scorecard" based on: On-time delivery %, fuel efficiency (km/L), and safety incidents</td>
 <td>Fleet Manager</td>
 <td>—</td>
 <td>30 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Rewards/Discipline</strong>: High scorers eligible for "Safety Bonus"; low scorers trigger HR counseling (W72)</td>
 <td>Fleet Manager</td>
@@ -265,18 +285,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Fueling event; or end of month</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~PHP 10M–15M monthly fuel spend</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Fleet Accountant</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Driver, Gas Station (Vendor), Fleet Accountant, Finance</td>
 </tr>
@@ -291,36 +316,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Fueling</strong>: Driver uses company Fuel Card; enters odometer reading at pump</td>
 <td>Driver</td>
 <td>—</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Data Integration</strong>: Fuel vendor (Shell/Petron) sends daily electronic file of all transactions</td>
 <td>System</td>
 <td>Fleet Accountant</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Reconciliation</strong>: System matches fuel transaction to vehicle and compares odometer jump vs. fuel volume to calculate actual km/L</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Exception Alert</strong>: System flags anomalies: (a) Fuel volume > Tank capacity; (b) Low km/L (potential fuel siphoning); (c) Fueling far from assigned route</td>
 <td>System</td>
 <td>Fleet Accountant</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Investigation</strong>: Fleet Manager investigates flagged transactions; if fraud confirmed, trigger W123 (Fraud Protocol)</td>
 <td>Fleet Manager</td>
 <td>—</td>
 <td>1 hour</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Payment</strong>: Finance processes monthly fuel invoice; system allocates costs to specific vehicles and cost centers</td>
 <td>Finance</td>
@@ -337,15 +368,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Vehicle starts trip</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>DC Dispatch</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>DC Dispatch, Customer Service, Customer</td>
 </tr>
@@ -360,30 +395,35 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>GPS Tracking</strong>: System tracks vehicle location, speed, and status (moving/stopped/idle)</td>
 <td>System</td>
 <td>—</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Dynamic ETA</strong>: System recalculates Estimated Time of Arrival (ETA) based on live traffic; updates customer via SMS/App</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Geofencing</strong>: System alerts DC Dispatch when vehicle arrives at or leaves a store/customer site; logs "Time on Site"</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Dispatch Dashboard</strong>: DC Dispatch monitors all active vehicles on map; identifies delays or breakdowns</td>
 <td>DC Dispatch</td>
 <td>—</td>
 <td>Continuous</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Maintenance Integration</strong>: Odometer data from telematics auto-triggers "Preventive Maintenance" in W188 when thresholds reached</td>
 <td>System</td>

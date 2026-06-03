@@ -138,18 +138,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Customer places BOPIS order on website/app</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~25,700 BOPIS orders/month; ~857/day</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Avg 3–4 items per order</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Customer Service Rep (in-store)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>System (order routing), Stock Associate (picker), Customer Service Rep (handoff), Customer</td>
 </tr>
@@ -164,66 +169,77 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Customer places order on website/app; selects pickup store; pays online</td>
 <td>Customer</td>
 <td>—</td>
 <td>—</td>
 </tr>
+<tr>
 <td>2</td>
 <td>System routes order to selected store; creates store pick list</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td>Store receives notification (tablet/terminal alert + printed pick list)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Stock Associate picks items from sales floor or backroom; scans each item to confirm</td>
 <td>Stock Associate</td>
 <td>Dept. Supervisor</td>
 <td>5–15 min/order</td>
 </tr>
+<tr>
 <td>5</td>
 <td>If item not in stock at store: system offers substitution or cancels line; notifies customer</td>
 <td>System / CSR</td>
 <td>Store Manager</td>
 <td>3 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Stock Associate stages picked items at Customer Service counter</td>
 <td>Stock Associate</td>
 <td>CSR</td>
 <td>2 min</td>
 </tr>
+<tr>
 <td>7</td>
 <td>System marks order as "Ready for Pickup"; sends SMS/email to customer</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Customer arrives at Customer Service counter; presents ID and order number</td>
 <td>Customer</td>
 <td>—</td>
 <td>—</td>
 </tr>
+<tr>
 <td>9</td>
 <td>Customer Service Rep verifies ID; scans order; releases items</td>
 <td>CSR</td>
 <td>Store Manager</td>
 <td>3 min</td>
 </tr>
+<tr>
 <td>10</td>
 <td>System marks order as "Completed"; inventory deducted</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>11</td>
 <td>If not picked up within 5 days: auto-cancel; refund initiated; items returned to shelf</td>
 <td>System</td>
@@ -267,18 +283,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Customer places delivery order on website/app (non-BOPIS)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~17,200 delivery orders/month; ~573/day</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Avg 3–4 items per order</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>DC Dispatch Supervisor</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>System (order routing), DC Picker, DC Packer, Delivery Partner driver, Customer</td>
 </tr>
@@ -293,78 +314,91 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>Customer places delivery order on website/app; selects delivery address; pays online</td>
 <td>Customer</td>
 <td>—</td>
 <td>—</td>
 </tr>
+<tr>
 <td>2</td>
 <td>System routes order to nearest DC (or store if DC out of stock); creates pick list; <strong>multi-DC order splitting</strong>: if order contains items stocked at different DCs (e.g., bulky items at DC3 Laguna but specialty items only at DC5 Manila), system evaluates fulfillment options — (a) single-DC fulfillment preferred: ship all items from one DC if ATP available, even if not the closest DC for some lines; (b) split fulfillment: if no single DC has ATP for all items, system splits order into sub-orders per fulfillment DC — each sub-order gets its own tracking number, carrier assignment, and delivery timeline; customer receives a single order confirmation with "Items shipping from multiple locations" notice and per-sub-order tracking links; (c) split cost allocation: additional shipping cost from split fulfillment (if any) is absorbed by BuildRight, not charged to customer; (d) partial delivery: first sub-order ships immediately; remaining sub-orders ship as ATP becomes available; customer notified per sub-order status; (e) returns for split orders: customer may return all items to any BuildRight store per W12B regardless of which DC fulfilled; system handles cross-location inventory adjustment per W12C; Supply Planner reviews split fulfillment frequency weekly — high split rates for specific items trigger replenishment parameter review per W31.8</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td>DC receives pick task; assigns to picker by zone</td>
 <td>WMS / DC Supervisor</td>
 <td>DC Supervisor</td>
 <td>2 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Picker picks items; scans each for confirmation</td>
 <td>Picker</td>
 <td>DC Supervisor</td>
 <td>5–15 min/order</td>
 </tr>
+<tr>
 <td>5</td>
 <td>If item unavailable: system offers substitution or cancels line; notifies customer</td>
 <td>System / CSR</td>
 <td>—</td>
 <td>3 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td>Packer packs items for shipping; generates shipping label and packing slip</td>
 <td>Packer</td>
 <td>DC Supervisor</td>
 <td>5 min/order</td>
 </tr>
+<tr>
 <td>7</td>
 <td>System creates delivery order with selected partner (Lalamove, Transportify, own fleet)</td>
 <td>System</td>
 <td>DC Dispatch</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>8</td>
 <td>Delivery partner picks up package; system updates order status to "Shipped"</td>
 <td>Delivery Partner</td>
 <td>DC Dispatch</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>9</td>
 <td>System sends tracking link to customer via SMS/email</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>10</td>
 <td>Delivery partner delivers to customer; obtains proof of delivery (photo, signature)</td>
 <td>Delivery Partner</td>
 <td>—</td>
 <td>Varies by distance</td>
 </tr>
+<tr>
 <td>11</td>
 <td>System marks order as "Delivered"; inventory formally deducted</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>12</td>
 <td>If delivery fails (customer unavailable): system initiates failed delivery lifecycle — (a) 1st attempt: delivery partner leaves notification (call/SMS); customer given 2-hour window to respond for same-day re-delivery attempt; (b) if no response or 2nd attempt fails: order returns to DC; system sends customer notification with reschedule options (next available date) or cancellation option; (c) if customer reschedules: system creates new delivery order with carrier; (d) if customer cancels: system initiates refund to original payment method (Dr. Revenue / Cr. Cash) and DC restocks item per W12A.7; (e) if customer does not respond within 3 business days after return-to-DC: system auto-cancels order and initiates refund</td>
 <td>Delivery Partner / DC</td>
 <td>DC Supervisor</td>
 <td>15 min + carrier transit time</td>
 </tr>
+<tr>
 <td>12a</td>
 <td><strong>Home delivery return (reverse logistics)</strong>: for bulky/large items (appliances, lumber, tiles, fixtures) that the customer cannot transport to a store, system schedules carrier pickup via 3PL integration; carrier collects item from customer address and returns to originating DC; DC Receiving Clerk inspects returned item; if resalable: system processes refund to original payment method and restocks per W12A.7; if damaged: disposition per W6.8a (markdown, scrap, RTV); refund processed upon DC inspection confirmation</td>
 <td>System / DC Receiving Clerk / CSR</td>
@@ -380,18 +414,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Customer places home delivery order on website/app; nearest DC out of stock but nearby store has ATP</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~1,000–2,000 ship-from-store orders/month; primarily bulky items (appliances, lumber, tiles) with limited DC coverage</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Avg 1–3 items per order</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Store Manager (store execution); DC Dispatch (carrier coordination)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>System (order routing), Stock Associate (picker), DC Dispatch, 3PL carrier, Customer</td>
 </tr>
@@ -406,54 +445,63 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td>System evaluates order fulfillment options: (a) DC fulfillment (standard W19) preferred, (b) if DC ATP = 0 for any line item, system checks ATP at stores within delivery radius of customer address, (c) if store ATP available, system offers ship-from-store as fulfillment option with estimated delivery date</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td>Supply Planner or DC Dispatch reviews ship-from-store suggestion; confirms store has sufficient stock and store is not in a peak selling period (system shows store's current day sales velocity); approves or overrides to wait for DC replenishment</td>
 <td>Supply Planner / DC Dispatch</td>
 <td>DC Supervisor</td>
 <td>5 min/order</td>
 </tr>
+<tr>
 <td>3</td>
 <td>System routes order to selected store; creates store pick list with item locations; creates outbound shipment record</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td>Store receives notification (tablet/terminal alert); Stock Associate picks items from sales floor or backroom; scan-confirms each item</td>
 <td>Stock Associate</td>
 <td>Dept. Supervisor</td>
 <td>10–20 min/order</td>
 </tr>
+<tr>
 <td>5</td>
 <td>Stock Associate stages picked items at store receiving/dispatch area; packs for shipping using packaging materials</td>
 <td>Stock Associate</td>
 <td>Dept. Supervisor</td>
 <td>10 min/order</td>
 </tr>
+<tr>
 <td>6</td>
 <td>DC Dispatch creates delivery order with 3PL carrier (same W19.7 integration); carrier picks up from store during scheduled route or on-demand</td>
 <td>DC Dispatch / Carrier</td>
 <td>DC Supervisor</td>
 <td>15 min/setup + pickup wait</td>
 </tr>
+<tr>
 <td>7</td>
 <td>Carrier delivers to customer per standard W19.10; proof of delivery captured</td>
 <td>Carrier</td>
 <td>—</td>
 <td>Varies</td>
 </tr>
+<tr>
 <td>8</td>
 <td>System marks order "Delivered"; inventory deducted at store location (not DC); revenue recognized by Depot Inc. per standard ecommerce IC model (W14)</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>9</td>
 <td>If customer returns ship-from-store item: standard W12B (online return) or W19.12a (reverse logistics pickup) — item returns to the originating store (not DC) if store has capacity; otherwise to DC</td>
 <td>System / CSR</td>
@@ -513,18 +561,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>BOPIS pick failure; home delivery failure; customer cancellation request; auto-cancellation (hold period expiry, payment failure); order modification request; or payment authorization failure</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~4,000–6,000 exception cases/month (~10–15% of ~42,900 ecommerce orders)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~130–200 exception cases/day across all channels</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>CSR (store-level exceptions); DC Dispatch (delivery exceptions); Ecommerce Customer Support (online channel)</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>CSR, DC Dispatch, Ecommerce Customer Support, Stock Associate, Treasury Analyst, Customer</td>
 </tr>
@@ -543,24 +596,28 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Pick failure — item not found in store</strong>: (a) Stock Associate cannot locate item during BOPIS pick (W11.4); (b) system checks: is item in backroom? checked recently? If not found after 10 min search, Stock Associate marks item as "Pick Failed"; (c) system evaluates alternatives: (i) <strong>Substitution</strong>: offer customer a similar item (system suggests substitutes based on category and price range); customer accepts or declines via SMS/email with one-click response; (ii) <strong>Transfer from nearby store</strong>: if item available at store within 10 km, system creates emergency inter-store transfer per W22 for pickup within 24 hours; (iii) <strong>Ship from DC</strong>: convert BOPIS line to home delivery (W19) with system routing to nearest DC; customer notified of new delivery timeline; (iv) <strong>Cancel line</strong>: if customer declines all alternatives, cancel the unfilled line and initiate refund</td>
 <td>Stock Associate / System / CSR</td>
 <td>Store Manager</td>
 <td>10 min + customer response time</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Pick failure — item damaged on shelf</strong>: (a) Stock Associate finds item but it's damaged; (b) Stock Associate marks as "Damaged at Pick"; system routes to W91 damaged goods process; (c) same substitution/transfer/ship/cancel alternatives as step 1 apply for customer</td>
 <td>Stock Associate / CSR</td>
 <td>Store Manager</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>BOPIS hold period expiry</strong> (5-day auto-cancel): (a) System monitors BOPIS orders not picked up within 5 days; (b) <strong>Day 3</strong>: system sends reminder to customer (SMS + email): "Your order is ready for pickup. Please pick up by [date] or your order will be cancelled and refunded."; (c) <strong>Day 4</strong>: CSR calls customer for high-value orders (> PHP 10,000) to confirm pickup intent; (d) <strong>Day 5</strong>: if not picked up, system auto-cancels order; initiates refund to original payment method per W94 deposit refund; items returned to saleable inventory (shelf or backroom); system reverses ATP reservation</td>
 <td>System / CSR</td>
 <td>Store Manager</td>
 <td>Automated + 5 min/call</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>BOPIS customer cancellation</strong>: (a) Customer requests cancellation via website/app, phone, or in-store before pickup; (b) if order status is "Ready for Pickup": CSR processes cancellation in system; items returned to shelf; refund initiated per original payment method; (c) if order status is "Being Picked": system attempts to stop pick; if already picked, items staged but customer cancelled — CSR processes cancellation and restocks</td>
 <td>CSR / System</td>
@@ -578,24 +635,28 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>5</td>
 <td><strong>Delivery failure — customer unavailable</strong>: (a) Carrier reports failed delivery (per W19.12); (b) system sends customer SMS with reschedule/cancel options; (c) if customer reschedules: system creates new delivery order with carrier; (d) if customer cancels: system processes refund and DC restocks upon carrier return; (e) if no customer response within 3 business days: system auto-cancels and refunds per W19.12</td>
 <td>Carrier / System / DC Dispatch</td>
 <td>DC Supervisor</td>
 <td>Per W19.12</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Delivery failure — address issue</strong>: (a) Carrier reports address not found or incorrect; (b) system contacts customer via SMS/email to confirm/correct address; (c) if customer provides corrected address within 24 hours: carrier re-attempts delivery; (d) if customer does not respond: same 3-day auto-cancel as step 5</td>
 <td>Carrier / System</td>
 <td>DC Dispatch</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Delivery — customer reports wrong item</strong>: (a) Customer contacts Ecommerce Customer Support (chat, email, phone) reporting wrong item delivered; (b) CSR verifies: compares order contents vs. delivery confirmation photo; (c) if carrier error (wrong package delivered): CSR initiates carrier claim (W19.12b) and reships correct item from DC; (d) if DC pick error (DC picked wrong SKU): DC Dispatch investigates pick process; correct item reshipped; wrong item scheduled for carrier pickup (reverse logistics per W19.12a); (e) system creates exception order with priority flag for reshipment</td>
 <td>CSR / DC Dispatch</td>
 <td>DC Supervisor</td>
 <td>15 min/case</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Delivery — customer reports damaged item</strong>: (a) Customer contacts support with photos of damaged delivery; (b) CSR processes per W19.12b carrier damage vs. vendor defect liability; (c) for carrier damage: immediate replacement order created with priority flag + carrier claim filed; (d) for vendor defect: replacement order created + vendor warranty claim per W33; (e) damaged item returned via reverse logistics per W19.12a</td>
 <td>CSR / DC Receiving Clerk</td>
@@ -613,24 +674,28 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>9</td>
 <td><strong>Payment authorization failure</strong>: (a) Customer places order but payment gateway declines authorization (insufficient funds, expired card, e-wallet limit reached); (b) system holds order in "Payment Pending" status for 1 hour; (c) system sends customer notification: "Payment not completed. Please retry or use a different payment method."; (d) if customer retries within 1 hour: order proceeds to fulfillment; (e) if payment not completed within 1 hour: system auto-cancels order; inventory reservation released</td>
 <td>System / Customer</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>10</td>
 <td><strong>Partial payment / split payment failure</strong>: (a) For multi-tender orders (e.g., gift card + credit card): if one payment method fails, system holds successful payment as customer credit (W28) and prompts customer to retry failed portion; (b) if customer does not complete within 1 hour: auto-cancel entire order; successful payment portion refunded to gift card or original method</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>11</td>
 <td><strong>Order modification request</strong>: (a) Customer requests change to order after placement but before fulfillment: change delivery address, add/remove items, change pickup store; (b) <strong>Before pick/ship</strong>: CSR modifies order in system; inventory reservation adjusted; if new items added, system checks ATP and adds if available; if items removed, ATP released; (c) <strong>After pick/ship</strong>: no modification possible; customer must receive order and then initiate return per W12B; exception: delivery address change may be possible if carrier has not dispatched — CSR coordinates with DC Dispatch</td>
 <td>CSR / DC Dispatch</td>
 <td>Store Manager / DC Supervisor</td>
 <td>5–10 min/request</td>
 </tr>
+<tr>
 <td>12</td>
 <td><strong>System error / duplicate order</strong>: (a) Customer contacts support reporting duplicate order (placed twice accidentally); (b) CSR verifies duplicate: same items, same address, placed within 30 minutes; (c) cancels duplicate order and refunds; (d) if duplicate already shipped: customer may refuse delivery of second package (carrier returns to DC) or return in-store per W12B</td>
 <td>CSR</td>
@@ -648,18 +713,21 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>13</td>
 <td><strong>Daily exception dashboard</strong>: System generates daily ecommerce exception dashboard: total orders, exceptions by type (pick failure, delivery failure, cancellation, payment failure), resolution rate, average resolution time, customer satisfaction impact; Ecommerce Manager reviews daily</td>
 <td>System / Ecommerce Manager</td>
 <td>CMO</td>
 <td>15 min/day</td>
 </tr>
+<tr>
 <td>14</td>
 <td><strong>Weekly exception review</strong>: Ecommerce Manager and DC Dispatch Supervisor review weekly exception trends: (a) BOPIS pick failure rate by store (target: < 3%); stores > 5% investigated for inventory accuracy issues (W6); (b) delivery failure rate by carrier (target: < 2%); carriers > 5% flagged for W62B performance review; (c) cancellation rate (target: < 5%); cancellation reason analysis; (d) top exception SKUs — items that frequently fail picking (possible ATP/inventory sync issue) or frequently get delivery complaints (possible packaging issue)</td>
 <td>Ecommerce Manager / DC Dispatch</td>
 <td>CMO / COO</td>
 <td>30 min/week</td>
 </tr>
+<tr>
 <td>15</td>
 <td><strong>Monthly exception report</strong>: Ecommerce Manager prepares monthly exception report for CMO and COO: exception rate trend, resolution time trend, root cause analysis, improvement initiatives, and financial impact (lost revenue from cancellations, cost of re-shipping, refund volume); feeds into W35 management reporting</td>
 <td>Ecommerce Manager</td>
@@ -699,15 +767,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Order placed on external marketplace (Lazada/Shopee)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>High; ~5,000–8,000 orders/month</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Ecommerce Operations Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>System (Middleware), DC Picker, Marketplace Courier</td>
 </tr>
@@ -722,36 +794,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Order Sync</strong>: Middleware pulls orders from Lazada/Shopee APIs; creates Sales Orders in ERP</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>ATP Verification</strong>: System checks DC stock; if unavailable, system auto-notifies marketplace to cancel or delay</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Picking</strong>: DC Picker receives marketplace pick task; scans each item</td>
 <td>DC Picker</td>
 <td>DC Supervisor</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Packaging</strong>: Items packed in marketplace-specific packaging; marketplace shipping labels printed from middleware</td>
 <td>DC Packer</td>
 <td>—</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Handover</strong>: Marketplace Courier (Lex/Shopee Xpress) picks up from DC; pickup confirmation synced to marketplace</td>
 <td>DC Dispatch</td>
 <td>—</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Settlement</strong>: Bi-weekly: Marketplace remits payment (net of commission/fees); Finance reconciles with ERP Sales Orders</td>
 <td>Finance Clerk</td>
@@ -775,18 +853,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>High online order density in a specific urban zone; or DC congestion</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Daily operations</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Covers selected "Strategic Stores" converted to Hubs</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Ecommerce Operations Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Hub Coordinator, Hub Pickers, 3PL Couriers</td>
 </tr>
@@ -801,36 +884,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Hub Inventory Reservation</strong>: System prioritizes "Hub-specific" inventory for online orders; prevents "walk-in" sales of designated e-comm stock</td>
 <td>System</td>
 <td>—</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Order Routing</strong>: Intelligent routing engine assigns orders to the nearest Fulfillment Hub (Dark Store) to reduce last-mile cost (W19)</td>
 <td>System</td>
 <td>—</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Wave Picking</strong>: Hub Pickers perform batch picking (multiple orders simultaneously) using RF guns (W3)</td>
 <td>Hub Picker</td>
 <td>Hub Coordinator</td>
 <td>20 min/wave</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Packing & QC</strong>: Items verified and packed in the store's "Dark Zone" (backroom or dedicated section)</td>
 <td>Hub Packer</td>
 <td>—</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Dispatch</strong>: 3PL Couriers (Lalamove/Transportify) pick up directly from store backroom; avoids DC bottleneck</td>
 <td>DC Dispatch (at store)</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Replenishment</strong>: Hub inventory replenished via priority DC-to-Store "Push" (W154) to ensure high ATP</td>
 <td>Supply Planner</td>
@@ -847,18 +936,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Customer requests return or exchange for an item delivered to their home (W19/W19B)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~1–2% of home delivery orders</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~200–400 returns/month initially</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Ecommerce Customer Service Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Customer, CSR, 3PL Carrier, DC Receiving Team, Finance (Refunds)</td>
 </tr>
@@ -873,48 +967,56 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Return Request</strong>: Customer initiates return via Web/App or Call Center; provides reason and photos of item/packaging</td>
 <td>Customer</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Validation</strong>: CSR reviews request against Return Policy (W12); verifies purchase date and item condition; approves for pick-up</td>
 <td>CSR</td>
 <td>Ecommerce Ops Mgr</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Collection Booking</strong>: System books 3PL carrier (Lalamove/Transportify) for home pick-up; generates "Return Label" for customer</td>
 <td>CSR / System</td>
 <td>—</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Pick-up</strong>: Carrier collects item from customer; verifies "Return ID" and basic condition; issues "Proof of Collection"</td>
 <td>3PL Carrier</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>DC Receipt</strong>: Item arrives at DC (or Hub); Receiving Clerk scans Return Label; system identifies original Order/SO</td>
 <td>Receiving Clerk</td>
 <td>DC Supervisor</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Quality Inspection</strong>: Quality Checker inspects item: (a) Resaleable → return to stock (W91); (b) Damaged → quarantine (W91); (c) Wrong item → flag for investigation</td>
 <td>Quality Checker</td>
 <td>—</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Refund Authorization</strong>: Once receipt is confirmed and QC passed: Finance authorizes refund to original payment method (W101)</td>
 <td>Finance (AR)</td>
 <td>Controller</td>
 <td>10 min</td>
 </tr>
+<tr>
 <td>8</td>
 <td><strong>Closure</strong>: System notifies customer of refund status; updates inventory and sales analytics</td>
 <td>System</td>
@@ -939,18 +1041,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Customer orders a specialty, custom, or bulk direct-ship item (custom glass panels, premium cabinets, industrial pumps) on website or POS</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>~200–400 orders/month chain-wide</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>Avg PHP 20,000–100,000 per order</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Ecommerce Fulfillment Manager</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>System, Drop-Ship Vendor (DSV), CSR, virtual Receiving Clerk, Finance (AP)</td>
 </tr>
@@ -965,42 +1072,49 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Order Route</strong>: Customer places order; system identifies SKU as Drop-Ship in Item Master; processes payment; split-routes order to generate back-to-back PO</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Vendor Intake</strong>: PO automatically transmitted to the accredited Drop-Ship Vendor via EDI/Vendor Portal; vendor confirms stock and production timeline within 24 hours</td>
 <td>Vendor</td>
 <td>Ecommerce Fulfillment Mgr</td>
 <td>1 day</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Fulfillment & Labeling</strong>: Vendor picks/produces item; prints co-branded BuildRight packing slip and co-branded shipping label from Vendor Portal</td>
 <td>Vendor</td>
 <td>—</td>
 <td>1–3 days</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Dispatch</strong>: Vendor dispatches package directly to customer's address using co-branded carrier; enters tracking number in Vendor Portal</td>
 <td>Vendor</td>
 <td>—</td>
 <td>15 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Transit Sync</strong>: System automatically imports tracking status via carrier APIs; triggers tracking updates and SMS alerts to the customer</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Virtual Receipt</strong>: Upon carrier delivery confirmation (POD signature): system automatically posts a "Virtual Goods Receipt" in ERP; triggers sales revenue recognition</td>
 <td>System</td>
 <td>virtual Receiving Clerk</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>7</td>
 <td><strong>Invoice & Reconciliation</strong>: Vendor submits invoice via Portal; system performs 3-way match (PO vs. Virtual GR vs. Invoice); routes to AP for payment settlement (W7)</td>
 <td>System / Finance</td>
@@ -1026,18 +1140,23 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Field</th>
 <th>Detail</th>
 </tr></thead><tbody>
+<tr>
 <td><strong>Trigger</strong></td>
 <td>Ecommerce BOPIS order picked and staged (W11)</td>
 </tr>
+<tr>
 <td><strong>Frequency</strong></td>
 <td>Ongoing (daily)</td>
 </tr>
+<tr>
 <td><strong>Volume</strong></td>
 <td>~50–100 transactions per store/day</td>
 </tr>
+<tr>
 <td><strong>Owner</strong></td>
 <td>Store Customer Experience Supervisor</td>
 </tr>
+<tr>
 <td><strong>Participants</strong></td>
 <td>Store Picker, Customer, Pro Desk Associate</td>
 </tr>
@@ -1052,36 +1171,42 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Role (A)</th>
 <th>Duration</th>
 </tr></thead><tbody>
+<tr>
 <td>1</td>
 <td><strong>Staging</strong>: Store Picker picks BOPIS order (W11 step 4). Stages the items in an in-store <strong>Smart Locker</strong> or <strong>Expedited Pick-up Counter</strong> rather than the backroom.</td>
 <td>Store Picker</td>
 <td>Store Mgr</td>
 <td>5 min</td>
 </tr>
+<tr>
 <td>2</td>
 <td><strong>Locking & Sync</strong>: Associate places the items in a designated smart locker; scans the locker QR code and links it to the order ID in the ERP system.</td>
 <td>Store Associate</td>
 <td>—</td>
 <td>3 min</td>
 </tr>
+<tr>
 <td>3</td>
 <td><strong>Notification</strong>: Locker system triggers an automated pickup PIN code and QR code to the customer's email and mobile app (W11 step 6).</td>
 <td>System</td>
 <td>—</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>4</td>
 <td><strong>Customer Arrival</strong>: Customer arrives at the store. (a) For Smart Locker: Scans the QR/enters the PIN at the locker screen; the locker door pops open. (b) For Pickup Counter: Customer checks in on a tablet queueing screen; Pro Desk is alerted.</td>
 <td>Customer</td>
 <td>—</td>
 <td>2 min</td>
 </tr>
+<tr>
 <td>5</td>
 <td><strong>Reconciliation</strong>: The locker door closing or the associate hand-off scan triggers a real-time order completion status in the ERP (W11 step 8).</td>
 <td>System / Associate</td>
 <td>Store Mgr</td>
 <td>Automated</td>
 </tr>
+<tr>
 <td>6</td>
 <td><strong>Feedback Loop</strong>: System sends an instant SMS survey asking for customer experience rating (CSAT W65).</td>
 <td>System</td>

@@ -128,16 +128,19 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Peak Factor</th>
 <th>Peak Daily</th>
 </tr></thead><tbody>
+<tr>
 <td>POS Transactions</td>
 <td>93,333</td>
 <td>2.0x (weekends/sales)</td>
 <td>186,666</td>
 </tr>
+<tr>
 <td>POS Line Items</td>
 <td>373,333</td>
 <td>2.0x</td>
 <td>746,666</td>
 </tr>
+<tr>
 <td>Store Replenishment Orders</td>
 <td>167</td>
 <td>1.5x</td>
@@ -151,26 +154,31 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>1.5x</th>
 <th>300</th>
 </tr></thead><tbody>
+<tr>
 <td>DSD Goods Receipts (Store)</td>
 <td>~20</td>
 <td>1.5x</td>
 <td>~30</td>
 </tr>
+<tr>
 <td>Purchase Orders Created</td>
 <td>40–50</td>
 <td>2.0x (batch days)</td>
 <td>80–100</td>
 </tr>
+<tr>
 <td>AP Invoices Processed</td>
 <td>217</td>
 <td>2.0x (month-end)</td>
 <td>433</td>
 </tr>
+<tr>
 <td>Ecommerce Orders</td>
 <td>1,500</td>
 <td>3.0x (sale events)</td>
 <td>4,500</td>
 </tr>
+<tr>
 <td>Customer Registrations</td>
 <td>~150</td>
 <td>—</td>
@@ -185,42 +193,52 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Annual Records</th>
 <th>Est. Size</th>
 </tr></thead><tbody>
+<tr>
 <td>POS Transaction Headers</td>
 <td>33,600,000</td>
 <td>~17 GB</td>
 </tr>
+<tr>
 <td>POS Transaction Lines</td>
 <td>134,400,000</td>
 <td>~67 GB</td>
 </tr>
+<tr>
 <td>Inventory Movements</td>
 <td>~3,000,000</td>
 <td>~6 GB</td>
 </tr>
+<tr>
 <td>Journal Entries + Lines</td>
 <td>~1,500,000</td>
 <td>~3 GB</td>
 </tr>
+<tr>
 <td>Purchase Orders + Lines</td>
 <td>~233,000</td>
 <td>~0.6 GB</td>
 </tr>
+<tr>
 <td>AP/AR Documents</td>
 <td>~1,440,000</td>
 <td>~4 GB</td>
 </tr>
+<tr>
 <td>Ecommerce Orders + Lines</td>
 <td>~515,000</td>
 <td>~1.5 GB</td>
 </tr>
+<tr>
 <td>Master Data (all types)</td>
 <td>~700,000</td>
 <td>~0.7 GB</td>
 </tr>
+<tr>
 <td><strong>Total Annual Increment</strong></td>
 <td></td>
 <td><strong>~100 GB</strong></td>
 </tr>
+<tr>
 <td><strong>7-Year Retention</strong></td>
 <td></td>
 <td><strong>~700 GB</strong> (uncompressed); ~500 GB with compression</td>
@@ -274,114 +292,133 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Direction</th>
 <th>Frequency</th>
 </tr></thead><tbody>
+<tr>
 <td>POS</td>
 <td>ERP</td>
 <td>Sales transactions</td>
 <td>POS → ERP</td>
 <td>Real-time (or batch every 15 min)</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>POS</td>
 <td>Price file, item master, promos</td>
 <td>ERP → POS</td>
 <td>Hourly sync</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>POS</td>
 <td>Customer lookup</td>
 <td>ERP → POS</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>Ecommerce</td>
 <td>ERP</td>
 <td>Orders, customer registrations</td>
 <td>ECOM → ERP</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>Ecommerce</td>
 <td>Inventory levels, prices, catalog</td>
 <td>ERP → ECOM</td>
 <td>Near real-time (5 min)</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>Ecommerce</td>
 <td>Order fulfillment status</td>
 <td>ERP → ECOM</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>WMS</td>
 <td>Transfer orders, PO receipts</td>
 <td>ERP → WMS</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>WMS</td>
 <td>ERP</td>
 <td>Pick confirmation, ship confirm, inventory</td>
 <td>WMS → ERP</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>Loyalty/CRM</td>
 <td>Points earning triggers</td>
 <td>ERP → CRM</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>CRM/POS</td>
 <td>ERP</td>
 <td>Points redemption</td>
 <td>CRM → ERP</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>Banks</td>
 <td>Payment files (AP)</td>
 <td>ERP → Bank</td>
 <td>Batch (daily)</td>
 </tr>
+<tr>
 <td>Banks</td>
 <td>ERP</td>
 <td>Bank statements</td>
 <td>Bank → ERP</td>
 <td>Batch (daily)</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>BIR eFPS</td>
 <td>Tax returns</td>
 <td>ERP → BIR</td>
 <td>Monthly/Quarterly</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>SSS/PH/PagIBIG</td>
 <td>Contribution files</td>
 <td>ERP → Statutory</td>
 <td>Monthly</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>Delivery Partners</td>
 <td>Delivery orders</td>
 <td>ERP → 3PL</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>Delivery Partners</td>
 <td>ERP</td>
 <td>Delivery status</td>
 <td>3PL → ERP</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>Payment GW</td>
 <td>ERP</td>
 <td>Payment confirmation</td>
 <td>GW → ERP</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>ERP</td>
 <td>Supplier Portal</td>
 <td>POs, schedules</td>
 <td>ERP → Portal</td>
 <td>Real-time</td>
 </tr>
+<tr>
 <td>Supplier Portal</td>
 <td>ERP</td>
 <td>ASN, invoices</td>
@@ -399,26 +436,32 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Max Latency</th>
 <th>Impact if Exceeded</th>
 </tr></thead><tbody>
+<tr>
 <td>POS → ERP (sales)</td>
 <td>15 minutes</td>
 <td>Inventory inaccuracy, stockouts</td>
 </tr>
+<tr>
 <td>ERP → POS (prices)</td>
 <td>1 hour</td>
 <td>Wrong pricing at checkout</td>
 </tr>
+<tr>
 <td>ERP → ECOM (inventory)</td>
 <td>5 minutes</td>
 <td>Overselling online</td>
 </tr>
+<tr>
 <td>ECOM → ERP (orders)</td>
 <td>1 minute</td>
 <td>Delayed order processing</td>
 </tr>
+<tr>
 <td>WMS ↔ ERP (inventory)</td>
 <td>1 minute</td>
 <td>DC inventory inaccuracy</td>
 </tr>
+<tr>
 <td>Payment confirmation</td>
 <td>30 seconds</td>
 <td>Failed order completion</td>
@@ -433,61 +476,73 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Estimated Duration</th>
 <th>Window</th>
 </tr></thead><tbody>
+<tr>
 <td>POS transaction sync (batch mode fallback)</td>
 <td>Every 15 minutes</td>
 <td>1–3 minutes</td>
 <td>Ongoing</td>
 </tr>
+<tr>
 <td>Nightly inventory snapshot</td>
 <td>Daily at 01:00</td>
 <td>15–30 minutes</td>
 <td>01:00–03:00</td>
 </tr>
+<tr>
 <td>Nightly price/promo sync to POS</td>
 <td>Daily at 02:00</td>
 <td>10–20 minutes</td>
 <td>02:00–04:00</td>
 </tr>
+<tr>
 <td>Day-end close per store</td>
 <td>Daily at 23:30 local</td>
 <td>5–10 minutes per store</td>
 <td>23:30–00:30</td>
 </tr>
+<tr>
 <td>Week-on-week sales report generation</td>
 <td>Weekly (Monday 06:00)</td>
 <td>10–20 minutes</td>
 <td>06:00–07:00</td>
 </tr>
+<tr>
 <td>Month-end close</td>
 <td>Last day of month + 5 working days</td>
 <td>2–4 hours for heavy jobs</td>
 <td>22:00–03:00 (off-peak)</td>
 </tr>
+<tr>
 <td>Payroll processing (5 entities)</td>
 <td>Semi-monthly (14th & 28th)</td>
 <td>1–2 hours per entity</td>
 <td>20:00–23:00</td>
 </tr>
+<tr>
 <td>VAT / tax report generation</td>
 <td>Monthly (by 10th)</td>
 <td>30–60 minutes</td>
 <td>Evening batch</td>
 </tr>
+<tr>
 <td>BIR eFPS tax filing file export</td>
 <td>Monthly / Quarterly</td>
 <td>< 30 minutes</td>
 <td>On-demand</td>
 </tr>
+<tr>
 <td>Full inventory reindex / valuation</td>
 <td>Monthly (1st)</td>
 <td>30–60 minutes</td>
 <td>01:00–03:00</td>
 </tr>
+<tr>
 <td>Demand planning / forecast recalculation</td>
 <td>Weekly (Sunday)</td>
 <td>1–3 hours</td>
 <td>00:00–04:00</td>
 </tr>
+<tr>
 <td>Database backup</td>
 <td>Daily at 03:00</td>
 <td>1–2 hours</td>
@@ -502,22 +557,27 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <th>Activity</th>
 <th>Additional Load</th>
 </tr></thead><tbody>
+<tr>
 <td>Month-end (last 3 days)</td>
 <td>Close, accruals, reconciliation</td>
 <td>+30% AP/AR processing, heavy reporting</td>
 </tr>
+<tr>
 <td>Bi-monthly sale events</td>
 <td>Promotional pricing, traffic surge</td>
 <td>+100% POS volume, +200% ecommerce</td>
 </tr>
+<tr>
 <td>Payroll dates (14th & 28th)</td>
 <td>Payroll runs, bank file generation</td>
 <td>Heavy HR/payroll module usage</td>
 </tr>
+<tr>
 <td>Q1 inventory count (Jan)</td>
 <td>Annual wall-to-wall physical count</td>
 <td>Heavy inventory module, RF gun usage</td>
 </tr>
+<tr>
 <td>Christmas season (Nov–Dec)</td>
 <td>Peak retail period</td>
 <td>Sustained +50% volume across all channels</td>

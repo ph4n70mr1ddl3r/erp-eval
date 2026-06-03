@@ -149,8 +149,8 @@
 | Department super-users (50) | Train-the-trainer | 1 week per module | Phase 2 |
 | HQ staff (300) | Classroom + e-learning | 2–3 days per role | Pre-pilot |
 | Store managers (200) | Classroom + hands-on POS | 2 days | Pre-wave |
-| Store staff (6,800) | On-site training by super-users | 1 day | Pre-wave (1 week before go-live) |
-| DC staff (750) | Hands-on WMS + RF gun training | 2 days | Pre-DC go-live |
+| Store staff (5,600) | On-site training by super-users | 1 day | Pre-wave (1 week before go-live) |
+| DC staff (600) | Hands-on WMS + RF gun training | 2 days | Pre-DC go-live |
 | Executives (10) | Dashboard & report orientation | Half day | Post-pilot |
 
 ### Change Management Activities

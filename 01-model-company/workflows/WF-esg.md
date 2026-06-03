@@ -21,7 +21,7 @@
 |---|---|
 | **Trigger** | Monthly utility billing; or fuel consumption report |
 | **Frequency** | Monthly |
-| **Volume** | Covers 200 stores, 5 DCs, HQ, and Fleet |
+| **Volume** | Covers 200 stores, 4 DCs, HQ, and Fleet |
 | **Owner** | Sustainability Lead |
 | **Participants** | Finance (Utility payments), Fleet Manager (Fuel), Maintenance, Sustainability Lead |
 

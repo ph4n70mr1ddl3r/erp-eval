@@ -30,7 +30,7 @@
 
 ## Key Evaluation Questions
 
-1. How does Oracle Fusion handle 1,000 POS terminals without a native POS solution?
+1. How does Oracle Fusion handle 600 POS terminals without a native POS solution?
 2. What is the offline POS strategy — can Oracle Retail Xstore integrate with Fusion Cloud SCM?
 3. How mature is the Philippine localization for BIR forms, VAT, and statutory deductions?
 4. Can Oracle WMS Cloud handle catch-weight items (lumber, wire)?
@@ -74,7 +74,7 @@
 | **Total** | **~130 Must Have** | — | — | — | |
 
 ### Disqualifiers / Red Flags
-- **No native POS** — must integrate Oracle Retail Xstore or third-party POS for 1,000 terminals
+- **No native POS** — must integrate Oracle Retail Xstore or third-party POS for 600 terminals
 - **Offline POS capability** — dependent on third-party POS solution
 - **Philippine localization** — BIR tax forms, statutory deductions require partner add-ons
 

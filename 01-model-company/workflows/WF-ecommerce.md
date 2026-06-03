@@ -156,7 +156,7 @@
 - Ecommerce VAT for home delivery: ecommerce transactions are subject to 12% VAT identical to in-store; output VAT is recognized by Depot Inc. (the entity recognizing revenue per IC model); Digital Commerce Inc. does not recognize VAT on payment collection (remitted to Depot Inc.); system tracks input VAT and output VAT per entity; VAT on ecommerce transactions included in Depot Inc.'s BIR 2550M filing
 
 ### Staffing Implication
-- **Per DC**: Home delivery adds 17,200 orders/month ÷ 30 days ÷ 5 DCs = **~115 orders/DC/day**. At ~15 min pick+pack per order, that's **~29 hours/DC/day** of additional DC labor. This requires 3–4 dedicated pickers/packers per DC for home delivery, within the existing ~150 DC headcount (total DC pick/pack team of 15–20 handles both store replenishment at ~33 orders/day and ~115 home delivery orders/day in shifts). Home delivery orders are typically smaller (3–4 items) and packed individually, while store replenishment orders are larger (~50 lines) and packed in bulk — different skills and pacing.
+- **Per DC**: Home delivery adds 17,200 orders/month ÷ 30 days ÷ 4 DCs = **~115 orders/DC/day**. At ~15 min pick+pack per order, that's **~29 hours/DC/day** of additional DC labor. This requires 3–4 dedicated pickers/packers per DC for home delivery, within the existing ~150 DC headcount (total DC pick/pack team of 15–20 handles both store replenishment at ~33 orders/day and ~115 home delivery orders/day in shifts). Home delivery orders are typically smaller (3–4 items) and packed individually, while store replenishment orders are larger (~50 lines) and packed in bulk — different skills and pacing.
 - **Staffing implication**: Home delivery fulfillment absorbs a significant portion of DC pick/pack capacity. The 25–30 pickers/packers per DC should be sufficient for combined W4 + W19 volume, but DC management should monitor utilization during ecommerce growth. Peak ecommerce periods (sale events at 3× normal volume per data volumes §1.1) may require temporary surge staffing or overtime. During these peak periods, DC Supervisors should coordinate with HR to deploy agency workers (per W10 agency/manpower contractor management) for temporary pick/pack surge capacity, or arrange overtime for existing DC staff. Additionally, 3PL carrier surge capacity should be pre-arranged with delivery partners (W19.7) at least 2 weeks before planned promotional events (W13) to handle elevated home delivery order volumes.
 
 ---
@@ -224,8 +224,8 @@ W11 (BOPIS) and W19 (Home Delivery) cover the happy-path fulfillment process fro
 
 ### Staffing Implication
 - **CSRs**: ~2,000–3,000 BOPIS exceptions/month ÷ 200 stores = ~10–15 per store/month × 10 min each = ~2 hours/store/month. Absorbed by existing 1 CSR/store.
-- **DC Dispatch**: ~1,000–2,000 delivery exceptions/month ÷ 5 DCs = ~200–400 per DC/month × 15 min each = ~50–100 hours/DC/month. With DC Dispatch team of 3–4, this is ~15–25 hours each/month. Absorbed.
-- **Ecommerce Customer Support** (30-person call center): handles chat/email/phone exception cases; ~1,000–1,500 cases/month ÷ 30 agents = ~40–50 cases/agent/month × 10 min each = ~7–8 hours/agent/month. Absorbed within existing call center capacity.
+- **DC Dispatch**: ~1,000–2,000 delivery exceptions/month ÷ 4 DCs = ~200–400 per DC/month × 15 min each = ~50–100 hours/DC/month. With DC Dispatch team of 3–4, this is ~15–25 hours each/month. Absorbed.
+- **Ecommerce Customer Support** (30-person call center): handles chat/email/phone exception cases; ~600–1,100 cases/month ÷ 30 agents = ~40–50 cases/agent/month × 10 min each = ~7–8 hours/agent/month. Absorbed within existing call center capacity.
 - **No incremental headcount.**
 
 ---

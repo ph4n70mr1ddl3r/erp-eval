@@ -15,14 +15,14 @@
 | A1.3 | Monthly POS transactions per store | 14,000 (~467/day) | Derived from 2.8M monthly ÷ 200 stores; consistent with high-traffic big-box retail | Profile §5 |
 | A1.4 | Ecommerce penetration Year 1 | ~3% of revenue | Conservative for Philippine retail; aligns with early-stage omnichannel in the market | Profile §8.5 |
 | A1.5 | Gross margin | 28–32% | Below Wilcon's ~30–33% reflecting newer stores and provincial mix | Profile §9.4 |
-| A1.6 | EBITDA margin | 12–14% | Below Wilcon's ~14–16% due to higher logistics costs from 5-DC provincial footprint | Profile §9.4 |
+| A1.6 | EBITDA margin | 12–14% | Below Wilcon's ~14–16% due to higher logistics costs from 4-DC provincial footprint | Profile §9.4 |
 
 ## A2. Organizational Assumptions
 
 | ID | Assumption | Value | Rationale | Source |
 |---|---|---|---|---|
 | A2.1 | Single format (big-box only) | No Express/small format | Simplifies the model; tests one format thoroughly vs. two superficially | Profile §2 |
-| A2.2 | Store staffing: 30 per store | Lean model | Viable with 35K curated SKUs (vs. Wilcon's 60K+); fewer departments to cover | Profile §12.1 |
+| A2.2 | Store staffing: 28 per store | Lean model | Viable with 35K curated SKUs (vs. Wilcon's 60K+); fewer departments to cover | Profile §12.1 |
 | A2.3 | HQ in Davao City | Provincial HQ | Deliberately non-Manila to test provincial operations and connectivity | Profile §2 |
 | A2.4 | 5 legal entities | Separate Holdings, Depot, Logistics, Digital Commerce, Property Mgmt | Tests multi-entity/intercompany capability; each entity has a distinct role | Profile §2 |
 | A2.5 | Depot Inc. owns all inventory | Even though Logistics Inc. operates DCs | Simplifies inventory accounting; Logistics Inc. charges service fees, not goods transfer | Profile §2, W14 |
@@ -32,7 +32,7 @@
 
 | ID | Assumption | Value | Rationale | Source |
 |---|---|---|---|---|
-| A3.1 | 5 DCs for 200 stores | DC-to-selling-area ratio ~8–12% | Industry norm for big-box retail; 5 DCs reduces average store-to-DC distance in archipelago | Profile §3.2 |
+| A3.1 | 4 DCs for 200 stores | DC-to-selling-area ratio ~8–12% | Industry norm for big-box retail; 4 DCs reduces average store-to-DC distance in archipelago | Profile §3.2 |
 | A3.2 | DC4 (Clark) oversized at 25K sqm | Only 20 stores currently | Intentional: absorbs planned North/Central Luzon expansion | Profile §3.2 |
 | A3.3 | 30% DSD by value | Cement, lumber, sand, gravel | Bulky items uneconomical to double-handle through DCs | Profile §7.1 |
 | A3.4 | ~400–600 TEUs/month imports | ~40% of COGS from imports | Consistent with Philippine home improvement import volumes at this scale | Profile §7.1 |
@@ -83,13 +83,13 @@
 
 | Decision | Choice Made | Alternative Considered | Why This Choice |
 |---|---|---|---|
-| DC network | 5 regional DCs | 3 mega-DCs | Better island coverage; lower outbound transport cost; industry-norm DC-to-selling-area ratio |
+| DC network | 4 regional DCs | 3 mega-DCs | Better island coverage; lower outbound transport cost; industry-norm DC-to-selling-area ratio |
 | IC model | Service-based (primary) | Goods-based between all entities | Depot Inc. owns all merchandise; simpler inventory accounting; Logistics Inc. charges service fees |
 | SKU depth | 35,000 curated | 60,000+ deep | Faster turns; less floor coverage needed; viable with fewer store staff |
 | Store format | Big-box only | Multi-format (Depot + Express) | Simpler model; single format tests one scenario thoroughly |
 | Loyalty earn rate | 1 point per PHP 100 | Tiered earn by membership | Simpler to implement and communicate; standard in Philippine retail |
 | BOPIS hold period | 5 days | 3 days or 7 days | 5 days balances customer convenience with inventory hold cost |
-| POS terminals per store | 5 | 3–8 variable | 5 handles ~467 daily transactions across 10 operating hours with reasonable queues |
+| POS terminals per store | 5 | 3–8 variable | 3 handles ~467 daily transactions across 10 operating hours with reasonable queues |
 | Payroll frequency | Semi-monthly (15th & 30th) | Monthly | Philippine standard; mandated by many CBAs and DOLE guidelines |
 | Fiscal year | Calendar year (Jan–Dec) | April–March or other | Aligned with Philippine tax year (BIR) |
 | Blanket PO coverage | ~45% of COGS | Higher or lower | Aligned with top-20 vendor concentration; remaining 55% on standard POs |

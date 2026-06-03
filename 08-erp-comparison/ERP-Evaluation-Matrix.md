@@ -77,7 +77,7 @@
 | Req ID | Requirement | Priority | SAP S/4HANA | MS D365 | Oracle Fusion |
 |---|---|---|---|---|---|
 | INV-001 | Perpetual Inventory (all locations) | Must | ✅ Real-time perpetual across all storage locations | ✅ Perpetual across all warehouses/sites | ✅ Perpetual across all subinventories |
-| INV-002 | Real-Time Inventory Visibility | Must | ✅ HANA real-time across 200 stores + 5 DCs | ✅ Real-time inventory across sites | ✅ Real-time inventory visibility |
+| INV-002 | Real-Time Inventory Visibility | Must | ✅ HANA real-time across 200 stores + 4 DCs | ✅ Real-time inventory across sites | ✅ Real-time inventory visibility |
 | INV-003 | Weighted Average Cost (WAC) | Must | ✅ Supports WAC valuation method | ✅ Supports WAC (weighted average) | ✅ Supports WAC valuation |
 | INV-004 | ABC Classification | Must | ✅ ABC analysis in material management | ⚙️ ABC classification via inventory policies | ✅ ABC classification in inventory |
 | INV-005 | Multi-Location Stock Transfer | Must | ✅ Stock transfer orders across plants/storage locations | ✅ Transfer orders across warehouses/sites | ✅ Inter-org transfers across subinventories |
@@ -155,7 +155,7 @@
 
 | Req ID | Requirement | Priority | SAP S/4HANA | MS D365 | Oracle Fusion |
 |---|---|---|---|---|---|
-| POS-001 | 1,000 POS Terminals | Must | 🔧 SAP Customer Checkout limited; may need third-party | ✅ D365 Commerce POS scales to 1,000+ terminals | ❌ No native POS; third-party POS required |
+| POS-001 | 600 POS Terminals | Must | 🔧 SAP Customer Checkout limited; may need third-party | ✅ D365 Commerce POS scales to 1,000+ terminals | ❌ No native POS; third-party POS required |
 | POS-002 | Offline Mode | Must | ⚠️ SAP CCO has offline mode but limited | ✅ Commerce Scale Unit (CSU) enables full offline | ❌ Third-party POS must provide offline |
 | POS-003 | Barcode Scanning | Must | ✅ SAP CCO supports 1D/2D scanning | ✅ Native barcode scanning | 🔧 Third-party POS dependent |
 | POS-004 | Multi-Tender | Must | ✅ Multi-tender support in SAP CCO | ✅ Native multi-tender with split payment | 🔧 Third-party POS dependent |
@@ -354,7 +354,7 @@
 | NFR-002 | Back-Office Uptime (99.5%) | Must | ✅ SAP SLA > 99.5% | ✅ Azure SLA > 99.9% | ✅ OCI SLA > 99.9% |
 | NFR-003 | POS Transaction Speed (< 3s) | Must | ✅ SAP CCO transaction speed acceptable | ✅ D365 Commerce POS optimized for speed | 🔧 Third-party POS dependent |
 | NFR-004 | Report Generation (< 30s) | Must | ✅ HANA in-memory analytics | ✅ Power BI with DirectQuery | ✅ Oracle BI with OTBI |
-| NFR-005 | Concurrent Users (1,000–1,500) | Must | ✅ S/4HANA handles thousands of users | ✅ Azure auto-scales for users | ✅ OCI auto-scales for users |
+| NFR-005 | Concurrent Users (600–1,100) | Must | ✅ S/4HANA handles thousands of users | ✅ Azure auto-scales for users | ✅ OCI auto-scales for users |
 | NFR-006 | Data Retention (7 years) | Must | ✅ SAP ILM for 7-year retention | ⚙️ Azure + D365 retention policies | ⚙️ Oracle data retention policies |
 | NFR-007 | Security (RBAC, audit, encryption) | Must | ✅ SAP security framework | ✅ Azure security + D365 RBAC | ✅ Oracle security framework |
 | NFR-008 | Scalability (300+ stores) | Must | ✅ S/4HANA proven at enterprise scale | ✅ Azure cloud scales dynamically | ✅ OCI scales for enterprise |
@@ -425,13 +425,13 @@ These requirements span installation services, wholesale, corporate governance, 
 
 | Disqualifier Check | SAP S/4HANA | MS D365 | Oracle Fusion |
 |---|---|---|---|
-| **1,000 POS terminals with offline** | ⚠️ Risk — SAP CCO not proven at this scale | ✅ Pass — D365 Commerce POS proven | ❌ Fail — No native POS |
+| **600 POS terminals with offline** | ⚠️ Risk — SAP CCO not proven at this scale | ✅ Pass — D365 Commerce POS proven | ❌ Fail — No native POS |
 | **BIR tax compliance (VAT, WHT, forms)** | ⚠️ Risk — Needs ISV add-on | ⚠️ Risk — Needs ISV add-on | ⚠️ Risk — Needs partner localization |
 | **PH payroll (SSS, PhilHealth, Pag-IBIG)** | ⚠️ Risk — Needs localization partner | ⚠️ Risk — Needs ISV payroll partner | ⚠️ Risk — Needs localization partner |
 | **2.8M POS transactions/month** | ✅ Pass — HANA handles volume | ✅ Pass — Azure + CSU handles volume | ⚠️ Risk — Depends on third-party POS |
 | **5-entity consolidation** | ✅ Pass — Best-in-class | ✅ Pass — Strong | ✅ Pass — Strong |
 | **Catch-weight / variable measure** | ⚠️ Risk — Needs EWM config | ⚠️ Risk — Needs product variant config | ⚠️ Risk — Limited native support |
-| **Real-time inventory (200 stores + 5 DCs)** | ✅ Pass — Real-time in HANA | ✅ Pass — Real-time in D365 | ✅ Pass — Real-time in Fusion |
+| **Real-time inventory (200 stores + 4 DCs)** | ✅ Pass — Real-time in HANA | ✅ Pass — Real-time in D365 | ✅ Pass — Real-time in Fusion |
 
 ---
 

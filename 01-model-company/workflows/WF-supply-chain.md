@@ -25,7 +25,7 @@
 |---|---|
 | **Trigger** | Weekly forecast recalculation schedule (Sunday batch) |
 | **Frequency** | Weekly recalculation; monthly review; quarterly adjustment |
-| **Volume** | 35,000 active SKUs × 5 DCs × 200 stores = up to 7.2M SKU-location forecasts; typically forecasted at DC level (175,000 SKU-DC combinations) and disaggregated to stores |
+| **Volume** | 35,000 active SKUs × 4 DCs × 200 stores = up to 7.2M SKU-location forecasts; typically forecasted at DC level (175,000 SKU-DC combinations) and disaggregated to stores |
 | **Owner** | Demand Planner |
 | **Participants** | Demand Planner, Supply Planner, Category Manager, Pricing Analyst |
 
@@ -59,7 +59,7 @@
 - DC multi-dimensional capacity planning dashboard: system aggregates all competing demands on DC resources into a single view per DC — (a) **inbound receiving capacity**: scheduled receipts (W3C) vs. dock door availability vs. receiving crew capacity (labor hours); (b) **outbound pick/pack capacity**: store replenishment orders (W4) + home delivery orders (W19) + promotional pre-positioning (W57) + backorder fulfillment (W56) — total pick lines and labor hours required vs. available pick/pack crew; (c) **outbound dock capacity**: scheduled dispatches vs. dock door availability vs. loading crew capacity; (d) **storage capacity**: current bin utilization vs. incoming inventory from POs and transfers; dashboard shows 3-day forward view with capacity utilization percentage per dimension; Supply Planner and DC Supervisor review daily during morning planning meeting; if any dimension exceeds 90% utilization, system highlights in amber; if exceeds 100%, system highlights in red and suggests mitigation (defer non-critical replenishment waves, redirect home delivery to alternate DC, schedule overtime, or engage agency workers per W10); during peak periods (Christmas season, bi-monthly sale events), Supply Planning Manager reviews capacity dashboard weekly with DC Manager and VP Supply Chain to proactively adjust labor scheduling (W34) and carrier capacity (W52/W62B) (W31)
 
 ### Staffing Implication
-- **1–2 Demand Planners** (within the 30-person Supply Chain team): This is a specialized analytical role. With 35,000 SKUs across 5 DCs, weekly review of forecast exceptions + monthly category reviews + quarterly recalibration requires a dedicated person. A 2nd demand planner provides coverage and can focus on new-item forecasting (no history) and promotional lift modeling.
+- **1–2 Demand Planners** (within the 30-person Supply Chain team): This is a specialized analytical role. With 35,000 SKUs across 4 DCs, weekly review of forecast exceptions + monthly category reviews + quarterly recalibration requires a dedicated person. A 2nd demand planner provides coverage and can focus on new-item forecasting (no history) and promotional lift modeling.
 - **Category Managers**: 1 hour/month each for forecast review meetings = ~10 hours/month total. Absorbed into existing duties.
 
 ---
@@ -118,7 +118,7 @@
 |---|---|
 | **Trigger** | Monthly planning calendar (typically starting 10th business day) |
 | **Frequency** | Monthly |
-| **Volume** | Covers all product categories and all 5 DCs |
+| **Volume** | Covers all product categories and all 4 DCs |
 | **Owner** | VP for Supply Chain |
 | **Participants** | CEO, COO, CFO, VP Merchandising, VP Store Ops, Supply Planning Manager, Demand Planner, Category Managers |
 
@@ -197,7 +197,7 @@ S&OP is the cross-functional process that aligns demand, supply, and financial p
 |---|---|---|---|---|
 | 1 | **Data Extraction**: Pull historical store sales, DC throughput, and transport costs by route | Finance Analyst | — | 1 day |
 | 2 | **Modeling**: Use "Center of Gravity" and "Network Optimization" tools to simulate optimal DC locations vs. 200-store footprint | SC Director | — | 1 week |
-| 3 | **Cost Analysis**: Compare current "5-DC" cost vs. potential "6-DC" or "Consolidated DC" scenarios; include lease exit costs (W117) | Logistics Mgr | CFO | 3 days |
+| 3 | **Cost Analysis**: Compare current "4-DC" cost vs. potential "6-DC" or "Consolidated DC" scenarios; include lease exit costs (W117) | Logistics Mgr | CFO | 3 days |
 | 4 | **Recommendation**: Present optimal network configuration (e.g., "Open DC6 in North Luzon") to Board | COO | CEO | 2 hours |
 | 5 | **Implementation Plan**: If approved, trigger W116 (Site Selection) for the new DC | Supply Chain Mgr | — | — |
 

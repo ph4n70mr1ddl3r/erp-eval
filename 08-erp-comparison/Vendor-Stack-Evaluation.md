@@ -15,7 +15,7 @@
 |---|---|---|
 | **Core ERP** | SAP S/4HANA Cloud (private edition) | GL, AP, AR, FA, MM, SD, CO, consolidation |
 | **Warehouse** | SAP Extended Warehouse Management (EWM) | RF-directed putaway/pick, yard mgmt, catch-weight |
-| **POS** | SAP Customer Checkout 11 (CCO) | 1,000 POS terminals, offline mode, multi-tender |
+| **POS** | SAP Customer Checkout 11 (CCO) | 600 POS terminals, offline mode, multi-tender |
 | **Ecommerce** | SAP Commerce Cloud (CCv2) | BOPIS, home delivery, catalog, order mgmt |
 | **Supply Chain Planning** | SAP Integrated Business Planning (IBP) | Demand forecasting, replenishment, S&OP |
 | **HR & Payroll** | SAP SuccessFactors (EC, Payroll, Time, Talent) | PH payroll, time & attendance, recruitment, ESS |
@@ -40,7 +40,7 @@
 |---|---|---|
 | **Core ERP** | Dynamics 365 Finance | GL, AP, AR, FA, consolidation, tax |
 | **Supply Chain** | Dynamics 365 Supply Chain Management | Inventory, procurement, WMS, planning |
-| **POS & Retail** | Dynamics 365 Commerce | 1,000 POS terminals, offline CSU, retail pricing |
+| **POS & Retail** | Dynamics 365 Commerce | 600 POS terminals, offline CSU, retail pricing |
 | **Ecommerce** | Dynamics 365 Commerce (e-commerce module) | BOPIS, home delivery, catalog, storefront |
 | **HR** | Dynamics 365 Human Resources | Leave, benefits, ESS, performance |
 | **Payroll** | ISV Partner (e.g., Itsubmit, SL Payroll) | PH statutory payroll (SSS, PhilHealth, Pag-IBIG, BIR) |
@@ -68,7 +68,7 @@
 | **Core ERP** | Oracle Fusion Cloud ERP | GL, AP, AR, FA, project accounting |
 | **Supply Chain** | Oracle Fusion Cloud SCM (Supply Chain Orchestration) | Inventory, procurement, order management |
 | **Warehouse** | Oracle Warehouse Management Cloud (LogFire) | RF-directed operations, wave picking, cross-dock |
-| **POS** | Oracle Retail Xstore Point-of-Service | 1,000 POS terminals, offline, multi-tender, catch-weight |
+| **POS** | Oracle Retail Xstore Point-of-Service | 600 POS terminals, offline, multi-tender, catch-weight |
 | **Retail Merchandising** | Oracle Retail Merchandising Foundation | Retail pricing, promotions, markdown, allocation |
 | **Ecommerce** | Oracle Commerce Cloud | BOPIS, home delivery, catalog, storefront |
 | **Order Management** | Oracle Fusion Cloud Order Management | Order capture, orchestration, fulfillment routing |
@@ -146,7 +146,7 @@ in the [original matrix](ERP-Evaluation-Matrix.md), re-evaluated with the **comp
 
 | Req ID | Requirement | Original Gap | SAP Stack Resolution | MS Stack Resolution | Oracle Stack Resolution |
 |---|---|---|---|---|---|
-| POS-001 | 1,000 POS Terminals | 🔧 SAP, ❌ Oracle | ⚙️ **SAP Customer Checkout 11** — Redesigned for scale; supports multi-register, headless API architecture; **verify proven deployments at 1K+ terminals** | ✅ **D365 Commerce POS** — Proven at scale (Walmart, retail chains); Commerce Scale Unit (CSU) handles 1K+ terminals | ⚙️ **Oracle Retail Xstore** — Enterprise retail POS used by major retailers (Gap, American Eagle); proven at 1K+ terminals. **Must integrate with Fusion SCM via OIC** |
+| POS-001 | 600 POS Terminals | 🔧 SAP, ❌ Oracle | ⚙️ **SAP Customer Checkout 11** — Redesigned for scale; supports multi-register, headless API architecture; **verify proven deployments at 600+ terminals** | ✅ **D365 Commerce POS** — Proven at scale (Walmart, retail chains); Commerce Scale Unit (CSU) handles 600+ terminals | ⚙️ **Oracle Retail Xstore** — Enterprise retail POS used by major retailers (Gap, American Eagle); proven at 600+ terminals. **Must integrate with Fusion SCM via OIC** |
 | POS-002 | Offline Mode | ⚠️ SAP, ❌ Oracle | ⚙️ **SAP CCO offline** — CCO v11 has offline transaction queue; syncs on reconnect. **Limitation: offline duration and data volume need validation** | ✅ **CSU offline mode** — Full offline capability; stores complete transaction locally; 8+ hours proven; auto-sync on reconnect | ⚙️ **Oracle Xstore offline** — Xstore has robust offline mode with local database; proven for extended offline in retail. **Integrates with Oracle Retail cloud** |
 | POS-005 | Loyalty Integration | ⚙️ SAP | ⚙️ **SAP Loyalty Management → CCO** — Loyalty engine on SAP Cloud; CCO calls loyalty API for earn/redeem. Requires BTP integration | ✅ **Native** — D365 Commerce loyalty engine built-in | ⚙️ **Oracle CrowdTwist → Xstore** — Loyalty engine in Oracle CX; Xstore calls CrowdTwist API for earn/redeem |
 | POS-010 | Quantity Break Pricing | ⚙️ SAP/Oracle | ⚙️ **SAP Retail Pricing** — Quantity-based pricing conditions in SD; applied at POS via pricing engine call to S/4 | ✅ **Native** — D365 Commerce quantity discounts built-in | ⚙️ **Oracle Retail Price Management (RPM)** — Quantity break pricing rules in RPM; pushed to Xstore |
@@ -288,7 +288,7 @@ These requirements remain 🔧 even with the complete vendor stack. They are the
 │  ┌───────▼──┐  ┌────▼───┐  ┌──▼────┐  ┌──▼──────┐  ┌─────▼─────┐
 │  │SAP CCO   │  │SAP CCv2│  │SAP    │  │Success- │  │SAP Ariba  │
 │  │(1,000    │  │(Ecom)  │  │EWM    │  │Factors  │  │(Vendors)  │
-│  │POS)      │  │        │  │(5 DCs)│  │(HR/Pay) │  │           │
+│  │POS)      │  │        │  │(4 DCs)│  │(HR/Pay) │  │           │
 │  └──────┬───┘  └───┬────┘  └──┬────┘  └──┬──────┘  └─────┬─────┘
 │         │          │          │          │               │
 │    ┌────▼──────────▼──────────▼──────────▼───────────────▼────┐
@@ -324,7 +324,7 @@ SAP has the most integrated stack (EWM is embedded in S/4HANA; SuccessFactors ha
 │  ┌───────▼────┐ ┌───▼────┐ ┌──▼─────┐ ┌─▼────────┐ ┌──────▼─────┐
 │  │D365 Commerce│ │D365 SCM│ │D365    │ │D365 HR + │ │Power       │
 │  │POS + Ecom  │ │WMS     │ │Finance │ │ISV Payroll│ │Platform    │
-│  │(1,000 POS) │ │(5 DCs) │ │        │ │          │ │(gap-fill)  │
+│  │(600 POS) │ │(4 DCs) │ │        │ │          │ │(gap-fill)  │
 │  └──────┬─────┘ └───┬────┘ └──┬─────┘ └──┬───────┘ └──────┬─────┘
 │         │           │         │           │                │
 │    ┌────▼───────────▼─────────▼───────────▼────────────────▼────┐
@@ -360,7 +360,7 @@ integration points to manage**, which reduces implementation risk and ongoing ma
 │  ┌───────▼──────┐┌──▼─────┐┌──▼──────┐┌──▼───────┐┌───────▼──────┐
 │  │Oracle Retail ││Oracle  ││Oracle   ││Oracle    ││Oracle Retail │
 │  │Xstore        ││WMS     ││Fusion   ││HCM Cloud ││Merchandising │
-│  │(1,000 POS)   ││Cloud   ││ERP + SCM││(HR/Pay)  ││(RMS/RPM)     │
+│  │(600 POS)   ││Cloud   ││ERP + SCM││(HR/Pay)  ││(RMS/RPM)     │
 │  └──────┬───────┘└──┬─────┘└──┬──────┘└──┬───────┘└───────┬──────┘
 │         │           │         │           │                │
 │    ┌────▼───────────▼─────────▼───────────▼────────────────▼────┐

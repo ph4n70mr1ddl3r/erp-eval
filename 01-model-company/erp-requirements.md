@@ -26,7 +26,7 @@
 | FIN-014 | Multi-Currency | Must Have | PHP base; USD for imports |
 | FIN-015 | Period-End Close Workflow | Must Have | Month-end within 5 working days |
 | FIN-016 | Capital Expenditure Workflow | Must Have | Capex request, tiered approval, budget check, asset capitalization |
-| FIN-017 | Petty Cash Management | Must Have | Disbursement, replenishment, reconciliation per location (200 stores + 5 DCs) |
+| FIN-017 | Petty Cash Management | Must Have | Disbursement, replenishment, reconciliation per location (200 stores + 4 DCs) |
 | FIN-018 | Consignment Settlement | Should Have | Sell-through reporting and vendor payment for consignment goods |
 | FIN-019 | Vendor Rebate Management | Should Have | Rebate accrual, tracking, and settlement per vendor agreement |
 
@@ -34,7 +34,7 @@
 
 | Req ID | Requirement | Priority | Notes |
 |---|---|---|---|
-| INV-001 | Perpetual Inventory (all locations) | Must Have | 200 stores + 5 DCs + HQ |
+| INV-001 | Perpetual Inventory (all locations) | Must Have | 200 stores + 4 DCs + HQ |
 | INV-002 | Real-Time Inventory Visibility | Must Have | Across all locations |
 | INV-003 | Weighted Average Cost (WAC) | Must Have | Philippine standard |
 | INV-004 | ABC Classification | Must Have | Auto-classify by revenue contribution |
@@ -90,7 +90,7 @@
 
 | Req ID | Requirement | Priority | Notes |
 |---|---|---|---|
-| POS-001 | 1,000 POS Terminals | Must Have | 5 per store × 200 stores |
+| POS-001 | 600 POS Terminals | Must Have | 3 per store × 200 stores |
 | POS-002 | Offline Mode | Must Have | Must sell during network outage |
 | POS-003 | Barcode Scanning | Must Have | 1D + 2D barcode support |
 | POS-004 | Multi-Tender | Must Have | Cash, card, e-wallet, split |
@@ -226,7 +226,7 @@
 | NFR-002 | Back-Office Uptime | 99.5% |
 | NFR-003 | POS Transaction Speed | < 3 seconds |
 | NFR-004 | Report Generation | < 30 seconds (standard) |
-| NFR-005 | Concurrent Users | 1,000–1,500 |
+| NFR-005 | Concurrent Users | 600–1,100 |
 | NFR-006 | Data Retention | 7 years (BIR) |
 | NFR-007 | Security | Role-based access, audit trails, encryption |
 | NFR-008 | Scalability | Support growth to 300+ stores |

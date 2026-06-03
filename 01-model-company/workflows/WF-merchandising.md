@@ -555,7 +555,7 @@ In big-box home improvement retail, physical product samples and demo units are 
 |---|---|
 | **Trigger** | Monthly category P&L review calendar (5th business day of following month) |
 | **Frequency** | Monthly review; quarterly deep-dive aligned with W1 assortment review |
-| **Volume** | 12 product categories across 200 stores + 5 DCs; reviewed by 5 Category Managers |
+| **Volume** | 12 product categories across 200 stores + 4 DCs; reviewed by 5 Category Managers |
 | **Owner** | Category Manager |
 | **Participants** | Category Manager, Pricing Analyst, Buyer, Cost Accountant, VP Merchandising, Store Ops Director |
 

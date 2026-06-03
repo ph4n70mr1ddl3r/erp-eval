@@ -61,7 +61,7 @@ erpplans/
 | Active SKUs | 35,000 |
 | Monthly Trade Purchase Orders | ~1,200 merchandise; ~1,400–1,600 total |
 | Legal Entities | 5 |
-| Total Headcount | ~7,060 (200 stores × 30 + ~750 DC + ~310 HQ) |
+| Total Headcount | ~6,510 (200 stores × 30 + ~750 DC + ~310 HQ) |
 | Ecommerce | Yes (with BOPIS) |
 | Country | Philippines |
 

@@ -27,7 +27,7 @@
 
 ## Key Evaluation Questions
 
-1. How does D365 Commerce handle 1,000 POS terminals with offline capability?
+1. How does D365 Commerce handle 600 POS terminals with offline capability?
 2. How mature is the Philippine regulatory localization (BIR forms, VAT, withholding tax)?
 3. Can D365 SCM handle catch-weight / variable measure items natively?
 4. How does the 5-entity intercompany setup work in D365 Finance?

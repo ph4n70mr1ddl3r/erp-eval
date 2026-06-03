@@ -91,7 +91,7 @@
 | YTD Earnings & Deductions | Payroll system | Migrate year-to-date for BIR annual reconciliation (1702/1604) | Sum validates to payroll register |
 | Leave Balances | Payroll system | Migrate VL/SL balances as of go-live | Non-negative |
 
-**Target record count**: ~7,060 employees
+**Target record count**: ~6,510 employees
 
 ### 2.5 Financial Balances (from legacy accounting)
 
@@ -110,7 +110,7 @@
 
 | Target Field | Source | Cleansing Rule | Validation |
 |---|---|---|---|
-| Location | Physical count sheet | Map to new location master (200 stores + 5 DCs + HQ) | Valid location code |
+| Location | Physical count sheet | Map to new location master (200 stores + 4 DCs + HQ) | Valid location code |
 | Item / SKU | Physical count | Match to migrated item master | Valid item code |
 | Quantity on Hand | Physical count (wall-to-wall) | Load as opening balance per location per SKU | Positive or zero |
 | Unit Cost (WAC) | Migrated item master | Apply current WAC from item master to opening quantity | Positive; WAC × qty = total inventory value |

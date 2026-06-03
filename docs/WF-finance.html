@@ -348,7 +348,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 </tr>
 <tr>
 <td><strong>Frequency</strong></td>
-<td>~2,000–3,000 non-PO invoices/month across all locations (200 stores + 5 DCs + HQ); combined with ~6,500 merchandise/vendor invoices (W7), total AP invoice volume is ~8,500–9,500/month; the ~6,000–7,000 figure in the model-company-profile §10.2 refers to merchandise/vendor invoices only</td>
+<td>~2,000–3,000 non-PO invoices/month across all locations (200 stores + 4 DCs + HQ); combined with ~6,500 merchandise/vendor invoices (W7), total AP invoice volume is ~8,500–9,500/month; the ~6,000–7,000 figure in the model-company-profile §10.2 refers to merchandise/vendor invoices only</td>
 </tr>
 <tr>
 <td><strong>Volume</strong></td>
@@ -848,7 +848,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <td>3 hours</td>
 </tr>
 </tbody></table></div>
-<p>16c | Local Business Tax (LBT) per LGU: system generates LBT payment schedule per location (200 stores + 5 DCs + HQ) based on configured LGU calendars (annual or quarterly per LGU); Tax Accountant reviews schedule, validates amounts per LGU rate schedules (typically 1–2% of gross receipts for retail, varies by LGU); processes payments per LGU (online, over-the-counter, or LGU office); system posts payment per location (Dr. Local Business Tax Expense / Cr. Cash); tracks payment status and receipt per location; flags locations with upcoming or overdue LBT payments on monthly dashboard | Tax Accountant | Controller | 4 hours/month (distributed across LGU due dates) |</p>
+<p>16c | Local Business Tax (LBT) per LGU: system generates LBT payment schedule per location (200 stores + 4 DCs + HQ) based on configured LGU calendars (annual or quarterly per LGU); Tax Accountant reviews schedule, validates amounts per LGU rate schedules (typically 1–2% of gross receipts for retail, varies by LGU); processes payments per LGU (online, over-the-counter, or LGU office); system posts payment per location (Dr. Local Business Tax Expense / Cr. Cash); tracks payment status and receipt per location; flags locations with upcoming or overdue LBT payments on monthly dashboard | Tax Accountant | Controller | 4 hours/month (distributed across LGU due dates) |</p>
 <div class="table-wrap"><table><thead><tr>
 <th>16a</th>
 <th>EWT remittance: Tax Accountant generates EWT remittance file (BIR 1601-E) from accumulated Withholding Tax Payable per vendor per ATC; reconciles to vendor remittance list; transmits to BIR via eFPS; system posts remittance (Dr. Withholding Tax Payable / Cr. Cash)</th>
@@ -2031,7 +2031,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 </tr>
 <tr>
 <td><strong>Volume</strong></td>
-<td>200 stores + 5 DCs + HQ cash positions; ~210 bank accounts total across 4 banks (BDO, BPI, Metrobank, Chinabank) and 5 entities: ~200 store deposit accounts (1 per store for daily cash collection), 5 DC operating accounts, 5 entity main operating accounts, 5 USD import accounts, and additional payroll, savings, and investment accounts per entity</td>
+<td>200 stores + 4 DCs + HQ cash positions; ~210 bank accounts total across 4 banks (BDO, BPI, Metrobank, Chinabank) and 5 entities: ~200 store deposit accounts (1 per store for daily cash collection), 4 DC operating accounts, 5 entity main operating accounts, 5 USD import accounts, and additional payroll, savings, and investment accounts per entity</td>
 </tr>
 <tr>
 <td><strong>Owner</strong></td>
@@ -2143,7 +2143,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 <li>Multi-currency (PHP/USD) account management with FX conversion tracking (W30.10)</li>
 <li>Petty cash reconciliation link: store-level petty cash replenishments (W25) are included in the daily cash position report (W30 step 3) as pending outflows; Treasury Analyst sees replenishment requests in the weekly cash flow forecast (W30 step 8); replenishment payments confirmed via bank transfer are auto-matched to store deposit accounts during bank reconciliation (W30 step 9); monthly petty cash replenishment totals per store are visible on the Treasury dashboard for monitoring unusual patterns (W30)</li>
 <li>Store-level cash position tracking: system aggregates per-store daily cash deposits (W5F), petty cash replenishments (W25), and store disbursement requests (W25 store disbursement) into a consolidated store cash movement report; Treasury Analyst reviews as part of daily cycle to detect unusual cash patterns at individual stores (W30)</li>
-<li>Bank account lifecycle management: Treasury Analyst maintains bank account register across all entities (~210 accounts: 200 store deposit accounts, 5 DC operating accounts, 5 entity main operating accounts, 5 USD import accounts, and additional payroll, savings, and investment accounts); new account opening triggered by new store (W16), new entity setup, or new banking relationship — Treasury Analyst submits account opening request to bank with Board Resolution (per entity), authorized signatory list, and business registration documents; signatory management: system tracks authorized signatories per account with signatory tier (single signatory, dual signatory, any-two-of-three); when a signatory changes role or separates (W43), Treasury Analyst updates bank signatory list within 10 business days — system alerts on signatory staleness (no update in > 12 months); account closure triggered by store closure (W45), account consolidation, or bank relationship termination — Treasury Analyst confirms zero balance, obtains bank closure confirmation, and deactivates account in system; system logs all account openings, signatory changes, and closures with full audit trail (W30)</li>
+<li>Bank account lifecycle management: Treasury Analyst maintains bank account register across all entities (~210 accounts: 200 store deposit accounts, 4 DC operating accounts, 5 entity main operating accounts, 5 USD import accounts, and additional payroll, savings, and investment accounts); new account opening triggered by new store (W16), new entity setup, or new banking relationship — Treasury Analyst submits account opening request to bank with Board Resolution (per entity), authorized signatory list, and business registration documents; signatory management: system tracks authorized signatories per account with signatory tier (single signatory, dual signatory, any-two-of-three); when a signatory changes role or separates (W43), Treasury Analyst updates bank signatory list within 10 business days — system alerts on signatory staleness (no update in > 12 months); account closure triggered by store closure (W45), account consolidation, or bank relationship termination — Treasury Analyst confirms zero balance, obtains bank closure confirmation, and deactivates account in system; system logs all account openings, signatory changes, and closures with full audit trail (W30)</li>
 </ul>
 
 <h3>Staffing Implication</h3>
@@ -2438,7 +2438,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 </tr>
 <tr>
 <td><strong>Volume</strong></td>
-<td>~7,050 fixed assets across all entities (POS terminals, forklifts, vehicles, fixtures, IT servers, office equipment)</td>
+<td>~6,510 fixed assets across all entities (POS terminals, forklifts, vehicles, fixtures, IT servers, office equipment)</td>
 </tr>
 <tr>
 <td><strong>Owner</strong></td>
@@ -2576,7 +2576,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 </tr>
 <tr>
 <td><strong>Volume</strong></td>
-<td>Policy types: property (200 stores + 5 DCs), inventory (PHP 8–10B total), business interruption, general liability, vehicle fleet (30–40 owned), workers' compensation, employer's liability, cargo/in-transit, cyber liability, directors & officers (D&O)</td>
+<td>Policy types: property (200 stores + 4 DCs), inventory (PHP 8–10B total), business interruption, general liability, vehicle fleet (30–40 owned), workers' compensation, employer's liability, cargo/in-transit, cyber liability, directors & officers (D&O)</td>
 </tr>
 <tr>
 <td><strong>Owner</strong></td>
@@ -3151,7 +3151,7 @@ tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transfor
 </tr>
 <tr>
 <td><strong>Volume</strong></td>
-<td>35,000 active SKUs across 200 stores + 5 DCs; ~20–25 product categories</td>
+<td>35,000 active SKUs across 200 stores + 4 DCs; ~20–25 product categories</td>
 </tr>
 <tr>
 <td><strong>Owner</strong></td>

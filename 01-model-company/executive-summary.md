@@ -16,9 +16,9 @@
 | HQ | Davao City, Philippines |
 | Legal Entities | 5 (Holdings, Depot, Logistics, Digital Commerce, Property Mgmt) |
 | Annual Revenue | ~PHP 62.3 Billion |
-| Employees | ~7,060 |
+| Employees | ~6,510 |
 | Active SKUs | 35,000 |
-| POS Terminals | 1,000 (5 per store) |
+| POS Terminals | 1,000 (3 per store) |
 | Monthly Transactions | 2.8 million |
 | Ecommerce | Yes — BOPIS + Home Delivery |
 | Loyalty Members | ~600,000 |
@@ -48,9 +48,9 @@ Four ERP platforms for ability to run BuildRight end-to-end:
 
 The ERP must handle these non-negotiables:
 
-1. **High-volume retail POS** — 2.8M transactions/month, 1,000 terminals, offline capability
+1. **High-volume retail POS** — 2.8M transactions/month, 600 terminals, offline capability
 2. **Multi-entity Philippine operations** — 5 legal entities with intercompany consolidation, BIR compliance (VAT, EWT, income tax), SSS/PhilHealth/Pag-IBIG payroll
-3. **Complex supply chain** — 5 DCs, import management (LC, customs, landed cost), catch-weight items (lumber, wire), consignment, VMI
+3. **Complex supply chain** — 4 DCs, import management (LC, customs, landed cost), catch-weight items (lumber, wire), consignment, VMI
 4. **Omnichannel** — BOPIS + home delivery with real-time inventory sync across 200 stores
 5. **Scalability** — must grow to 300+ stores without architectural limits
 

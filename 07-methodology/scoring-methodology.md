@@ -81,7 +81,7 @@ In addition to functional fit, each ERP will be scored on these dimensions:
 | **Functional Fit** | 40% | Weighted score from requirement fit/gap analysis (above) |
 | **Total Cost of Ownership (5-year)** | 20% | Licensing + implementation + ongoing support + infrastructure |
 | **Implementation Risk** | 15% | Complexity, timeline, partner ecosystem, track record in Philippines retail |
-| **Scalability & Performance** | 15% | Ability to handle 2.8M POS txns/month, 1,000 terminals, 300+ store growth |
+| **Scalability & Performance** | 15% | Ability to handle 2.8M POS txns/month, 600 terminals, 300+ store growth |
 | **Local Support Ecosystem** | 10% | Philippine partner availability, local support team, language |
 
 ### Overall Score

@@ -291,7 +291,7 @@
 | Field | Detail |
 |---|---|
 | **Trigger** | Customer requests an item not carried in regular store assortment |
-| **Frequency** | ~500–1,000 special orders/month chain-wide; ~2–5 per store per month |
+| **Frequency** | ~500–1,000 special orders/month chain-wide; ~2–3 per store per month |
 | **Volume** | Primarily professional trade customers (contractors, builders) and project-specific items; avg order value ~PHP 5,000–15,000 |
 | **Owner** | Customer Service Rep (order intake); Buyer (fulfillment) |
 | **Participants** | CSR, Sales Rep (trade accounts), Buyer, Receiving Clerk, Customer |

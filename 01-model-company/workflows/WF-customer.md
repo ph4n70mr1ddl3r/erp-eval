@@ -78,7 +78,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 
 ### Staffing Implication
 - **CSRs (stores)**: 10–15 complaints/store/month × ~10 min each = ~2–3 hours/store/month. Absorbed within existing CSR role.
-- **Call Center (30 people)**: Handles phone, email, chat, and web complaints. ~1,000–1,500 complaints/month via call center ÷ 30 agents = ~50 complaints/agent/month ÷ 20 working days = ~2.5/day. Each takes ~10–15 min. Manageable; call center also handles inbound inquiries, order tracking, and general support.
+- **Call Center (30 people)**: Handles phone, email, chat, and web complaints. ~600–1,100 complaints/month via call center ÷ 30 agents = ~50 complaints/agent/month ÷ 20 working days = ~2.5/day. Each takes ~10–15 min. Manageable; call center also handles inbound inquiries, order tracking, and general support.
 - **CS Manager (HQ or regional)**: 1 CS Manager oversees complaint analytics and Tier 2 escalations. May be a regional role (4 Regional CS Managers) or 1 centralized with store managers handling Tier 2 locally.
 
 ---
@@ -140,7 +140,7 @@ For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the prima
 | Field | Detail |
 |---|---|
 | **Trigger** | Customer requests price match at POS based on competitor's current advertised price |
-| **Frequency** | ~50–100 price match requests/day chain-wide; ~2–5 per store per week |
+| **Frequency** | ~50–100 price match requests/day chain-wide; ~2–3 per store per week |
 | **Volume** | Primarily on high-visibility items (power tools, paint, appliances, tiles) where customers actively compare prices |
 | **Owner** | Cashier (execution); Store Manager (authorization) |
 | **Participants** | Cashier, Store Manager, Pricing Analyst (review) |

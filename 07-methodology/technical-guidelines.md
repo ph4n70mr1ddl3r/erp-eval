@@ -23,7 +23,7 @@ confirm their POS solution supports equivalent or better specifications.
 | **Payment Device** | PIN pad for card (EMV/chip & contactless); e-wallet QR support |
 | **Offline Storage** | Must store ≥ 8 hours of transactions locally (~4,700 txns per store per day) |
 | **Connectivity** | Primary link + failover connectivity |
-| **Central Management** | Centrally managed (MDM or equivalent); OTA updates across 1,000 terminals |
+| **Central Management** | Centrally managed (MDM or equivalent); OTA updates across 600 terminals |
 
 ### POS Cost Estimate (Reference)
 
@@ -51,9 +51,9 @@ own architecture that satisfies the NFRs in [erp-requirements.md](../01-model-co
 | Consideration | Notes |
 |---|---|
 | 200 store locations with POS | Requires reliable connectivity or robust offline mode |
-| 5 DCs with WMS/RF guns | Low-latency connection needed for real-time pick/ship |
-| 1,000 POS terminals | Centralized management is essential |
-| 7,050 employees | HR/payroll can be cloud-hosted |
+| 4 DCs with WMS/RF guns | Low-latency connection needed for real-time pick/ship |
+| 600 POS terminals | Centralized management is essential |
+| 6,510 employees | HR/payroll can be cloud-hosted |
 | Philippine regulatory filing | BIR, SSS, PhilHealth, Pag-IBIG file generation |
 | Data residency | No strict PH data residency requirement, but Asia-Pacific hosting recommended for latency |
 
@@ -111,7 +111,7 @@ propose their own integration approach.
 │                      INTEGRATION TOUCHPOINTS                        │
 │                                                                     │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
-│  │1,000 POS │  │ 5 WMS    │  │ Ecommerce │  │ Loyalty Engine   │   │
+│  │600 POS │  │ 4 WMS    │  │ Ecommerce │  │ Loyalty Engine   │   │
 │  │Terminals │  │Systems   │  │ Platform │  │ (CRM)            │   │
 │  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────────┬─────────┘   │
 │       │              │              │                  │             │

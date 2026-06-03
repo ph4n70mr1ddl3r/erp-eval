@@ -20,7 +20,7 @@
 |---|---|
 | **Trigger** | Workplace accident, "near miss," or safety hazard reported (involving employee, customer, or contractor) |
 | **Frequency** | Ad-hoc; ~50–100 reportable incidents/year chain-wide |
-| **Volume** | Covers all 200 stores, 5 DCs, and HQ |
+| **Volume** | Covers all 200 stores, 4 DCs, and HQ |
 | **Owner** | Safety Officer (HQ/DC); Store Manager (Store) |
 | **Participants** | Affected Individual, First Aider, Store/DC Manager, HR, Legal, Insurance |
 

@@ -27,7 +27,7 @@
 |---|---|
 | **Trigger** | User reports issue (phone, email, self-service portal); system generates automated alert; scheduled change window |
 | **Frequency** | Continuous; ~800–1,200 support tickets/month across all locations |
-| **Volume** | ~7,050 users; 1,000 POS terminals; 5 WMS systems; ~500 RF devices; 200+ network locations |
+| **Volume** | ~6,510 users; 600 POS terminals; 4 WMS systems; ~500 RF devices; 200+ network locations |
 | **Owner** | IT Helpdesk Lead |
 | **Participants** | IT Helpdesk, IT Infrastructure, IT Applications, end users, external vendors |
 
@@ -82,7 +82,7 @@
 ### Staffing Implication
 - **4–5 Helpdesk Agents (Tier 1)**: handle ~800–1,200 tickets/month ÷ 20 working days = ~40–60/day. At ~10 min average per ticket = ~7–10 hours/day. With shifts and coverage, 4–5 agents needed.
 - **3–4 IT Specialists (Tier 2)**: Application support, infrastructure, retail IT, security. Specialists handle ~30% of tickets that Tier 1 cannot resolve = ~240–360/month.
-- **1–2 IT Field Support**: physical site visits for hardware issues across 200 stores + 5 DCs. Estimated 50–80 on-site visits/month across the Philippines. With travel time, 1–2 dedicated field staff with regional coverage.
+- **1–2 IT Field Support**: physical site visits for hardware issues across 200 stores + 4 DCs. Estimated 50–80 on-site visits/month across the Philippines. With travel time, 1–2 dedicated field staff with regional coverage.
 - **1 IT Helpdesk Lead**: manages helpdesk operations, SLA compliance, change management.
 - **Total IT**: recommend expanding IT team from ~25 to ~28–30 to accommodate dedicated helpdesk function. Current ~25 includes infrastructure, applications, data, security, and BI but does not explicitly allocate helpdesk headcount.
 
@@ -104,7 +104,7 @@
 
 ### Background
 
-Under RA 10173 and its Implementing Rules and Regulations (IRR), BuildRight Depot (as a PIC — Personal Information Controller) must: (a) notify the National Privacy Commission within 72 hours of discovering a breach involving sensitive personal information affecting 100+ data subjects, (b) notify affected data subjects within a reasonable time, (c) document all breaches regardless of size. BuildRight holds personal data for ~600,000 loyalty members, ~5,200 trade accounts, ~200 corporate accounts, ~7,050 employees, and ~1,000 vendors.
+Under RA 10173 and its Implementing Rules and Regulations (IRR), BuildRight Depot (as a PIC — Personal Information Controller) must: (a) notify the National Privacy Commission within 72 hours of discovering a breach involving sensitive personal information affecting 100+ data subjects, (b) notify affected data subjects within a reasonable time, (c) document all breaches regardless of size. BuildRight holds personal data for ~600,000 loyalty members, ~5,200 trade accounts, ~200 corporate accounts, ~6,510 employees, and ~1,000 vendors.
 
 ### Steps
 
@@ -148,7 +148,7 @@ Under RA 10173 and its Implementing Rules and Regulations (IRR), BuildRight Depo
 |---|---|
 | **Trigger** | Core ERP system failure exceeding RTO (4 hours per NFR-013), data center outage, cloud service disruption, or cyber attack causing system unavailability |
 | **Frequency** | Rare; estimated 0–2 DR events/year requiring failover |
-| **Volume** | Affects all 7,050 users; 1,000 POS terminals; 200 stores; 5 DCs |
+| **Volume** | Affects all 6,510 users; 600 POS terminals; 200 stores; 4 DCs |
 | **Owner** | CIO |
 | **Participants** | CIO, IT Infrastructure team, IT Helpdesk, Store Ops Director, CFO, external DR service provider |
 
@@ -201,7 +201,7 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 |---|---|
 | **Trigger** | Implementation roadmap Phase 2 (data migration) and Phase 3 (pilot go-live with parallel run) per Implementation Roadmap |
 | **Frequency** | Once per implementation; validation cycles repeated per migration iteration |
-| **Volume** | All master data (55,000 SKUs, 1,000 vendors, 600,000+ customers, 7,050 employees, 205 locations) + open transaction data (open POs, open AR/AP, inventory balances, fixed assets) |
+| **Volume** | All master data (55,000 SKUs, 1,000 vendors, 600,000+ customers, 6,510 employees, 205 locations) + open transaction data (open POs, open AR/AP, inventory balances, fixed assets) |
 | **Owner** | Implementation Project Manager (overall); Department Heads (validation per domain) |
 | **Participants** | Store Managers, Cashiers, AP/AR Clerks, Category Managers, Buyers, Cost Accountant, IT, external implementation partner |
 
@@ -212,7 +212,7 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 | 1 | **Item master validation**: Merchandise Planners verify migrated SKU data — sample 500–1,000 SKUs across categories; confirm item description, unit of measure, cost, SRP, category assignment, and attributes (catch-weight flags, shelf-life flags, consignment/VMI flags) match source system; report discrepancies to implementation partner for correction | Merchandise Planner | Category Manager | 8 hours/iteration |
 | 2 | **Customer master validation**: AR Clerks verify sample of 500 trade/corporate accounts — confirm credit limits, payment terms, VAT treatment classification, and contact details; Loyalty Manager verifies sample of 1,000 loyalty accounts — points balance, tier status, contact information | AR Clerk / Loyalty Manager | AR Supervisor | 8 hours/iteration |
 | 3 | **Vendor master validation**: Buyers verify sample of 200 vendors — confirm payment terms, lead times, bank details, tax classification (ATC codes), and pricing tolerance | Buyer | Category Manager | 4 hours/iteration |
-| 4 | **Inventory balance validation**: Cost Accountant and DC Supervisors verify opening inventory balances per location (200 stores + 5 DCs) — reconcile migrated quantities and values (WAC) to legacy system closing balances; identify discrepancies > 1% by value | Cost Accountant / DC Supervisor | Controller | 8 hours/location group |
+| 4 | **Inventory balance validation**: Cost Accountant and DC Supervisors verify opening inventory balances per location (200 stores + 4 DCs) — reconcile migrated quantities and values (WAC) to legacy system closing balances; identify discrepancies > 1% by value | Cost Accountant / DC Supervisor | Controller | 8 hours/location group |
 | 5 | **Financial opening balance validation**: Controller and Chief Accountant verify migrated opening trial balance per entity (5 entities) — GL account balances, open AP invoices, open AR invoices, fixed asset register, bank balances; reconcile to legacy closing trial balance | Controller / Chief Accountant | CFO | 16 hours/iteration |
 | 6 | **Employee master validation**: HR Head verifies sample of 200 employees across entities — confirm salary, tax status, statutory deduction registration, leave balances, and organizational assignment | HR Head | CHRO | 4 hours/iteration |
 | 7 | All validation exceptions logged in implementation issue tracker; corrected in next migration iteration; re-validated until zero material discrepancies | All validators | Project Manager | Ongoing |
@@ -252,7 +252,7 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 |---|---|
 | **Trigger** | Monthly BI governance review; ad-hoc report request; dashboard lifecycle milestone; or data quality issue identified |
 | **Frequency** | Monthly governance review; continuous report request management; quarterly dashboard lifecycle review |
-| **Volume** | ~50–100 ad-hoc report requests/month from across the organization; ~20–30 active dashboards at any time; ~7,060 potential users across 14 requirement categories |
+| **Volume** | ~50–100 ad-hoc report requests/month from across the organization; ~20–30 active dashboards at any time; ~6,510 potential users across 14 requirement categories |
 | **Owner** | BI Manager / Data Analyst |
 | **Participants** | BI Manager, Data Analysts, IT Manager, Department Heads, Controller, CIO |
 
@@ -297,7 +297,7 @@ RPT-001 through RPT-010 define reporting requirements — executive dashboards, 
 |---|---|
 | **Trigger** | New hire (W15), hardware failure, or refresh cycle (every 3–4 years) |
 | **Frequency** | Ongoing |
-| **Volume** | Managing ~1,500 laptops/desktops, ~1,000 POS terminals, servers, and networking gear |
+| **Volume** | Managing ~1,500 laptops/desktops, ~600 POS terminals, servers, and networking gear |
 | **Owner** | IT Asset Manager |
 | **Participants** | IT Helpdesk, Procurement (W2), Finance (Fixed Assets W39) |
 
@@ -400,7 +400,7 @@ RPT-001 through RPT-010 define reporting requirements — executive dashboards, 
 | **Workflow ID** | W265 |
 | **Name** | POS Terminal Hardware Maintenance & Peripheral Management |
 | **Trigger** | POS hardware failure or scheduled preventive maintenance |
-| **Frequency** | ~50–80 hardware incidents/day across 200 stores (1,000 terminals); PM cycle: quarterly per terminal |
+| **Frequency** | ~50–80 hardware incidents/day across 200 stores (600 terminals); PM cycle: quarterly per terminal |
 | **Volume** | ~1,500–2,400 incidents/month; 4,000 PM events/quarter |
 | **Owner** | IT Support Specialist |
 | **Participants** | IT Support Specialist (4 field), Store Manager (200), IT Helpdesk (5), IT Asset Manager (1) |
@@ -432,7 +432,7 @@ RPT-001 through RPT-010 define reporting requirements — executive dashboards, 
 ### Pain Points / Risks
 - **Spare pool depletion**: If multiple stores in same region have simultaneous failures, spare pool can be depleted; need regional spare hubs (one per DC region)
 - **Peripheral vendor diversity**: Different store generations may have different peripheral brands/models; IT team must maintain expertise and spare parts for multiple brands
-- **Firmware update coordination**: PIN pad firmware updates (PCI-DSS compliance) must be coordinated across 1,000 terminals without disrupting checkout; typically done overnight but some stores operate extended hours
+- **Firmware update coordination**: PIN pad firmware updates (PCI-DSS compliance) must be coordinated across 600 terminals without disrupting checkout; typically done overnight but some stores operate extended hours
 - **Island logistics**: On-site visits to Visayas and Mindanao stores require air travel; response time for non-spare-fixable issues can be 2–3 days; need regional IT support contractors as backup
 - **Annual cost**: ~1,500–2,400 hardware incidents/month × average repair/replacement cost of PHP 2,000–5,000 = ~PHP 3.6–14.4M annual POS hardware maintenance budget; IT must track cost per terminal for budgeting
-- **End-of-life planning**: POS terminals and peripherals typically have 5–7 year useful life; planning replacement cycles across 1,000 terminals requires capital budget planning per W21
+- **End-of-life planning**: POS terminals and peripherals typically have 5–7 year useful life; planning replacement cycles across 600 terminals requires capital budget planning per W21

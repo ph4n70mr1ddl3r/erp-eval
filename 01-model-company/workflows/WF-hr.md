@@ -29,7 +29,7 @@
 |---|---|
 | **Trigger** | Semi-monthly payroll calendar (14th and 28th/30th) |
 | **Frequency** | 10 payroll runs/month (5 entities × 2) |
-| **Volume** | ~7,050 employees total |
+| **Volume** | ~6,510 employees total |
 | **Owner** | Payroll Manager |
 | **Participants** | Payroll Officer, HR Assistant, Department Heads (OT/leave approval), Finance (bank file) |
 
@@ -66,7 +66,7 @@
 - Statutory contribution file generation with PRN (W10.11)
 - Statutory remittance reconciliation: per-employee contribution schedule vs. remittance file vs. bank confirmation; discrepancy flagging (W10.11a)
 - Contractual/fixed-term worker management: contract date tracking, pro-rated benefit computation, end-of-contract settlement, regularization conversion (W10.11b)
-- Agency / manpower contractor worker management: for seasonal and peak-period staffing (Christmas season, bi-monthly sale events, new store openings), BuildRight engages licensed manpower agencies per DOLE Department Order No. 174 (Labor-Only Contracting rules); agency workers are NOT employees of BuildRight entities — they appear in the agency's payroll, not in BuildRight's W10 payroll run; system tracks agency worker headcount separately from regular headcount for workforce planning; Store Manager submits agency staffing request to HR with headcount, duration, and skill requirements; HR coordinates with approved agency partners; agency invoices are processed as non-PO service invoices per W7C with DOLE-compliant documentation (agency service agreement, worker deployment list, attendance records); agency workers are issued temporary POS and access badges with limited system permissions and defined expiry dates; system distinguishes agency hours from regular employee hours for labor cost reporting (agency cost is a contract service expense, not payroll); typical agency worker deployment: 2–5 per store during November–December peak, and 10–15 per new store opening (W16) for the first 2 weeks of operations
+- Agency / manpower contractor worker management: for seasonal and peak-period staffing (Christmas season, bi-monthly sale events, new store openings), BuildRight engages licensed manpower agencies per DOLE Department Order No. 174 (Labor-Only Contracting rules); agency workers are NOT employees of BuildRight entities — they appear in the agency's payroll, not in BuildRight's W10 payroll run; system tracks agency worker headcount separately from regular headcount for workforce planning; Store Manager submits agency staffing request to HR with headcount, duration, and skill requirements; HR coordinates with approved agency partners; agency invoices are processed as non-PO service invoices per W7C with DOLE-compliant documentation (agency service agreement, worker deployment list, attendance records); agency workers are issued temporary POS and access badges with limited system permissions and defined expiry dates; system distinguishes agency hours from regular employee hours for labor cost reporting (agency cost is a contract service expense, not payroll); typical agency worker deployment: 2–3 per store during November–December peak, and 10–15 per new store opening (W16) for the first 2 weeks of operations
 - Agency worker access provisioning: Store Manager submits agency worker access request to IT via W48 helpdesk ticket, specifying worker name, agency, assignment duration, and required access level; IT creates temporary system account with predefined "Agency Worker" permission template (POS transaction processing only — no voids, no price overrides, no manager functions, no reports); access badge created with defined expiry date matching deployment end date; system auto-revokes access on expiry date; at end of deployment, Store Manager verifies badge return and IT confirms system deactivation; if deployment extended, Store Manager submits extension request before expiry; system logs all agency worker access with agency name, worker name, store, start/end dates, and permission level; monthly: IT generates agency worker access report showing active, expired, and unreturned badges; unreturned badges flagged for Store Manager follow-up (W10, cross-reference W71 access badge management)
 
 ### Statutory Compliance Calendar
@@ -246,7 +246,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 |---|---|
 | **Trigger** | New hire onboarding (W15), new system rollout, compliance requirement, periodic schedule, performance review finding |
 | **Frequency** | Continuous; formal training sessions monthly per store; compliance training quarterly |
-| **Volume** | ~7,050 employees; ~1,200–1,600 new hires/year requiring onboarding training; all employees require periodic refresher |
+| **Volume** | ~6,510 employees; ~1,200–1,600 new hires/year requiring onboarding training; all employees require periodic refresher |
 | **Owner** | HR — Training Officer |
 | **Participants** | Training Officer, Department Supervisors, Store Managers, Category Managers (product knowledge), IT (system training), external trainers |
 
@@ -286,7 +286,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 - Employee self-service portal: system provides a web-based or mobile-accessible self-service portal for employees with the following capabilities — (a) **payslip viewing**: employees view and download current and historical payslips (secure, accessible only by the employee); (b) **leave management**: employees submit leave requests (VL, SL, maternity, paternity, etc.) with automatic routing to Department Supervisor / Store Manager for approval; view leave balance and approval status; (c) **personal information update**: employees update contact information (address, phone, emergency contact), bank account details for payroll crediting, and dependent information; changes require HR Assistant verification before updating the payroll master; (d) **tax document access**: employees view and download BIR Form 2316 (Certificate of Compensation Payment/Tax Withheld) annually; (e) **benefits inquiry**: view SSS, PhilHealth, Pag-IBIG contribution history and loan balances (linked to agency portals or displayed from payroll data); (f) **training enrollment**: browse and enroll in available training sessions from the W51 training calendar; view training history and certification status; (g) **announcement board**: HR and management post company announcements, policy updates, and employee engagement content; portal access is role-based (employees see their own data only; managers see additional team-level information such as team leave calendar); mobile-responsive design for access from smartphones; requirement priority: Should Have (not all features needed at go-live — payslips and leave management are highest priority)
 
 ### Staffing Implication
-- **1 Training Officer** (within HR team): manages training calendar, develops materials, coordinates external trainers, and monitors compliance. With 7,050 employees across 200+ locations, this is a full-time role.
+- **1 Training Officer** (within HR team): manages training calendar, develops materials, coordinates external trainers, and monitors compliance. With 6,510 employees across 200+ locations, this is a full-time role.
 - **Department Supervisors (per store)**: deliver monthly department huddles (30 min/month) — absorbed into existing duties.
 - **HR Assistants (2)**: support attendance recording and logistics — absorbed into existing duties.
 - **External trainers**: engaged for specialized topics (fire safety, hazmat, first aid, forklift certification, leadership) on a per-event basis.
@@ -303,7 +303,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 |---|---|
 | **Trigger** | Annual performance review cycle; or periodic performance improvement need |
 | **Frequency** | Annual formal review; quarterly check-in; ongoing performance coaching |
-| **Volume** | ~7,050 employees; all employees reviewed annually |
+| **Volume** | ~6,510 employees; all employees reviewed annually |
 | **Owner** | Department Head (for direct reports); Store Manager (for store staff) |
 | **Participants** | Store Manager, Department Supervisors, Department Heads, HR Head, employees |
 
@@ -332,7 +332,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 - Integration with W10 (merit increase in payroll), W15 (onboarding — initial goal-setting during first 90 days), W43 (PIP failure may lead to separation), W51 (training completion feeds into performance assessment), W67 (store performance KPIs inform goal-setting for store staff)
 
 ### Staffing Implication
-- **No incremental headcount.** Performance reviews are distributed across ~230 managers (Store Managers, Dept. Supervisors, Dept. Heads). Annual cycle adds ~45 min/employee/year for ~7,050 employees = ~5,300 hours total effort, distributed across the management team.
+- **No incremental headcount.** Performance reviews are distributed across ~230 managers (Store Managers, Dept. Supervisors, Dept. Heads). Annual cycle adds ~45 min/employee/year for ~6,510 employees = ~5,300 hours total effort, distributed across the management team.
 - **HR Head**: adds ~8 hours/year for calibration and rating distribution approval. Absorbed.
 
 ---
@@ -535,7 +535,7 @@ With over 8,000 employees in retail and distribution, maintaining a consistent p
 |---|---|
 | **Trigger** | Employee sickness event, maternity event, or application for SSS/Pag-IBIG statutory loan |
 | **Frequency** | Continuous; daily processing of claims and semi-monthly reconciliation |
-| **Volume** | ~7,060 employee base; average ~120–180 sickness claims/month, ~40–60 maternity leaves/month, and ~250–350 loan applications/month |
+| **Volume** | ~6,510 employee base; average ~120–180 sickness claims/month, ~40–60 maternity leaves/month, and ~250–350 loan applications/month |
 | **Owner** | HR Benefits Specialist |
 | **Participants** | Employee, HR Benefits Specialist, Payroll Specialist, Finance (Treasury) |
 

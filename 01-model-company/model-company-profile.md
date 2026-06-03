@@ -75,7 +75,7 @@ The company operates through **5 legal entities** organized as follows:
 - **Appliance Section**: Appliances and fixtures
 - **Tool & Hardware Wall**: Fasteners, hand tools, power tools
 - **Paint Mixing Station**: Custom tinting
-- **Checkout Area**: 5 POS terminals
+- **Checkout Area**: 3 POS terminals
 - **Receiving/Backroom**: Inbound goods staging
 - **Customer Service Counter**: Returns, special orders, BOPIS pickup
 
@@ -90,7 +90,7 @@ The company operates through **5 legal entities** organized as follows:
 | **DC5 — Metro Manila Hub** | Metro Manila (Valenzuela) | 30,000 | Serves NCR (Metro Manila) stores |
 
 > **Rationale**: A dedicated Metro Manila DC relieves the South Luzon hub from serving
-> the high-density 30-store NCR market, and the 5-DC footprint brings the DC-to-selling-area
+> the high-density 30-store NCR market, and the 4-DC footprint brings the DC-to-selling-area
 > ratio closer to the 8–12% industry norm for big-box retail. DC4 (Clark) is proportionally
 > oversized at 25,000 sqm for its current 20-store coverage; this is intentional to absorb
 > planned expansion in North/Central Luzon and potentially serve as overflow for NCR.
@@ -101,7 +101,7 @@ The company operates through **5 legal entities** organized as follows:
 - Vendor managed inventory (VMI) for select suppliers
 - Each DC serves ~40 stores on average (range: 20–60)
 - Replenishment cycles: 2–3x per week per store
-- DC headcount: ~150 per DC (~750 total)
+- DC headcount: ~150 per DC (~600 total)
 - Special handling areas: lumber, tiles, paint/chemicals
 
 ### 3.3 Corporate Headquarters
@@ -131,12 +131,12 @@ The company operates through **5 legal entities** organized as follows:
 
 | Category | Count |
 |---|---|
-| Store Personnel | 6,000 (200 stores × 30) |
-| Distribution Center Personnel | ~750 (5 DCs × ~150) |
+| Store Personnel | 5,600 (200 stores × 28) |
+| Distribution Center Personnel | ~600 (4 DCs × ~150) |
 | Corporate HQ Personnel | ~310 (expanding to ~320 with DPO and Regulatory Officer per W53/W54) |
-| **Total Company Headcount** | **~7,060** (baseline; ~7,070 with compliance expansion) |
+| **Total Company Headcount** | **~6,510** (baseline; ~6,520 with compliance expansion) |
 
-> **Revenue per employee**: ~PHP 8.8M/year (~PHP 62.3B ÷ ~7,060) — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (30 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further. HQ headcount of ~310 is the baseline; Legal & Compliance expands from ~5 to ~7 with the addition of a Data Protection Officer (W53) and Regulatory Officer (W54) required for Philippine regulatory compliance, bringing total HQ to ~320 and total company to ~7,070.
+> **Revenue per employee**: ~PHP 8.8M/year (~PHP 62.3B ÷ ~6,510) — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (28 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further. HQ headcount of ~310 is the baseline; Legal & Compliance expands from ~5 to ~7 with the addition of a Data Protection Officer (W53) and Regulatory Officer (W54) required for Philippine regulatory compliance, bringing total HQ to ~320 and total company to ~6,520.
 
 ---
 
@@ -401,7 +401,7 @@ The company operates through **5 legal entities** organized as follows:
 | **Annual COGS** | ~PHP 42–45 Billion |
 | **EBITDA Margin** | ~12–14% |
 
-> **EBITDA note**: BuildRight's EBITDA is benchmarked below Wilcon Depot's ~14–16% and well below Home Depot's ~17–18%, reflecting higher logistics costs from a 5-DC provincial footprint, newer stores still ramping, and a lean staffing model. As the store base matures beyond 200 stores, EBITDA should approach 14–15%.
+> **EBITDA note**: BuildRight's EBITDA is benchmarked below Wilcon Depot's ~14–16% and well below Home Depot's ~17–18%, reflecting higher logistics costs from a 4-DC provincial footprint, newer stores still ramping, and a lean staffing model. As the store base matures beyond 200 stores, EBITDA should approach 14–15%.
 
 > Note: POS transactions (2,800,000 × PHP 1,800) = PHP 5.04B in-store revenue. Ecommerce adds PHP 150M. Total monthly revenue = PHP 5.19B. Ecommerce represents 2.9% of total, consistent with Year 1 penetration target of ~3%. Per-store monthly revenue of ~PHP 25.2M reflects in-store only (PHP 5.04B ÷ 200 stores). Per-store annual revenue of ~PHP 302M is ~90% of Wilcon Depot's estimated per-store revenue (PHP 330–350M), reflecting the more provincial footprint and leaner SKU assortment. Revenue figures assume all 200 stores are mature.
 
@@ -480,7 +480,7 @@ BuildRight Holdings, Inc.
 | Parameter | Value |
 |---|---|
 | **Payroll Frequency** | Semi-monthly (15th and 30th) |
-| **Total Employees** | ~7,050 |
+| **Total Employees** | ~6,510 |
 | **Payroll Entities** | 5 (one per legal entity) |
 | **Statutory Benefits** | SSS, PhilHealth, Pag-IBIG (HDMF) |
 | **13th Month Pay** | Mandatory (1/12 of annual basic salary, paid by Dec 24) |
@@ -505,7 +505,7 @@ BuildRight Holdings, Inc.
 
 ## 12. Store Operations
 
-### 12.1 Store Staffing Model (30 per store)
+### 12.1 Store Staffing Model (28 per store)
 
 | Role | Count | Notes |
 |---|---|---|
@@ -513,7 +513,7 @@ BuildRight Holdings, Inc.
 | Assistant Store Manager | 1 | Operations and compliance |
 | Department Supervisors | 4 | Lumber, Plumbing/Electrical, Tiles, Tools/Hardware |
 | Sales Associates | 11 | Floor coverage, customer assistance |
-| Cashiers | 6 | Covers 5 POS + 1 float/relief |
+| Cashiers | 4 | Covers 3 POS + 1 float/relief |
 | Receiving Clerk | 2 | Inbound goods processing |
 | Stockroom / Stock Associate | 3 | Replenishment, inventory counts |
 | Customer Service Rep | 1 | Returns, BOPIS pickup, special orders |
@@ -605,7 +605,7 @@ BuildRight Holdings, Inc.
 | **Inventory Management** | Real-time perpetual inventory across all locations |
 | **Procurement** | Automated PO generation, 3-way match, vendor portal |
 | **Warehouse Management** | RF-directed putaway/pick, cycle count, lot/serial tracking |
-| **POS / Retail** | 1,000 terminals, offline capable, multi-tender, loyalty integration |
+| **POS / Retail** | 600 terminals, offline capable, multi-tender, loyalty integration |
 | **Ecommerce** | BOPIS + delivery, real-time inventory & price sync |
 | **Supply Chain Planning** | Demand forecasting, ROP/EOQ, replenishment planning |
 | **HR & Payroll** | Philippine statutory compliance (SSS, PhilHealth, Pag-IBIG, BIR) |
@@ -664,7 +664,7 @@ should propose its own integration architecture.
 | Customers (B2B Corporate) | 200 |
 | Vendors / Suppliers | 1,000 |
 | Locations (Stores + DCs + HQ) | 206 |
-| Employees | ~7,050 |
+| Employees | ~6,510 |
 | Chart of Accounts | ~500–800 per entity |
 | GL Accounts (consolidated) | ~2,000–3,000 |
 
@@ -678,7 +678,7 @@ should propose its own integration architecture.
 | Month-end close | Within 5 working days |
 | System uptime (POS) | 99.9% |
 | System uptime (back office) | 99.5% |
-| Concurrent users (peak) | ~1,000–1,500 |
+| Concurrent users (peak) | ~600–1,100 |
 | Data retention | 7 years (BIR requirement) |
 
 ---
@@ -706,14 +706,14 @@ should propose its own integration architecture.
 
 1. **Multi-entity, multi-location readiness** out of the box
 2. **Philippine localization**: BIR, SSS, PhilHealth, Pag-IBIG compliance
-3. **High-volume POS**: 2.8M transactions/month across 1,000 terminals
-4. **Real-time inventory visibility** across 200 stores + 5 DCs
+3. **High-volume POS**: 2.8M transactions/month across 600 terminals
+4. **Real-time inventory visibility** across 200 stores + 4 DCs
 5. **Ecommerce integration**: Seamless BOPIS + delivery fulfillment
 6. **Scalability**: From 200 to potentially 300+ stores
 7. **Offline POS resilience**: Stores must sell during outages
 8. **Intercompany automation**: 5-entity consolidation
 9. **Supply chain optimization**: Demand planning, auto-replenishment
-10. **User adoption**: ~7,050 users across varying tech literacy levels
+10. **User adoption**: ~6,510 users across varying tech literacy levels
 
 ---
 
@@ -741,4 +741,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.11 | Date: 2026-06-03 | Store staffing reduced from 35 to 30 per store (6,000 total store staff); total headcount ~7,060–7,070; DC headcount unchanged at ~150/DC (~750 total)*
+*Document Version: 2.11 | Date: 2026-06-03 | Store staffing reduced from 35 to 28 per store (5,600 total store staff); total headcount ~6,510–6,520; DC headcount unchanged at ~150/DC (~600 total)*

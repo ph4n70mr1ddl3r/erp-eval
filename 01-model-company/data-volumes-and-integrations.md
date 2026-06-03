@@ -50,7 +50,7 @@
 │                      INTEGRATION ARCHITECTURE                       │
 │                                                                     │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
-│  │1,000 POS │  │ 5 WMS    │  │ Ecommerce │  │ Loyalty Engine   │   │
+│  │600 POS │  │ 4 WMS    │  │ Ecommerce │  │ Loyalty Engine   │   │
 │  │Terminals │  │Systems   │  │ Platform │  │ (CRM)            │   │
 │  └────┬─────┘  └────┬─────┘  └────┬─────┘  └────────┬─────────┘   │
 │       │              │              │                  │             │

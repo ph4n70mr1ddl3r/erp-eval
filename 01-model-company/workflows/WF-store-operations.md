@@ -157,7 +157,7 @@
 
 | Scenario | Response | Minimum Viable Opening |
 |---|---|---|
-| **Power outage** | Store Manager contacts Meralco/utility provider for ETA; if generator available, start generator and open with reduced lighting in non-essential areas; POS runs on UPS/battery backup during generator switchover | Open with generator power; 3 of 5 POS terminals sufficient |
+| **Power outage** | Store Manager contacts Meralco/utility provider for ETA; if generator available, start generator and open with reduced lighting in non-essential areas; POS runs on UPS/battery backup during generator switchover | Open with generator power; 3 of 3 POS terminals sufficient |
 | **POS system / network down** | Store Manager contacts IT Helpdesk (W48 P1); if estimated fix < 2 hours, delay opening until restored; if > 2 hours, open in manual mode (written receipts, manual price lookup from printed price list); reconcile per W5G offline recovery upon restoration | Open with manual receipts if < 2 hours; otherwise delay |
 | **Alarm malfunction** | Guard performs exterior walkthrough (W71.1); if no signs of intrusion, Store Manager enters and inspects; contacts alarm monitoring company for emergency repair; opens if interior verified safe | Open if security verified; alarm repair scheduled per W47 |
 | **Safety hazard found during walkthrough** (water leak, structural damage, gas smell) | Store Manager isolates affected area; contacts Facilities Coordinator for emergency repair per W47; if hazard is localized, open store with restricted access to affected zone; if hazard affects entire store (gas leak, major flooding), keep closed until resolved | Open partial if hazard isolated; full closure if building-wide |
@@ -821,7 +821,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 |---|---|
 | **Trigger** | Equipment failure, scheduled preventive maintenance, safety inspection finding, or store staff report |
 | **Frequency** | Continuous; preventive maintenance on fixed schedules per equipment type |
-| **Volume** | ~2,000–3,000 maintenance work orders/month across 200 stores + 5 DCs (~10–15 per location per month) |
+| **Volume** | ~2,000–3,000 maintenance work orders/month across 200 stores + 4 DCs (~10–15 per location per month) |
 | **Owner** | Store Manager (store-level); Facilities Coordinator (HQ oversight) |
 | **Participants** | Maintenance/Utility staff, Store Manager, Facilities Coordinator, external contractors, Finance |
 
@@ -966,7 +966,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 |---|---|
 | **Trigger** | Daily security operations; alarm events; periodic access audits; security incidents |
 | **Frequency** | Continuous; daily guard operations; monthly access reviews; quarterly security audits |
-| **Volume** | 200 stores × 24/7 security; 5 DCs × 24/7 security; ~7,050 active access credentials |
+| **Volume** | 200 stores × 24/7 security; 4 DCs × 24/7 security; ~6,510 active access credentials |
 | **Owner** | Store Manager (store-level); DC Manager (DC-level); Facilities Coordinator (oversight) |
 | **Participants** | Security guards (contracted), Store Manager, DC Manager, Facilities Coordinator, HR, IT, Loss Prevention Officer |
 
@@ -1025,7 +1025,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 - Integration with W5A (opening security check), W5F (closing alarm activation), W37 (loss prevention — CCTV integration, confirmed theft), W47 (alarm system maintenance), W48 (IT helpdesk — CCTV camera restoration), W59 (insurance claims for theft/vandalism), W62 (security agency contract management)
 
 ### Staffing Implication
-- **Security guards**: 2 guards per store × 200 stores = 400 guards (contracted through security agency, not BuildRight employees); 3–4 guards per DC × 5 DCs = 15–20 guards; relief/absence coverage adds ~10% buffer; total contracted guard force: ~460–480 including reliefs.
+- **Security guards**: 2 guards per store × 200 stores = 400 guards (contracted through security agency, not BuildRight employees); 3–4 guards per DC × 4 DCs = 15–20 guards; relief/absence coverage adds ~10% buffer; total contracted guard force: ~460–480 including reliefs.
 - **Facilities Coordinator**: adds ~4–6 hours/month for physical security oversight across 200 stores. Absorbed within existing recommended role.
 - **No incremental BuildRight headcount.** Guard force is a contracted service.
 
@@ -1040,7 +1040,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | Field | Detail |
 |---|---|
 | **Trigger** | Customer wants to reserve a big-ticket item (appliance, tiles, fixtures, power tools) and pay in installments over a defined period (via in-house layaway or 3rd party financing) |
-| **Frequency** | ~1,000–1,500 layaway agreements/month chain-wide; ~5–8 per store per month |
+| **Frequency** | ~600–1,100 layaway agreements/month chain-wide; ~5–8 per store per month |
 | **Volume** | Average agreement value PHP 5,000–50,000; primarily appliances, tiles, bathroom fixtures, power tools |
 | **Owner** | Customer Service Rep (agreement creation); Store Manager (approvals) |
 | **Participants** | CSR, Cashier, Store Manager, Stock Associate, Customer, 3rd Party Finance Provider (e.g., Home Credit, Maya) |
@@ -1279,13 +1279,13 @@ W3 covers DC receiving in detail — barcode-directed putaway, quality inspectio
 |---|---|
 | **Trigger** | Monthly utility bill received; quarterly energy review calendar; or ad-hoc triggered by abnormal consumption alert |
 | **Frequency** | Monthly bill processing; quarterly consumption review; annual energy budget |
-| **Volume** | 200 stores × 3–4 utility types (electricity, water, internet, waste disposal) = ~600–800 utility bills/month; 5 DCs × 3–4 utility types = ~15–20 DC bills/month |
+| **Volume** | 200 stores × 3–4 utility types (electricity, water, internet, waste disposal) = ~600–800 utility bills/month; 4 DCs × 3–4 utility types = ~15–20 DC bills/month |
 | **Owner** | Store Manager (store-level); DC Manager (DC-level); Facilities Manager (chain-wide) |
 | **Participants** | Store Manager, DC Manager, Facilities Manager, AP Clerk, Finance Manager, VP Operations |
 
 ### Background
 
-BuildRight operates 200 stores (8,000–15,000 sqm each) and 5 DCs (25,000–40,000 sqm each) across the Philippines. Utility costs — particularly electricity for lighting, HVAC, and equipment — are a significant operating expense. At an estimated PHP 80–150 per sqm per month for electricity in Philippine big-box retail, annual electricity cost alone is ~PHP 1.5–2.7B (3–4% of revenue). W7C processes utility bills as non-PO invoices, but there is no workflow for monitoring consumption trends, benchmarking across stores/DCs, identifying energy waste, and tracking sustainability KPIs. This workflow creates that operational layer.
+BuildRight operates 200 stores (8,000–15,000 sqm each) and 4 DCs (25,000–40,000 sqm each) across the Philippines. Utility costs — particularly electricity for lighting, HVAC, and equipment — are a significant operating expense. At an estimated PHP 80–150 per sqm per month for electricity in Philippine big-box retail, annual electricity cost alone is ~PHP 1.5–2.7B (3–4% of revenue). W7C processes utility bills as non-PO invoices, but there is no workflow for monitoring consumption trends, benchmarking across stores/DCs, identifying energy waste, and tracking sustainability KPIs. This workflow creates that operational layer.
 
 ### Steps
 
@@ -1350,7 +1350,7 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 |---|---|
 | **Trigger** | Hourly patrol requirement; or high-risk alert (storm, local unrest) |
 | **Frequency** | Hourly (24/7) |
-| **Volume** | Covers all 200 stores and 5 DCs |
+| **Volume** | Covers all 200 stores and 4 DCs |
 | **Owner** | Store Security Lead |
 | **Participants** | Security Guard, Store Manager |
 
@@ -1472,7 +1472,7 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 |---|---|
 | **Trigger** | Employee wishes to purchase merchandise for personal use |
 | **Frequency** | Daily; ~1,000 transactions/month across group |
-| **Volume** | Covers all 7,060+ employees |
+| **Volume** | Covers all 6,510+ employees |
 | **Owner** | Store Manager / HR Manager |
 | **Participants** | Employee (Buyer), Cashier, HR (for eligibility) |
 
@@ -1494,7 +1494,7 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 |---|---|
 | **Trigger** | Shift end; or cash drawer limit reached |
 | **Frequency** | 2–3 times per day per cashier |
-| **Volume** | Covers all 200 stores; ~1,000 POS terminals |
+| **Volume** | Covers all 200 stores; ~600 POS terminals |
 | **Owner** | Store Cashier Supervisor |
 | **Participants** | Cashier, Supervisor, CIT (Cash-in-Transit) Partner |
 

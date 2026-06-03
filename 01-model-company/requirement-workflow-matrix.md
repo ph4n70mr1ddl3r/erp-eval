@@ -122,7 +122,7 @@
 
 | Req ID | Requirement | Priority | Primary Workflows | Supporting Workflows |
 |---|---|---|---|---|
-| POS-001 | 1,000 POS Terminals | M | W5B (in-store selling), W5 (daily store operations — parent workflow), W16 (new store POS setup) | W45 (store closure decommission) |
+| POS-001 | 600 POS Terminals | M | W5B (in-store selling), W5 (daily store operations — parent workflow), W16 (new store POS setup) | W45 (store closure decommission) |
 | POS-002 | Offline Mode | M | W5G (offline POS recovery & reconciliation) | W49 (typhoon — degraded mode) |
 | POS-003 | Barcode Scanning | M | W5B.4 (barcode scanning at checkout) | W3.4 (receiving scan), W6.3 (cycle count scan) |
 | POS-004 | Multi-Tender | M | W5B.7 (multi-tender payment), W12A.6 (split-tender refund) | — |
@@ -283,7 +283,7 @@
 | NFR-002 | Back-Office Uptime | 99.5% | W55 (IT disaster recovery) | W48 (incident management) |
 | NFR-003 | POS Transaction Speed | < 3 sec | W5B (POS selling) | — |
 | NFR-004 | Report Generation | < 30 sec | W35 (management reporting), W113 (BI & data governance — query performance) | — |
-| NFR-005 | Concurrent Users | 1,000–1,500 | W5B (1,000 POS terminals), W35 (HQ reporting) | — |
+| NFR-005 | Concurrent Users | 600–1,100 | W5B (600 POS terminals), W35 (HQ reporting) | — |
 | NFR-006 | Data Retention | 7 years | W42 (physical inventory archive), W35 quarterly retention review | Data Volumes §1.2 |
 | NFR-007 | Security | RBAC, audit trails | W37 (POS audit), W48 (change management), W186 (SOP governance), W230 (contract review), W236 (hazmat storage DC), W237 (hazmat handling store), W238 (hazmat spill incident), W243 (POA lifecycle), W152 (employee IT provisioning & access lifecycle management), W132 (software development & change management), W131 (IT asset lifecycle management) | W53 (breach response) |
 | NFR-008 | Scalability | 300+ stores | W16 (new store opening process), W45 (store closure), W223 (store design), W224 (contractor selection), W225 (construction supervision), W226 (store renovation capex), W227 (handover) | — |

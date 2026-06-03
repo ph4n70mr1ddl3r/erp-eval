@@ -181,7 +181,7 @@ The Philippines experiences an average of 20 tropical cyclones per year, of whic
 | Field | Detail |
 |---|---|
 | **Trigger** | LGU business permit renewal calendar (typically annual, per LGU) |
-| **Frequency** | Annual per location; 200 stores + 5 DCs + HQ = ~206 renewals/year, staggered across LGU calendars |
+| **Frequency** | Annual per location; 200 stores + 4 DCs + HQ = ~206 renewals/year, staggered across LGU calendars |
 | **Volume** | ~206 locations across ~150 different LGUs (some LGUs have multiple stores); most LGUs require renewal in January–March |
 | **Owner** | Legal & Compliance — Regulatory Officer |
 | **Participants** | Regulatory Officer, Store Manager, DC Manager, Finance, Facilities Coordinator |
@@ -401,7 +401,7 @@ Under BIR Revenue Regulations No. 11-2018 and Revenue Memorandum Order (RMO) No.
 | **HR & Payroll** | HR Head, Recruitment, Payroll, Training Officer, HR Assistants | ~16 | W10, W15, W51, W72 | ✅ 2–3 payroll officers + 2 recruiters + 1 Training Officer handle the volume; employee performance management absorbed by ~230 managers |
 | **Marketing** | Brand, Promo, Loyalty, Ecommerce, Digital, Content, CS Manager | ~24 | W13, W17, W50, W61, W65 | ✅ Loyalty is largely automated; promo work is cyclical; dedicated Content Manager + 2–3 Content Specialists for ecommerce product content; CS Manager owns customer satisfaction measurement; price match review absorbed by Pricing Analysts |
 | **Store Operations** | Director, Regional Managers, CS Manager, Ops Standards, Facilities Coordinator | ~23 | W5, W5D (in-store delivery), W5E (opening delay), W16, W29, W5G (offline recovery), W34, W37, W41, W47, W49, W54A, W67, W69, W71 | ✅ 4 Regional Managers × 50 stores each; oversee new openings and monthly store performance reviews; in-store delivery uses existing 3PL carrier infrastructure; opening delay procedure is Store Mgr responsibility; offline recovery is Store Mgr responsibility; shift scheduling and complaint handling absorbed; 2–3 LPOs recommended for loss prevention; 1 Facilities Coordinator manages store maintenance, disaster response, and physical security oversight; weekly price compliance audits absorbed by Dept. Supervisors and Stock Associates |
-| **IT** | Infrastructure, Apps, Data, Security, BI Analyst, Helpdesk | ~28–30 | W16 (store setups), W35 (reporting), W48 (helpdesk & IT ops) | ✅ 4–5 helpdesk agents + 3–4 specialists handle ~800–1,200 tickets/month; 2–3 per store setup + BAU support; 1 BI Analyst supports management reporting; note: for physical IT support across the Philippine archipelago (200 stores + 5 DCs across Mindanao, Visayas, Luzon), 1–2 dedicated field staff may not provide adequate same-day response for P1 incidents in remote locations — recommend (a) training designated Store Managers as first-level hardware troubleshooters (certified on basic POS terminal swap, cable reseat, network restart), (b) contracting regional IT service providers in each major region (Davao, Cebu, Manila, Clark) for emergency on-site support, and (c) maintaining a spare POS terminal and network equipment swap stock at each DC for rapid dispatch |
+| **IT** | Infrastructure, Apps, Data, Security, BI Analyst, Helpdesk | ~28–30 | W16 (store setups), W35 (reporting), W48 (helpdesk & IT ops) | ✅ 4–5 helpdesk agents + 3–4 specialists handle ~800–1,200 tickets/month; 2–3 per store setup + BAU support; 1 BI Analyst supports management reporting; note: for physical IT support across the Philippine archipelago (200 stores + 4 DCs across Mindanao, Visayas, Luzon), 1–2 dedicated field staff may not provide adequate same-day response for P1 incidents in remote locations — recommend (a) training designated Store Managers as first-level hardware troubleshooters (certified on basic POS terminal swap, cable reseat, network restart), (b) contracting regional IT service providers in each major region (Davao, Cebu, Manila, Clark) for emergency on-site support, and (c) maintaining a spare POS terminal and network equipment swap stock at each DC for rapid dispatch |
 | **Other** | Legal, Internal Audit, DPO, Regulatory Officer, Customer Service (call center), Executive | ~52 | W41 (complaints), W42 (audit observation), W53 (data privacy breach, DSAR lifecycle, data portability/erasure), W54 (LGU permits), W54A (BIR CAS registration), W62 (vendor contracts) | ✅ Support functions; call center handles multi-channel complaint intake; Legal expanded to include DPO (W53 with full DSAR lifecycle) and Regulatory Officer (W54 LGU + W54A BIR CAS); total Legal & Compliance expands from ~5 to ~7 |
 
 ### Per-Store Staffing (35 people)
@@ -412,7 +412,7 @@ Under BIR Revenue Regulations No. 11-2018 and Revenue Memorandum Order (RMO) No.
 | Asst. Store Manager | 1 | W5 (open/close backup), W6, W12 | Shares management load; covers days off |
 | Dept. Supervisors | 4 | W5B (floor selling), W6 (cycle count review), W12 (restock), W69 (price compliance audit execution and review) | 4 depts × 1 supervisor; handles floor + counts + weekly price audits |
 | Sales Associates | 16 | W5B (selling, paint mixing, lumber cutting), W5D (in-store delivery staging), W11 (BOPIS pick), W56 (backorder intake), W61 (price match verification) | 4/dept × 2 shifts = adequate for floor coverage |
-| Cashiers | 6 | W5B (checkout), W17 (loyalty scan), W28 (gift card sell/reload) | 5 terminals + 1 float; 2 shifts of 3; tight on coverage |
+| Cashiers | 4 | W5B (checkout), W17 (loyalty scan), W28 (gift card sell/reload) | 5 terminals + 1 float; 2 shifts of 3; tight on coverage |
 | Receiving Clerks | 2 | W4 (store receiving from DC), W18 (DSD receiving), W22 (transfer receiving), W22B (store-to-DC return staging) | 2–3 DC trucks/week + 2–3 DSD/week + transfers + return staging; 2 clerks in shifts handle it |
 | Stock Associates | 3 | W4 (shelf stocking), W4B (store replenishment request), W6 (cycle counting), W11 (BOPIS pick), W18 (DSD shelving), W19B (ship-from-store picking), W22 (transfer pick/receive), W22B (store-to-DC return packing), W34 (shift adherence), W42 (annual count), W57 (promo stock staging), W63 (shelf label application), W69 (price audit scanning) | 700 SKUs/day counting + stocking + DSD + transfers + label updates + weekly price audit; adequate but minimal slack |
 | Customer Service Rep | 1 | W11 (BOPIS handoff), W12 (returns), W24 (credit application assistance), W28 (store credit), W29 (recall returns), W33 (warranty claims), W38 (special order intake), W41 (complaints) | ~4 BOPIS + ~2 returns + ~0.5 gift cards + ~2 warranty claims + ~0.5 special orders + ~10 complaints/day = moderate; also handles special orders |
@@ -444,7 +444,7 @@ Under BIR Revenue Regulations No. 11-2018 and Revenue Memorandum Order (RMO) No.
 |---|---|
 | **Trigger** | Hazardous waste accumulation at location reaches disposal threshold; or quarterly disposal schedule; or DENR reporting deadline |
 | **Frequency** | Disposal: quarterly per location (minimum); DENR reporting: quarterly; Permit renewal: annual per location |
-| **Volume** | Hazardous waste categories: paint/chemical waste (sludge, expired products, solvent rags), used oils and lubricants (from fleet maintenance W52, forklift maintenance), broken fluorescent lamps and LED tubes (mercury content), used batteries (lead-acid from forklifts, UPS systems), aerosol cans (residual propellant); ~200 stores + 5 DCs each generating small but regulated quantities |
+| **Volume** | Hazardous waste categories: paint/chemical waste (sludge, expired products, solvent rags), used oils and lubricants (from fleet maintenance W52, forklift maintenance), broken fluorescent lamps and LED tubes (mercury content), used batteries (lead-acid from forklifts, UPS systems), aerosol cans (residual propellant); ~200 stores + 4 DCs each generating small but regulated quantities |
 | **Owner** | Regulatory Officer (HQ); Store Manager / DC Manager (location-level execution) |
 | **Participants** | Regulatory Officer, Store Manager, DC Manager, Maintenance Staff, accredited transporter, DENR-accredited treatment/disposal facility, Finance (disposal cost), Legal |
 
@@ -481,7 +481,7 @@ BuildRight Depot operations generate hazardous waste across several categories r
 - Integration with W16 (new store opening — HWGR registration as part of pre-opening permits), W25 (petty cash — small disposal costs may be paid from petty cash), W26 (budget — annual disposal budget per location), W47 (facility maintenance — spill kit maintenance and replenishment), W48 (IT helpdesk — hazardous waste system support), W52 (fleet — used oil and battery disposal), W54 (LGU permits — HWGR tracked alongside LGU business permits in location compliance dashboard), W62 (vendor contracts — transporter and TSD facility contracts), W68 (product discontinuation — hazardous waste disposal for discontinued chemicals/paint)
 
 ### Staffing Implication
-- **Regulatory Officer** (1 person in Legal & Compliance team): manages HWGR registrations, disposal scheduling, manifest tracking, DENR reporting, and transporter accreditation for 200 stores + 5 DCs. Quarterly reporting adds ~4 hours; annual plan update adds ~8 hours; ongoing coordination adds ~4–6 hours/month. This role is justified by the regulatory compliance requirement and aligns with the Regulatory Officer position mentioned in the model company profile.
+- **Regulatory Officer** (1 person in Legal & Compliance team): manages HWGR registrations, disposal scheduling, manifest tracking, DENR reporting, and transporter accreditation for 200 stores + 4 DCs. Quarterly reporting adds ~4 hours; annual plan update adds ~8 hours; ongoing coordination adds ~4–6 hours/month. This role is justified by the regulatory compliance requirement and aligns with the Regulatory Officer position mentioned in the model company profile.
 - **Maintenance Staff** (1 per store, part of existing headcount): hazardous waste segregation and logging adds ~15 min/week. Absorbed.
 - **DC Safety/Environmental Officer** (1 per DC, within existing support staff): hazardous waste management at DCs adds ~2 hours/month. Absorbed.
 - No incremental headcount beyond the Regulatory Officer role already planned in the model company profile.
@@ -546,13 +546,13 @@ As a Philippine corporation with 5 legal entities requiring consolidated financi
 |---|---|
 | **Trigger** | Annual sustainability reporting cycle; quarterly environmental compliance review; DENR reporting deadline; or ad-hoc triggered by environmental incident or regulatory inquiry |
 | **Frequency** | Annual sustainability report; quarterly environmental metrics review; monthly waste and emissions tracking |
-| **Volume** | 200 stores + 5 DCs + HQ; environmental data collected per location across waste, energy, water, and emissions categories |
+| **Volume** | 200 stores + 4 DCs + HQ; environmental data collected per location across waste, energy, water, and emissions categories |
 | **Owner** | Facilities Manager (data collection); VP Legal & Compliance (regulatory reporting) |
 | **Participants** | Facilities Manager, VP Legal & Compliance, Regulatory Officer, Store Managers, DC Managers, Finance Manager, CSR Coordinator |
 
 ### Background
 
-BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Environmental compliance is governed by the Philippine Clean Air Act (RA 8749), Clean Water Act (RA 9275), Ecological Solid Waste Management Act (RA 9003), Toxic Substances and Hazardous and Nuclear Wastes Control Act (RA 6969), and the Philippine Strategy for Sustainable Development. W82 covers hazardous waste disposal tracking and DENR compliance specifically. W111 covers energy and utility consumption management. However, there is no unified workflow for: (a) tracking environmental metrics beyond hazardous waste (solid waste diversion rate, water consumption, carbon emissions), (b) compiling sustainability data into regulatory reports and voluntary disclosures, (c) setting and monitoring environmental reduction targets, and (d) coordinating environmental compliance across 200+ locations. This workflow creates that comprehensive sustainability governance layer.
+BuildRight operates 200 stores and 4 DCs across the Philippine archipelago. Environmental compliance is governed by the Philippine Clean Air Act (RA 8749), Clean Water Act (RA 9275), Ecological Solid Waste Management Act (RA 9003), Toxic Substances and Hazardous and Nuclear Wastes Control Act (RA 6969), and the Philippine Strategy for Sustainable Development. W82 covers hazardous waste disposal tracking and DENR compliance specifically. W111 covers energy and utility consumption management. However, there is no unified workflow for: (a) tracking environmental metrics beyond hazardous waste (solid waste diversion rate, water consumption, carbon emissions), (b) compiling sustainability data into regulatory reports and voluntary disclosures, (c) setting and monitoring environmental reduction targets, and (d) coordinating environmental compliance across 200+ locations. This workflow creates that comprehensive sustainability governance layer.
 
 ### Steps
 
@@ -686,7 +686,7 @@ BuildRight operates 200 stores and 5 DCs across the Philippine archipelago. Envi
 |---|---|
 | **Trigger** | Scheduled audit or suspected internal/external theft incident |
 | **Frequency** | Weekly audits of high-risk transactions |
-| **Volume** | Covers all 200 stores and 5 DCs |
+| **Volume** | Covers all 200 stores and 4 DCs |
 | **Owner** | Loss Prevention (LP) Manager |
 | **Participants** | LP Analyst, Store Manager, IT (for system access) |
 

@@ -252,7 +252,7 @@ When a store is the source location for a store-to-store transfer (W22 step 5), 
 ### Staffing Implication
 - **Store Manager**: ~0.5–1 return initiations/month × 25 min = ~15 min/month. Absorbed.
 - **Supply Planner**: 5 min review per return × ~200/month = ~17 hours/month across all stores. Absorbed by existing planner team.
-- **DC Receiving**: adds ~15–30 min per return shipment to existing receiving workload. With ~100–200/month ÷ 5 DCs = ~20–40/DC/month. Manageable.
+- **DC Receiving**: adds ~15–30 min per return shipment to existing receiving workload. With ~100–200/month ÷ 4 DCs = ~20–40/DC/month. Manageable.
 
 ### Staffing Implication (W22 overall)
 - Inter-DC transfers are part of Supply Planner's existing duties (within the 30-person Supply Chain team).
@@ -316,7 +316,7 @@ When a store is the source location for a store-to-store transfer (W22 step 5), 
 |---|---|
 | **Trigger** | Year-end close calendar (typically December 31 or last business day of fiscal year) |
 | **Frequency** | Annual; each store and DC counted once per year |
-| **Volume** | 35,000 SKUs × 205 locations (200 stores + 5 DCs); executed in coordinated 3–5 day window per region |
+| **Volume** | 35,000 SKUs × 205 locations (200 stores + 4 DCs); executed in coordinated 3–5 day window per region |
 | **Owner** | Cost Accountant (overall); Store Manager (per store); DC Manager (per DC) |
 | **Participants** | Cost Accountant, Store Managers, DC Managers, all store staff, inventory count teams, IT, Internal Audit |
 

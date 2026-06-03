@@ -31,7 +31,7 @@
 2. How does offline POS work when NetSuite is cloud-only?
 3. How mature is the Philippine SuiteTax / localization module?
 4. Can SuiteCommerce handle BOPIS with real-time per-store inventory?
-5. What are the concurrent user licensing implications for 1,000 POS terminals?
+5. What are the concurrent user licensing implications for 600 POS terminals?
 
 ---
 

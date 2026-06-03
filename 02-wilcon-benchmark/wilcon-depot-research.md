@@ -217,7 +217,7 @@
 | **Distribution Centers** | 3+ | 5 |
 | **Ecommerce** | Full (BOPIS + delivery) | Full (BOPIS + delivery) |
 | **Loyalty Program** | Yes | Yes |
-| **Employees** | ~5,000–6,000 | ~7,050 |
+| **Employees** | ~5,000–6,000 | ~6,510 |
 | **Monthly Trade POs** | ~500–800 (estimated) | 1,200 |
 | **Import Vendors** | ~40% | ~40% |
 
@@ -227,7 +227,7 @@
 3. **Model Company is based in Davao** — tests provincial/regional operations focus
 4. **Model Company has fewer SKUs but more stores** (35K vs 60K+) — tests high-volume, multi-location inventory with a curated assortment
 5. **Model Company is a clean-sheet design** — no legacy system constraints
-6. **Model Company has 5 DCs** (vs Wilcon's 3+) — higher DC-to-store ratio reflects larger store count and provincial coverage
+6. **Model Company has 4 DCs** (vs Wilcon's 3+) — higher DC-to-store ratio reflects larger store count and provincial coverage
 
 ---
 

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hazmat — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub act"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">☣️</span><h2>Hazmat</h2></div><div class="cd mc"><h1>Hazardous Materials (Hazmat) & Compliance Workflows</h1>
+
+<blockquote>Storage, handling, and transportation of hazardous products (Paint, Chemicals, Adhesives, Batteries).</blockquote>
+<blockquote></blockquote>
+<blockquote>Back to <a href="README.md">Workflow Index</a></blockquote>
+
+<hr>
+
+<h2>Workflows in This Domain</h2>
+
+<ul>
+<li><a href="#hazmat-storage--segregation-compliance-dc">W236. Hazmat Storage & Segregation Compliance (DC)</a></li>
+<li><a href="#hazmat-handling--safety-training-store">W237. Hazmat Handling & Safety Training (Store)</a></li>
+<li><a href="#hazmat-spill-response--incident-management">W238. Hazmat Spill Response & Incident Management</a></li>
+<li><a href="#customs-duty--tax-reconciliation-boc">W239. Customs Duty & Tax Reconciliation (BOC)</a></li>
+</ul>
+
+<hr>
+
+<h2>W236. Hazmat Storage & Segregation Compliance (DC)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Receiving of Hazmat SKUs (W3)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Daily</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~15% of SKUs (Paint, Thinners, Adhesives, Batteries)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>DC Safety Officer</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>DC Receiving Clerk, Putaway Staff</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Identification</strong>: System flags incoming SKU as "Hazmat" based on SDS (Safety Data Sheet) in Item Master</td>
+<td>System</td>
+<td>Receiving Clerk</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td><strong>Segregation Check</strong>: System suggests putaway in dedicated "Hazmat Zone" (Fire-rated area)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td><strong>Compatibility Review</strong>: Verify SKU is not stored adjacent to incompatible chemicals (e.g., Flammables away from Oxidizers)</td>
+<td>DC Safety Officer</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>4</td>
+<td><strong>Containment</strong>: Ensure secondary containment (spill pallets) is used for bulk liquid storage</td>
+<td>Putaway Staff</td>
+<td>DC Safety Officer</td>
+<td>5 min</td>
+</tr>
+<td>5</td>
+<td><strong>Signage</strong>: Verify appropriate hazard placards (NFPA/GHS) are visible at the bin location</td>
+<td>DC Safety Officer</td>
+<td>—</td>
+<td>2 min</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W237. Hazmat Handling & Safety Training (Store)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>New employee hire (W15); or annual refresher</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Annual</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Store Safety Officer</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Store Staff, HR</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Training Module</strong>: Staff complete "Hazmat Handling 101" (PPE use, SDS reading, lifting techniques)</td>
+<td>HR / Safety Officer</td>
+<td>—</td>
+<td>2 hours</td>
+</tr>
+<td>2</td>
+<td><strong>PPE Inspection</strong>: Daily check of available PPE (Gloves, Eye protection, Aprons) in Paint/Tile departments</td>
+<td>Safety Officer</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>3</td>
+<td><strong>Display Safety</strong>: Ensure chemicals on shelves are not stacked > 1.5m and are secured from falling</td>
+<td>Dept Supervisor</td>
+<td>—</td>
+<td>Daily</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W238. Hazmat Spill Response & Incident Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Discovery of a spill or leak (Paint, Chemical, Battery acid)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ad-hoc (Rare)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Safety Officer</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Response Team, Store/DC Manager</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Containment</strong>: Evacuate immediate area; deploy spill kit (absorbent pads, socks)</td>
+<td>Response Team</td>
+<td>Safety Officer</td>
+<td>5 min</td>
+</tr>
+<td>2</td>
+<td><strong>Reporting</strong>: Create Incident Report in system (W140) with photos and SDS reference</td>
+<td>Safety Officer</td>
+<td>Store Mgr</td>
+<td>15 min</td>
+</tr>
+<td>3</td>
+<td><strong>Cleanup</strong>: Dispose of contaminated materials as "Hazardous Waste" per W82</td>
+<td>Safety Officer</td>
+<td>—</td>
+<td>1 hour</td>
+</tr>
+<td>4</td>
+<td><strong>Inventory Adjustment</strong>: Record loss in system via W92 (Damage)</td>
+<td>Store Mgr</td>
+<td>—</td>
+<td>5 min</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W239. Customs Duty & Tax Reconciliation (BOC)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Release of import shipment from Bureau of Customs (BOC)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Per import shipment (~20–30/month)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Significant tax payments (VAT, Duties, Excise)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Import Coordinator</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Finance (Tax), Customs Broker</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Payment</strong>: Pay duties and taxes via bank (IPAY/Pass5 system) based on BOC assessment</td>
+<td>Finance</td>
+<td>—</td>
+<td>1 day</td>
+</tr>
+<td>2</td>
+<td><strong>Receipt Aggregation</strong>: Collect Official Receipts (BCOR) and Statement of Settlement of Duties and Taxes (SSDT)</td>
+<td>Import Coord</td>
+<td>—</td>
+<td>2 days</td>
+</tr>
+<td>3</td>
+<td><strong>Reconciliation</strong>: Compare BOC assessed values vs. ERP estimated landed cost (W2B.12)</td>
+<td>Finance</td>
+<td>Controller</td>
+<td>1 day</td>
+</tr>
+<td>4</td>
+<td><strong>VAT Input Capture</strong>: Ensure 12% Import VAT is correctly recorded for BIR credit (W90)</td>
+<td>Tax Manager</td>
+<td>—</td>
+<td>30 min</td>
+</tr>
+<td>5</td>
+<td><strong>Variance Analysis</strong>: Investigate significant variances in tariff classification or valuation</td>
+<td>Import Coord</td>
+<td>Tax Manager</td>
+<td>2 hours</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>SDS (Safety Data Sheet) storage in Item Master</li>
+<li>Hazmat zone location management in WMS</li>
+<li>Incident management module (W140)</li>
+<li>Landed cost calculation engine (W2B)</li>
+<li>VAT Input/Output reconciliation (W90)</li>
+</ul>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

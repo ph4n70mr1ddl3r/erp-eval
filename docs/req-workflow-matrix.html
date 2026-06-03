@@ -1,0 +1,1914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Req ↔ Workflow Matrix — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub act"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🔗</span><h2>Req ↔ Workflow Matrix</h2></div><div class="cd mc"><h1>Requirement-to-Workflow Cross-Reference Matrix</h1>
+
+<blockquote>Maps each ERP requirement from <a href="erp-requirements.md">erp-requirements.md</a> to the operational</blockquote>
+<blockquote>workflows from the <a href="workflows/README.md">workflows/</a> directory that exercise it.</blockquote>
+<blockquote>Ensures complete traceability: every requirement is validated by at least one workflow,</blockquote>
+<blockquote>and every workflow tests at least one requirement.</blockquote>
+
+<hr>
+
+<h2>How to Read This Matrix</h2>
+
+<ul>
+<li><strong>Req ID</strong>: Requirement identifier from erp-requirements.md</li>
+<li><strong>Priority</strong>: Must Have (M), Should Have (S), Nice to Have (N)</li>
+<li><strong>Primary Workflows</strong>: Workflows where this requirement is directly exercised and system touchpoints are listed</li>
+<li><strong>Supporting Workflows</strong>: Workflows that indirectly involve this requirement</li>
+</ul>
+
+<hr>
+
+<h2>R1. Financial Management (FIN)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>FIN-001</td>
+<td>Multi-entity GL</td>
+<td>M</td>
+<td>W9A (month-end close), W14 (IC transactions)</td>
+<td>W10 (payroll GL posting), W30 (treasury)</td>
+</tr>
+<td>FIN-002</td>
+<td>Automated IC Elimination</td>
+<td>M</td>
+<td>W9A.13, W14.8, W234 (IC profit elimination)</td>
+<td>—</td>
+</tr>
+<td>FIN-003</td>
+<td>Consolidated Financial Reporting</td>
+<td>M</td>
+<td>W9A.14, W35.8</td>
+<td>W26 (budget)</td>
+</tr>
+<td>FIN-004</td>
+<td>AP with 3-Way Match</td>
+<td>M</td>
+<td>W7 (AP processing), W18.9 (DSD 3-way)</td>
+<td>W20.11 (VMI settlement), W23.9 (consignment), W7D (AP vendor statement reconciliation), W100 (vendor statement reconciliation — finance), W244 (vendor invoice dispute & discrepancy resolution)</td>
+</tr>
+<td>FIN-005</td>
+<td>AR for B2B</td>
+<td>M</td>
+<td>W8 (AR processing), W5B.4c (POS trade accounts), W229 (B2B credit limit exception), W108 (customer credit collection & escalation)</td>
+<td>W58 (corporate accounts), W94 (customer deposit management), W101 (customer refund & credit processing)</td>
+</tr>
+<td>FIN-006</td>
+<td>Philippine VAT (12%)</td>
+<td>M</td>
+<td>W5B (POS selling), W9A.16 (VAT return), W11/W19 (ecommerce VAT), W217 (SC/PWD VAT-exemption), W239 (customs duty recon)</td>
+<td>W12 (returns — VAT reversal)</td>
+</tr>
+<td>FIN-007</td>
+<td>Withholding Tax (Expanded)</td>
+<td>M</td>
+<td>W7.9a (EWT computation), W9A.16a (EWT remittance)</td>
+<td>W7C (non-PO EWT on services)</td>
+</tr>
+<td>FIN-008</td>
+<td>BIR Tax Return Generation</td>
+<td>M</td>
+<td>W9A.16 (VAT, income tax), W9A.16a (EWT), W9A.16c (LBT), W216 (BIR CAS audit), W217 (SC/PWD reporting)</td>
+<td>W10.11 (statutory contribution files), W90 (monthly tax filing & statutory remittance)</td>
+</tr>
+<td>FIN-009</td>
+<td>Multi-Bank Integration</td>
+<td>S</td>
+<td>W30.2 (bank statement import), W30.7 (cash sweeps)</td>
+<td>W7.9 (payment file generation), W89 (bank reconciliation)</td>
+</tr>
+<td>FIN-010</td>
+<td>Cash Management / Treasury</td>
+<td>S</td>
+<td>W30 (daily treasury), W5F (store cash reconciliation), W232 (LC lifecycle), W233 (liquidity forecasting), W174 (store-level CIT & armored car management)</td>
+<td>W25 (petty cash), W89 (bank reconciliation), W99 (payment settlement reconciliation)</td>
+</tr>
+<td>FIN-011</td>
+<td>Fixed Asset Management</td>
+<td>M</td>
+<td>W21.7–8 (asset creation & depreciation), W39 (disposal), W240 (DC equipment PM), W241 (HQ asset PM), W184 (fixed asset physical verification audit)</td>
+<td>W16 (new store capex)</td>
+</tr>
+<td>FIN-012</td>
+<td>Budgeting & Variance Analysis</td>
+<td>S</td>
+<td>W26 (annual budget), W35.9 (monthly variance), W85 (product costing & margin analysis review)</td>
+<td>W21.3 (budget check)</td>
+</tr>
+<td>FIN-013</td>
+<td>Landed Cost Calculation</td>
+<td>M</td>
+<td>W2B.12 (import landed cost), W239 (customs duty tax recon), W249 (port demurrage fee allocation)</td>
+<td>W66.8 (inter-island freight allocation)</td>
+</tr>
+<td>FIN-014</td>
+<td>Multi-Currency</td>
+<td>M</td>
+<td>W2B.12–13 (import FX), W9A.5a (FX revaluation), W232 (LC lifecycle)</td>
+<td>W30.10 (USD accounts)</td>
+</tr>
+<td>FIN-015</td>
+<td>Period-End Close Workflow</td>
+<td>M</td>
+<td>W9 (financial close & reporting — parent workflow), W9A (month-end close), W9B (year-end close)</td>
+<td>—</td>
+</tr>
+<td>FIN-016</td>
+<td>Capex Workflow</td>
+<td>M</td>
+<td>W21 (capex request & approval), W226 (store renovation capex)</td>
+<td>W16 (new store capex)</td>
+</tr>
+<td>FIN-017</td>
+<td>Petty Cash Management</td>
+<td>M</td>
+<td>W25 (petty cash lifecycle)</td>
+<td>W47 (facility maintenance), W82 (small disposal costs)</td>
+</tr>
+<td>FIN-018</td>
+<td>Consignment Settlement</td>
+<td>S</td>
+<td>W23 (consignment operations)</td>
+<td>W7 (AP settlement)</td>
+</tr>
+<td>FIN-019</td>
+<td>Vendor Rebate Management</td>
+<td>S</td>
+<td>W27 (rebate accrual & settlement)</td>
+<td>W7.9b (credit memo)</td>
+</tr>
+<td>FIN-020</td>
+<td>Duplicate Vendor Invoice Detection</td>
+<td>M</td>
+<td>W7 (duplicate detection engine, blocks and alerts)</td>
+<td>W70 (credit note aging — duplicate overrides)</td>
+</tr>
+<td>FIN-021</td>
+<td>FX Hedging / Forward Contract Management</td>
+<td>S</td>
+<td>W80 (forward contract lifecycle, settlement, MTM reporting)</td>
+<td>W2B (import POs — exposure source), W9A.5a (month-end FX revaluation), W30 (treasury cash position)</td>
+</tr>
+<td>FIN-022</td>
+<td>Bad Debt Write-Off & Recovery</td>
+<td>M</td>
+<td>W81 (bad debt provisioning, write-off with BIR documentation, recovery tracking)</td>
+<td>W8.8a (AR collection escalation — feeds into write-off), W9A (month-end provision posting), W24 (credit block on written-off accounts)</td>
+</tr>
+<td>FIN-023</td>
+<td>Insurance Policy Lifecycle Management</td>
+<td>S</td>
+<td>W59 (insurance policy lifecycle management — registry, premiums, claims, renewal)</td>
+<td>W21 (capex — insurance for new assets)</td>
+</tr>
+<td>FIN-024</td>
+<td>Employee Gratuity & Retirement Fund (RA 7641)</td>
+<td>M</td>
+<td>W175 (employee gratuity & retirement fund management per RA 7641)</td>
+<td>W10 (payroll — retirement accrual posting), W43 (separation — retirement pay computation)</td>
+</tr>
+<td>FIN-025</td>
+<td>Cash-in-Transit (CIT) & Armored Car Management</td>
+<td>S</td>
+<td>W174 (store-level CIT & armored car scheduling, custody transfer, reconciliation)</td>
+<td>W30 (treasury — deposit confirmation), W5F (store EOD — cash handoff to CIT)</td>
+</tr>
+<td>FIN-026</td>
+<td>Product Costing & Margin Analysis</td>
+<td>S</td>
+<td>W85 (product costing & margin analysis review — standard vs. actual, landed cost roll-up)</td>
+<td>W9A (month-end cost variance posting), W35 (margin reporting)</td>
+</tr>
+<td>FIN-027</td>
+<td>Customer Refund & Credit Processing</td>
+<td>M</td>
+<td>W101 (customer refund & credit processing — cash, card, store credit, BIR credit notes)</td>
+<td>W12A (in-store returns — refund trigger), W99 (payment settlement reconciliation)</td>
+</tr>
+<td>FIN-028</td>
+<td>Customer Credit Collection & Escalation</td>
+<td>M</td>
+<td>W108 (customer credit collection & escalation — call logging, promise-to-pay, aging escalation)</td>
+<td>W8 (AR processing — collection feed), W81 (bad debt write-off — escalation outcome)</td>
+</tr>
+<td>FIN-029</td>
+<td>Intercompany Dividend & Loan Management</td>
+<td>S</td>
+<td>W137 (intercompany dividend & loan management — declaration, interest, amortization)</td>
+<td>W14 (IC settlement — net settlement), W9A (month-end — IC interest posting)</td>
+</tr>
+<td>FIN-030</td>
+<td>Fixed Asset Physical Verification</td>
+<td>S</td>
+<td>W184 (fixed asset physical verification — tag scanning, missing flagging, reconciliation)</td>
+<td>W39 (asset disposal — verification input), W21 (capex — new asset verification)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R2. Inventory Management (INV)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>INV-001</td>
+<td>Perpetual Inventory</td>
+<td>M</td>
+<td>W3.7 (GR posting), W5B.8 (POS deduction), W4.12 (transfer receipt), W219 (quarantine status adjustments), W109 (store-level inventory receiving & putaway)</td>
+<td>W6 (cycle counts), W220 (SLOB actual write-offs), W91 (damaged & defective goods disposition), W92 (inventory adjustment & shrinkage authorization)</td>
+</tr>
+<td>INV-002</td>
+<td>Real-Time Inventory Visibility</td>
+<td>M</td>
+<td>W4 (replenishment), W11.1 (BOPIS ATP), W19.1 (delivery ATP)</td>
+<td>W22 (transfer availability check)</td>
+</tr>
+<td>INV-003</td>
+<td>Weighted Average Cost (WAC)</td>
+<td>M</td>
+<td>W3.7 (receipt WAC recalc), W9A.6a (WAC verification)</td>
+<td>W46.7 (kit costing)</td>
+</tr>
+<td>INV-004</td>
+<td>ABC Classification</td>
+<td>M</td>
+<td>W31.8 (classification review), W42 (tiered count strategy)</td>
+<td>W1 (assortment review)</td>
+</tr>
+<td>INV-005</td>
+<td>Multi-Location Stock Transfer</td>
+<td>M</td>
+<td>W4 (DC→Store), W22 (store-to-store, inter-DC), W204 (regional expedited transfer), W214 (store-to-store expedited), W218 (inter-DC push), W22A (store-level outbound transfer fulfillment), W22B (store-to-DC return — excess/damaged)</td>
+<td>W45 (closure redistribution), W4B (store-initiated replenishment request)</td>
+</tr>
+<td>INV-006</td>
+<td>Cycle Counting</td>
+<td>M</td>
+<td>W6 (cycle counting), W248 (store variance LP investigation)</td>
+<td>W42 (annual physical inventory)</td>
+</tr>
+<td>INV-007</td>
+<td>Physical Inventory (Wall-to-Wall)</td>
+<td>M</td>
+<td>W42 (annual physical inventory), W248 (store variance LP investigation)</td>
+<td>W6 (cycle counts feed C-item validation)</td>
+</tr>
+<td>INV-008</td>
+<td>Lot & Serial Tracking</td>
+<td>S</td>
+<td>W5B.4b (POS batch capture), W29 (recall tracing)</td>
+<td>W33 (warranty serial lookup)</td>
+</tr>
+<td>INV-009</td>
+<td>Consignment Inventory</td>
+<td>S</td>
+<td>W23 (consignment operations)</td>
+<td>—</td>
+</tr>
+<td>INV-010</td>
+<td>Catch-Weight / Variable Measure</td>
+<td>M</td>
+<td>W5B.2 (POS catch-weight), W3B.3 (yard catch-weight), W22 (transfer catch-weight)</td>
+<td>W18 (DSD catch-weight)</td>
+</tr>
+<td>INV-011</td>
+<td>Inventory Aging Analysis</td>
+<td>S</td>
+<td>W1 (slow-mover review), W9A.16b (NRV review), W220 (SLOB provisioning & liquidation)</td>
+<td>W13.9b (clearance disposition), W93 (markdown & clearance pricing for aging inventory)</td>
+</tr>
+<td>INV-012</td>
+<td>Safety Stock & Reorder Point</td>
+<td>M</td>
+<td>W2A.1 (ROP calculation), W31.8 (parameter governance)</td>
+<td>W56 (backorder — insufficient ROP)</td>
+</tr>
+<td>INV-013</td>
+<td>Batch/LOT Tracking for Paint</td>
+<td>S</td>
+<td>W3.4 (shelf-life capture), W4.5 (FEFO picking)</td>
+<td>W6 (near-expiry alerting)</td>
+</tr>
+<td>INV-014</td>
+<td>In-Transit Inventory</td>
+<td>M</td>
+<td>W4.8 (DC→Store in-transit), W22.6 (transfer in-transit), W250 (supply chain control tower visibility)</td>
+<td>W66 (inter-island in-transit)</td>
+</tr>
+<td>INV-015</td>
+<td>Inventory Valuation Reports</td>
+<td>M</td>
+<td>W9A.6 (inventory valuation), W42.17 (physical inventory summary)</td>
+<td>W35.10 (store P&L)</td>
+</tr>
+<td>INV-016</td>
+<td>Product Recall Tracking</td>
+<td>S</td>
+<td>W29 (product recall execution)</td>
+<td>—</td>
+</tr>
+<td>INV-017</td>
+<td>Consignment Inventory Tracking</td>
+<td>M</td>
+<td>W23 (consignment operations — non-valuated receipt, ownership transfer at sale)</td>
+<td>W42 (vendor-owned inventory during physical count)</td>
+</tr>
+<td>INV-018</td>
+<td>VMI Inventory Tracking</td>
+<td>S</td>
+<td>W20 (VMI operations)</td>
+<td>W42 (vendor-owned inventory during physical count)</td>
+</tr>
+<td>INV-019</td>
+<td>Multi-Channel Inventory Allocation Governance</td>
+<td>S</td>
+<td>W105 (multi-channel inventory allocation & priority governance — reservation rules per channel)</td>
+<td>W11 (BOPIS — channel reservation), W19 (home delivery — channel reservation)</td>
+</tr>
+<td>INV-020</td>
+<td>Proactive Store Inventory Rebalancing</td>
+<td>S</td>
+<td>W154 (proactive store inventory rebalancing — system-suggested rebalancing)</td>
+<td>W22 (transfers — execution vehicle), W4B (store-initiated request — demand signal)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R3. Procurement & Purchasing (PUR)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>PUR-001</td>
+<td>Purchase Order Management</td>
+<td>M</td>
+<td>W2 (procurement PO cycle — parent workflow), W2A (auto-replenishment), W2B (import PO), W2C (blanket PO), W246 (drop-ship back-to-back PO)</td>
+<td>W38 (special order PO), W60 (emergency PO)</td>
+</tr>
+<td>PUR-002</td>
+<td>Automated Replenishment</td>
+<td>M</td>
+<td>W2A.1–2 (ROP/EOQ auto-generate), W31.6 (forecast release)</td>
+<td>W57 (promo stock PO)</td>
+</tr>
+<td>PUR-003</td>
+<td>Vendor Management</td>
+<td>M</td>
+<td>W36 (vendor onboarding), W44 (vendor scorecard), W230 (legal contract review), W115 (supplier diversity & MSME development), W155 (vendor strategic collaboration & JBP), W62B (3PL/delivery partner onboarding & offboarding)</td>
+<td>W62 (non-PO contracts), W160 (private label factory audit)</td>
+</tr>
+<td>PUR-004</td>
+<td>Import Purchase Orders</td>
+<td>M</td>
+<td>W2B (import PO lifecycle), W232 (LC lifecycle), W239 (customs duty recon), W249 (port demurrage management), W250 (import shipment control tower tracking)</td>
+<td>W32 (seasonal import PO)</td>
+</tr>
+<td>PUR-005</td>
+<td>3-Way Matching</td>
+<td>M</td>
+<td>W7.2–3 (3-way match engine)</td>
+<td>W18.9 (DSD 3-way)</td>
+</tr>
+<td>PUR-006</td>
+<td>Blanket/Contract POs</td>
+<td>S</td>
+<td>W2C (blanket PO lifecycle)</td>
+<td>—</td>
+</tr>
+<td>PUR-007</td>
+<td>Vendor Portal</td>
+<td>N</td>
+<td>W2A.7 (vendor portal PO access), W36.9 (portal provisioning)</td>
+<td>W20.1 (VMI data sharing)</td>
+</tr>
+<td>PUR-008</td>
+<td>Vendor Performance Scorecard</td>
+<td>S</td>
+<td>W44 (vendor performance review), W242 (3PL performance review), W245 (supplier compliance chargebacks), W161 (vendor price protection & market markdown claims)</td>
+<td>W18B.5 (DSD no-show tracking), W110 (supplier quality CAPA — quality metrics)</td>
+</tr>
+<td>PUR-009</td>
+<td>Multi-Entity Procurement</td>
+<td>M</td>
+<td>W2A (central buying), W14 (IC service fees)</td>
+<td>—</td>
+</tr>
+<td>PUR-010</td>
+<td>Approval Workflow</td>
+<td>M</td>
+<td>W2A.5–6 (PO approval tiers), W21.4 (capex approval), W24.5 (credit approval)</td>
+<td>W7C.3 (non-PO approval)</td>
+</tr>
+<td>PUR-011</td>
+<td>Goods Receipt Processing</td>
+<td>M</td>
+<td>W3 (DC receiving), W18 (store DSD receiving), W3C (DC inbound delivery scheduling)</td>
+<td>W20.6 (VMI receipt)</td>
+</tr>
+<td>PUR-012</td>
+<td>Return to Vendor</td>
+<td>M</td>
+<td>W88 (RTV processing — full lifecycle)</td>
+<td>W3.6a–b (DC receiving RTV), W23.10 (consignment return), W33.6 (warranty RTV)</td>
+</tr>
+<td>PUR-013</td>
+<td>Direct Store Delivery</td>
+<td>M</td>
+<td>W18 (DSD receiving), W18B (DSD scheduling)</td>
+<td>—</td>
+</tr>
+<td>PUR-014</td>
+<td>Vendor Managed Inventory</td>
+<td>S</td>
+<td>W20 (VMI operations)</td>
+<td>—</td>
+</tr>
+<td>PUR-015</td>
+<td>Vendor Rebate Management</td>
+<td>S</td>
+<td>W27 (rebate accrual & settlement)</td>
+<td>—</td>
+</tr>
+<td>PUR-016</td>
+<td>Configurable AQL Sampling per SKU Category</td>
+<td>S</td>
+<td>W3 (AQL inspection standards per category at goods receipt)</td>
+<td>W44 (vendor scorecard — quality reject rate), W150 (product quality testing & certification)</td>
+</tr>
+<td>PUR-017</td>
+<td>Supplier Quality & CAPA</td>
+<td>S</td>
+<td>W110 (supplier quality & CAPA — quality issue logging, corrective action tracking)</td>
+<td>W3 (goods receipt — quality hold), W44 (vendor scorecard — quality metrics)</td>
+</tr>
+<td>PUR-018</td>
+<td>Indirect / Non-Merchandise Procurement</td>
+<td>M</td>
+<td>W136 (indirect / non-merchandise procurement — supplies, services, IT, facilities)</td>
+<td>W21 (capex — equipment procurement), W7C (non-PO recurring expenses)</td>
+</tr>
+<td>PUR-019</td>
+<td>Vendor Invoice Dispute & Discrepancy Resolution</td>
+<td>M</td>
+<td>W244 (vendor invoice dispute & discrepancy resolution — case creation, hold payment, resolution)</td>
+<td>W7 (AP — 3-way match variance flagging), W7D (AP vendor statement reconciliation)</td>
+</tr>
+<td>PUR-020</td>
+<td>Vendor Price Protection & Market Markdown Claims</td>
+<td>S</td>
+<td>W161 (vendor price protection & market markdown claims — claim filing, credit memo)</td>
+<td>W40 (price change — trigger for price protection), W27 (rebate — related vendor credits)</td>
+</tr>
+<td>PUR-021</td>
+<td>Vendor Strategic Collaboration & JBP</td>
+<td>S</td>
+<td>W155 (vendor strategic collaboration & joint business planning — JBP documentation, scorecard)</td>
+<td>W1 (assortment review — JBP input), W13 (promotions — co-investment tracking)</td>
+</tr>
+<td>PUR-022</td>
+<td>Private Label Factory Audit & Social Compliance</td>
+<td>S</td>
+<td>W160 (private label factory audit & social compliance — audit scheduling, scoring, corrective action)</td>
+<td>W36 (vendor onboarding — factory qualification), W44 (vendor scorecard — compliance score)</td>
+</tr>
+<td>PUR-023</td>
+<td>Supplier Diversity & MSME Development Program</td>
+<td>S</td>
+<td>W115 (supplier diversity & MSME development — classification, spend reporting, development tracking)</td>
+<td>W36 (vendor onboarding — MSME classification)</td>
+</tr>
+<td>PUR-024</td>
+<td>Product Quality Testing & Certification</td>
+<td>S</td>
+<td>W150 (product quality testing & certification — test request, result recording, certificate tracking)</td>
+<td>W3 (goods receipt — test trigger), W110 (supplier quality CAPA — failed test feed)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R4. Warehouse Management (WMS)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>WMS-001</td>
+<td>RF/Barcode Directed Operations</td>
+<td>M</td>
+<td>W3 (receiving), W4 (pick/pack/ship), W6 (cycle count)</td>
+<td>W42 (physical inventory)</td>
+</tr>
+<td>WMS-002</td>
+<td>Cross-Dock Capability</td>
+<td>S</td>
+<td>W3 (cross-dock flow for fast-movers), W221 (cross-docking fast-moving bulky items)</td>
+<td>—</td>
+</tr>
+<td>WMS-003</td>
+<td>Wave/Zone Picking</td>
+<td>S</td>
+<td>W4.3–5 (wave planning & picking)</td>
+<td>—</td>
+</tr>
+<td>WMS-004</td>
+<td>Receiving & Putaway</td>
+<td>M</td>
+<td>W3 (DC receiving & putaway)</td>
+<td>W18 (DSD — no putaway)</td>
+</tr>
+<td>WMS-005</td>
+<td>Shipping & Dispatch</td>
+<td>M</td>
+<td>W4.6–7 (pack & load), W19.6–8 (ecommerce shipping), W106 (DC outbound dispatch & load planning)</td>
+<td>—</td>
+</tr>
+<td>WMS-006</td>
+<td>Yard Management</td>
+<td>S</td>
+<td>W3B (yard & outdoor inventory), W222 (DC container yard & chassis management)</td>
+<td>W188 (fleet spare parts & preventive maintenance — yard equipment)</td>
+</tr>
+<td>WMS-007</td>
+<td>Label Printing</td>
+<td>M</td>
+<td>W63 (shelf label distribution)</td>
+<td>W46.6 (kit barcode labels)</td>
+</tr>
+<td>WMS-008</td>
+<td>WMS Integration with ERP</td>
+<td>M</td>
+<td>W4 (replenishment), W3 (receiving), W19 (ecommerce fulfillment)</td>
+<td>W22 (transfers)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R5. POS & Retail (POS)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>POS-001</td>
+<td>1,000 POS Terminals</td>
+<td>M</td>
+<td>W5B (in-store selling), W5 (daily store operations — parent workflow), W16 (new store POS setup)</td>
+<td>W45 (store closure decommission)</td>
+</tr>
+<td>POS-002</td>
+<td>Offline Mode</td>
+<td>M</td>
+<td>W5G (offline POS recovery & reconciliation)</td>
+<td>W49 (typhoon — degraded mode)</td>
+</tr>
+<td>POS-003</td>
+<td>Barcode Scanning</td>
+<td>M</td>
+<td>W5B.4 (barcode scanning at checkout)</td>
+<td>W3.4 (receiving scan), W6.3 (cycle count scan)</td>
+</tr>
+<td>POS-004</td>
+<td>Multi-Tender</td>
+<td>M</td>
+<td>W5B.7 (multi-tender payment), W12A.6 (split-tender refund)</td>
+<td>—</td>
+</tr>
+<td>POS-005</td>
+<td>Loyalty Integration</td>
+<td>M</td>
+<td>W5B.5 (loyalty scan), W17 (loyalty program operations)</td>
+<td>—</td>
+</tr>
+<td>POS-006</td>
+<td>Price Override (w/ Auth)</td>
+<td>M</td>
+<td>W5B.4a (price override with manager authorization)</td>
+<td>W61 (competitor price match)</td>
+</tr>
+<td>POS-007</td>
+<td>Returns & Exchanges</td>
+<td>M</td>
+<td>W12A (in-store returns), W12B (online returns), W12C (cross-store returns), W215 (home delivery returns)</td>
+<td>—</td>
+</tr>
+<td>POS-008</td>
+<td>Cash Drawer Management</td>
+<td>M</td>
+<td>W5A.4 (cash float), W5F.2–5 (Z-report & cash count), W212 (Smart Safe deposit)</td>
+<td>W89 (bank reconciliation), W99 (payment settlement reconciliation)</td>
+</tr>
+<td>POS-009</td>
+<td>End-of-Day Reconciliation</td>
+<td>M</td>
+<td>W5F (store closing & EOD), W212.5 (Smart Safe reconciliation)</td>
+<td>W30.4 (deposit auto-matching), W89 (bank reconciliation), W99 (payment settlement reconciliation), W5D (in-store customer delivery scheduling — delivery EOD reconciliation), W5E (store opening delay procedure — delayed start EOD impact)</td>
+</tr>
+<td>POS-010</td>
+<td>Quantity Break Pricing</td>
+<td>M</td>
+<td>W5B.6 (auto quantity breaks), W40.15–19 (quantity break setup)</td>
+<td>—</td>
+</tr>
+<td>POS-011</td>
+<td>Customer Display</td>
+<td>S</td>
+<td>W5B.4–7 (customer-facing display during checkout)</td>
+<td>—</td>
+</tr>
+<td>POS-012</td>
+<td>Receipt Printing</td>
+<td>M</td>
+<td>W5B.8 (BIR-registered receipt)</td>
+<td>—</td>
+</tr>
+<td>POS-013</td>
+<td>Real-Time Inventory Deduction</td>
+<td>M</td>
+<td>W5B.8 (inventory deduction at sale), W5G.5 (offline reconciliation)</td>
+<td>—</td>
+</tr>
+<td>POS-014</td>
+<td>Promotional Pricing Auto-Apply</td>
+<td>M</td>
+<td>W13.7 (auto-apply at POS), W5B.6 (system calculates promos)</td>
+<td>—</td>
+</tr>
+<td>POS-014a</td>
+<td>Senior Citizen & PWD Discount Compliance</td>
+<td>M</td>
+<td>W170 (senior citizen & PWD discount compliance — PH legal, auto-detect and apply 20% discount, VAT-exemption for SC)</td>
+<td>W217 (SC/PWD VAT-exemption reporting), W5B (POS — discount application)</td>
+</tr>
+<td>POS-015</td>
+<td>Gift Card / Store Credit</td>
+<td>S</td>
+<td>W28 (gift card & store credit lifecycle)</td>
+<td>W12A.6 (store credit from returns)</td>
+</tr>
+<td>POS-016</td>
+<td>Catch-Weight / Variable Measure at POS</td>
+<td>M</td>
+<td>W5B.2 (catch-weight selling)</td>
+<td>W3B.3 (catch-weight receiving), W22 (catch-weight transfer)</td>
+</tr>
+<td>POS-017</td>
+<td>Paint Mixing / Custom SKU at POS</td>
+<td>M</td>
+<td>W5B.3 (paint mixing)</td>
+<td>—</td>
+</tr>
+<td>POS-018</td>
+<td>Age-Restricted Product Prompts</td>
+<td>S</td>
+<td>W5B.9 (age-restricted prompts)</td>
+<td>—</td>
+</tr>
+<td>POS-019</td>
+<td>Warranty Claim Registration</td>
+<td>S</td>
+<td>W33 (warranty claim processing)</td>
+<td>—</td>
+</tr>
+<td>POS-020</td>
+<td>Layaway / Installment Sales</td>
+<td>S</td>
+<td>W75 (layaway agreement lifecycle — exercises POS-004, POS-015, FIN-005)</td>
+<td>—</td>
+</tr>
+<td>POS-021</td>
+<td>Multi-DC Order Splitting</td>
+<td>S</td>
+<td>W19 (multi-DC order splitting logic)</td>
+<td>—</td>
+</tr>
+<td>POS-022</td>
+<td>Employee Discount at POS</td>
+<td>S</td>
+<td>W205 (employee purchase program), W5B.12 (staff discount logic)</td>
+<td>W17 (employee purchases excluded from loyalty points)</td>
+</tr>
+<td>POS-023</td>
+<td>Store-Level Customer Delivery Scheduling</td>
+<td>S</td>
+<td>W5D (in-store customer delivery scheduling — date/time slot, fee, dispatch)</td>
+<td>W19 (home delivery — delivery partner handoff), W52 (fleet — own delivery)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R6. Ecommerce Integration (ECOM)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>ECOM-001</td>
+<td>Real-Time Inventory Sync</td>
+<td>M</td>
+<td>W11 (BOPIS ATP), W19 (delivery ATP)</td>
+<td>W50 (catalog sync)</td>
+</tr>
+<td>ECOM-002</td>
+<td>Real-Time Price Sync</td>
+<td>M</td>
+<td>W13.5 (promo price push), W40.7 (price sync)</td>
+<td>—</td>
+</tr>
+<td>ECOM-003</td>
+<td>BOPIS Order Flow</td>
+<td>M</td>
+<td>W11 (BOPIS fulfillment)</td>
+<td>—</td>
+</tr>
+<td>ECOM-004</td>
+<td>Home Delivery Order Flow</td>
+<td>M</td>
+<td>W19 (home delivery fulfillment)</td>
+<td>—</td>
+</tr>
+<td>ECOM-005</td>
+<td>Order Status Tracking</td>
+<td>M</td>
+<td>W19.9 (tracking link), W41.E (ecommerce issue resolution)</td>
+<td>—</td>
+</tr>
+<td>ECOM-006</td>
+<td>Payment Gateway Integration</td>
+<td>M</td>
+<td>W19 (payment reconciliation), W11.1 (BOPIS payment)</td>
+<td>—</td>
+</tr>
+<td>ECOM-007</td>
+<td>Return Initiation (Online)</td>
+<td>M</td>
+<td>W12B (online returns), W19.12a (home delivery reverse logistics), W215 (home delivery returns)</td>
+<td>—</td>
+</tr>
+<td>ECOM-008</td>
+<td>Customer Data Sync</td>
+<td>M</td>
+<td>W17 (loyalty data), W41 (complaint data)</td>
+<td>W24 (customer master)</td>
+</tr>
+<td>ECOM-009</td>
+<td>Product Catalog Sync</td>
+<td>M</td>
+<td>W50 (PIM / product content management)</td>
+<td>—</td>
+</tr>
+<td>ECOM-010</td>
+<td>Promo/Coupon Integration</td>
+<td>S</td>
+<td>W13 (digital coupon management)</td>
+<td>—</td>
+</tr>
+<td>ECOM-011</td>
+<td>Home Delivery Fulfillment</td>
+<td>M</td>
+<td>W19 (full home delivery lifecycle including failed delivery)</td>
+<td>—</td>
+</tr>
+<td>ECOM-012</td>
+<td>Delivery Partner Integration</td>
+<td>M</td>
+<td>W19.7 (3PL API integration), W66 (inter-island logistics), W242 (3PL performance review), W62B (3PL/delivery partner onboarding & offboarding)</td>
+<td>—</td>
+</tr>
+<td>ECOM-013</td>
+<td>Marketplace Integration (Lazada/Shopee)</td>
+<td>S</td>
+<td>W180 (e-commerce marketplace integration — listing sync, order pull, inventory reservation, commission reconciliation)</td>
+<td>W50 (PIM — product content feed), W13 (promotions — marketplace pricing)</td>
+</tr>
+<td>ECOM-014</td>
+<td>Ship-from-Store Fulfillment</td>
+<td>S</td>
+<td>W19B (ship from store — order routing, store pick & pack, carrier handoff)</td>
+<td>W4 (replenishment — store stock for fulfillment), W11 (BOPIS — store pick infrastructure)</td>
+</tr>
+<td>ECOM-015</td>
+<td>Omni-channel Customer Ticketing & Support</td>
+<td>S</td>
+<td>W258 (omni-channel customer ticketing & support management — unified tickets, routing, SLA, escalation)</td>
+<td>W41 (complaint resolution — ticket source), W17 (loyalty — customer 360)</td>
+</tr>
+<td>ECOM-016</td>
+<td>Ecommerce Order Exception & Cancellation Management</td>
+<td>S</td>
+<td>W98 (ecommerce order exception & cancellation management — payment failure, fraud hold, auto-refund)</td>
+<td>W19 (home delivery — order lifecycle), W12B (online returns — cancellation trigger)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R7. Supply Chain Planning (SCP)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>SCP-001</td>
+<td>Demand Forecasting</td>
+<td>S</td>
+<td>W31 (demand forecasting cycle)</td>
+<td>W32 (seasonal planning)</td>
+</tr>
+<td>SCP-002</td>
+<td>Replenishment Planning</td>
+<td>M</td>
+<td>W4.1 (auto replenishment), W57 (promo stock allocation)</td>
+<td>—</td>
+</tr>
+<td>SCP-003</td>
+<td>Reorder Point Calculation</td>
+<td>M</td>
+<td>W2A.1 (ROP breach), W31.8 (parameter governance)</td>
+<td>—</td>
+</tr>
+<td>SCP-004</td>
+<td>Safety Stock Optimization</td>
+<td>S</td>
+<td>W31.8 (safety stock review)</td>
+<td>—</td>
+</tr>
+<td>SCP-005</td>
+<td>Seasonal Planning</td>
+<td>S</td>
+<td>W32 (seasonal buy planning), W191 (global supply chain — incoterm & marine insurance tracking)</td>
+<td>W13 (promo calendar)</td>
+</tr>
+<td>SCP-006</td>
+<td>Allocation Management</td>
+<td>S</td>
+<td>W4.2 (constrained allocation), W57 (promo allocation)</td>
+<td>—</td>
+</tr>
+<td>SCP-007</td>
+<td>Purchase Recommendation</td>
+<td>M</td>
+<td>W2A.1–2 (auto-suggest POs), W31.6 (forecast-driven POs)</td>
+<td>W56 (backorder triggers PO), W133 (S&OP cycle — consensus demand input), W183 (supply chain network optimization review)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R8. HR & Payroll (HR)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>HR-001</td>
+<td>Multi-Entity Payroll</td>
+<td>M</td>
+<td>W10 (payroll processing — 5 entities × 2 runs)</td>
+<td>W43.15 (cross-entity transfer)</td>
+</tr>
+<td>HR-002</td>
+<td>Philippine Statutory Deductions</td>
+<td>M</td>
+<td>W10.4 (SSS, PhilHealth, Pag-IBIG)</td>
+<td>—</td>
+</tr>
+<td>HR-003</td>
+<td>BIR Withholding Tax (Compensation)</td>
+<td>M</td>
+<td>W10.4 (TRAIN law tables)</td>
+<td>W43.10 (final pay computation)</td>
+</tr>
+<td>HR-004</td>
+<td>13th Month Pay Computation</td>
+<td>M</td>
+<td>W10 (13th month auto-calc), W43.10 (pro-rated final pay)</td>
+<td>W9B.18 (year-end accrual)</td>
+</tr>
+<td>HR-005</td>
+<td>Time & Attendance Integration</td>
+<td>S</td>
+<td>W10.1 (biometric import), W34 (shift scheduling)</td>
+<td>—</td>
+</tr>
+<td>HR-006</td>
+<td>Shift Scheduling</td>
+<td>S</td>
+<td>W34 (store shift scheduling)</td>
+<td>—</td>
+</tr>
+<td>HR-007</td>
+<td>Leave Management</td>
+<td>M</td>
+<td>W10.2 (leave verification), W34.1d (leave in scheduling)</td>
+<td>—</td>
+</tr>
+<td>HR-008</td>
+<td>Employee Self-Service</td>
+<td>N</td>
+<td>W10.10 (payslip distribution), W17.5 (loyalty balance inquiry)</td>
+<td>—</td>
+</tr>
+<td>HR-009</td>
+<td>Recruitment & Onboarding</td>
+<td>N</td>
+<td>W15 (recruitment & onboarding)</td>
+<td>W16 (new store hiring)</td>
+</tr>
+<td>HR-010</td>
+<td>Overtime Calculation</td>
+<td>M</td>
+<td>W10.3 (OT calculation per Labor Code), W228 (sales commission calculation)</td>
+<td>W34.8 (scheduled vs. actual hours), W74 (employee expense reimbursement — OT meal allowance)</td>
+</tr>
+<td>HR-011</td>
+<td>Holiday Pay Calculation</td>
+<td>M</td>
+<td>W10.3 (holiday pay rates)</td>
+<td>—</td>
+</tr>
+<td>HR-012</td>
+<td>Bank File Generation</td>
+<td>M</td>
+<td>W10.7 (bank file for payroll crediting)</td>
+<td>—</td>
+</tr>
+<td>HR-013</td>
+<td>Employee Loan & Advance Management</td>
+<td>M</td>
+<td>W76 (employee loans & advances)</td>
+<td>W10 (payroll processing), W43 (separation — loan balance settlement)</td>
+</tr>
+<td>HR-014</td>
+<td>Employee Grievance & Whistleblower Case Management</td>
+<td>S</td>
+<td>W79 (employee grievance & whistleblower process)</td>
+<td>W53 (data privacy breach response)</td>
+</tr>
+<td>HR-015</td>
+<td>Philippine Statutory Benefits & Claims Management</td>
+<td>M</td>
+<td>W251 (Philippine statutory benefits & claims administration)</td>
+<td>W10 (payroll processing statutory deductions)</td>
+</tr>
+<td>HR-016</td>
+<td>Employee Expense Reimbursement</td>
+<td>M</td>
+<td>W74 (employee expense reimbursement — receipt attachment, approval, reimbursement via payroll)</td>
+<td>W10 (payroll — reimbursement payment), W25 (petty cash — small expense alternative)</td>
+</tr>
+<td>HR-017</td>
+<td>Employee PPE & Uniform Lifecycle</td>
+<td>S</td>
+<td>W172 (employee PPE & uniform lifecycle — issuance, replacement, cost allocation)</td>
+<td>W15 (onboarding — initial PPE/uniform issuance), W47 (facility maintenance — PPE for maintenance staff)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R9. CRM & Loyalty (CRM)</h2>
+
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>CRM-001</td>
+<td>Loyalty Points Engine</td>
+<td>M</td>
+<td>W17 (loyalty program operations)</td>
+<td>W5B.5 (POS points earning)</td>
+</tr>
+<td>CRM-002</td>
+<td>Customer Master (B2C)</td>
+<td>M</td>
+<td>W17.1–2 (enrollment & dedup), W50 (ecommerce customer sync)</td>
+<td>—</td>
+</tr>
+<td>CRM-003</td>
+<td>Trade Account Management</td>
+<td>M</td>
+<td>W8 (AR processing, dormant account management), W5B.4c (trade pricing at POS)</td>
+<td>W24 (credit application)</td>
+</tr>
+<td>CRM-004</td>
+<td>Corporate Account Management</td>
+<td>M</td>
+<td>W58 (corporate/project accounts), W24 (credit application), W162 (Project Quotation), W163 (Contract Pricing), W164 (Staged Delivery), W165 (Milestone Billing), W166 (Tendering)</td>
+<td>—</td>
+</tr>
+<td>CRM-005</td>
+<td>Tiered Loyalty</td>
+<td>S</td>
+<td>W17.8 (tier movement)</td>
+<td>—</td>
+</tr>
+<td>CRM-006</td>
+<td>Customer Purchase History</td>
+<td>S</td>
+<td>W12A.2 (transaction lookup), W17 (loyalty history), W156 (customer data platform — unified profile across channels)</td>
+<td>W29 (recall customer tracing)</td>
+</tr>
+<td>CRM-007</td>
+<td>Marketing Campaign Integration</td>
+<td>N</td>
+<td>W13 (promotions), W65 (CSAT/NPS surveys)</td>
+<td>—</td>
+</tr>
+<td>CRM-008</td>
+<td>Credit Application Workflow</td>
+<td>M</td>
+<td>W24 (credit application & approval)</td>
+<td>W8.3 (credit limit enforcement)</td>
+</tr>
+<td>CRM-009</td>
+<td>Government Procurement Compliance (PHILGEPS)</td>
+<td>S</td>
+<td>W78 (government procurement participation)</td>
+<td>W166 (corporate/institutional tendering), W230 (contract review)</td>
+</tr>
+<td>CRM-010</td>
+<td>Customer Account Reactivation</td>
+<td>S</td>
+<td>W84 (customer account reactivation — dormant account identification, outreach, reactivation offers)</td>
+<td>W8 (AR — dormant account management), W17 (loyalty — reactivation points)</td>
+</tr>
+<td>CRM-011</td>
+<td>Customer Feedback-to-Action Loop</td>
+<td>S</td>
+<td>W87 (customer feedback-to-action loop — NPS tracking, feedback categorization, action assignment)</td>
+<td>W65 (CSAT/NPS surveys — feedback source), W41 (complaint resolution — feedback from complaints)</td>
+</tr>
+<td>CRM-012</td>
+<td>Trade Sales Pipeline & Territory Management</td>
+<td>S</td>
+<td>W103 (trade sales pipeline & territory management — pipeline stages, territory assignment, forecasting)</td>
+<td>W58 (corporate accounts — pipeline source), W162 (project quotation — quote from pipeline)</td>
+</tr>
+<td>CRM-013</td>
+<td>Trade Counter / Pro Desk Operations</td>
+<td>S</td>
+<td>W112 (trade counter / pro desk operations — order taking, quick quote, express checkout for trade customers)</td>
+<td>W5B (POS — trade pricing at checkout), W138 (home installation — pro referral)</td>
+</tr>
+<td>CRM-014</td>
+<td>Customer Data Platform & Hyper-Personalization</td>
+<td>S</td>
+<td>W156 (customer data platform — unified profile, identity resolution, consent management, segmentation)</td>
+<td>W17 (loyalty — customer data source), W50 (ecommerce — behavioral data)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R10. Analytics & Reporting (RPT)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>RPT-001</td>
+<td>Executive Dashboard</td>
+<td>M</td>
+<td>W35.2 (daily flash), W35.4 (weekly sales), W231 (QBR reporting)</td>
+<td>—</td>
+</tr>
+<td>RPT-002</td>
+<td>Store P&L</td>
+<td>M</td>
+<td>W35.10 (store P&L with occupancy allocation)</td>
+<td>W26 (budget variance)</td>
+</tr>
+<td>RPT-003</td>
+<td>Sales Analytics</td>
+<td>M</td>
+<td>W35.4 (week-on-week sales), W13.8 (promo performance)</td>
+<td>W31.7 (forecast vs. actual)</td>
+</tr>
+<td>RPT-004</td>
+<td>Inventory Reports</td>
+<td>M</td>
+<td>W6 (cycle count variance), W9A.6 (inventory valuation), W102 (category performance review & P&L ownership)</td>
+<td>W42.17 (physical inventory summary), W97 (sample & demo inventory reporting)</td>
+</tr>
+<td>RPT-005</td>
+<td>Purchase Analysis</td>
+<td>S</td>
+<td>W44 (vendor scorecard), W27 (rebate analytics), W130 (competitor price intelligence gathering)</td>
+<td>—</td>
+</tr>
+<td>RPT-006</td>
+<td>BIR-Compliant Tax Reports</td>
+<td>M</td>
+<td>W9A.16 (VAT returns), W9A.16a (EWT remittance), W216 (BIR CAS audit), W235 (transfer pricing compliance)</td>
+<td>—</td>
+</tr>
+<td>RPT-007</td>
+<td>Consolidated Financial Statements</td>
+<td>M</td>
+<td>W9A.14 (consolidated statements)</td>
+<td>—</td>
+</tr>
+<td>RPT-008</td>
+<td>Ad-Hoc Reporting</td>
+<td>S</td>
+<td>W35.18–19 (ad-hoc reports & BI analyses), W113 (business intelligence & data governance — self-service analytics)</td>
+<td>—</td>
+</tr>
+<td>RPT-009</td>
+<td>Mobile Dashboard</td>
+<td>N</td>
+<td>W35.2 (CFO mobile dashboard)</td>
+<td>—</td>
+</tr>
+<td>RPT-010</td>
+<td>Scheduled Report Distribution</td>
+<td>S</td>
+<td>W35 (full reporting rhythm — daily/weekly/monthly), W231 (QBR reporting), W67 (monthly store performance review)</td>
+<td>—</td>
+</tr>
+<td>RPT-011</td>
+<td>Category Performance Review & P&L Ownership</td>
+<td>S</td>
+<td>W102 (category performance review & P&L ownership — category P&L, buyer scorecard, assortment vs. plan)</td>
+<td>W1 (assortment review — category input), W35 (management reporting — category reports)</td>
+</tr>
+<td>RPT-012</td>
+<td>Pricing Hierarchy Governance & Compliance Audit</td>
+<td>S</td>
+<td>W107 (pricing hierarchy governance & compliance audit — rule validation, override audit, price gap analysis)</td>
+<td>W40 (price change — hierarchy execution), W69 (price compliance audit — store-level check)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R11. Intercompany & Transfer Pricing (IC)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>IC-001</td>
+<td>IC AP/AR Automation</td>
+<td>M</td>
+<td>W14 (IC transactions & settlement)</td>
+<td>—</td>
+</tr>
+<td>IC-002</td>
+<td>Arm's-Length Transfer Pricing</td>
+<td>M</td>
+<td>W14 (transfer pricing rules), W14 annual review, W235 (transfer pricing compliance)</td>
+<td>—</td>
+</tr>
+<td>IC-003</td>
+<td>IC Elimination on Consolidation</td>
+<td>M</td>
+<td>W9A.13 (IC elimination), W234 (IC profit elimination)</td>
+<td>—</td>
+</tr>
+<td>IC-004</td>
+<td>IC Settlement</td>
+<td>M</td>
+<td>W14.6–7 (net settlement)</td>
+<td>—</td>
+</tr>
+<td>IC-005</td>
+<td>IC Reconciliation</td>
+<td>M</td>
+<td>W14.4–5 (IC reconciliation)</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+
+<h2>R12. Document Management (DOC)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>DOC-001</td>
+<td>Electronic Document Storage</td>
+<td>M</td>
+<td>W7.1 (invoice capture), W21.1 (capex attachments), W33.3 (warranty photos)</td>
+<td>W50 (digital assets)</td>
+</tr>
+<td>DOC-002</td>
+<td>BIR-Compliant Invoice Format</td>
+<td>M</td>
+<td>W5B.8 (BIR-registered receipt), W7 (vendor invoices)</td>
+<td>—</td>
+</tr>
+<td>DOC-003</td>
+<td>Delivery Receipt Tracking</td>
+<td>M</td>
+<td>W18.7 (DR capture), W3 (DC receiving DR)</td>
+<td>—</td>
+</tr>
+<td>DOC-004</td>
+<td>Import Document Management</td>
+<td>M</td>
+<td>W2B (BL, LC, customs docs), W36 (vendor permits)</td>
+<td>—</td>
+</tr>
+<td>DOC-005</td>
+<td>Document Retention Policy</td>
+<td>M</td>
+<td>W35 quarterly review, W42 (7-year archive), W256 (enterprise document retention & archiving policy)</td>
+<td>W53 (breach register 5-year retention), W81 (bad debt write-off 7-year retention)</td>
+</tr>
+<td>DOC-006</td>
+<td>Approval Workflow with Attachments</td>
+<td>S</td>
+<td>W21 (capex with quotes), W62 (contracts with attachments), W243 (POA board approval lifecycle)</td>
+<td>—</td>
+</tr>
+<td>DOC-007</td>
+<td>Hazardous Waste Disposal Tracking</td>
+<td>S</td>
+<td>W82 (DENR-compliant manifest tracking, per-location generator registration, quarterly reporting), W167 (Recycling / Circular Economy), W236 (hazmat storage DC), W237 (hazmat handling store), W238 (hazmat spill incident)</td>
+<td>W52 (fleet — used oil/battery disposal), W68 (discontinued chemical waste)</td>
+</tr>
+<td>DOC-008</td>
+<td>Enterprise Document Retention & Archiving Policy</td>
+<td>M</td>
+<td>W255 (electronic document storage & retrieval ERP-wide), W256 (enterprise document retention & archiving policy — configurable periods, legal hold, secure destruction)</td>
+<td>W35 (reporting — retention review), W42 (physical inventory — archive)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R13. Master Data Management (MDM)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>MDM-001</td>
+<td>Centralized Item Master</td>
+<td>M</td>
+<td>W1.7 (SKU creation), W46.1 (kit BOM), W64 (pilot SKU), W252 (centralized item master creation & governance)</td>
+<td>W50 (PIM content), W181 (store-level price tag printing & verification — item data accuracy)</td>
+</tr>
+<td>MDM-002</td>
+<td>Item Attribute Management</td>
+<td>M</td>
+<td>W50.4 (category-specific attributes), W1 (assortment)</td>
+<td>—</td>
+</tr>
+<td>MDM-003</td>
+<td>Customer Data Quality</td>
+<td>M</td>
+<td>W17 (deduplication at enrollment), W24 (credit data validation), W253 (customer master data governance & deduplication)</td>
+<td>—</td>
+</tr>
+<td>MDM-004</td>
+<td>Vendor Onboarding Workflow</td>
+<td>S</td>
+<td>W36 (vendor onboarding lifecycle), W252 (item master governance — vendor-SKU linkage)</td>
+<td>—</td>
+</tr>
+<td>MDM-005</td>
+<td>Pricing Master Governance</td>
+<td>M</td>
+<td>W40 (price change with approval), W13 (promo pricing with approval)</td>
+<td>W61 (price match analytics)</td>
+</tr>
+<td>MDM-006</td>
+<td>Location Master</td>
+<td>M</td>
+<td>W16.4 (new store creation), W54 (LGU permit data), W45 (closure deactivation), W254 (location master lifecycle & hierarchy management)</td>
+<td>—</td>
+</tr>
+<td>MDM-007</td>
+<td>Hierarchical Category Structure</td>
+<td>M</td>
+<td>W1 (category management), W50 (category navigation)</td>
+<td>—</td>
+</tr>
+<td>MDM-008</td>
+<td>Vendor Master Data Governance</td>
+<td>M</td>
+<td>W252 (item master governance — vendor-SKU linkage), W36 (vendor onboarding — creation with approval), W253 (deduplication — vendor dedup logic)</td>
+<td>W44 (vendor scorecard — vendor data quality feed)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R14. Non-Functional Requirements (NFR)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Target</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>NFR-001</td>
+<td>POS Uptime</td>
+<td>99.9%</td>
+<td>W5G (offline recovery), W55 (DR failover), W5E (store opening delay procedure — system-down protocol)</td>
+<td>W48 (helpdesk P1 SLA)</td>
+</tr>
+<td>NFR-002</td>
+<td>Back-Office Uptime</td>
+<td>99.5%</td>
+<td>W55 (IT disaster recovery)</td>
+<td>W48 (incident management)</td>
+</tr>
+<td>NFR-003</td>
+<td>POS Transaction Speed</td>
+<td>< 3 sec</td>
+<td>W5B (POS selling)</td>
+<td>—</td>
+</tr>
+<td>NFR-004</td>
+<td>Report Generation</td>
+<td>< 30 sec</td>
+<td>W35 (management reporting), W113 (BI & data governance — query performance)</td>
+<td>—</td>
+</tr>
+<td>NFR-005</td>
+<td>Concurrent Users</td>
+<td>1,000–1,500</td>
+<td>W5B (1,000 POS terminals), W35 (HQ reporting)</td>
+<td>—</td>
+</tr>
+<td>NFR-006</td>
+<td>Data Retention</td>
+<td>7 years</td>
+<td>W42 (physical inventory archive), W35 quarterly retention review</td>
+<td>Data Volumes §1.2</td>
+</tr>
+<td>NFR-007</td>
+<td>Security</td>
+<td>RBAC, audit trails</td>
+<td>W37 (POS audit), W48 (change management), W186 (SOP governance), W230 (contract review), W236 (hazmat storage DC), W237 (hazmat handling store), W238 (hazmat spill incident), W243 (POA lifecycle), W152 (employee IT provisioning & access lifecycle management), W132 (software development & change management), W131 (IT asset lifecycle management)</td>
+<td>W53 (breach response)</td>
+</tr>
+<td>NFR-008</td>
+<td>Scalability</td>
+<td>300+ stores</td>
+<td>W16 (new store opening process), W45 (store closure), W223 (store design), W224 (contractor selection), W225 (construction supervision), W226 (store renovation capex), W227 (handover)</td>
+<td>—</td>
+</tr>
+<td>NFR-009</td>
+<td>Localization</td>
+<td>Full PH</td>
+<td>W9A (BIR compliance), W10 (payroll statutory), W54 (LGU permits), W216 (BIR CAS audit), W217 (SC/PWD VAT-exemption), W54A (BIR CAS registration per location)</td>
+<td>—</td>
+</tr>
+<td>NFR-010</td>
+<td>Data Privacy</td>
+<td>RA 10173</td>
+<td>W53 (breach response), W41 (DSAR handling), W17.2 (consent management)</td>
+<td>—</td>
+</tr>
+<td>NFR-011</td>
+<td>Offline POS</td>
+<td>≥ 8 hours</td>
+<td>W5G (offline POS recovery & reconciliation)</td>
+<td>W49 (typhoon degraded mode)</td>
+</tr>
+<td>NFR-012</td>
+<td>Integration Capability</td>
+<td>All touchpoints</td>
+<td>W3–W7 (core integrations), W19 (3PL), W30 (banking), W257 (enterprise API & systems integration lifecycle management)</td>
+<td>Data Volumes §3</td>
+</tr>
+<td>NFR-013</td>
+<td>Disaster Recovery</td>
+<td>RPO ≤ 1h, RTO ≤ 4h</td>
+<td>W55 (IT DR & failover)</td>
+<td>W49 (physical disaster BC)</td>
+</tr>
+<td>NFR-014</td>
+<td>Data Migration</td>
+<td>Legacy → ERP</td>
+<td>Implementation Roadmap §3 (data migration plan), W73 (data migration validation & parallel-run testing)</td>
+<td>—</td>
+</tr>
+<td>NFR-015</td>
+<td>Batch Processing Windows</td>
+<td>Off-peak</td>
+<td>Data Volumes §5 (batch windows), W9A (month-end)</td>
+<td>—</td>
+</tr>
+<td>NFR-016</td>
+<td>Data Privacy Breach Response</td>
+<td>RA 10173</td>
+<td>W53 (full breach response lifecycle)</td>
+<td>W41 (DSAR)</td>
+</tr>
+<td>NFR-017</td>
+<td>LGU Business Permit Tracking</td>
+<td>Per location</td>
+<td>W54 (LGU permit renewal per location)</td>
+<td>W16 (new store initial permit)</td>
+</tr>
+<td>NFR-018</td>
+<td>ESG & Sustainability Reporting</td>
+<td>S</td>
+<td>W192 (GHG tracking), W193 (Waste diversion)</td>
+<td>W194 (CSR), W195 (Ethical audit)</td>
+</tr>
+<td>NFR-019</td>
+<td>Advanced Fleet Optimization</td>
+<td>S</td>
+<td>W196 (Route optimization), W199 (Telematics), W249 (port container turn-around)</td>
+<td>W197 (Driver performance), W198 (Fuel)</td>
+</tr>
+<td>NFR-020</td>
+<td>AI & Innovation Framework</td>
+<td>N</td>
+<td>W200 (AI Personalization), W201 (RPA), W208 (AI Inventory Optimization)</td>
+<td>W202 (Predictive maint), W203 (Computer vision)</td>
+</tr>
+<td>NFR-021</td>
+<td>Smart Store Operations</td>
+<td>S</td>
+<td>W206 (Mobile POS), W212 (Smart Safe), W211 (3D Rendering), W214 (expedited transfer), W240 (DC facilities), W241 (HQ facilities), W247 (smart locker), W173 (store-level solar energy monitoring)</td>
+<td>W205 (Employee purchase), W207 (CCTV audit)</td>
+</tr>
+<td>NFR-023</td>
+<td>Enterprise API & Integration Lifecycle Management</td>
+<td>S</td>
+<td>W257 (enterprise API & systems integration lifecycle — gateway, versioning, monitoring, health dashboard)</td>
+<td>W19 (3PL integration — API consumer), W11 (BOPIS — API consumer), W30 (banking — API consumer)</td>
+</tr>
+<td>NFR-024</td>
+<td>IT Asset Lifecycle Management</td>
+<td>S</td>
+<td>W131 (IT asset lifecycle management — hardware/software registry, procurement, deployment, retirement, license compliance)</td>
+<td>W21 (capex — IT asset procurement), W48 (helpdesk — asset support)</td>
+</tr>
+<td>NFR-025</td>
+<td>Employee IT Provisioning & Access Lifecycle</td>
+<td>M</td>
+<td>W152 (employee IT provisioning & access lifecycle — account creation on hire, role-based access, revocation on separation)</td>
+<td>W15 (onboarding — provisioning trigger), W43 (separation — revocation trigger)</td>
+</tr>
+<td>NFR-026</td>
+<td>Business Intelligence & Data Governance</td>
+<td>S</td>
+<td>W113 (business intelligence & data governance — BI platform, governed semantic layer, data quality monitoring)</td>
+<td>W35 (management reporting — BI consumer), W31 (demand forecasting — data consumer)</td>
+</tr>
+<td>NFR-027</td>
+<td>Omni-channel Customer Data Platform</td>
+<td>S</td>
+<td>W156 (customer data platform — unified profile, identity resolution, consent management)</td>
+<td>W17 (loyalty — data source), W41 (complaint — data source), W258 (ticketing — data source)</td>
+</tr>
+<td>NFR-022</td>
+<td>Local & Partner Governance</td>
+<td>S</td>
+<td>W209 (Barangay relationship), W213 (Contractor audit), W215 (home delivery returns), W216 (BIR CAS audit), W242 (3PL performance review)</td>
+<td>W157 (E-waste), W210 (Dark store)</td>
+</tr>
+<td>NFR-022a</td>
+<td>BIR CAS Registration per Location</td>
+<td>M</td>
+<td>W54A (BIR Computerized Accounting System CAS registration per location, compliance documentation, renewal tracking)</td>
+<td>W54 (LGU permits — related regulatory process), W16 (new store — initial CAS registration)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R15. Installation & Value-Added Services (SRV)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>SRV-001</td>
+<td>Installation & Value-Added Services Management</td>
+<td>S</td>
+<td>W138 (home installation services management), W139 (tool & equipment rental operations), W148 (home design & consultancy services), W168 (custom paint mixing & tinting), W169 (lumber & board cutting services), W211 (in-store 3D kitchen/bathroom design rendering), W213 (installation service partner quality audit)</td>
+<td>W5B (POS — service item selling), W33 (warranty — installation defect claims)</td>
+</tr>
+<td>SRV-002</td>
+<td>DIY Workshop & In-Store Event Management</td>
+<td>S</td>
+<td>W147 (DIY workshop & in-store event management — scheduling, registration, material tracking, ROI)</td>
+<td>W83 (marketing campaign — event promotion), W17 (loyalty — event attendance points)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R16. Wholesale & Reseller Operations (WSL)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>WSL-001</td>
+<td>Wholesale & Reseller Operations</td>
+<td>S</td>
+<td>W145 (wholesale reseller onboarding & credit management), W146 (bulk fulfillment & cross-docking for wholesale)</td>
+<td>W24 (credit application — wholesale credit check), W8 (AR — wholesale invoicing)</td>
+</tr>
+<td>WSL-002</td>
+<td>Trade Sales Pipeline & Territory Management</td>
+<td>S</td>
+<td>W103 (trade sales pipeline & territory management — pipeline stages, territory assignment, forecasting)</td>
+<td>W58 (corporate/project accounts — pipeline source), W162 (project quotation — quote from pipeline)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R17. Corporate Governance, Legal & Strategy (GOV)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>GOV-001</td>
+<td>Corporate Governance & Legal Management</td>
+<td>S</td>
+<td>W124 (corporate secretarial & entity management), W125 (legal case & litigation management), W126 (IP portfolio management), W127 (annual strategic planning & OKRs), W128 (enterprise project management lifecycle), W186 (internal SOP & policy governance lifecycle), W230 (legal contract review & approval), W231 (management performance reporting QBR)</td>
+<td>W14 (IC transactions — corporate secretarial support)</td>
+</tr>
+<td>GOV-002</td>
+<td>Internal Audit & Risk Management</td>
+<td>S</td>
+<td>W120 (internal audit planning & risk assessment), W121 (operational audit execution store/DC/HQ), W122 (enterprise risk management review), W123 (fraud investigation protocol), W159 (anti-bribery & corruption monitoring & audit), W95 (external audit coordination & support)</td>
+<td>W37 (loss prevention — audit findings feed), W77 (BIR tax audit response — external audit)</td>
+</tr>
+<td>GOV-003</td>
+<td>Real Estate & Lease Management</td>
+<td>S</td>
+<td>W116 (site selection & feasibility analysis), W117 (lease administration & renewal), W118 (rent & CAM payment processing), W119 (real property tax amillaramento management)</td>
+<td>W16 (new store opening — site selection output), W45 (store closure — lease termination)</td>
+</tr>
+<td>GOV-004</td>
+<td>Health, Safety & Environment Management</td>
+<td>S</td>
+<td>W140 (OHS incident management), W141 (workplace safety inspection & audit), W187 (contractor & third-party on-site safety orientation)</td>
+<td>W82 (hazardous waste disposal — HSE coordination), W236–238 (hazmat — safety interface)</td>
+</tr>
+<td>GOV-005</td>
+<td>Engineering & Construction Management</td>
+<td>S</td>
+<td>W223 (new store design & engineering standards), W224 (construction bidding & contractor selection), W225 (store construction management & supervision), W226 (store renovation & retrofitting CAPEX), W227 (commissioning & operational handover)</td>
+<td>W16 (new store opening — construction handoff), W21 (capex — construction budget)</td>
+</tr>
+<td>GOV-006</td>
+<td>Facility & Asset Maintenance (Non-Store)</td>
+<td>S</td>
+<td>W240 (DC facility & warehouse equipment maintenance), W241 (HQ office facility & executive asset maintenance), W242 (3PL & logistics partner performance review), W243 (POA & board resolution lifecycle)</td>
+<td>W21 (capex — facility improvement), W39 (asset disposal — decommissioned equipment)</td>
+</tr>
+<td>GOV-007</td>
+<td>Fleet Operations & Driver Management</td>
+<td>S</td>
+<td>W196 (route planning & dispatch optimization), W197 (driver performance & safety management), W198 (fuel management & consumption monitoring), W199 (fleet telematics & real-time tracking), W188 (fleet spare parts & preventive maintenance)</td>
+<td>W52 (fleet management — fleet admin), W4 (replenishment — fleet scheduling)</td>
+</tr>
+<td>GOV-008</td>
+<td>Sustainability & Environmental Compliance</td>
+<td>S</td>
+<td>W192 (GHG emissions tracking), W193 (waste management & circular economy), W194 (social impact & community development CSR), W195 (sustainable sourcing & ethical vendor audit), W167 (store & DC recycling program — circular economy), W114 (sustainability & environmental compliance reporting — aggregate ESG reporting)</td>
+<td>W82 (hazardous waste — environmental compliance), W157 (e-waste — circular economy)</td>
+</tr>
+<td>GOV-009</td>
+<td>Innovation & Digital Transformation</td>
+<td>S</td>
+<td>W200 (AI-driven personalization & recommendation engine), W201 (RPA lifecycle), W202 (predictive maintenance for industrial assets), W203 (computer vision for inventory & planogram audit), W208 (retail analytics & AI-driven inventory optimization)</td>
+<td>W113 (BI & data governance — AI data pipeline), W19 (ecommerce — personalization output)</td>
+</tr>
+<td>GOV-010</td>
+<td>Marketing Campaign Management</td>
+<td>S</td>
+<td>W83 (campaign planning, execution & performance measurement), W104 (loyalty program financial governance), W134 (crisis communication & brand reputation), W135 (CSR program execution), W142 (social media & influencer management), W143 (PR & corporate communications), W149 (bank & credit card partnership management), W151 (CSR impact measurement & reporting), W153 (retail media network operations), W189 (referral program & brand ambassador management), W190 (in-house design & creative production management)</td>
+<td>W13 (promotions — campaign execution), W17 (loyalty — campaign targeting)</td>
+</tr>
+<td>GOV-011</td>
+<td>Business Continuity & Disaster Preparedness</td>
+<td>S</td>
+<td>W158 (business continuity drill & disaster recovery testing)</td>
+<td>W49 (natural disaster/typhoon BC — operational response), W55 (IT DR — technical response)</td>
+</tr>
+<td>GOV-012</td>
+<td>Product Liability & Consumer Safety</td>
+<td>S</td>
+<td>W185 (product liability & consumer safety incident management — incident logging, regulatory notification, case management)</td>
+<td>W29 (product recall — safety trigger), W82 (hazardous waste — disposal of unsafe products)</td>
+</tr>
+<td>GOV-013</td>
+<td>Anti-Bribery & Corruption Monitoring</td>
+<td>S</td>
+<td>W159 (anti-bribery & corruption monitoring & audit — risk assessment, gift register, due diligence)</td>
+<td>W79 (grievance & whistleblower — ABC reporting channel), W230 (contract review — ABC due diligence)</td>
+</tr>
+<td>GOV-014</td>
+<td>Competitor Intelligence & Market Monitoring</td>
+<td>S</td>
+<td>W130 (competitor price intelligence gathering — price checks, market trend analysis, benchmarking)</td>
+<td>W1 (assortment review — competitive positioning), W40 (price changes — market response)</td>
+</tr>
+<td>GOV-015</td>
+<td>Private Label Development & Management</td>
+<td>S</td>
+<td>W129 (private label / in-house brand development — development lifecycle, supplier qualification, quality testing)</td>
+<td>W1 (assortment — PL assortment decisions), W160 (factory audit — PL factory compliance)</td>
+</tr>
+<td>GOV-016</td>
+<td>Employee Training & Development</td>
+<td>S</td>
+<td>W51 (employee training & skills development — needs assessment, program scheduling, attendance, certification)</td>
+<td>W15 (onboarding — initial training), W140 (OHS — safety training)</td>
+</tr>
+<td>GOV-017</td>
+<td>Employee Performance & Career Development</td>
+<td>S</td>
+<td>W72 (employee performance management — goal setting, reviews, competency framework), W178 (employee succession & internal mobility), W179 (management trainee cadetship program)</td>
+<td>W10 (payroll — performance bonus processing), W34 (scheduling — performance-linked shifts)</td>
+</tr>
+<td>GOV-018</td>
+<td>Store Performance Management</td>
+<td>S</td>
+<td>W67 (monthly store performance review — KPIs, manager scorecard, ranking), W96 (store renovation & remodel project), W86 (planogram compliance & store layout verification)</td>
+<td>W35 (management reporting — store metrics), W67 (store review — performance data)</td>
+</tr>
+<td>GOV-019</td>
+<td>Price Compliance & Energy Management (Store)</td>
+<td>S</td>
+<td>W69 (price compliance audit), W111 (store energy & utility consumption management), W173 (store-level solar energy monitoring), W181 (store-level price tag printing & verification)</td>
+<td>W40 (price changes — compliance source), W35 (reporting — energy cost reporting)</td>
+</tr>
+<td>GOV-020</td>
+<td>Store-Level Security & Loss Prevention</td>
+<td>S</td>
+<td>W71 (store physical security & access control), W171 (store physical security & yard patrol routine), W182 (gift/home registry lifecycle), W177 (vending & concessionaire management)</td>
+<td>W37 (loss prevention — security data feed), W5A (store opening — security check)</td>
+</tr>
+<td>GOV-021</td>
+<td>Store-Level Reverse Logistics</td>
+<td>S</td>
+<td>W176 (store-to-DC reverse logistics consolidation), W109 (store-level inventory receiving & putaway)</td>
+<td>W22B (store-to-DC return — damaged/excess), W91 (damaged goods — return feed)</td>
+</tr>
+<td>GOV-022</td>
+<td>DC Inbound & Outbound Operations</td>
+<td>S</td>
+<td>W3C (DC inbound delivery scheduling), W106 (DC outbound dispatch & load planning), W221 (cross-docking operations for fast-moving bulky items), W222 (DC container yard & chassis management), W188 (fleet spare parts & PM)</td>
+<td>W3 (DC receiving — inbound execution), W4 (store replenishment — outbound execution)</td>
+</tr>
+<td>GOV-023</td>
+<td>Customer Experience Management</td>
+<td>S</td>
+<td>W84 (customer account reactivation), W87 (customer feedback-to-action loop), W112 (trade counter / pro desk operations), W258 (omni-channel customer ticketing & support management)</td>
+<td>W41 (complaint resolution — feedback source), W156 (CDP — unified customer view)</td>
+</tr>
+<td>GOV-024</td>
+<td>Employee Financial Benefits Management</td>
+<td>S</td>
+<td>W175 (employee gratuity & retirement fund management RA 7641)</td>
+<td>W10 (payroll — gratuity accrual posting), W43 (separation — retirement eligibility check)</td>
+</tr>
+<td>GOV-025</td>
+<td>Sales Commission Management</td>
+<td>S</td>
+<td>W228 (sales commission calculation for trade & project sales — plan configuration, accrual, GL posting)</td>
+<td>W10 (payroll — commission payment), W162 (project quotation — commission basis)</td>
+</tr>
+<td>GOV-026</td>
+<td>Supply Chain Network Optimization</td>
+<td>S</td>
+<td>W133 (S&OP cycle), W144 (international logistics & import operations), W183 (supply chain network optimization review), W191 (global supply chain incoterm & marine insurance tracking)</td>
+<td>W31 (demand forecasting — S&OP input), W250 (control tower — visibility)</td>
+</tr>
+<td>GOV-027</td>
+<td>3PL & Delivery Partner Management</td>
+<td>S</td>
+<td>W62B (3PL/delivery partner onboarding & offboarding), W242 (3PL & logistics partner performance review)</td>
+<td>W19 (home delivery — 3PL execution), W66 (inter-island logistics — 3PL partner)</td>
+</tr>
+<td>GOV-028</td>
+<td>Sample & Demo Inventory Management</td>
+<td>S</td>
+<td>W97 (sample & demo inventory management — separate tracking, issuance, disposition)</td>
+<td>W1 (assortment — sample allocation), W46 (kit assembly — sample kit)</td>
+</tr>
+<td>GOV-029</td>
+<td>Markdown & Clearance Pricing Management</td>
+<td>S</td>
+<td>W93 (markdown & clearance pricing execution — trigger rules, approval, budget tracking, performance)</td>
+<td>W13 (promotions — clearance promo), W220 (SLOB — markdown trigger)</td>
+</tr>
+</tbody></table></div>
+
+<h2>R18. New Workflows — Additional Requirements</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Primary Workflows</th>
+<th>Supporting Workflows</th>
+</tr></thead><tbody>
+<td>CRM-015</td>
+<td>Call Center Daily Operations & Queue Management</td>
+<td>S</td>
+<td>W259 (call center daily operations — IVR, queue routing, agent monitoring, SLA tracking)</td>
+<td>W258 (ticketing — escalation destination), W156 (CDP — customer 360 in agent console), W34 (scheduling — agent shift scheduling), W65 (CSAT/NPS — post-interaction survey)</td>
+</tr>
+<td>FIN-031</td>
+<td>BIR eFPS Filing & Electronic Payment Submission</td>
+<td>M</td>
+<td>W260 (BIR eFPS filing — return generation, eFPS submission, PRN, AAB payment)</td>
+<td>W9A (month-end close — tax provision posting), W90 (monthly tax filing — high-level process), W216 (BIR CAS audit — filing archive), W239 (customs duty — import tax data source), W217 (SC/PWD reporting — VAT-exemption data source)</td>
+</tr>
+<td>FIN-032</td>
+<td>E-Wallet & Digital Payment Settlement Reconciliation</td>
+<td>M</td>
+<td>W261 (e-wallet settlement reconciliation — GCash, Maya, GrabPay, ShopeePay matching, MDR verification, chargeback management)</td>
+<td>W99 (payment settlement reconciliation — card settlement), W89 (bank reconciliation — settlement bank posting), W30 (treasury — cash position impact), W5F (store EOD — e-wallet Z-report), W149 (bank partnership — promo MDR terms)</td>
+</tr>
+<td>MER-001</td>
+<td>Store Promotional Setup & Visual Merchandising Execution</td>
+<td>S</td>
+<td>W262 (store promotional setup — planogram distribution, stock pulling, display construction, signage placement, compliance photo tracking)</td>
+<td>W13 (promotions — pricing source), W93 (markdown — clearance disposition), W181 (price tag printing — signage), W190 (creative production — display assets)</td>
+</tr>
+<td>CRM-016</td>
+<td>Loyalty Member Enrollment & Onboarding Journey</td>
+<td>S</td>
+<td>W263 (loyalty enrollment — multi-channel capture, dedup, consent, digital card, welcome sequence, conversion tracking)</td>
+<td>W17 (loyalty operations — account creation), W253 (customer dedup — enrollment dedup engine), W156 (CDP — unified profile), W259 (call center — enrollment via phone)</td>
+</tr>
+<td>MER-002</td>
+<td>Seasonal Merchandise Transition & Display Rotation</td>
+<td>S</td>
+<td>W264 (seasonal transition — planning, markdown trigger, setup brief, display build/teardown, in-season monitoring, post-season review)</td>
+<td>W32 (seasonal buy planning — seasonal PO), W31 (demand forecasting — seasonal forecast), W13 (promotions — seasonal pricing), W93 (markdown — seasonal clearance), W1 (assortment review — seasonal assortment)</td>
+</tr>
+<td>NFR-028</td>
+<td>POS Terminal Hardware Maintenance & Peripheral Management</td>
+<td>S</td>
+<td>W265 (POS hardware maintenance — incident ticketing, remote diagnosis, spare swap, PM scheduling, warranty/RMA tracking)</td>
+<td>W48 (helpdesk — incident ticketing), W131 (IT asset lifecycle — hardware register), W39 (asset disposal — decommissioned peripherals), W5G (offline POS — UPS battery PM)</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Coverage Validation</h2>
+
+<ul>
+<li><strong>Total requirements</strong>: 261 across 18 categories (R1–R18)</li>
+<li><strong>Requirements with primary workflow mapping</strong>: All ✅</li>
+<li><strong>Total workflows referenced</strong>: 290 (all workflows in the README index)</li>
+</ul>
+
+<hr>
+
+<p><em>Date: 2026-06-02 (v23 — removed duplicate GOV-030 (identical to GOV-008); corrected coverage count from 237+ to 261; corrected category count from 31 to 18; all 290 workflows retain full requirement traceability)</em></p>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

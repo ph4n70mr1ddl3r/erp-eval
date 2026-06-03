@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketing — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub act"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">📣</span><h2>Marketing</h2></div><div class="cd mc"><h1>Marketing Campaign Operations</h1>
+
+<blockquote>Campaign planning, creative production, multi-channel execution, budget tracking, performance measurement, loyalty program financial governance, crisis communication & brand reputation, CSR program execution, social media & influencer management, PR & corporate communications, bank & credit card partnership management, retail media network operations, referral program & brand ambassador management, and in-house design & creative production.</blockquote>
+<blockquote></blockquote>
+<blockquote>Back to <a href="README.md">Workflow Index</a></blockquote>
+
+<hr>
+
+<h2>Workflows in This Domain</h2>
+
+<ul>
+<li><a href="#marketing-campaign-planning-execution-performance-measurement">W83. Marketing Campaign Planning, Execution & Performance Measurement</a></li>
+<li><a href="#loyalty-program-financial-governance-periodic-review">W104. Loyalty Program Financial Governance & Periodic Review</a></li>
+<li><a href="#crisis-communication-brand-reputation-management">W134. Crisis Communication & Brand Reputation Management</a></li>
+<li><a href="#csr-program-execution">W135. CSR Program Execution</a></li>
+<li><a href="#social-media--influencer-management">W142. Social Media & Influencer Management</a></li>
+<li><a href="#public-relations--corporate-communications">W143. Public Relations & Corporate Communications</a></li>
+<li><a href="#bank--credit-card-partnership-management">W149. Bank & Credit Card Partnership Management</a></li>
+<li><a href="#corporate-social-responsibility-csr-impact-measurement--reporting">W151. Corporate Social Responsibility (CSR) Impact Measurement & Reporting</a></li>
+<li><a href="#retail-media-network-rmn-operations">W153. Retail Media Network (RMN) Operations</a></li>
+<li><a href="#referral-program--brand-ambassador-management">W189. Referral Program & Brand Ambassador Management</a></li>
+<li><a href="#in-house-design--creative-production-management">W190. In-house Design & Creative Production Management</a></li>
+</ul>
+
+<hr>
+
+<h2>W83. Marketing Campaign Planning, Execution & Performance Measurement</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Campaign calendar milestone; or ad-hoc campaign request from C-suite / Category Manager</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>6 major bi-monthly campaigns/year + 12 monthly hot-deal cycles + ad-hoc campaigns (store openings, seasonal pushes, competitive response)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~18–24 planned campaigns/year + ~5–10 ad-hoc campaigns; each campaign involves 2–8 channels and 200–500+ SKUs</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Marketing Campaign Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Campaign Manager, Content Manager, CMO, VP Merchandising, Category Managers, Pricing Analysts, Store Ops Director, Ecom Team, external creative / media agencies</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>BuildRight's ~24-person Marketing team operates across brand, promotions, loyalty, ecommerce, digital, content, and customer service. While W13 covers promotional pricing execution and W50 covers product content management, there is no end-to-end operational workflow for marketing campaign management — from strategic brief through creative production, channel execution, budget tracking, and post-campaign ROI measurement. This workflow bridges the gap between merchandising strategy (W1, W13, W32) and customer-facing execution across all channels.</p>
+
+<h3>Campaign Types</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Campaign Type</th>
+<th>Frequency</th>
+<th>Channels</th>
+<th>Typical Budget</th>
+</tr></thead><tbody>
+<td><strong>Major bi-monthly sale event</strong></td>
+<td>6/year</td>
+<td>In-store signage, POS materials, email, SMS, social media, website banners, digital ads</td>
+<td>PHP 2–5M/event</td>
+</tr>
+<td><strong>Monthly hot deals</strong></td>
+<td>12/year</td>
+<td>Email, SMS, website, in-store shelf talkers</td>
+<td>PHP 200–500K/cycle</td>
+</tr>
+<td><strong>New store opening</strong></td>
+<td>~10–15/year</td>
+<td>Local radio, flyers, social media geo-targeted ads, SMS blast to nearby loyalty members, PR</td>
+<td>PHP 500K–1M/opening</td>
+</tr>
+<td><strong>Seasonal push</strong></td>
+<td>4/year (aligned with W32)</td>
+<td>Full multi-channel: TV, digital, print, in-store events, email, SMS, social</td>
+<td>PHP 3–8M/season</td>
+</tr>
+<td><strong>Loyalty member engagement</strong></td>
+<td>Monthly</td>
+<td>Email, app push notification, in-store POS prompts</td>
+<td>PHP 100–300K/month</td>
+</tr>
+<td><strong>Competitive response</strong></td>
+<td>Ad-hoc</td>
+<td>Social media, email, SMS, local radio</td>
+<td>PHP 200–500K</td>
+</tr>
+<td><strong>Community / CSR event</strong></td>
+<td>2–4/year</td>
+<td>PR, social media, in-store</td>
+<td>PHP 100–300K</td>
+</tr>
+</tbody></table></div>
+
+<h3>Phase 1: Campaign Planning & Brief (T-8 to T-6 weeks before campaign launch)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Category Manager or VP Merchandising submits campaign brief request to Campaign Manager: campaign objective (traffic, revenue, margin, clearance, brand awareness), target customer segment, proposed SKU list, desired timing, and rough budget expectation</td>
+<td>Category Manager</td>
+<td>VP Merchandising</td>
+<td>1 hour/brief</td>
+</tr>
+<td>2</td>
+<td>Campaign Manager reviews brief with CMO; assesses feasibility against campaign calendar (avoid overlapping campaigns), budget availability, and resource capacity (creative team workload, external agency availability)</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>30 min/brief</td>
+</tr>
+<td>3</td>
+<td>Campaign Manager develops campaign brief document: (a) campaign name and code (for system tracking and cost allocation), (b) objectives with measurable KPIs (target revenue lift, foot traffic increase, ecommerce conversion rate, new loyalty sign-ups), (c) target audience (all customers, loyalty tiers, trade accounts, geographic segments), (d) channel plan — which channels (in-store, email, SMS, social media, digital ads, print, radio, PR), (e) promotional mechanics (percentage off, bundle deals, gift-with-purchase, loyalty points multiplier, clearance pricing), (f) SKU list and pricing per W13, (g) timeline — key dates for creative review, material production, distribution, and go-live, (h) budget allocation by channel with estimated cost per channel, (i) success metrics and measurement plan</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>4–8 hours/campaign</td>
+</tr>
+<td>4</td>
+<td>CMO reviews and approves campaign brief; VP Merchandising confirms SKU list and pricing strategy; CFO approves budget for campaigns exceeding PHP 1M</td>
+<td>CMO / VP Merchandising / CFO</td>
+<td>CEO (if budget > PHP 5M)</td>
+<td>1 hour/campaign</td>
+</tr>
+<td>5</td>
+<td>Campaign Manager creates campaign record in system: campaign code, objectives, KPIs, budget, timeline, assigned team members, linked promo pricing records (W13), and linked SKU list; system generates campaign cost center for expense tracking</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>30 min/campaign</td>
+</tr>
+</tbody></table></div>
+
+<h3>Phase 2: Creative Production & Asset Development (T-6 to T-2 weeks)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>6</td>
+<td>Campaign Manager assigns creative deliverables: (a) in-store POS materials (posters, shelf talkers, banners, endcap displays, outdoor signage), (b) digital assets (website banners, social media posts/stories, email templates, digital ad creatives), (c) print materials (flyers, newspaper inserts, direct mailers), (d) SMS/email copy, (e) press releases or PR materials (if applicable)</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>1 hour/campaign</td>
+</tr>
+<td>7</td>
+<td>Content Manager and Content Specialists produce or coordinate creative assets: (a) in-house for standard materials (email templates, social media posts, SMS copy, shelf talkers using templates), (b) external creative agency for major campaigns (TV/radio spots, high-end print, complex digital campaigns) per W62 service contract; agency briefed with brand guidelines, campaign messaging framework, and deliverable specifications</td>
+<td>Content Manager / External Agency</td>
+<td>CMO</td>
+<td>1–3 weeks/campaign</td>
+</tr>
+<td>7a</td>
+<td>Content Manager ensures all campaign product content (images, descriptions, specifications) is complete for campaign SKUs in PIM per W50; prioritizes campaign SKUs in the content queue; escalates incomplete content to Category Manager with T-2 week deadline</td>
+<td>Content Manager</td>
+<td>CMO</td>
+<td>Part of W50</td>
+</tr>
+<td>8</td>
+<td>Campaign Manager reviews all creative assets against brand guidelines: consistent visual identity, correct pricing (match W13/W40 system prices), correct SKU descriptions, legal disclaimers (BIR-compliant pricing disclosures, promo terms and conditions), and inclusive language</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>2–4 hours/campaign</td>
+</tr>
+<td>9</td>
+<td>CMO approves final creative assets; Campaign Manager archives approved assets in system linked to campaign record</td>
+<td>CMO</td>
+<td>CEO (for major brand campaigns)</td>
+<td>30 min/campaign</td>
+</tr>
+</tbody></table></div>
+
+<h3>Phase 3: Channel Execution & Distribution (T-2 to T-0 weeks)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>10</td>
+<td><strong>In-store materials</strong>: Campaign Manager coordinates printing and distribution of POS materials to 200 stores — centralized printing at HQ, shipped to stores via DC delivery trucks (W4) or direct courier for urgent materials; includes installation instructions and display planogram for promotional displays; Store Operations Director confirms receipt with Store Managers</td>
+<td>Campaign Manager / Store Ops Director</td>
+<td>COO</td>
+<td>1 week distribution</td>
+</tr>
+<td>11</td>
+<td><strong>Digital channels</strong>: (a) Ecom Team uploads website banners and landing pages to ecommerce platform; configures campaign-specific landing page with promo SKUs and pricing per W13, (b) Campaign Manager schedules social media posts via social media management tool (Meta Business Suite, etc.) with approved creatives and copy, (c) Campaign Manager configures email campaign in email marketing platform: segment audience per campaign brief, schedule send dates, set up A/B test variants if applicable, (d) Campaign Manager configures SMS blast via SMS gateway provider for loyalty member segments</td>
+<td>Campaign Manager / Ecom Team</td>
+<td>CMO</td>
+<td>2–4 hours/channel</td>
+</tr>
+<td>12</td>
+<td><strong>Traditional media</strong>: Campaign Manager coordinates with media buying agency (or direct media placement) for radio spots, print ads, and digital ads; confirms placement schedule, flight dates, and audience targeting parameters; media costs tracked to campaign cost center</td>
+<td>Campaign Manager / Media Agency</td>
+<td>CMO</td>
+<td>Per W62 contract</td>
+</tr>
+<td>13</td>
+<td><strong>Loyalty integration</strong>: Campaign Manager coordinates with Loyalty Manager to configure campaign-specific loyalty mechanics per W17 — e.g., double-points weekends, bonus points for specific categories, tier-exclusive early access, member-only pricing; Loyalty Manager configures in loyalty engine and tests before go-live</td>
+<td>Campaign Manager / Loyalty Manager</td>
+<td>CMO</td>
+<td>2 hours/campaign</td>
+</tr>
+<td>14</td>
+<td><strong>System readiness check</strong> (T-3 days): Campaign Manager verifies with IT that (a) promotional pricing is loaded in POS per W13.5, (b) ecommerce campaign pages are live and pricing matches, (c) email and SMS campaigns are scheduled and tested, (d) campaign tracking tags/pixels are correctly implemented for digital performance measurement</td>
+<td>Campaign Manager / IT</td>
+<td>CIO</td>
+<td>2 hours/campaign</td>
+</tr>
+<td>15</td>
+<td>Campaign launches on scheduled go-live date; Campaign Manager monitors first-day execution across channels: confirm POS materials displayed in stores (Store Manager photo confirmation), verify digital assets live, confirm email/SMS sent</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>4 hours/launch day</td>
+</tr>
+</tbody></table></div>
+
+<h3>Phase 4: Campaign Monitoring (During Campaign)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>16</td>
+<td>Campaign Manager monitors daily campaign performance dashboard during campaign period: (a) in-store: promo SKU sell-through per store, traffic counts (if available), average basket size, (b) ecommerce: campaign landing page visits, conversion rate, promo code usage, (c) digital: email open rate, click-through rate, social media engagement (likes, shares, comments), digital ad impressions and click-through rate, (d) loyalty: campaign-specific points earning and redemption activity</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>30 min/day during campaign</td>
+</tr>
+<td>17</td>
+<td>Weekly during campaign: Campaign Manager presents performance snapshot to CMO and VP Merchandising — actual vs. target KPIs, top-performing SKUs, top-performing stores, underperforming channels, budget burn rate</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>30 min/week</td>
+</tr>
+<td>18</td>
+<td>Mid-campaign optimization: if performance significantly below target on a channel, Campaign Manager proposes adjustments with CMO approval — (a) increase digital ad spend on performing channels, (b) adjust email re-send to unopened segment, (c) extend or modify in-store displays, (d) adjust social media content strategy</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>1 hour/ad-hoc</td>
+</tr>
+</tbody></table></div>
+
+<h3>Phase 5: Post-Campaign Analysis & Learning (T+1 to T+2 weeks after campaign end)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>19</td>
+<td>Campaign Manager pulls comprehensive post-campaign data: (a) total revenue attributed to campaign SKUs vs. baseline, (b) campaign cost by channel (creative production, media placement, printing, distribution, agency fees), (c) ROI per channel (revenue attributed ÷ channel cost), (d) incremental traffic (vs. pre-campaign baseline), (e) new loyalty sign-ups attributed to campaign, (f) ecommerce metrics (landing page conversion, promo code redemption, new customer acquisition cost), (g) social media metrics (reach, engagement, follower growth), (h) store-level performance variation (top 10 and bottom 10 stores)</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>4–8 hours/campaign</td>
+</tr>
+<td>20</td>
+<td>Campaign Manager prepares post-campaign report: executive summary, KPI actual vs. target, channel performance comparison, cost analysis and ROI, customer acquisition metrics, creative performance assessment (which assets performed best), key learnings and recommendations for future campaigns</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>4 hours/campaign</td>
+</tr>
+<td>21</td>
+<td>Campaign Manager presents post-campaign report to CMO, VP Merchandising, and CFO; lessons learned documented and archived in system linked to campaign record; key insights shared with Category Managers for future assortment and pricing decisions (W1, W40)</td>
+<td>Campaign Manager / CMO</td>
+<td>CEO (for major campaigns)</td>
+<td>1 hour/campaign</td>
+</tr>
+<td>22</td>
+<td>System archives campaign record with full documentation: brief, creative assets, performance data, cost tracking, and post-campaign report; available for future campaign planning reference</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>23</td>
+<td>Quarterly: CMO reviews portfolio of campaign performance across all campaigns in the quarter — total marketing spend vs. attributed revenue, overall marketing ROI, most effective channels, seasonal patterns; presents to CEO in quarterly management committee (W35.14)</td>
+<td>CMO</td>
+<td>CEO</td>
+<td>2 hours/quarter</td>
+</tr>
+<td>24</td>
+<td>Annual: CMO and CFO review annual marketing budget utilization and ROI; propose next year's marketing budget allocation by channel per W26 annual budget cycle</td>
+<td>CMO / CFO</td>
+<td>CEO</td>
+<td>4 hours/year</td>
+</tr>
+</tbody></table></div>
+
+<h3>Campaign Budget Tracking</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>25</td>
+<td>At campaign brief approval (step 4), Campaign Manager creates campaign purchase requisitions for external costs: (a) creative agency fees per W62 contract, (b) media placement costs, (c) printing and production costs, (d) distribution / logistics costs; all costs tagged to campaign cost center</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>1 hour/campaign</td>
+</tr>
+<td>26</td>
+<td>AP Clerk processes campaign vendor invoices per W7C (non-PO) or against campaign PO; system tags expense to campaign cost center; Campaign Manager confirms goods/services received before AP approval</td>
+<td>AP Clerk / Campaign Manager</td>
+<td>AP Supervisor</td>
+<td>Per W7</td>
+</tr>
+<td>27</td>
+<td>Monthly: Campaign Manager generates campaign budget utilization report — total spend by campaign, spend by channel, budget vs. actual per campaign, and remaining budget for active campaigns</td>
+<td>Campaign Manager</td>
+<td>CMO</td>
+<td>1 hour/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Campaign record creation with code, objectives, KPIs, budget, timeline, team, linked SKUs and pricing (W83.5)</li>
+<li>Campaign cost center for expense tracking with GL allocation (W83.5, 25–27)</li>
+<li>Creative asset storage linked to campaign record with version control (W83.9)</li>
+<li>Campaign performance dashboard: real-time sell-through, ecommerce metrics, digital engagement, loyalty activity (W83.16)</li>
+<li>Channel execution tracking: material distribution status to stores, digital asset publication status, email/SMS delivery status (W83.10–15)</li>
+<li>Post-campaign analytics: revenue attribution, ROI per channel, customer acquisition cost, store-level performance (W83.19–21)</li>
+<li>Campaign archive with full documentation for future reference (W83.22)</li>
+<li>Integration with W13 (promotional pricing), W17 (loyalty mechanics), W35 (management reporting), W40 (regular pricing), W50 (product content), W58 (corporate account campaigns), W62 (agency contracts), W65 (CSAT measurement)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>1 Campaign Manager</strong> (within Marketing team): manages ~18–24 campaigns/year. At ~20 hours/campaign for major events and ~8 hours/campaign for monthly cycles, total effort is ~200–300 hours/year. Absorbed within existing ~24-person Marketing team — this role likely already exists but was not formalized in a workflow.</li>
+<li><strong>Content Manager + Content Specialists</strong>: creative production absorbed per W50 staffing.</li>
+<li><strong>No incremental headcount.</strong></li>
+</ul>
+
+<hr>
+
+
+<h2>W104. Loyalty Program Financial Governance & Periodic Review</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Quarterly loyalty program review calendar; or ad-hoc triggered by significant points liability change, competitive loyalty program launch, or program design change request</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Quarterly financial review; annual program design review</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>600,000 members; ~PHP 1.2–1.8B cumulative points liability; ~50M points earned/month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Loyalty Manager (operations); Cost Accountant (financial); CMO (strategic)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Loyalty Manager, Cost Accountant, Controller, CMO, CFO, Marketing Analytics</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>W17 (Customer Loyalty Program Operations) covers day-to-day loyalty operations — enrollment, earning, redemption, tier management, and fraud detection. However, there is no periodic governance workflow reviewing the financial health of the loyalty program. With a cumulative points liability of PHP 1.2–1.8B on the balance sheet (deferred revenue), 600,000 members, and a program cost of ~1% of revenue, the loyalty program is a material financial obligation requiring regular oversight. This workflow covers financial reporting, liability management, breakage analysis, tier economics, program ROI, and strategic design decisions.</p>
+
+<h3>Steps</h3>
+
+<h3>Quarterly Financial Review</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Liability reporting</strong>: Cost Accountant prepares quarterly loyalty liability report: (a) total outstanding points balance and estimated liability (outstanding points × PHP 1.00 redemption value × expected redemption rate ~75–85%), (b) quarterly points earned vs. redeemed vs. expired (waterfall), (c) deferred revenue balance vs. prior quarter — trend analysis, (d) liability as % of trailing 12-month revenue (benchmark: should remain stable, not growing as % of revenue), (e) breakage rate (points expired ÷ points earned) — compare to PFRS 15 assumption used in W17.4 allocation, (f) deferred revenue adequacy — is the recorded deferred revenue sufficient to cover expected redemptions?</td>
+<td>Cost Accountant</td>
+<td>Controller</td>
+<td>2 hours/quarter</td>
+</tr>
+<td>2</td>
+<td><strong>Program engagement metrics</strong>: Loyalty Manager prepares quarterly engagement report: (a) active member rate (members with ≥ 1 transaction in trailing 90 days), (b) enrollment trend (new sign-ups per month, channel breakdown: in-store vs. online), (c) redemption rate (points redeemed ÷ points available for redemption), (d) tier distribution (Bronze/Silver/Gold/Platinum member count and revenue contribution per tier), (e) average points balance per member by tier, (f) earn-to-burn ratio (points earned ÷ points redeemed — ratio > 1.0 means liability is growing), (g) member spend lift — do loyalty members spend more per transaction than non-members? (target: ≥ 15% higher ATV)</td>
+<td>Loyalty Manager</td>
+<td>CMO</td>
+<td>2 hours/quarter</td>
+</tr>
+<td>3</td>
+<td><strong>Program cost analysis</strong>: Cost Accountant calculates quarterly program cost: (a) points redemption cost (value of discounts given at POS), (b) deferred revenue allocation impact on gross revenue recognition, (c) program administration cost ( Loyalty Manager time, system licensing, card printing, communication), (d) promotional loyalty costs (double-points weekends, bonus points per W17.10), (e) total program cost as % of qualifying revenue; benchmark against industry norms (1.0–1.5% for Philippine retail)</td>
+<td>Cost Accountant</td>
+<td>Controller</td>
+<td>1 hour/quarter</td>
+</tr>
+<td>4</td>
+<td><strong>Tier economics review</strong>: Loyalty Manager and Cost Accountant analyze tier-level economics: (a) revenue per member by tier, (b) margin per member by tier (after loyalty discount, promotional costs, and tier-specific benefits), (c) upgrade/downgrade rates between tiers, (d) tier retention rate (% of members maintaining or upgrading tier year-over-year), (e) Platinum/Gold tier cost-benefit analysis — do high-tier benefits (exclusive pricing, priority service) drive sufficient incremental margin to justify the cost?</td>
+<td>Loyalty Manager / Cost Accountant</td>
+<td>CMO / Controller</td>
+<td>1 hour/quarter</td>
+</tr>
+<td>5</td>
+<td><strong>CMO and CFO joint review</strong>: CMO (program strategy) and CFO (financial stewardship) review quarterly loyalty program performance: (a) is the liability growing sustainably?, (b) is engagement improving or declining?, (c) is the program cost within budget?, (d) are tier economics viable?, (e) competitive loyalty benchmarking — how does BuildRight's program compare to competitors (earn rate, redemption value, tier benefits)?; agree on action items (e.g., adjust earn rate, change tier thresholds, introduce new redemption options, run re-engagement campaign for dormant members)</td>
+<td>CMO / CFO</td>
+<td>CEO</td>
+<td>1 hour/quarter</td>
+</tr>
+</tbody></table></div>
+
+<h3>Annual Program Design Review</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>6</td>
+<td>Loyalty Manager prepares annual program review document: (a) full-year financial summary (liability, cost, breakage, ROI), (b) program engagement trend over 3 years, (c) member segmentation analysis — heavy redeemers, points hoarders, dormant members, new members, (d) competitive program analysis — what are competitors offering?, (e) member satisfaction data from W65 CSAT surveys specific to loyalty, (f) proposed program changes for next year (earn rate, tier thresholds, new benefits, redemption catalog expansion, partnership opportunities)</td>
+<td>Loyalty Manager</td>
+<td>CMO</td>
+<td>8 hours/year</td>
+</tr>
+<td>7</td>
+<td>CMO, CFO, and CEO review annual program design; approve or modify proposed changes; changes to earn rate or redemption value require Board awareness due to balance sheet impact</td>
+<td>CMO / CFO</td>
+<td>CEO / Board</td>
+<td>2 hours/year</td>
+</tr>
+<td>8</td>
+<td>If program changes approved: Loyalty Manager coordinates implementation timeline with IT and Marketing; system configuration changes deployed; member communication plan executed (30-day advance notice for changes affecting earn rate or tier thresholds); updated program terms published on website and in-store</td>
+<td>Loyalty Manager / IT</td>
+<td>CMO</td>
+<td>Per change scope</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Quarterly loyalty liability report: outstanding points, deferred revenue, breakage waterfall, liability trend (W104.1)</li>
+<li>Program engagement dashboard: active rate, enrollment, redemption, tier distribution, earn-to-burn, member spend lift (W104.2)</li>
+<li>Program cost reporting: redemption cost, deferred revenue impact, admin cost, promotional cost (W104.3)</li>
+<li>Tier economics analysis: revenue, margin, upgrade/downgrade, retention per tier (W104.4)</li>
+<li>Annual program review with competitive benchmarking and member segmentation (W104.6–7)</li>
+<li>Integration with W17 (day-to-day loyalty operations), W65 (CSAT measurement), W83 (marketing campaigns — loyalty mechanics), W35 (management reporting — program KPIs in executive dashboard)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Cost Accountant</strong>: adds ~3 hours/quarter for liability and cost analysis + ~2 hours/year for annual review = ~14 hours/year. Absorbed.</li>
+<li><strong>Loyalty Manager</strong>: adds ~2 hours/quarter for engagement analysis + ~8 hours/year for annual review = ~16 hours/year. Absorbed.</li>
+<li><strong>CMO / CFO</strong>: 1 hour/quarter joint review + 2 hours/year annual review = ~6 hours/year. Absorbed.</li>
+<li><strong>No incremental headcount.</strong></li>
+</ul>
+
+<hr>
+
+<h2>W134. Crisis Communication & Brand Reputation Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Brand crisis (e.g., major safety issue, viral complaint, legal scandal)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ad-hoc</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~1–2 major crises managed per year</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>CMO / Public Relations (PR) Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CEO, Legal (W125), HR, Store Ops (if applicable)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Alert & Verification: Identify and verify the scale of the crisis</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>1 hour</td>
+</tr>
+<td>2</td>
+<td>Crisis Team Activation: Convene CEO, Legal, CMO, and relevant Dept Head</td>
+<td>CMO</td>
+<td>CEO</td>
+<td>2 hours</td>
+</tr>
+<td>3</td>
+<td>Fact Finding: Gather details and internal reports on the incident</td>
+<td>Dept Head</td>
+<td>CEO</td>
+<td>4 hours</td>
+</tr>
+<td>4</td>
+<td>Messaging: Develop official statement and FAQ for press/social media</td>
+<td>PR Manager</td>
+<td>CEO</td>
+<td>4 hours</td>
+</tr>
+<td>5</td>
+<td>Channel Execution: Release statement via PR wires, website, and social media</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>1 hour</td>
+</tr>
+<td>6</td>
+<td>Monitoring: Track sentiment and response; adjust messaging as needed</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>1–3 days</td>
+</tr>
+<td>7</td>
+<td>Post-Crisis Review: Document impact and update crisis protocol</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>1 day</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W135. CSR Program Execution</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Annual CSR calendar or emergency request (e.g., typhoon relief)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Periodic; ~4–6 major projects/year</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Budget PHP 10M–20M annually</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>CSR Coordinator (within Marketing)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Marketing, Finance, Store Managers (local execution)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Project Selection: Identify beneficiary communities or NGOs</td>
+<td>CSR Coord</td>
+<td>CMO</td>
+<td>2 weeks</td>
+</tr>
+<td>2</td>
+<td>Budget Approval: Finalize project scope and fund allocation (W21)</td>
+<td>CSR Coord</td>
+<td>CEO</td>
+<td>1 week</td>
+</tr>
+<td>3</td>
+<td>Procurement: Source materials (lumber, tools, supplies) at cost from stores</td>
+<td>Buyer</td>
+<td>CSR Coord</td>
+<td>1 week</td>
+</tr>
+<td>4</td>
+<td>Implementation: Execute event (e.g., building a community center, relief distribution)</td>
+<td>Store Staff</td>
+<td>CSR Coord</td>
+<td>1–3 days</td>
+</tr>
+<td>5</td>
+<td>Documentation: Capture photos/videos and prepare impact report</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>3 days</td>
+</tr>
+<td>6</td>
+<td>Publicity: Share CSR stories on social media and annual report (W114)</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>1 week</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W142. Social Media & Influencer Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Weekly content calendar; or influencer partnership agreement</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Daily posts; monthly influencer activations</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Managing ~5–7 social channels (Facebook, TikTok, Instagram, YouTube, Viber)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Social Media Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Content Specialists, Influencers, Customer Service (for moderation), CMO</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Content Calendar</strong>: Develop 4-week rolling calendar aligned with W83 campaigns and W13 promos</td>
+<td>Social Media Mgr</td>
+<td>CMO</td>
+<td>4 hours/month</td>
+</tr>
+<td>2</td>
+<td><strong>Content Creation</strong>: Produce short-form videos (TikTok/Reels), product feature posts, and DIY tips</td>
+<td>Content Specialist</td>
+<td>Social Media Mgr</td>
+<td>Daily</td>
+</tr>
+<td>3</td>
+<td><strong>Influencer Sourcing</strong>: Identify DIY/Home-Improvement influencers; vet for audience fit and engagement rate</td>
+<td>Social Media Mgr</td>
+<td>CMO</td>
+<td>4 hours/month</td>
+</tr>
+<td>4</td>
+<td><strong>Contracting</strong>: Sign partnership agreements (W62); define deliverables (e.g., 2 videos, 3 stories)</td>
+<td>Legal / Social Mgr</td>
+<td>CMO</td>
+<td>2 hours/influencer</td>
+</tr>
+<td>5</td>
+<td><strong>Campaign Execution</strong>: Influencer posts content; system tracks referral traffic and promo code usage</td>
+<td>Influencer / Social Mgr</td>
+<td>—</td>
+<td>Per campaign</td>
+</tr>
+<td>6</td>
+<td><strong>Community Management</strong>: Respond to comments/DMs; escalate complaints to W41; moderate "trolls"</td>
+<td>CS Team / Social Mgr</td>
+<td>—</td>
+<td>Ongoing</td>
+</tr>
+<td>7</td>
+<td><strong>Performance Review</strong>: Monthly report on reach, engagement, sentiment, and conversion ROI</td>
+<td>Social Media Mgr</td>
+<td>CMO</td>
+<td>2 hours/month</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W143. Public Relations & Corporate Communications</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>New store opening (W16); major company milestone; or crisis (W134)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Monthly press releases; ad-hoc media events</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~12–15 press releases/year</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>PR Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CEO, CMO, Legal, external PR agency</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Media List Maintenance</strong>: Manage database of reporters, editors, and industry bloggers</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>Ongoing</td>
+</tr>
+<td>2</td>
+<td><strong>Press Release Drafting</strong>: Write official statements for new store openings, CSR events, or financial results</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>4 hours</td>
+</tr>
+<td>3</td>
+<td><strong>Executive Briefing</strong>: Prep CEO/C-suite for media interviews or press conferences</td>
+<td>PR Manager</td>
+<td>CMO</td>
+<td>2 hours</td>
+</tr>
+<td>4</td>
+<td><strong>Distribution</strong>: Send releases via wire services and direct media outreach</td>
+<td>PR Manager</td>
+<td>—</td>
+<td>1 hour</td>
+</tr>
+</tbody></table></div>
+<hr>
+
+<h2>W149. Bank & Credit Card Partnership Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Seasonal promo planning; or bank-initiated partnership proposal</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Quarterly campaigns</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Covers top 3–5 credit card issuers in the Philippines</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Partnerships Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Marketing, Finance, Bank Partner, POS/IT</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Negotiation</strong>: Define promo mechanics (e.g., 0% interest for 12 months, 5% rebate, or points multiplier)</td>
+<td>Partnerships Mgr</td>
+<td>CMO</td>
+<td>1–2 weeks</td>
+</tr>
+<td>2</td>
+<td><strong>Financial Modeling</strong>: Calculate cost-sharing (Bank vs. BuildRight) and impact on margin</td>
+<td>Finance Mgr</td>
+<td>CFO</td>
+<td>1 day</td>
+</tr>
+<td>3</td>
+<td><strong>POS Configuration</strong>: Setup Bank BIN (Bank Identification Number) ranges and promo codes in POS</td>
+<td>IT / POS Team</td>
+<td>Partnerships Mgr</td>
+<td>2 days</td>
+</tr>
+<td>4</td>
+<td><strong>Communication</strong>: Brief store staff on offer details and settlement process (e.g., specific card terminals)</td>
+<td>Marketing</td>
+<td>Store Mgr</td>
+<td>1 day</td>
+</tr>
+<td>5</td>
+<td><strong>Execution</strong>: Customer uses partner card at POS; system auto-applies benefit (rebate/points)</td>
+<td>Cashier / System</td>
+<td>—</td>
+<td>Continuous</td>
+</tr>
+<td>6</td>
+<td><strong>Settlement</strong>: Reconcile partner bank statements vs. POS records; invoice bank for their cost share</td>
+<td>Finance (AR)</td>
+<td>Controller</td>
+<td>Monthly</td>
+</tr>
+<td>7</td>
+<td><strong>ROI Review</strong>: Measure incremental sales and new customer acquisition from the partnership</td>
+<td>Partnerships Mgr</td>
+<td>CMO</td>
+<td>2 hours/campaign</td>
+</tr>
+</tbody></table></div>
+
+
+<hr>
+
+<h2>W151. Corporate Social Responsibility (CSR) Impact Measurement & Reporting</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Completion of CSR event (W135) or annual ESG reporting cycle</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Monthly reporting; Annual impact summary</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~10–15 major initiatives/year</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>CSR Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Marketing, HR, Finance, external NGOs</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Data Collection</strong>: Gather quantitative data: number of beneficiaries, tons of waste diverted, trees planted, scholarship hours funded</td>
+<td>CSR Team</td>
+<td>CSR Manager</td>
+<td>1 week</td>
+</tr>
+<td>2</td>
+<td><strong>Financial Reconciliation</strong>: Match actual CSR spend against budget and donations collected from customers</td>
+<td>Finance</td>
+<td>Controller</td>
+<td>2 days</td>
+</tr>
+<td>3</td>
+<td><strong>Qualitative Stories</strong>: Interview beneficiaries and employee volunteers for "impact stories"</td>
+<td>Marketing / CSR</td>
+<td>CMO</td>
+<td>3 days</td>
+</tr>
+<td>4</td>
+<td><strong>Impact Report</strong>: Produce "BuildRight Impact" dashboard; integrate into Annual ESG Report (W114)</td>
+<td>CSR Manager</td>
+<td>CEO</td>
+<td>1 week</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W153. Retail Media Network (RMN) Operations</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Vendor request to purchase premium advertising space on BuildRight digital/physical assets</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing; Monthly campaign cycles</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~20–30 vendors participating; ~50 active ad placements</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Retail Media Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Merchandising, Digital Marketing, Ecommerce, Finance</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Inventory Mapping</strong>: Catalog all "ad assets": website banners, app home screen, email newsletters, in-store digital screens, gondola end-caps</td>
+<td>RMN Manager</td>
+<td>CMO</td>
+<td>1 week</td>
+</tr>
+<td>2</td>
+<td><strong>Rate Card</strong>: Define pricing for ad placements (CPM, CPC, or flat fee per week)</td>
+<td>RMN Manager</td>
+<td>CMO</td>
+<td>3 days</td>
+</tr>
+<td>3</td>
+<td><strong>Media Booking</strong>: Vendor selects and books ad space; Category Manager approves for brand alignment</td>
+<td>Vendor / Buyer</td>
+<td>RMN Manager</td>
+<td>2 days</td>
+</tr>
+<td>4</td>
+<td><strong>Execution</strong>: Upload ad creative to PIM (W50) or digital signage system; ensure tracking links are active</td>
+<td>Digital Mktg</td>
+<td>Ecommerce Mgr</td>
+<td>1 day</td>
+</tr>
+<td>5</td>
+<td><strong>Performance Reporting</strong>: Provide vendor with "Closed-Loop" report: ad impressions vs. actual sales lift at POS</td>
+<td>System / RMN Mgr</td>
+<td>RMN Manager</td>
+<td>Monthly</td>
+</tr>
+<td>6</td>
+<td><strong>Billing</strong>: Invoice vendor for media services (distinct from product rebates W27)</td>
+<td>Finance</td>
+<td>Controller</td>
+<td>Monthly</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W189. Referral Program & Brand Ambassador Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Launch of referral campaign or onboarding of new Brand Ambassador</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~1,000–5,000 active referrers</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Loyalty Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Marketing, Customer Service, Finance</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Program Setup</strong>: Define referral rewards (e.g., PHP 500 voucher for both referrer and referee)</td>
+<td>Loyalty Mgr</td>
+<td>CMO</td>
+<td>1 week</td>
+</tr>
+<td>2</td>
+<td><strong>Link Generation</strong>: System generates unique referral codes/links for all loyalty members (W17)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td><strong>Ambassador Onboarding</strong>: Sign agreements with "Power Referrers" (vetted high-engagement customers)</td>
+<td>Loyalty Mgr</td>
+<td>CMO</td>
+<td>2 days</td>
+</tr>
+<td>4</td>
+<td><strong>Referral Tracking</strong>: Referee uses code at POS or online; system validates eligibility (new customer only)</td>
+<td>System</td>
+<td>—</td>
+<td>Real-time</td>
+</tr>
+<td>5</td>
+<td><strong>Reward Fulfillment</strong>: System auto-issues vouchers or loyalty points upon successful referee purchase</td>
+<td>System</td>
+<td>—</td>
+<td>Real-time</td>
+</tr>
+<td>6</td>
+<td><strong>Fraud Monitoring</strong>: Audit for self-referrals or "referral mills"; block suspicious accounts</td>
+<td>Loyalty Mgr</td>
+<td>—</td>
+<td>Weekly</td>
+</tr>
+<td>7</td>
+<td><strong>Performance Analysis</strong>: Calculate Customer Acquisition Cost (CAC) via referral vs. other channels</td>
+<td>Analytics</td>
+<td>CMO</td>
+<td>Monthly</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W190. In-house Design & Creative Production Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Creative request for campaign (W83), store opening (W16), or signage update</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Daily</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~50–100 creative tickets/month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Content Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Graphic Designers, Video Editors, Dept Requestors</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Request Intake</strong>: Dept Head submits "Creative Brief" (W83.1) via internal ticketing system</td>
+<td>Requestor</td>
+<td>—</td>
+<td>15 min</td>
+</tr>
+<td>2</td>
+<td><strong>Prioritization</strong>: Content Manager assigns priority based on campaign importance and deadline</td>
+<td>Content Mgr</td>
+<td>—</td>
+<td>30 min</td>
+</tr>
+<td>3</td>
+<td><strong>Production</strong>: Designers/Editors produce assets (layouts, videos, posters)</td>
+<td>Creative Team</td>
+<td>—</td>
+<td>1–5 days</td>
+</tr>
+<td>4</td>
+<td><strong>Review & Approval</strong>: Requestor and Content Manager review drafts; request revisions</td>
+<td>Content Mgr</td>
+<td>—</td>
+<td>1 day</td>
+</tr>
+<td>5</td>
+<td><strong>Finalization</strong>: Export in required formats (Print-ready, Social-size, Web-optimized)</td>
+<td>Creative Team</td>
+<td>—</td>
+<td>2 hours</td>
+</tr>
+<td>6</td>
+<td><strong>Asset Management</strong>: Upload final assets to Digital Asset Management (DAM) system (W50)</td>
+<td>Creative Team</td>
+<td>—</td>
+<td>15 min</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints (Marketing Expansion)</h3>
+<ul>
+<li>Referral tracking engine integrated with Loyalty and POS (W189.4)</li>
+<li>Automated voucher issuance system (W189.5)</li>
+<li>Internal Creative Ticketing / Project Management tool (W190.1)</li>
+<li>Digital Asset Management (DAM) for version-controlled creative storage (W190.6)</li>
+</ul>
+
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

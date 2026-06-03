@@ -1,0 +1,2407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procurement — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub act"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🛒</span><h2>Procurement</h2></div><div class="cd mc"><h1>Procurement & Vendor Management Workflows</h1>
+
+<blockquote>Purchase orders, vendor onboarding, VMI, special orders, vendor performance, and contracts.</blockquote>
+<blockquote></blockquote>
+<blockquote>Back to <a href="README.md">Workflow Index</a></blockquote>
+
+<hr>
+
+<h2>Workflows in This Domain</h2>
+
+<ul>
+<li><a href="#procurement-purchase-order-cycle">W2. Procurement — Purchase Order Cycle</a></li>
+<li><a href="#procurement--auto-replenishment-ropmrp">W2A. Procurement — Auto-Replenishment (ROP/MRP)</a></li>
+<li><a href="#import-purchase-orders--landed-cost">W2B. Import Purchase Orders & Landed Cost</a></li>
+<li><a href="#blanket-purchase-orders">W2C. Blanket Purchase Orders</a></li>
+<li><a href="#vendor-managed-inventory-vmi">W20. Vendor Managed Inventory (VMI)</a></li>
+<li><a href="#vendor-onboarding">W36. Vendor Onboarding</a></li>
+<li><a href="#special-order-non-stock-item-fulfillment">W38. Special Order / Non-Stock Item Fulfillment</a></li>
+<li><a href="#vendor-performance-review">W44. Vendor Performance Review</a></li>
+<li><a href="#emergency-procurement">W60. Emergency Procurement</a></li>
+<li><a href="#vendor-contract-lifecycle-non-po-contracts">W62. Vendor Contract Lifecycle (Non-PO Contracts)</a></li>
+<li><a href="#3pl--logistics-partner-onboarding--contract-lifecycle">W62B. 3PL / Logistics Partner Onboarding & Contract Lifecycle</a></li>
+<li><a href="#rtv-processing">W88. Return to Vendor (RTV) Processing</a></li>
+<li><a href="#supplier-quality-capa-corrective-and-preventive-action">W110. Supplier Quality & CAPA (Corrective and Preventive Action)</a></li>
+<li><a href="#supplier-diversity-msme-development-program">W115. Supplier Diversity & MSME Development Program</a></li>
+<li><a href="#indirect-non-merchandise-procurement">W136. Indirect / Non-Merchandise Procurement</a></li>
+<li><a href="#product-quality-testing--certification">W150. Product Quality Testing & Certification</a></li>
+<li><a href="#vendor-strategic-collaboration--joint-business-planning-jbp">W155. Vendor Strategic Collaboration & Joint Business Planning (JBP)</a></li>
+<li><a href="#private-label-factory-audit--social-compliance">W160. Private Label Factory Audit & Social Compliance</a></li>
+<li><a href="#vendor-price-protection--market-markdown-claims">W161. Vendor Price Protection & Market Markdown Claims</a></li>
+<li><a href="#vendor-invoice-dispute--discrepancy-resolution">W244. Vendor Invoice Dispute & Discrepancy Resolution</a></li>
+<li><a href="#vendor-performance-chargebacks--penalties-management">W245. Vendor Performance Chargebacks & Penalties Management</a></li>
+</ul>
+
+<hr>
+
+<h2>W2. Procurement — Purchase Order Cycle</h2>
+
+<h3>W2A. Auto-Replenishment (Stocking Items)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>SKU hits reorder point (ROP) in system</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Daily review; POs generated daily</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~1,200 merchandise POs/month (auto-replenishment + ad-hoc); ~18,000 PO lines/month; excludes ~80–240 blanket/contract release orders/month (W2C), ~20–30 import POs/month (W2B), and ~30–50 non-merchandise POs/month (capex, IT, supplies); total all types: ~1,400–1,600 POs/month</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>PO-to-GR ratio</strong>: ~1,200 merchandise POs generate ~6,000 DC goods receipts/month (W3) — an average of ~5 GRs per PO. This ratio reflects partial shipments (vendors delivering across multiple drops), scheduled phased deliveries for large POs, and blanket PO releases each generating a separate GR. Import POs (W2B) typically generate 1 GR per container. DSD POs delivered to stores generate store-level GRs (W18) outside the DC receiving workflow.</blockquote>
+<div class="table-wrap"><table><thead><tr>
+<th><strong>Owner</strong></th>
+<th>Buyer</th>
+</tr></thead><tbody>
+<td><strong>Participants</strong></td>
+<td>System (auto-suggest), Buyer, Category Manager (approval if > PHP 50K)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>System calculates ROP breaches based on: avg daily demand × lead time + safety stock</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td>System generates suggested POs grouped by vendor, consolidated across DCs</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td>Buyer reviews suggested PO list each morning: check quantities, adjust if needed</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>1–2 hours/day</td>
+</tr>
+<td>4</td>
+<td>Buyer confirms or modifies PO quantities, delivery dates, and DC destinations</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>1–2 hours/day</td>
+</tr>
+<td>5</td>
+<td>If PO total > PHP 50K: route to Category Manager for approval</td>
+<td>Category Manager</td>
+<td>Category Manager</td>
+<td>15 min/PO</td>
+</tr>
+<td>6</td>
+<td>If PO total > PHP 500K: route to VP Merchandising for approval</td>
+<td>VP Merchandising</td>
+<td>VP Merchandising</td>
+<td>15 min/PO</td>
+</tr>
+<td>7</td>
+<td>Approved PO transmitted to vendor (email, EDI, or vendor portal); vendors with portal access can view PO details, confirm delivery dates, and submit invoices through the portal</td>
+<td>System / Buyer</td>
+<td>Buyer</td>
+<td>Automated</td>
+</tr>
+<td>8</td>
+<td>Buyer tracks open POs; follows up on overdue deliveries</td>
+<td>Buyer</td>
+<td>Buyer</td>
+<td>1 hour/day</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total buyer effort</strong>: ~3–5 hours/day for daily PO review and follow-up</p>
+
+<h3>PO Lifecycle: Amendment, Cancellation & Close</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Activity</th>
+<th>Trigger</th>
+<th>Approval</th>
+<th>System Action</th>
+</tr></thead><tbody>
+<td><strong>PO Amendment</strong></td>
+<td>Buyer needs to change quantity, delivery date, price, or add/remove lines on an approved PO</td>
+<td>Re-approval per tiered matrix (same thresholds as original PO: > PHP 50K → Category Manager, > PHP 500K → VP Merchandising, > PHP 2M → CFO for imports) if change exceeds materiality threshold (quantity change > 20%, price change > 5%, or any delivery date change); minor changes (within threshold) auto-approved with Buyer note</td>
+<td>System transmits amendment to vendor (email, EDI, or portal); tracks amendment history with full audit trail (original values, amended values, reason code, approver ID, timestamp); for import POs (W2B), Finance notifies bank if LC amendment is required for value changes</td>
+</tr>
+<td><strong>PO Cancellation</strong></td>
+<td>Vendor cannot deliver, demand drops, item discontinued, or PO no longer needed</td>
+<td>Buyer initiates with reason code; Category Manager approval required for cancellations > PHP 50K; VP Merchandising for > PHP 500K</td>
+<td>System checks for existing GR against PO: if no GR, auto-cancels with vendor notification; if partial GR, Buyer confirms close of remaining quantity; system releases budget commitment; cancelled PO retained in audit trail</td>
+</tr>
+<td><strong>PO Auto-Close</strong></td>
+<td>PO fully received (GR quantity matches ordered quantity within tolerance) or PO open beyond configured age limit</td>
+<td>Automated</td>
+<td>System auto-closes fully received POs; system flags POs open > 90 days for Buyer review (dashboard alert); Buyer reviews aged POs weekly and decides: close remaining quantity, extend delivery date (amendment), or escalate to Category Manager</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints (PO Lifecycle)</h3>
+<ul>
+<li>PO amendment workflow with materiality thresholds triggering re-approval (W2A)</li>
+<li>Amendment history with full audit trail: original vs. amended values, reason, approver (W2A)</li>
+<li>Vendor notification on amendment (email/EDI/portal) (W2A)</li>
+<li>Import PO LC amendment trigger (cross-reference W2B) (W2A)</li>
+<li>PO cancellation with reason code and budget release (W2A)</li>
+<li>Partial-receipt PO close workflow (W2A)</li>
+<li>Auto-close rules: tolerance-based for fully received POs; aging threshold for open POs (W2A)</li>
+</ul>
+
+<h3>W2B. Import Purchase Orders</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Seasonal buy plan or replenishment of import SKUs</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~20–30 import POs/month</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~400–600 TEUs/month across all import vendors (per model-company-profile §7.1); ~15–25 TEUs per major import PO</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer (with Import Coordinator)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Import Coordinator, Finance (LC), Customs Broker, Warehouse (receiving)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Buyer creates import PO with estimated landed cost (FOB + freight + duty + insurance)</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30 min/PO</td>
+</tr>
+<td>2</td>
+<td>Route for approval (> PHP 50K → Category Manager; > PHP 500K → VP Merchandising; > PHP 2M → CFO)</td>
+<td>Category Manager / VP / CFO</td>
+<td>As per tier</td>
+<td>15–30 min/PO</td>
+</tr>
+<td>3</td>
+<td>Finance opens Letter of Credit (LC) with bank or arranges TT payment</td>
+<td>Treasury Analyst</td>
+<td>CFO</td>
+<td>1–2 hours/PO</td>
+</tr>
+<td>4</td>
+<td>Buyer confirms order with vendor; vendor provides Proforma Invoice</td>
+<td>Buyer</td>
+<td>Buyer</td>
+<td>30 min/PO</td>
+</tr>
+<td>5</td>
+<td>Import Coordinator arranges freight booking (container)</td>
+<td>Import Coordinator</td>
+<td>Buyer</td>
+<td>1 hour/PO</td>
+</tr>
+<td>6</td>
+<td>Vendor ships; provides Bill of Lading (BL), Packing List, Commercial Invoice</td>
+<td>Vendor</td>
+<td>—</td>
+<td>External</td>
+</tr>
+<td>7</td>
+<td>Import Coordinator receives shipping docs; engages customs broker</td>
+<td>Import Coordinator</td>
+<td>Import Coordinator</td>
+<td>1 hour/PO</td>
+</tr>
+<td>8</td>
+<td>Customs broker files import entry; pays duties/taxes</td>
+<td>Customs Broker</td>
+<td>Import Coordinator</td>
+<td>1–2 days</td>
+</tr>
+<td>9</td>
+<td>Import Coordinator tracks shipment status; updates ETA in system</td>
+<td>Import Coordinator</td>
+<td>Buyer</td>
+<td>15 min/day per PO</td>
+</tr>
+<td>10</td>
+<td>Goods arrive at port; customs clearance and release</td>
+<td>Customs Broker</td>
+<td>Import Coordinator</td>
+<td>1–3 days</td>
+</tr>
+<td>11</td>
+<td>Transport to DC; Receiving clerk processes Goods Receipt</td>
+<td>Receiving Clerk (DC)</td>
+<td>DC Manager</td>
+<td>2–4 hours/container</td>
+</tr>
+<td>12</td>
+<td>System calculates actual landed cost (duty, freight, insurance allocated per SKU) using GR exchange rate</td>
+<td>System</td>
+<td>Finance</td>
+<td>Automated</td>
+</tr>
+<td>13</td>
+<td>Finance reconciles LC/TT payment with PO and Goods Receipt; system posts FX gain/loss if invoice rate differs from GR rate</td>
+<td>Treasury Analyst</td>
+<td>CFO</td>
+<td>30 min/PO</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total cycle time</strong>: 45–90 days from PO to receipt</p>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>ROP/EOQ auto-calculation per SKU per location (W2A.1–2)</li>
+<li>PO creation with multi-tier approval workflow (W2A.5–6)</li>
+<li>Vendor PO transmission (W2A.7)</li>
+<li>Open PO tracking / overdue alerts (W2A.8)</li>
+<li>Import PO tracking with LC/BL/container fields (W2B.1–9)</li>
+<li>Landed cost calculation engine (W2B.12)</li>
+<li>3-way match: PO → Goods Receipt → Vendor Invoice (W2B.13)</li>
+<li>FX rate capture at PO creation (budget rate), goods receipt (spot rate or BSR), and invoice (actual rate); automatic FX gain/loss posting (W2B.12–13)</li>
+<li>Month-end FX revaluation of open foreign-currency balances at BIR exchange rate with unrealized FX gain/loss posting and auto-reversal (W9A.5a)</li>
+</ul>
+
+<h3>W2C. Blanket / Contract Purchase Orders</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Annual supply agreement negotiation cycle</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~40–60 active contracts at any time; new contracts and renewals throughout the year</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Primarily with top 50 vendors (by spend); typically covers 20–60% of purchasing volume for staple categories (cement, paint, lumber, electrical cable, plumbing fittings)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Category Manager, VP Merchandising, Finance (budget), Vendor</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Buyer negotiates annual supply agreement with vendor: product range, pricing tiers, minimum/maximum commitment quantities, delivery schedule, payment terms, rebate structure</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>4–8 hours/vendor</td>
+</tr>
+<td>2</td>
+<td>Category Manager approves contract terms; VP Merchandising approves if total contract value > PHP 5M</td>
+<td>Category Manager / VP</td>
+<td>VP Merchandising</td>
+<td>30 min</td>
+</tr>
+<td>3</td>
+<td>Finance validates contract commitment against annual purchase budget</td>
+<td>Controller</td>
+<td>CFO</td>
+<td>30 min</td>
+</tr>
+<td>4</td>
+<td>Buyer creates Blanket PO in system: vendor, SKU lines with contract price, validity period (typically 1 year), min/max commitment quantities, agreed delivery schedule or release parameters</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30–60 min</td>
+</tr>
+<td>5</td>
+<td>System enforces contract pricing on all release orders; alerts Buyer if release quantity would exceed maximum commitment</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>6</td>
+<td>Buyer or system creates Release Order against Blanket PO (per agreed schedule or triggered by ROP): specifies exact quantity and delivery date for this release</td>
+<td>Buyer / System</td>
+<td>Buyer</td>
+<td>10 min</td>
+</tr>
+<td>7</td>
+<td>Release Order follows standard PO approval (W2A.5–6) if release value exceeds threshold; otherwise auto-approved within contract parameters</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>8</td>
+<td>Vendor ships per release order; standard receiving (W3) and AP matching (W7) apply</td>
+<td>Vendor</td>
+<td>Buyer</td>
+<td>Per W3/W7</td>
+</tr>
+<td>9</td>
+<td>System tracks cumulative released quantity and value against contract commitment; Buyer monitors to ensure min-commit targets are met</td>
+<td>System</td>
+<td>Buyer</td>
+<td>Automated</td>
+</tr>
+<td>10</td>
+<td>Monthly: Buyer reviews contract utilization report; identifies contracts below minimum commitment pace (risk of penalty or unfavorable renegotiation)</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>1 hour/month</td>
+</tr>
+<td>11</td>
+<td>Quarterly: Buyer and Category Manager evaluate contract performance vs. spot buying; decide renewal, renegotiation, or termination</td>
+<td>Buyer + Category Manager</td>
+<td>VP Merchandising</td>
+<td>2 hours/quarter</td>
+</tr>
+<td>12</td>
+<td>At contract expiry: system alerts Buyer 60 days before; if not renewed, system blocks further release orders</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Contract coverage</strong>: ~40–60 active blanket/contract POs at any time, representing ~45% of annual COGS (aligned with top-20 vendor concentration)</p>
+
+<h3>Vendor Rebate Dispute Resolution</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Vendor disputes rebate settlement amount calculated by BuildRight's system (W27 step 6)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Occasional — estimated 5–10 disputes/year</td>
+</tr>
+<td><strong>Dispute SLA</strong></td>
+<td>15 business days from dispute raised to resolution</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Category Manager, Cost Accountant, Finance Manager</td>
+</tr>
+</tbody></table></div>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Vendor disputes settlement amount: Buyer receives vendor's written objection with vendor's calculation</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>15 min</td>
+</tr>
+<td>2</td>
+<td>Buyer and Cost Accountant jointly review: compare BuildRight's settlement data (qualifying volume, rebate rate applied) to vendor's claim; identify specific discrepancy (volume count difference, rate tier interpretation, timing gap, excluded transactions)</td>
+<td>Buyer / Cost Accountant</td>
+<td>Category Manager</td>
+<td>30–60 min</td>
+</tr>
+<td>3</td>
+<td>If BuildRight calculation confirmed correct: Buyer responds to vendor with supporting data; dispute closed; no settlement adjustment</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>15 min</td>
+</tr>
+<td>4</td>
+<td>If partial vendor claim valid: Buyer proposes adjusted settlement; Category Manager approves adjustment; Cost Accountant posts adjustment with Category Manager approval and documentation in system</td>
+<td>Buyer / Category Manager / Cost Accountant</td>
+<td>Finance Manager</td>
+<td>30 min</td>
+</tr>
+<td>5</td>
+<td>If dispute unresolved within 15 business days: Buyer escalates to Finance Manager for mediation; Finance Manager reviews both calculations and makes binding recommendation within 5 business days</td>
+<td>Finance Manager</td>
+<td>CFO</td>
+<td>30 min</td>
+</tr>
+<td>6</td>
+<td>Monthly: Cost Accountant tracks rebate dispute frequency and resolution time per vendor; feeds into vendor scorecard (W44); chronic disputing vendors flagged for contract renegotiation (W2C)</td>
+<td>Cost Accountant</td>
+<td>Controller</td>
+<td>15 min/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Blanket/contract PO creation with SKU lines, pricing tiers, validity dates, and commitment quantities (W2C.4)</li>
+<li>Contract pricing enforcement on release orders (W2C.5)</li>
+<li>Release order creation against blanket PO with quantity tracking (W2C.6–7)</li>
+<li>Cumulative commitment tracking: released vs. minimum vs. maximum (W2C.9)</li>
+<li>Contract utilization reporting (W2C.10)</li>
+<li>Contract expiry alerting with release order blocking (W2C.12)</li>
+<li>Integration with W27 (vendor rebates — rebates may be tied to contract commitment achievement; rebate dispute resolution per W27 dispute SLA of 15 business days)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Buyers</strong>: 40–60 contracts ÷ 10–12 buyers = ~4–5 contracts each. Monthly review adds ~1 hour/buyer/month. Quarterly evaluation adds ~2 hours/buyer/quarter. Absorbed within existing team.</li>
+<li>No incremental headcount beyond existing Buyer and Finance teams.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W20. Vendor Managed Inventory (VMI)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>VMI vendor reviews sell-through data or system sends replenishment signal</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Varies by vendor (typically weekly or bi-weekly)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~300 SKUs from 12 key vendors</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer (oversight)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>VMI Vendor, Buyer, Receiving Clerk (DC or Store), AP Clerk</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>System shares sell-through data and current stock levels with VMI vendor (EDI or portal)</td>
+<td>System</td>
+<td>Buyer</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td>VMI vendor analyzes data and determines replenishment quantities</td>
+<td>VMI Vendor</td>
+<td>VMI Vendor</td>
+<td>External</td>
+</tr>
+<td>3</td>
+<td>VMI vendor creates shipment; provides Advance Shipping Notice (ASN) to system</td>
+<td>VMI Vendor</td>
+<td>Buyer</td>
+<td>External</td>
+</tr>
+<td>4</td>
+<td>Buyer reviews and confirms ASN; or system auto-confirms if within agreed parameters</td>
+<td>Buyer / System</td>
+<td>Buyer</td>
+<td>10 min/batch</td>
+</tr>
+<td>5</td>
+<td>Vendor ships goods to DC or store per agreement</td>
+<td>VMI Vendor</td>
+<td>—</td>
+<td>External</td>
+</tr>
+<td>6</td>
+<td>Receiving Clerk processes Goods Receipt against ASN (standard receiving process)</td>
+<td>Receiving Clerk</td>
+<td>Dept. Supervisor / DC Supervisor</td>
+<td>Per W3 or W18</td>
+</tr>
+<td>7</td>
+<td>Goods recorded as vendor-owned inventory in system (non-valuated until sold)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>7a</td>
+<td>At month-end close (W9): system accrues VMI liability for all VMI goods sold but not yet settled with vendor; Cost Accountant includes VMI accrual in monthly close entries</td>
+<td>System / Cost Accountant</td>
+<td>Controller</td>
+<td>Automated + 15 min/month</td>
+</tr>
+<td>8</td>
+<td>At POS: system records sell-through event per VMI SKU; ownership transfers at point of sale</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>9</td>
+<td>Monthly: system generates VMI sell-through report per vendor showing units sold × agreed price</td>
+<td>System</td>
+<td>Buyer</td>
+<td>Automated</td>
+</tr>
+<td>10</td>
+<td>Buyer reviews sell-through report; confirms settlement</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>1 hour/month/vendor</td>
+</tr>
+<td>11</td>
+<td>System generates AP invoice from sell-through data; vendor payment processed</td>
+<td>System / AP Clerk</td>
+<td>AP Supervisor</td>
+<td>Automated + 30 min</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Settlement cycle</strong>: Monthly per VMI vendor</p>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Sell-through data export to vendor (EDI/portal/API) (W20.1)</li>
+<li>ASN receipt and processing from vendor (W20.3)</li>
+<li>Non-valuated (vendor-owned) inventory tracking (W20.7)</li>
+<li>Sell-through event capture at POS (W20.8)</li>
+<li>VMI settlement report generation (W20.9)</li>
+<li>Auto-generation of AP from sell-through (W20.11)</li>
+<li>Quarterly VMI vendor statement reconciliation: Cost Accountant generates VMI statement reconciliation report per vendor — compares BuildRight's recorded VMI sell-through (units sold × agreed price) to vendor's statement of goods shipped and settled; investigates discrepancies (unrecorded sell-through, missing GRs, pricing differences, timing gaps); reconciling items documented and resolved within 15 business days; unreconciled differences > PHP 50,000 escalated to Controller; results feed into annual IC audit and vendor scorecard (W44) (W20)</li>
+<li>Integration with W44 (vendor scorecard), W7 (AP settlement), W42 (physical inventory vendor-owned count)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Buyer time</strong>: 12 VMI vendors × 1 hour/month review = 12 hours/month. Spread across 10–12 buyers, this is ~1 hour each per month. Minimal impact.</li>
+<li><strong>AP</strong>: VMI settlement adds 12 additional AP invoices/month. Negligible incremental load.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W36. Vendor Onboarding</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>New vendor identified by Buyer or Category Manager (new product sourcing, alternative supplier, new brand)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~50–100 new vendors/year (replacing churned vendors + new categories)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Peaks during seasonal planning (W32) and new store openings (W16)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Category Manager, AP Clerk, Finance (credit assessment), IT (portal setup)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Buyer identifies need for new vendor; collects basic information: company name, contact person, product categories offered, business registration</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30 min</td>
+</tr>
+<td>2</td>
+<td>Buyer sends vendor application form to prospective vendor; vendor provides: DTI/SEC registration, BIR TIN, business permit, tax compliance certificate, bank certificate, product catalog with SRP</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>External (vendor-dependent)</td>
+</tr>
+<td>3</td>
+<td>AP Clerk or Finance validates vendor documents: confirms TIN is valid, business permit is current, bank details verified</td>
+<td>AP Clerk</td>
+<td>AP Supervisor</td>
+<td>30 min</td>
+</tr>
+<td>4</td>
+<td>Buyer evaluates vendor capability: product quality (sample review), pricing competitiveness (vs. current vendors), delivery lead time, minimum order quantities, payment terms offered</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>2–4 hours</td>
+</tr>
+<td>5</td>
+<td>Category Manager approves vendor for onboarding (or rejects with reason)</td>
+<td>Category Manager</td>
+<td>VP Merchandising</td>
+<td>15 min</td>
+</tr>
+<td>6</td>
+<td>Buyer creates vendor master record in system: name, TIN, address, contact details, payment terms, bank account, currency, lead time, assigned category, entity(ies)</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>15 min</td>
+</tr>
+<td>7</td>
+<td>System assigns vendor number; configures: approval tier for PO amounts, default PO delivery location(s), matching tolerance for invoice price variance</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>7a</td>
+<td><strong>Vendor bank account change control</strong>: if an existing vendor requests a change to their bank account details (new account number, new bank), the change requires a mandatory out-of-band verification before system update — (a) AP Clerk receives vendor bank change request (email, letter, or portal submission); (b) AP Clerk contacts vendor using the <strong>known</strong> phone number or contact person from vendor master (NOT the contact information in the change request itself, to prevent authorized push payment fraud); (c) AP Clerk verbally confirms the bank change with an authorized vendor representative; (d) AP Supervisor approves the bank detail change in system with verification notes (who confirmed, date, phone number used); (e) system requires dual approval (AP Clerk entry + AP Supervisor approval) for all bank detail changes; (f) system logs change with old bank details, new bank details, verifying AP Clerk ID, approving AP Supervisor ID, verification method, and timestamp; (g) system temporarily blocks payment to the vendor for 48 hours after bank detail change as a cooling-off period; (h) first payment to new bank account is flagged for Treasury Analyst confirmation of receipt before subsequent payments are auto-processed</td>
+<td>AP Clerk / AP Supervisor</td>
+<td>AP Supervisor</td>
+<td>30 min/change</td>
+</tr>
+<td>7b</td>
+<td><strong>Vendor master data change log</strong>: all changes to vendor master data (bank details, payment terms, address, contact information, tax classification) are logged with full audit trail — old value, new value, changed by, approved by, date, reason; changes to bank details and payment terms require AP Supervisor approval; changes to tax classification require Finance Manager approval; monthly: AP Supervisor reviews vendor master change log as part of AP controls review (cross-reference CTL-42 in Internal Controls Matrix)</td>
+<td>System / AP Clerk</td>
+<td>AP Supervisor</td>
+<td>Automated + 30 min/month review</td>
+</tr>
+<td>8</td>
+<td>Merchandise Planner maps vendor's product catalog to item master: creates new SKUs or links to existing SKUs; sets vendor-specific cost, lead time, minimum order quantity, order multiple</td>
+<td>Merchandise Planner</td>
+<td>Buyer</td>
+<td>1–2 hours/vendor (varies by catalog size)</td>
+</tr>
+<td>9</td>
+<td>IT configures vendor portal access (if vendor uses portal): credentials, PO visibility, invoice submission capability</td>
+<td>IT Team</td>
+<td>Buyer</td>
+<td>15 min</td>
+</tr>
+<td>10</td>
+<td>Buyer places trial PO (small initial order) to validate vendor reliability, product quality at scale, and delivery performance</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>Per W2</td>
+</tr>
+<td>11</td>
+<td>After 3 trial orders: Buyer completes vendor scorecard baseline (delivery on-time %, quality reject rate, invoice accuracy) for future performance tracking (W44)</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30 min</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total onboarding cycle</strong>: 2–4 weeks from identification to first PO</p>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Vendor master creation with document attachments (W36.6)</li>
+<li>TIN validation and business permit tracking with expiry alerts (W36.3, W36.6)</li>
+<li>Vendor-specific configuration: payment terms, tolerance thresholds, approval tiers (W36.7)</li>
+<li>Item-vendor mapping with cost, lead time, MOQ (W36.8)</li>
+<li>Vendor portal provisioning (W36.9)</li>
+<li>Vendor document tracking with expiry alerts: system tracks business permit, tax compliance certificate, and other regulatory document expiry dates; alerts Buyer and AP Clerk 30 days before expiry; vendor blocked from new POs if documents expired</li>
+<li>Vendor lead time master data lifecycle: initial lead time entered during vendor onboarding per vendor-SKU (W36 step 8); ongoing maintenance — Buyer updates lead times when vendor notifies of changes (new warehouse, route change, seasonal factors); system auto-suggests lead time updates based on actual delivery performance (comparing actual GR date vs. PO promised date) and presents suggestions to Buyer for review and confirmation; quarterly review per W31 step 8 confirms or adjusts stale lead times; system tracks all lead time changes with full audit trail (old value, new value, reason, date, Buyer ID); lead time variance metric feeds vendor scorecard (W44) (W36.6, W36.8)</li>
+<li>Integration with vendor performance scorecard (W36.11 → W44)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Buyer</strong>: 50–100 new vendors/year × ~4–6 hours of buyer time each = 200–600 hours/year = ~1–3 hours/week. Absorbed across 10–12 buyers.</li>
+<li><strong>AP Clerk</strong>: 30 min per vendor for document validation = ~25–50 hours/year. Negligible.</li>
+<li><strong>Merchandise Planner</strong>: Item-vendor mapping is the most labor-intensive step at 1–2 hours per vendor. With 50–100 vendors = ~100 hours/year. Absorbed within existing team.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W38. Special Order / Non-Stock Item Fulfillment</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Customer requests an item not carried in regular store assortment</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~500–1,000 special orders/month chain-wide; ~2–5 per store per month</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Primarily professional trade customers (contractors, builders) and project-specific items; avg order value ~PHP 5,000–15,000</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Customer Service Rep (order intake); Buyer (fulfillment)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CSR, Sales Rep (trade accounts), Buyer, Receiving Clerk, Customer</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Customer requests non-stock item at store (CSR counter) or via Sales Rep; provides product description, specification, quantity needed, and desired delivery date</td>
+<td>Customer</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<td>2</td>
+<td>CSR or Sales Rep searches item in system: (a) checks if item exists in item master as non-stock/Special Order type, (b) if not found, creates a non-stock item request with description, specs, and estimated price</td>
+<td>CSR / Sales Rep</td>
+<td>Dept. Supervisor</td>
+<td>5–10 min</td>
+</tr>
+<td>3</td>
+<td>System routes non-stock item creation request to Merchandise Planner for item master setup (category assignment, unit of measure, tax classification)</td>
+<td>System</td>
+<td>Merchandise Planner</td>
+<td>Automated routing</td>
+</tr>
+<td>3a</td>
+<td>Merchandise Planner creates non-stock SKU in item master with type = "Special Order / Non-Stock"; flags as non-stocking (no ROP, no safety stock, no replenishment)</td>
+<td>Merchandise Planner</td>
+<td>Category Manager</td>
+<td>10 min</td>
+</tr>
+<td>4</td>
+<td>Buyer identifies vendor, obtains quotation (price, lead time, minimum quantity); enters quote in system linked to the non-stock SKU</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30–60 min</td>
+</tr>
+<td>5</td>
+<td>CSR or Sales Rep communicates quote to customer: price, estimated delivery date, payment terms (typically 50% deposit, 50% on delivery)</td>
+<td>CSR / Sales Rep</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>6</td>
+<td>Customer confirms order and pays deposit; system records deposit as liability (Cr. Customer Deposits Payable / Dr. Cash); not recognized as revenue until delivery</td>
+<td>Customer / Cashier</td>
+<td>—</td>
+<td>5 min</td>
+</tr>
+<td>6a</td>
+<td><strong>Trade/corporate account customers</strong>: if customer holds an active trade or corporate account (W24), deposit requirement is waived for orders within the customer's available credit limit; system checks credit limit at order creation — if credit available, Sales Associate or CSR selects "Charge to Account" and system posts order value to customer's AR account (W8) upon delivery (no deposit liability); if order exceeds available credit, system prompts for partial deposit covering the excess; for special orders > PHP 50,000 on account, system routes for AR Supervisor approval per W24 tiered matrix</td>
+<td>Sales Associate / CSR</td>
+<td>AR Supervisor</td>
+<td>2 min</td>
+</tr>
+<td>7</td>
+<td>System creates Sales Order linked to non-stock SKU with customer deposit recorded; reservation created against incoming PO</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>8</td>
+<td>Buyer creates Special Order PO (links PO to Sales Order); routes for approval per standard tiered matrix (W2)</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>Per W2</td>
+</tr>
+<td>9</td>
+<td>Buyer tracks PO; follows up with vendor on delivery schedule</td>
+<td>Buyer</td>
+<td>Buyer</td>
+<td>Per W2</td>
+</tr>
+<td>10</td>
+<td>Goods received at store or DC (per W3 or W18); system matches GR to both PO and linked Sales Order</td>
+<td>Receiving Clerk</td>
+<td>Dept. Supervisor</td>
+<td>Per W3/W18</td>
+</tr>
+<td>11</td>
+<td>System alerts CSR that special order has arrived; CSR contacts customer for pickup or arranges delivery</td>
+<td>System / CSR</td>
+<td>Store Manager</td>
+<td>Automated + 5 min</td>
+</tr>
+<td>12</td>
+<td>Customer picks up item (or receives delivery); pays remaining balance; system recognizes revenue (Dr. Customer Deposits / Cr. Revenue) and COGS (Dr. COGS / Cr. Inventory) at delivery; Sales Order closed</td>
+<td>Cashier / CSR</td>
+<td>—</td>
+<td>5 min</td>
+</tr>
+<td>13</td>
+<td>If customer cancels before PO is placed: CSR cancels Sales Order; deposit refunded; no PO created</td>
+<td>CSR</td>
+<td>Store Manager</td>
+<td>5 min</td>
+</tr>
+<td>14</td>
+<td>If customer cancels after PO is placed but before shipment: Buyer negotiates with vendor (restocking fee, return); Finance processes partial refund less any costs</td>
+<td>Buyer + Finance</td>
+<td>Category Manager</td>
+<td>30 min</td>
+</tr>
+<td>15</td>
+<td>Unclaimed deposit management: system tracks age of customer deposits linked to completed special orders (goods received but not picked up); after 30 days with no customer response post-delivery notification, system sends reminder notification (SMS/email); after 90 days with no response, system flags deposit for review; Store Manager or Finance approves recognition of abandoned deposit as other income (Dr. Customer Deposits Payable / Cr. Other Income); goods dispositioned per standard clearance (W13.9a), RTV (W3.6a), or return to shelf</td>
+<td>System / Store Manager / Finance</td>
+<td>Controller</td>
+<td>Automated + 5 min/review</td>
+</tr>
+<td>16</td>
+<td><strong>Customer deposit refund (before goods receipt)</strong>: if customer requests cancellation and refund before goods are received from vendor — (a) CSR processes deposit refund in system with reason code (customer cancellation, vendor cannot deliver, project cancelled); (b) system cancels linked Sales Order and triggers Buyer to cancel or reduce the linked PO per W2A PO cancellation process (if PO not yet shipped by vendor); (c) refund issued to original payment method: if deposit paid by cash, CSR disburses from cash drawer with Store Manager authorization; if paid by card/e-wallet, system processes electronic refund (Dr. Customer Deposits Payable / Cr. Cash); if paid by trade account credit, system applies deposit back to customer's AR account; (d) system logs refund with customer ID, original deposit transaction, refund amount, refund method, CSR ID, authorizing manager ID, and reason code; (e) BIR-compliant documentation: system generates official receipt for the refund transaction with all required BIR fields (TIN, registered invoice number, description "Refund of customer deposit — Sales Order #[number]"); refund receipts retained per 7-year BIR retention policy</td>
+<td>CSR / Store Manager</td>
+<td>Controller</td>
+<td>10 min/refund</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total cycle time</strong>: 7–30 days from order to delivery (depends on vendor lead time and whether domestic or import)</p>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Non-stock item type in item master with no auto-replenishment (W38.3a)</li>
+<li>Item creation request workflow (W38.3)</li>
+<li>Sales Order creation with customer deposit and PO linkage (W38.7–8)</li>
+<li>PO-to-Sales-Order reservation and matching (W38.8, W38.10)</li>
+<li>Customer deposit liability tracking (Cr. Customer Deposits Payable) with revenue recognition trigger at delivery (W38.6, W38.12)</li>
+<li>Customer notification upon receipt (W38.11)</li>
+<li>Sales Order lifecycle: open → PO linked → goods received → customer notified → closed (W38.7–12)</li>
+<li>Cancellation handling with deposit refund workflow (W38.13–14)</li>
+<li>Non-stock SKU archival and cleanup: over time, the item master accumulates non-stock/special-order SKUs (type = "Special Order / Non-Stock" per W38.3a) from one-time customer orders; to prevent item master bloat — (a) monthly: Merchandise Planner generates non-stock SKU aging report listing all non-stock SKUs with no sales activity in the past 12 months; (b) Merchandise Planner reviews each stale non-stock SKU and sets status to "Non-Stock — Archived" — item remains searchable in system for transaction history but is hidden from new Sales Order creation and Sales Associate lookup; (c) archived non-stock SKUs excluded from item count in reporting and system performance metrics; (d) if a customer subsequently requests the same item, Merchandise Planner reactivates the archived SKU (updates status to active) rather than creating a duplicate; system checks for archived SKUs matching the item description before allowing new non-stock SKU creation; (e) annually: Merchandise Planner reviews all archived non-stock SKUs older than 3 years with zero transaction history and proposes permanent deletion per BIR 7-year retention compliance (items with any transaction history retained for full 7 years regardless of archival status)</li>
+<li>Unclaimed deposit aging: system tracks deposit age from goods-receipt date; automated reminder at 30 days; escalation flag at 90 days; abandonment recognition with approval workflow; goods disposition tracking (W38.15)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>CSR</strong>: ~2–5 special orders/store/month × ~20 min each (intake + communication + handoff) = ~1–1.5 hours/store/month. Absorbed.</li>
+<li><strong>Buyer</strong>: 500–1,000 special orders/month ÷ 10–12 buyers = ~50–80/buyer/month × ~30 min each = ~30 hours/buyer/month. This is significant. Special orders should be handled by a dedicated 1–2 Buyers who specialize in trade/special orders, with remaining buyers focused on replenishment.</li>
+<li><strong>Merchandise Planner</strong>: 500–1,000 non-stock SKU creations/year = ~2–4 hours/week. Absorbed within existing team.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W44. Vendor Performance Review</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Quarterly review calendar; or ad-hoc triggered by persistent quality/delivery issues</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Quarterly for top 50 vendors (by spend); annually for remaining active vendors</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~800–1,000 active vendors; top 50 = 45% of COGS</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Category Manager, VP Merchandising, Receiving Supervisor (quality input), AP Supervisor (invoice accuracy input)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>System auto-generates vendor scorecard per vendor for the review period with the following metrics:</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td></td>
+<td>• <strong>On-time delivery %</strong>: PO lines delivered on or before promised date ÷ total PO lines</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td></td>
+<td>• <strong>Fill rate %</strong>: PO lines delivered at full ordered quantity ÷ total PO lines</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td></td>
+<td>• <strong>Quality reject rate %</strong>: GR lines rejected for quality ÷ total GR lines</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td></td>
+<td>• <strong>Invoice accuracy %</strong>: Invoices matching PO within tolerance on first submission ÷ total invoices</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td></td>
+<td>• <strong>Lead time variance</strong>: avg actual lead time vs. agreed lead time (days)</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td></td>
+<td>• <strong>Return rate %</strong>: RTV lines ÷ total receipt lines</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>2</td>
+<td>Buyer reviews scorecard; adds qualitative notes: vendor responsiveness, market reputation, new product pipeline, relationship quality</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>15–30 min/vendor</td>
+</tr>
+<td>3</td>
+<td>Buyer assigns overall rating: A (Preferred), B (Acceptable), C (Watch), D (Probation), F (Exit)</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>5 min/vendor</td>
+</tr>
+<td>4</td>
+<td>For C-rated vendors: Buyer drafts improvement plan with specific targets and timeline; communicates to vendor</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30 min/vendor</td>
+</tr>
+<td>5</td>
+<td>For D/F-rated vendors: Buyer escalates to Category Manager for decision: (a) put on probation with 90-day improvement deadline, (b) initiate vendor exit process (transition to alternative vendor, settle outstanding obligations)</td>
+<td>Buyer</td>
+<td>VP Merchandising</td>
+<td>1 hour/vendor</td>
+</tr>
+<td>6</td>
+<td>Quarterly: Category Manager and VP Merchandising review top 50 vendor scorecards in portfolio review meeting; discuss strategic vendor relationships, negotiate improved terms for A-rated vendors</td>
+<td>Category Manager</td>
+<td>VP Merchandising</td>
+<td>2 hours/quarter</td>
+</tr>
+<td>7</td>
+<td>Annually: VP Merchandising and CFO review total vendor portfolio performance; approve vendor list for next year; authorize new vendor onboarding (W36) and vendor exits</td>
+<td>VP Merchandising + CFO</td>
+<td>CEO</td>
+<td>4 hours/year</td>
+</tr>
+<td>8</td>
+<td>System maintains vendor scorecard history for trend analysis; supports vendor selection decisions in W2 and W36</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>9</td>
+<td><strong>Corrective action execution — Warning</strong>: Buyer communicates performance gaps to vendor in writing (email or letter) with specific metrics from scorecard; establishes 30-day improvement period with clear targets (e.g., on-time delivery must improve from 75% to 90%); Buyer monitors PO performance during improvement period via weekly scorecard snapshot</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30 min/vendor</td>
+</tr>
+<td>10</td>
+<td><strong>Corrective action execution — Probation</strong>: if no improvement after Warning, Buyer initiates probation — (a) Category Manager sends formal probation notice to vendor with 90-day review period and specific improvement requirements; (b) system changes vendor master status to "Probation"; (c) system blocks creation of new POs for this vendor (existing committed POs unaffected); (d) Buyer identifies alternative vendor for affected SKUs per W36; (e) Buyer monitors vendor performance weekly during probation; (f) at 90-day mark: Buyer recommends to Category Manager either reinstatement (if targets met) or termination</td>
+<td>Buyer / Category Manager</td>
+<td>VP Merchandising</td>
+<td>1 hour/vendor (initial) + 30 min/week monitoring</td>
+</tr>
+<td>11</td>
+<td><strong>Corrective action execution — Termination</strong>: VP Merchandising approves termination; (a) Category Manager sends formal termination notice to vendor per contract terms (typically 30–60 day notice); (b) Buyer reviews all open POs — decides per PO: cancel, allow to complete, or expedite; (c) AP Supervisor reviews outstanding invoices and credit memos — resolves all financial obligations; (d) system changes vendor master status to "Inactive"; (e) system blocks all transactions (POs, GRs, invoices); (f) Merchandise Planner reassigns affected SKUs to alternative vendors per W36; (g) termination date, reason, and all supporting documentation recorded in vendor master audit trail</td>
+<td>Category Manager / Buyer / AP Supervisor</td>
+<td>VP Merchandising</td>
+<td>2–4 hours/vendor</td>
+</tr>
+<td>12</td>
+<td><strong>Corrective action execution — Reactivation</strong>: if Buyer requests reactivation of a previously terminated vendor — (a) Buyer provides evidence of improved capability (new ownership, new processes, reference customers, corrected quality issues); (b) Category Manager reviews evidence and approves or denies; (c) if approved, vendor re-enters abbreviated onboarding per W36 (skip trial PO if recent performance history exists within 12 months); (d) system changes vendor master status back to "Active"; (e) full audit trail of termination and reactivation retained</td>
+<td>Buyer / Category Manager</td>
+<td>VP Merchandising</td>
+<td>1 hour/vendor</td>
+</tr>
+</tbody></table></div>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Tier</th>
+<th>Trigger</th>
+<th>Action</th>
+<th>System Impact</th>
+</tr></thead><tbody>
+<td><strong>Warning</strong></td>
+<td>Scorecard rating drops to C, or single significant incident (major quality failure, delivery causing stockout)</td>
+<td>Buyer communicates performance gaps to vendor in writing with specific metrics; establishes 30-day improvement period with clear targets</td>
+<td>Vendor master status remains Active; Buyer monitors PO performance during improvement period</td>
+</tr>
+<td><strong>Probation</strong></td>
+<td>No improvement after Warning, or scorecard rating drops to D</td>
+<td>Vendor suspended from receiving new POs; existing committed POs are fulfilled; 90-day formal review period; Category Manager notifies vendor in writing of probation status and improvement requirements</td>
+<td>Vendor master status changed to Probation; system blocks creation of new POs for this vendor; existing POs unaffected</td>
+</tr>
+<td><strong>Termination</strong></td>
+<td>No improvement after Probation, or scorecard rating F, or vendor commits fraud/breach</td>
+<td>VP Merchandising approves termination; Category Manager notifies vendor; all open POs cancelled or allowed to complete per agreement; vendor master deactivated</td>
+<td>Vendor master status changed to Inactive; system blocks all transactions; termination date and reason recorded in audit trail; vendor record retained for regulatory and historical purposes</td>
+</tr>
+<td><strong>Reactivation</strong></td>
+<td>Buyer requests reactivation with evidence of improved capability (new ownership, new processes, reference customers)</td>
+<td>Category Manager reviews evidence; if approved, vendor re-enters onboarding process per W36 (abbreviated: skip trial PO if recent history exists)</td>
+<td>Vendor master status changed back to Active; full audit trail of termination and reactivation retained</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Automated vendor scorecard generation from operational data (W44.1)</li>
+<li>Multi-metric scoring: on-time delivery, fill rate, quality, invoice accuracy, lead time, return rate (W44.1)</li>
+<li>Vendor rating system with configurable thresholds (W44.3)</li>
+<li>Improvement plan tracking (W44.4)</li>
+<li>Vendor lifecycle status: Active → Warning → Probation → Inactive (terminated) → Active (reactivated); each status change logged with reason, approver, date, and supporting documentation; system enforces PO blocking for Probation and Inactive vendors (W44.5, corrective action tiers)</li>
+<li>Scorecard history and trend analysis (W44.8)</li>
+<li>Integration with W2 (PO performance), W3 (receiving quality), W7 (invoice matching), W36 (vendor onboarding)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Buyers</strong>: Top 50 vendors reviewed quarterly × 30 min = 25 hours/quarter. Remaining ~750 vendors reviewed annually × 15 min = ~190 hours/year. Total ~290 hours/year ÷ 10 buyers = ~29 hours/buyer/year. Absorbed within existing buyer duties.</li>
+<li><strong>Category Managers</strong>: 2 hours/quarter for portfolio review + 1 hour/quarter for escalations = ~12 hours/year. Absorbed.</li>
+<li><strong>VP Merchandising</strong>: 2 hours/quarter for top vendor review + 4 hours/year for annual portfolio review = ~12 hours/year. Absorbed.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W60. Emergency Procurement</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Urgent operational need that cannot wait for standard PO cycle (W2) and exceeds petty cash threshold (W25): critical equipment breakdown, emergency facility repair, urgent compliance requirement, sudden supply shortage threatening store operations</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~20–30 emergency procurement events/month across all locations</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>PHP 50,000–500,000 per event; typically for emergency equipment, parts, or services</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Requestor (Store Manager or Department Head)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Store Manager / Dept. Head, Procurement (Buyer), Finance (Controller), Vendor</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Requestor identifies emergency need and justifies urgency: equipment failure impacting store operations (e.g., POS server failure, HVAC breakdown in peak summer, forklift failure at DC), compliance deadline (regulatory order), or supply emergency (critical stockout on A-item with no PO coverage)</td>
+<td>Store Manager / Dept. Head</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>2</td>
+<td>Requestor submits emergency procurement request in system: item/service description, estimated cost, urgency justification, required delivery date (typically same day or next day), preferred vendor (if known)</td>
+<td>Requestor</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>3</td>
+<td>System routes for expedited approval: (a) ≤ PHP 100,000: Store Manager (for stores) or Dept. Head (for HQ/DC) + Controller verbal approval, (b) PHP 100,001–500,000: CFO verbal approval required within 2 hours, (c) > PHP 500,000: CEO verbal approval required within 4 hours; system logs verbal approval with timestamp and approver ID</td>
+<td>System</td>
+<td>Controller / CFO / CEO</td>
+<td>15 min – 4 hours</td>
+</tr>
+<td>4</td>
+<td>Buyer (or Requestor for store-level purchases) contacts vendor immediately — phone call or direct purchase authorized; system allows "confirm vendor later" mode where PO is created with vendor TBD and updated after the fact</td>
+<td>Buyer / Requestor</td>
+<td>Category Manager</td>
+<td>15–30 min</td>
+</tr>
+<td>5</td>
+<td>Goods or services received immediately; standard Goods Receipt (W3) or service confirmation documented</td>
+<td>Receiving Clerk / Requestor</td>
+<td>Dept. Head</td>
+<td>Per W3</td>
+</tr>
+<td>6</td>
+<td>Within 5 business days: Buyer or AP Clerk completes documentation — formalize PO in system (if created informally), obtain vendor invoice, process 3-way match (W7) or 2-way match for services; system enforces that all emergency procurements are regularized within 5 days or escalates to Controller</td>
+<td>Buyer / AP Clerk</td>
+<td>Controller</td>
+<td>15–30 min</td>
+</tr>
+<td>7</td>
+<td>Monthly: Controller reviews emergency procurement report: total spend, frequency by location, category, and requester; flags locations or categories with excessive emergency procurement frequency for root cause analysis (supplier reliability issues, planning gaps, or maintenance neglect)</td>
+<td>Controller</td>
+<td>CFO</td>
+<td>1 hour/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Emergency procurement request form with urgency justification field (W60.2)</li>
+<li>Expedited approval workflow with verbal approval logging and configurable SLA timers (W60.3)</li>
+<li>"Vendor TBD" PO creation mode for immediate procurement with post-hoc vendor assignment (W60.4)</li>
+<li>Regularization enforcement: system tracks emergency procurements not yet formalized; auto-escalates at day 5 (W60.6)</li>
+<li>Emergency procurement analytics: spend, frequency, category, location, root cause (W60.7)</li>
+<li>Integration with W2 (standard PO — this is the expedited alternative), W3 (goods receipt), W7 (AP matching), W21 (capex — if emergency need is actually capex, route to W21 expedited path), W25 (petty cash — for amounts ≤ PHP 50K), W47 (facility emergency repair), W48 (IT emergency equipment)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li>No incremental headcount. Emergency procurement is absorbed by existing Buyers, Store Managers, and AP Clerks.</li>
+<li>The monthly review by Controller adds ~1 hour/month — absorbed.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W62. Vendor Contract Lifecycle (Non-PO Contracts)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>New service vendor engagement, contract renewal, or contract modification</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~100–200 active service contracts at any time (IT services, cleaning, security, pest control, elevator maintenance, waste disposal, equipment leases, carrier contracts, banking services, professional services)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Peaks during annual budget cycle (W26) when contracts are reviewed and renewed</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Requesting Department Head</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Dept. Head, Procurement/Buyer, Finance, Legal, Vendor</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Department Head identifies need for vendor service contract (new vendor, renewal, or replacement); defines scope of work, service level requirements, and budget</td>
+<td>Dept. Head</td>
+<td>VP / C-Suite</td>
+<td>1–2 hours</td>
+</tr>
+<td>2</td>
+<td>Buyer or Dept. Head solicits quotations from 3 vendors (or 2 for specialized services); evaluates on: price, capability, references, compliance (business permits, tax compliance, insurance coverage)</td>
+<td>Buyer / Dept. Head</td>
+<td>Dept. Head</td>
+<td>2–4 hours</td>
+</tr>
+<td>3</td>
+<td>Legal reviews contract terms: liability, termination clause, data privacy (RA 10173 compliance for vendors handling personal data), intellectual property, dispute resolution</td>
+<td>Legal</td>
+<td>Legal Head</td>
+<td>1–2 hours/contract</td>
+</tr>
+<td>4</td>
+<td>Approval per tiered matrix: (a) annual value ≤ PHP 500K: Dept. Head + Finance Manager, (b) PHP 500K–2M: VP + CFO, (c) > PHP 2M: CEO</td>
+<td>Approver</td>
+<td>Approver</td>
+<td>15–30 min</td>
+</tr>
+<td>5</td>
+<td>System creates vendor contract record: vendor, contract type, scope, start/end dates, value, payment terms, SLA terms, auto-renewal flag, document attachments (signed contract, vendor permits, insurance certificates)</td>
+<td>Buyer / Dept. Head</td>
+<td>Dept. Head</td>
+<td>15–30 min</td>
+</tr>
+<td>6</td>
+<td>System alerts Dept. Head 90 days before contract expiry for renewal decision; alerts 30 days before vendor insurance or permit expiry within contract period</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>7</td>
+<td>Monthly: Dept. Head reviews vendor service performance against SLA terms; documents issues; escalates to Buyer or Legal for resolution</td>
+<td>Dept. Head</td>
+<td>VP / C-Suite</td>
+<td>30 min/vendor/month</td>
+</tr>
+<td>8</td>
+<td>Contract renewal: Dept. Head decides to (a) renew at existing terms, (b) renegotiate (repeat steps 2–4), or (c) terminate and re-bid; system blocks vendor invoices after contract expiry if not renewed</td>
+<td>Dept. Head</td>
+<td>VP / C-Suite</td>
+<td>Per contract</td>
+</tr>
+<td>9</td>
+<td>Contract termination: Dept. Head provides notice per contract terms; coordinates vendor exit (return of company property, data deletion per RA 10173, final payment); system closes contract record and blocks future invoices</td>
+<td>Dept. Head / Legal</td>
+<td>VP / C-Suite</td>
+<td>1–2 hours</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Vendor contract register with full lifecycle: Draft → Active → Renewal Pending → Renewed / Terminated (W62.5, 8–9)</li>
+<li>Contract document storage with expiry alerting for contract, vendor permits, and insurance certificates (W62.6)</li>
+<li>SLA tracking with performance documentation per review period (W62.7)</li>
+<li>Auto-renewal management: system flags auto-renewal contracts 90 days before renewal for Dept. Head decision (W62.6)</li>
+<li>Invoice blocking after contract expiry (W62.8)</li>
+<li>Integration with W2C (blanket/contract POs for merchandise vendors), W7C (non-PO invoice processing), W36 (vendor onboarding), W44 (vendor performance review — service vendors included in annual review), W59 (insurance tracking for vendor insurance certificates)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li>No incremental headcount. Contract management is distributed across Department Heads as part of their operational responsibility. Legal reviews add ~1–2 hours/contract — absorbed within Legal team.</li>
+</ul>
+
+<h3>W62B. 3PL / Delivery Partner Onboarding & Offboarding</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>New delivery partner identified (new service area, capacity expansion, carrier diversification); or existing partner termination (performance failure, contract expiry, business exit)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~5–10 new partner evaluations/year; ~2–3 offboardings/year</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Active partners: ~5–10 delivery partners (Lalamove, Transportify, own fleet surrogates, regional carriers, inter-island shipping lines)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Fleet Manager / DC Dispatch Supervisor</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Fleet Manager, DC Dispatch, IT (API integration), Finance, Legal</td>
+</tr>
+</tbody></table></div>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Fleet Manager or DC Dispatch identifies need for new delivery partner: coverage gap, capacity constraint, cost benchmarking, or service quality issue with existing partner</td>
+<td>Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>30 min</td>
+</tr>
+<td>2</td>
+<td>Fleet Manager solicits proposals from 2–3 candidate partners; evaluates on: delivery coverage (zones, islands), rate card per zone/weight/tier, SLA terms (on-time %, damage rate), API integration capability (order creation, tracking, proof of delivery), insurance coverage, business permits, tax compliance</td>
+<td>Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>4–8 hours</td>
+</tr>
+<td>3</td>
+<td>IT evaluates API integration feasibility: order creation, real-time tracking, proof of delivery capture, webhook/callback for status updates; estimates integration timeline and cost</td>
+<td>IT Team</td>
+<td>CIO</td>
+<td>4 hours</td>
+</tr>
+<td>4</td>
+<td>Legal reviews contract terms: liability for lost/damaged goods, data privacy (RA 10173 — delivery partner may access customer name, phone, address), insurance requirements, termination clause</td>
+<td>Legal</td>
+<td>Legal Head</td>
+<td>1–2 hours</td>
+</tr>
+<td>5</td>
+<td>Approval per W62 tiered matrix (carrier contracts typically annual value ≤ PHP 2M → VP + CFO; > PHP 2M → CEO)</td>
+<td>Approver</td>
+<td>Approver</td>
+<td>15–30 min</td>
+</tr>
+<td>6</td>
+<td>IT configures API integration in staging environment; conducts integration testing with carrier test environment; validates order creation, status callbacks, and proof of delivery flow; Fleet Manager and DC Dispatch conduct pilot with limited order volume for 1–2 weeks</td>
+<td>IT Team / Fleet Manager</td>
+<td>CIO</td>
+<td>1–2 weeks</td>
+</tr>
+<td>7</td>
+<td>Go-live: IT activates API integration in production; DC Dispatch adds partner to carrier selection logic; system routes orders to new partner per configured zones and rates</td>
+<td>IT Team / Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>1 day</td>
+</tr>
+<td>8</td>
+<td>Monthly: Fleet Manager monitors new partner performance per W19.7 3PL management dashboard (on-time %, damage rate, cost per delivery, customer complaint rate); underperformance escalated per W44 vendor scorecard methodology</td>
+<td>Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>30 min/month</td>
+</tr>
+<td>9</td>
+<td><strong>Offboarding</strong>: if partner termination required (performance, contract expiry, or business decision) — Fleet Manager coordinates with DC Dispatch to redirect order volume to alternative partners; IT deactivates API integration; system removes partner from carrier selection; Finance settles outstanding carrier invoices; Legal confirms data deletion per RA 10173 (partner must delete customer data collected during service); system archives partner record with termination date, reason, and performance history</td>
+<td>Fleet Manager / IT / Finance / Legal</td>
+<td>Supply Chain Manager</td>
+<td>1–2 weeks</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints (3PL Partners)</h3>
+<ul>
+<li>Carrier master record with rate cards per zone/weight/tier, SLA terms, API credentials, insurance details, and integration status (W62B.2, W62B.7)</li>
+<li>API integration: order creation, real-time tracking, status callbacks, proof of delivery capture (W62B.3, W62B.6)</li>
+<li>Carrier selection logic: automated carrier assignment by delivery zone, package weight, and cost (W62B.7)</li>
+<li>Pilot order routing and monitoring dashboard (W62B.6)</li>
+<li>Performance monitoring integrated into W19 3PL management dashboard and W44 vendor scorecard (W62B.8)</li>
+<li>Partner deactivation: API disconnect, carrier removal, data deletion confirmation (W62B.9)</li>
+<li>Carrier rate card maintenance: Fleet Manager receives rate change notification from carrier (quarterly or annual update); enters updated rate card per zone/weight/tier in carrier master record; Finance Manager approves rate card changes before activation (validates against contracted rates and budget impact); system stores rate card history with effective dates for audit trail; auto-calculated delivery fees in W5D and W19 use the currently active rate card; rate card changes effective on configured date — orders already in transit use the rate card active at time of order creation (W62B)</li>
+<li>Integration with W19 (home delivery), W52 (fleet), W44 (vendor scorecard), W62 (non-PO contracts)</li>
+</ul>
+
+<h3>Staffing Implication (3PL Partners)</h3>
+<ul>
+<li><strong>Fleet Manager</strong>: absorbs 3PL partner management within existing role; ~5–10 evaluations/year × 4–8 hours = ~20–80 hours/year; ~30 min/month ongoing monitoring per partner.</li>
+<li><strong>IT</strong>: API integration setup ~1–2 weeks per new partner; absorbed within existing IT team.</li>
+<li>No incremental headcount.</li>
+</ul>
+
+<hr>
+
+
+
+<h2>W88. Return to Vendor (RTV) Processing</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Defective goods identified at DC or store; wrong items received; overage discovered; vendor-authorized return; or quality hold escalation (W3 AQL inspection)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~200–300 RTV shipments/month (~2–3% of inbound volume)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Avg 5–15 lines per RTV shipment; consolidated by vendor at DC</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, DC Receiving Clerk, Store Receiving Clerk, AP Clerk, AP Supervisor, Category Manager</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>PUR-012 (Return to Vendor) is a Must Have requirement. RTV is currently mentioned as sub-steps W3.6a–b within warehouse receiving, but RTV is a cross-functional process spanning procurement, warehouse, store operations, and finance. Defective, wrong, or overage items must be identified, documented, authorized, physically returned to the vendor (or vendor-authorized disposal), and financially settled (credit memo or replacement). Without a dedicated workflow, RTV decisions are ad-hoc, leading to delayed vendor credits, unresolved inventory, and write-offs.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Identification</strong>: (a) DC Receiving Clerk identifies defective/wrong items during goods receipt inspection (W3 AQL); (b) Store Receiving Clerk identifies issues during DSD receiving (W18) or DC delivery receipt; (c) Store Associate or Stock Associate discovers damaged/defective stock on shelf or in backroom; (d) AP Clerk identifies overage during 3-way match (W7 — vendor invoice quantity exceeds PO + GR); (e) Quality hold escalation from W3 AQL inspection (system blocks inventory and flags for RTV evaluation)</td>
+<td>Receiving Clerk / Store Associate / AP Clerk</td>
+<td>Buyer</td>
+<td>10 min/case</td>
+</tr>
+<td>2</td>
+<td><strong>Root cause classification</strong>: Initiator classifies the issue: (a) defective/quality failure (vendor manufacturing defect, packaging damage in transit from vendor), (b) wrong item shipped (SKU mismatch vs. PO), (c) overage (vendor shipped more than PO quantity), (d) damaged in transit to DC (carrier damage — see W19.12b for carrier vs. vendor liability), (e) recall-related return (W29), (f) consignment return (W23.10), (g) warranty return (W33.6)</td>
+<td>Initiator / Buyer</td>
+<td>Buyer</td>
+<td>5 min/case</td>
+</tr>
+<td>3</td>
+<td><strong>Quarantine</strong>: System moves identified items to "RTV Quarantine" inventory status (not available for sale, not available for allocation); physical items moved to designated quarantine area at DC or store backroom</td>
+<td>Receiving Clerk / Stock Associate</td>
+<td>DC Supervisor / Store Manager</td>
+<td>10 min/case</td>
+</tr>
+<td>4</td>
+<td><strong>Buyer review and authorization</strong>: Buyer reviews RTV request with supporting evidence (photos, inspection report, PO vs. GR discrepancy); determines return action: (a) <strong>Return to vendor</strong> — vendor must physically take back goods and issue credit or replacement, (b) <strong>Vendor-authorized disposal</strong> — vendor authorizes BuildRight to dispose/destroy goods and issues credit memo (saves return freight cost for low-value items), (c) <strong>Vendor-authorized markdown</strong> — vendor agrees to partial credit; BuildRight sells at reduced price per W93 markdown process, (d) <strong>No vendor liability</strong> — damage caused by BuildRight handling (in-transit between DC and store, or in-store damage); disposition per W91 damaged goods process; no vendor credit sought</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>15 min/case</td>
+</tr>
+<td>5</td>
+<td><strong>Vendor notification</strong>: Buyer contacts vendor (email or vendor portal W36.9) with RTV request: original PO reference, GR reference, item details, quantity, defect description, photos, and requested resolution (credit memo, replacement, or disposal authorization); for blanket/contract PO vendors (W2C), checks contract terms for RTV provisions and return shipping responsibility</td>
+<td>Buyer</td>
+<td>—</td>
+<td>15 min/case</td>
+</tr>
+<td>6</td>
+<td><strong>Vendor credit memo or replacement</strong>: (a) If vendor agrees to credit: Buyer obtains vendor credit memo reference; (b) If vendor agrees to replacement: Buyer creates replacement PO with reference to original PO and RTV; (c) If vendor disputes: Buyer escalates to Category Manager for negotiation; unresolved disputes > 30 days escalated to VP Merchandising</td>
+<td>Buyer / Category Manager</td>
+<td>VP Merchandising</td>
+<td>30 min/dispute</td>
+</tr>
+<td>7</td>
+<td><strong>Physical return logistics</strong> (if vendor requires physical return): (a) <strong>DC-initiated</strong>: DC consolidates RTV items by vendor; DC creates outbound shipment; ships via own fleet (W52) or 3PL carrier; (b) <strong>Store-initiated</strong>: Store sends RTV items to assigned DC via next scheduled DC→Store truck backhaul (W22); DC consolidates with other RTV items for same vendor before shipping; (c) <strong>Vendor pickup</strong>: Some vendors (especially local DSD vendors) pick up RTV items directly from store or DC by arrangement</td>
+<td>DC Receiving Clerk / Store Receiving Clerk</td>
+<td>DC Supervisor / Store Manager</td>
+<td>30 min/consolidated shipment</td>
+</tr>
+<td>8</td>
+<td><strong>Financial settlement</strong>: (a) AP Clerk receives vendor credit memo (from Buyer); posts credit memo against original PO/invoice; system reduces vendor payable and posts GL entry (Dr. AP / Cr. COGS or Inventory); (b) If replacement PO: AP matches replacement invoice against replacement PO and GR per standard W7 3-way match; (c) If vendor-authorized disposal: AP posts credit memo and inventory write-off simultaneously; system removes items from RTV quarantine and posts disposal (Dr. AP / Cr. Inventory — at WAC value)</td>
+<td>AP Clerk</td>
+<td>AP Supervisor</td>
+<td>10 min/credit memo</td>
+</tr>
+<td>9</td>
+<td><strong>Aging and escalation</strong>: System tracks RTV items in quarantine with aging buckets (0–15, 16–30, 31–60, 60+ days); weekly: Buyer reviews RTV aging report; items > 15 days without vendor response: follow-up call/email; items > 30 days: escalated to Category Manager; items > 60 days: escalated to VP Merchandising with recommendation to auto-dispose and write-off; items > 90 days: auto-write-off per W92 with Category Manager approval</td>
+<td>Buyer / Category Manager</td>
+<td>VP Merchandising</td>
+<td>30 min/week</td>
+</tr>
+<td>10</td>
+<td><strong>RTV analytics</strong>: Monthly: Category Manager and Buyer review RTV report by vendor — RTV count, RTV value, average resolution time, root cause distribution (defective vs. wrong item vs. overage vs. carrier damage); feeds into W44 vendor performance scorecard as quality and accuracy metric; vendors with RTV rate > 5% of total PO lines flagged for vendor improvement plan or vendor exit per W68</td>
+<td>Category Manager / Buyer</td>
+<td>VP Merchandising</td>
+<td>1 hour/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>RTV quarantine inventory status: items blocked from sale and allocation while in quarantine (W88.3)</li>
+<li>RTV request creation linked to original PO and GR with defect evidence (photos, inspection report) (W88.4)</li>
+<li>Vendor portal RTV notification: vendor receives return request with documentation and can approve/reject/authorize disposal (W88.5)</li>
+<li>Vendor credit memo matching to original PO/invoice with GL posting (W88.8)</li>
+<li>Replacement PO creation linked to original PO with RTV reference (W88.6)</li>
+<li>RTV aging report with vendor-level drill-down and escalation triggers (W88.9)</li>
+<li>RTV analytics dashboard: RTV rate by vendor, root cause distribution, resolution time, value impact (W88.10)</li>
+<li>Integration with W3 (DC receiving — AQL inspection triggers RTV), W7 (AP — credit memo processing), W12 (returns — customer-returned defective items may be RTV'd), W18 (DSD — receiving discrepancies), W22 (store-to-DC backhaul for RTV consolidation), W23 (consignment returns), W29 (recall-related RTV), W33 (warranty RTV), W44 (vendor scorecard — RTV rate as quality metric), W52 (fleet — physical return logistics), W62 (vendor contract — RTV provisions), W91 (damaged goods disposition — no-vendor-liability cases), W92 (inventory adjustment — write-off for unresolved RTV)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Buyers</strong>: ~200–300 RTV cases/month ÷ 10–12 buyers = ~20–25 cases/buyer/month × ~45 min each = ~15–19 hours/buyer/month. Absorbed within existing buying workload.</li>
+<li><strong>DC Receiving Clerks</strong>: RTV consolidation adds ~1–2 hours/week for staging and shipping returns. Absorbed.</li>
+<li><strong>AP Clerks</strong>: ~200–300 credit memos/month adds ~1–2 hours/week. Absorbed within existing AP team.</li>
+<li><strong>No incremental headcount.</strong></li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+
+<h2>W110. Supplier Quality & CAPA (Corrective and Preventive Action)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Quality failure at DC receiving (W3 AQL inspection failure); customer complaint about product quality (W41); product recall (W29); warranty claim spike (W33); or periodic quality trend review</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~20–30 CAPA cases/month (from AQL rejects, customer complaints, and warranty analysis); quarterly quality trend review</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~200–300 quality failures/month from DC AQL inspection (W3); ~600–900 customer quality complaints/month (30% of W41 complaint volume); ~50–100 warranty claims/month potentially quality-related (W33)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer (vendor communication); Category Manager (escalation); Quality Coordinator (if dedicated role)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Category Manager, DC Receiving Supervisor, Quality Checker, VP Merchandising, Customer Service Manager</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>W3 covers quality inspection at DC receiving with AQL sampling. W44 covers vendor scorecards with quality reject rate as a metric. W88 handles RTV processing for defective items. However, there is no systematic workflow for investigating the root cause of quality failures, implementing corrective and preventive actions (CAPA) with the vendor, tracking CAPA effectiveness, and feeding quality trends back into vendor management and assortment decisions. Without CAPA, quality failures recur, vendor scorecards penalize but don't improve performance, and the same defective products reach customers repeatedly.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>CAPA case creation</strong>: System auto-generates CAPA case when: (a) AQL inspection fails at DC receiving (W3 — entire lot rejected or defect rate exceeds AQL), (b) customer quality complaint categorized as product defect (W41), (c) product recall initiated (W29 — systemic quality failure), (d) warranty claim rate for a SKU exceeds threshold (> 2% of units sold), (e) RTV rate for a vendor exceeds threshold (> 5% of PO lines per W88.10); alternatively, Buyer or Category Manager manually creates CAPA case for observed quality trends</td>
+<td>System / Buyer / Category Manager</td>
+<td>Category Manager</td>
+<td>5 min/case</td>
+</tr>
+<td>2</td>
+<td><strong>Case classification and severity</strong>: Buyer classifies CAPA case: (a) <strong>Critical</strong> — safety hazard (electrical defect, structural failure, chemical hazard), regulatory non-compliance, or widespread customer impact; requires immediate response; (b) <strong>Major</strong> — functional defect affecting usability, high return/complaint rate (> 5%), or significant financial impact (> PHP 100,000); requires vendor corrective action; (c) <strong>Minor</strong> — cosmetic defect, packaging quality, labeling errors; monitored for trend but may not require formal vendor CAPA</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>10 min/case</td>
+</tr>
+<td>3</td>
+<td><strong>Immediate containment</strong>: (a) For Critical/Major: system places quality hold on all on-hand inventory of affected SKU across all locations (blocked from sale and allocation pending investigation); (b) system blocks pending POs for the SKU from being confirmed (Buyer reviews); (c) if product already sold: Buyer coordinates with W29 recall process for consumer notification (Critical only); (d) DC Supervisor quarantines affected inventory in QC hold area per W3 quality hold process</td>
+<td>Buyer / DC Supervisor</td>
+<td>Category Manager</td>
+<td>1 hour/case (Critical); 30 min (Major)</td>
+</tr>
+<td>4</td>
+<td><strong>Root cause investigation</strong>: (a) Buyer collects evidence: AQL inspection report, defect photos, customer complaint details, warranty claim photos, lot/batch numbers, manufacturing dates; (b) Buyer contacts vendor with detailed quality failure report: defect description, affected lot/batch, quantity impacted, severity, and request for root cause analysis; (c) vendor conducts root cause investigation (typically 5–15 business days); (d) for Critical cases: Buyer may request on-site vendor factory visit or independent third-party inspection</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>2–4 hours/case</td>
+</tr>
+<td>5</td>
+<td><strong>Corrective action plan</strong>: Based on root cause findings, Buyer and vendor agree on corrective action: (a) <strong>Process change</strong> — vendor modifies manufacturing process, adds quality checkpoint, changes raw material supplier; (b) <strong>Design change</strong> — product specification modified to eliminate defect mode; (c) <strong>Packaging change</strong> — improved packaging to prevent transit damage; (d) <strong>Batch replacement</strong> — vendor replaces entire affected batch at vendor cost; (e) <strong>Training</strong> — vendor trains production staff on identified gap; Buyer documents agreed corrective actions with specific deliverables, responsible party, and completion deadline in CAPA case</td>
+<td>Buyer / Vendor</td>
+<td>Category Manager</td>
+<td>1–2 hours/case</td>
+</tr>
+<td>6</td>
+<td><strong>Preventive action</strong>: Buyer identifies systemic preventive measures to avoid recurrence across similar products or vendors: (a) update AQL inspection checklist for the category to catch similar defects (W3); (b) revise vendor onboarding quality requirements for new vendors in the category (W36); (c) update item specification or acceptance criteria in item master (MDM-002); (d) communicate learnings to other Buyers handling similar categories</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30 min/case</td>
+</tr>
+<td>7</td>
+<td><strong>Verification and closure</strong>: (a) After corrective action deadline: Buyer verifies vendor implementation — request evidence (photos, updated process documents, test results); (b) for process/design changes: next 3 shipments inspected at tightened AQL level (Level III per ANSI Z1.4) to verify improvement; (c) if quality improvement confirmed: Buyer closes CAPA case with effectiveness verification notes; (d) if quality not improved: Buyer escalates to Category Manager for vendor improvement plan per W44 Warning/Probation/Termination tiers</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>30 min/case</td>
+</tr>
+<td>8</td>
+<td><strong>Monthly CAPA dashboard</strong>: Buyer generates monthly CAPA dashboard: (a) open CAPA cases by vendor, category, and severity; (b) average time to resolution by severity; (c) corrective action effectiveness rate (cases closed without recurrence ÷ total closed); (d) recurring quality issues (same defect mode from same vendor); (e) vendors with most open/past-due CAPA cases; dashboard shared with Category Managers and VP Merchandising</td>
+<td>Buyer</td>
+<td>VP Merchandising</td>
+<td>1 hour/month</td>
+</tr>
+<td>9</td>
+<td><strong>Quarterly quality trend review</strong>: Category Manager and VP Merchandising review quality trends quarterly: (a) quality reject rate trend by vendor and category, (b) customer complaint rate related to product quality, (c) CAPA case volume trend, (d) vendors with chronic quality issues (3+ CAPA cases in 12 months), (e) quality-driven assortment decisions — should BuildRight exit vendors with persistent quality failures?; feeds into W44 vendor scorecard and W1 assortment review</td>
+<td>Category Manager</td>
+<td>VP Merchandising</td>
+<td>2 hours/quarter</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>CAPA case auto-generation from AQL failures, customer complaints, warranty claims, and RTV rate thresholds (W110.1)</li>
+<li>Case classification with severity levels triggering appropriate containment actions (W110.2–3)</li>
+<li>Quality hold on affected inventory across all locations with sales blocking (W110.3)</li>
+<li>Root cause documentation with evidence attachment (photos, inspection reports, vendor communications) (W110.4)</li>
+<li>Corrective action plan with deliverables, responsible party, and deadline tracking (W110.5)</li>
+<li>Verification workflow with tightened inspection for post-CAPA shipments (W110.7)</li>
+<li>Monthly CAPA dashboard with case aging, effectiveness rate, and vendor ranking (W110.8)</li>
+<li>Integration with W1 (assortment — quality-driven vendor exit), W3 (AQL inspection — source of CAPA triggers and tightened inspection post-CAPA), W29 (product recall — Critical CAPA escalation), W33 (warranty — quality-related claims), W36 (vendor onboarding — quality requirements from CAPA learnings), W41 (customer complaints — product quality complaints feed CAPA), W44 (vendor scorecard — CAPA history as quality metric), W88 (RTV — CAPA from high RTV rate), W91 (damaged goods — disposition during containment)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Buyers</strong>: ~20–30 CAPA cases/month ÷ 10–12 buyers = ~2–3 cases/buyer/month × ~3 hours each = ~6–9 hours/buyer/month. This is a core part of vendor management. Absorbed.</li>
+<li><strong>Category Managers</strong>: 2 hours/quarter for trend review + 30 min/escalation case. Absorbed.</li>
+<li><strong>No incremental headcount.</strong></li>
+</ul>
+
+<hr>
+
+<h2>W115. Supplier Diversity & MSME Development Program</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Annual supplier diversity review; or ad-hoc triggered by corporate social responsibility (CSR) initiative, LGU requirement, or MSME vendor opportunity identification</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Annual program review and target setting; quarterly progress tracking; continuous MSME vendor identification</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~800–1,000 active vendors; target: ≥ 20% MSME (Micro, Small, Medium Enterprise) vendor participation by spend or count within 3 years</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Buyer (MSME identification and onboarding); VP Merchandising (program governance)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Category Manager, VP Merchandising, Finance, Legal, CSR Coordinator</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>The Philippine government actively promotes MSME development through the Magna Carta for MSMEs (RA 9501) and the Go Negosyo Act (RA 10644). Large enterprises are encouraged to source from MSMEs, and government procurement (W78) has MSME participation requirements. BuildRight sources 60% of goods from local Philippine vendors — many of which may qualify as MSMEs. However, there is no formal program to track MSME vendor participation, identify opportunities to onboard MSME suppliers, or provide development support to help MSMEs meet BuildRight's quality and scale requirements. This workflow creates that governance framework, supporting PUR-003 (vendor management) and contributing to corporate social responsibility objectives.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>MSME vendor classification</strong>: System classifies existing vendors as MSME or non-MSME based on DTI/SEC registration and annual revenue: (a) Micro: < PHP 3M annual revenue, (b) Small: PHP 3M–15M, (c) Medium: PHP 15M–100M, (d) Large: > PHP 100M; classification captured in vendor master during onboarding (W36) or updated annually from BIR tax filing data; system generates MSME vendor register with: vendor name, category, MSME size classification, annual spend, and year-first-onboarded</td>
+<td>System / Buyer</td>
+<td>VP Merchandising</td>
+<td>Automated (classification) + 2 hours/year (verification)</td>
+</tr>
+<td>2</td>
+<td><strong>Annual diversity target setting</strong>: VP Merchandising and Category Managers set annual MSME sourcing targets by category: (a) overall target: ≥ 20% of active vendor count classified as MSME within 3 years, (b) category-specific targets based on MSME availability in the category (e.g., higher MSME % in home décor, garden, hardware where local artisans and manufacturers are prevalent; lower in power tools, appliances where scale requirements favor large manufacturers), (c) geographic diversity target: ensure MSME vendors are distributed across regions (Mindanao, Visayas, Luzon) not concentrated in one region</td>
+<td>VP Merchandising</td>
+<td>CEO</td>
+<td>Annual (4 hours)</td>
+</tr>
+<td>3</td>
+<td><strong>MSME vendor identification</strong>: Buyer actively identifies potential MSME vendors through: (a) trade shows and MSME fairs (DTI-organized events, regional trade fairs), (b) LGU and DTI referrals (DTI has MSME directories per region), (c) industry associations (Chamber of Commerce, sector-specific associations), (d) existing vendor referrals (current vendors may know MSME sub-suppliers), (e) competitor and market scanning for local manufacturers not yet in BuildRight's vendor base</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>Ongoing (~2 hours/week across all buyers)</td>
+</tr>
+<td>4</td>
+<td><strong>MSME vendor evaluation</strong>: Buyer evaluates MSME vendor candidates with modified criteria vs. large vendor onboarding (W36): (a) product quality — sample review (standard W36.4), (b) pricing competitiveness — may be slightly higher than large vendors but justified by uniqueness or local sourcing value, (c) production capacity — must meet minimum order quantity for BuildRight's needs (may be lower than standard MOQ to accommodate MSME scale), (d) delivery capability — must deliver to assigned DC or store within agreed lead time, (e) financial stability — review BIR registration and business permit (standard W36.2–3), (f) scalability potential — can the MSME grow with BuildRight's increasing demand?</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>Per W36 (~4–6 hours/vendor)</td>
+</tr>
+<td>5</td>
+<td><strong>MSME onboarding support</strong>: For MSME vendors that meet quality and capacity requirements but need operational support: (a) Buyer provides guidance on BuildRight's packaging, labeling, and barcode requirements; (b) Category Manager may approve a trial period with smaller initial orders and more frequent quality checks (W3 tightened AQL); (c) Finance may offer shorter payment terms (Net 15 instead of Net 30) to support MSME cash flow — requires Finance Manager approval; (d) IT provides vendor portal access and training for order management (W36.9)</td>
+<td>Buyer / Category Manager / Finance</td>
+<td>VP Merchandising</td>
+<td>2–4 hours/vendor</td>
+</tr>
+<td>6</td>
+<td><strong>Quarterly progress tracking</strong>: Buyer generates quarterly MSME sourcing report: (a) total MSME vendor count and % of active vendors, (b) total MSME spend and % of total COGS, (c) new MSME vendors onboarded during quarter, (d) MSME vendor geographic distribution, (e) MSME vendor performance summary (quality, delivery, pricing vs. non-MSME benchmarks), (f) progress against annual targets</td>
+<td>Buyer</td>
+<td>VP Merchandising</td>
+<td>1 hour/quarter</td>
+</tr>
+<td>7</td>
+<td><strong>Annual program review</strong>: VP Merchandising and CEO review annual MSME program performance: (a) year-over-year MSME vendor count and spend trend, (b) MSME vendor retention rate (how many MSME vendors remain active after first year?), (c) MSME vendor success stories and challenges, (d) set next year's targets, (e) evaluate program's contribution to BuildRight's CSR objectives and community impact (especially in Mindanao and Visayas regions)</td>
+<td>VP Merchandising</td>
+<td>CEO</td>
+<td>2 hours/year</td>
+</tr>
+<td>8</td>
+<td><strong>Government reporting</strong>: If required for government procurement eligibility (W78) or LGU permit compliance (W54): Finance compiles MSME sourcing data for regulatory submissions; CSR Coordinator prepares MSME development program summary for annual CSR report</td>
+<td>Finance / CSR Coordinator</td>
+<td>VP Legal & Compliance</td>
+<td>Annual (4 hours)</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>MSME classification field in vendor master with size category (Micro, Small, Medium, Large) and annual revenue band (W115.1)</li>
+<li>MSME vendor register with spend, category, region, and year-onboarded (W115.1)</li>
+<li>Annual MSME sourcing target configuration by category and region (W115.2)</li>
+<li>Quarterly MSME sourcing report with count, spend, geographic, and performance metrics (W115.6)</li>
+<li>Integration with W36 (vendor onboarding — MSME classification at onboarding), W44 (vendor scorecard — MSME vs. non-MSME performance comparison), W62 (vendor contracts — MSME-specific payment terms), W78 (government procurement — MSME participation reporting), W26 (annual budget — MSME spend target)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Buyers</strong>: MSME identification adds ~2 hours/week total across all buyers.</li>
+<li><strong>No incremental headcount.</strong></li>
+</ul>
+
+<hr>
+
+<h2>W136. Indirect / Non-Merchandise Procurement</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Requisition for supplies, services, or equipment not for resale</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~300–400 indirect POs/month (supplies, fixtures, marketing materials)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Indirect Procurement Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Requesting Dept, Buyer, Vendor, Finance (AP)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Requisition: Dept user creates purchase request (PR) in ERP</td>
+<td>Requestor</td>
+<td>Dept Head</td>
+<td>15 min</td>
+</tr>
+<td>2</td>
+<td>Sourcing / Bidding: Buyer obtains 3 quotes for non-contract items</td>
+<td>Buyer</td>
+<td>Procurement Mgr</td>
+<td>3–5 days</td>
+</tr>
+<td>3</td>
+<td>Vendor Selection: Evaluate quotes based on TCO (Total Cost of Ownership)</td>
+<td>Buyer</td>
+<td>Procurement Mgr</td>
+<td>1 day</td>
+</tr>
+<td>4</td>
+<td>PO Creation: Convert approved PR to PO and transmit to vendor</td>
+<td>Buyer</td>
+<td>Procurement Mgr</td>
+<td>15 min</td>
+</tr>
+<td>5</td>
+<td>Receipt & Verification: Requestor confirms receipt of goods or service completion</td>
+<td>Requestor</td>
+<td>Dept Head</td>
+<td>30 min</td>
+</tr>
+<td>6</td>
+<td>Invoice Processing: Finance matches Invoice to PO and Receipt (3-way match)</td>
+<td>AP Specialist</td>
+<td>AP Supervisor</td>
+<td>15 min</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W150. Product Quality Testing & Certification</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>New product onboarding (W1); new vendor onboarding (W36); or scheduled periodic audit</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ad-hoc (new items); Annual (periodic)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~500–1,000 items tested/year (primarily private label and structural materials)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Quality Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Category Manager, Vendor, external testing lab (e.g., TUV, SGS), DC Receiving</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Sample Submission</strong>: Vendor provides physical samples of the product for testing</td>
+<td>Vendor</td>
+<td>Category Mgr</td>
+<td>1 day</td>
+</tr>
+<td>2</td>
+<td><strong>Documentation Review</strong>: Quality Manager verifies mandatory Philippine certifications (PS Mark for local, ICC for imported regulated items)</td>
+<td>Quality Mgr</td>
+<td>Quality Mgr</td>
+<td>1 hour</td>
+</tr>
+<td>3</td>
+<td><strong>Internal Testing</strong>: Basic "Fit & Finish" testing at HQ or DC lab (e.g., measuring tile thickness, weighing cement bags)</td>
+<td>Quality Mgr</td>
+<td>Category Mgr</td>
+<td>2 hours</td>
+</tr>
+<td>4</td>
+<td><strong>External Lab Testing</strong>: Send samples to accredited 3rd-party lab for structural/chemical testing (e.g., steel tensile strength, paint lead content)</td>
+<td>Quality Mgr</td>
+<td>—</td>
+<td>1–2 weeks</td>
+</tr>
+<td>5</td>
+<td><strong>Decision</strong>: (a) Pass: System flags SKU as "QC Approved"; (b) Fail: Item rejected; Vendor must remediate or SKU is blocked from sale</td>
+<td>Quality Mgr</td>
+<td>VP Merch</td>
+<td>30 min</td>
+</tr>
+<td>6</td>
+<td><strong>Periodic Audit</strong>: Random samples pulled from DC stock (W3) and sent for re-testing to ensure consistent quality</td>
+<td>Quality Mgr</td>
+<td>Quality Mgr</td>
+<td>Ongoing</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>"QC Approved" status flag in Item Master</li>
+<li>Storage of digital certificates and lab reports linked to the SKU</li>
+<li>Automated block on PO creation (W2) for items with expired or failed QC status</li>
+<li>Integration with W3 (Receiving) for sample pulling during DC arrival</li>
+</ul>
+
+<hr>
+
+<h3>System Touchpoints (Procurement Extensions)</h3>
+<ul>
+<li>Requisition portal for all employees</li>
+<li>Automated "3-quote" enforcement for indirect spend > threshold</li>
+<li>Service Entry Sheet (SES) for non-physical services (consulting, cleaning)</li>
+<li>Integration with Fixed Assets for equipment procurement (W21/W39)</li>
+<li>Budget check (Commitment accounting) at Requisition stage</li>
+</ul>
+
+<hr>
+
+<hr>
+
+<h2>W155. Vendor Strategic Collaboration & Joint Business Planning (JBP)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Annual planning cycle with "Top 20" strategic vendors</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Annual (with quarterly progress reviews)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Covers 20 key vendors (~45% of COGS)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>VP for Merchandising</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Category Managers, Buyers, Vendor Executives, Supply Chain Planners</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Performance Review</strong>: Jointly review prior year: fill rates (W44), margin, growth, and rebate achievement (W27)</td>
+<td>Buyer / Vendor</td>
+<td>Category Mgr</td>
+<td>4 hours</td>
+</tr>
+<td>2</td>
+<td><strong>Growth Targets</strong>: Set consensus growth targets and market share goals for the next 12 months</td>
+<td>Category Mgr</td>
+<td>VP Merch</td>
+<td>2 hours</td>
+</tr>
+<td>3</td>
+<td><strong>Supply Chain Alignment</strong>: Share long-term demand forecasts (W31) to help vendor plan production capacity</td>
+<td>Demand Planner</td>
+<td>—</td>
+<td>1 hour</td>
+</tr>
+<td>4</td>
+<td><strong>JBP Document</strong>: Sign joint plan covering exclusive SKUs, marketing co-op (W153), and logistics efficiency</td>
+<td>VP Merch</td>
+<td>CEO</td>
+<td>1 week</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W160. Private Label Factory Audit & Social Compliance</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Onboarding new private label vendor (W129); or annual compliance cycle</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Annual per factory</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~30–50 factories audited annually</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Quality & Compliance Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Legal, External Auditor, Vendor</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Self-Assessment</strong>: Vendor submits social compliance questionnaire (labor practices, safety, environmental)</td>
+<td>Vendor</td>
+<td>Quality Mgr</td>
+<td>1 week</td>
+</tr>
+<td>2</td>
+<td><strong>On-site Audit</strong>: Internal or 3rd-party audit (SGS/TUV) of factory floor, dormitories, and payroll records</td>
+<td>External Auditor</td>
+<td>Quality Mgr</td>
+<td>1–2 days</td>
+</tr>
+<td>3</td>
+<td><strong>CAPA</strong>: If violations found, vendor must submit and execute Corrective Action Plan (W110)</td>
+<td>Vendor</td>
+<td>Quality Mgr</td>
+<td>30 days</td>
+</tr>
+<td>4</td>
+<td><strong>Certification</strong>: Issue "BuildRight Approved Factory" status in ERP; linked to W2 PO creation</td>
+<td>Quality Mgr</td>
+<td>VP Merch</td>
+<td>1 day</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W161. Vendor Price Protection & Market Markdown Claims</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Retail price reduction (W40, W93) or competitive price match (W61) impacting stocking items</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Monthly or per major price event</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Covers all SKU categories with price protection agreements</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Pricing Analyst</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Category Manager, Vendor, Finance (AR/AP)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Eligibility Review</strong>: Identify SKUs with active price protection clauses in vendor contracts (W62) upon retail price change</td>
+<td>Pricing Analyst</td>
+<td>Category Manager</td>
+<td>1 hour</td>
+</tr>
+<td>2</td>
+<td><strong>Stock-on-Hand Capture</strong>: System takes a snapshot of group-wide inventory (stores + DCs) at the moment of price change</td>
+<td>System</td>
+<td>—</td>
+<td>Real-time</td>
+</tr>
+<td>3</td>
+<td><strong>Claim Calculation</strong>: Calculate claim amount = (Old Retail - New Retail) × Inventory Count; or (Old Cost - New Cost) × Inventory Count, depending on contract</td>
+<td>Pricing Analyst</td>
+<td>Category Manager</td>
+<td>30 min</td>
+</tr>
+<td>4</td>
+<td><strong>Vendor Validation</strong>: Transmit claim report to vendor for verification and approval; negotiate discrepancies</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>3-5 days</td>
+</tr>
+<td>5</td>
+<td><strong>Credit Note Issuance</strong>: Vendor issues Credit Memo to offset future payables; or system auto-deducts from next PO payment if pre-authorized</td>
+<td>Vendor / Finance</td>
+<td>Buyer</td>
+<td>5-10 days</td>
+</tr>
+<td>6</td>
+<td><strong>Margin Recovery</strong>: Update product costing (W85) to reflect the recovered margin; update P&L for category (W102)</td>
+<td>Finance</td>
+<td>Category Manager</td>
+<td>1 hour</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W244. Vendor Invoice Dispute & Discrepancy Resolution</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>3-Way Match fails (discrepancy between PO, GR, or Vendor Invoice in price or quantity) in W7</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Weekly</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~50–100 invoice disputes per month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>AP Supervisor</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>AP Clerk, Buyer (Merchandising), Vendor Account Manager</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Discrepancy Identification</strong>: System flags 3-way match failure (W7 step 3). AP Clerk isolates invoice in "Disputed" status.</td>
+<td>AP Clerk</td>
+<td>—</td>
+<td>15 min</td>
+</tr>
+<td>2</td>
+<td><strong>Categorization</strong>: System classifies discrepancy: (a) Price variance (invoice price > PO price), or (b) Quantity variance (invoice quantity > GR quantity).</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td><strong>Internal Review</strong>: AP Clerk routes price variance to the Buyer for review. Buyer either: (a) Approves invoice (PO was outdated, updates contract price books), or (b) Rejects price, generating a Debit Note request in ERP.</td>
+<td>AP Clerk / Buyer</td>
+<td>Category Manager</td>
+<td>1 day</td>
+</tr>
+<td>4</td>
+<td><strong>Quantity Reconciliation</strong>: For quantity variance, AP Clerk cross-references GR slip and DC warehouse log. If short-shipped, routes to Vendor for confirmation.</td>
+<td>AP Clerk</td>
+<td>AP Supervisor</td>
+<td>2 hours</td>
+</tr>
+<td>5</td>
+<td><strong>Dispute Communication</strong>: Buyer/AP Supervisor sends automated Dispute Notice with supporting system logs to the vendor via the Vendor Portal (W36).</td>
+<td>AP Supervisor</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>6</td>
+<td><strong>Settlement</strong>: Vendor accepts debit note or issues corrected invoice/Credit Note. AP Clerk posts Credit/Debit Note in ERP to match the variance and approves invoice for payment run.</td>
+<td>AP Clerk / Vendor</td>
+<td>AP Supervisor</td>
+<td>2–5 days</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Automated 3-way match variance flags (price/qty)</li>
+<li>Dispute workflow router (AP ↔ Buyer ↔ Vendor)</li>
+<li>Debit/Credit Note generation and automated GL posting</li>
+<li>Integration with W7 (AP processing) and W36 (Vendor Portal)</li>
+</ul>
+
+<hr>
+
+<h2>W245. Vendor Performance Chargebacks & Penalties Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Incomplete shipment, late delivery, or poor product quality at GR (W3/W18) resulting in scorecard failure (W44)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~100–150 chargeback events/month across all DCs</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Supplier Compliance Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>DC Receiving Supervisor, Category Manager, Vendor Compliance, AP Specialist</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Log Discrepancy</strong>: DC Receiving Supervisor logs delivery failure at GR (shortage, damage, packaging non-compliance) or late arrival (> 2 hours past SLA).</td>
+<td>DC Supervisor</td>
+<td>DC Manager</td>
+<td>15 min</td>
+</tr>
+<td>2</td>
+<td><strong>Fines Engine Execution</strong>: System references Supplier Compliance Agreement (W62) and auto-calculates fee/penalty: (a) Fill rate failure: 2% of unfulfilled value; (b) Late delivery: PHP 5,000 flat penalty; (c) Packaging non-compliance: PHP 2,500 penalty.</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td><strong>Notification</strong>: System triggers a "Compliance Infraction Report" with photographs and receiving logs, sending it to the vendor via the Vendor Portal (W36) with copy to the Category Manager.</td>
+<td>Supplier Compliance</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>4</td>
+<td><strong>Dispute Window</strong>: Vendor has 5 business days to dispute infraction by uploading carrier proof or force majeure evidence; compliance manager reviews and makes final ruling.</td>
+<td>Vendor / Compliance Mgr</td>
+<td>Supplier Compliance Mgr</td>
+<td>5 days</td>
+</tr>
+<td>5</td>
+<td><strong>Chargeback Posting</strong>: If infraction upheld, system automatically generates an AR invoice / AP Debit Note (Dr. Vendor Chargeback Receivable / Cr. Procurement Penalty Income) in the vendor's ledger.</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>6</td>
+<td><strong>Deduction Reconciliation</strong>: At next AP payment cycle (W7), matching engine auto-applies debit note as deduction against vendor's invoice payment, netting the settlement.</td>
+<td>AP Specialist</td>
+<td>AP Supervisor</td>
+<td>10 min</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Supplier compliance fine/penalty calculation engine linked to receiving logs and contracts</li>
+<li>Infraction workflow management dashboard with vendor portal linkage</li>
+<li>Automated Debit Note / AR invoice posting in General Ledger</li>
+<li>Auto-application of debit notes at payment cycle (W7)</li>
+</ul>
+
+
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

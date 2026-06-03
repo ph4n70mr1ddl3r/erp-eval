@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Warehouse — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub act"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🏭</span><h2>Warehouse</h2></div><div class="cd mc"><h1>Warehouse & Logistics Workflows</h1>
+
+<blockquote>Receiving, putaway, kit assembly, fleet management, inter-island logistics, DC outbound dispatch & load planning, fleet spare parts & preventive maintenance, cross-docking operations, and DC container yard & chassis management.</blockquote>
+<blockquote></blockquote>
+<blockquote>Back to <a href="README.md">Workflow Index</a></blockquote>
+
+<hr>
+
+<h2>Workflows in This Domain</h2>
+
+<ul>
+<li><a href="#warehouse-receiving-putaway">W3. Warehouse Receiving & Putaway</a></li>
+<li><a href="#yard--outdoor-inventory-management">W3B. Yard & Outdoor Inventory Management</a></li>
+<li><a href="#dc-inbound-delivery-scheduling">W3C. DC Inbound Delivery Scheduling</a></li>
+<li><a href="#kit-bundle-assembly-disassembly">W46. Kit / Bundle Assembly & Disassembly</a></li>
+<li><a href="#fleet-management">W52. Fleet Management</a></li>
+<li><a href="#inter-island-logistics-freight-management">W66. Inter-Island Logistics & Freight Management</a></li>
+<li><a href="#dc-outbound-dispatch-load-planning">W106. DC Outbound Dispatch & Load Planning</a></li>
+<li><a href="#fleet-spare-parts--preventive-maintenance-pm-management">W188. Fleet Spare Parts & Preventive Maintenance (PM) Management</a></li>
+<li><a href="#cross-docking-operations-for-fast-moving-bulky-items">W221. Cross-Docking Operations for Fast-Moving Bulky Items</a></li>
+<li><a href="#dc-container-yard--chassis-management">W222. DC Container Yard & Chassis Management</a></li>
+</ul>
+
+<hr>
+
+<h2>W3. Warehouse Receiving & Putaway</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Vendor delivery truck arrives at DC (or container from port)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~6,000 goods receipts/month across all DCs; ~1,200/DC/month; ~40/day per DC</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~15 lines per receipt on average</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>DC Receiving Supervisor</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Receiving Clerk, Quality Checker, Putaway Staff, DC Supervisor, Buyer (if discrepancy)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Truck arrives at DC gate; guard checks delivery schedule vs. appointment log</td>
+<td>Guard</td>
+<td>DC Supervisor</td>
+<td>5 min</td>
+</tr>
+<td>2</td>
+<td>Receiving Clerk pulls up expected PO or Transfer Order in system</td>
+<td>Receiving Clerk</td>
+<td>DC Supervisor</td>
+<td>2 min</td>
+</tr>
+<td>3</td>
+<td>Unload truck; stage in receiving area</td>
+<td>Unloading Crew (3–4)</td>
+<td>Receiving Clerk</td>
+<td>30–60 min</td>
+</tr>
+<td>4</td>
+<td>Scan/verify each item against PO: SKU, quantity, lot/batch (if applicable)</td>
+<td>Receiving Clerk</td>
+<td>DC Supervisor</td>
+<td>20–40 min</td>
+</tr>
+<td>5</td>
+<td>Quality check on sampled items (damage, correctness, expiry if applicable) per category-specific inspection checklist (see Quality Inspection Standards below)</td>
+<td>Quality Checker</td>
+<td>DC Supervisor</td>
+<td>10–20 min</td>
+</tr>
+<td>6</td>
+<td>If discrepancy (shortage, damage, wrong item): flag in system; notify Buyer</td>
+<td>Receiving Clerk</td>
+<td>DC Supervisor</td>
+<td>5 min</td>
+</tr>
+<td>6a</td>
+<td>If damaged goods: Receiving Clerk creates damage report with photos; initiates one of: (a) Return to Vendor (RTV) via Buyer, (b) scrap with DC Supervisor authorization, or (c) insurance claim for insured shipments. For insurance claims: Receiving Clerk documents damage with photos and notes on delivery receipt; Import Coordinator or DC Supervisor files claim with insurance provider within required notification window (typically 3–5 business days); system tracks claim status; upon settlement, Finance posts insurance recovery to income and reduces inventory loss</td>
+<td>Receiving Clerk</td>
+<td>DC Supervisor</td>
+<td>10 min</td>
+</tr>
+<td>6b</td>
+<td>Buyer reviews RTV request; coordinates with vendor for credit note or replacement shipment</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>15 min/occurrence</td>
+</tr>
+<td>6c</td>
+<td>If scrap authorized: DC Supervisor approves scrap disposition; system removes inventory and posts loss to damage/scrapping account</td>
+<td>DC Supervisor</td>
+<td>DC Manager</td>
+<td>5 min</td>
+</tr>
+<td>7</td>
+<td>Confirm Goods Receipt in system; inventory increases in real-time</td>
+<td>Receiving Clerk</td>
+<td>DC Supervisor</td>
+<td>5 min</td>
+</tr>
+<td>8</td>
+<td>System suggests putaway location based on zone, bin capacity, item velocity</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>9</td>
+<td>Putaway staff moves goods to assigned bin; scan-confirm in system</td>
+<td>Putaway Staff</td>
+<td>DC Supervisor</td>
+<td>15–30 min</td>
+</tr>
+<td>10</td>
+<td>Update PO/TO status; trigger vendor invoice matching (AP)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total time per receipt</strong>: ~1.5–3 hours from gate to bin</p>
+
+<h3>Quality Inspection Standards (W3 Step 5 Detail)</h3>
+
+<p>Quality inspection at receiving uses configurable, category-specific checklists. The system presents the Quality Checker with the appropriate checklist per SKU category on the RF device. AQL (Acceptable Quality Level) sampling is applied per ANSI Z1.4 single sampling plan, normal inspection level II, with configurable AQL per category.</p>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Category</th>
+<th>Inspection Criteria</th>
+<th>Sampling Plan</th>
+<th>AQL</th>
+<th>Reject Action</th>
+</tr></thead><tbody>
+<td><strong>Tiles & ceramics</strong></td>
+<td>Visual defects (chips, cracks, glaze inconsistencies on sampled pieces); color consistency vs. reference sample; dimensional check (±1mm tolerance on length/width); PEI rating confirmation per packaging</td>
+<td>Per lot: ≤ 100 pcs → inspect 5; 101–500 → inspect 20; 501+ → inspect 32</td>
+<td>2.5%</td>
+<td>Reject entire lot if defect rate exceeds AQL; Buyer notifies vendor</td>
+</tr>
+<td><strong>Lumber & wood</strong></td>
+<td>Moisture content spot-check (if meter available); warping/bowing check (visual); species/treatment verification; grade stamp verification; length/piece count</td>
+<td>Per bundle: inspect 5 pieces from each bundle</td>
+<td>4.0% (visual)</td>
+<td>Reject non-conforming pieces; accept remainder; Buyer adjusts PO quantity</td>
+</tr>
+<td><strong>Paint & chemicals</strong></td>
+<td>Manufacturing date and shelf-life capture (mandatory per shelf-life management); container integrity (dents, leaks, tamper seal); color match for tinted items; safety data sheet availability check</td>
+<td>Per delivery: inspect 10% of cartons, minimum 2</td>
+<td>1.5% (critical: leaks/tamper)</td>
+<td>Reject entire lot if critical defect found; quarantine for Buyer review</td>
+</tr>
+<td><strong>Cement & masonry</strong></td>
+<td>Bag integrity (no tears, moisture damage, hardened lumps); manufacturing date check (cement shelf-life typically 3 months); weight spot-check on sampled bags</td>
+<td>Per pallet: inspect 5 bags from top, middle, bottom</td>
+<td>2.5%</td>
+<td>Reject damaged bags; accept sound bags; Buyer adjusts PO quantity</td>
+</tr>
+<td><strong>Plumbing & electrical</strong></td>
+<td>Visual defect check (finish, threads, connectors); brand/model verification against PO; quantity count; packaging integrity</td>
+<td>Per line item: inspect 10% of units, minimum 2</td>
+<td>2.5%</td>
+<td>Reject non-conforming units; Buyer coordinates with vendor</td>
+</tr>
+<td><strong>Power tools & appliances</strong></td>
+<td>External packaging check; serial number capture for high-value items (> PHP 10,000); physical damage check; accessory completeness vs. product spec</td>
+<td>Per unit: 100% inspection for high-value; 10% for standard</td>
+<td>1.0% (high-value); 2.5% (standard)</td>
+<td>Reject damaged units; serial-tracked items logged for warranty (W33)</td>
+</tr>
+<td><strong>Hardware & fasteners</strong></td>
+<td>Quantity count (weigh-count or piece count); rust/corrosion check; grade/size verification against PO</td>
+<td>Per line: weigh-count verification</td>
+<td>4.0%</td>
+<td>Reject if count variance > 5%; Buyer adjusts PO</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Quality hold process</strong>: if inspection fails, system places goods in "Quality Hold" status — inventory is physically segregated in QC hold area and not available for putaway, allocation, or sale; Quality Checker creates quality hold record with defect description, photos, and inspection checklist result; Buyer notified for vendor resolution (replace, credit, or scrap); if not resolved within 5 business days, DC Supervisor escalates to Category Manager.</p>
+
+<p><strong>Monthly</strong>: DC Supervisor generates quality metrics report per vendor: inspection pass rate, top defect categories, quality hold aging; feeds into vendor scorecard (W44 quality reject rate metric).</p>
+
+<h3>Cross-Dock Flow (Fast-Movers — ~30% of receipts)</h3>
+
+<p>For high-velocity items (A-class), steps 8–9 are skipped. Instead:</p>
+<ul>
+<li>After step 7, goods are moved directly to outbound staging area</li>
+<li>Allocated to pending store replenishment orders</li>
+<li>Loaded onto outbound trucks same day</li>
+</ul>
+
+<h3>W3B. Yard & Outdoor Inventory Management</h3>
+
+<p>For lumber, building materials, and other bulky items stored in outdoor yard areas (present at all DCs and stores per the Lumber & Building Materials Yard zone):</p>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Goods received at yard gate (separate from indoor receiving); Receiving Clerk verifies against PO/TO using handheld</td>
+<td>Receiving Clerk</td>
+<td>DC Supervisor / Dept. Supervisor</td>
+<td>20–40 min</td>
+</tr>
+<td>2</td>
+<td>System records receipt into yard zone (zone-level tracking, not individual bin); inventory tracked by yard zone (e.g., Yard-A: Lumber, Yard-B: Cement/Blocks, Yard-C: Steel/Rebar)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td>For catch-weight items (lumber, rebar): associate measures and records actual length/piece count at receipt; system calculates quantity in board feet / linear meters / pieces</td>
+<td>Receiving Clerk</td>
+<td>Dept. Supervisor</td>
+<td>10–20 min</td>
+</tr>
+<td>4</td>
+<td>Goods staged in designated yard zone; organized by SKU type and length/size for easy retrieval</td>
+<td>Yard Staff</td>
+<td>DC Supervisor</td>
+<td>15–30 min</td>
+</tr>
+<td>5</td>
+<td>Physical counting: yard items counted by zone during cycle counts (W6) and annual physical inventory (W42); counted by piece/bundle rather than individual bin scan</td>
+<td>Stock Associate</td>
+<td>Dept. Supervisor</td>
+<td>Per W6/W42</td>
+</tr>
+<td>6</td>
+<td>Weather damage discovered during daily yard walkthrough: Stock Associate reports damage (warped lumber, water-damaged cement, rusted rebar); DC Supervisor/Dept. Supervisor approves disposition (markdown, scrap, RTV, insurance claim) per W3.6a process</td>
+<td>Stock Associate</td>
+<td>DC Supervisor / Dept. Supervisor</td>
+<td>10 min</td>
+</tr>
+<td>7</td>
+<td>Yard-to-sales-floor movement: when yard stock is needed indoors (e.g., small lumber pieces moved to indoor display), Stock Associate transfers items in system from yard zone to indoor location</td>
+<td>Stock Associate</td>
+<td>Dept. Supervisor</td>
+<td>10 min</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints (Yard)</h3>
+<ul>
+<li>Zone-level location master for yard areas (not bin-level) (W3B.2)</li>
+<li>Catch-weight/variable-length receipt and tracking in yard zones (W3B.3)</li>
+<li>Weather damage reporting and disposition (W3B.6)</li>
+<li>Yard-to-indoor inventory transfer (W3B.7)</li>
+<li>Yard inventory visible in real-time alongside indoor inventory (W3B.2)</li>
+</ul>
+
+<h3>W3C. DC Inbound Delivery Scheduling</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Purchase order confirmed with vendor or import shipment ETA confirmed</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Daily; ~40 receipts/day per DC</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~1,200 merchandise receipts/month + ~80–240 blanket releases + ~20–30 import containers + ~30–50 non-merchandise receipts per DC per month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>DC Receiving Supervisor</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Import Coordinator, DC Receiving Supervisor, DC Dispatch, Vendor/Carrier</td>
+</tr>
+</tbody></table></div>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>System generates inbound delivery forecast from open POs: PO number, vendor, expected delivery date (from PO promised date or import ETA), number of lines, estimated pallet/cube count, and dock door requirements (refrigerated none; hazardous materials for paint/chemicals; standard for general merchandise)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated (nightly)</td>
+</tr>
+<td>2</td>
+<td>DC Receiving Supervisor reviews next 3-day inbound forecast each morning; identifies days with high receiving volume (> 50 receipts) or overlapping large deliveries; adjusts dock door assignments and staff scheduling</td>
+<td>DC Receiving Supervisor</td>
+<td>DC Manager</td>
+<td>15 min/day</td>
+</tr>
+<td>3</td>
+<td>For domestic vendor deliveries: Buyer or system transmits delivery appointment to vendor with requested delivery date and time window (typically 8:00 AM – 4:00 PM, 2-hour windows); vendor confirms or proposes alternative; system logs appointment confirmation</td>
+<td>Buyer / System</td>
+<td>DC Receiving Supervisor</td>
+<td>5 min/PO</td>
+</tr>
+<td>4</td>
+<td>For import containers: Import Coordinator books delivery appointment with DC once container is released from port; provides container number, commodity, estimated weight, and special handling requirements; DC Receiving Supervisor confirms appointment and assigns dock door</td>
+<td>Import Coordinator</td>
+<td>DC Receiving Supervisor</td>
+<td>10 min/container</td>
+</tr>
+<td>5</td>
+<td>If vendor arrives without appointment: guard checks against open PO list; if valid PO exists, Receiving Supervisor accepts on a space-available basis (may result in extended wait time); if no valid PO, guard turns delivery away with Buyer notification</td>
+<td>Guard / DC Receiving Supervisor</td>
+<td>DC Manager</td>
+<td>5 min</td>
+</tr>
+<td>6</td>
+<td>System maintains dock door utilization dashboard per DC: shows scheduled appointments, completed receipts, and available capacity by time slot; Receiving Supervisor uses dashboard to optimize dock assignments and avoid congestion</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>7</td>
+<td>Monthly: DC Receiving Supervisor reviews appointment compliance report — vendor on-time arrival %, no-show rate, unscheduled delivery rate; feeds into vendor scorecard (W44) and carrier performance review (W52)</td>
+<td>DC Receiving Supervisor</td>
+<td>DC Manager</td>
+<td>30 min/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints (DC Scheduling)</h3>
+<ul>
+<li>Inbound delivery forecast from open PO data with dock door requirements (W3C.1)</li>
+<li>Delivery appointment booking with vendor confirmation tracking (W3C.3–4)</li>
+<li>Dock door utilization dashboard with real-time capacity visibility (W3C.6)</li>
+<li>Appointment compliance reporting feeding vendor scorecard (W3C.7)</li>
+<li>Unscheduled delivery handling with PO validation at gate (W3C.5)</li>
+<li>Integration with W3 (DC receiving — appointments feed step 1 guard check), W2A (auto-replenishment POs generate appointments), W2B (import container appointments), W18B (DSD scheduling — store equivalent), W44 (vendor scorecard — appointment compliance), W52 (carrier performance)</li>
+<li>Barcode/RF scanning against PO (W3.4)</li>
+<li>Discrepancy flagging and Buyer notification (W3.6)</li>
+<li>Damage disposition workflow: RTV initiation, scrap authorization, insurance claim capture (W3.6a–c)</li>
+<li>Goods Receipt posting → inventory update; perpetual WAC recalculation at each receipt: new WAC = (prior inventory value + receipt value) ÷ (prior quantity + receipt quantity) (W3.7)</li>
+<li>Putaway direction (zone, bin, velocity-based) (W3.8)</li>
+<li>Cross-dock allocation to outbound orders (cross-dock variant)</li>
+<li>DC forward-pick zone replenishment: system monitors forward-pick (fast-pick) location quantities in real-time; when quantity drops below minimum threshold, generates replenishment task (move from reserve/bulk storage to forward-pick); replenishment staff receives task on RF device, moves stock, scan-confirms at both locations; replenishment prioritized ahead of picking waves to avoid picker idle time (W3.8 post-putaway, integrated with W4 picking)</li>
+<li>Shelf-life / expiry date management: at Goods Receipt, Receiving Clerk captures manufacturing date and shelf-life duration for date-sensitive items (paint, adhesives, sealants, chemicals, cement, grout); system calculates and records expiry date per batch/lot; items with remaining shelf life below configurable threshold (e.g., < 30%) flagged for priority picking or markdown; expired items blocked from dispatch (W3.4)</li>
+<li>Inventory ownership: all merchandise received into DCs is owned by BuildRight Depot Inc. even though DC facilities are operated by BuildRight Logistics Inc.; Logistics Inc. provides warehousing and distribution services billed monthly per W14; goods are Depot Inc. inventory throughout the DC→Store flow</li>
+<li>RTV physical logistics and tracking: Receiving Clerk stages RTV items in designated RTV holding area at DC; system creates RTV shipment record with lifecycle tracking (Initiated → Packed → Shipped → In Transit → Vendor Received → Credit Note Issued → Settled); DC dispatch arranges carrier pickup or vendor pickup per agreement with Buyer coordination; system tracks RTV aging by status; for store-initiated RTVs (W6.8a, W12A.8, W33.6), Stock Associate stages items in backroom and system creates RTV shipment record; Buyer coordinates with vendor for direct pickup from store or shipment to DC for consolidation; vendor credit note triggered upon vendor confirmation of receipt; if vendor disputes, Buyer negotiates resolution per W3.6b; system maintains RTV tracking dashboard with aging by status</li>
+<li>RTV vendor credit note SLA: system enforces configurable credit note SLA per vendor — default 15 business days from vendor receipt of returned goods to credit note issuance; if credit note not received within SLA, system escalates to Buyer with auto-notification; Buyer contacts vendor for resolution; if unresolved after 30 days, Buyer escalates to Category Manager for vendor scorecard impact (W44); credit note SLA compliance tracked as a metric in vendor scorecard (W44 invoice accuracy metric); monthly: AP Clerk generates RTV credit note aging report showing all open RTVs awaiting vendor credit note with days outstanding, feeding into W7D vendor statement reconciliation</li>
+<li>RTV freight cost allocation: freight cost for returning goods to vendor is borne by the party responsible for the return reason — (a) defective/wrong items (vendor fault): vendor bears freight cost; deducted from credit note amount negotiated by Buyer; (b) buyer-initiated returns (overstock, discontinuation): BuildRight bears freight cost; posted to inventory write-down or return-to-vendor expense; (c) carrier damage: freight cost claimed from carrier insurance per W3.6a; system captures RTV freight cost as a separate line on the RTV shipment record; AP Clerk reconciles freight cost allocation during credit note processing (W7.9b)</li>
+<li>DC RTV consolidation & vendor return shipment batching: with 200 stores returning defective/damaged/discontinued items to 5 DCs (W22B), DC Receiving Clerks accumulate RTV items in a designated RTV holding area organized by vendor; system maintains a DC-level RTV consolidation dashboard showing accumulated items per vendor, total value, and aging; weekly, Buyer reviews the consolidation dashboard and determines batch shipment timing per vendor — (a) for high-volume vendors (weekly returns): Buyer schedules weekly vendor pickup or carrier shipment when accumulated value exceeds a configurable threshold (e.g., PHP 20,000 per vendor), (b) for low-volume vendors: items held until accumulated value justifies shipment cost, or consolidated with next regular vendor delivery truck for backhaul; system generates RTV shipment manifest per vendor listing all items, source locations (store or DC), quantities, credit note expected per item, and total claim value; Buyer transmits manifest to vendor for advance confirmation; upon vendor pickup or shipment, system updates RTV lifecycle status per W3 RTV tracking; AP Clerk uses consolidated manifest for credit note reconciliation per W7.9b; monthly: Buyer reviews DC RTV aging dashboard for items in RTV holding > 30 days and escalates to Category Manager for alternative disposition if vendor is unresponsive</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li>Per DC: 3–4 Receiving Clerks (handling ~40 receipts/day in shifts, ~1.5–3 hrs each)</li>
+<li>Per DC: 4–6 Putaway Staff (handling putaway flow across zones)</li>
+<li>Per DC: 1–2 Quality Checkers</li>
+<li>Per DC: 1 Receiving Supervisor overseeing all inbound</li>
+<li>Total per DC: ~10–13 dedicated to receiving/putaway out of ~150 headcount. Reasonable.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W46. Kit / Bundle Assembly & Disassembly</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Kit demand (auto-assembly) or planned batch assembly schedule</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~200–400 kit assemblies/month across DCs; primarily tool sets, bathroom combo kits, paint starter kits</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~50–100 active kit SKUs</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>DC Supervisor</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Merchandise Planner (BOM setup), DC Assembly Staff, DC Supervisor</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Merchandise Planner defines kit Bill of Materials (BOM) in item master: kit SKU + component SKUs with quantities per unit; kit item type = 'Kit / Bundle'</td>
+<td>Merchandise Planner</td>
+<td>Category Manager</td>
+<td>15 min/kit</td>
+</tr>
+<td>2</td>
+<td>Assembly triggered by: (a) demand-driven — system auto-generates assembly order when kit is ordered (ecommerce) or picked (store replenishment) but insufficient kit stock exists, or (b) planned batch — DC Supervisor schedules weekly assembly of popular kits based on forecast</td>
+<td>System / DC Supervisor</td>
+<td>DC Supervisor</td>
+<td>5 min</td>
+</tr>
+<td>3</td>
+<td>System creates assembly order: lists required component quantities; checks component availability at DC; reserves components against assembly order</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td>If component shortage: DC Supervisor alerts Buyer for expedited replenishment or suggests substitution (with Merchandise Planner approval)</td>
+<td>DC Supervisor</td>
+<td>Supply Planning Manager</td>
+<td>10 min</td>
+</tr>
+<td>5</td>
+<td>Assembly Staff picks components from DC bins per assembly order; scan-confirms each component</td>
+<td>Assembly Staff</td>
+<td>DC Supervisor</td>
+<td>10–30 min/kit</td>
+</tr>
+<td>6</td>
+<td>Assembly Staff assembles kit (physical packaging, labeling, shrink-wrap); applies kit barcode label</td>
+<td>Assembly Staff</td>
+<td>DC Supervisor</td>
+<td>5–15 min/kit</td>
+</tr>
+<td>7</td>
+<td>System consumes component inventory (decreases) and creates kit inventory (increases); kit cost = sum of component WAC at time of assembly</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>8</td>
+<td>Kit received into finished goods storage location in DC; available for picking and shipping</td>
+<td>Assembly Staff</td>
+<td>DC Supervisor</td>
+<td>5 min</td>
+</tr>
+<td>9</td>
+<td>Kit disassembly (if components needed individually): DC Supervisor initiates disassembly order; system reverses process — consumes kit inventory, restores component inventory at original component WAC; disassembly labor posted to overhead</td>
+<td>DC Supervisor</td>
+<td>DC Manager</td>
+<td>10 min</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Kit BOM definition in item master with component quantities (W46.1)</li>
+<li>Assembly order auto-generation triggered by demand or planned schedule (W46.2–3)</li>
+<li>Component availability check and reservation against assembly order (W46.3)</li>
+<li>Component consumption and kit creation with automatic costing (W46.5–7)</li>
+<li>Kit disassembly with component restoration (W46.9)</li>
+<li>Kit inventory tracked separately from components; kit excluded from ROP/replenishment (assembled on demand)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>DC Assembly Staff</strong>: ~200–400 assemblies/month × 20 min average = ~70–130 hours/month. With 5 DCs, that's ~15–25 hours/DC/month. Absorbed by existing DC staff (within ~150/DC) as a scheduled weekly activity.</li>
+<li><strong>Merchandise Planner</strong>: ~50–100 active kits × initial setup + occasional BOM updates = ~4–6 hours/month. Absorbed.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W52. Fleet Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Vehicle registration renewal, scheduled maintenance, fuel purchase, driver assignment, route planning review</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Continuous; daily operations + periodic scheduled maintenance</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~30–40 owned vehicles (20% of total fleet); remainder 80% third-party (Lalamove, Transportify, contracted carriers)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Fleet Manager (within Supply Chain team)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Fleet Manager, Drivers, DC Dispatch, Finance, External carriers</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>BuildRight's distribution fleet operates with a mixed model: ~20% owned vehicles (primarily 10-wheeler wing vans and 6-wheeler trucks for regular DC-to-store routes) and ~80% third-party carriers (for seasonal surge, inter-island routes, last-mile ecommerce delivery via Lalamove/Transportify). Owned vehicles are registered under BuildRight Logistics Inc. Third-party carrier management for ecommerce is covered in W19 (3PL management) and for general distribution in W4 (outbound logistics).</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Driver assignment</strong>: Fleet Manager assigns drivers to owned vehicles based on route schedule, driver qualifications (LTO license type — professional driver's license with restriction codes for heavy vehicles), and duty hour limits</td>
+<td>Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>30 min/week</td>
+</tr>
+<td>2</td>
+<td><strong>Daily pre-trip inspection</strong>: Driver conducts vehicle inspection checklist (tires, brakes, lights, fluid levels, cargo area, safety equipment) before departure; records in system via mobile app; vehicle not cleared for dispatch if critical items fail</td>
+<td>Driver</td>
+<td>Fleet Manager</td>
+<td>15 min/vehicle/day</td>
+</tr>
+<td>3</td>
+<td><strong>Fuel management</strong>: Driver refuels at designated fuel stations using company fuel card; system captures fuel volume, odometer reading, and cost per transaction; Fleet Manager reviews fuel consumption per vehicle monthly (km/L benchmark per vehicle type; flags vehicles > 15% below benchmark for maintenance investigation)</td>
+<td>Driver / Fleet Manager</td>
+<td>Fleet Manager</td>
+<td>5 min/refuel + 1 hour/month review</td>
+</tr>
+<td>4</td>
+<td><strong>Scheduled maintenance</strong>: Fleet Manager maintains maintenance calendar per vehicle based on manufacturer intervals (typically every 5,000–10,000 km or 3–6 months): (a) oil change and basic service, (b) tire rotation and replacement, (c) brake inspection, (d) annual comprehensive service; system alerts Fleet Manager 1 week before service due</td>
+<td>Fleet Manager</td>
+<td>DC Manager</td>
+<td>Per schedule</td>
+</tr>
+<td>5</td>
+<td><strong>Unscheduled repair</strong>: Driver reports vehicle issue; Fleet Manager assesses severity: (a) minor — schedule repair at next available slot, substitute 3PL for pending deliveries, (b) major — vehicle taken out of service, substitute vehicle or 3PL arranged</td>
+<td>Fleet Manager</td>
+<td>DC Manager</td>
+<td>30 min/occurrence</td>
+</tr>
+<td>6</td>
+<td>Maintenance or repair executed at company-approved workshop per region; Fleet Manager approves work order and cost; system tracks maintenance history per vehicle</td>
+<td>Fleet Manager</td>
+<td>DC Manager</td>
+<td>Varies</td>
+</tr>
+<td>7</td>
+<td><strong>Vehicle registration & insurance</strong>: Fleet Manager maintains calendar for LTO registration renewal (annual per vehicle), CTPL insurance renewal, and comprehensive insurance; system alerts 60 days before expiry; vehicles with expired registration blocked from dispatch</td>
+<td>Fleet Manager</td>
+<td>DC Manager</td>
+<td>30 min/vehicle/year</td>
+</tr>
+<td>8</td>
+<td><strong>Route performance review</strong>: monthly, Fleet Manager reviews route metrics per vehicle: km driven, fuel efficiency, delivery punctuality (on-time % per W4 SLA), maintenance cost per km; identifies vehicles with declining performance for maintenance escalation or replacement planning</td>
+<td>Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>2 hours/month</td>
+</tr>
+<td>9</td>
+<td><strong>3PL carrier performance</strong>: Fleet Manager monitors third-party carrier performance per W19 (on-time delivery, damage rate, cost per delivery) in coordination with DC Dispatch; quarterly carrier review per W44 vendor scorecard methodology</td>
+<td>Fleet Manager / DC Dispatch</td>
+<td>Supply Chain Manager</td>
+<td>Per W19/W44</td>
+</tr>
+<td>10</td>
+<td><strong>Vehicle replacement planning</strong>: annually, Fleet Manager evaluates vehicles > 5 years or > 300,000 km for replacement; submits capex request per W21; considers total cost of ownership (maintenance cost trajectory, fuel efficiency decline, reliability) vs. new vehicle cost plus financing</td>
+<td>Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>Annual (4 hours)</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Vehicle master record: plate number, VIN, model, year, capacity, assigned DC, registration expiry, insurance expiry, assigned driver (W52.1)</li>
+<li>Pre-trip inspection checklist on mobile app with defect reporting and dispatch block for critical failures (W52.2)</li>
+<li>Fuel card integration: automated fuel transaction capture with per-vehicle km/L tracking and anomaly alerting (W52.3)</li>
+<li>Maintenance scheduling with automated alerts per vehicle based on km or calendar interval (W52.4)</li>
+<li>Maintenance history tracking with cost per vehicle and cost per km (W52.6, 8)</li>
+<li>Registration and insurance calendar with expiry alerting and dispatch blocking (W52.7)</li>
+<li>Route and delivery performance tracking per vehicle (W52.8)</li>
+<li>Integration with W4 (route scheduling), W19 (3PL management), W21 (vehicle replacement capex), W39 (vehicle disposal), W30 (fuel expense GL posting)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>1 Fleet Manager</strong> (within Supply Chain team): manages owned fleet (30–40 vehicles) and third-party carrier relationships. This role reports to Supply Chain Manager and coordinates daily with DC Dispatch.</li>
+<li><strong>30–40 Drivers</strong> (BuildRight Logistics Inc. employees): assigned to owned vehicles; each driver covers ~1–2 routes/day, 5–6 days/week. Drivers are part of Logistics Inc. headcount (~750 total DC staff includes drivers).</li>
+<li><strong>Approved workshops</strong>: 2–3 workshops per region (Davao, Cebu, Laguna, Clark, Manila) for scheduled and unscheduled maintenance. Fleet Manager manages workshop relationships and rate negotiations.</li>
+<li><strong>Fuel card program</strong>: corporate fuel card (e.g., Petron Value Card, Shell Fleet Card) for all owned vehicles. Eliminates cash handling for fuel and enables automated consumption tracking.</li>
+</ul>
+
+
+<hr>
+
+
+
+<hr>
+
+<h2>W66. Inter-Island Logistics & Freight Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Inter-DC transfer (W22) between islands (e.g., DC3 Luzon → DC2 Visayas, DC1 Mindanao → DC2 Visayas), or direct-to-store delivery to island locations not served by a DC on the same island</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~10–15 inter-island shipments/month (supplementing ~30–40 inter-DC transfers/month in W22); additional ad-hoc shipments during peak season and disaster response (W49)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Typically 1–5 TEU containers per shipment; some loose cargo (LCL) for smaller transfers</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Import Coordinator / Fleet Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Import Coordinator, Fleet Manager, DC Supervisor, Supply Planner, carrier (ro-ro or cargo vessel), Customs (if applicable)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>BuildRight's 5-DC footprint spans the Philippine archipelago: DC1 Davao (Mindanao), DC2 Cebu (Visayas), DC3 Laguna (South Luzon), DC4 Clark (North/Central Luzon), DC5 Manila (NCR). Inter-DC transfers between islands require sea transport via roll-on/roll-off (ro-ro) ferries or containerized cargo vessels. Lead times are 3–7 days longer than same-island transfers. Cost per TEU for inter-island shipping: ~PHP 20,000–50,000 depending on route and carrier.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Supply Planner identifies need for inter-island transfer (W22) when demand at a DC cannot be met from same-island supply and vendor PO lead time is too long; or when seasonal inventory rebalancing requires inter-island movement</td>
+<td>Supply Planner</td>
+<td>Supply Planning Manager</td>
+<td>Per W22</td>
+</tr>
+<td>2</td>
+<td>Import Coordinator or Fleet Manager selects inter-island carrier and route: (a) <strong>ro-ro ferry</strong> — for truck-loaded cargo; vehicle driven onto ferry; 12–36 hours transit; routes: Manila→Cebu, Cebu→Davao, Manila→Davao (via Matnog); (b) <strong>container vessel</strong> — for containerized cargo; 3–7 days transit depending on route and vessel schedule; (c) <strong>LCL consolidator</strong> — for small transfers that don't fill a container</td>
+<td>Import Coordinator / Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>1–2 hours/shipment</td>
+</tr>
+<td>3</td>
+<td>System creates Transfer Order per W22 with "Inter-Island" transport mode flag; extended lead time applied (3–7 days vs. 1–3 days for same-island); in-transit insurance coverage confirmed per W59 (cargo/in-transit policy)</td>
+<td>Supply Planner</td>
+<td>Supply Planning Manager</td>
+<td>Per W22</td>
+</tr>
+<td>4</td>
+<td>Source DC picks and loads goods; for container shipments: DC packs into container and seals; for ro-ro: goods loaded on owned or 3PL truck</td>
+<td>DC Team</td>
+<td>DC Supervisor</td>
+<td>Per W3/W4</td>
+</tr>
+<td>5</td>
+<td>Import Coordinator books shipment with carrier; provides container number or truck plate number, commodity description, and destination DC; receives booking confirmation and estimated arrival date</td>
+<td>Import Coordinator</td>
+<td>Fleet Manager</td>
+<td>30 min/shipment</td>
+</tr>
+<td>6</td>
+<td>In-transit tracking: Import Coordinator monitors shipment status via carrier tracking or direct communication; updates system ETA; for ro-ro: monitors ferry schedule (weather delays common during typhoon season — W49)</td>
+<td>Import Coordinator</td>
+<td>Supply Chain Manager</td>
+<td>15 min/day per shipment</td>
+</tr>
+<td>7</td>
+<td>Goods arrive at destination port/DC; destination DC receives and processes Goods Receipt per W22 step 7; system records inter-island freight cost allocation to transferred inventory</td>
+<td>Receiving Clerk (DC)</td>
+<td>DC Supervisor</td>
+<td>Per W22</td>
+</tr>
+<td>8</td>
+<td>System allocates inter-island freight cost to transferred items: freight cost ÷ total transferred value × per-item value added to destination inventory cost (similar to landed cost allocation in W2B.12 but for domestic inter-island movement)</td>
+<td>System</td>
+<td>Finance</td>
+<td>Automated</td>
+</tr>
+<td>9</td>
+<td>Monthly: Import Coordinator and Fleet Manager review inter-island logistics cost and performance: cost per TEU by route, on-time delivery %, damage rate, carrier comparison; recommends route or carrier optimization</td>
+<td>Import Coordinator / Fleet Manager</td>
+<td>Supply Chain Manager</td>
+<td>1 hour/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Inter-island transfer order with extended lead time and transport mode flag (W66.3)</li>
+<li>Carrier booking integration or manual booking reference capture (W66.5)</li>
+<li>In-transit tracking with ETA updates (W66.6)</li>
+<li>Freight cost allocation to transferred inventory (W66.8)</li>
+<li>Inter-island logistics cost and performance reporting by route and carrier (W66.9)</li>
+<li>Integration with W22 (inter-DC transfers — this is the inter-island variant), W2B (import logistics — similar carrier booking process), W49 (typhoon season — ferry disruptions), W52 (fleet — owned vehicles on ro-ro), W59 (cargo insurance)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Import Coordinator</strong>: absorbs inter-island coordination as an extension of existing import logistics duties. ~10–15 shipments/month × ~2 hours each = ~20–30 hours/month. Manageable given the Import Coordinator's existing workload managing ~20–30 import POs/month (W2B), as inter-island shipments use similar logistics skills.</li>
+<li><strong>Fleet Manager</strong>: coordinates owned vehicle ro-ro transport when applicable. Absorbed.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+
+
+<h2>W106. DC Outbound Dispatch & Load Planning</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Daily outbound dispatch planning cycle (initiated each morning after W4 replenishment orders confirmed)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Daily per DC; 2–3 dispatch waves per day (morning, midday, afternoon)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~33 replenishment orders/DC/day + ~115 home delivery orders/DC/day + occasional inter-DC transfers (W22); loaded onto ~6–10 outbound trucks per DC per day</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>DC Dispatch Supervisor</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>DC Dispatch Supervisor, DC Supervisor, Loaders, Drivers, Fleet Manager, Supply Planner</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>W4 (Store Replenishment) covers the pick/pack/ship process from the perspective of order creation through WMS-directed picking. However, the dispatch process — route planning, truck loading sequence, multi-stop routing, driver assignment, proof of delivery, and delivery confirmation — is not detailed in any existing workflow. This is a core daily warehouse operation that directly impacts delivery SLA (1–3 days from order to store receipt), fleet utilization, and transportation cost (~80% of which is third-party). This workflow fills that gap.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Morning dispatch planning</strong> (6:00 AM): System generates daily outbound dispatch plan from confirmed pick/pack outputs: (a) store replenishment orders ready for dispatch (grouped by destination store and delivery route), (b) home delivery orders packed and staged (grouped by delivery zone), (c) inter-DC transfer orders (W22) if any, (d) promotional pre-positioning shipments (W57) with priority flag</td>
+<td>System</td>
+<td>—</td>
+<td>Automated (nightly batch)</td>
+</tr>
+<td>2</td>
+<td>DC Dispatch Supervisor reviews dispatch plan and assigns loads to trucks: (a) <strong>Route optimization</strong>: system suggests optimal multi-stop route per truck based on store delivery addresses, traffic patterns (Metro Manila vs. provincial), and delivery time windows; Dispatch Supervisor accepts or adjusts, (b) <strong>Load consolidation</strong>: system groups multiple store replenishment orders on one truck where stores are on the same route (typical: 3–5 stores per truck for provincial routes; 5–8 for Metro Manila), (c) <strong>Truck assignment</strong>: owned fleet (W52) for regular scheduled routes; 3PL trucks for overflow, home delivery bulk, and inter-island, (d) <strong>Home delivery batching</strong>: system batches home delivery orders by delivery zone; assigns to 3PL carriers per W19 rate cards and zone coverage</td>
+<td>DC Dispatch Supervisor</td>
+<td>DC Supervisor</td>
+<td>30–60 min/day</td>
+</tr>
+<td>3</td>
+<td>DC Dispatch Supervisor prints or transmits load manifests to loaders and drivers: (a) <strong>Load manifest</strong>: truck ID, driver name, stop sequence (store name, address, delivery time window, order number, number of cases/totes, special instructions), (b) <strong>Loading sequence</strong>: system directs loading in reverse stop order (last stop loaded first, first stop loaded last) for efficient unloading at each stop, (c) <strong>Special handling flags</strong>: fragile items, hazardous materials (paint/chemicals), catch-weight items (lumber), temperature-sensitive items</td>
+<td>DC Dispatch Supervisor</td>
+<td>DC Supervisor</td>
+<td>15 min/truck</td>
+</tr>
+<td>4</td>
+<td><strong>Loading crew</strong> loads truck per load manifest and loading sequence: (a) scan-confirm each case/tote against manifest during loading, (b) secure loads with straps/bars for transit, (c) load hazardous materials per DOT/DENR segregation rules (paint/chemicals separated from general merchandise), (d) load catch-weight items (lumber, rebar) last for easy access and to prevent damage to other goods</td>
+<td>Loading Crew</td>
+<td>DC Dispatch Supervisor</td>
+<td>30–60 min/truck</td>
+</tr>
+<td>5</td>
+<td><strong>Driver pre-departure</strong>: (a) Driver reviews load manifest and route, (b) signs dispatch confirmation acknowledging load received and route assigned, (c) conducts vehicle pre-trip check per W52.2 (if owned vehicle), (d) departs DC per scheduled departure time (target: first truck departs by 8:00 AM for morning wave)</td>
+<td>Driver</td>
+<td>DC Dispatch Supervisor</td>
+<td>15 min</td>
+</tr>
+<td>6</td>
+<td><strong>In-transit tracking</strong>: System tracks truck location via GPS (owned fleet) or 3PL carrier tracking API; DC Dispatch Supervisor monitors real-time delivery progress dashboard: (a) trucks en-route, (b) stops completed, (c) deliveries behind schedule (ETE > planned ETA by > 30 min flagged), (d) exceptions (traffic delay, road closure, vehicle breakdown)</td>
+<td>System / DC Dispatch Supervisor</td>
+<td>DC Supervisor</td>
+<td>Continuous (15 min review every 2 hours)</td>
+</tr>
+<td>7</td>
+<td><strong>Store delivery execution</strong>: (a) Driver arrives at store; presents load manifest to Receiving Clerk, (b) Receiving Clerk scans each case/tote against transfer order per W4.10, (c) Driver obtains signed delivery receipt (proof of delivery), (d) if short shipment or damage at delivery: noted on delivery receipt; Driver reports to DC Dispatch for resolution per W22.9a, (e) Driver proceeds to next stop</td>
+<td>Driver / Receiving Clerk</td>
+<td>DC Dispatch Supervisor / Store Manager</td>
+<td>15–30 min/stop</td>
+</tr>
+<td>8</td>
+<td><strong>Delivery confirmation</strong>: (a) Upon completing all stops, Driver returns to DC (or proceeds to next dispatch wave), (b) Driver submits signed delivery receipts and exception reports to DC Dispatch, (c) DC Dispatch scans delivery receipts into system; system updates transfer order status to "Delivered" or "Partially Delivered" per receiving confirmation, (d) system triggers store inventory receipt posting (W4.12)</td>
+<td>Driver / DC Dispatch Supervisor</td>
+<td>DC Supervisor</td>
+<td>15 min/truck</td>
+</tr>
+<td>9</td>
+<td><strong>Afternoon wave</strong> (1:00 PM): Repeat steps 1–8 for second dispatch wave using afternoon replenishment orders and remaining home delivery batches; typically lighter volume than morning wave</td>
+<td>DC Dispatch Supervisor</td>
+<td>DC Supervisor</td>
+<td>Per steps 1–8</td>
+</tr>
+<td>10</td>
+<td><strong>End-of-day dispatch summary</strong>: DC Dispatch Supervisor generates daily dispatch report: (a) total orders dispatched, (b) on-time departure rate (target: ≥ 95% of trucks depart within 30 min of scheduled time), (c) on-time delivery rate (target: ≥ 95% of stores receive within delivery window), (d) truck utilization rate (loaded volume ÷ truck capacity), (e) exceptions and resolution, (f) 3PL carrier performance for the day (feeds W52.9 and W62B)</td>
+<td>DC Dispatch Supervisor</td>
+<td>DC Supervisor</td>
+<td>15 min/day</td>
+</tr>
+<td>11</td>
+<td><strong>Weekly</strong>: DC Dispatch Supervisor and Fleet Manager review route efficiency metrics: (a) cost per delivery by route, (b) stops per route, (c) average delivery time per stop, (d) route optimization opportunities (new store additions, traffic pattern changes), (e) 3PL vs. owned fleet cost comparison per route; recommendations for route rebalancing or carrier changes</td>
+<td>DC Dispatch Supervisor / Fleet Manager</td>
+<td>DC Supervisor</td>
+<td>1 hour/week</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Daily outbound dispatch plan generation from picked/packed orders (W106.1)</li>
+<li>Route optimization engine: multi-stop routing with traffic, time window, and cost optimization (W106.2)</li>
+<li>Load consolidation: multiple orders grouped by route onto single truck (W106.2)</li>
+<li>Load manifest generation with stop sequence and loading order (W106.3)</li>
+<li>Barcode scan-confirmation during loading against manifest (W106.4)</li>
+<li>Driver dispatch confirmation with load acceptance (W106.5)</li>
+<li>Real-time GPS tracking dashboard for owned fleet; 3PL API tracking integration (W106.6)</li>
+<li>Delivery receipt capture and transfer order status update (W106.8)</li>
+<li>Daily dispatch report: departure rate, delivery rate, utilization, exceptions (W106.10)</li>
+<li>Weekly route efficiency analytics (W106.11)</li>
+<li>Integration with W4 (store replenishment — the orders being dispatched), W19 (home delivery — ecommerce dispatch), W22 (inter-DC transfers), W52 (fleet management — owned vehicle dispatch), W62B (3PL carrier management), W66 (inter-island logistics)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>1 DC Dispatch Supervisor per DC</strong> (within existing ~150 DC headcount): manages daily dispatch planning, loading coordination, and driver management. This role likely already exists but was not formalized.</li>
+<li><strong>2–3 Loaders per DC</strong> (within existing DC staff): dedicated to outbound loading during dispatch waves. Absorbed within existing pick/pack team.</li>
+<li><strong>No incremental headcount.</strong></li>
+</ul>
+
+<hr>
+
+<h2>W188. Fleet Spare Parts & Preventive Maintenance (PM) Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Scheduled maintenance interval or spare part depletion</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Managing parts for ~40 owned vehicles</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Fleet Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Driver, Workshop Supervisor, Procurement (for parts)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>System tracks odometer/hours for each vehicle; triggers "Maintenance Alert" (W52.4)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td>Fleet Manager reviews spare parts inventory (tires, batteries, oil, filters, brake pads)</td>
+<td>Fleet Manager</td>
+<td>—</td>
+<td>30 min</td>
+</tr>
+<td>3</td>
+<td>If parts below reorder point: System generates PO for parts (W2A)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td>Vehicle sent to workshop; Fleet Manager issues "Maintenance Work Order"</td>
+<td>Fleet Manager</td>
+<td>—</td>
+<td>15 min</td>
+</tr>
+<td>5</td>
+<td>Workshop performs service; consumes spare parts from fleet inventory</td>
+<td>Workshop Staff</td>
+<td>—</td>
+<td>4-8 hours</td>
+</tr>
+<td>6</td>
+<td>Record maintenance details: parts used, labor hours, costs, next service interval</td>
+<td>Fleet Manager</td>
+<td>—</td>
+<td>20 min</td>
+</tr>
+<td>7</td>
+<td>Update vehicle status in Fleet Module: "Available"</td>
+<td>Fleet Manager</td>
+<td>—</td>
+<td>5 min</td>
+</tr>
+<td>8</td>
+<td>Quarterly: Analyze maintenance cost per km across all vehicle brands/models</td>
+<td>Fleet Manager</td>
+<td>Supply Chain Mgr</td>
+<td>2 hours</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Cost-per-Kilometer Analytics Dashboard (W188.8)</li>
+</ul>
+
+<hr>
+
+<h2>W221. Cross-Docking Operations for Fast-Moving Bulky Items</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Advance Shipping Notice (ASN) or incoming import container contains fast-moving bulk items (cement, steel rebar, standard tiles) with active store replenishment demands or backorders</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Daily at Distribution Centers</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~10–20 container-loads cross-docked per day</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>DC Operations Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Receiving Clerk, Cross-Dock Coordinator, Forklift Operator, Shipping Clerk</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Pre-Allocation Matching</strong>: System evaluates incoming container ASN against active store replenishment orders (W4) and customer backorders (W56); identifies high-matching fast-moving SKUs suitable for cross-docking</td>
+<td>System</td>
+<td>DC Operations Mgr</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td><strong>Dock Assignment</strong>: Cross-Dock Coordinator assigns inbound container to a receiving dock adjacent to outbound store dispatch doors</td>
+<td>Cross-Dock Coord</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>3</td>
+<td><strong>Unloading & Direct Scan</strong>: Forklift Operator unloads pallets; scan-confirms receipt via WMS terminal; system detects pre-allocation and flags pallet for "Direct Cross-Dock Staging" (bypassing normal bulk putaway racks)</td>
+<td>Forklift Operator</td>
+<td>Receiving Supervisor</td>
+<td>15 min/pallet</td>
+</tr>
+<td>4</td>
+<td><strong>Sorting & Routing</strong>: Receiving Clerk scan-confirms pallet; system generates store-specific routing labels and prints destination tags; Forklift Operator moves pallets directly to the designated outbound lane</td>
+<td>Receiving Clerk</td>
+<td>—</td>
+<td>5 min/pallet</td>
+</tr>
+<td>5</td>
+<td><strong>Load Integration</strong>: System automatically merges cross-docked pallets into the active outbound DC load planning schedule (W106) for store deliveries</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>6</td>
+<td><strong>Outbound Loading</strong>: Forklift Operator loads the pallets directly onto the designated store delivery truck; scan-confirms loading; Shipping Clerk generates Outbound Transfer document</td>
+<td>Forklift Operator / Shipping Clerk</td>
+<td>DC Operations Mgr</td>
+<td>10 min/pallet</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>WMS pre-allocation engine (ASN cross-reference with store demand)</li>
+<li>Cross-dock staging zone barcode/RFID scanning</li>
+<li>Putaway bypass logic and real-time destination tag printing</li>
+<li>Integration with W4 (store replenishment), W106 (outbound dispatch), and W56 (backorders)</li>
+</ul>
+
+<hr>
+
+<h2>W222. DC Container Yard & Chassis Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Import container arrives at DC gate, or empty container requires scheduling for port return</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>20–50 container movements per day</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>200-slot yard capacity</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Yard Superintendent</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Gate Guard, Yard Coordinator, Reach Stacker Operator, Dispatcher, 3PL Truck Driver</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Gate-In Registration</strong>: Gate Guard inspects seal integrity, container physical state, and chassis lease records; scan-registers container number in Yard Management System (YMS); records gate-in timestamp</td>
+<td>Gate Guard</td>
+<td>Yard Superintendent</td>
+<td>10 min</td>
+</tr>
+<td>2</td>
+<td><strong>Yard Slot Assignment</strong>: YMS automatically assigns slot coordinates (grid lane, stack height) based on container status (Full Import, Empty Return, Hazmat quarantine) and priority</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td><strong>Physical Stacking</strong>: Reach Stacker Operator picks container from truck chassis; places in assigned yard slot; scan-confirms the grid coordinates in YMS to update the real-time yard map</td>
+<td>Reach Stacker Operator</td>
+<td>Yard Coordinator</td>
+<td>5 min</td>
+</tr>
+<td>4</td>
+<td><strong>Demurrage & Detention Tracking</strong>: YMS starts carrier-specific free-time countdown timers (e.g., 4 days yard free time, 7 days container lease); triggers daily priority warnings to Import Logistics team</td>
+<td>System</td>
+<td>Yard Superintendent</td>
+<td>Automated</td>
+</tr>
+<td>5</td>
+<td><strong>Stripping Scheduling</strong>: Yard Coordinator assigns yard container to a warehouse dock; Reach Stacker Operator moves container to dock chassis; Receiving Clerk scan-registers goods receipt (W3)</td>
+<td>Yard Coordinator / Reach Stacker Operator</td>
+<td>—</td>
+<td>20 min</td>
+</tr>
+<td>6</td>
+<td><strong>Empty Container Gate-Out</strong>: System marks container "Empty"; Dispatcher books return logistics; Reach Stacker Operator loads empty container to carrier chassis; Gate Guard records gate-out, verifies empty status, and registers time in YMS</td>
+<td>Reach Stacker Operator / Gate Guard</td>
+<td>Yard Superintendent</td>
+<td>10 min</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Yard Management System (YMS) visual slot coordinate mapping</li>
+<li>Gate-In / Gate-Out timestamp and seal-verification log</li>
+<li>Carrier demurrage & detention countdown timers with email alert engine</li>
+<li>Integration with W3 (warehouse receiving) and W144 (import operations)</li>
+</ul>
+
+
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

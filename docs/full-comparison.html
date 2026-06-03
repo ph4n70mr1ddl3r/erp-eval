@@ -1,0 +1,1763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Comparison Table — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub act"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">📄</span><h2>Complete Comparison Table</h2></div><div class="cd mc"><h1>Complete ERP Vendor Comparison Table — BuildRight Depot Corp.</h1>
+
+<blockquote>All-in-one comparison table for <strong>Oracle Fusion Cloud</strong>, <strong>Microsoft Dynamics 365</strong>, and <strong>SAP S/4HANA Cloud</strong> covering capabilities, licensing costs, implementation, training, and 5-year total cost of ownership.</blockquote>
+
+<p><strong>Date: 2026-06-03 · Model Company: BuildRight Depot Corp. (7,050 users, 200 stores, 5 DCs, Philippines)</strong></p>
+
+<hr>
+
+<h2>Table 1: Vendor Profile Overview</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Dimension</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>Headquarters</strong></td>
+<td>Austin, Texas, USA</td>
+<td>Redmond, Washington, USA</td>
+<td>Walldorf, Germany</td>
+</tr>
+<td><strong>Cloud Platform</strong></td>
+<td>Oracle Cloud Infrastructure (OCI)</td>
+<td>Microsoft Azure</td>
+<td>SAP BTP on hyperscaler (AWS/Azure/GCP)</td>
+</tr>
+<td><strong>Core ERP Product</strong></td>
+<td>Oracle Fusion Cloud ERP</td>
+<td>Dynamics 365 Finance + SCM</td>
+<td>SAP S/4HANA Cloud (public or private edition)</td>
+</tr>
+<td><strong>Licensing Model</strong></td>
+<td>Per-user/month (Hosted Named User / Hosted Employee)</td>
+<td>Per-user/month (tiered by app role)</td>
+<td>Per-user/month (Professional / Limited / Employee)</td>
+</tr>
+<td><strong>Standard Contract Term</strong></td>
+<td>3-year minimum</td>
+<td>1–3 years (EA typically 3 years)</td>
+<td>3–5 years (RISE with SAP)</td>
+</tr>
+<td><strong>Release Cycle</strong></td>
+<td>Quarterly updates</td>
+<td>Semi-annual wave releases</td>
+<td>Quarterly updates</td>
+</tr>
+<td><strong>Typical Implementation Time</strong></td>
+<td>18–30 months</td>
+<td>12–18 months</td>
+<td>18–36 months</td>
+</tr>
+<td><strong>Target Market</strong></td>
+<td>Large enterprises (1,000+ employees)</td>
+<td>Mid-to-large enterprises (200–50,000+ employees)</td>
+<td>Large enterprises (1,000+ employees)</td>
+</tr>
+<td><strong>Gartner Magic Quadrant Position</strong></td>
+<td>Leader (Cloud ERP)</td>
+<td>Leader (Cloud ERP)</td>
+<td>Leader (Cloud ERP)</td>
+</tr>
+<td><strong>Philippine Presence</strong></td>
+<td>Limited — smaller partner ecosystem</td>
+<td>Growing —Microsoft Philippines + ISV partners</td>
+<td>Established — Accenture, Deloitte, IBM present</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 2: Products in Scope (Full Stack)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Functional Area</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>Core Financials (GL, AP, AR, FA)</strong></td>
+<td>Oracle Fusion Cloud ERP</td>
+<td>Dynamics 365 Finance</td>
+<td>S/4HANA Cloud (FI, CO)</td>
+</tr>
+<td><strong>Procurement</strong></td>
+<td>Fusion Procurement Cloud</td>
+<td>D365 SCM — Procurement</td>
+<td>S/4HANA MM + SAP Ariba</td>
+</tr>
+<td><strong>Inventory Management</strong></td>
+<td>Fusion SCM — Inventory</td>
+<td>D365 SCM — Inventory Management</td>
+<td>S/4HANA MM + EWM</td>
+</tr>
+<td><strong>Warehouse Management</strong></td>
+<td>Oracle WMS Cloud (LogFire — separate cloud)</td>
+<td>D365 SCM — Warehouse Management (native)</td>
+<td>SAP EWM (embedded in S/4HANA)</td>
+</tr>
+<td><strong>Supply Chain Planning</strong></td>
+<td>Fusion Supply Planning + Demand Management</td>
+<td>D365 Planning Optimization</td>
+<td>SAP Integrated Business Planning (IBP)</td>
+</tr>
+<td><strong>Order Management</strong></td>
+<td>Fusion Order Management</td>
+<td>D365 SCM — Sales & Marketing</td>
+<td>S/4HANA SD + SAP Order Management</td>
+</tr>
+<td><strong>POS / Retail</strong></td>
+<td><strong>Oracle Retail Xstore (separate product)</strong></td>
+<td><strong>D365 Commerce POS (native)</strong></td>
+<td>SAP Customer Checkout (CCO)</td>
+</tr>
+<td><strong>Ecommerce</strong></td>
+<td>Oracle Commerce Cloud</td>
+<td>D365 Commerce — e-commerce module</td>
+<td>SAP Commerce Cloud (CCv2)</td>
+</tr>
+<td><strong>HR / Core HR</strong></td>
+<td>Oracle Fusion HCM Cloud — Global HR</td>
+<td>D365 Human Resources</td>
+<td>SAP SuccessFactors Employee Central</td>
+</tr>
+<td><strong>Payroll</strong></td>
+<td>Oracle Fusion HCM Payroll</td>
+<td><strong>ISV Partner (Itsubmit / SL Global)</strong></td>
+<td>SAP SuccessFactors Payroll</td>
+</tr>
+<td><strong>Talent Management</strong></td>
+<td>Oracle Fusion Talent + Recruiting + Learning</td>
+<td>D365 HR + LinkedIn Talent Hub</td>
+<td>SAP SuccessFactors Talent Suite</td>
+</tr>
+<td><strong>Time & Labor</strong></td>
+<td>Oracle Fusion Time & Labor</td>
+<td>D365 HR + third-party T&A</td>
+<td>SAP SuccessFactors Time Tracking</td>
+</tr>
+<td><strong>CRM / Sales</strong></td>
+<td>Oracle Fusion CX — Sales</td>
+<td>Dynamics 365 Sales</td>
+<td>SAP Sales Cloud</td>
+</tr>
+<td><strong>Customer Service</strong></td>
+<td>Oracle Fusion CX — Service</td>
+<td>Dynamics 365 Customer Service</td>
+<td>SAP Service Cloud</td>
+</tr>
+<td><strong>Loyalty</strong></td>
+<td>Oracle CrowdTwist (Loyalty & Engagement)</td>
+<td>D365 Commerce — native loyalty engine</td>
+<td>SAP Loyalty Management</td>
+</tr>
+<td><strong>Marketing</strong></td>
+<td>Oracle Fusion CX — Marketing</td>
+<td>Dynamics 365 Customer Insights – Journeys</td>
+<td>SAP Emarsys</td>
+</tr>
+<td><strong>Customer Data Platform</strong></td>
+<td>Oracle CX Unity</td>
+<td>Dynamics 365 Customer Insights</td>
+<td>SAP Customer Data Platform</td>
+</tr>
+<td><strong>Financial Consolidation</strong></td>
+<td>Oracle EPM Cloud</td>
+<td>D365 Finance — consolidation</td>
+<td>SAP Group Reporting / BCS</td>
+</tr>
+<td><strong>Planning & Budgeting</strong></td>
+<td>Oracle EPM Planning & Budgeting</td>
+<td>D365 Finance — budget control</td>
+<td>SAP BPC / SAP Analytics Cloud Planning</td>
+</tr>
+<td><strong>Analytics & BI</strong></td>
+<td>Oracle Analytics Cloud + OTBI</td>
+<td><strong>Power BI (Pro / Premium)</strong></td>
+<td>SAP Analytics Cloud (SAC)</td>
+</tr>
+<td><strong>Data Warehouse</strong></td>
+<td>Oracle Autonomous Data Warehouse</td>
+<td>Azure Synapse Analytics</td>
+<td>SAP Datasphere</td>
+</tr>
+<td><strong>Integration Middleware</strong></td>
+<td>Oracle Integration Cloud (OIC)</td>
+<td>Azure API Mgmt + Logic Apps</td>
+<td>SAP BTP Integration Suite (CPI)</td>
+</tr>
+<td><strong>Extension / Low-Code Platform</strong></td>
+<td>Oracle Visual Builder Cloud (VBCS)</td>
+<td><strong>Power Apps + Power Automate</strong></td>
+<td>SAP BTP (Cloud Foundry / ABAP Environment)</td>
+</tr>
+<td><strong>Document Management</strong></td>
+<td>Oracle Content & Experience + WebCenter</td>
+<td><strong>SharePoint + OneDrive (native)</strong></td>
+<td>SAP ArchiveLink + SAP ILM</td>
+</tr>
+<td><strong>Master Data Governance</strong></td>
+<td>Oracle Product Hub + Customer Data Mgmt</td>
+<td>Dataverse — basic governance</td>
+<td><strong>SAP MDG (gold standard)</strong></td>
+</tr>
+<td><strong>Expense Management</strong></td>
+<td>Oracle Expenses Cloud</td>
+<td>D365 Expense Management</td>
+<td>SAP Concur</td>
+</tr>
+<td><strong>Field Service</strong></td>
+<td>Oracle Field Service Cloud</td>
+<td>Dynamics 365 Field Service</td>
+<td>SAP Field Service Management</td>
+</tr>
+<td><strong>AI / Machine Learning</strong></td>
+<td>Oracle AI Services + Custom AI Agents</td>
+<td><strong>Azure AI + Copilot + Copilot Studio</strong></td>
+<td>SAP Business AI + AI Core</td>
+</tr>
+<td><strong>IoT</strong></td>
+<td>Oracle IoT Cloud</td>
+<td>Azure IoT Hub + Digital Twins</td>
+<td>SAP IoT (on BTP)</td>
+</tr>
+<td><strong>Supplier Collaboration</strong></td>
+<td>Oracle Supplier Portal</td>
+<td>D365 Vendor Collaboration</td>
+<td><strong>SAP Ariba Supplier Portal</strong></td>
+</tr>
+<td><strong>Quality Management</strong></td>
+<td>Oracle Quality (Fusion SCM)</td>
+<td>D365 Quality Management (limited)</td>
+<td><strong>SAP QM (most comprehensive)</strong></td>
+</tr>
+<td><strong>Industry (Retail)</strong></td>
+<td>Oracle Retail Suite (Xstore, RMS, RPM, RI)</td>
+<td>D365 Commerce (native retail)</td>
+<td>SAP Retail + CAR Retail Extension</td>
+</tr>
+<td><strong>Construction / Projects</strong></td>
+<td>Oracle Aconex + Construction Intelligence</td>
+<td>D365 Project Operations</td>
+<td>SAP S/4HANA Project System (PS)</td>
+</tr>
+<td><strong>Environment, Health & Safety</strong></td>
+<td>Oracle EHS</td>
+<td>Power App (custom)</td>
+<td>SAP EHS</td>
+</tr>
+<td><strong>Sustainability / ESG</strong></td>
+<td>Oracle Sustainability Analytics</td>
+<td>Power BI + custom tracking</td>
+<td>SAP Sustainability Control Tower</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 3: Per-User Monthly License Pricing</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>User Role / License Type</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>Full ERP User (Finance + SCM + Procurement)</strong></td>
+<td>$625 + $625 + $875 = <strong>$2,125/user/mo</strong> (list)</td>
+<td>$175 + $100 (attached) = <strong>$275/user/mo</strong></td>
+<td><strong>$210/user/mo</strong> (S/4HANA Professional)</td>
+</tr>
+<td><strong>Commerce / POS User</strong></td>
+<td>~<strong>$200/user/mo</strong> (Oracle Retail Xstore — est.)</td>
+<td><strong>$175/user/mo</strong> (D365 Commerce)</td>
+<td><strong>$75/terminal/mo</strong> (SAP CCO)</td>
+</tr>
+<td><strong>Warehouse User</strong></td>
+<td>~<strong>$100/user/mo</strong> (WMS Cloud — est.)</td>
+<td><strong>$175/user/mo</strong> (D365 SCM)</td>
+<td><strong>$300/user/mo</strong> (S/4HANA + EWM)</td>
+</tr>
+<td><strong>HR Admin User</strong></td>
+<td><strong>$450/user/mo</strong> (HCM Pillar)</td>
+<td><strong>$120/user/mo</strong> (D365 HR)</td>
+<td><strong>$64/user/mo</strong> (SF EC + Payroll + Talent + Time)</td>
+</tr>
+<td><strong>Sales / CRM User</strong></td>
+<td>$150 + $200 = <strong>$350/user/mo</strong></td>
+<td>$95 + $95 = <strong>$190/user/mo</strong></td>
+<td>$140 + $140 = <strong>$280/user/mo</strong></td>
+</tr>
+<td><strong>Executive / Analytics</strong></td>
+<td>$180 + $500 = <strong>$680/user/mo</strong></td>
+<td>$175 + $10 = <strong>$185/user/mo</strong></td>
+<td>$210 + $36 = <strong>$246/user/mo</strong></td>
+</tr>
+<td><strong>Employee Self-Service</strong></td>
+<td>$15 + $5 = <strong>$20/user/mo</strong> (HCM Base + Payroll)</td>
+<td><strong>$8/user/mo</strong> (Team Member)</td>
+<td>$35 + $12 = <strong>$47/user/mo</strong> (S/4HANA Employee + SF EC)</td>
+</tr>
+<td><strong>Light / Read-Only User</strong></td>
+<td><strong>$20/user/mo</strong> (Self Service)</td>
+<td><strong>$8/user/mo</strong> (Team Member)</td>
+<td><strong>$70–$100/user/mo</strong> (Limited Professional)</td>
+</tr>
+<td><strong>Integration Platform</strong></td>
+<td><strong>$1,200/mo</strong> per 1M messages (OIC Ent)</td>
+<td><strong>$150–$2,800/mo</strong> (Azure APIM)</td>
+<td><strong>$3,000–$10,000/mo</strong> (BTP Integration Suite)</td>
+</tr>
+<td><strong>AI Agents (per user)</strong></td>
+<td><strong>$2.50–$50/user/mo</strong> (Custom AI Agents)</td>
+<td><strong>$30/user/mo</strong> (Copilot for M365)</td>
+<td>Consumption-based (SAP Business AI)</td>
+</tr>
+<td><strong>Typical Enterprise Discount</strong></td>
+<td><strong>30–40%</strong> off list</td>
+<td><strong>15–25%</strong> off list (EA)</td>
+<td><strong>20–30%</strong> off list</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 4: BuildRight Depot Annual License Cost Model (7,050 Users)</h2>
+
+<h3>4A: License Cost by User Segment</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>User Segment</th>
+<th>Users</th>
+<th>Oracle Fusion Cloud (Net)</th>
+<th>Microsoft D365 (Net)</th>
+<th>SAP S/4HANA Cloud (Net)</th>
+</tr></thead><tbody>
+<td><strong>Full ERP Users</strong> (Finance, SCM, Procurement)</td>
+<td>250</td>
+<td>$625×250×12 × 0.65 = <strong>$1,218,750</strong></td>
+<td>$275×250×12 × 0.80 = <strong>$660,000</strong></td>
+<td>$210×250×12 × 0.75 = <strong>$472,500</strong></td>
+</tr>
+<td><strong>Commerce / POS Users</strong></td>
+<td>1,000</td>
+<td>~$200×1,000×12 × 0.65 = <strong>$1,560,000</strong></td>
+<td>$175×1,000×12 × 0.80 = <strong>$1,680,000</strong></td>
+<td>$75×1,000×12 × 0.75 = <strong>$675,000</strong></td>
+</tr>
+<td><strong>Warehouse Users</strong></td>
+<td>150</td>
+<td>~$100×150×12 × 0.65 = <strong>$117,000</strong></td>
+<td>$175×150×12 × 0.80 = <strong>$252,000</strong></td>
+<td>$300×150×12 × 0.75 = <strong>$405,000</strong></td>
+</tr>
+<td><strong>HR / Payroll Admin</strong></td>
+<td>30</td>
+<td>$450×30×12 × 0.65 = <strong>$105,300</strong></td>
+<td>$120×30×12 × 0.80 = <strong>$34,560</strong></td>
+<td>$64×30×12 × 0.75 = <strong>$17,280</strong></td>
+</tr>
+<td><strong>Sales / CRM Users</strong></td>
+<td>50</td>
+<td>$350×50×12 × 0.65 = <strong>$136,500</strong></td>
+<td>$190×50×12 × 0.80 = <strong>$91,200</strong></td>
+<td>$280×50×12 × 0.75 = <strong>$126,000</strong></td>
+</tr>
+<td><strong>Executive / Analytics</strong></td>
+<td>20</td>
+<td>$680×20×12 × 0.65 = <strong>$106,080</strong></td>
+<td>$185×20×12 × 0.80 = <strong>$35,520</strong></td>
+<td>$246×20×12 × 0.75 = <strong>$44,280</strong></td>
+</tr>
+<td><strong>Employee Self-Service</strong></td>
+<td>5,500</td>
+<td>$20×5,500×12 × 0.65 = <strong>$858,000</strong></td>
+<td>$8×5,500×12 × 0.80 = <strong>$422,400</strong></td>
+<td>$47×5,500×12 × 0.75 = <strong>$2,326,500</strong></td>
+</tr>
+<td><strong>Integration / Platform</strong></td>
+<td>—</td>
+<td><strong>$175,000</strong> (OIC + platform)</td>
+<td><strong>$144,000</strong> (Azure infra)</td>
+<td><strong>$156,000</strong> (BTP + Ariba)</td>
+</tr>
+<td><strong>Add-on Products</strong></td>
+<td>—</td>
+<td><strong>$1,850,000</strong> (EPM, SCM modules, WMS, analytics)</td>
+<td><strong>$738,000</strong> (CDP, marketing, Power Platform)</td>
+<td><strong>$2,400,000</strong> (Commerce Cloud, IBP, loyalty, Concur, MDG)</td>
+</tr>
+<td><strong>Subtotal Annual Net License</strong></td>
+<td>7,050</td>
+<td><strong>$6,126,630</strong></td>
+<td><strong>$4,057,680</strong></td>
+<td><strong>$6,622,560</strong></td>
+</tr>
+</tbody></table></div>
+
+<h3>4B: Annual Support & Maintenance</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Cost Item</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft D365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>Support Tier</strong></td>
+<td>Oracle Cloud Priority Support</td>
+<td>Microsoft Premier / Unified Support</td>
+<td>SAP Enterprise Support</td>
+</tr>
+<td><strong>Support Rate</strong></td>
+<td>~10% of net subscription</td>
+<td>~18% of net license</td>
+<td>~22% of net license</td>
+</tr>
+<td><strong>Annual Support Cost</strong></td>
+<td><strong>$612,663</strong></td>
+<td><strong>$730,382</strong></td>
+<td><strong>$1,456,963</strong></td>
+</tr>
+<td><strong>Total Annual License + Support</strong></td>
+<td><strong>$6,739,293</strong></td>
+<td><strong>$4,788,062</strong></td>
+<td><strong>$8,079,523</strong></td>
+</tr>
+</tbody></table></div>
+
+<h3>4C: Annual License Cost Summary</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Metric</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft D365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>Annual Net License</strong></td>
+<td>$6.1M</td>
+<td>$4.1M</td>
+<td>$6.6M</td>
+</tr>
+<td><strong>Annual Support</strong></td>
+<td>$0.6M</td>
+<td>$0.7M</td>
+<td>$1.5M</td>
+</tr>
+<td><strong>Annual License + Support</strong></td>
+<td><strong>$6.7M</strong></td>
+<td><strong>$4.8M</strong></td>
+<td><strong>$8.1M</strong></td>
+</tr>
+<td><strong>Cost per User per Month (blended)</strong></td>
+<td><strong>$79.58</strong></td>
+<td><strong>$56.57</strong></td>
+<td><strong>$95.60</strong></td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 5: Implementation Cost Breakdown</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Implementation Phase</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>Project Planning & Discovery</strong></td>
+<td>$200K–$350K</td>
+<td>$150K–$250K</td>
+<td>$250K–$400K</td>
+</tr>
+<td><strong>Solution Architecture & Design</strong></td>
+<td>$300K–$500K</td>
+<td>$200K–$350K</td>
+<td>$400K–$600K</td>
+</tr>
+<td><strong>System Configuration</strong></td>
+<td>$800K–$1,200K</td>
+<td>$500K–$800K</td>
+<td>$900K–$1,400K</td>
+</tr>
+<td>— <em>Core Financials (GL, AP, AR, FA)</em></td>
+<td>$200K–$300K</td>
+<td>$150K–$200K</td>
+<td>$250K–$350K</td>
+</tr>
+<td>— <em>Supply Chain & Inventory</em></td>
+<td>$150K–$250K</td>
+<td>$100K–$200K</td>
+<td>$200K–$300K</td>
+</tr>
+<td>— <em>Procurement</em></td>
+<td>$100K–$150K</td>
+<td>$80K–$120K</td>
+<td>$100K–$150K</td>
+</tr>
+<td>— <em>Warehouse Management</em></td>
+<td>$150K–$200K</td>
+<td>$80K–$120K</td>
+<td>$150K–$250K</td>
+</tr>
+<td>— <em>POS / Retail Commerce</em></td>
+<td>$200K–$300K (Xstore integration)</td>
+<td>$90K–$160K (native)</td>
+<td>$200K–$450K (CCO + integration)</td>
+</tr>
+<td>— <em>HR / HCM / Payroll</em></td>
+<td>$100K–$150K</td>
+<td>$60K–$100K (ISV payroll)</td>
+<td>$80K–$120K</td>
+</tr>
+<td>— <em>Ecommerce Integration</em></td>
+<td>$100K–$150K</td>
+<td>$50K–$80K</td>
+<td>$100K–$150K</td>
+</tr>
+<td>— <em>CRM / Sales / Loyalty</em></td>
+<td>$80K–$100K</td>
+<td>$50K–$80K</td>
+<td>$80K–$100K</td>
+</tr>
+<td>— <em>Analytics / BI / EPM</em></td>
+<td>$100K–$150K</td>
+<td>$50K–$80K</td>
+<td>$80K–$120K</td>
+</tr>
+<td><strong>Data Migration</strong></td>
+<td>$500K–$800K</td>
+<td>$300K–$500K</td>
+<td>$500K–$800K</td>
+</tr>
+<td>— <em>Master data (55K SKUs, 800 vendors, 600K customers)</em></td>
+<td>$200K–$350K</td>
+<td>$120K–$200K</td>
+<td>$200K–$350K</td>
+</tr>
+<td>— <em>Transaction history (2 years)</em></td>
+<td>$150K–$250K</td>
+<td>$80K–$150K</td>
+<td>$150K–$250K</td>
+</tr>
+<td>— <em>Opening balances & cut-over</em></td>
+<td>$150K–$200K</td>
+<td>$100K–$150K</td>
+<td>$150K–$200K</td>
+</tr>
+<td><strong>Integration Development</strong></td>
+<td>$1,500K–$2,500K</td>
+<td>$500K–$1,000K</td>
+<td>$1,000K–$1,500K</td>
+</tr>
+<td>— <em>POS ↔ ERP integration</em></td>
+<td>$300K–$500K (Xstore ↔ Fusion via OIC)</td>
+<td>$50K–$100K (native)</td>
+<td>$200K–$300K (CCO ↔ S/4 via CPI)</td>
+</tr>
+<td>— <em>Ecommerce ↔ ERP integration</em></td>
+<td>$200K–$300K (Commerce Cloud ↔ SCM)</td>
+<td>$50K–$100K (native)</td>
+<td>$150K–$250K (CCv2 ↔ S/4 via CPI)</td>
+</tr>
+<td>— <em>WMS ↔ ERP integration</em></td>
+<td>$200K–$300K (WMS Cloud ↔ SCM via OIC)</td>
+<td>— (native in SCM)</td>
+<td>— (EWM embedded)</td>
+</tr>
+<td>— <em>HR ↔ Finance (payroll postings)</em></td>
+<td>$100K–$150K</td>
+<td>$80K–$120K (ISV integration)</td>
+<td>$50K–$80K (SF ↔ S/4)</td>
+</tr>
+<td>— <em>PH-specific integrations (BIR, eFPS, GCash, Maya)</em></td>
+<td>$300K–$500K</td>
+<td>$200K–$350K</td>
+<td>$250K–$400K</td>
+</tr>
+<td>— <em>Bank integrations (BDO, BPI, etc.)</em></td>
+<td>$100K–$150K</td>
+<td>$80K–$100K</td>
+<td>$100K–$150K</td>
+</tr>
+<td>— <em>3PL / delivery partners (Lalamove, Transportify)</em></td>
+<td>$100K–$150K</td>
+<td>$50K–$80K</td>
+<td>$80K–$100K</td>
+</tr>
+<td>— <em>Marketplace (Lazada, Shopee)</em></td>
+<td>$100K–$150K</td>
+<td>$50K–$80K</td>
+<td>$80K–$100K</td>
+</tr>
+<td>— <em>Retail Merchandising (RMS/RPM) ↔ Fusion</em></td>
+<td>$200K–$400K (Oracle Retail suite)</td>
+<td>— (native in Commerce)</td>
+<td>$100K–$200K (SAP CAR/Retail)</td>
+</tr>
+<td><strong>Custom Development / Extensions</strong></td>
+<td>$1,000K–$2,000K</td>
+<td>$500K–$1,000K</td>
+<td>$1,000K–$1,500K</td>
+</tr>
+<td>— <em>PH regulatory extensions (BIR forms, CAS, LGU permits)</em></td>
+<td>$200K–$350K (VBCS + OIC)</td>
+<td>$150K–$250K (Power Apps)</td>
+<td>$200K–$350K (BTP)</td>
+</tr>
+<td>— <em>Catch-weight at POS</em></td>
+<td>$150K–$250K (Xstore extension)</td>
+<td>$100K–$150K (Commerce extension)</td>
+<td>$150K–$250K (CCO extension)</td>
+</tr>
+<td>— <em>Senior/PWD discount logic</em></td>
+<td>$50K–$80K</td>
+<td>$30K–$50K</td>
+<td>$50K–$80K</td>
+</tr>
+<td>— <em>Paint mixing / custom SKU at POS</em></td>
+<td>$100K–$150K</td>
+<td>$80K–$120K</td>
+<td>$100K–$150K</td>
+</tr>
+<td>— <em>Layaway / installment sales</em></td>
+<td>$80K–$120K</td>
+<td>$50K–$80K</td>
+<td>$80K–$120K</td>
+</tr>
+<td>— <em>Warranty registration at POS</em></td>
+<td>$50K–$80K</td>
+<td>$30K–$50K</td>
+<td>$50K–$80K</td>
+</tr>
+<td>— <em>Other custom workflows (CIT, PPE, hazmat, fleet)</em></td>
+<td>$200K–$400K</td>
+<td>$100K–$200K</td>
+<td>$200K–$350K</td>
+</tr>
+<td>— <em>Ship-from-store, delivery scheduling</em></td>
+<td>$100K–$150K</td>
+<td>$50K–$80K</td>
+<td>$100K–$150K</td>
+</tr>
+<td>— <em>BIR receipt template</em></td>
+<td>$30K–$50K</td>
+<td>$20K–$40K</td>
+<td>$30K–$50K</td>
+</tr>
+<td>— <em>ESG / sustainability tracking</em></td>
+<td>$80K–$150K</td>
+<td>$50K–$100K</td>
+<td>$80K–$150K</td>
+</tr>
+<td>— <em>Store performance dashboards</em></td>
+<td>$50K–$80K</td>
+<td>$30K–$50K</td>
+<td>$50K–$80K</td>
+</tr>
+<td><strong>Testing & Quality Assurance</strong></td>
+<td>$500K–$1,000K</td>
+<td>$300K–$500K</td>
+<td>$500K–$800K</td>
+</tr>
+<td>— <em>Unit testing & system integration testing</em></td>
+<td>$200K–$350K</td>
+<td>$120K–$200K</td>
+<td>$200K–$300K</td>
+</tr>
+<td>— <em>User acceptance testing (UAT)</em></td>
+<td>$150K–$300K</td>
+<td>$100K–$150K</td>
+<td>$150K–$250K</td>
+</tr>
+<td>— <em>Performance & load testing (2.8M txns/mo)</em></td>
+<td>$100K–$200K</td>
+<td>$50K–$100K</td>
+<td>$100K–$150K</td>
+</tr>
+<td>— <em>POS offline testing (8+ hours)</em></td>
+<td>$50K–$150K (Xstore offline)</td>
+<td>$30K–$50K (CSU proven)</td>
+<td>$50K–$100K (CCO offline)</td>
+</tr>
+<td><strong>Philippines Localization</strong></td>
+<td>$500K–$1,000K</td>
+<td>$300K–$700K</td>
+<td>$400K–$800K</td>
+</tr>
+<td>— <em>BIR tax forms (2550M, 1601-E, 1702)</em></td>
+<td>$150K–$250K</td>
+<td>$100K–$200K</td>
+<td>$150K–$250K</td>
+</tr>
+<td>— <em>PH payroll statutory (SSS, PhilHealth, Pag-IBIG)</em></td>
+<td>$100K–$200K (Oracle HCM config)</td>
+<td>$80K–$200K (ISV setup)</td>
+<td>$80K–$150K (SF Payroll config)</td>
+</tr>
+<td>— <em>eFPS integration</em></td>
+<td>$100K–$200K</td>
+<td>$50K–$100K</td>
+<td>$80K–$150K</td>
+</tr>
+<td>— <em>BIR CAS registration tracking</em></td>
+<td>$30K–$50K</td>
+<td>$20K–$30K</td>
+<td>$30K–$50K</td>
+</tr>
+<td>— <em>PH statutory benefits claims workflows</em></td>
+<td>$50K–$100K</td>
+<td>$30K–$80K</td>
+<td>$40K–$80K</td>
+</tr>
+<td>— <em>LGU permit tracking</em></td>
+<td>$20K–$30K</td>
+<td>$10K–$20K</td>
+<td>$20K–$30K</td>
+</tr>
+<td><strong>Go-Live & Cut-Over Support</strong></td>
+<td>$200K–$350K</td>
+<td>$150K–$250K</td>
+<td>$200K–$350K</td>
+</tr>
+<td><strong>Post-Go-Live Hypercare (3 months)</strong></td>
+<td>$300K–$500K</td>
+<td>$200K–$350K</td>
+<td>$300K–$500K</td>
+</tr>
+<td><strong>TOTAL IMPLEMENTATION</strong></td>
+<td><strong>$5.0M–$8.5M</strong></td>
+<td><strong>$2.8M–$4.5M</strong></td>
+<td><strong>$5.5M–$9.0M</strong></td>
+</tr>
+<td><strong>Implementation Duration</strong></td>
+<td>18–30 months</td>
+<td>12–18 months</td>
+<td>18–36 months</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 6: Training Cost Breakdown</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Training Category</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>End-User Training — Finance (250 users)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— Instructor-led training (classroom/virtual)</td>
+<td>8 sessions × $5K = <strong>$40K</strong></td>
+<td>6 sessions × $4K = <strong>$24K</strong></td>
+<td>8 sessions × $5K = <strong>$40K</strong></td>
+</tr>
+<td>— E-learning / LMS platform</td>
+<td>$15K–$25K</td>
+<td>$10K–$15K</td>
+<td>$15K–$25K</td>
+</tr>
+<td>— Quick reference guides & job aids</td>
+<td>$10K–$15K</td>
+<td>$8K–$12K</td>
+<td>$10K–$15K</td>
+</tr>
+<td><strong>End-User Training — POS / Retail (1,000 users)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— POS operator training (cashiers)</td>
+<td>40 sessions × $3K = <strong>$120K</strong> (includes Xstore training)</td>
+<td>30 sessions × $2.5K = <strong>$75K</strong> (D365 Commerce POS)</td>
+<td>40 sessions × $3K = <strong>$120K</strong> (CCO training)</td>
+</tr>
+<td>— Store manager training</td>
+<td>10 sessions × $4K = <strong>$40K</strong></td>
+<td>8 sessions × $3K = <strong>$24K</strong></td>
+<td>10 sessions × $4K = <strong>$40K</strong></td>
+</tr>
+<td>— POS training materials & videos</td>
+<td>$15K–$25K</td>
+<td>$10K–$15K</td>
+<td>$15K–$25K</td>
+</tr>
+<td>— Super-user / train-the-trainer program</td>
+<td>$20K–$30K</td>
+<td>$15K–$20K</td>
+<td>$20K–$30K</td>
+</tr>
+<td><strong>End-User Training — Warehouse (150 users)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— RF device / WMS operator training</td>
+<td>6 sessions × $3K = <strong>$18K</strong> (WMS Cloud)</td>
+<td>4 sessions × $2.5K = <strong>$10K</strong></td>
+<td>6 sessions × $3K = <strong>$18K</strong> (EWM)</td>
+</tr>
+<td>— Warehouse manager training</td>
+<td>2 sessions × $3K = <strong>$6K</strong></td>
+<td>2 sessions × $2.5K = <strong>$5K</strong></td>
+<td>2 sessions × $3K = <strong>$6K</strong></td>
+</tr>
+<td><strong>End-User Training — HR / Payroll (30 users)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— HR admin & payroll processing</td>
+<td>3 sessions × $4K = <strong>$12K</strong></td>
+<td>2 sessions × $3K = <strong>$6K</strong></td>
+<td>3 sessions × $4K = <strong>$12K</strong></td>
+</tr>
+<td>— Employee self-service rollout (5,500 users)**</td>
+<td>$15K–$25K (webinars + e-learning)</td>
+<td>$10K–$15K (webinars + e-learning)</td>
+<td>$15K–$25K (webinars + e-learning)</td>
+</tr>
+<td><strong>End-User Training — Sales / CRM (50 users)</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— CRM & sales pipeline training</td>
+<td>3 sessions × $3K = <strong>$9K</strong></td>
+<td>2 sessions × $2.5K = <strong>$5K</strong></td>
+<td>3 sessions × $3K = <strong>$9K</strong></td>
+</tr>
+<td><strong>Technical Team Training</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— System admin training (5 admins)</td>
+<td>$20K–$35K</td>
+<td>$15K–$25K</td>
+<td>$20K–$35K</td>
+</tr>
+<td>— Integration / middleware training (3 devs)</td>
+<td>$15K–$25K</td>
+<td>$10K–$20K</td>
+<td>$15K–$25K</td>
+</tr>
+<td>— Reporting / BI training (5 analysts)</td>
+<td>$10K–$20K</td>
+<td>$8K–$12K (Power BI)</td>
+<td>$10K–$20K (SAC)</td>
+</tr>
+<td>— Security & IAM training (2 admins)</td>
+<td>$5K–$10K</td>
+<td>$5K–$8K</td>
+<td>$5K–$10K</td>
+</tr>
+<td>— Extension platform training (3 devs)</td>
+<td>$15K–$25K (VBCS + OIC)</td>
+<td>$10K–$15K (Power Platform)</td>
+<td>$15K–$25K (BTP)</td>
+</tr>
+<td><strong>Executive / Leadership Training</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— Executive dashboard & overview (20 users)</td>
+<td>$5K–$10K</td>
+<td>$5K–$8K</td>
+<td>$5K–$10K</td>
+</tr>
+<td>— Change management workshops (management)</td>
+<td>$10K–$20K</td>
+<td>$8K–$15K</td>
+<td>$10K–$20K</td>
+</tr>
+<td>— Steering committee briefings</td>
+<td>$5K–$10K</td>
+<td>$5K–$8K</td>
+<td>$5K–$10K</td>
+</tr>
+<td><strong>Training Materials Development</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— Custom e-learning content development</td>
+<td>$25K–$40K</td>
+<td>$20K–$30K</td>
+<td>$25K–$40K</td>
+</tr>
+<td>— Video tutorial production</td>
+<td>$15K–$25K</td>
+<td>$10K–$20K</td>
+<td>$15K–$25K</td>
+</tr>
+<td>— User manual & documentation</td>
+<td>$10K–$20K</td>
+<td>$8K–$15K</td>
+<td>$10K–$20K</td>
+</tr>
+<td>— Translation / localization (English + Filipino)</td>
+<td>$10K–$15K</td>
+<td>$8K–$12K</td>
+<td>$10K–$15K</td>
+</tr>
+<td><strong>Ongoing / Year 2–5 Training</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>— Annual refresher training (all users)</td>
+<td>$50K–$80K/year</td>
+<td>$30K–$50K/year</td>
+<td>$50K–$80K/year</td>
+</tr>
+<td>— New employee onboarding (est. 10% turnover)</td>
+<td>$30K–$50K/year</td>
+<td>$20K–$35K/year</td>
+<td>$30K–$50K/year</td>
+</tr>
+<td>— New feature / release training (quarterly updates)</td>
+<td>$20K–$40K/year</td>
+<td>$15K–$30K/year</td>
+<td>$20K–$40K/year</td>
+</tr>
+<td>— Ongoing LMS subscription</td>
+<td>$15K–$25K/year</td>
+<td>$10K–$15K/year</td>
+<td>$15K–$25K/year</td>
+</tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td><strong>TOTAL TRAINING — Year 1</strong></td>
+<td><strong>$480K–$750K</strong></td>
+<td><strong>$310K–$500K</strong></td>
+<td><strong>$490K–$770K</strong></td>
+</tr>
+<td><strong>TOTAL TRAINING — Years 2–5 (per year)</strong></td>
+<td><strong>$115K–$195K/year</strong></td>
+<td><strong>$75K–$130K/year</strong></td>
+<td><strong>$115K–$195K/year</strong></td>
+</tr>
+<td><strong>TOTAL TRAINING — 5-Year</strong></td>
+<td><strong>$940K–$1,530K</strong></td>
+<td><strong>$610K–$1,020K</strong></td>
+<td><strong>$950K–$1,550K</strong></td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 7: Five-Year Total Cost of Ownership (TCO)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Cost Category</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>ONE-TIME COSTS</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>Implementation (see Table 5)</td>
+<td>$5,000K–$8,500K</td>
+<td>$2,800K–$4,500K</td>
+<td>$5,500K–$9,000K</td>
+</tr>
+<td>Training — Year 1</td>
+<td>$480K–$750K</td>
+<td>$310K–$500K</td>
+<td>$490K–$770K</td>
+</tr>
+<td>Internal Project Team (8–12 FTEs × 12–30 months)</td>
+<td>$1,000K–$1,800K</td>
+<td>$800K–$1,200K</td>
+<td>$1,000K–$1,800K</td>
+</tr>
+<td>Third-Party POS License Setup (if needed)</td>
+<td>$300K–$500K (Xstore setup)</td>
+<td>— (native)</td>
+<td>$100K–$200K (CCO setup)</td>
+</tr>
+<td><strong>Subtotal One-Time</strong></td>
+<td><strong>$6,780K–$11,550K</strong></td>
+<td><strong>$3,910K–$6,200K</strong></td>
+<td><strong>$7,090K–$11,770K</strong></td>
+</tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td><strong>RECURRING ANNUAL COSTS</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>Software Licensing (net, after discount)</td>
+<td>$6,127K/year</td>
+<td>$4,058K/year</td>
+<td>$6,623K/year</td>
+</tr>
+<td>Support & Maintenance</td>
+<td>$613K/year</td>
+<td>$730K/year</td>
+<td>$1,457K/year</td>
+</tr>
+<td>Azure / OCI / BTP Cloud Infrastructure</td>
+<td>$120K/year</td>
+<td>$120K/year</td>
+<td>$156K/year</td>
+</tr>
+<td>Ongoing Training (Years 2–5)</td>
+<td>$115K–$195K/year</td>
+<td>$75K–$130K/year</td>
+<td>$115K–$195K/year</td>
+</tr>
+<td>Ongoing Custom Enhancements & Extensions</td>
+<td>$200K–$400K/year</td>
+<td>$100K–$200K/year</td>
+<td>$200K–$300K/year</td>
+</tr>
+<td>ISV / Partner Solutions (PH payroll, BIR)</td>
+<td>$60K–$100K/year</td>
+<td>$60K–$100K/year</td>
+<td>$60K–$100K/year</td>
+</tr>
+<td>Additional Environments (test, staging)</td>
+<td>$75K–$150K/year</td>
+<td>$50K–$100K/year</td>
+<td>$75K–$150K/year</td>
+</tr>
+<td>Managed Cloud Services / Premium Support (optional)</td>
+<td>$100K–$300K/year</td>
+<td>$0–$100K/year</td>
+<td>$100K–$300K/year</td>
+</tr>
+<td><strong>Subtotal Recurring (per year)</strong></td>
+<td><strong>$7,400K–$8,005K</strong></td>
+<td><strong>$5,193K–$5,508K</strong></td>
+<td><strong>$8,686K–$9,131K</strong></td>
+</tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td><strong>5-YEAR TCO CALCULATION</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>One-Time Costs</td>
+<td>$6,780K–$11,550K</td>
+<td>$3,910K–$6,200K</td>
+<td>$7,090K–$11,770K</td>
+</tr>
+<td>Recurring Costs × 5 Years</td>
+<td>$37,000K–$40,025K</td>
+<td>$25,965K–$27,540K</td>
+<td>$43,430K–$45,655K</td>
+</tr>
+<td><strong>Subtotal (before contingency)</strong></td>
+<td><strong>$43,780K–$51,575K</strong></td>
+<td><strong>$29,875K–$33,740K</strong></td>
+<td><strong>$50,520K–$57,425K</strong></td>
+</tr>
+<td>Contingency (10%)</td>
+<td>$4,378K–$5,158K</td>
+<td>$2,988K–$3,374K</td>
+<td>$5,052K–$5,743K</td>
+</tr>
+<td><strong>TOTAL 5-YEAR TCO</strong></td>
+<td><strong>$48.2M–$56.7M</strong></td>
+<td><strong>$32.9M–$37.1M</strong></td>
+<td><strong>$55.6M–$63.2M</strong></td>
+</tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td><strong>TCO PER USER METRICS</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td>Cost per User per Year (7,050 users)</td>
+<td>$1,368–$1,608</td>
+<td>$933–$1,053</td>
+<td>$1,576–$1,791</td>
+</tr>
+<td>Cost per User per Month</td>
+<td>$114–$134</td>
+<td>$78–$88</td>
+<td>$131–$149</td>
+</tr>
+<td>Cost per Store per Year (200 stores)</td>
+<td>$48.2K–$56.7K</td>
+<td>$32.9K–$37.1K</td>
+<td>$55.6K–$63.2K</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 8: Capability Comparison — Functional Modules</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Functional Module</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+<th>Winner</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Financial Management</strong> (GL, AP, AR, FA, multi-entity)</td>
+<td>★★★★★ — Strong GL, AP, AR; EPM consolidation best-in-class</td>
+<td>★★★★★ — Solid financials; Power BI analytics; consolidation good</td>
+<td>★★★★★ — Best-in-class consolidation; treasury; CO-PA profitability</td>
+<td><strong>SAP</strong> (slight edge)</td>
+</tr>
+<td>2</td>
+<td><strong>Inventory Management</strong> (55K SKUs, 200 stores, 5 DCs)</td>
+<td>★★★★☆ — Adequate perpetual inventory; catch-weight limited</td>
+<td>★★★★☆ — Good inventory; catch-weight via product variants</td>
+<td>★★★★★ — Best catch-weight (EWM); consignment; VMI; lot tracing</td>
+<td><strong>SAP</strong></td>
+</tr>
+<td>3</td>
+<td><strong>Procurement</strong> (800–1,000 vendors, 3-way match)</td>
+<td>★★★★☆ — Strong procurement; Oracle Supplier Portal</td>
+<td>★★★★☆ — Good procurement; vendor collaboration adequate</td>
+<td>★★★★★ — Best (Ariba portal, QM, supplier risk, settlement mgmt)</td>
+<td><strong>SAP</strong></td>
+</tr>
+<td>4</td>
+<td><strong>Warehouse Management</strong> (5 DCs, RF-directed, yard)</td>
+<td>★★★★☆ — WMS Cloud (LogFire) capable but separate cloud via API</td>
+<td>★★★★☆ — Native WMS in SCM; good for standard operations</td>
+<td>★★★★★ — EWM embedded; yard management; advanced RF directed</td>
+<td><strong>SAP</strong></td>
+</tr>
+<td>5</td>
+<td><strong>POS & Retail Operations</strong> (1,000 terminals, offline)</td>
+<td>★★☆☆☆ — <strong>No native POS</strong>; Oracle Retail Xstore is separate product</td>
+<td>★★★★★ — <strong>Native retail POS</strong>, offline CSU, loyalty, gift cards</td>
+<td>★★★☆☆ — SAP CCO immature for 1K terminals; offline limited</td>
+<td><strong>Microsoft</strong> (clear winner)</td>
+</tr>
+<td>6</td>
+<td><strong>Ecommerce / Omnichannel</strong> (BOPIS, home delivery)</td>
+<td>★★★★☆ — Commerce Cloud; needs OIC integration to ERP</td>
+<td>★★★★★ — Native commerce-POS-inventory real-time sync</td>
+<td>★★★★☆ — Commerce Cloud feature-rich; needs CPI middleware</td>
+<td><strong>Microsoft</strong></td>
+</tr>
+<td>7</td>
+<td><strong>Supply Chain Planning</strong> (demand, replenishment, S&OP)</td>
+<td>★★★★☆ — Solid planning; multiple cloud modules</td>
+<td>★★★★☆ — Planning Optimization improving; less mature</td>
+<td>★★★★★ — IBP is the gold standard for retail planning</td>
+<td><strong>SAP</strong></td>
+</tr>
+<td>8</td>
+<td><strong>HR & Payroll</strong> (PH statutory, 5 entities)</td>
+<td>★★★★★ — Comprehensive HCM suite; PH localization growing</td>
+<td>★★★☆☆ — D365 HR weakest; ISV payroll dependency (highest risk)</td>
+<td>★★★★★ — SuccessFactors full suite; PH payroll localization growing</td>
+<td><strong>Oracle / SAP</strong> (tied)</td>
+</tr>
+<td>9</td>
+<td><strong>CRM & Loyalty</strong> (600K customers, loyalty tiers)</td>
+<td>★★★★☆ — CX suite with CrowdTwist loyalty; fragmented</td>
+<td>★★★★★ — Native loyalty engine, Customer Insights CDP</td>
+<td>★★★★☆ — Separate cloud products; strong but fragmented</td>
+<td><strong>Microsoft</strong></td>
+</tr>
+<td>10</td>
+<td><strong>Analytics & Business Intelligence</strong></td>
+<td>★★★★☆ — Oracle BI enterprise-grade but less intuitive</td>
+<td>★★★★★ — Power BI is most user-friendly self-service BI tool</td>
+<td>★★★★★ — SAC + HANA powerful; complex setup</td>
+<td><strong>Microsoft</strong> (usability)</td>
+</tr>
+<td>11</td>
+<td><strong>Intercompany & Consolidation</strong> (5 entities)</td>
+<td>★★★★★ — Strong via EPM Cloud</td>
+<td>★★★★★ — Strong in D365 Finance</td>
+<td>★★★★★ — Best-in-class Group Reporting</td>
+<td><strong>SAP</strong> (slight edge)</td>
+</tr>
+<td>12</td>
+<td><strong>Document Management</strong> (BIR invoices, import docs)</td>
+<td>★★★★☆ — WebCenter; adequate; retention via Oracle records mgmt</td>
+<td>★★★★★ — Native SharePoint + OneDrive; best collaboration</td>
+<td>★★★★☆ — ILM comprehensive; ArchiveLink</td>
+<td><strong>Microsoft</strong></td>
+</tr>
+<td>13</td>
+<td><strong>Master Data Governance</strong> (55K SKUs, vendors, customers)</td>
+<td>★★★★☆ — Product Hub + Customer Data Management</td>
+<td>★★★★☆ — Adequate Dataverse-based governance</td>
+<td>★★★★★ — SAP MDG is the gold standard</td>
+<td><strong>SAP</strong></td>
+</tr>
+<td>14</td>
+<td><strong>AI / Machine Learning</strong></td>
+<td>★★★★☆ — OCI AI Services; Custom AI Agents ($2.50–$50/user)</td>
+<td>★★★★★ — Azure AI, Copilot, Copilot Studio — broadest AI ecosystem</td>
+<td>★★★★☆ — SAP Business AI; growing; embedded in S/4</td>
+<td><strong>Microsoft</strong></td>
+</tr>
+<td>15</td>
+<td><strong>Low-Code / Extension Platform</strong></td>
+<td>★★★☆☆ — VBCS; less mature ecosystem</td>
+<td>★★★★★ — Power Platform (Apps, Automate, BI) — industry leader</td>
+<td>★★★☆☆ — BTP capable but steeper learning curve</td>
+<td><strong>Microsoft</strong></td>
+</tr>
+<td>16</td>
+<td><strong>Non-Functional</strong> (uptime, scalability, security)</td>
+<td>★★★★☆ — OCI SLA >99.9%; offline POS depends on Xstore</td>
+<td>★★★★★ — Azure SLA >99.9%; native offline POS via CSU</td>
+<td>★★★★☆ — HANA SLA >99.5%; POS offline limited</td>
+<td><strong>Microsoft</strong></td>
+</tr>
+<td>17</td>
+<td><strong>Quality Management</strong></td>
+<td>★★★★☆ — Oracle Quality in Fusion SCM</td>
+<td>★★★☆☆ — D365 Quality Management limited</td>
+<td>★★★★★ — SAP QM most comprehensive (AQL, CAPA, CoC)</td>
+<td><strong>SAP</strong></td>
+</tr>
+<td>18</td>
+<td><strong>Field Service / Installation</strong></td>
+<td>★★★★☆ — Oracle Field Service Cloud</td>
+<td>★★★★★ — D365 Field Service (scheduling, dispatch, IoT)</td>
+<td>★★★★☆ — SAP FSM</td>
+<td><strong>Microsoft</strong></td>
+</tr>
+<td>19</td>
+<td><strong>Expense Management</strong></td>
+<td>★★★★☆ — Oracle Expenses Cloud</td>
+<td>★★★★☆ — D365 Expense Management</td>
+<td>★★★★★ — SAP Concur (market leader)</td>
+<td><strong>SAP</strong></td>
+</tr>
+<td>20</td>
+<td><strong>Philippine Localization Readiness</strong></td>
+<td>★★☆☆☆ — Smallest partner ecosystem; limited PH assets</td>
+<td>★★★☆☆ — Microsoft PH present; growing ISV ecosystem</td>
+<td>★★★★☆ — Largest partner network (Accenture, Deloitte, IBM); most PH assets</td>
+<td><strong>SAP</strong></td>
+</tr>
+<td></td>
+<td><strong>OVERALL CAPABILITY SCORE</strong></td>
+<td><strong>77 / 100</strong></td>
+<td><strong>85 / 100</strong></td>
+<td><strong>86 / 100</strong></td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 9: Capability Fit Summary (Must Have Requirements Met)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Requirement Category</th>
+<th>Must Have Count</th>
+<th>Oracle Fusion (Full Stack)</th>
+<th>Microsoft D365 (Full Stack)</th>
+<th>SAP S/4HANA (Full Stack)</th>
+</tr></thead><tbody>
+<td>R1. Financial Management (FIN)</td>
+<td>22</td>
+<td>20 ✅ · 2 🔧</td>
+<td>20 ✅ · 2 🔧</td>
+<td>21 ✅ · 1 🔧</td>
+</tr>
+<td>R2. Inventory Management (INV)</td>
+<td>12</td>
+<td>10 ✅ · 2 ⚙️</td>
+<td>10 ✅ · 2 ⚙️</td>
+<td>12 ✅</td>
+</tr>
+<td>R3. Procurement (PUR)</td>
+<td>12</td>
+<td>10 ✅ · 2 ⚙️</td>
+<td>10 ✅ · 2 ⚙️</td>
+<td>11 ✅ · 1 ⚙️</td>
+</tr>
+<td>R4. Warehouse Management (WMS)</td>
+<td>5</td>
+<td>4 ✅ · 1 ⚙️</td>
+<td>4 ✅ · 1 ⚙️</td>
+<td>5 ✅</td>
+</tr>
+<td>R5. POS & Retail (POS)</td>
+<td>17</td>
+<td>9 ✅ · 6 ⚙️ · 2 🔧</td>
+<td>13 ✅ · 4 ⚙️</td>
+<td>8 ✅ · 6 ⚙️ · 3 🔧</td>
+</tr>
+<td>R6. Ecommerce (ECOM)</td>
+<td>9</td>
+<td>7 ✅ · 2 ⚙️</td>
+<td>8 ✅ · 1 ⚙️</td>
+<td>7 ✅ · 2 ⚙️</td>
+</tr>
+<td>R7. Supply Chain Planning (SCP)</td>
+<td>7</td>
+<td>6 ✅ · 1 ⚙️</td>
+<td>6 ✅ · 1 ⚙️</td>
+<td>7 ✅</td>
+</tr>
+<td>R8. HR & Payroll (HR)</td>
+<td>17</td>
+<td>14 ✅ · 2 ⚙️ · 1 🔧</td>
+<td>10 ✅ · 4 ⚙️ · 3 🔧</td>
+<td>14 ✅ · 2 ⚙️ · 1 🔧</td>
+</tr>
+<td>R9. CRM & Loyalty (CRM)</td>
+<td>16</td>
+<td>12 ✅ · 3 ⚙️ · 1 🔧</td>
+<td>14 ✅ · 2 ⚙️</td>
+<td>12 ✅ · 3 ⚙️ · 1 🔧</td>
+</tr>
+<td>R10. Analytics (RPT)</td>
+<td>12</td>
+<td>10 ✅ · 2 🔧</td>
+<td>12 ✅</td>
+<td>11 ✅ · 1 🔧</td>
+</tr>
+<td>R11. Intercompany (IC)</td>
+<td>5</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+</tr>
+<td>R12. Document Mgmt (DOC)</td>
+<td>8</td>
+<td>6 ✅ · 2 ⚙️</td>
+<td>6 ✅ · 2 ⚙️</td>
+<td>6 ✅ · 2 ⚙️</td>
+</tr>
+<td>R13. Master Data (MDM)</td>
+<td>8</td>
+<td>6 ✅ · 2 ⚙️</td>
+<td>6 ✅ · 2 ⚙️</td>
+<td>8 ✅</td>
+</tr>
+<td>R14. Non-Functional (NFR)</td>
+<td>28</td>
+<td>22 ✅ · 4 ⚙️ · 2 🔧</td>
+<td>24 ✅ · 3 ⚙️ · 1 🔧</td>
+<td>22 ✅ · 4 ⚙️ · 2 🔧</td>
+</tr>
+<td><strong>Total Must Have</strong></td>
+<td><strong>~178</strong></td>
+<td><strong>~141 met ✅ + ⚙️</strong></td>
+<td><strong>~148 met ✅ + ⚙️</strong></td>
+<td><strong>~149 met ✅ + ⚙️</strong></td>
+</tr>
+<td><strong>Remaining Gaps (🔧)</strong></td>
+<td></td>
+<td><strong>~10</strong></td>
+<td><strong>~7</strong></td>
+<td><strong>~8</strong></td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 10: Risk & Implementation Assessment</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Risk Factor</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>POS — 1,000 Terminals</strong></td>
+<td>⚠️ HIGH RISK — Xstore must integrate with Fusion via OIC; unproven at this scale for Fusion-Xstore combo</td>
+<td>✅ LOW RISK — D365 Commerce POS proven at 1K+ terminals (Walmart, retailers)</td>
+<td>⚠️ MEDIUM RISK — CCO is maturing; needs validation at 1K terminals</td>
+</tr>
+<td><strong>POS — Offline Mode (8+ hours)</strong></td>
+<td>⚠️ MEDIUM RISK — Xstore has offline mode; sync-to-Fusion on reconnect needs testing</td>
+<td>✅ LOW RISK — CSU offline proven; full capability offline; auto-sync</td>
+<td>⚠️ MEDIUM-HIGH RISK — CCO offline limited; needs load testing</td>
+</tr>
+<td><strong>PH Payroll (SSS, PhilHealth, Pag-IBIG, BIR)</strong></td>
+<td>⚠️ MEDIUM RISK — Oracle HCM PH payroll growing; needs partner validation</td>
+<td>❌ HIGH RISK — No native PH payroll; full ISV dependency</td>
+<td>⚠️ MEDIUM RISK — SuccessFactors PH payroll growing; needs partner</td>
+</tr>
+<td><strong>BIR Tax Compliance</strong></td>
+<td>⚠️ HIGH RISK — Partner needed for BIR forms, eFPS, CAS</td>
+<td>⚠️ HIGH RISK — ISV needed for BIR forms, eFPS, CAS</td>
+<td>⚠️ HIGH RISK — Partner needed for BIR forms, eFPS, CAS</td>
+</tr>
+<td><strong>Integration Complexity</strong></td>
+<td>❌ HIGHEST RISK — 10+ integration flows between separate cloud modules</td>
+<td>✅ LOWEST RISK — 4 major flows; Dataverse-native</td>
+<td>⚠️ HIGH RISK — 8 integration flows; EWM embedded helps</td>
+</tr>
+<td><strong>Catch-Weight Items (lumber, wire)</strong></td>
+<td>⚠️ MEDIUM RISK — Oracle Retail Xstore supports catch-weight; limited in Fusion SCM</td>
+<td>⚠️ MEDIUM RISK — Product variant config; dual-UOM tracking</td>
+<td>⚠️ LOW-MEDIUM RISK — SAP EWM has most mature catch-weight</td>
+</tr>
+<td><strong>2.8M POS Transactions/Month</strong></td>
+<td>⚠️ MEDIUM RISK — Depends on Xstore throughput + OIC latency</td>
+<td>✅ LOW RISK — Azure + CSU handles volume</td>
+<td>✅ LOW RISK — HANA handles volume</td>
+</tr>
+<td><strong>5-Entity Consolidation</strong></td>
+<td>✅ LOW RISK — EPM Cloud strong</td>
+<td>✅ LOW RISK — D365 Finance strong</td>
+<td>✅ LOW RISK — Group Reporting best-in-class</td>
+</tr>
+<td><strong>Implementation Timeline Risk</strong></td>
+<td>⚠️ HIGH — 18–30 months; most moving parts</td>
+<td>✅ LOW — 12–18 months; fewest integration points</td>
+<td>⚠️ HIGH — 18–36 months; complex but proven methodology</td>
+</tr>
+<td><strong>Philippine Partner Ecosystem</strong></td>
+<td>⚠️ LIMITED — Fewest partners in PH</td>
+<td>⚠️ GROWING — Microsoft PH + ISVs expanding</td>
+<td>✅ STRONGEST — Accenture, Deloitte, IBM all active in PH</td>
+</tr>
+<td><strong>Overall Implementation Risk</strong></td>
+<td><strong>HIGH</strong></td>
+<td><strong>LOW</strong></td>
+<td><strong>MEDIUM-HIGH</strong></td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Table 11: Final Summary — Cost vs. Capability Scorecard</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Dimension</th>
+<th>Weight</th>
+<th>Oracle Fusion Cloud</th>
+<th>Microsoft Dynamics 365</th>
+<th>SAP S/4HANA Cloud</th>
+</tr></thead><tbody>
+<td><strong>Financial Management</strong></td>
+<td>15%</td>
+<td>★★★★★ (5)</td>
+<td>★★★★★ (5)</td>
+<td>★★★★★ (5)</td>
+</tr>
+<td><strong>Inventory & Warehouse</strong></td>
+<td>10%</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★★ (5)</td>
+</tr>
+<td><strong>POS & Retail Operations</strong></td>
+<td>15%</td>
+<td>★★☆☆☆ (2)</td>
+<td>★★★★★ (5)</td>
+<td>★★★☆☆ (3)</td>
+</tr>
+<td><strong>Ecommerce & Omnichannel</strong></td>
+<td>8%</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★★ (5)</td>
+<td>★★★★☆ (4)</td>
+</tr>
+<td><strong>Supply Chain Planning</strong></td>
+<td>5%</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★★ (5)</td>
+</tr>
+<td><strong>HR & Payroll</strong></td>
+<td>8%</td>
+<td>★★★★★ (5)</td>
+<td>★★★☆☆ (3)</td>
+<td>★★★★★ (5)</td>
+</tr>
+<td><strong>CRM, Loyalty & Marketing</strong></td>
+<td>5%</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★★ (5)</td>
+<td>★★★★☆ (4)</td>
+</tr>
+<td><strong>Analytics & BI</strong></td>
+<td>5%</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★★ (5)</td>
+<td>★★★★★ (5)</td>
+</tr>
+<td><strong>AI & Innovation</strong></td>
+<td>4%</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★★ (5)</td>
+<td>★★★★☆ (4)</td>
+</tr>
+<td><strong>Low-Code / Extension</strong></td>
+<td>4%</td>
+<td>★★★☆☆ (3)</td>
+<td>★★★★★ (5)</td>
+<td>★★★☆☆ (3)</td>
+</tr>
+<td><strong>Intercompany & Consolidation</strong></td>
+<td>4%</td>
+<td>★★★★★ (5)</td>
+<td>★★★★★ (5)</td>
+<td>★★★★★ (5)</td>
+</tr>
+<td><strong>PH Localization</strong></td>
+<td>5%</td>
+<td>★★☆☆☆ (2)</td>
+<td>★★★☆☆ (3)</td>
+<td>★★★★☆ (4)</td>
+</tr>
+<td><strong>Non-Functional / Scalability</strong></td>
+<td>5%</td>
+<td>★★★★☆ (4)</td>
+<td>★★★★★ (5)</td>
+<td>★★★★☆ (4)</td>
+</tr>
+<td><strong>Implementation Risk</strong></td>
+<td>7%</td>
+<td>★★☆☆☆ (2)</td>
+<td>★★★★★ (5)</td>
+<td>★★★☆☆ (3)</td>
+</tr>
+<td><strong>Weighted Capability Score</strong></td>
+<td>100%</td>
+<td><strong>3.73 / 5.0</strong></td>
+<td><strong>4.62 / 5.0</strong></td>
+<td><strong>4.25 / 5.0</strong></td>
+</tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td><strong>5-Year TCO</strong></td>
+<td>—</td>
+<td><strong>$48.2M–$56.7M</strong></td>
+<td><strong>$32.9M–$37.1M</strong></td>
+<td><strong>$55.6M–$63.2M</strong></td>
+</tr>
+<td><strong>Cost per User / Month</strong></td>
+<td>—</td>
+<td><strong>$114–$134</strong></td>
+<td><strong>$78–$88</strong></td>
+<td><strong>$131–$149</strong></td>
+</tr>
+<td><strong>Implementation Cost</strong></td>
+<td>—</td>
+<td><strong>$5.0M–$8.5M</strong></td>
+<td><strong>$2.8M–$4.5M</strong></td>
+<td><strong>$5.5M–$9.0M</strong></td>
+</tr>
+<td><strong>Training Cost (5-Year)</strong></td>
+<td>—</td>
+<td><strong>$940K–$1.53M</strong></td>
+<td><strong>$610K–$1.02M</strong></td>
+<td><strong>$950K–$1.55M</strong></td>
+</tr>
+<td><strong>Implementation Duration</strong></td>
+<td>—</td>
+<td>18–30 months</td>
+<td>12–18 months</td>
+<td>18–36 months</td>
+</tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<td><strong>Value-for-Money Rank</strong></td>
+<td>—</td>
+<td><strong>3rd</strong> (highest cost, lowest capability score)</td>
+<td><strong>1st</strong> (lowest cost, highest capability score)</td>
+<td><strong>2nd</strong> (highest cost, high capability but POS gap)</td>
+</tr>
+<td><strong>Overall Recommendation</strong></td>
+<td>—</td>
+<td><strong>Conditional</strong> — Viable only if Xstore-Fusion integration proven at scale</td>
+<td><strong>Proceed</strong> — Best retail fit, lowest TCO, fastest implementation</td>
+<td><strong>Conditional</strong> — Strongest ERP but POS weak, highest cost</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Data Sources & Methodology</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Data Point</th>
+<th>Source</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td>Oracle Fusion Cloud pricing</td>
+<td>Oracle Fusion Cloud Service Global Price List PDF (April 16, 2026)</td>
+<td>Official published list prices; enterprise discounts of 30–40% applied</td>
+</tr>
+<td>Microsoft Dynamics 365 pricing</td>
+<td>Microsoft Dynamics 365 Licensing Guide; dynamics.microsoft.com</td>
+<td>Published online pricing; EA discounts of 15–25% applied</td>
+</tr>
+<td>SAP S/4HANA Cloud pricing</td>
+<td>SAP Store; SAP Price List for Users; Gartner/IDC benchmarks</td>
+<td>Estimated from public sources; discounts of 20–30% applied</td>
+</tr>
+<td>Implementation cost estimates</td>
+<td>Industry benchmarks (Gartner, Panorama Consulting); vendor-specific complexity factors</td>
+<td>Based on BuildRight Depot scope (7,050 users, 200 stores, PH)</td>
+</tr>
+<td>Training cost estimates</td>
+<td>Training industry benchmarks; vendor training catalogs</td>
+<td>Based on 7,050-user rollout across Philippines</td>
+</tr>
+<td>Capability assessments</td>
+<td>ERP-Evaluation-Matrix.md; Vendor-Stack-Evaluation.md in this repository</td>
+<td>Based on ~130+ Must Have requirements for BuildRight Depot</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Disclaimer:</strong> All costs are estimates based on publicly available pricing, industry benchmarks, and BuildRight Depot's specific requirements. Actual costs will vary based on vendor negotiations, implementation partner selection, scope changes, and Philippine market conditions. Formal RFP/RFQ processes should be conducted for binding pricing.</blockquote>
+
+<hr>
+
+<p><em>Created: 2026-06-03 · For: BuildRight Depot Corp. ERP Evaluation</em></p>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

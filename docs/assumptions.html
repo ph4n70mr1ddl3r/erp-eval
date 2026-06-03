@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assumptions & Decisions — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub act"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">📝</span><h2>Assumptions & Decisions</h2></div><div class="cd mc"><h1>BuildRight Depot Corp. — Assumptions & Design Decisions</h1>
+
+<blockquote>This document consolidates the key assumptions and design decisions embedded across the</blockquote>
+<blockquote>model company documents. It serves as a single reference for understanding <em>why</em> certain</blockquote>
+<blockquote>parameters were chosen. Each assumption is cross-referenced to its source document.</blockquote>
+
+<hr>
+
+<h2>A1. Scale & Revenue Assumptions</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>ID</th>
+<th>Assumption</th>
+<th>Value</th>
+<th>Rationale</th>
+<th>Source</th>
+</tr></thead><tbody>
+<td>A1.1</td>
+<td>All 200 stores are mature</td>
+<td>Revenue figures assume all stores are past ramp-up</td>
+<td>Simplifies modeling; real-world would have 10–15 stores in ramp-up at any time</td>
+<td>Profile §9.4</td>
+</tr>
+<td>A1.2</td>
+<td>Average Transaction Value</td>
+<td>PHP 1,800</td>
+<td>Benchmarked against Philippine big-box home improvement retail; ~90% of Wilcon's estimated ATV reflecting more provincial footprint</td>
+<td>Profile §9.4</td>
+</tr>
+<td>A1.3</td>
+<td>Monthly POS transactions per store</td>
+<td>14,000 (~467/day)</td>
+<td>Derived from 2.8M monthly ÷ 200 stores; consistent with high-traffic big-box retail</td>
+<td>Profile §5</td>
+</tr>
+<td>A1.4</td>
+<td>Ecommerce penetration Year 1</td>
+<td>~3% of revenue</td>
+<td>Conservative for Philippine retail; aligns with early-stage omnichannel in the market</td>
+<td>Profile §8.5</td>
+</tr>
+<td>A1.5</td>
+<td>Gross margin</td>
+<td>28–32%</td>
+<td>Below Wilcon's ~30–33% reflecting newer stores and provincial mix</td>
+<td>Profile §9.4</td>
+</tr>
+<td>A1.6</td>
+<td>EBITDA margin</td>
+<td>12–14%</td>
+<td>Below Wilcon's ~14–16% due to higher logistics costs from 5-DC provincial footprint</td>
+<td>Profile §9.4</td>
+</tr>
+</tbody></table></div>
+
+<h2>A2. Organizational Assumptions</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>ID</th>
+<th>Assumption</th>
+<th>Value</th>
+<th>Rationale</th>
+<th>Source</th>
+</tr></thead><tbody>
+<td>A2.1</td>
+<td>Single format (big-box only)</td>
+<td>No Express/small format</td>
+<td>Simplifies the model; tests one format thoroughly vs. two superficially</td>
+<td>Profile §2</td>
+</tr>
+<td>A2.2</td>
+<td>Store staffing: 30 per store</td>
+<td>Lean model</td>
+<td>Viable with 35K curated SKUs (vs. Wilcon's 60K+); fewer departments to cover</td>
+<td>Profile §12.1</td>
+</tr>
+<td>A2.3</td>
+<td>HQ in Davao City</td>
+<td>Provincial HQ</td>
+<td>Deliberately non-Manila to test provincial operations and connectivity</td>
+<td>Profile §2</td>
+</tr>
+<td>A2.4</td>
+<td>5 legal entities</td>
+<td>Separate Holdings, Depot, Logistics, Digital Commerce, Property Mgmt</td>
+<td>Tests multi-entity/intercompany capability; each entity has a distinct role</td>
+<td>Profile §2</td>
+</tr>
+<td>A2.5</td>
+<td>Depot Inc. owns all inventory</td>
+<td>Even though Logistics Inc. operates DCs</td>
+<td>Simplifies inventory accounting; Logistics Inc. charges service fees, not goods transfer</td>
+<td>Profile §2, W14</td>
+</tr>
+<td>A2.6</td>
+<td>Revenue per employee</td>
+<td>~PHP 7.7M/year</td>
+<td>Higher than Wilcon's ~PHP 5.2M due to lean staffing model; sustainable with automation</td>
+<td>Profile §4</td>
+</tr>
+</tbody></table></div>
+
+<h2>A3. Supply Chain Assumptions</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>ID</th>
+<th>Assumption</th>
+<th>Value</th>
+<th>Rationale</th>
+<th>Source</th>
+</tr></thead><tbody>
+<td>A3.1</td>
+<td>5 DCs for 200 stores</td>
+<td>DC-to-selling-area ratio ~8–12%</td>
+<td>Industry norm for big-box retail; 5 DCs reduces average store-to-DC distance in archipelago</td>
+<td>Profile §3.2</td>
+</tr>
+<td>A3.2</td>
+<td>DC4 (Clark) oversized at 25K sqm</td>
+<td>Only 20 stores currently</td>
+<td>Intentional: absorbs planned North/Central Luzon expansion</td>
+<td>Profile §3.2</td>
+</tr>
+<td>A3.3</td>
+<td>30% DSD by value</td>
+<td>Cement, lumber, sand, gravel</td>
+<td>Bulky items uneconomical to double-handle through DCs</td>
+<td>Profile §7.1</td>
+</tr>
+<td>A3.4</td>
+<td>~400–600 TEUs/month imports</td>
+<td>~40% of COGS from imports</td>
+<td>Consistent with Philippine home improvement import volumes at this scale</td>
+<td>Profile §7.1</td>
+</tr>
+<td>A3.5</td>
+<td>Inventory turns target: 6–8x</td>
+<td>Curated 35K SKU assortment</td>
+<td>Philippine island geography and import lead times make higher turns aspirational</td>
+<td>Profile §12.3</td>
+</tr>
+<td>A3.6</td>
+<td>Shrinkage target: <1.5%</td>
+<td>Aspirational for Philippine retail</td>
+<td>Industry average ~1.5–2.5%; requires mature LP systems</td>
+<td>Profile §12.3</td>
+</tr>
+</tbody></table></div>
+
+<h2>A4. Product & Merchandise Assumptions</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>ID</th>
+<th>Assumption</th>
+<th>Value</th>
+<th>Rationale</th>
+<th>Source</th>
+</tr></thead><tbody>
+<td>A4.1</td>
+<td>35,000 active SKUs</td>
+<td>Curated assortment</td>
+<td>Leaner than Wilcon's 60K+; focused on faster turn; 2.3–4.4 SKUs/sqm</td>
+<td>Profile §6.1</td>
+</tr>
+<td>A4.2</td>
+<td>Inventory valuation: WAC</td>
+<td>Weighted Average Cost</td>
+<td>Standard in Philippine retail; simpler than FIFO for big-box</td>
+<td>Profile §6.3</td>
+</tr>
+<td>A4.3</td>
+<td>~800–1,000 active vendors</td>
+<td>60% local, 40% import</td>
+<td>Realistic mix for Philippine home improvement at this scale</td>
+<td>Profile §6.5</td>
+</tr>
+<td>A4.4</td>
+<td>Top 20 vendors = 45% of COGS</td>
+<td>Vendor concentration</td>
+<td>Realistic for organized retail; drives blanket PO and rebate strategies</td>
+<td>Profile §6.5</td>
+</tr>
+</tbody></table></div>
+
+<h2>A5. Financial Assumptions</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>ID</th>
+<th>Assumption</th>
+<th>Value</th>
+<th>Rationale</th>
+<th>Source</th>
+</tr></thead><tbody>
+<td>A5.1</td>
+<td>PHP functional currency</td>
+<td>PHP base; USD for imports</td>
+<td>Philippine company; imports in USD</td>
+<td>Profile §10.1</td>
+</tr>
+<td>A5.2</td>
+<td>VAT 12%</td>
+<td>Standard Philippine VAT</td>
+<td>Applied to most goods; some exempt/zero-rated customers exist</td>
+<td>Profile §10.5</td>
+</tr>
+<td>A5.3</td>
+<td>Monthly IC settlement</td>
+<td>All IC flows settled monthly on 5th</td>
+<td>Simplifies cash management; may need twice-monthly for ecommerce as it grows</td>
+<td>W14</td>
+</tr>
+<td>A5.4</td>
+<td>Loyalty deferred revenue ~1%</td>
+<td>PFRS 15 allocation</td>
+<td>Face value of points; actual allocation may differ based on expected redemption rate</td>
+<td>W17</td>
+</tr>
+<td>A5.5</td>
+<td>Month-end close ≤ 5 days</td>
+<td>Target</td>
+<td>Achievable with automated IC elimination and bank reconciliation</td>
+<td>Profile §15.3</td>
+</tr>
+</tbody></table></div>
+
+<h2>A6. IT & System Assumptions</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>ID</th>
+<th>Assumption</th>
+<th>Value</th>
+<th>Rationale</th>
+<th>Source</th>
+</tr></thead><tbody>
+<td>A6.1</td>
+<td>POS offline ≥ 8 hours</td>
+<td>Local cache of product/price</td>
+<td>Philippine internet reliability; stores must sell during outages</td>
+<td>NFR-011</td>
+</tr>
+<td>A6.2</td>
+<td>No strict PH data residency</td>
+<td>Asia-Pacific hosting recommended</td>
+<td>Philippines has no mandatory data residency law; latency matters more</td>
+<td>Technical Guidelines §2.1</td>
+</tr>
+<td>A6.3</td>
+<td>Ecommerce platform: build vs buy</td>
+<td>Decision deferred to ERP evaluation</td>
+<td>Each ERP platform offers different ecommerce options (native, integrated, or third-party); evaluator should recommend</td>
+<td>This document</td>
+</tr>
+<td>A6.4</td>
+<td>Mobile app: branded native app</td>
+<td>iOS + Android</td>
+<td>Required for BOPIS pickup notifications, loyalty, and customer engagement; built on ERP-provided APIs or third-party</td>
+<td>This document</td>
+</tr>
+<td>A6.5</td>
+<td>7-year data retention</td>
+<td>BIR requirement</td>
+<td>Drives storage sizing (~700 GB uncompressed over 7 years)</td>
+<td>Profile §15.3</td>
+</tr>
+</tbody></table></div>
+
+<h2>A7. Implementation Assumptions</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>ID</th>
+<th>Assumption</th>
+<th>Value</th>
+<th>Rationale</th>
+<th>Source</th>
+</tr></thead><tbody>
+<td>A7.1</td>
+<td>Phased rollout (not big-bang)</td>
+<td>Pilot 5 stores → 7 waves</td>
+<td>De-risks POS cutover for 2.8M monthly transactions</td>
+<td>Implementation Roadmap §1</td>
+</tr>
+<td>A7.2</td>
+<td>Pilot in Mindanao (Davao)</td>
+<td>Near HQ</td>
+<td>Faster support response; learn before scaling to other regions</td>
+<td>Implementation Roadmap §1</td>
+</tr>
+<td>A7.3</td>
+<td>26-month total project duration</td>
+<td>Phase 0 through Phase 5</td>
+<td>Includes pilot, 7 waves, and optimization</td>
+<td>Implementation Roadmap §7</td>
+</tr>
+<td>A7.4</td>
+<td>Parallel run during pilot</td>
+<td>1 payroll cycle + 1 month-end close</td>
+<td>Validates accuracy before cutover</td>
+<td>Implementation Roadmap §3</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Design Decisions</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Decision</th>
+<th>Choice Made</th>
+<th>Alternative Considered</th>
+<th>Why This Choice</th>
+</tr></thead><tbody>
+<td>DC network</td>
+<td>5 regional DCs</td>
+<td>3 mega-DCs</td>
+<td>Better island coverage; lower outbound transport cost; industry-norm DC-to-selling-area ratio</td>
+</tr>
+<td>IC model</td>
+<td>Service-based (primary)</td>
+<td>Goods-based between all entities</td>
+<td>Depot Inc. owns all merchandise; simpler inventory accounting; Logistics Inc. charges service fees</td>
+</tr>
+<td>SKU depth</td>
+<td>35,000 curated</td>
+<td>60,000+ deep</td>
+<td>Faster turns; less floor coverage needed; viable with fewer store staff</td>
+</tr>
+<td>Store format</td>
+<td>Big-box only</td>
+<td>Multi-format (Depot + Express)</td>
+<td>Simpler model; single format tests one scenario thoroughly</td>
+</tr>
+<td>Loyalty earn rate</td>
+<td>1 point per PHP 100</td>
+<td>Tiered earn by membership</td>
+<td>Simpler to implement and communicate; standard in Philippine retail</td>
+</tr>
+<td>BOPIS hold period</td>
+<td>5 days</td>
+<td>3 days or 7 days</td>
+<td>5 days balances customer convenience with inventory hold cost</td>
+</tr>
+<td>POS terminals per store</td>
+<td>5</td>
+<td>3–8 variable</td>
+<td>5 handles ~467 daily transactions across 10 operating hours with reasonable queues</td>
+</tr>
+<td>Payroll frequency</td>
+<td>Semi-monthly (15th & 30th)</td>
+<td>Monthly</td>
+<td>Philippine standard; mandated by many CBAs and DOLE guidelines</td>
+</tr>
+<td>Fiscal year</td>
+<td>Calendar year (Jan–Dec)</td>
+<td>April–March or other</td>
+<td>Aligned with Philippine tax year (BIR)</td>
+</tr>
+<td>Blanket PO coverage</td>
+<td>~45% of COGS</td>
+<td>Higher or lower</td>
+<td>Aligned with top-20 vendor concentration; remaining 55% on standard POs</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<p><em>Date: 2026-05-30</em></p>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

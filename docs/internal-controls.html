@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internal Controls Matrix — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub act"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🔒</span><h2>Internal Controls Matrix</h2></div><div class="cd mc"><h1>BuildRight Depot Corp. — Internal Controls Matrix</h1>
+
+<blockquote>Defines the key internal controls embedded in the ERP system and operational processes.</blockquote>
+<blockquote>Organized by control objective. Each control references the workflows that implement it.</blockquote>
+<blockquote>This matrix complements the operational workflows and ERP requirements — it does not</blockquote>
+<blockquote>replace them but provides an auditable controls framework.</blockquote>
+
+<hr>
+
+<h2>How to Read This Matrix</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Meaning</th>
+</tr></thead><tbody>
+<td><strong>Control ID</strong></td>
+<td>Unique identifier (CTL-XX)</td>
+</tr>
+<td><strong>Control Objective</strong></td>
+<td>What the control prevents or detects</td>
+</tr>
+<td><strong>Control Type</strong></td>
+<td>Preventive (P) or Detective (D)</td>
+</tr>
+<td><strong>Control Activity</strong></td>
+<td>What is done</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Role accountable for the control</td>
+</tr>
+<td><strong>Workflows</strong></td>
+<td>Where this control is exercised</td>
+</tr>
+<td><strong>ERP Requirement</strong></td>
+<td>Supporting requirement from erp-requirements.md</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>C1. Authorization & Approval Controls</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Control ID</th>
+<th>Control Objective</th>
+<th>Type</th>
+<th>Control Activity</th>
+<th>Owner</th>
+<th>Workflows</th>
+<th>Req Ref</th>
+</tr></thead><tbody>
+<td>CTL-01</td>
+<td>Prevent unauthorized purchases</td>
+<td>P</td>
+<td>PO approval per tiered matrix (> PHP 50K → Category Manager, > PHP 500K → VP, > PHP 2M → CFO for imports)</td>
+<td>Category Manager / VP / CFO</td>
+<td>W2A.5–6, W2B.2</td>
+<td>PUR-010</td>
+</tr>
+<td>CTL-02</td>
+<td>Prevent unauthorized capital expenditure</td>
+<td>P</td>
+<td>Capex request approval per tiered matrix (> PHP 100K → Finance Mgr, > PHP 500K → CFO, > PHP 5M → CEO, > PHP 5M → Board)</td>
+<td>CFO / CEO / Board</td>
+<td>W21.4</td>
+<td>FIN-016</td>
+</tr>
+<td>CTL-03</td>
+<td>Prevent unauthorized price overrides at POS</td>
+<td>P</td>
+<td>System requires manager authorization for price overrides > 10% or > PHP 500; logs override with cashier ID, manager ID, reason code</td>
+<td>Store Manager</td>
+<td>W5B.4a</td>
+<td>POS-006</td>
+</tr>
+<td>CTL-04</td>
+<td>Prevent unauthorized transaction voids</td>
+<td>P</td>
+<td>Manager authorization required for all voids; system logs void with cashier ID, manager ID, reason, timestamp; queued void authorization if no manager available</td>
+<td>Store Manager</td>
+<td>W5B.10</td>
+<td>POS-006</td>
+</tr>
+<td>CTL-05</td>
+<td>Prevent unauthorized credit limit overrides</td>
+<td>P</td>
+<td>Credit hold override requires tiered approval (AR Supervisor ≤ 110%, Finance Mgr ≤ 130%); 24-hour validity; logged with authorizer and reason</td>
+<td>AR Supervisor / Finance Manager</td>
+<td>W8.3a</td>
+<td>CRM-003</td>
+</tr>
+<td>CTL-06</td>
+<td>Prevent unauthorized vendor onboarding</td>
+<td>P</td>
+<td>Category Manager approval required for vendor master creation; Finance validates TIN and business permit; system blocks expired-document vendors from POs</td>
+<td>Category Manager / AP Clerk</td>
+<td>W36.5, W36 vendor doc tracking</td>
+<td>PUR-003, MDM-004</td>
+</tr>
+<td>CTL-07</td>
+<td>Prevent unauthorized pricing changes</td>
+<td>P</td>
+<td>Price changes require Category Manager approval; VP Merchandising approves if aggregate impact > PHP 500K/month</td>
+<td>Category Manager / VP</td>
+<td>W40.5, W13.3</td>
+<td>MDM-005</td>
+</tr>
+<td>CTL-08</td>
+<td>Prevent unauthorized promotional pricing</td>
+<td>P</td>
+<td>VP Merchandising approves all promotional pricing before push to POS</td>
+<td>VP Merchandising</td>
+<td>W13.3</td>
+<td>POS-014</td>
+</tr>
+</tbody></table></div>
+
+<h2>C2. Segregation of Duties Controls</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Control ID</th>
+<th>Control Objective</th>
+<th>Type</th>
+<th>Control Activity</th>
+<th>Owner</th>
+<th>Workflows</th>
+<th>Req Ref</th>
+</tr></thead><tbody>
+<td>CTL-09</td>
+<td>Separate purchasing from receiving</td>
+<td>P</td>
+<td>Buyer creates PO; Receiving Clerk processes GR; system validates 3-way match (PO → GR → Invoice)</td>
+<td>Buyer / Receiving Clerk / AP Clerk</td>
+<td>W2A, W3, W7.2</td>
+<td>PUR-005, FIN-004</td>
+</tr>
+<td>CTL-10</td>
+<td>Separate payment initiation from approval</td>
+<td>P</td>
+<td>AP Clerk generates payment file; Treasury Analyst reviews and approves; CFO authorizes</td>
+<td>AP Clerk / Treasury / CFO</td>
+<td>W7.9–10</td>
+<td>FIN-004</td>
+</tr>
+<td>CTL-11</td>
+<td>Separate inventory counting from adjustment approval</td>
+<td>P</td>
+<td>Stock Associate counts; Department Supervisor reviews; Store Manager approves adjustments > PHP 10K</td>
+<td>Stock Associate / Dept. Supervisor / Store Manager</td>
+<td>W6.6–7</td>
+<td>INV-006</td>
+</tr>
+<td>CTL-12</td>
+<td>Separate credit approval from sales execution</td>
+<td>P</td>
+<td>AR Clerk/Credit Committee approves credit; Cashier executes sale; system enforces approved limit</td>
+<td>AR Clerk / Cashier</td>
+<td>W24.5, W8.3</td>
+<td>CRM-008</td>
+</tr>
+<td>CTL-13</td>
+<td>Separate payroll computation from approval</td>
+<td>P</td>
+<td>Payroll Officer computes; Payroll Manager approves; Treasury transmits to bank</td>
+<td>Payroll Officer / Payroll Mgr / Treasury</td>
+<td>W10.5–8</td>
+<td>HR-001</td>
+</tr>
+</tbody></table></div>
+
+<h2>C3. Transaction Integrity Controls</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Control ID</th>
+<th>Control Objective</th>
+<th>Type</th>
+<th>Control Activity</th>
+<th>Owner</th>
+<th>Workflows</th>
+<th>Req Ref</th>
+</tr></thead><tbody>
+<td>CTL-14</td>
+<td>Ensure AP invoices match PO and GR</td>
+<td>P</td>
+<td>3-way match engine auto-approves within tolerance; exceptions routed to AP Clerk; unresolved exceptions escalated at day 5</td>
+<td>AP Supervisor</td>
+<td>W7.2–6, W7.6a–b</td>
+<td>FIN-004, PUR-005</td>
+</tr>
+<td>CTL-15</td>
+<td>Ensure accurate landed cost on imports</td>
+<td>D</td>
+<td>System auto-calculates landed cost from duty, freight, insurance at GR; Finance reconciles actual vs. estimated</td>
+<td>Cost Accountant</td>
+<td>W2B.12–13</td>
+<td>FIN-013</td>
+</tr>
+<td>CTL-16</td>
+<td>Ensure perpetual WAC accuracy</td>
+<td>D</td>
+<td>Cost Accountant verifies WAC at month-end by sampling high-value/high-volume SKUs; reconciles total inventory valuation to GL</td>
+<td>Cost Accountant</td>
+<td>W9A.6a</td>
+<td>INV-003</td>
+</tr>
+<td>CTL-17</td>
+<td>Ensure GRNI completeness</td>
+<td>D</td>
+<td>Weekly GRNI aging report; items > 30 days flagged for Buyer follow-up; > 60 days escalated; > 90 days reviewed for accrual</td>
+<td>AP Supervisor / Controller</td>
+<td>W7 GRNI aging</td>
+<td>FIN-004</td>
+</tr>
+<td>CTL-18</td>
+<td>Ensure IC balance agreement</td>
+<td>D</td>
+<td>Monthly IC reconciliation across all entity pairs; mismatches resolved before consolidation</td>
+<td>Chief Accountant</td>
+<td>W14.4–5</td>
+<td>IC-005</td>
+</tr>
+<td>CTL-19</td>
+<td>Ensure bank reconciliation completeness</td>
+<td>D</td>
+<td>Daily bank statement import; Treasury auto-matches deposits; monthly full reconciliation per entity</td>
+<td>Treasury Analyst / Controller</td>
+<td>W30.2, W30.9, W89</td>
+<td>FIN-009</td>
+</tr>
+<td>CTL-20</td>
+<td>Ensure POS cash accountability</td>
+<td>D</td>
+<td>Daily Z-report vs. physical cash count; variance > PHP 200 investigated and documented; electronic payment settlement auto-reconciled</td>
+<td>Store Manager</td>
+<td>W5F.2–4</td>
+<td>POS-009</td>
+</tr>
+<td>CTL-21</td>
+<td>Ensure inventory accuracy</td>
+<td>D</td>
+<td>Cycle counting with blind recounts; quarterly full coverage; adjustments require tiered approval; accuracy target ≥ 97%</td>
+<td>Dept. Supervisor / Store Manager</td>
+<td>W6, W42</td>
+<td>INV-006, INV-007</td>
+</tr>
+<td>CTL-22</td>
+<td>Ensure correct VAT computation</td>
+<td>D</td>
+<td>System auto-computes VAT per transaction; VAT-exempt/zero-rated customers classified in customer master with supporting docs; monthly VAT return reconciliation</td>
+<td>Tax Accountant</td>
+<td>W5B.4c, W9A.16</td>
+<td>FIN-006</td>
+</tr>
+</tbody></table></div>
+
+<h2>C4. Asset Safeguarding Controls</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Control ID</th>
+<th>Control Objective</th>
+<th>Type</th>
+<th>Control Activity</th>
+<th>Owner</th>
+<th>Workflows</th>
+<th>Req Ref</th>
+</tr></thead><tbody>
+<td>CTL-23</td>
+<td>Detect POS fraud / theft</td>
+<td>D</td>
+<td>Real-time exception monitoring: excessive voids, manual price overrides, sweet-hearting, no-sale drawer opens; daily summary; LPO investigation</td>
+<td>Loss Prevention Officer</td>
+<td>W37.1–5</td>
+<td>NFR-007</td>
+</tr>
+<td>CTL-24</td>
+<td>Detect receiving fraud</td>
+<td>D</td>
+<td>GR monitored against PO; frequent damage claims flagged by vendor; receiving outside scheduled appointments flagged</td>
+<td>DC Manager</td>
+<td>W37.6</td>
+<td>PUR-011</td>
+</tr>
+<td>CTL-25</td>
+<td>Safeguard inventory in transit</td>
+<td>D</td>
+<td>In-transit inventory visibility for all DC→Store and inter-DC transfers; transfer discrepancies investigated per W22.9a</td>
+<td>Supply Planner / DC Supervisor</td>
+<td>W4.8, W22.9a</td>
+<td>INV-014</td>
+</tr>
+<td>CTL-26</td>
+<td>Control fixed asset disposals</td>
+<td>P</td>
+<td>Disposal requires tiered approval based on NBV; IT ensures data wipe for IT assets per RA 10173; gain/loss on disposal auto-calculated</td>
+<td>Controller / CFO / CEO</td>
+<td>W39</td>
+<td>FIN-011</td>
+</tr>
+<td>CTL-27</td>
+<td>Safeguard customer data</td>
+<td>P</td>
+<td>Role-based access to personal data; encryption at rest and in transit; data subject access request tracking; breach register maintained</td>
+<td>DPO</td>
+<td>W53</td>
+<td>NFR-010, NFR-016</td>
+</tr>
+<td>CTL-28</td>
+<td>Control petty cash funds</td>
+<td>D</td>
+<td>Per-store and per-DC float limits; replenishment requires voucher submission; monthly reconciliation by custodian; AP reviews replenishment requests</td>
+<td>Store Manager / AP Clerk</td>
+<td>W25</td>
+<td>FIN-017</td>
+</tr>
+</tbody></table></div>
+
+<h2>C5. Financial Reporting Controls</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Control ID</th>
+<th>Control Objective</th>
+<th>Type</th>
+<th>Control Activity</th>
+<th>Owner</th>
+<th>Workflows</th>
+<th>Req Ref</th>
+</tr></thead><tbody>
+<td>CTL-29</td>
+<td>Ensure accurate consolidated reporting</td>
+<td>D</td>
+<td>IC elimination automated; consolidated statements generated from verified entity-level closes; CFO reviews consolidated before distribution</td>
+<td>CFO / Chief Accountant</td>
+<td>W9A.12–15</td>
+<td>FIN-003, IC-003</td>
+</tr>
+<td>CTL-30</td>
+<td>Ensure complete month-end close</td>
+<td>P</td>
+<td>Close checklist with 17 defined steps; period lock after close; Controller signs off</td>
+<td>Controller / CFO</td>
+<td>W9A.1–17</td>
+<td>FIN-015</td>
+</tr>
+<td>CTL-31</td>
+<td>Ensure NRV provisions are adequate</td>
+<td>D</td>
+<td>Monthly inventory aging review; write-downs where NRV < cost; Controller approves write-downs > PHP 50K</td>
+<td>Cost Accountant / Controller</td>
+<td>W9A.16b</td>
+<td>INV-011</td>
+</tr>
+<td>CTL-32</td>
+<td>Ensure loyalty liability accuracy</td>
+<td>D</td>
+<td>Monthly Cost Accountant estimate of loyalty liability vs. deferred revenue balance; adjusted if estimate differs</td>
+<td>Cost Accountant</td>
+<td>W17.11a</td>
+<td>CRM-001</td>
+</tr>
+<td>CTL-33</td>
+<td>Ensure gift card liability accuracy</td>
+<td>D</td>
+<td>Monthly gift card liability report with aging; breakage recognized at 24-month inactivity expiry; Finance reviews</td>
+<td>Cost Accountant</td>
+<td>W28.10–11</td>
+<td>POS-015</td>
+</tr>
+<td>CTL-34</td>
+<td>Ensure complete tax compliance</td>
+<td>D</td>
+<td>Monthly VAT, EWT, and statutory contribution reconciliation; quarterly BIR filing review; annual income tax preparation</td>
+<td>Tax Accountant / CFO</td>
+<td>W9A.16, W10.11</td>
+<td>FIN-008, HR-002</td>
+</tr>
+<td>CTL-35</td>
+<td>Ensure budget adherence</td>
+<td>D</td>
+<td>Monthly budget vs. actual variance report; PO and capex creation checks budget availability; > 10% variance requires explanation</td>
+<td>Controller / Department Heads</td>
+<td>W26.10–11</td>
+<td>FIN-012</td>
+</tr>
+</tbody></table></div>
+
+<h2>C6. Operational Process Controls</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Control ID</th>
+<th>Control Objective</th>
+<th>Type</th>
+<th>Control Activity</th>
+<th>Owner</th>
+<th>Workflows</th>
+<th>Req Ref</th>
+</tr></thead><tbody>
+<td>CTL-36</td>
+<td>Ensure recall execution</td>
+<td>P</td>
+<td>System blocks recalled items at POS; ecommerce auto-removes; store quarantine tracked; recall coverage measured</td>
+<td>VP Merchandising</td>
+<td>W29.5–7</td>
+<td>INV-016</td>
+</tr>
+<td>CTL-37</td>
+<td>Ensure warranty claim validity</td>
+<td>D</td>
+<td>System verifies warranty period from original transaction; defect documented with photos; SLA tracking on vendor response</td>
+<td>CSR / Buyer</td>
+<td>W33</td>
+<td>POS-019</td>
+</tr>
+<td>CTL-38</td>
+<td>Ensure consignment settlement accuracy</td>
+<td>D</td>
+<td>System auto-records sell-through at POS; monthly settlement report confirmed by Buyer before payment; period-end accrual for sold-but-unsettled</td>
+<td>Buyer / Cost Accountant</td>
+<td>W23.6–9, W23.6a</td>
+<td>FIN-018, INV-017</td>
+</tr>
+<td>CTL-39</td>
+<td>Ensure vendor rebate accuracy</td>
+<td>D</td>
+<td>System auto-accrues rebates at purchase/sale; monthly Cost Accountant validates against agreement; Buyer confirms settlement before payment</td>
+<td>Cost Accountant / Buyer</td>
+<td>W27.3–9</td>
+<td>FIN-019, PUR-015</td>
+</tr>
+<td>CTL-40</td>
+<td>Ensure emergency procurement regularization</td>
+<td>D</td>
+<td>Emergency procurements must be formalized within 5 business days; system auto-escalates if not; monthly Controller review of emergency procurement frequency</td>
+<td>Controller</td>
+<td>W60.6–7</td>
+<td>PUR-001</td>
+</tr>
+<td>CTL-41</td>
+<td>Ensure LGU permit compliance</td>
+<td>D</td>
+<td>System alerts 60 days before permit expiry; expired permits escalated; locations blocked if permits lapse (operational risk)</td>
+<td>Regulatory Officer</td>
+<td>W54.2, W54.10</td>
+<td>NFR-017</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>C7. Vendor & Customer Master Data Controls</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Control ID</th>
+<th>Control Objective</th>
+<th>Type</th>
+<th>Control Activity</th>
+<th>Owner</th>
+<th>Workflows</th>
+<th>Req Ref</th>
+</tr></thead><tbody>
+<td>CTL-42</td>
+<td>Prevent vendor payment fraud via bank account change</td>
+<td>P</td>
+<td>All vendor bank account detail changes require out-of-band verification (phone call to known contact, not the change request itself); dual approval (AP Clerk entry + AP Supervisor approval); 48-hour cooling-off period before first payment to new account; first payment flagged for Treasury confirmation of receipt; full audit trail of old/new bank details, verifier, approver, and timestamp</td>
+<td>AP Clerk / AP Supervisor / Treasury</td>
+<td>W36.7a</td>
+<td>PUR-003, NFR-007</td>
+</tr>
+<td>CTL-43</td>
+<td>Prevent Sales Rep self-approval of credit limits on own accounts</td>
+<td>P</td>
+<td>System enforces that the Sales Rep assigned to a trade/corporate account cannot also be the credit approver for that same account; credit limit approval follows the standard W24 tiered matrix (AR Supervisor / Finance Manager / Credit Committee); if Sales Rep requests a credit limit increase, system routes approval directly to AR Supervisor (bypassing the requesting Sales Rep); quarterly: Internal Audit samples credit approvals to verify no self-dealing occurred</td>
+<td>AR Supervisor / Finance Manager</td>
+<td>W24, W58</td>
+<td>CRM-003, CRM-008</td>
+</tr>
+<td>CTL-44</td>
+<td>Detect and prevent duplicate vendor payments</td>
+<td>P</td>
+<td>System auto-detects duplicate vendor invoices by invoice number, vendor+amount+date, and PO reference+invoice number; blocks duplicates with AP Clerk alert; AP Clerk investigates and either rejects or overrides with documentation; monthly override log reviewed by AP Supervisor</td>
+<td>AP Clerk / AP Supervisor</td>
+<td>W7</td>
+<td>FIN-020</td>
+</tr>
+<td>CTL-45</td>
+<td>Ensure layaway deposit safeguarding</td>
+<td>P</td>
+<td>Layaway deposits recorded as liability (not revenue) until item release; inventory reserved and excluded from ATP; cancellation fee configurable with approval; forfeiture requires Store Manager approval; monthly liability report reviewed by Store Manager and Regional Manager</td>
+<td>Store Manager / Regional Manager</td>
+<td>W75</td>
+<td>POS-020</td>
+</tr>
+<td>CTL-46</td>
+<td>Ensure loyalty fraud investigation and resolution</td>
+<td>D</td>
+<td>LPO flags suspected loyalty fraud patterns per W37; Loyalty Manager investigates within 2 business days; confirmed fraud results in account suspension with customer notification; points deducted per approval tier; monthly fraud resolution summary reviewed by Loyalty Manager; permanent ban requires Marketing Head approval</td>
+<td>Loyalty Manager / LPO</td>
+<td>W17, W37</td>
+<td>CRM-001, NFR-007</td>
+</tr>
+<td>CTL-47</td>
+<td>Ensure ecommerce payment reconciliation accuracy</td>
+<td>D</td>
+<td>Daily reconciliation of payment gateway settlements (PayMongo, GCash, etc.) to ecommerce order records; gateway fees verified against contracted rates; unreconciled settlements investigated by Treasury Analyst; monthly ecommerce payment reconciliation included in bank reconciliation (W89)</td>
+<td>Treasury Analyst / Controller</td>
+<td>W19, W30, W89, W99</td>
+<td>ECOM-006, FIN-009</td>
+</tr>
+<td>CTL-48</td>
+<td>Ensure vendor rebate dispute resolution</td>
+<td>D</td>
+<td>If vendor disputes rebate settlement amount, Buyer negotiates resolution; Category Manager approves any adjustment; if unresolved, Finance Manager mediates; adjusted settlement posted with Category Manager approval and documentation; rebate dispute frequency tracked in vendor scorecard (W44)</td>
+<td>Buyer / Category Manager</td>
+<td>W27</td>
+<td>FIN-019</td>
+</tr>
+<td>CTL-49</td>
+<td>Prevent unauthorized gift card balance manipulation</td>
+<td>P</td>
+<td>All manual gift card balance adjustments (corrections, reloads without payment, balance transfers) require dual approval: Store Manager initiates and AP Supervisor approves; system logs adjustment with original balance, new balance, initiator ID, approver ID, reason code, and timestamp; monthly: AP Supervisor reviews gift card adjustment log as part of AP controls review; gift card fraud detection rules monitored by LPO per W37</td>
+<td>Store Manager / AP Supervisor</td>
+<td>W28, W37</td>
+<td>POS-015</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>Controls Summary by Category</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Category</th>
+<th>Preventive Controls</th>
+<th>Detective Controls</th>
+<th>Total</th>
+</tr></thead><tbody>
+<td>Authorization & Approval</td>
+<td>8</td>
+<td>0</td>
+<td>8</td>
+</tr>
+<td>Segregation of Duties</td>
+<td>5</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<td>Transaction Integrity</td>
+<td>2</td>
+<td>8</td>
+<td>10</td>
+</tr>
+<td>Asset Safeguarding</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+<td>Financial Reporting</td>
+<td>1</td>
+<td>7</td>
+<td>8</td>
+</tr>
+<td>Operational Process</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+</tr>
+<td>Vendor & Customer Master Data</td>
+<td>2</td>
+<td>1</td>
+<td>3</td>
+</tr>
+<td><strong>Total</strong></td>
+<td><strong>23</strong></td>
+<td><strong>27</strong></td>
+<td><strong>50</strong></td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<p><em>Date: 2026-05-31 (v4 — added CTL-49: gift card balance manipulation prevention (dual approval, fraud detection, monthly review); total controls: 50)</em></p>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

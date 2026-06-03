@@ -1,0 +1,1574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Stack (Full) — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub act"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🔧</span><h2>Vendor Stack (Full)</h2></div><div class="cd mc"><h1>Complete Vendor Stack Evaluation — BuildRight Depot Corp.</h1>
+
+<blockquote>Full-suite solution mapping for <strong>SAP</strong>, <strong>Microsoft</strong>, and <strong>Oracle</strong> — showing how each vendor's</blockquote>
+<blockquote>entire product portfolio (not just core ERP) addresses every BuildRight Depot requirement.</blockquote>
+<blockquote>This is the companion to <a href="ERP-Evaluation-Matrix.md">ERP-Evaluation-Matrix.md</a> which evaluated</blockquote>
+<blockquote>core ERP capabilities only.</blockquote>
+
+<hr>
+
+<h2>1. Vendor Solution Stacks</h2>
+
+<h3>1.1 SAP Complete Stack</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Layer</th>
+<th>Product</th>
+<th>Role in BuildRight</th>
+</tr></thead><tbody>
+<td><strong>Core ERP</strong></td>
+<td>SAP S/4HANA Cloud (private edition)</td>
+<td>GL, AP, AR, FA, MM, SD, CO, consolidation</td>
+</tr>
+<td><strong>Warehouse</strong></td>
+<td>SAP Extended Warehouse Management (EWM)</td>
+<td>RF-directed putaway/pick, yard mgmt, catch-weight</td>
+</tr>
+<td><strong>POS</strong></td>
+<td>SAP Customer Checkout 11 (CCO)</td>
+<td>1,000 POS terminals, offline mode, multi-tender</td>
+</tr>
+<td><strong>Ecommerce</strong></td>
+<td>SAP Commerce Cloud (CCv2)</td>
+<td>BOPIS, home delivery, catalog, order mgmt</td>
+</tr>
+<td><strong>Supply Chain Planning</strong></td>
+<td>SAP Integrated Business Planning (IBP)</td>
+<td>Demand forecasting, replenishment, S&OP</td>
+</tr>
+<td><strong>HR & Payroll</strong></td>
+<td>SAP SuccessFactors (EC, Payroll, Time, Talent)</td>
+<td>PH payroll, time & attendance, recruitment, ESS</td>
+</tr>
+<td><strong>CRM & Loyalty</strong></td>
+<td>SAP Sales Cloud + SAP Loyalty Management</td>
+<td>Trade accounts, loyalty tiers, pipeline mgmt</td>
+</tr>
+<td><strong>Customer Analytics</strong></td>
+<td>SAP Customer Activity Repository (CAR)</td>
+<td>Real-time customer insights, purchase history</td>
+</tr>
+<td><strong>Supplier Collaboration</strong></td>
+<td>SAP Ariba / Business Network</td>
+<td>Vendor portal, procurement collaboration, JBP</td>
+</tr>
+<td><strong>Expense Management</strong></td>
+<td>SAP Concur</td>
+<td>Employee expense reimbursement</td>
+</tr>
+<td><strong>Marketing</strong></td>
+<td>SAP Emarsys (Customer Engagement)</td>
+<td>Campaign management, email, personalization</td>
+</tr>
+<td><strong>Customer Data</strong></td>
+<td>SAP Customer Data Cloud (Gigya)</td>
+<td>Unified CDP, identity management</td>
+</tr>
+<td><strong>Analytics & BI</strong></td>
+<td>SAP Analytics Cloud (SAC) + SAP Datasphere</td>
+<td>Executive dashboards, self-service BI, data warehouse</td>
+</tr>
+<td><strong>Integration</strong></td>
+<td>SAP BTP Integration Suite (CPI)</td>
+<td>Middleware for all system-to-system integration</td>
+</tr>
+<td><strong>Extension Platform</strong></td>
+<td>SAP BTP (Cloud Foundry / ABAP Environment)</td>
+<td>Custom apps, PH localization extensions</td>
+</tr>
+<td><strong>Master Data</strong></td>
+<td>SAP MDG (Master Data Governance)</td>
+<td>Item, vendor, customer master governance</td>
+</tr>
+<td><strong>Document Management</strong></td>
+<td>SAP ArchiveLink + SAP ILM</td>
+<td>Document storage, retention, BIR compliance</td>
+</tr>
+<td><strong>Industry</strong></td>
+<td>SAP Retail / CAR Retail Extension Pack</td>
+<td>Retail-specific pricing, promotions, markdown</td>
+</tr>
+<td><strong>AI</strong></td>
+<td>SAP Business AI / SAP AI Core</td>
+<td>Predictive analytics, intelligent automation</td>
+</tr>
+<td><strong>IoT</strong></td>
+<td>SAP IoT (on BTP)</td>
+<td>Smart store, fleet telematics</td>
+</tr>
+</tbody></table></div>
+
+<h3>1.2 Microsoft Complete Stack</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Layer</th>
+<th>Product</th>
+<th>Role in BuildRight</th>
+</tr></thead><tbody>
+<td><strong>Core ERP</strong></td>
+<td>Dynamics 365 Finance</td>
+<td>GL, AP, AR, FA, consolidation, tax</td>
+</tr>
+<td><strong>Supply Chain</strong></td>
+<td>Dynamics 365 Supply Chain Management</td>
+<td>Inventory, procurement, WMS, planning</td>
+</tr>
+<td><strong>POS & Retail</strong></td>
+<td>Dynamics 365 Commerce</td>
+<td>1,000 POS terminals, offline CSU, retail pricing</td>
+</tr>
+<td><strong>Ecommerce</strong></td>
+<td>Dynamics 365 Commerce (e-commerce module)</td>
+<td>BOPIS, home delivery, catalog, storefront</td>
+</tr>
+<td><strong>HR</strong></td>
+<td>Dynamics 365 Human Resources</td>
+<td>Leave, benefits, ESS, performance</td>
+</tr>
+<td><strong>Payroll</strong></td>
+<td>ISV Partner (e.g., Itsubmit, SL Payroll)</td>
+<td>PH statutory payroll (SSS, PhilHealth, Pag-IBIG, BIR)</td>
+</tr>
+<td><strong>CRM & Sales</strong></td>
+<td>Dynamics 365 Sales + Customer Insights</td>
+<td>Trade accounts, pipeline, territory mgmt</td>
+</tr>
+<td><strong>Loyalty</strong></td>
+<td>Dynamics 365 Commerce (native loyalty engine)</td>
+<td>Points, tiers, earn/redeem at POS</td>
+</tr>
+<td><strong>Customer Service</strong></td>
+<td>Dynamics 365 Customer Service</td>
+<td>Omnichannel ticketing, call center, SLA</td>
+</tr>
+<td><strong>Marketing</strong></td>
+<td>Dynamics 365 Customer Insights – Journeys</td>
+<td>Campaigns, email, segmentation, personalization</td>
+</tr>
+<td><strong>CDP</strong></td>
+<td>Dynamics 365 Customer Insights</td>
+<td>Unified customer profile, identity resolution</td>
+</tr>
+<td><strong>Expense</strong></td>
+<td>Dynamics 365 Expense Management / Concur</td>
+<td>Employee expense reimbursement</td>
+</tr>
+<td><strong>Field Service</strong></td>
+<td>Dynamics 365 Field Service</td>
+<td>Installation services, scheduling, dispatch</td>
+</tr>
+<td><strong>Analytics & BI</strong></td>
+<td>Power BI (Pro/Premium) + Azure Synapse</td>
+<td>Dashboards, self-service BI, data warehouse</td>
+</tr>
+<td><strong>Workflow & Automation</strong></td>
+<td>Power Automate + Power Apps</td>
+<td>Approval workflows, custom apps (LGU, CIT, etc.)</td>
+</tr>
+<td><strong>Integration</strong></td>
+<td>Azure API Management + Logic Apps / Service Bus</td>
+<td>Middleware for all external integrations</td>
+</tr>
+<td><strong>Cloud</strong></td>
+<td>Azure (East Asia / Southeast Asia region)</td>
+<td>Cloud infrastructure, DR, scalability</td>
+</tr>
+<td><strong>AI</strong></td>
+<td>Azure AI + Copilot + Copilot Studio</td>
+<td>Predictive analytics, chatbots, AI automation</td>
+</tr>
+<td><strong>IoT</strong></td>
+<td>Azure IoT Hub + Azure Digital Twins</td>
+<td>Smart store, fleet telematics, sensors</td>
+</tr>
+<td><strong>Collaboration</strong></td>
+<td>Microsoft 365 / Teams / SharePoint</td>
+<td>Document management, collaboration, approvals</td>
+</tr>
+<td><strong>Security</strong></td>
+<td>Azure Active Directory + Microsoft Purview</td>
+<td>Identity, RBAC, data governance, compliance</td>
+</tr>
+<td><strong>Low-Code Apps</strong></td>
+<td>Power Apps (Canvas + Model-driven)</td>
+<td>Custom gap-fillers (hazmat, PPE, permits, etc.)</td>
+</tr>
+</tbody></table></div>
+
+<h3>1.3 Oracle Complete Stack</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Layer</th>
+<th>Product</th>
+<th>Role in BuildRight</th>
+</tr></thead><tbody>
+<td><strong>Core ERP</strong></td>
+<td>Oracle Fusion Cloud ERP</td>
+<td>GL, AP, AR, FA, project accounting</td>
+</tr>
+<td><strong>Supply Chain</strong></td>
+<td>Oracle Fusion Cloud SCM (Supply Chain Orchestration)</td>
+<td>Inventory, procurement, order management</td>
+</tr>
+<td><strong>Warehouse</strong></td>
+<td>Oracle Warehouse Management Cloud (LogFire)</td>
+<td>RF-directed operations, wave picking, cross-dock</td>
+</tr>
+<td><strong>POS</strong></td>
+<td>Oracle Retail Xstore Point-of-Service</td>
+<td>1,000 POS terminals, offline, multi-tender, catch-weight</td>
+</tr>
+<td><strong>Retail Merchandising</strong></td>
+<td>Oracle Retail Merchandising Foundation</td>
+<td>Retail pricing, promotions, markdown, allocation</td>
+</tr>
+<td><strong>Ecommerce</strong></td>
+<td>Oracle Commerce Cloud</td>
+<td>BOPIS, home delivery, catalog, storefront</td>
+</tr>
+<td><strong>Order Management</strong></td>
+<td>Oracle Fusion Cloud Order Management</td>
+<td>Order capture, orchestration, fulfillment routing</td>
+</tr>
+<td><strong>Supply Chain Planning</strong></td>
+<td>Oracle Fusion Cloud Supply Planning</td>
+<td>Demand forecasting, replenishment, S&OP</td>
+</tr>
+<td><strong>HR & Payroll</strong></td>
+<td>Oracle Fusion Cloud HCM (Global HR, Payroll, Time, Talent)</td>
+<td>PH payroll, time & attendance, recruitment, ESS</td>
+</tr>
+<td><strong>CRM & Sales</strong></td>
+<td>Oracle Fusion Cloud CX (Sales)</td>
+<td>Trade accounts, pipeline, territory mgmt</td>
+</tr>
+<td><strong>Loyalty</strong></td>
+<td>Oracle CrowdTwist (Loyalty & Engagement)</td>
+<td>Points, tiers, earn/redeem, gamification</td>
+</tr>
+<td><strong>Customer Service</strong></td>
+<td>Oracle Fusion Cloud CX (Service)</td>
+<td>Omnichannel ticketing, call center, SLA</td>
+</tr>
+<td><strong>Marketing</strong></td>
+<td>Oracle Fusion Cloud CX (Marketing / Maxymiser)</td>
+<td>Campaigns, email, personalization, A/B testing</td>
+</tr>
+<td><strong>CDP</strong></td>
+<td>Oracle CX Unity</td>
+<td>Unified customer profile, identity resolution</td>
+</tr>
+<td><strong>Consolidation</strong></td>
+<td>Oracle Enterprise Performance Management (EPM) Cloud</td>
+<td>Financial consolidation, planning, budgeting</td>
+</tr>
+<td><strong>Expense</strong></td>
+<td>Oracle Expenses Cloud</td>
+<td>Employee expense reimbursement</td>
+</tr>
+<td><strong>Analytics & BI</strong></td>
+<td>Oracle Analytics Cloud + Autonomous Data Warehouse</td>
+<td>Dashboards, self-service BI, data warehouse</td>
+</tr>
+<td><strong>Integration</strong></td>
+<td>Oracle Integration Cloud (OIC)</td>
+<td>Middleware for all system-to-system integration</td>
+</tr>
+<td><strong>Extension</strong></td>
+<td>Oracle Visual Builder Cloud Service (VBCS)</td>
+<td>Custom apps, PH localization extensions</td>
+</tr>
+<td><strong>Master Data</strong></td>
+<td>Oracle Product Hub + Oracle Customer Data Management</td>
+<td>Item, vendor, customer master governance</td>
+</tr>
+<td><strong>Document Management</strong></td>
+<td>Oracle Content and Experience Cloud + WebCenter</td>
+<td>Document storage, retention, collaboration</td>
+</tr>
+<td><strong>Industry</strong></td>
+<td>Oracle Retail Suite (Xstore, RMS, RPM, RI)</td>
+<td>Retail-specific pricing, promotions, planograms</td>
+</tr>
+<td><strong>Construction</strong></td>
+<td>Oracle Aconex / Oracle Construction Intelligence</td>
+<td>New store construction project management</td>
+</tr>
+<td><strong>AI</strong></td>
+<td>Oracle AI Services (OCI AI)</td>
+<td>Predictive analytics, NLP, computer vision</td>
+</tr>
+<td><strong>IoT</strong></td>
+<td>Oracle IoT Cloud</td>
+<td>Smart store, fleet telematics, asset monitoring</td>
+</tr>
+<td><strong>Cloud</strong></td>
+<td>Oracle Cloud Infrastructure (OCI)</td>
+<td>Cloud infrastructure, DR, scalability</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>2. Gap Resolution Matrix — How the Full Stack Fills Gaps</h2>
+
+<p>The table below shows every requirement that was scored 🔧 (custom/3rd-party) or ❌ (not available)</p>
+<p>in the <a href="ERP-Evaluation-Matrix.md">original matrix</a>, re-evaluated with the <strong>complete vendor stack</strong>.</p>
+
+<h3>2.1 Financial Management (FIN)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>FIN-008</td>
+<td>BIR Tax Return Generation</td>
+<td>🔧 All 3</td>
+<td>🔧 <strong>Still needs PH ISV</strong> — SAP PH localization partner (e.g., DXC,Accenture) builds BIR form templates on S/4 + BTP</td>
+<td>🔧 <strong>Still needs PH ISV</strong> — PH tax ISV builds BIR forms on D365 Finance + Power Automate for eFPS</td>
+<td>🔧 <strong>Still needs PH partner</strong> — Oracle PH partner builds BIR form templates on Fusion ERP + VBCS</td>
+</tr>
+<td>FIN-021</td>
+<td>FX Hedging / Forward Contracts</td>
+<td>🔧 D365</td>
+<td>✅ SAP Treasury covers this</td>
+<td>🔧 <strong>Power App + D365 Finance</strong> — custom FX hedging tracker using Power Apps canvas app + D365 currency revaluation</td>
+<td>✅ Oracle Treasury covers this</td>
+</tr>
+<td>FIN-023</td>
+<td>Insurance Policy Lifecycle</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP BTP custom app</strong> or SAP RE FX (Real Estate Flex) extended for insurance</td>
+<td>⚙️ <strong>Power App</strong> for insurance registry with Power Automate renewal alerts</td>
+<td>⚙️ <strong>VBCS custom app</strong> for insurance policy registry with OIC workflow</td>
+</tr>
+<td>FIN-024</td>
+<td>Employee Gratuity (RA 7641)</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SuccessFactors Payroll</strong> with PH localization — RA 7641 rules configured as custom payroll calculation</td>
+<td>⚙️ <strong>ISV PH payroll partner</strong> (Itsubmit/SL) — RA 7641 configured in payroll rules</td>
+<td>⚙️ <strong>Oracle HCM Payroll</strong> with PH localization — RA 7641 rules configured as custom payroll element</td>
+</tr>
+<td>FIN-025</td>
+<td>Cash-in-Transit / Armored Car</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>BTP custom app</strong> — CIT scheduling with integration to SAP Treasury for bank reconciliation</td>
+<td>⚙️ <strong>Power App</strong> — CIT scheduling + tracking with Power Automate reconciliation to D365 bank transactions</td>
+<td>⚙️ <strong>VBCS custom app</strong> — CIT management with OIC integration to Fusion Cash Management</td>
+</tr>
+<td>FIN-030</td>
+<td>Fixed Asset Physical Verification</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Asset Intelligence Network</strong> or custom BTP app for asset scanning via mobile</td>
+<td>⚙️ <strong>Power App</strong> with camera/barcode scanning for asset verification + D365 Fixed Assets</td>
+<td>⚙️ <strong>VBCS mobile app</strong> for asset tag scanning + Fusion Fixed Assets reconciliation</td>
+</tr>
+<td>FIN-031</td>
+<td>BIR eFPS Filing & e-Payment</td>
+<td>🔧 All 3</td>
+<td>🔧 <strong>PH localization partner + BTP Integration</strong> — SAP S/4 tax data → BTP integration → eFPS submission; <strong>still requires PH ISV</strong></td>
+<td>🔧 <strong>PH ISV + Power Automate</strong> — D365 tax data → Power Automate RPA → eFPS submission; <strong>still requires PH ISV</strong></td>
+<td>🔧 <strong>PH partner + OIC</strong> — Fusion tax data → OIC integration → eFPS submission; <strong>still requires PH partner</strong></td>
+</tr>
+<td>FIN-032</td>
+<td>E-Wallet Settlement Reconciliation</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>BTP Integration Suite</strong> — Build adapters for GCash/Maya settlement file import → auto-match in SAP AP</td>
+<td>⚙️ <strong>Azure Logic Apps</strong> — Import settlement files → auto-match in D365 bank reconciliation</td>
+<td>⚙️ <strong>OIC adapters</strong> — Import settlement files → auto-match in Fusion Cash Management</td>
+</tr>
+</tbody></table></div>
+
+<h3>2.2 Inventory Management (INV)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>INV-010</td>
+<td>Catch-Weight / Variable Measure</td>
+<td>⚠️ All 3</td>
+<td>⚙️ <strong>SAP EWM + Retail for Catch-Weight</strong> — SAP has catch-weight management in EWM with integration to SD pricing; board-feet/meter conversion units configured</td>
+<td>⚙️ <strong>D365 SCM product variants</strong> — Configure catch-weight with UOM conversions; dual-UOM tracking (inventory UOM vs. sales UOM)</td>
+<td>⚙️ <strong>Oracle Retail Xstore + RMS</strong> — Oracle Retail supports catch-weight natively in Xstore POS and RMS; dual-UOM for lumber/wire</td>
+</tr>
+<td>INV-016</td>
+<td>Product Recall Tracking</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP QM + Batch Where-Used</strong> — Lot traceability with recall workflow in QM; batch where-used list identifies affected customers</td>
+<td>⚙️ <strong>Power App + D365 SCM</strong> — Custom recall case management app with batch tracing via D365 inventory</td>
+<td>⚙️ <strong>Oracle Supply Chain Traceability</strong> — Lot/serial trace in Fusion SCM with recall workflow in VBCS</td>
+</tr>
+<td>INV-017</td>
+<td>Consignment Tracking</td>
+<td>🔧 Oracle</td>
+<td>✅ SAP handles natively</td>
+<td>✅ D365 handles natively</td>
+<td>⚙️ <strong>Oracle Retail RMS + Fusion SCM</strong> — Oracle Retail Merchandising supports consignment; configure ownership transfer rules</td>
+</tr>
+<td>INV-020</td>
+<td>Store Inventory Rebalancing</td>
+<td>🔧 D365/Oracle</td>
+<td>⚙️ <strong>SAP IBP for Response & Supply</strong> — Suggests rebalancing based on demand signals across locations</td>
+<td>⚙️ <strong>D365 Planning Optimization</strong> — Rebalancing suggestions via demand planning + distribution requirements</td>
+<td>⚙️ <strong>Oracle Supply Planning</strong> — Rebalancing suggestions via constrained supply planning</td>
+</tr>
+</tbody></table></div>
+
+<h3>2.3 Procurement & Purchasing (PUR)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>PUR-007</td>
+<td>Vendor Portal</td>
+<td>⚙️ D365</td>
+<td>✅ SAP Ariba Supplier Portal</td>
+<td>⚙️ <strong>D365 Vendor Collaboration</strong> workspace — vendors view POs, submit confirmations; full invoice submission via Power Pages portal</td>
+<td>✅ Oracle Supplier Portal</td>
+</tr>
+<td>PUR-008</td>
+<td>Vendor Performance Scorecard</td>
+<td>⚙️ D365/Oracle</td>
+<td>✅ SAP MM Vendor Evaluation</td>
+<td>⚙️ <strong>Power BI + D365</strong> — Custom vendor scorecard dashboard with on-time delivery, quality, fill rate metrics from D365 data</td>
+<td>⚙️ <strong>Oracle BI + Fusion Procurement</strong> — Supplier performance analytics via OTBI dashboards</td>
+</tr>
+<td>PUR-016</td>
+<td>AQL Sampling per SKU Category</td>
+<td>🔧 D365</td>
+<td>⚙️ <strong>SAP QM</strong> — Quality inspection plans with AQL sampling per material type</td>
+<td>⚙️ <strong>D365 Quality Management</strong> — Inspection groups with sampling plans per item category</td>
+<td>⚙️ <strong>Oracle Quality</strong> — Quality inspection plans with AQL sampling</td>
+</tr>
+<td>PUR-017</td>
+<td>Supplier Quality & CAPA</td>
+<td>🔧 D365</td>
+<td>✅ <strong>SAP QM + Ariba Supplier Management</strong> — Full CAPA workflow, 8D reporting, supplier quality portal</td>
+<td>⚙️ <strong>D365 Quality Management + Power App</strong> — Quality issue logging with CAPA workflow in Power Automate</td>
+<td>⚙️ <strong>Oracle Quality + Fusion Supplier qualification</strong> — Quality holds, CAPA tracking</td>
+</tr>
+<td>PUR-020</td>
+<td>Vendor Price Protection Claims</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Settlement Management</strong> — Price protection claims with credit memo generation</td>
+<td>⚙️ <strong>D365 Trade Allowance Management</strong> — Price protection claim filing and credit processing</td>
+<td>⚙️ <strong>Oracle Trade Management</strong> — Price protection claims and settlements</td>
+</tr>
+<td>PUR-021</td>
+<td>Vendor Strategic Collaboration & JBP</td>
+<td>🔧 All 3</td>
+<td>✅ <strong>SAP Ariba — JBP workspace</strong> — Joint business planning, shared scorecards, co-investment tracking</td>
+<td>⚙️ <strong>Power Pages vendor portal + Power BI</strong> — Shared JBP workspace with scorecards and calendar</td>
+<td>⚙️ <strong>Oracle Supplier Collaboration</strong> — JBP workspace in Fusion with shared analytics</td>
+</tr>
+<td>PUR-022</td>
+<td>PL Factory Audit & Social Compliance</td>
+<td>🔧 All 3</td>
+<td>✅ <strong>SAP Ariba Supply Chain Risk</strong> — Supplier risk assessment, audit management, compliance scoring</td>
+<td>⚙️ <strong>Power App</strong> — Factory audit checklist app with scoring, photo capture, corrective action tracking</td>
+<td>⚙️ <strong>Oracle Supplier Qualification Management</strong> — Audit questionnaires, scoring, corrective actions</td>
+</tr>
+<td>PUR-023</td>
+<td>Supplier Diversity / MSME</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Ariba + custom reporting</strong> — Vendor classification fields for MSME; diversity spend reporting via SAC</td>
+<td>⚙️ <strong>Power App + Power BI</strong> — MSME vendor classification and diversity spend reporting</td>
+<td>⚙️ <strong>Oracle Supplier classification + BI</strong> — MSME vendor attributes with diversity analytics</td>
+</tr>
+<td>PUR-024</td>
+<td>Product Quality Testing</td>
+<td>🔧 D365</td>
+<td>✅ <strong>SAP QM</strong> — Test plans, result recording, CoC tracking, failed test disposition</td>
+<td>⚙️ <strong>D365 Quality Management</strong> — Inspection orders with test results and disposition</td>
+<td>⚙️ <strong>Oracle Quality</strong> — Test specifications, result recording, CoC tracking</td>
+</tr>
+</tbody></table></div>
+
+<h3>2.4 Warehouse Management (WMS)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>WMS-006</td>
+<td>Yard Management (Lumber)</td>
+<td>🔧 D365/Oracle</td>
+<td>✅ <strong>SAP EWM Yard Management</strong> — Outdoor stock with yard movements, gate entry/exit, parking space management</td>
+<td>⚙️ <strong>Power App</strong> — Yard inventory tracking app with map-based location for outdoor lumber yard</td>
+<td>⚙️ <strong>Oracle WMS Cloud yard mgmt</strong> — Yard operations with location mapping for outdoor areas</td>
+</tr>
+<td>WMS-008</td>
+<td>WMS-ERP Integration</td>
+<td>⚠️ Oracle (separate cloud)</td>
+<td>✅ EWM embedded in S/4HANA</td>
+<td>✅ WMS native in D365 SCM</td>
+<td>⚙️ <strong>OIC prebuilt adapter</strong> — Oracle WMS Cloud connects to Fusion SCM via Integration Cloud; real-time sync requires careful latency tuning</td>
+</tr>
+</tbody></table></div>
+
+<h3>2.5 Point-of-Sale (POS) & Retail — <strong>THE CRITICAL GAPS</strong></h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>POS-001</td>
+<td>1,000 POS Terminals</td>
+<td>🔧 SAP, ❌ Oracle</td>
+<td>⚙️ <strong>SAP Customer Checkout 11</strong> — Redesigned for scale; supports multi-register, headless API architecture; <strong>verify proven deployments at 1K+ terminals</strong></td>
+<td>✅ <strong>D365 Commerce POS</strong> — Proven at scale (Walmart, retail chains); Commerce Scale Unit (CSU) handles 1K+ terminals</td>
+<td>⚙️ <strong>Oracle Retail Xstore</strong> — Enterprise retail POS used by major retailers (Gap, American Eagle); proven at 1K+ terminals. <strong>Must integrate with Fusion SCM via OIC</strong></td>
+</tr>
+<td>POS-002</td>
+<td>Offline Mode</td>
+<td>⚠️ SAP, ❌ Oracle</td>
+<td>⚙️ <strong>SAP CCO offline</strong> — CCO v11 has offline transaction queue; syncs on reconnect. <strong>Limitation: offline duration and data volume need validation</strong></td>
+<td>✅ <strong>CSU offline mode</strong> — Full offline capability; stores complete transaction locally; 8+ hours proven; auto-sync on reconnect</td>
+<td>⚙️ <strong>Oracle Xstore offline</strong> — Xstore has robust offline mode with local database; proven for extended offline in retail. <strong>Integrates with Oracle Retail cloud</strong></td>
+</tr>
+<td>POS-005</td>
+<td>Loyalty Integration</td>
+<td>⚙️ SAP</td>
+<td>⚙️ <strong>SAP Loyalty Management → CCO</strong> — Loyalty engine on SAP Cloud; CCO calls loyalty API for earn/redeem. Requires BTP integration</td>
+<td>✅ <strong>Native</strong> — D365 Commerce loyalty engine built-in</td>
+<td>⚙️ <strong>Oracle CrowdTwist → Xstore</strong> — Loyalty engine in Oracle CX; Xstore calls CrowdTwist API for earn/redeem</td>
+</tr>
+<td>POS-010</td>
+<td>Quantity Break Pricing</td>
+<td>⚙️ SAP/Oracle</td>
+<td>⚙️ <strong>SAP Retail Pricing</strong> — Quantity-based pricing conditions in SD; applied at POS via pricing engine call to S/4</td>
+<td>✅ <strong>Native</strong> — D365 Commerce quantity discounts built-in</td>
+<td>⚙️ <strong>Oracle Retail Price Management (RPM)</strong> — Quantity break pricing rules in RPM; pushed to Xstore</td>
+</tr>
+<td>POS-012</td>
+<td>Receipt Printing (BIR format)</td>
+<td>🔧 All 3</td>
+<td>🔧 <strong>Custom receipt template</strong> — BIR-compliant layout built in CCO receipt designer; TIN, business name, permit number</td>
+<td>🔧 <strong>Custom receipt template</strong> — BIR-compliant layout built in D365 Commerce receipt designer</td>
+<td>🔧 <strong>Custom receipt template</strong> — BIR-compliant layout in Xstore receipt designer</td>
+</tr>
+<td>POS-014a</td>
+<td>Senior/PWD Discount (PH Legal)</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>Custom pricing rule in SAP</strong> — SC/PWD 20% discount as pricing condition with ID-based validation; BIR logs via custom BTP app</td>
+<td>⚙️ <strong>Custom pricing rule in D365 Commerce</strong> — SC/PWD discount as retail discount with ID capture; BIR-compliant audit log via extension</td>
+<td>⚙️ <strong>Custom pricing rule in Xstore</strong> — SC/PWD discount as promotion rule with ID-based trigger; BIR logs via custom extension</td>
+</tr>
+<td>POS-015</td>
+<td>Gift Card / Store Credit</td>
+<td>⚙️ SAP/Oracle</td>
+<td>⚙️ <strong>SAP Gift Card</strong> solution or BTP extension for gift card management with issuance, reload, redemption</td>
+<td>✅ <strong>Native</strong> — D365 Commerce gift card module</td>
+<td>⚙️ <strong>Oracle Retail Gift Card</strong> — Oracle Retail has gift card module; integrates with Xstore</td>
+</tr>
+<td>POS-016</td>
+<td>Catch-Weight at POS</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP CCO + EWM catch-weight</strong> — Variable weight entry at POS; price calculated per unit of measure; integrates with EWM stock</td>
+<td>⚙️ <strong>D365 Commerce + SCM catch-weight</strong> — Variable weight entry at POS; dual-UOM pricing</td>
+<td>⚙️ <strong>Oracle Xstore native catch-weight</strong> — Xstore supports variable weight/measure selling natively for retail; integrates with RMS</td>
+</tr>
+<td>POS-017</td>
+<td>Paint Mixing / Custom SKU</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>BTP extension</strong> — Custom SKU generator app linked to CCO; base paint + colorant inventory deduction in S/4</td>
+<td>⚙️ <strong>D365 Commerce extension</strong> — Custom SKU generator as POS extension; kit/bom explosion for base paint + colorant</td>
+<td>⚙️ <strong>Oracle Xstore + RMS</strong> — Custom item assembly in Xstore; bill of material for paint mixing in RMS</td>
+</tr>
+<td>POS-018</td>
+<td>Age-Restricted Prompts</td>
+<td>⚙️ SAP, 🔧 Oracle</td>
+<td>⚙️ <strong>SAP CCO configuration</strong> — Age-restriction prompt on flagged items; cashier confirmation required</td>
+<td>✅ <strong>Native</strong> — Age restriction prompts in D365 Commerce</td>
+<td>⚙️ <strong>Oracle Xstore configuration</strong> — Age-restriction prompt on restricted items</td>
+</tr>
+<td>POS-019</td>
+<td>Warranty Claim Registration</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Service Cloud</strong> — Warranty registration at POS with service ticket creation; vendor return tracking integration</td>
+<td>⚙️ <strong>D365 Customer Service + Commerce</strong> — Warranty claim created at POS; ticket routed to service team</td>
+<td>⚙️ <strong>Oracle CX Service + Xstore</strong> — Warranty claim at POS; service ticket in Oracle CX</td>
+</tr>
+<td>POS-020</td>
+<td>Layaway / Installment Sales</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>BTP custom app</strong> — Layaway management with deposit collection, schedule, inventory reservation in S/4</td>
+<td>⚙️ <strong>D365 Commerce extension</strong> — Layaway module as POS extension with order management integration</td>
+<td>⚙️ <strong>Oracle Xstore extension</strong> — Layaway/special order module in Xstore with Oracle Order Management</td>
+</tr>
+<td>POS-022</td>
+<td>Employee Discount</td>
+<td>⚙️ SAP/Oracle</td>
+<td>⚙️ <strong>SAP HR-SD integration</strong> — Employee ID badge → SuccessFactors lookup → discount condition applied in CCO</td>
+<td>⚙️ <strong>D365 Commerce + HR</strong> — Employee badge scan → D365 HR lookup → discount applied at POS</td>
+<td>⚙️ <strong>Oracle HCM-Xstore integration</strong> — Employee ID → HCM lookup → discount applied in Xstore</td>
+</tr>
+<td>POS-023</td>
+<td>Store-Level Delivery Scheduling</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Commerce + S/4 Delivery</strong> — Delivery scheduling in Commerce Cloud; fulfillment in S/4 LE</td>
+<td>⚙️ <strong>D365 Commerce + Field Service</strong> — Delivery scheduling with route optimization</td>
+<td>⚙️ <strong>Oracle Xstore + Logistics</strong> — Delivery scheduling at POS; fulfillment in Oracle Logistics Cloud</td>
+</tr>
+</tbody></table></div>
+
+<h3>2.6 Ecommerce (ECOM)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>ECOM-006</td>
+<td>Payment Gateway (PH)</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Commerce + BTP Integration</strong> — Custom payment adapter for PayMongo/Dragonpay/GCash built on Commerce extension framework</td>
+<td>⚙️ <strong>D365 Commerce payment connector</strong> — Custom payment connector for PH gateways using Commerce extensibility</td>
+<td>⚙️ <strong>Oracle Commerce + OIC</strong> — Custom payment integration adapter for PH gateways</td>
+</tr>
+<td>ECOM-012</td>
+<td>Delivery Partner (3PL)</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>BTP Integration</strong> — Build adapters for Lalamove/Transportify APIs via SAP CPI</td>
+<td>⚙️ <strong>Azure Logic Apps</strong> — Pre-built/custom connectors for Lalamove/Transportify APIs</td>
+<td>⚙️ <strong>OIC adapters</strong> — Build integration adapters for PH 3PL carriers</td>
+</tr>
+<td>ECOM-013</td>
+<td>Marketplace (Lazada/Shopee)</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Commerce + CPI</strong> — Marketplace integration via SAP Commerce Marketplace extension or CPI adapters</td>
+<td>⚙️ <strong>Azure Logic Apps + D365 Commerce</strong> — Marketplace order pull, inventory sync via connectors</td>
+<td>⚙️ <strong>Oracle Commerce + OIC</strong> — Marketplace API integration via Oracle Integration Cloud</td>
+</tr>
+<td>ECOM-014</td>
+<td>Ship-from-Store</td>
+<td>⚠️ Oracle</td>
+<td>⚙️ <strong>SAP CAR + EWM</strong> — Ship-from-store with real-time ATP check across stores</td>
+<td>⚙️ <strong>D365 Commerce</strong> — Native ship-from-store with store inventory ATP</td>
+<td>⚙️ <strong>Oracle Xstore + Order Management</strong> — Ship-from-store routing via Oracle Order Management with store ATP</td>
+</tr>
+<td>ECOM-015</td>
+<td>Omni-channel Ticketing</td>
+<td>⚠️ All 3</td>
+<td>✅ <strong>SAP Service Cloud</strong> — Omnichannel ticketing with CRM integration</td>
+<td>✅ <strong>D365 Customer Service</strong> — Omnichannel ticketing with unified queue</td>
+<td>✅ <strong>Oracle CX Service</strong> — Omnichannel ticketing with SLA management</td>
+</tr>
+</tbody></table></div>
+
+<h3>2.7 HR & Payroll (HR)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>HR-002</td>
+<td>PH Statutory Deductions</td>
+<td>⚠️ SAP, 🔧 D365, ⚠️ Oracle</td>
+<td>⚙️ <strong>SuccessFactors PH Payroll</strong> — SAP has growing PH payroll localization; SSS, PhilHealth, Pag-IBIG configured in payroll rules. <strong>Verify completeness with SAP PH partner</strong></td>
+<td>🔧 <strong>ISV PH Payroll Partner</strong> — D365 has no native PH payroll; must use ISV (e.g., Itsubmit, SL Global, or custom Power Platform payroll). <strong>Highest risk</strong></td>
+<td>⚙️ <strong>Oracle HCM Payroll PH</strong> — Oracle has PH payroll localization; statutory deductions configured as payroll elements. <strong>Verify completeness with Oracle PH partner</strong></td>
+</tr>
+<td>HR-003</td>
+<td>BIR Withholding Tax (Comp)</td>
+<td>⚠️ SAP, 🔧 D365, ⚠️ Oracle</td>
+<td>⚙️ <strong>SuccessFactors Payroll PH</strong> — TRAIN law tax tables configured; verify auto-update mechanism</td>
+<td>🔧 <strong>ISV PH Payroll</strong> — BIR compensation withholding tax tables in ISV payroll</td>
+<td>⚙️ <strong>Oracle HCM Payroll PH</strong> — TRAIN law tax tables configured as payroll balance definitions</td>
+</tr>
+<td>HR-013</td>
+<td>Employee Loan & Advance</td>
+<td>🔧 D365</td>
+<td>⚙️ <strong>SuccessFactors Payroll</strong> — Loan deduction elements configured in payroll with amortization schedule</td>
+<td>⚙️ <strong>ISV Payroll or Power App</strong> — Loan management app with payroll deduction integration</td>
+<td>⚙️ <strong>Oracle HCM Payroll</strong> — Loan deduction elements configured in payroll</td>
+</tr>
+<td>HR-014</td>
+<td>Grievance & Whistleblower</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SuccessFactors Case Management</strong> or BTP custom app for anonymous submission</td>
+<td>⚙️ <strong>Power App + D365 HR</strong> — Anonymous grievance submission app with case routing</td>
+<td>⚙️ <strong>Oracle HCM Journeys + VBCS</strong> — Grievance workflow with anonymous submission option</td>
+</tr>
+<td>HR-015</td>
+<td>PH Statutory Benefits & Claims</td>
+<td>🔧 D365</td>
+<td>⚙️ <strong>SuccessFactors Benefits</strong> — PH statutory benefits configured; SSS salary loan, PhilHealth claims workflows</td>
+<td>🔧 <strong>ISV Payroll + Power App</strong> — PH statutory benefits managed in ISV payroll; claims via Power App</td>
+<td>⚙️ <strong>Oracle HCM Benefits PH</strong> — PH statutory benefits configured as benefit plans</td>
+</tr>
+</tbody></table></div>
+
+<h3>2.8 Non-Functional Requirements (NFR)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>NFR-009</td>
+<td>PH Localization</td>
+<td>⚠️ All 3</td>
+<td>⚠️ <strong>SAP PH localization</strong> — Growing; BIR, VAT basic; gaps in eFPS, BIR CAS, LGU permits. <strong>Needs PH implementation partner with localization assets</strong></td>
+<td>⚠️ <strong>D365 PH localization</strong> — Limited; basic VAT/WHT; gaps in BIR forms, eFPS, CAS, LGU. <strong>Needs PH ISV ecosystem</strong></td>
+<td>⚠️ <strong>Oracle PH localization</strong> — Limited; basic VAT/WHT; gaps in BIR forms, eFPS, CAS. <strong>Needs PH partner with localization assets</strong></td>
+</tr>
+<td>NFR-011</td>
+<td>Offline POS (≥ 8 hours)</td>
+<td>⚠️ SAP, ❌ Oracle</td>
+<td>⚙️ <strong>SAP CCO v11 offline</strong> — Transaction queuing with local DB; <strong>needs load testing for 8-hour window</strong></td>
+<td>✅ <strong>D365 CSU offline</strong> — Proven extended offline; full transaction capability</td>
+<td>⚙️ <strong>Oracle Xstore offline</strong> — Robust offline with local Oracle DB; <strong>proven in retail but needs validation with Fusion integration</strong></td>
+</tr>
+<td>NFR-017</td>
+<td>LGU Business Permit Tracking</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>BTP custom app</strong> — LGU permit calendar per location with renewal alerts and document storage</td>
+<td>⚙️ <strong>Power App</strong> — LGU permit tracker with Dataverse; renewal alerts via Power Automate</td>
+<td>⚙️ <strong>VBCS custom app</strong> — LGU permit calendar with OIC workflow for renewal alerts</td>
+</tr>
+<td>NFR-018</td>
+<td>ESG & Sustainability</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Sustainability Control Tower</strong> — Carbon footprint tracking, ESG reporting, waste diversion metrics</td>
+<td>🔧 <strong>Power BI + Power App</strong> — Custom ESG data collection and reporting dashboards</td>
+<td>🔧 <strong>Oracle ESG reporting</strong> — Sustainability analytics in Oracle Analytics Cloud + custom VBCS app</td>
+</tr>
+<td>NFR-019</td>
+<td>Fleet Optimization</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Transportation Management + BTP IoT</strong> — Route optimization, telematics, fuel tracking</td>
+<td>⚙️ <strong>Azure Maps + IoT + Power App</strong> — Fleet tracking, route optimization, fuel monitoring</td>
+<td>⚙️ <strong>Oracle Transportation Management + IoT Cloud</strong> — Route planning, telematics, fleet analytics</td>
+</tr>
+<td>NFR-021</td>
+<td>Smart Store Operations</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP IoT + BTP</strong> — Mobile POS queue busting, smart safe integration, 3D rendering app</td>
+<td>⚙️ <strong>Azure IoT + D365 Commerce + Power Apps</strong> — Mobile POS, smart safe, smart locker integration</td>
+<td>⚙️ <strong>Oracle IoT + Xstore</strong> — Mobile POS, smart safe, custom 3D rendering app</td>
+</tr>
+<td>NFR-022a</td>
+<td>BIR CAS Registration</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>BTP custom app</strong> — CAS registration status per location, permit renewal tracking, compliance docs</td>
+<td>⚙️ <strong>Power App</strong> — CAS registration tracker with Dataverse, renewal alerts, compliance documents</td>
+<td>⚙️ <strong>VBCS custom app</strong> — CAS registration status dashboard with OIC workflow</td>
+</tr>
+<td>NFR-024</td>
+<td>IT Asset Lifecycle</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP EAM / Asset Manager</strong> — IT hardware asset tracking with maintenance scheduling</td>
+<td>⚙️ <strong>Power App + Azure AD</strong> — IT asset registry with Intune integration for device management</td>
+<td>⚙️ <strong>Oracle Assets + VBCS</strong> — IT asset tracking with custom lifecycle workflow</td>
+</tr>
+</tbody></table></div>
+
+<h3>2.9 Cross-Functional (GOV, SRV, WSL, MER, DOC)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Original Gap</th>
+<th>SAP Stack Resolution</th>
+<th>MS Stack Resolution</th>
+<th>Oracle Stack Resolution</th>
+</tr></thead><tbody>
+<td>GOV-001</td>
+<td>Corporate Governance & Legal</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP GRC</strong> — Governance, risk, compliance; board resolutions in custom BTP app</td>
+<td>⚙️ <strong>Power App + M365</strong> — Legal case management, SOP governance in SharePoint + Power Automate</td>
+<td>⚙️ <strong>Oracle GRC + VBCS</strong> — Corporate governance, legal tracking in custom app</td>
+</tr>
+<td>GOV-003</td>
+<td>Real Estate & Lease Management</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP RE FX (Flexible Real Estate)</strong> — Lease administration, rent processing, property tax</td>
+<td>⚙️ <strong>Power App + D365 Finance</strong> — Lease tracking app with rent payment integration</td>
+<td>⚙️ <strong>Oracle Real Estate Management</strong> — Lease admin, rent processing, property tax</td>
+</tr>
+<td>GOV-004</td>
+<td>Health, Safety & Environment</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP EHS (Environment, Health & Safety)</strong> — Incident reporting, safety inspections, corrective actions</td>
+<td>⚙️ <strong>Power App + D365</strong> — OHS incident reporting app with inspection scheduling</td>
+<td>⚙️ <strong>Oracle EHS</strong> — Incident management, safety inspections, corrective actions</td>
+</tr>
+<td>GOV-005</td>
+<td>Engineering & Construction</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP S/4HANA Project System (PS)</strong> — Construction project management, bidding, supervision</td>
+<td>⚙️ <strong>D365 Project Operations + Power App</strong> — Construction project management</td>
+<td>⚙️ <strong>Oracle Aconex + Construction Intelligence</strong> — New store construction, bidding, supervision, commissioning</td>
+</tr>
+<td>GOV-007</td>
+<td>Fleet Operations & Driver Mgmt</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP TM + BTP IoT</strong> — Route planning, driver scoring, fuel monitoring, telematics</td>
+<td>⚙️ <strong>Azure Maps + IoT + Power App</strong> — Fleet tracking, driver scoring, fuel management</td>
+<td>⚙️ <strong>Oracle Transportation Mgmt + IoT</strong> — Route planning, telematics, fleet analytics</td>
+</tr>
+<td>GOV-008</td>
+<td>Sustainability & Environmental</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Sustainability Control Tower</strong> — GHG tracking, waste reporting, social impact</td>
+<td>⚙️ <strong>Power BI + Power App</strong> — Custom sustainability metrics dashboard</td>
+<td>⚙️ <strong>Oracle Sustainability</strong> — Environmental compliance tracking</td>
+</tr>
+<td>GOV-009</td>
+<td>Innovation & Digital Transformation</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Business AI + BTP</strong> — AI personalization, RPA, computer vision, predictive analytics</td>
+<td>⚙️ <strong>Azure AI + Copilot + Power Automate</strong> — AI personalization, RPA, computer vision</td>
+<td>⚙️ <strong>Oracle AI Services</strong> — Predictive analytics, NLP, computer vision</td>
+</tr>
+<td>GOV-010</td>
+<td>Marketing Campaign Management</td>
+<td>🔧 All 3</td>
+<td>✅ <strong>SAP Emarsys</strong> — Full marketing automation, loyalty governance, social, PR, crisis management</td>
+<td>✅ <strong>D365 Customer Insights – Journeys</strong> — Campaign planning, execution, measurement</td>
+<td>✅ <strong>Oracle CX Marketing</strong> — Campaign management, email, social, analytics</td>
+</tr>
+<td>GOV-016</td>
+<td>Employee Training & Development</td>
+<td>🔧 All 3</td>
+<td>✅ <strong>SuccessFactors Learning</strong> — LMS with training programs, skills certification, compliance tracking</td>
+<td>⚙️ <strong>D365 HR + LinkedIn Learning</strong> — Training management with LinkedIn Learning integration</td>
+<td>✅ <strong>Oracle HCM Learning</strong> — LMS with training programs, compliance tracking</td>
+</tr>
+<td>GOV-017</td>
+<td>Employee Performance & Career</td>
+<td>🔧 All 3</td>
+<td>✅ <strong>SuccessFactors Performance & Goals + Succession</strong> — Full talent management suite</td>
+<td>⚙️ <strong>D365 HR + LinkedIn Talent</strong> — Performance reviews, succession, career development</td>
+<td>✅ <strong>Oracle HCM Talent</strong> — Performance management, succession planning, career development</td>
+</tr>
+<td>GOV-018</td>
+<td>Store Performance Management</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP CAR + SAC</strong> — Store KPIs, scorecard, benchmarking, action plan tracking</td>
+<td>⚙️ <strong>Power BI + D365</strong> — Store scorecard dashboards with action plan tracking in Power App</td>
+<td>⚙️ <strong>Oracle BI + Fusion</strong> — Store performance dashboards with custom action plans</td>
+</tr>
+<td>GOV-025</td>
+<td>Sales Commission Management</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP Sales Cloud + S/4</strong> — Commission calculation with GL posting and payroll integration</td>
+<td>⚙️ <strong>D365 Sales + Finance</strong> — Commission plans with accrual and payroll posting</td>
+<td>⚙️ <strong>Oracle Sales + Fusion</strong> — Commission calculation with GL posting</td>
+</tr>
+<td>SRV-001</td>
+<td>Installation & Services</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP S/4 Service Order</strong> or <strong>SAP Field Service Management</strong> — Service order creation, scheduling, revenue recognition</td>
+<td>⚙️ <strong>D365 Field Service</strong> — Service scheduling, resource allocation, completion, revenue recognition</td>
+<td>⚙️ <strong>Oracle Field Service</strong> — Service scheduling, resource management, revenue recognition</td>
+</tr>
+<td>DOC-007</td>
+<td>Hazardous Waste Disposal</td>
+<td>🔧 All 3</td>
+<td>⚙️ <strong>SAP EHS</strong> — Hazmat tracking, waste manifest, transporter accreditation, disposal reporting</td>
+<td>⚙️ <strong>Power App</strong> — DENR-compliant hazmat tracking app with quarterly reporting</td>
+<td>⚙️ <strong>Oracle EHS</strong> — Hazmat tracking with regulatory reporting</td>
+</tr>
+<td>DOC-008</td>
+<td>Enterprise Retention & Archiving</td>
+<td>⚙️ All 3</td>
+<td>✅ <strong>SAP ILM (Information Lifecycle Management)</strong> — Configurable retention per doc type, legal hold, secure destruction</td>
+<td>⚙️ <strong>SharePoint compliance + D365</strong> — Retention policies per document type with legal hold</td>
+<td>⚙️ <strong>Oracle Records Management</strong> — Retention policies, legal hold, secure destruction</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>3. Updated Fit Assessment — Core ERP vs. Full Stack</h2>
+
+<p>The table below shows how the fit score changes when the <strong>complete vendor portfolio</strong> is applied</p>
+<p>instead of just the core ERP module.</p>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Category</th>
+<th>Must Have Count</th>
+<th>SAP Core Only</th>
+<th>SAP Full Stack</th>
+<th>MS Core Only</th>
+<th>MS Full Stack</th>
+<th>Oracle Core Only</th>
+<th>Oracle Full Stack</th>
+</tr></thead><tbody>
+<td>R1. Financial Management</td>
+<td>22</td>
+<td>15 ✅ · 5 ⚙️ · 2 🔧</td>
+<td>15 ✅ · 6 ⚙️ · 1 🔧</td>
+<td>13 ✅ · 6 ⚙️ · 3 🔧</td>
+<td>14 ✅ · 6 ⚙️ · 2 🔧</td>
+<td>14 ✅ · 5 ⚙️ · 3 🔧</td>
+<td>15 ✅ · 5 ⚙️ · 2 🔧</td>
+</tr>
+<td>R2. Inventory</td>
+<td>12</td>
+<td>10 ✅ · 1 ⚙️ · 1 🔧</td>
+<td>10 ✅ · 2 ⚙️</td>
+<td>9 ✅ · 2 ⚙️ · 1 🔧</td>
+<td>10 ✅ · 2 ⚙️</td>
+<td>8 ✅ · 3 ⚙️ · 1 🔧</td>
+<td>10 ✅ · 2 ⚙️</td>
+</tr>
+<td>R3. Procurement</td>
+<td>12</td>
+<td>10 ✅ · 2 ⚙️</td>
+<td>11 ✅ · 1 ⚙️</td>
+<td>8 ✅ · 2 ⚙️ · 2 🔧</td>
+<td>10 ✅ · 2 ⚙️</td>
+<td>8 ✅ · 3 ⚙️ · 1 🔧</td>
+<td>10 ✅ · 2 ⚙️</td>
+</tr>
+<td>R4. Warehouse</td>
+<td>5</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+<td>4 ✅ · 1 🔧</td>
+<td>4 ✅ · 1 ⚙️</td>
+<td>3 ✅ · 2 🔧</td>
+<td>4 ✅ · 1 ⚙️</td>
+</tr>
+<td>R5. POS & Retail</td>
+<td>17</td>
+<td>5 ✅ · 6 ⚙️ · 6 🔧</td>
+<td>8 ✅ · 7 ⚙️ · 2 🔧</td>
+<td>12 ✅ · 4 ⚙️ · 1 🔧</td>
+<td>13 ✅ · 4 ⚙️</td>
+<td>0 ✅ · 0 ⚙️ · 17 🔧</td>
+<td>9 ✅ · 6 ⚙️ · 2 🔧</td>
+</tr>
+<td>R6. Ecommerce</td>
+<td>9</td>
+<td>6 ✅ · 2 ⚙️ · 1 🔧</td>
+<td>7 ✅ · 2 ⚙️</td>
+<td>8 ✅ · 1 ⚙️</td>
+<td>8 ✅ · 1 ⚙️</td>
+<td>4 ✅ · 4 ⚙️ · 1 🔧</td>
+<td>7 ✅ · 2 ⚙️</td>
+</tr>
+<td>R7. Supply Chain Planning</td>
+<td>3</td>
+<td>3 ✅</td>
+<td>3 ✅</td>
+<td>2 ✅ · 1 ⚙️</td>
+<td>3 ✅</td>
+<td>2 ✅ · 1 ⚙️</td>
+<td>3 ✅</td>
+</tr>
+<td>R8. HR & Payroll</td>
+<td>11</td>
+<td>6 ✅ · 4 ⚙️ · 1 🔧</td>
+<td>7 ✅ · 3 ⚙️ · 1 🔧</td>
+<td>3 ✅ · 4 ⚙️ · 4 🔧</td>
+<td>5 ✅ · 4 ⚙️ · 2 🔧</td>
+<td>6 ✅ · 4 ⚙️ · 1 🔧</td>
+<td>7 ✅ · 3 ⚙️ · 1 🔧</td>
+</tr>
+<td>R9. CRM & Loyalty</td>
+<td>5</td>
+<td>4 ✅ · 1 ⚙️</td>
+<td>5 ✅</td>
+<td>4 ✅ · 1 ⚙️</td>
+<td>5 ✅</td>
+<td>3 ✅ · 2 ⚙️</td>
+<td>4 ✅ · 1 ⚙️</td>
+</tr>
+<td>R10. Analytics</td>
+<td>5</td>
+<td>4 ✅ · 1 🔧</td>
+<td>5 ✅</td>
+<td>4 ✅ · 1 🔧</td>
+<td>5 ✅</td>
+<td>3 ✅ · 2 🔧</td>
+<td>4 ✅ · 1 🔧</td>
+</tr>
+<td>R11. Intercompany</td>
+<td>5</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+</tr>
+<td>R12. Document Mgmt</td>
+<td>5</td>
+<td>3 ✅ · 2 ⚙️</td>
+<td>4 ✅ · 1 ⚙️</td>
+<td>3 ✅ · 2 ⚙️</td>
+<td>3 ✅ · 2 ⚙️</td>
+<td>3 ✅ · 2 ⚙️</td>
+<td>3 ✅ · 2 ⚙️</td>
+</tr>
+<td>R13. Master Data</td>
+<td>5</td>
+<td>5 ✅</td>
+<td>5 ✅</td>
+<td>4 ✅ · 1 ⚙️</td>
+<td>4 ✅ · 1 ⚙️</td>
+<td>3 ✅ · 2 ⚙️</td>
+<td>4 ✅ · 1 ⚙️</td>
+</tr>
+<td>R14. Non-Functional</td>
+<td>14</td>
+<td>8 ✅ · 4 ⚙️ · 2 🔧</td>
+<td>9 ✅ · 4 ⚙️ · 1 🔧</td>
+<td>9 ✅ · 4 ⚙️ · 1 🔧</td>
+<td>10 ✅ · 3 ⚙️ · 1 🔧</td>
+<td>7 ✅ · 5 ⚙️ · 2 🔧</td>
+<td>9 ✅ · 4 ⚙️ · 1 🔧</td>
+</tr>
+<td><strong>Total Must Have Met (✅ + ⚙️)</strong></td>
+<td>~130</td>
+<td><strong>~99</strong></td>
+<td><strong>~109</strong></td>
+<td><strong>~93</strong></td>
+<td><strong>~106</strong></td>
+<td><strong>~84</strong></td>
+<td><strong>~103</strong></td>
+</tr>
+<td><strong>Remaining 🔧 Gaps</strong></td>
+<td></td>
+<td>~16</td>
+<td>~8</td>
+<td>~19</td>
+<td>~7</td>
+<td>~21</td>
+<td>~10</td>
+</tr>
+</tbody></table></div>
+
+<h3>Key Insight</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Metric</th>
+<th>SAP</th>
+<th>Microsoft</th>
+<th>Oracle</th>
+</tr></thead><tbody>
+<td><strong>Core ERP only — Must Have gaps (🔧+❌)</strong></td>
+<td>~16</td>
+<td>~19</td>
+<td>~21</td>
+</tr>
+<td><strong>Full stack — Must Have gaps (🔧+❌)</strong></td>
+<td>~8</td>
+<td>~7</td>
+<td>~10</td>
+</tr>
+<td><strong>Gaps resolved by full stack</strong></td>
+<td><strong>+8 resolved</strong></td>
+<td><strong>+12 resolved</strong></td>
+<td><strong>+11 resolved</strong></td>
+</tr>
+<td><strong>Remaining Must Have gaps</strong></td>
+<td>8 (mostly PH-localization)</td>
+<td>7 (mostly PH-payroll)</td>
+<td>10 (POS integration + PH-localization)</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>The full vendor stack closes 8–12 gaps per vendor.</strong> The remaining gaps are overwhelmingly</blockquote>
+<blockquote><strong>Philippine-specific regulatory requirements</strong> (BIR forms, eFPS, PH payroll statutory, LGU permits,</blockquote>
+<blockquote>BIR CAS registration) that no global vendor handles natively — all need a Philippines-local</blockquote>
+<blockquote>implementation partner or ISV.</blockquote>
+
+<hr>
+
+<h2>4. Remaining Gaps After Full Stack</h2>
+
+<p>These requirements remain 🔧 even with the complete vendor stack. They are the <strong>true implementation risks</strong>.</p>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Req ID</th>
+<th>Requirement</th>
+<th>Priority</th>
+<th>Why All 3 Still Gap</th>
+<th>Mitigation</th>
+</tr></thead><tbody>
+<td>FIN-008</td>
+<td>BIR Tax Return Generation</td>
+<td>Must</td>
+<td>No global ERP has native BIR 2550M/1601-E/1702 form generation</td>
+<td>PH localization partner builds form templates; SAP BTP / Power Automate / OIC for eFPS submission</td>
+</tr>
+<td>FIN-031</td>
+<td>BIR eFPS Filing</td>
+<td>Must</td>
+<td>eFPS is a PH government portal; no ERP has direct API</td>
+<td>PH ISV/partner builds integration adapter; RPA-based submission via Power Automate/CPI/OIC</td>
+</tr>
+<td>FIN-032</td>
+<td>E-Wallet Settlement</td>
+<td>Must</td>
+<td>GCash/Maya settlement file formats are PH-specific</td>
+<td>Custom integration adapter on BTP/Azure Logic Apps/OIC</td>
+</tr>
+<td>FIN-024</td>
+<td>Employee Gratuity (RA 7641)</td>
+<td>Must</td>
+<td>PH-specific retirement law; no global payroll handles natively</td>
+<td>Configure in payroll rules (SuccessFactors/ISV/Oracle HCM) with PH legal counsel validation</td>
+</tr>
+<td>POS-014a</td>
+<td>Senior/PWD Discount (PH)</td>
+<td>Must</td>
+<td>RA 9994/10754 is PH-specific; no POS has this out-of-box</td>
+<td>Custom pricing rule in POS (CCO/D365 Commerce/Xstore) with PH legal validation</td>
+</tr>
+<td>POS-012</td>
+<td>BIR Receipt Format</td>
+<td>Must</td>
+<td>BIR registered sales invoice format is PH-specific</td>
+<td>Custom receipt template in each POS with BIR compliance review</td>
+</tr>
+<td>POS-017</td>
+<td>Paint Mixing / Custom SKU</td>
+<td>Must</td>
+<td>Retail-specific custom SKU generation; no ERP handles natively</td>
+<td>Extension in POS (CCO/D365/Xstore) with base paint + colorant BOM</td>
+</tr>
+<td>NFR-022a</td>
+<td>BIR CAS Registration</td>
+<td>Must</td>
+<td>PH-specific regulatory tracking per location</td>
+<td>Custom app (BTP/Power Apps/VBCS) for CAS registration status per store</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total remaining gaps: 8 Must Have requirements</strong> — all are <strong>Philippine regulatory/compliance</strong> requirements. These are not product deficiencies; they are localization gaps that require a <strong>Philippines-based implementation partner</strong> regardless of which vendor is chosen.</p>
+
+<hr>
+
+<h2>5. Integration Architecture — Full Stack</h2>
+
+<h3>5.1 SAP Stack Integration Map</h3>
+
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    SAP BTP (Integration Suite)                │
+│           CPI / API Management / Event Mesh                  │
+├──────────┬──────────┬──────────┬──────────┬─────────────────┤
+│          │          │          │          │                  │
+│  ┌───────▼──┐  ┌────▼───┐  ┌──▼────┐  ┌──▼──────┐  ┌─────▼─────┐
+│  │SAP CCO   │  │SAP CCv2│  │SAP    │  │Success- │  │SAP Ariba  │
+│  │(1,000    │  │(Ecom)  │  │EWM    │  │Factors  │  │(Vendors)  │
+│  │POS)      │  │        │  │(5 DCs)│  │(HR/Pay) │  │           │
+│  └──────┬───┘  └───┬────┘  └──┬────┘  └──┬──────┘  └─────┬─────┘
+│         │          │          │          │               │
+│    ┌────▼──────────▼──────────▼──────────▼───────────────▼────┐
+│    │              SAP S/4HANA Cloud                           │
+│    │    GL · AP · AR · MM · SD · CO · PP · Treasury           │
+│    └─────────────────────────────────────────────────────────┘
+│                          │
+│    ┌─────────────────────▼───────────────────────────────────┐
+│    │  SAP Analytics Cloud · SAP CAR · SAP MDG · SAP ILM     │
+│    └─────────────────────────────────────────────────────────┘
+│
+│    Integration Points:
+│    • POS → S/4: CCO → CPI → S/4 (real-time sales + inventory)
+│    • Ecom → S/4: CCv2 → CPI → S/4 (orders + inventory + price)
+│    • WMS → S/4: EWM embedded (same system)
+│    • HR → S/4: SuccessFactors → CPI → S/4 (payroll postings)
+│    • Vendors → S/4: Ariba → CPI → S/4 (POs + invoices)
+│    • Banks → S/4: Multi-Bank Connectivity
+│    • PH ISV → S/4: BTP custom extensions (BIR, eFPS)
+└─────────────────────────────────────────────────────────────┘</code></pre>
+
+<p><strong>Integration count: ~8 major integration flows.</strong> SAP BTP CPI serves as the middleware hub.</p>
+<p>SAP has the most integrated stack (EWM is embedded in S/4HANA; SuccessFactors has growing S/4 integration).</p>
+
+<h3>5.2 Microsoft Stack Integration Map</h3>
+
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│               Azure (API Mgmt + Logic Apps + Service Bus)    │
+├──────────┬──────────┬──────────┬──────────┬─────────────────┤
+│          │          │          │          │                  │
+│  ┌───────▼────┐ ┌───▼────┐ ┌──▼─────┐ ┌─▼────────┐ ┌──────▼─────┐
+│  │D365 Commerce│ │D365 SCM│ │D365    │ │D365 HR + │ │Power       │
+│  │POS + Ecom  │ │WMS     │ │Finance │ │ISV Payroll│ │Platform    │
+│  │(1,000 POS) │ │(5 DCs) │ │        │ │          │ │(gap-fill)  │
+│  └──────┬─────┘ └───┬────┘ └──┬─────┘ └──┬───────┘ └──────┬─────┘
+│         │           │         │           │                │
+│    ┌────▼───────────▼─────────▼───────────▼────────────────▼────┐
+│    │         Dataverse (Common Data Platform)                   │
+│    └───────────────────────────────────────────────────────────┘
+│                          │
+│    ┌─────────────────────▼────────────────────────────────────┐
+│    │  Power BI · Azure Synapse · Azure AD · M365 / SharePoint │
+│    └──────────────────────────────────────────────────────────┘
+│
+│    Integration Points:
+│    • POS ↔ D365: Commerce POS ↔ Commerce HQ via CSU (native real-time)
+│    • Ecom ↔ D365: Commerce e-commerce ↔ native (same platform)
+│    • WMS ↔ D365: SCM WMS native (same app)
+│    • HR ↔ D365 Finance: ISV payroll → Dataverse → D365 Finance (GL posting)
+│    • Vendors: D365 vendor collaboration (native)
+│    • Banks: Azure Logic Apps → bank file import
+│    • PH ISV: Power Apps / Power Automate (BIR, eFPS)
+└─────────────────────────────────────────────────────────────┘</code></pre>
+
+<p><strong>Integration count: ~4 major flows (tightest integration).</strong> D365 Commerce, SCM, and Finance</p>
+<p>share the Dataverse. POS ↔ Commerce is native. WMS is in SCM (native). **Microsoft has the fewest</p>
+<p>integration points to manage**, which reduces implementation risk and ongoing maintenance.</p>
+
+<h3>5.3 Oracle Stack Integration Map</h3>
+
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│            Oracle Integration Cloud (OIC)                     │
+├──────────┬──────────┬──────────┬──────────┬─────────────────┤
+│          │          │          │          │                  │
+│  ┌───────▼──────┐┌──▼─────┐┌──▼──────┐┌──▼───────┐┌───────▼──────┐
+│  │Oracle Retail ││Oracle  ││Oracle   ││Oracle    ││Oracle Retail │
+│  │Xstore        ││WMS     ││Fusion   ││HCM Cloud ││Merchandising │
+│  │(1,000 POS)   ││Cloud   ││ERP + SCM││(HR/Pay)  ││(RMS/RPM)     │
+│  └──────┬───────┘└──┬─────┘└──┬──────┘└──┬───────┘└───────┬──────┘
+│         │           │         │           │                │
+│    ┌────▼───────────▼─────────▼───────────▼────────────────▼────┐
+│    │              Oracle Autonomous Data Warehouse               │
+│    └───────────────────────────────────────────────────────────┘
+│                          │
+│    ┌─────────────────────▼────────────────────────────────────┐
+│    │  Oracle Analytics Cloud · EPM Cloud · CX Unity           │
+│    └──────────────────────────────────────────────────────────┘
+│
+│    Integration Points:
+│    • POS → Fusion: Xstore → OIC → Fusion SCM (sales + inventory)
+│    • Ecom → Fusion: Commerce Cloud → OIC → Fusion Order Mgmt
+│    • WMS → Fusion: WMS Cloud → OIC → Fusion SCM (inventory sync)
+│    • Retail Mgmt → Fusion: RMS/RPM → OIC → Fusion (pricing, merch)
+│    • HR → Fusion: HCM Cloud → native → Fusion ERP (payroll posting)
+│    • Vendors: Oracle Supplier Portal → Fusion Procurement
+│    • Banks: OIC bank file adapters
+│    • PH ISV: VBCS custom extensions (BIR, eFPS)
+└─────────────────────────────────────────────────────────────┘</code></pre>
+
+<p><strong>Integration count: ~10+ major integration flows.</strong> Oracle has the most complex integration</p>
+<p>landscape because Retail Xstore, WMS Cloud, RMS, RPM, Commerce Cloud, and Fusion ERP/SCM are</p>
+<p>all <strong>separate cloud services</strong>. Each requires OIC orchestration. **This is Oracle's biggest</p>
+<p>implementation risk** — more moving parts, more latency tuning, more failure points.</p>
+
+<hr>
+
+<h2>6. Vendor Stack Risk Comparison</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Risk Factor</th>
+<th>SAP Full Stack</th>
+<th>Microsoft Full Stack</th>
+<th>Oracle Full Stack</th>
+</tr></thead><tbody>
+<td><strong>POS proven at 1K terminals</strong></td>
+<td>⚠️ CCO needs scale validation</td>
+<td>✅ D365 Commerce proven</td>
+<td>⚠️ Xstore proven standalone but <strong>Fusion integration unproven at this scale</strong></td>
+</tr>
+<td><strong>POS offline (8+ hours)</strong></td>
+<td>⚠️ CCO offline needs load testing</td>
+<td>✅ CSU offline proven</td>
+<td>⚠️ Xstore offline proven standalone but <strong>sync-to-Fusion on reconnect needs testing</strong></td>
+</tr>
+<td><strong>PH payroll</strong></td>
+<td>⚠️ SuccessFactors PH growing</td>
+<td>⚠️ ISV dependency — <strong>highest risk</strong></td>
+<td>⚠️ Oracle HCM PH localization needs validation</td>
+</tr>
+<td><strong>BIR/eFPS compliance</strong></td>
+<td>⚠️ PH partner needed</td>
+<td>⚠️ PH ISV needed</td>
+<td>⚠️ PH partner needed</td>
+</tr>
+<td><strong>Integration complexity</strong></td>
+<td>Medium (8 flows, EWM embedded)</td>
+<td><strong>Low (4 flows, Dataverse native)</strong></td>
+<td><strong>High (10+ flows, all separate clouds)</strong></td>
+</tr>
+<td><strong>Retail POS ↔ ERP real-time sync</strong></td>
+<td>⚠️ CCO → CPI → S/4 (2 hops)</td>
+<td>✅ POS ↔ Commerce HQ via CSU (1 hop, native)</td>
+<td>⚠️ Xstore → OIC → Fusion (2 hops)</td>
+</tr>
+<td><strong>Single vendor accountability</strong></td>
+<td>✅ All SAP (except PH ISV)</td>
+<td>✅ All Microsoft (except PH payroll ISV)</td>
+<td>⚠️ Oracle Retail + Oracle Fusion are <strong>different product lines</strong> with different roadmaps</td>
+</tr>
+<td><strong>Implementation timeline</strong></td>
+<td>18–24 months</td>
+<td>12–18 months</td>
+<td>18–24 months</td>
+</tr>
+<td><strong>5-year TCO</strong></td>
+<td>$$$ (highest)</td>
+<td>$$ (medium)</td>
+<td>$$ (medium-high)</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>7. Final Verdict — Full Stack</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th></th>
+<th>SAP Full Stack</th>
+<th>Microsoft Full Stack</th>
+<th>Oracle Full Stack</th>
+</tr></thead><tbody>
+<td><strong>Must Have coverage</strong></td>
+<td>~109/130 (84%)</td>
+<td>~106/130 (82%)</td>
+<td>~103/130 (79%)</td>
+</tr>
+<td><strong>Remaining Must Have gaps</strong></td>
+<td>8 (all PH-regulatory)</td>
+<td>7 (PH-payroll + PH-regulatory)</td>
+<td>10 (POS integration + PH-regulatory)</td>
+</tr>
+<td><strong>Integration simplicity</strong></td>
+<td>★★★☆☆</td>
+<td>★★★★★</td>
+<td>★★☆☆☆</td>
+</tr>
+<td><strong>POS maturity for big-box</strong></td>
+<td>★★★☆☆</td>
+<td>★★★★★</td>
+<td>★★★★☆ (with Xstore)</td>
+</tr>
+<td><strong>Supply chain depth</strong></td>
+<td>★★★★★</td>
+<td>★★★☆☆</td>
+<td>★★★★☆</td>
+</tr>
+<td><strong>HR/Payroll completeness</strong></td>
+<td>★★★★☆</td>
+<td>★★☆☆☆ (ISV)</td>
+<td>★★★★☆</td>
+</tr>
+<td><strong>PH localization readiness</strong></td>
+<td>★★★☆☆</td>
+<td>★★★☆☆</td>
+<td>★★☆☆☆</td>
+</tr>
+<td><strong>Time-to-value</strong></td>
+<td>★★★☆☆</td>
+<td>★★★★☆</td>
+<td>★★★☆☆</td>
+</tr>
+<td><strong>Best fit for BuildRight</strong></td>
+<td><strong>Strong for supply chain & finance</strong></td>
+<td><strong>Best for unified retail</strong></td>
+<td><strong>Viable with Oracle Retail suite</strong></td>
+</tr>
+</tbody></table></div>
+
+<h3>Recommendation</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Vendor</th>
+<th>Verdict</th>
+<th>Rationale</th>
+</tr></thead><tbody>
+<td><strong>Microsoft D365 Full Stack</strong></td>
+<td><strong>🟢 RECOMMENDED</strong></td>
+<td>Best POS + Commerce + ERP integration; fewest integration points; Power Platform fills remaining gaps; fastest implementation. <strong>Risk</strong>: PH payroll requires ISV.</td>
+</tr>
+<td><strong>SAP Full Stack</strong></td>
+<td><strong>🟡 CONDITIONAL</strong></td>
+<td>Strongest supply chain (IBP) and financials (Group Reporting). <strong>Risk</strong>: POS (CCO) needs proven 1K-terminal reference; highest TCO. Recommend if supply chain complexity is prioritized over retail POS.</td>
+</tr>
+<td><strong>Oracle Full Stack</strong></td>
+<td><strong>🟡 CONDITIONAL</strong></td>
+<td>Strong enterprise suite + Oracle Retail Xstore fills the POS gap. <strong>Risk</strong>: Integration complexity (10+ flows between separate clouds); Oracle Retail and Fusion ERP are different product lines. Recommend only if Oracle demonstrates proven Xstore+Fusion integration at scale.</td>
+</tr>
+</tbody></table></div>
+
+<h3>Next Steps</h3>
+
+<ol>
+<li><strong>Request reference visits</strong> for:</li>
+</ol>
+<ul>
+<li>Microsoft: D365 Commerce at 1,000+ POS terminals (e.g., Walmart, Beauchamp)</li>
+<li>SAP: Customer Checkout at scale (ask for 500+ terminal references)</li>
+<li>Oracle: Xstore + Fusion Cloud SCM integration (ask for reference with real-time inventory sync)</li>
+</ul>
+<ol>
+<li><strong>Engage PH implementation partners</strong> for each vendor:</li>
+</ol>
+<ul>
+<li>SAP: Accenture PH, DXC, Deloitte PH</li>
+<li>Microsoft: Hitachi Solutions, Avanade, RSM PH</li>
+<li>Oracle: Oracle PH consulting, Wipro/Infosys PH teams</li>
+</ul>
+<ol>
+<li><strong>Validate PH payroll options</strong>:</li>
+</ol>
+<ul>
+<li>SAP: SuccessFactors PH payroll completeness</li>
+<li>Microsoft: ISV partner demo (Itsubmit / SL Global)</li>
+<li>Oracle: Oracle HCM PH payroll localization demo</li>
+</ul>
+<ol>
+<li><strong>Run POS offline proof-of-concept</strong> for all three vendors</li>
+</ol>
+<ol>
+<li><strong>Complete scorecards</strong> using <a href="../07-methodology/scoring-methodology.md">Scoring Methodology</a></li>
+</ol>
+
+<hr>
+
+<p><em>Document Version: 1.0 | Date: 2026-06-03 | Full-stack evaluation of SAP, Microsoft, and Oracle vendor portfolios against 261 BuildRight Depot requirements</em></p>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

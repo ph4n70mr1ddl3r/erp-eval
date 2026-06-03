@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IT Operations — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub act"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">💻</span><h2>IT Operations</h2></div><div class="cd mc"><h1>IT Operations Workflows</h1>
+
+<blockquote>Helpdesk, data privacy breach response, disaster recovery, data migration/parallel-run testing, business intelligence & data governance, IT asset lifecycle management, software development & change management, employee IT provisioning & access lifecycle, enterprise API & systems integration lifecycle, and POS terminal hardware maintenance & peripheral management.</blockquote>
+<blockquote></blockquote>
+<blockquote>Back to <a href="README.md">Workflow Index</a></blockquote>
+
+<hr>
+
+<h2>Workflows in This Domain</h2>
+
+<ul>
+<li><a href="#it-operations-helpdesk-support">W48. IT Operations & Helpdesk Support</a></li>
+<li><a href="#data-privacy-breach-response">W53. Data Privacy Breach Response</a></li>
+<li><a href="#it-disaster-recovery-system-failover">W55. IT Disaster Recovery & System Failover</a></li>
+<li><a href="#data-migration-validation-parallel-run-testing">W73. Data Migration Validation & Parallel-Run Testing</a></li>
+<li><a href="#business-intelligence-data-governance">W113. Business Intelligence & Data Governance</a></li>
+<li><a href="#it-asset-lifecycle-management">W131. IT Asset Lifecycle Management</a></li>
+<li><a href="#software-development--change-management">W132. Software Development & Change Management</a></li>
+<li><a href="#employee-it-provisioning--access-lifecycle-management">W152. Employee IT Provisioning & Access Lifecycle Management</a></li>
+<li><a href="#enterprise-api--systems-integration-lifecycle-management">W257. Enterprise API & Systems Integration Lifecycle Management</a></li>
+<li><a href="#pos-terminal-hardware-maintenance--peripheral-management">W265. POS Terminal Hardware Maintenance & Peripheral Management</a></li>
+</ul>
+
+<hr>
+
+<h2>W48. IT Operations & Helpdesk Support</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>User reports issue (phone, email, self-service portal); system generates automated alert; scheduled change window</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Continuous; ~800–1,200 support tickets/month across all locations</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~7,050 users; 1,000 POS terminals; 5 WMS systems; ~500 RF devices; 200+ network locations</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>IT Helpdesk Lead</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>IT Helpdesk, IT Infrastructure, IT Applications, end users, external vendors</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>User contacts IT Helpdesk via phone, email, or self-service portal; describes issue with system, hardware, network, or access</td>
+<td>End User</td>
+<td>—</td>
+<td>2 min</td>
+</tr>
+<td>2</td>
+<td>Helpdesk Agent creates support ticket: user, location, device, issue category, severity (see matrix below), description</td>
+<td>Helpdesk Agent</td>
+<td>IT Helpdesk Lead</td>
+<td>3 min</td>
+</tr>
+<td>3</td>
+<td>System auto-routes ticket based on category: (a) POS/retail → Retail IT support queue, (b) network/connectivity → Infrastructure queue, (c) ERP/application → Applications queue, (d) hardware → Hardware support queue, (e) access/permissions → Security queue</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td><strong>Tier 1 — Remote resolution</strong>: Helpdesk Agent attempts to resolve remotely (password reset, configuration fix, user guidance, system restart)</td>
+<td>Helpdesk Agent</td>
+<td>IT Helpdesk Lead</td>
+<td>5–15 min</td>
+</tr>
+<td>5</td>
+<td>If Tier 1 resolves: ticket closed with resolution code; user confirms</td>
+<td>Helpdesk Agent</td>
+<td>—</td>
+<td>2 min</td>
+</tr>
+<td>6</td>
+<td>If Tier 1 unresolved: ticket escalated to Tier 2 (specialist) with diagnostic notes; SLA timer restarts per severity</td>
+<td>Helpdesk Agent</td>
+<td>IT Helpdesk Lead</td>
+<td>2 min</td>
+</tr>
+<td>7</td>
+<td><strong>Tier 2 — Specialist resolution</strong>: IT specialist investigates; may require remote session, configuration change, or system-level fix</td>
+<td>IT Specialist</td>
+<td>IT Helpdesk Lead</td>
+<td>15–60 min</td>
+</tr>
+<td>8</td>
+<td>If Tier 2 requires on-site presence (hardware failure, network cabling, POS terminal replacement): ticket assigned to IT Field Support with scheduled site visit</td>
+<td>IT Specialist</td>
+<td>CIO</td>
+<td>Scheduling: 5 min</td>
+</tr>
+<td>9</td>
+<td><strong>Tier 3 — Vendor / escalation</strong>: if issue requires vendor support (POS software bug, ERP vendor support, hardware warranty claim), IT engages vendor; tracks vendor response SLA</td>
+<td>IT Specialist / CIO</td>
+<td>CIO</td>
+<td>Vendor-dependent</td>
+</tr>
+<td>10</td>
+<td>Resolution confirmed by user; ticket closed; system logs resolution time, root cause category, and recurring issue flag</td>
+<td>Helpdesk Agent</td>
+<td>IT Helpdesk Lead</td>
+<td>2 min</td>
+</tr>
+<td>11</td>
+<td>Monthly: IT Helpdesk Lead reviews ticket analytics: volume by category, resolution rate by tier, SLA compliance, mean time to resolution, top recurring issues per location</td>
+<td>IT Helpdesk Lead</td>
+<td>CIO</td>
+<td>2 hours/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>Severity & SLA Matrix</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Severity</th>
+<th>Definition</th>
+<th>Examples</th>
+<th>Response SLA</th>
+<th>Resolution SLA</th>
+</tr></thead><tbody>
+<td><strong>P1 — Critical</strong></td>
+<td>System down affecting revenue or multiple users</td>
+<td>All POS terminals down at a store, ERP system inaccessible, DC WMS failure</td>
+<td>15 min</td>
+<td>4 hours</td>
+</tr>
+<td><strong>P2 — High</strong></td>
+<td>Major function impaired but workaround exists</td>
+<td>Single POS terminal down, ecommerce integration failure, reporting module error</td>
+<td>30 min</td>
+<td>8 hours</td>
+</tr>
+<td><strong>P3 — Medium</strong></td>
+<td>Non-critical issue affecting productivity</td>
+<td>Printer malfunction, slow report generation, single user access issue</td>
+<td>2 hours</td>
+<td>24 hours</td>
+</tr>
+<td><strong>P4 — Low</strong></td>
+<td>Minor issue or enhancement request</td>
+<td>Cosmetics, feature requests, non-urgent how-to questions</td>
+<td>8 hours</td>
+<td>72 hours</td>
+</tr>
+</tbody></table></div>
+
+<h3>Change Management</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Frequency</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>IT team member submits change request: description, affected systems, risk assessment, rollback plan, planned window</td>
+<td>IT Team Member</td>
+<td>IT Helpdesk Lead</td>
+<td>As needed (~20–30 changes/month)</td>
+</tr>
+<td>2</td>
+<td>IT Helpdesk Lead reviews and classifies: (a) standard change (pre-approved, low risk — e.g., password policy update), (b) normal change (requires review and approval — e.g., POS software patch), (c) emergency change (unplanned, critical fix — e.g., security vulnerability patch)</td>
+<td>IT Helpdesk Lead</td>
+<td>CIO</td>
+<td>10 min/change</td>
+</tr>
+<td>3</td>
+<td>Normal changes: CIO approves; emergency changes: CIO verbal approval with post-hoc documentation; standard changes: auto-approved per catalog</td>
+<td>CIO</td>
+<td>—</td>
+<td>5–15 min/change</td>
+</tr>
+<td>4</td>
+<td>Change executed during maintenance window (typically Tuesday/Thursday 22:00–02:00 or Sunday 00:00–04:00 to avoid peak hours)</td>
+<td>IT Infrastructure</td>
+<td>CIO</td>
+<td>Per change</td>
+</tr>
+<td>5</td>
+<td>Post-change verification: IT confirms system health; Helpdesk monitors for related ticket spikes in next 24 hours</td>
+<td>IT Team</td>
+<td>IT Helpdesk Lead</td>
+<td>15 min/change</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>IT ticket management: create, route, escalate, resolve, close with full audit trail (W48.2–10)</li>
+<li>Auto-routing by issue category to specialist queues (W48.3)</li>
+<li>SLA timer per severity level with auto-escalation at 75% of SLA threshold (W48.4–9)</li>
+<li>Remote desktop / diagnostic tool integration (W48.4, 7)</li>
+<li>Knowledge base / self-service portal for common issues (W48.1)</li>
+<li>Change request workflow with classification and approval (W48 change management)</li>
+<li>Maintenance window scheduling (W48 change 4)</li>
+<li>Ticket analytics dashboard: volume, SLA compliance, MTTR, top issues by location (W48.11)</li>
+<li>SLA breach escalation protocol: (a) single P1 SLA miss (resolution > 4 hours): IT Helpdesk Lead conducts immediate root cause analysis and documents corrective action; (b) 2 consecutive P1 SLA misses on same issue category: Helpdesk Lead escalates to CIO with remediation plan within 24 hours; CIO reviews staffing, tooling, or vendor support adequacy; (c) 3 or more P1 SLA misses within 30 days (any category): CIO presents incident review to CEO with systemic improvement plan (may include additional headcount, vendor escalation, or infrastructure investment); (d) P2/P3 SLA misses trending > 20% breach rate for 2 consecutive months: Helpdesk Lead initiates category-specific improvement (process change, training, or automation); (e) all SLA breaches tracked in monthly ticket analytics dashboard with trend analysis and root cause classification; SLA performance included in IT team's quarterly performance review (W48)</li>
+<li>IT asset tracking: system maintains asset register for all IT equipment (POS terminals, RF devices, servers, networking equipment, laptops, tablets) with location assignment, warranty status, maintenance history, and lifecycle status; supports IT asset planning and budgeting (cross-reference W21 for capex, W39 for disposal)</li>
+<li>Integration with W5G (offline POS recovery), W16 (new store IT setup), W43 (employee separation — account deactivation)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>4–5 Helpdesk Agents (Tier 1)</strong>: handle ~800–1,200 tickets/month ÷ 20 working days = ~40–60/day. At ~10 min average per ticket = ~7–10 hours/day. With shifts and coverage, 4–5 agents needed.</li>
+<li><strong>3–4 IT Specialists (Tier 2)</strong>: Application support, infrastructure, retail IT, security. Specialists handle ~30% of tickets that Tier 1 cannot resolve = ~240–360/month.</li>
+<li><strong>1–2 IT Field Support</strong>: physical site visits for hardware issues across 200 stores + 5 DCs. Estimated 50–80 on-site visits/month across the Philippines. With travel time, 1–2 dedicated field staff with regional coverage.</li>
+<li><strong>1 IT Helpdesk Lead</strong>: manages helpdesk operations, SLA compliance, change management.</li>
+<li><strong>Total IT</strong>: recommend expanding IT team from ~25 to ~28–30 to accommodate dedicated helpdesk function. Current ~25 includes infrastructure, applications, data, security, and BI but does not explicitly allocate helpdesk headcount.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W53. Data Privacy Breach Response</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Suspected or confirmed breach of personal data (customer, employee, or vendor data) as defined by RA 10173 (Data Privacy Act of 2012)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Rare; estimated 0–2 incidents/year requiring formal breach response</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Variable — from a single record exposed to bulk data extraction</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Data Protection Officer (DPO)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>DPO, CIO, IT Security, Legal, affected department head, NPC (National Privacy Commission), affected data subjects</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>Under RA 10173 and its Implementing Rules and Regulations (IRR), BuildRight Depot (as a PIC — Personal Information Controller) must: (a) notify the National Privacy Commission within 72 hours of discovering a breach involving sensitive personal information affecting 100+ data subjects, (b) notify affected data subjects within a reasonable time, (c) document all breaches regardless of size. BuildRight holds personal data for ~600,000 loyalty members, ~5,200 trade accounts, ~200 corporate accounts, ~7,050 employees, and ~1,000 vendors.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Breach discovered or suspected: IT Security alerts (automated monitoring), employee report, third-party notification, or customer complaint about unauthorized access</td>
+<td>IT Security / Any employee</td>
+<td>CIO</td>
+<td>Immediate</td>
+</tr>
+<td>2</td>
+<td>CIO and DPO assess breach severity: (a) scope — how many records, what data types (name, contact, financial, government ID), (b) vector — how the breach occurred (external attack, insider, misconfiguration, lost device, vendor breach), (c) containment status — is the breach ongoing or contained</td>
+<td>CIO + DPO</td>
+<td>CEO</td>
+<td>1–2 hours</td>
+</tr>
+<td>3</td>
+<td><strong>Containment</strong>: IT Security takes immediate action to stop the breach: isolate affected systems, revoke compromised credentials, block unauthorized access, preserve forensic evidence</td>
+<td>IT Security</td>
+<td>CIO</td>
+<td>As needed</td>
+</tr>
+<td>4</td>
+<td>DPO classifies the breach per NPC guidelines: (a) <strong>Notifiable breach</strong> — involves sensitive personal info, affects 100+ data subjects, or involves significant harm; (b) <strong>Non-notifiable breach</strong> — limited scope, no sensitive data, quickly contained</td>
+<td>DPO</td>
+<td>CEO</td>
+<td>30 min</td>
+</tr>
+<td>5</td>
+<td>If notifiable: DPO prepares NPC notification within 72 hours: nature of breach, data subjects affected, data types exposed, measures taken, remedial actions planned; submits via NPC online portal or prescribed form</td>
+<td>DPO</td>
+<td>CEO</td>
+<td>2–4 hours</td>
+</tr>
+<td>6</td>
+<td>DPO prepares data subject notification: clear description of breach in plain language, data exposed, potential harm, mitigation steps data subjects should take, BuildRight contact for inquiries; notification via email, SMS, or website notice depending on breach scope</td>
+<td>DPO + Legal</td>
+<td>CMO</td>
+<td>2–4 hours</td>
+</tr>
+<td>7</td>
+<td>CIO directs forensic investigation: determine root cause, full scope, and whether any data was exfiltrated; engage external forensic firm if needed; preserve all logs and evidence</td>
+<td>CIO</td>
+<td>CEO</td>
+<td>1–5 days</td>
+</tr>
+<td>8</td>
+<td>Legal assesses regulatory and litigation risk: review NPC requirements, evaluate liability exposure, prepare responses to potential regulatory inquiry or customer claims</td>
+<td>Legal</td>
+<td>CEO</td>
+<td>As needed</td>
+</tr>
+<td>9</td>
+<td>Affected department head implements immediate operational safeguards: e.g., if payment data breached — reset payment credentials, work with payment gateways; if employee data breached — offer credit monitoring</td>
+<td>Dept. Head</td>
+<td>CEO</td>
+<td>As needed</td>
+</tr>
+<td>10</td>
+<td>DPO documents full incident in breach register: timeline, root cause, scope, notifications sent, remedial actions, resolution date; breach register retained for 5 years per NPC requirements</td>
+<td>DPO</td>
+<td>CEO</td>
+<td>2 hours</td>
+</tr>
+<td>11</td>
+<td>Post-incident: CIO and DPO conduct lessons-learned review; update security controls, access policies, and data handling procedures; implement preventive measures; schedule follow-up assessment in 30 days</td>
+<td>CIO + DPO</td>
+<td>CEO</td>
+<td>2 hours</td>
+</tr>
+<td>12</td>
+<td>Quarterly: DPO reviews breach register with CEO and Internal Audit; analyzes trends; reports aggregate breach statistics in annual privacy impact assessment</td>
+<td>DPO</td>
+<td>CEO</td>
+<td>30 min/quarter</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Breach register in system: incident ID, discovery date/time, classification, scope, root cause, notifications, resolution status (W53.10)</li>
+<li>Data access audit trail: system maintains immutable log of all access to personal data (customer records, employee records) with user ID, timestamp, and action; forensic extraction capability for breach investigation (W53.7)</li>
+<li>Data subject notification workflow: system generates notification list of affected data subjects from breach scope analysis; bulk email/SMS capability for notification delivery (W53.6)</li>
+<li>Role-based access enforcement: system enforces minimum-necessary access to personal data; access revocation capability for containment (W53.3)</li>
+<li>Data encryption at rest and in transit: customer and employee data encrypted in database and during transmission; encryption key management with emergency rotation capability (W53.3)</li>
+<li>Data Subject Access Request (DSAR) full lifecycle per RA 10173: (a) <strong>access</strong>: DPO acknowledges DSAR within 72 hours; system generates data package containing all personal data held for the requesting data subject (loyalty profile, transaction history, AR account data, complaint history) in machine-readable format (JSON or CSV) within 30 days; DPO reviews package for third-party data exclusion before release; (b) <strong>rectification</strong>: data subject requests correction of inaccurate personal data; DPO or AR Clerk updates record in system with change log; (c) <strong>erasure / right to be forgotten</strong>: upon verified request, DPO initiates erasure workflow — system anonymizes personal data in active records (replace name, email, phone with "ANONYMIZED-[hash]") while preserving transaction records for BIR 7-year retention requirement (transaction amounts, dates, VAT, and payment methods retained; personal identifiers removed); system flags anonymized records to prevent re-identification; for loyalty accounts with unredeemed points, DPO offers final redemption before erasure; erasure logged with request date, data subject verification method, scope of erasure, and DPO approval; (d) <strong>data portability</strong>: system exports data subject's personal data in structured, machine-readable format (JSON) via DPO-approved download link with 72-hour expiry; (e) <strong>consent withdrawal</strong>: data subject withdraws consent for marketing communications; system updates consent flag in customer master; suppresses customer from all marketing lists, email campaigns, and SMS notifications within 24 hours; transactional communications (order confirmations, warranty notifications) continue as service necessity; (f) DPO reports DSAR metrics quarterly: volume by type, average resolution time, backlog</li>
+<li>Integration with W41 (complaint intake as DSAR channel), W17 (loyalty data — loyalty account erasure), W24 (customer accounts — account closure with erasure), W8 (AR account closure — W8 step 12 references PII anonymization), W15/W43 (employee lifecycle — employee data erasure after 7-year retention)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>1 Data Protection Officer (DPO)</strong>: required by RA 10173 for organizations processing personal data of 1,000+ individuals. BuildRight holds data for 600K+ customers and 8,000+ employees. The DPO role may be combined with Legal or Compliance but must have direct reporting to management. This is a new role recommendation (absorbed within Legal & Compliance team of ~5, expanding to ~6).</li>
+<li>No other incremental headcount. Breach response is a cross-functional effort by existing IT, Legal, and management.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W55. IT Disaster Recovery & System Failover</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Core ERP system failure exceeding RTO (4 hours per NFR-013), data center outage, cloud service disruption, or cyber attack causing system unavailability</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Rare; estimated 0–2 DR events/year requiring failover</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Affects all 7,050 users; 1,000 POS terminals; 200 stores; 5 DCs</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>CIO</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CIO, IT Infrastructure team, IT Helpdesk, Store Ops Director, CFO, external DR service provider</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>This workflow covers the IT system recovery process, distinct from W49 (typhoon/facility business continuity) which covers physical location response. NFR-013 defines: RPO ≤ 1 hour (max 1 hour of data loss), RTO ≤ 4 hours (max 4 hours of core system unavailability). POS terminals operate offline for 8+ hours per W5G.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>IT Infrastructure monitoring detects or is alerted to system failure: error rates, service health checks, connectivity loss, or user reports of system unavailability</td>
+<td>IT Infrastructure / System</td>
+<td>CIO</td>
+<td>Immediate (automated detection)</td>
+</tr>
+<td>2</td>
+<td>IT Infrastructure assesses scope and severity: (a) single module failure (e.g., POS integration down), (b) full ERP outage, (c) data center / cloud region outage, (d) suspected cyber attack (ransomware, DDoS)</td>
+<td>IT Infrastructure Lead</td>
+<td>CIO</td>
+<td>15–30 min</td>
+</tr>
+<td>3</td>
+<td>CIO declares DR event if severity exceeds RTO: notifies CEO, COO, CFO; communicates estimated recovery time; Store Ops Director notifies Regional Managers and Store Managers</td>
+<td>CIO</td>
+<td>CEO</td>
+<td>15 min</td>
+</tr>
+<td>4</td>
+<td><strong>Stores</strong>: continue selling in offline mode per W5G; POS transactions queue locally for upload upon recovery</td>
+<td>Store Manager</td>
+<td>Store Ops Director</td>
+<td>Automated (W5G)</td>
+</tr>
+<td>5</td>
+<td><strong>DCs</strong>: DC operations shift to manual processing — Receiving Clerks record goods receipts on paper/spreadsheet for batch entry upon recovery; picking and shipping suspended for non-critical orders</td>
+<td>DC Manager</td>
+<td>Supply Chain Manager</td>
+<td>Manual fallback</td>
+</tr>
+<td>6</td>
+<td><strong>Ecommerce</strong>: Digital Commerce platform displays maintenance notification; new orders suspended; in-progress orders held for fulfillment upon recovery</td>
+<td>Ecom Team</td>
+<td>CMO</td>
+<td>15 min</td>
+</tr>
+<td>7</td>
+<td><strong>Recovery execution</strong>: IT Infrastructure initiates failover to DR site or secondary cloud region: (a) verify DR environment is current (data replication lag ≤ RPO), (b) switch DNS and network routing to DR environment, (c) validate core services: authentication, POS sync, inventory, financial posting, (d) incremental data replay from primary if replication lag exists</td>
+<td>IT Infrastructure</td>
+<td>CIO</td>
+<td>1–3 hours</td>
+</tr>
+<td>8</td>
+<td>If primary system restore (instead of failover): (a) identify root cause, (b) repair or restore from backup, (c) verify data integrity against last known good checkpoint, (d) bring services online sequentially (core first, then ancillary), (e) validate system health</td>
+<td>IT Infrastructure</td>
+<td>CIO</td>
+<td>2–4 hours</td>
+</tr>
+<td>9</td>
+<td>System restored: CIO communicates "all clear" to business; stores begin uploading offline transactions per W5G; DCs batch-enter manual receipts; ecommerce resumes order processing</td>
+<td>CIO</td>
+<td>CEO</td>
+<td>15 min</td>
+</tr>
+<td>10</td>
+<td><strong>Data integrity verification</strong>: IT runs reconciliation checks: (a) offline POS transactions vs. central inventory, (b) any manual DC entries vs. expected receipts, (c) database transaction logs for completeness, (d) financial posting integrity (no partial journal entries)</td>
+<td>IT Infrastructure + Finance</td>
+<td>Controller</td>
+<td>1–2 hours</td>
+</tr>
+<td>11</td>
+<td>Post-recovery: CIO conducts root cause analysis within 5 business days; documents incident, root cause, recovery actions, data loss (if any), and preventive measures</td>
+<td>CIO</td>
+<td>CEO</td>
+<td>4 hours</td>
+</tr>
+<td>12</td>
+<td>Quarterly: IT Infrastructure conducts scheduled DR failover test during maintenance window; validates RTO and RPO targets; documents test results; updates DR runbook based on findings</td>
+<td>IT Infrastructure</td>
+<td>CIO</td>
+<td>4 hours/quarter</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Automated system health monitoring with configurable alerting thresholds (W55.1)</li>
+<li>DR environment: real-time data replication with RPO ≤ 1 hour (synchronous or near-synchronous); automated or one-click failover capability (W55.7)</li>
+<li>Backup integrity verification: automated checksum validation on backup files; periodic restore testing (W55.8)</li>
+<li>Offline POS transaction upload and reconciliation per W5G (W55.4, 10)</li>
+<li>Incident logging and root cause documentation (W55.11)</li>
+<li>DR test scheduling and results tracking (W55.12)</li>
+<li>DR test failure remediation: if quarterly DR test fails to meet RTO (4 hours) or RPO (1 hour) targets — (a) IT Infrastructure Lead documents the specific failure (failover latency, data replication lag, service recovery sequence, single point of failure); (b) CIO convenes emergency remediation meeting with IT Infrastructure within 5 business days; (c) remediation plan created with specific actions, responsible owners, and target completion date; (d) retest scheduled within 30 days of remediation completion; (e) if retest also fails: CIO escalates to CEO with capital investment request for infrastructure upgrade; (f) all test results (pass and fail) retained in DR test log for audit evidence; (g) External auditor may request DR test results as part of annual audit (W42.19, W55.12)</li>
+<li>Integration with W5G (offline POS), W48 (helpdesk incident management), W49 (physical disaster response — this workflow is system-level, W49 is facility-level)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li>No incremental headcount. DR response is executed by existing IT Infrastructure team (part of the recommended ~28–30 IT staff in W48).</li>
+<li>External DR service provider: if BuildRight uses a managed DR service or colocation DR site, the provider's SLA must align with BuildRight's RTO/RPO targets.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W73. Data Migration Validation & Parallel-Run Testing</h2>
+
+<blockquote>This workflow describes the operational participation of business users in data migration validation and parallel-run testing during ERP implementation. It is an implementation-phase workflow, not a steady-state operational process.</blockquote>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Implementation roadmap Phase 2 (data migration) and Phase 3 (pilot go-live with parallel run) per Implementation Roadmap</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Once per implementation; validation cycles repeated per migration iteration</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>All master data (55,000 SKUs, 1,000 vendors, 600,000+ customers, 7,050 employees, 205 locations) + open transaction data (open POs, open AR/AP, inventory balances, fixed assets)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Implementation Project Manager (overall); Department Heads (validation per domain)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Store Managers, Cashiers, AP/AR Clerks, Category Managers, Buyers, Cost Accountant, IT, external implementation partner</td>
+</tr>
+</tbody></table></div>
+
+<h3>Data Migration Validation</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Item master validation</strong>: Merchandise Planners verify migrated SKU data — sample 500–1,000 SKUs across categories; confirm item description, unit of measure, cost, SRP, category assignment, and attributes (catch-weight flags, shelf-life flags, consignment/VMI flags) match source system; report discrepancies to implementation partner for correction</td>
+<td>Merchandise Planner</td>
+<td>Category Manager</td>
+<td>8 hours/iteration</td>
+</tr>
+<td>2</td>
+<td><strong>Customer master validation</strong>: AR Clerks verify sample of 500 trade/corporate accounts — confirm credit limits, payment terms, VAT treatment classification, and contact details; Loyalty Manager verifies sample of 1,000 loyalty accounts — points balance, tier status, contact information</td>
+<td>AR Clerk / Loyalty Manager</td>
+<td>AR Supervisor</td>
+<td>8 hours/iteration</td>
+</tr>
+<td>3</td>
+<td><strong>Vendor master validation</strong>: Buyers verify sample of 200 vendors — confirm payment terms, lead times, bank details, tax classification (ATC codes), and pricing tolerance</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>4 hours/iteration</td>
+</tr>
+<td>4</td>
+<td><strong>Inventory balance validation</strong>: Cost Accountant and DC Supervisors verify opening inventory balances per location (200 stores + 5 DCs) — reconcile migrated quantities and values (WAC) to legacy system closing balances; identify discrepancies > 1% by value</td>
+<td>Cost Accountant / DC Supervisor</td>
+<td>Controller</td>
+<td>8 hours/location group</td>
+</tr>
+<td>5</td>
+<td><strong>Financial opening balance validation</strong>: Controller and Chief Accountant verify migrated opening trial balance per entity (5 entities) — GL account balances, open AP invoices, open AR invoices, fixed asset register, bank balances; reconcile to legacy closing trial balance</td>
+<td>Controller / Chief Accountant</td>
+<td>CFO</td>
+<td>16 hours/iteration</td>
+</tr>
+<td>6</td>
+<td><strong>Employee master validation</strong>: HR Head verifies sample of 200 employees across entities — confirm salary, tax status, statutory deduction registration, leave balances, and organizational assignment</td>
+<td>HR Head</td>
+<td>CHRO</td>
+<td>4 hours/iteration</td>
+</tr>
+<td>7</td>
+<td>All validation exceptions logged in implementation issue tracker; corrected in next migration iteration; re-validated until zero material discrepancies</td>
+<td>All validators</td>
+<td>Project Manager</td>
+<td>Ongoing</td>
+</tr>
+</tbody></table></div>
+
+<h3>Parallel-Run Testing (Pilot Phase)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>8</td>
+<td><strong>Payroll parallel run</strong>: for 1 payroll cycle (semi-monthly), Payroll Officer processes payroll in both legacy and new ERP simultaneously; compares output per employee — gross pay, deductions, net pay, employer contributions; discrepancies > PHP 100 per employee flagged for investigation; Finance validates GL postings match between systems</td>
+<td>Payroll Officer / Finance</td>
+<td>CFO</td>
+<td>1 payroll cycle</td>
+</tr>
+<td>9</td>
+<td><strong>Month-end close parallel run</strong>: for 1 month-end period, Chief Accountant performs close steps (W9A) in both systems; compares trial balance, financial statements, and key reconciliation outputs (bank rec, GRNI, AR aging, AP aging)</td>
+<td>Chief Accountant</td>
+<td>Controller</td>
+<td>1 close cycle</td>
+</tr>
+<td>10</td>
+<td><strong>POS parallel run</strong> (pilot stores only): during pilot go-live (Implementation Roadmap Phase 3), pilot store Cashiers process live transactions in new POS while legacy POS runs in shadow mode; Store Manager compares daily Z-reports (transaction count, revenue by tender, cash total) between systems; discrepancies > 1% by revenue flagged for investigation</td>
+<td>Cashier / Store Manager</td>
+<td>Store Ops Director</td>
+<td>2–4 weeks</td>
+</tr>
+<td>11</td>
+<td><strong>Inventory transaction parallel run</strong>: for pilot stores and serving DC, Receiving Clerks and Stock Associates process key inventory transactions (goods receipt, transfer receipt, cycle count, POS sales deduction) in both systems; Cost Accountant compares ending inventory balances</td>
+<td>Receiving Clerk / Cost Accountant</td>
+<td>Controller</td>
+<td>2–4 weeks</td>
+</tr>
+<td>12</td>
+<td><strong>User acceptance testing (UAT)</strong>: before each go-live wave, designated power users from each department execute scripted UAT test cases covering their critical workflows (AP clerk tests W7, Buyer tests W2, Cashier tests W5B, etc.); all test cases must pass with zero critical defects for wave go-live approval</td>
+<td>Department power users</td>
+<td>Project Manager</td>
+<td>1–2 weeks/wave</td>
+</tr>
+<td>13</td>
+<td><strong>Sign-off</strong>: after successful parallel run and UAT, Department Heads sign off on their domain's readiness per go-live wave; Controller signs off on financial accuracy; CFO gives final go/no-go for each wave</td>
+<td>Department Heads / CFO</td>
+<td>CEO</td>
+<td>1 day/wave</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Data migration validation workbench: compare migrated data to source with side-by-side display and discrepancy flagging (W73.1–7)</li>
+<li>Parallel-run comparison reports: payroll output comparison, trial balance comparison, Z-report comparison, inventory balance comparison (W73.8–11)</li>
+<li>UAT test case management: scripted test cases with pass/fail tracking and defect logging (W73.12)</li>
+<li>Go-live readiness sign-off workflow with department-level approval (W73.13)</li>
+<li>Integration with all operational workflows (each workflow validated during UAT)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Business user time</strong>: data migration validation requires ~50–80 hours of business user effort per iteration (typically 2–3 iterations); parallel-run testing requires ~40–60 hours per cycle; UAT requires ~20–30 hours per wave; total business user effort across implementation: ~400–600 hours spread over 12–18 months</li>
+<li><strong>This is a one-time implementation cost</strong>, not steady-state headcount. Business users participate alongside their normal duties during implementation. Implementation project plan should allocate dedicated validation windows.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+
+<h2>W113. Business Intelligence & Data Governance</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Monthly BI governance review; ad-hoc report request; dashboard lifecycle milestone; or data quality issue identified</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Monthly governance review; continuous report request management; quarterly dashboard lifecycle review</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~50–100 ad-hoc report requests/month from across the organization; ~20–30 active dashboards at any time; ~7,060 potential users across 14 requirement categories</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>BI Manager / Data Analyst</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>BI Manager, Data Analysts, IT Manager, Department Heads, Controller, CIO</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>RPT-001 through RPT-010 define reporting requirements — executive dashboards, store P&L, sales analytics, inventory reports, ad-hoc reporting, and scheduled distribution. W35 defines the management reporting rhythm. However, there is no workflow governing the BI layer itself: how reports and dashboards are created, maintained, and retired; how data quality is monitored; how ad-hoc requests are prioritized; who owns which data domain; and how the data dictionary and business rules are maintained. Without BI governance, reports proliferate (creating "Excel hell"), data definitions diverge across departments, and the same metric shows different values in different reports — undermining trust in data-driven decisions at PHP 62.3B scale.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Ad-hoc report request intake</strong>: Department Head or Manager submits report request via BI request portal: (a) request description (what data is needed, for what purpose), (b) desired format (dashboard, scheduled report, one-time extract), (c) urgency (standard 5-day SLA, expedited 2-day SLA with Department Head justification, immediate — routed to BI Manager for triage), (d) intended audience (who will consume the report); BI Manager triages daily: (e) check if an existing report already covers the need (duplicate detection), (f) classify as: reuse existing, modify existing, or create new, (g) assign to Data Analyst with priority and deadline</td>
+<td>BI Manager</td>
+<td>CIO</td>
+<td>15 min/request (triage)</td>
+</tr>
+<td>2</td>
+<td><strong>Report development and approval</strong>: Data Analyst develops report per request: (a) uses approved data sources and definitions from data dictionary (step 5), (b) validates output against known data points (reconciliation with source system), (c) creates report with appropriate visualization and documentation (data source, calculation logic, filters, refresh frequency), (d) BI Manager reviews for accuracy, performance (query execution time < 30 seconds per NFR-004), and adherence to report design standards, (e) requestor reviews and confirms report meets need, (f) BI Manager publishes report to appropriate audience group with access controls</td>
+<td>Data Analyst / BI Manager</td>
+<td>CIO</td>
+<td>4–8 hours (new report); 1–2 hours (modify existing)</td>
+</tr>
+<td>3</td>
+<td><strong>Data quality monitoring</strong>: System runs automated daily data quality checks across critical data domains: (a) <strong>Completeness</strong>: are all expected records present? (e.g., every store should have daily sales data), (b) <strong>Accuracy</strong>: do totals reconcile? (e.g., sum of store sales = consolidated total), (c) <strong>Timeliness</strong>: is data current? (e.g., POS data loaded within 30 minutes of transaction), (d) <strong>Consistency</strong>: do cross-system metrics agree? (e.g., ERP inventory = WMS inventory), (e) anomalies generate data quality alerts to BI Manager and IT; BI Manager investigates and coordinates with IT for resolution; monthly: BI Manager generates data quality scorecard by domain (target: ≥ 98% quality score)</td>
+<td>System / BI Manager</td>
+<td>CIO</td>
+<td>30 min/day (alert review) + 2 hours/month (scorecard)</td>
+</tr>
+<td>4</td>
+<td><strong>Dashboard lifecycle management</strong>: Quarterly: BI Manager reviews all active dashboards: (a) <strong>Usage analytics</strong>: which dashboards are actively used (login frequency, view count)? — dashboards not accessed in 90 days flagged for retirement, (b) <strong>Performance</strong>: which dashboards have slow load times or query timeouts? — prioritize for optimization, (c) <strong>Accuracy</strong>: have underlying data sources changed (new GL accounts, new locations, new item categories) that require dashboard updates?, (d) <strong>Retirement</strong>: deprecated dashboards archived (not deleted) with retirement date and reason; users notified 30 days before retirement</td>
+<td>BI Manager</td>
+<td>CIO</td>
+<td>4 hours/quarter</td>
+</tr>
+<td>5</td>
+<td><strong>Data dictionary and business rules maintenance</strong>: BI Manager maintains master data dictionary: (a) <strong>Metric definitions</strong>: every KPI used in reports has a single documented definition (e.g., "Gross Margin = (Revenue − COGS) ÷ Revenue × 100; Revenue = net of returns; COGS = weighted average cost"), (b) <strong>Data domain ownership</strong>: each data domain has a designated owner (e.g., Finance owns financial metrics, Merchandising owns sales metrics, Supply Chain owns inventory metrics), (c) <strong>Calculation logic</strong>: documented and version-controlled for every report metric, (d) <strong>Source system mapping</strong>: every metric traced to its source system field, (e) updates to data dictionary require BI Manager approval and are logged with effective date and reason</td>
+<td>BI Manager</td>
+<td>CIO</td>
+<td>Ongoing (~4 hours/month)</td>
+</tr>
+<td>6</td>
+<td><strong>Monthly BI governance meeting</strong>: BI Manager convenes monthly BI governance meeting with Department Head representatives: (a) review data quality scorecard, (b) review open report requests and backlog, (c) discuss upcoming reporting needs (new metrics, new data sources, organizational changes), (d) resolve data definition disputes (when departments disagree on metric calculation), (e) review report usage and identify opportunities to consolidate overlapping reports, (f) approve data dictionary changes</td>
+<td>BI Manager / Department Heads</td>
+<td>CIO</td>
+<td>1 hour/month</td>
+</tr>
+<td>7</td>
+<td><strong>Access control and security</strong>: BI Manager manages report and dashboard access per NFR-007 security requirements: (a) reports containing financial data restricted to Finance and authorized roles, (b) store-level P&L visible to Store Manager (own store only), Regional Manager (stores in region), and VP Operations (all stores), (c) customer data in reports masked per RA 10173 data privacy requirements (W53), (d) access changes logged with approver and reason; quarterly: BI Manager reviews access control list for appropriateness</td>
+<td>BI Manager</td>
+<td>CIO</td>
+<td>30 min/month + 4 hours/quarter (review)</td>
+</tr>
+<td>8</td>
+<td><strong>Annual BI roadmap</strong>: CIO and BI Manager prepare annual BI roadmap: (a) planned new reports and dashboards based on business priorities, (b) technology upgrades (BI tool versions, data warehouse performance), (c) self-service BI enablement — train power users in Department Heads to create own reports using governed data sets, (d) data integration roadmap — new data sources to onboard (3PL tracking data, ecommerce behavioral data, vendor portal data), (e) budget for BI tools, training, and external consulting</td>
+<td>CIO / BI Manager</td>
+<td>CEO</td>
+<td>Annual (8 hours)</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>BI report request portal with classification, priority, and SLA tracking (W113.1)</li>
+<li>Report development standards and publishing workflow with approval gates (W113.2)</li>
+<li>Automated daily data quality checks: completeness, accuracy, timeliness, consistency (W113.3)</li>
+<li>Data quality scorecard by domain with trend tracking (W113.3)</li>
+<li>Dashboard usage analytics with login frequency, view count, and load time metrics (W113.4)</li>
+<li>Dashboard retirement workflow with 30-day user notification and archiving (W113.4)</li>
+<li>Master data dictionary with metric definitions, domain ownership, calculation logic, and source mapping (W113.5)</li>
+<li>Role-based access control for reports and dashboards per NFR-007 (W113.7)</li>
+<li>Integration with W35 (management reporting — reports consumed in reporting rhythm), W48 (IT helpdesk — BI tool support), W53 (data privacy — customer data in reports), W55 (DR — BI system failover), W73 (data migration — BI data source validation post-migration)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>1 BI Manager</strong> (within IT team of ~28): manages BI platform, governance, and team. This role is implied by RPT requirements but not formalized.</li>
+<li><strong>2–3 Data Analysts</strong> (within IT team): develop reports, manage data quality, maintain data dictionary. At ~50–100 requests/month × 4–8 hours each for new reports, plus ongoing maintenance = ~2–3 full-time equivalents. Redeployed from existing IT team or new hires within planned IT headcount.</li>
+<li><strong>No incremental headcount beyond planned IT team.</strong></li>
+</ul>
+
+<hr>
+
+<h2>W131. IT Asset Lifecycle Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>New hire (W15), hardware failure, or refresh cycle (every 3–4 years)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Managing ~1,500 laptops/desktops, ~1,000 POS terminals, servers, and networking gear</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>IT Asset Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>IT Helpdesk, Procurement (W2), Finance (Fixed Assets W39)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Sourcing: Procurement of IT hardware based on standard specs</td>
+<td>IT Asset Mgr</td>
+<td>CIO</td>
+<td>2 weeks</td>
+</tr>
+<td>2</td>
+<td>Tagging & Registration: Assign Asset Tag and record in ITAM database and ERP Fixed Assets</td>
+<td>IT Helpdesk</td>
+<td>IT Asset Mgr</td>
+<td>30 min/unit</td>
+</tr>
+<td>3</td>
+<td>Provisioning: Install OS, security software, and user-specific apps</td>
+<td>IT Helpdesk</td>
+<td>IT Asset Mgr</td>
+<td>2 hours/unit</td>
+</tr>
+<td>4</td>
+<td>Assignment: Handover to employee and sign acknowledgment form</td>
+<td>IT Helpdesk</td>
+<td>Employee</td>
+<td>15 min</td>
+</tr>
+<td>5</td>
+<td>Maintenance: Periodic updates and physical health checks</td>
+<td>IT Helpdesk</td>
+<td>IT Asset Mgr</td>
+<td>Ongoing</td>
+</tr>
+<td>6</td>
+<td>Retirement: Data wipe, asset decommissioning, and disposal (W39)</td>
+<td>IT Helpdesk</td>
+<td>IT Asset Mgr</td>
+<td>1 hour/unit</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W132. Software Development & Change Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Business request for new feature, bug fix, or system update</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Weekly release cycle</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~5–10 changes per week</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Application Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Developers, QA Team, Business Users (UAT), Change Advisory Board (CAB)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Requirement Analysis: Document functional and technical specs</td>
+<td>Business Analyst</td>
+<td>App Manager</td>
+<td>3–5 days</td>
+</tr>
+<td>2</td>
+<td>Development: Code changes in sandbox/dev environment</td>
+<td>Developer</td>
+<td>App Manager</td>
+<td>1–2 weeks</td>
+</tr>
+<td>3</td>
+<td>Unit & Integration Testing: Verify code in QA environment</td>
+<td>QA Team</td>
+<td>App Manager</td>
+<td>2–3 days</td>
+</tr>
+<td>4</td>
+<td>User Acceptance Testing (UAT): Business users sign off on change</td>
+<td>Dept Users</td>
+<td>Dept Head</td>
+<td>2–5 days</td>
+</tr>
+<td>5</td>
+<td>CAB Review: Evaluate risk and impact of the change</td>
+<td>CAB</td>
+<td>CIO</td>
+<td>1 hour</td>
+</tr>
+<td>6</td>
+<td>Deployment: Release to Production environment during maintenance window</td>
+<td>DevOps / IT Ops</td>
+<td>App Manager</td>
+<td>2 hours</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h3>System Touchpoints (IT Extensions)</h3>
+<ul>
+<li>IT Asset Management (ITAM) database integrated with ERP Fixed Assets</li>
+<li>Change Management / Jira tracking for software lifecycle</li>
+<li>Automated deployment / CI/CD pipeline logs</li>
+<li>Acknowledgment form digital signature capture</li>
+<li>Hardware refresh schedule alerts</li>
+</ul>
+
+<hr>
+
+<hr>
+
+<h2>W152. Employee IT Provisioning & Access Lifecycle Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>New hire notification (W15); employee transfer (W43.15); or separation (W43)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>100–150 provisioning events/month</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Covers ~8,000 employees and ~1,500 ERP users</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>IT Infrastructure Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>HR, IT Helpdesk, Hiring Manager, Security</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Request</strong>: HR system triggers provisioning request upon completion of W15 onboarding</td>
+<td>System / HR</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td><strong>Identity Creation</strong>: System auto-generates AD/Azure account, company email, and employee ID link</td>
+<td>IT Helpdesk</td>
+<td>Infrastructure Mgr</td>
+<td>15 min</td>
+</tr>
+<td>3</td>
+<td><strong>Access Role Mapping</strong>: Assign ERP roles (W37), folder permissions, and application access based on Job Code</td>
+<td>IT Helpdesk</td>
+<td>Infrastructure Mgr</td>
+<td>30 min</td>
+</tr>
+<td>4</td>
+<td><strong>Hardware Prep</strong>: Image laptop/workstation; configure POS login for store staff</td>
+<td>IT Helpdesk</td>
+<td>—</td>
+<td>1 hour</td>
+</tr>
+<td>5</td>
+<td><strong>Transfer / Change</strong>: Upon employee transfer, review and revoke old permissions; add new ones within 24 hours</td>
+<td>IT Helpdesk</td>
+<td>Dept Head</td>
+<td>30 min</td>
+</tr>
+<td>6</td>
+<td><strong>De-provisioning</strong>: Upon separation (W43), immediate block on all accounts (T-minus 0); hardware retrieval</td>
+<td>IT Helpdesk</td>
+<td>CIO</td>
+<td>15 min</td>
+</tr>
+<td>7</td>
+<td><strong>Audit</strong>: Monthly reconciliation of Active Directory vs. HR Master to identify "ghost accounts"</td>
+<td>Security Admin</td>
+<td>CIO</td>
+<td>4 hours</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W257. Enterprise API & Systems Integration Lifecycle Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Business requirement for a new software integration (e.g., 3PL carrier API, Ecommerce platform, new CRM tool) or update to existing API</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>2-3 new integrations per quarter; ongoing maintenance</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Over 50 active integrations across the enterprise</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Integration Architect</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Business Owner, IT Developers, External Vendor, Security Admin</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Requirements Gathering</strong>: Define data payload, frequency (real-time vs batch), mapping rules, and security requirements (OAuth, TLS)</td>
+<td>Integration Arch</td>
+<td>Business Owner</td>
+<td>1-2 weeks</td>
+</tr>
+<td>2</td>
+<td><strong>Design & Security Review</strong>: Security team reviews API endpoints, data privacy (RA 10173) implications, and rate limiting policies</td>
+<td>Security Admin</td>
+<td>CIO</td>
+<td>2 days</td>
+</tr>
+<td>3</td>
+<td><strong>Development & Middleware Config</strong>: Configure API Gateway / Enterprise Service Bus (ESB) for routing, transformation, and error handling</td>
+<td>IT Developer</td>
+<td>Integration Arch</td>
+<td>2-4 weeks</td>
+</tr>
+<td>4</td>
+<td><strong>Testing</strong>: Conduct unit testing, end-to-end integration testing in sandbox, and load testing for peak volumes</td>
+<td>QA Team</td>
+<td>Integration Arch</td>
+<td>1-2 weeks</td>
+</tr>
+<td>5</td>
+<td><strong>Deployment & Monitoring</strong>: Deploy to production; configure automated alerts for integration failures or latency spikes</td>
+<td>DevOps</td>
+<td>Integration Arch</td>
+<td>1 day</td>
+</tr>
+<td>6</td>
+<td><strong>Maintenance & Versioning</strong>: Monitor API performance; manage API version upgrades to avoid breaking downstream systems</td>
+<td>Integration Arch</td>
+<td>CIO</td>
+<td>Ongoing</td>
+</tr>
+</tbody></table></div>
+
+<h2>W265. POS Terminal Hardware Maintenance & Peripheral Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Workflow ID</strong></td>
+<td>W265</td>
+</tr>
+<td><strong>Name</strong></td>
+<td>POS Terminal Hardware Maintenance & Peripheral Management</td>
+</tr>
+<td><strong>Trigger</strong></td>
+<td>POS hardware failure or scheduled preventive maintenance</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~50–80 hardware incidents/day across 200 stores (1,000 terminals); PM cycle: quarterly per terminal</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~1,500–2,400 incidents/month; 4,000 PM events/quarter</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>IT Support Specialist</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>IT Support Specialist (4 field), Store Manager (200), IT Helpdesk (5), IT Asset Manager (1)</td>
+</tr>
+<td><strong>Time Estimate</strong></td>
+<td>15–60 min per incident (remote); 2–4 hours (on-site); 30 min per PM event</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Incident Reporting</strong>: Store staff reports POS hardware issue via: (a) IT Helpdesk ticket (W48 P2/P3 priority — POS down at specific terminal impacts checkout capacity but store remains operational with remaining terminals); (b) common issues: (i) receipt printer jam or failure (most frequent, ~40% of incidents), (ii) barcode scanner not reading (laser/CMOS degradation, ~25%), (iii) cash drawer stuck or sensor failure (~15%), (iv) PIN pad / card reader communication error (~10%), (v) touchscreen unresponsive or display failure (~5%), (vi) cable/connector damage (power, network, USB, ~5%)</td>
+<td>Store Staff</td>
+<td>Store Manager</td>
+<td>5 min</td>
+</tr>
+<td>2</td>
+<td><strong>Remote Diagnosis</strong>: IT Helpdesk receives ticket and performs remote diagnosis: (a) checks POS terminal status via remote management console; (b) reviews error logs for specific peripheral; (c) attempts remote remediation: (i) restart printer spooler service, (ii) recalibrate barcode scanner, (iii) reset PIN pad communication, (iv) clear cash drawer sensor jam via software; (d) if remote fix successful: close ticket and log resolution; (e) if remote fix unsuccessful: escalate to on-site response</td>
+<td>IT Helpdesk</td>
+<td>IT Support Lead</td>
+<td>10–20 min</td>
+</tr>
+<td>3</td>
+<td><strong>Spare Part Dispatch or On-Site Visit</strong>: For issues requiring physical intervention: (a) <strong>peripheral swap (most common)</strong>: Helpdesk authorizes Store Manager to swap failed peripheral with store's spare unit (each store maintains 1 spare receipt printer, 1 spare scanner, 1 spare PIN pad per NFR-024 IT asset management); (b) <strong>on-site visit</strong>: if spare swap doesn't resolve or issue is terminal-level (touchscreen, motherboard), IT Support Specialist schedules on-site visit (next business day for P2; same-day for P1 if > 2 terminals down at one store); (c) <strong>central depot repair</strong>: for complex failures, IT Support Specialist ships terminal to central IT depot (Davao HQ or regional hub) for repair</td>
+<td>IT Helpdesk / IT Support Specialist</td>
+<td>IT Support Lead</td>
+<td>15 min (swap) or 2–4 hours (on-site)</td>
+</tr>
+<td>4</td>
+<td><strong>Repair or Replacement Execution</strong>: IT Support Specialist performs on-site or depot repair: (a) diagnoses hardware failure (component-level: print head, laser diode, touchscreen digitizer, cable connector); (b) if repairable on-site: replace component from IT spare parts inventory (W131 IT asset lifecycle); (c) if unrepairable: replace entire unit from IT asset pool; (d) defective unit tagged for depot repair or disposal per W39; (e) system updated: IT asset register (W131) records asset status change, repair history, and replacement serial number</td>
+<td>IT Support Specialist</td>
+<td>IT Support Lead</td>
+<td>30–60 min</td>
+</tr>
+<td>5</td>
+<td><strong>Configuration & Testing</strong>: After swap or repair: (a) configure replacement peripheral: pair with POS terminal via Bluetooth/USB, load printer driver, set scanner configuration, configure PIN pad merchant ID and encryption keys; (b) test all functions: print test receipt, scan 5 test barcodes (1D and 2D), process test card transaction (PHP 1.00 authorization and void), open/close cash drawer, verify customer display output; (c) Store Manager confirms terminal operational and signs off ticket</td>
+<td>IT Support Specialist / Store Manager</td>
+<td>IT Support Lead</td>
+<td>20 min</td>
+</tr>
+<td>6</td>
+<td><strong>IT Asset Register Update</strong>: IT Asset Manager updates asset records: (a) replaced peripheral: serial number, date of replacement, reason code, store location, replaced-by IT staff ID; (b) defective unit: tagged for depot repair (status: "In Repair"), disposed (status: "Disposed" per W39), or returned to vendor under warranty (W33 warranty claim per peripheral); (c) asset lifecycle cost tracking: repair cost, downtime hours, replacement cost per terminal/peripheral</td>
+<td>IT Asset Manager</td>
+<td>IT Support Lead</td>
+<td>10 min</td>
+</tr>
+<td>7</td>
+<td><strong>Preventive Maintenance (Quarterly)</strong>: Per PM schedule: (a) IT Support Specialist visits each store quarterly (rotating schedule across 200 stores = ~15 stores/week); (b) per-terminal PM checklist: (i) clean receipt printer print head and paper path, (ii) clean barcode scanner lens and test read rate, (iii) inspect cash drawer rails and sensors, (iv) check PIN pad keypad responsiveness and update firmware, (v) clean touchscreen, (vi) inspect all cables and connectors for wear, (vii) verify UPS battery charge level (critical for W5G offline capability); (c) PM results logged in asset register; issues found during PM create follow-up tickets</td>
+<td>IT Support Specialist</td>
+<td>IT Support Lead</td>
+<td>30 min/terminal</td>
+</tr>
+<td>8</td>
+<td><strong>Vendor Warranty & RMA Management</strong>: For peripherals under manufacturer warranty: (a) IT Asset Manager tracks warranty expiration per serial number; (b) for in-warranty failures: initiate RMA (Return Merchandise Authorization) with vendor; (c) ship defective unit to vendor; use spare pool unit as replacement; (d) track RMA status and vendor turnaround time; (e) vendor SLA: replacement or repair within 10–15 business days; (f) feed vendor RMA performance into vendor scorecard (W44) for peripheral vendor contract renewal</td>
+<td>IT Asset Manager</td>
+<td>IT Support Lead</td>
+<td>30 min/RMA</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>IT Helpdesk ticketing system (W48) with POS hardware incident category and priority matrix</li>
+<li>Remote POS management console for diagnostics and peripheral restart</li>
+<li>IT Asset Register (W131) with serial-number-level tracking, warranty dates, and repair history</li>
+<li>Store spare inventory tracking (spare peripherals per store)</li>
+<li>Automated PM scheduling engine (quarterly rotation across 200 stores)</li>
+<li>Peripheral configuration management (drivers, encryption keys, firmware versions)</li>
+<li>RMA tracking module linked to vendor warranty database</li>
+<li>Hardware incident analytics: failure rate by peripheral type, by store, by vendor, mean time between failures (MTBF), mean time to repair (MTTR)</li>
+</ul>
+
+<h3>Pain Points / Risks</h3>
+<ul>
+<li><strong>Spare pool depletion</strong>: If multiple stores in same region have simultaneous failures, spare pool can be depleted; need regional spare hubs (one per DC region)</li>
+<li><strong>Peripheral vendor diversity</strong>: Different store generations may have different peripheral brands/models; IT team must maintain expertise and spare parts for multiple brands</li>
+<li><strong>Firmware update coordination</strong>: PIN pad firmware updates (PCI-DSS compliance) must be coordinated across 1,000 terminals without disrupting checkout; typically done overnight but some stores operate extended hours</li>
+<li><strong>Island logistics</strong>: On-site visits to Visayas and Mindanao stores require air travel; response time for non-spare-fixable issues can be 2–3 days; need regional IT support contractors as backup</li>
+<li><strong>Annual cost</strong>: ~1,500–2,400 hardware incidents/month × average repair/replacement cost of PHP 2,000–5,000 = ~PHP 3.6–14.4M annual POS hardware maintenance budget; IT must track cost per terminal for budgeting</li>
+<li><strong>End-of-life planning</strong>: POS terminals and peripherals typically have 5–7 year useful life; planning replacement cycles across 1,000 terminals requires capital budget planning per W21</li>
+</ul>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

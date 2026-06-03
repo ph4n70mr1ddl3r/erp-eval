@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Supply Chain — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub act"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🚛</span><h2>Supply Chain</h2></div><div class="cd mc"><h1>Supply Chain Planning Workflows</h1>
+
+<blockquote>Demand forecasting, seasonal buy planning, S&OP cycle, international logistics & import operations, supply chain network optimization, global supply chain incoterm & marine insurance tracking, import port demurrage & detention management, and supply chain control tower & real-time shipment visibility.</blockquote>
+<blockquote></blockquote>
+<blockquote>Back to <a href="README.md">Workflow Index</a></blockquote>
+
+<hr>
+
+<h2>Workflows in This Domain</h2>
+
+<ul>
+<li><a href="#demand-forecasting-cycle">W31. Demand Forecasting Cycle</a></li>
+<li><a href="#seasonal-buy-planning">W32. Seasonal Buy Planning</a></li>
+<li><a href="#sales-operations-planning-sop-cycle">W133. Sales & Operations Planning (S&OP) Cycle</a></li>
+<li><a href="#international-logistics--import-operations">W144. International Logistics & Import Operations</a></li>
+<li><a href="#supply-chain-network-optimization-review">W183. Supply Chain Network Optimization Review</a></li>
+<li><a href="#global-supply-chain--incoterm--marine-insurance-tracking">W191. Global Supply Chain — Incoterm & Marine Insurance Tracking</a></li>
+<li><a href="#import-port-demurrage--detention-management">W249. Import Port Demurrage & Detention Management</a></li>
+<li><a href="#supply-chain-control-tower--real-time-shipment-visibility">W250. Supply Chain Control Tower & Real-Time Shipment Visibility</a></li>
+</ul>
+
+<hr>
+
+<h2>W31. Demand Forecasting Cycle</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Weekly forecast recalculation schedule (Sunday batch)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Weekly recalculation; monthly review; quarterly adjustment</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>35,000 active SKUs × 5 DCs × 200 stores = up to 7.2M SKU-location forecasts; typically forecasted at DC level (175,000 SKU-DC combinations) and disaggregated to stores</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Demand Planner</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Demand Planner, Supply Planner, Category Manager, Pricing Analyst</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>System runs automated forecast engine: statistical algorithms (exponential smoothing, seasonal decomposition) applied to 2+ years of historical sales data per SKU per DC</td>
+<td>System</td>
+<td>—</td>
+<td>Automated (Sunday batch, 1–3 hours)</td>
+</tr>
+<td>2</td>
+<td>System adjusts raw statistical forecast for known events: promotional calendar (W13), seasonal calendar, new store openings (W16), planned store closures, one-time events (typhoons, pandemic)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td>Demand Planner reviews forecast exception report: SKUs with forecast error > 30%, SKUs with insufficient history, new SKUs with no history, SKUs with sudden demand spikes or drops</td>
+<td>Demand Planner</td>
+<td>Supply Planning Manager</td>
+<td>2–3 hours/week</td>
+</tr>
+<td>4</td>
+<td>Demand Planner adjusts flagged forecasts manually: overrides algorithm, inputs qualitative intelligence (vendor intel, market trends, competitive activity)</td>
+<td>Demand Planner</td>
+<td>Supply Planning Manager</td>
+<td>1–2 hours/week</td>
+</tr>
+<td>5</td>
+<td>Demand Planner reviews forecast accuracy metrics (MAPE, bias) by category; identifies systematic over/under-forecasting patterns</td>
+<td>Demand Planner</td>
+<td>Supply Planning Manager</td>
+<td>1 hour/week</td>
+</tr>
+<td>6</td>
+<td>Adjusted forecast released to replenishment engine (W4.1, W2A.1); system uses forecast instead of simple min/max for forecasted SKUs</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>7</td>
+<td>Monthly: Demand Planner presents forecast vs. actual report to Category Managers; discusses upcoming demand shifts</td>
+<td>Demand Planner</td>
+<td>VP Merchandising</td>
+<td>1 hour/category/month</td>
+</tr>
+<td>8</td>
+<td>Quarterly: Demand Planner recalibrates forecast model parameters (alpha, beta, gamma for exponential smoothing); updates seasonal indices based on latest year of data; reviews and updates safety stock parameters per SKU-location based on forecast error and demand variability changes (feeds into W2A.1 ROP/safety stock calculation); reviews ROP parameter governance: (a) lead time accuracy per vendor — compares actual delivery lead time vs. system lead time and updates for vendors with > 20% variance, flagging chronic late vendors for W44 review; (b) demand averaging period appropriateness by SKU volatility class; (c) service level targets by ABC class (e.g., A-items: 98%, B-items: 95%, C-items: 90% or as configured); (d) order multiple / MOQ accuracy per vendor-SKU; cross-references vendor lead time variance to vendor scorecard (W44)</td>
+<td>Demand Planner</td>
+<td>Supply Planning Manager</td>
+<td>4–6 hours/quarter</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total Demand Planner effort</strong>: ~8–12 hours/week + 4–6 hours/quarter for model recalibration</p>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Statistical forecast engine with multiple algorithms (W31.1)</li>
+<li>Automated event adjustment from promotional and seasonal calendars (W31.2)</li>
+<li>Forecast exception reporting with error thresholds (W31.3)</li>
+<li>Manual forecast override with audit trail (W31.4)</li>
+<li>Forecast accuracy dashboards (MAPE, bias, weighted MAPE) (W31.5)</li>
+<li>Forecast release to replenishment/MRP engine (W31.6)</li>
+<li>Forecast vs. actual variance reporting by category (W31.7)</li>
+<li>Model parameter maintenance and seasonal index recalculation (W31.8)</li>
+<li>Safety stock parameter review and update linked to ROP calculation in W2A (W31.8)</li>
+<li>Multi-echelon DC replenishment sourcing: when a DC's inventory for a SKU drops below ROP, system evaluates available stock at other DCs, inter-DC transfer cost and lead time, vs. vendor PO cost and lead time; recommends optimal source; if transfer recommended, auto-generates Transfer Order per W22; if PO recommended, auto-generates suggested PO per W2A; Supply Planner reviews sourcing recommendations as part of daily replenishment review (W31.6, W4.2)</li>
+<li>ROP parameter governance and accuracy reporting: quarterly parameter review as part of W31.8 covering (a) lead time variance report per vendor (actual vs. system lead time); (b) service level target monitoring by ABC class; (c) demand averaging period appropriateness by volatility class; (d) order multiple / MOQ accuracy; (e) ROP exception report: SKUs where ROP parameters have not been reviewed in > 6 months; parameter accuracy feeds into vendor scorecard (W44) for lead time performance tracking</li>
+<li>DC multi-dimensional capacity planning dashboard: system aggregates all competing demands on DC resources into a single view per DC — (a) <strong>inbound receiving capacity</strong>: scheduled receipts (W3C) vs. dock door availability vs. receiving crew capacity (labor hours); (b) <strong>outbound pick/pack capacity</strong>: store replenishment orders (W4) + home delivery orders (W19) + promotional pre-positioning (W57) + backorder fulfillment (W56) — total pick lines and labor hours required vs. available pick/pack crew; (c) <strong>outbound dock capacity</strong>: scheduled dispatches vs. dock door availability vs. loading crew capacity; (d) <strong>storage capacity</strong>: current bin utilization vs. incoming inventory from POs and transfers; dashboard shows 3-day forward view with capacity utilization percentage per dimension; Supply Planner and DC Supervisor review daily during morning planning meeting; if any dimension exceeds 90% utilization, system highlights in amber; if exceeds 100%, system highlights in red and suggests mitigation (defer non-critical replenishment waves, redirect home delivery to alternate DC, schedule overtime, or engage agency workers per W10); during peak periods (Christmas season, bi-monthly sale events), Supply Planning Manager reviews capacity dashboard weekly with DC Manager and VP Supply Chain to proactively adjust labor scheduling (W34) and carrier capacity (W52/W62B) (W31)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>1–2 Demand Planners</strong> (within the 30-person Supply Chain team): This is a specialized analytical role. With 35,000 SKUs across 5 DCs, weekly review of forecast exceptions + monthly category reviews + quarterly recalibration requires a dedicated person. A 2nd demand planner provides coverage and can focus on new-item forecasting (no history) and promotional lift modeling.</li>
+<li><strong>Category Managers</strong>: 1 hour/month each for forecast review meetings = ~10 hours/month total. Absorbed into existing duties.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W32. Seasonal Buy Planning</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Seasonal calendar milestones (6 months before each season peak)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>4 major seasonal planning cycles/year: Christmas (plan in Jun), Summer/March (plan in Oct), Back-to-School (plan in Nov), Rainy Season/ typhoon prep (plan in Jan)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~3,000–5,000 seasonal SKUs per major event; ~20–30 import POs per season</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Category Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Category Manager, Buyer, Demand Planner, Import Coordinator, VP Merchandising, Finance (budget)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Demand Planner generates seasonal forecast: prior-year sales by SKU for the season period, adjusted for current trend and planned promotions</td>
+<td>Demand Planner</td>
+<td>Category Manager</td>
+<td>4 hours/season</td>
+</tr>
+<td>2</td>
+<td>Category Manager reviews seasonal forecast; identifies SKUs to carry forward, new items to add, items to drop</td>
+<td>Category Manager</td>
+<td>VP Merchandising</td>
+<td>2 hours/season</td>
+</tr>
+<td>3</td>
+<td>Buyer solicits vendor quotations for seasonal items; negotiates volume discounts, early-order incentives, and return/excess-stock terms</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>1 week/season</td>
+</tr>
+<td>4</td>
+<td>Category Manager creates seasonal buy plan: SKU-level quantities, vendor allocation, delivery schedule (phased receipts vs. single drop)</td>
+<td>Category Manager</td>
+<td>VP Merchandising</td>
+<td>4 hours/season</td>
+</tr>
+<td>5</td>
+<td>Finance validates seasonal buy plan against working capital budget and inventory plan (max inventory days target)</td>
+<td>Controller</td>
+<td>CFO</td>
+<td>2 hours/season</td>
+</tr>
+<td>6</td>
+<td>VP Merchandising approves seasonal buy plan</td>
+<td>VP Merchandising</td>
+<td>VP Merchandising</td>
+<td>1 hour/season</td>
+</tr>
+<td>7</td>
+<td>Buyer creates import POs (W2B) or domestic POs (W2A) per the seasonal buy plan; times orders to arrive 6–8 weeks before season start</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>Per W2</td>
+</tr>
+<td>8</td>
+<td>System tracks seasonal PO commitments vs. seasonal buy plan budget; alerts if over-committed</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>9</td>
+<td>As season approaches: Pricing Analyst sets up seasonal pricing and promotions (W13)</td>
+<td>Pricing Analyst</td>
+<td>Category Manager</td>
+<td>Per W13</td>
+</tr>
+<td>10</td>
+<td>Mid-season: Category Manager and Buyer review sell-through vs. plan; trigger re-orders for hot items or accelerate markdowns for slow movers</td>
+<td>Category Manager</td>
+<td>VP Merchandising</td>
+<td>1 hour/week during season</td>
+</tr>
+<td>11</td>
+<td>Post-season: Buyer and Category Manager conduct post-mortem: actual vs. plan sales, margin, leftover inventory disposition (clearance, return to vendor, carry forward to next year)</td>
+<td>Buyer + Category Manager</td>
+<td>VP Merchandising</td>
+<td>2 hours/season</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Total cycle time</strong>: 6 months from planning start to season peak</p>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Seasonal forecast generation from historical data with event adjustment (W32.1)</li>
+<li>Seasonal buy plan entry with SKU, quantity, vendor, delivery phasing (W32.4)</li>
+<li>Budget/working capital check against seasonal plan (W32.5)</li>
+<li>PO commitment tracking against seasonal buy plan budget (W32.8)</li>
+<li>Seasonal sell-through dashboard: actual vs. plan by SKU (W32.10)</li>
+<li>Post-season analysis and leftover inventory disposition tracking (W32.11)</li>
+<li>Integration with W1 (assortment review), W2 (PO creation), W13 (promotions)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>Category Managers</strong>: Seasonal planning is an extension of their existing W1 duties. Each seasonal cycle adds ~8–10 hours of work per category, spread over several weeks. With 5 Category Managers and 4 seasonal cycles, each handles ~1 major seasonal plan at a time. Absorbed within existing ~40-person Merchandising team.</li>
+<li><strong>Buyers</strong>: Import PO creation follows standard W2B. Seasonal volume adds ~20–30 import POs per season, concentrated in a few weeks. Manageable within existing team.</li>
+<li><strong>Demand Planner</strong>: Adds ~4 hours per seasonal cycle for forecast generation. With 4 cycles/year = 16 hours/year. Minimal impact.</li>
+</ul>
+
+<hr>
+
+<h2>W133. Sales & Operations Planning (S&OP) Cycle</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Monthly planning calendar (typically starting 10th business day)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Monthly</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Covers all product categories and all 5 DCs</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>VP for Supply Chain</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CEO, COO, CFO, VP Merchandising, VP Store Ops, Supply Planning Manager, Demand Planner, Category Managers</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>S&OP is the cross-functional process that aligns demand, supply, and financial plans into a single "consensus plan." It ensures that BuildRight has enough inventory to meet sales targets without exceeding working capital limits or DC capacity.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Demand Review</strong>: Demand Planner and Category Managers review the unconstrained forecast (W31); adjust for planned promos (W83) and new store openings (W16); sign off on "Consensus Demand Plan"</td>
+<td>Demand Planner</td>
+<td>VP Merch</td>
+<td>2 days</td>
+</tr>
+<td>2</td>
+<td><strong>Supply Review</strong>: Supply Planner and DC Managers evaluate ability to meet demand; check vendor lead times (W44), DC storage/labor capacity, and port congestion (W144); identify supply gaps</td>
+<td>Supply Planner</td>
+<td>VP Supply Chain</td>
+<td>2 days</td>
+</tr>
+<td>3</td>
+<td><strong>Financial Integration</strong>: Finance translates the volume plan into PHP; compares against budget (W26) and revenue targets; highlights margin risks if high-cost logistics (W66) are needed</td>
+<td>Controller</td>
+<td>CFO</td>
+<td>1 day</td>
+</tr>
+<td>4</td>
+<td><strong>Pre-S&OP Meeting</strong>: Managers reconcile demand/supply gaps; develop scenarios (e.g., "Air-freight vs. Out-of-stock") for leadership</td>
+<td>Supply Planning Mgr</td>
+<td>VP Supply Chain</td>
+<td>4 hours</td>
+</tr>
+<td>5</td>
+<td><strong>Executive S&OP Meeting</strong>: C-Suite reviews scenarios; makes trade-off decisions; approves the "Consensus Operating Plan" for the next 3–12 months</td>
+<td>CEO</td>
+<td>CEO</td>
+<td>2 hours</td>
+</tr>
+<td>6</td>
+<td><strong>Disaggregation</strong>: Approved plan is pushed back to replenishment systems (W4) and Buy Plans (W32) to drive execution</td>
+<td>Supply Planner</td>
+<td>—</td>
+<td>4 hours</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>S&OP Workbench aggregating Forecast (Demand), Open POs/Inventory (Supply), and Budget (Finance)</li>
+<li>Scenario modeling / "What-if" analysis tools</li>
+<li>Executive dashboard showing Demand/Supply balance and projected stock-outs</li>
+<li>Integration with W31 (Forecasting), W32 (Seasonal Buying), and W26 (Budgeting)</li>
+</ul>
+
+<hr>
+
+<h2>W144. International Logistics & Import Operations</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Import Purchase Order (W2B) approved and sent to overseas vendor</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Weekly; ~20–30 containers/month</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Primary sourcing from China, Vietnam, Thailand, and Europe</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Import Coordinator</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Import Coordinator, Freight Forwarder, Customs Broker, Finance, DC Receiving</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Proforma Invoice (PI) Review</strong>: Receive PI from vendor; verify against PO (W2B); check payment terms (L/C, T/T, CAD)</td>
+<td>Buyer</td>
+<td>Category Manager</td>
+<td>1 hour</td>
+</tr>
+<td>2</td>
+<td><strong>L/C Opening (if applicable)</strong>: Finance coordinates with Bank to open Letter of Credit; sends L/C to vendor bank</td>
+<td>Finance (Treasury)</td>
+<td>CFO</td>
+<td>2–3 days</td>
+</tr>
+<td>3</td>
+<td><strong>Production & Booking</strong>: Vendor confirms production completion; Import Coordinator coordinates with Freight Forwarder for vessel booking (FCL/LCL)</td>
+<td>Import Coordinator</td>
+<td>—</td>
+<td>2–5 days</td>
+</tr>
+<td>4</td>
+<td><strong>Shipping Documents</strong>: Receive set of documents: Bill of Lading (B/L), Commercial Invoice, Packing List, Certificate of Origin (for FTA benefits like ATIGA/ACFTA)</td>
+<td>Import Coordinator</td>
+<td>—</td>
+<td>1 day</td>
+</tr>
+<td>5</td>
+<td><strong>In-Transit Tracking</strong>: Update system with vessel name, container ID, and ETA; monitor "Estimated vs. Actual" arrival dates</td>
+<td>Import Coordinator</td>
+<td>—</td>
+<td>Ongoing</td>
+</tr>
+<td>6</td>
+<td><strong>Customs Entry</strong>: Customs Broker files entry via BOC E2M system; calculates Duties & Taxes (VAT + Import Duty)</td>
+<td>Customs Broker</td>
+<td>Import Coordinator</td>
+<td>1–2 days</td>
+</tr>
+<td>7</td>
+<td><strong>Payment of Duties</strong>: Finance processes payment of duties/taxes to BOC via bank portal; system records as "Inventory in Transit" cost component</td>
+<td>Finance</td>
+<td>Controller</td>
+<td>4 hours</td>
+</tr>
+<td>8</td>
+<td><strong>Release & Haulage</strong>: BOC releases cargo; Forwarder coordinates haulage from Port to DC; monitor "Port Out" to avoid demurrage/detention fees</td>
+<td>Import Coordinator</td>
+<td>DC Manager</td>
+<td>1–3 days</td>
+</tr>
+<td>9</td>
+<td><strong>DC Arrival & Stripping</strong>: DC receives container; verifies seal integrity; strips container and performs "Blind Count" against Packing List</td>
+<td>DC Receiving</td>
+<td>DC Manager</td>
+<td>4 hours</td>
+</tr>
+<td>10</td>
+<td><strong>Cost Finalization</strong>: System aggregates all landed costs (Product + Freight + Duties + Brokerage + Wharfage) to calculate final Landed WAC</td>
+<td>System / Finance</td>
+<td>Cost Accountant</td>
+<td>Automated</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Import Shipment Tracker (Container level)</li>
+<li>Landed Cost Module (aggregating multiple invoices to a single PO line)</li>
+<li>Integration with BOC E2M (if via API) or manual entry of entry numbers</li>
+<li>Demurrage/Detention alert system based on "Last Free Day"</li>
+</ul>
+
+
+
+<hr>
+
+
+<hr>
+
+<h2>W183. Supply Chain Network Optimization Review</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Annual strategic review; or significant change in logistics costs/fuel prices</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>COO</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Supply Chain Director, Logistics Manager, Finance Analyst, External Logistics Consultant</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Data Extraction</strong>: Pull historical store sales, DC throughput, and transport costs by route</td>
+<td>Finance Analyst</td>
+<td>—</td>
+<td>1 day</td>
+</tr>
+<td>2</td>
+<td><strong>Modeling</strong>: Use "Center of Gravity" and "Network Optimization" tools to simulate optimal DC locations vs. 200-store footprint</td>
+<td>SC Director</td>
+<td>—</td>
+<td>1 week</td>
+</tr>
+<td>3</td>
+<td><strong>Cost Analysis</strong>: Compare current "5-DC" cost vs. potential "6-DC" or "Consolidated DC" scenarios; include lease exit costs (W117)</td>
+<td>Logistics Mgr</td>
+<td>CFO</td>
+<td>3 days</td>
+</tr>
+<td>4</td>
+<td><strong>Recommendation</strong>: Present optimal network configuration (e.g., "Open DC6 in North Luzon") to Board</td>
+<td>COO</td>
+<td>CEO</td>
+<td>2 hours</td>
+</tr>
+<td>5</td>
+<td><strong>Implementation Plan</strong>: If approved, trigger W116 (Site Selection) for the new DC</td>
+<td>Supply Chain Mgr</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Big Data extraction from ERP (Sales + Inventory + Transport costs)</li>
+<li>Simulation/Integration with Logistics Optimization software</li>
+<li>Strategic decision support dashboards</li>
+</ul>
+
+<hr>
+
+<h2>W191. Global Supply Chain — Incoterm & Marine Insurance Tracking</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Import PO creation (W2B) or Shipment Booking (W144)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing per import shipment</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~400–600 TEUs/month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Import Coordinator</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Buyer, Insurance Provider, Finance, Freight Forwarder</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Incoterm Selection</strong>: Buyer selects Incoterm (EXW, FOB, CFR, CIF) during PO negotiation (W2B); system calculates risk transfer point</td>
+<td>Buyer</td>
+<td>—</td>
+<td>15 min</td>
+</tr>
+<td>2</td>
+<td><strong>Insurance Booking</strong>: If Incoterm requires BuildRight to provide insurance (EXW, FOB, CFR), Import Coordinator issues "Marine Insurance Declaration"</td>
+<td>Import Coordinator</td>
+<td>—</td>
+<td>30 min</td>
+</tr>
+<td>3</td>
+<td><strong>Risk Monitoring</strong>: System tracks shipment location vs. risk transfer point (e.g., "On Board" for FOB); alerts if insurance coverage gap exists</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td><strong>Claim Initiation</strong>: If damage/loss occurs during transit (W3.6a), Import Coordinator gathers B/L, Survey Report, and Invoice</td>
+<td>Import Coordinator</td>
+<td>—</td>
+<td>2 hours</td>
+</tr>
+<td>5</td>
+<td><strong>Claim Filing</strong>: Submit claim to Marine Insurance provider; track status in ERP</td>
+<td>Import Coordinator</td>
+<td>Finance Mgr</td>
+<td>1 hour</td>
+</tr>
+<td>6</td>
+<td><strong>Settlement</strong>: Finance records insurance recovery; offsets against inventory loss (W3.6a)</td>
+<td>Finance</td>
+<td>—</td>
+<td>30 min</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Incoterm Master Data in Vendor/PO (W191.1)</li>
+<li>Marine Insurance Declaration Portal (W191.2)</li>
+<li>Risk Transfer Point Monitoring (W191.3)</li>
+<li>Insurance Claim Tracking Module (W191.5)</li>
+</ul>
+
+<hr>
+
+<h2>W249. Import Port Demurrage & Detention Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Import container vessel arrival at Philippine port (Manila/Cebu/Davao) (W144)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing per import shipment (~20–30 shipments/month)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Covers ~400–600 TEUs/month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Logistics Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Import Coordinator, Customs Broker, Finance Specialist, Shipping Line</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Vessel Arrival</strong>: System pulls actual arrival time from Port Authority API; calculates free-time expiration date (standard: 5 days demurrage, 3 days detention).</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td><strong>Clearance Tracking</strong>: Import Coordinator monitors customs brokerage clearance progress (W239). If delayed (> 3 days), triggers warning.</td>
+<td>Import Coordinator</td>
+<td>Logistics Mgr</td>
+<td>10 min</td>
+</tr>
+<td>3</td>
+<td><strong>Demurrage Alert</strong>: System auto-calculates potential demurrage fees if containers are not gate-outed before free-time expiry; alerts Logistics Manager to prioritize pickup.</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td><strong>Gate-Out & Return</strong>: Containers are hauled to DC (W3). Hauler returns empty container to designated port yard within shipping line's free-time window.</td>
+<td>Hauler / DC Clerk</td>
+<td>Logistics Mgr</td>
+<td>1–2 days</td>
+</tr>
+<td>5</td>
+<td><strong>Charges Auditing</strong>: If demurrage/detention occurs: Shipping line issues invoice; Finance Specialist audits charges against system-captured arrival/gate-out/gate-in logs.</td>
+<td>Finance Specialist</td>
+<td>Controller</td>
+<td>1 hour</td>
+</tr>
+<td>6</td>
+<td><strong>Dispute / Payment</strong>: If charges valid, approve payment to avoid port hold; if invalid, initiate dispute via shipping line portal with log evidence.</td>
+<td>Finance Specialist</td>
+<td>Logistics Mgr</td>
+<td>2 hours</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Port Authority vessel tracking API integration</li>
+<li>Automated demurrage/detention free-time calculations and system alerting</li>
+<li>Hauler empty container gate-in/gate-out logs tracking</li>
+<li>Landed cost integration for port penalty allocations (W2B/W13)</li>
+</ul>
+
+<hr>
+
+<h2>W250. Supply Chain Control Tower & Real-Time Shipment Visibility</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Shipment of import PO (W144 / W2B) or inter-island freight dispatch (W66)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Ongoing per shipment</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~20–30 import containers and ~40–50 inter-island shipments/month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Supply Chain Director</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Logistics Manager, Import Coordinator, Store Operations Rep, 3PL Partners</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Shipment Dispatch</strong>: 3PL partner dispatches shipment and transmits Container ID / GPS tracker link via API/EDI to BuildRight.</td>
+<td>3PL Partner</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td><strong>Milestones Tracking</strong>: Control Tower system aggregates tracking data (vessel GPS, port gate-out/gate-in, inland truck GPS) to trace shipment in transit.</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td><strong>Dynamic ETA Update</strong>: System dynamically recalculates estimated time of arrival (ETA) based on weather, port speed, and transit history.</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td><strong>Geofence Alerts</strong>: System detects container entering port/DC zone; auto-alerts DC gate crew (W3) and Import Coordinator to prepare receiving.</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>5</td>
+<td><strong>Exception Trigger</strong>: If a shipment is delayed > 24 hours from original ETA, system triggers alert. Import Coordinator investigates bottleneck.</td>
+<td>Import Coordinator</td>
+<td>Logistics Mgr</td>
+<td>1 hour</td>
+</tr>
+<td>6</td>
+<td><strong>Re-routing / Mitigation</strong>: If critical delay threatens store stockout, Supply Chain Director authorizes inventory reallocation (W105) or alternative local sourcing (W60).</td>
+<td>Supply Chain Director</td>
+<td>VP Supply Chain</td>
+<td>2 hours</td>
+</tr>
+<td>7</td>
+<td><strong>Carrier Review</strong>: Monthly, Logistics Manager reviews carrier lead-time performance and delay metrics in S&OP dashboard (W133).</td>
+<td>Logistics Manager</td>
+<td>Supply Chain Director</td>
+<td>2 hours</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Control Tower Dashboard with GIS integration</li>
+<li>Carrier EDI/API tracking integrations</li>
+<li>Dynamic ETA recalculation engine</li>
+<li>Automated SMS/Email delay exception notifications</li>
+</ul>
+
+
+
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

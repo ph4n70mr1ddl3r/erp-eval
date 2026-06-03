@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Implementation Roadmap — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub act"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🗺️</span><h2>Implementation Roadmap</h2></div><div class="cd mc"><h1>ERP Implementation — High-Level Roadmap</h1>
+
+<blockquote>This document outlines the phased implementation plan for the selected ERP platform</blockquote>
+<blockquote>at BuildRight Depot Corp. The approach is phased rollout starting with a pilot group</blockquote>
+<blockquote>of stores before nationwide deployment.</blockquote>
+
+<hr>
+
+<h2>1. Implementation Strategy</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Decision</th>
+</tr></thead><tbody>
+<td><strong>Approach</strong></td>
+<td>Phased rollout (not big-bang)</td>
+</tr>
+<td><strong>Pilot Scope</strong></td>
+<td>5 stores + 1 DC + HQ finance</td>
+</tr>
+<td><strong>Pilot Location</strong></td>
+<td>Mindanao region (near HQ; Davao City stores)</td>
+</tr>
+<td><strong>Wave Size</strong></td>
+<td>20–30 stores per wave after pilot</td>
+</tr>
+<td><strong>Total Waves</strong></td>
+<td>~8–10 waves over 12–18 months</td>
+</tr>
+<td><strong>Go-Live Strategy</strong></td>
+<td>Module-by-module within pilot, then full-stack per wave</td>
+</tr>
+</tbody></table></div>
+
+<h3>Why Phased Rollout?</h3>
+<ul>
+<li><strong>De-risk POS</strong>: 2.8M monthly transactions cannot be cut over in one event</li>
+<li><strong>Learn and adjust</strong>: Pilot stores reveal process gaps before scale</li>
+<li><strong>Resource management</strong>: Training 6,000 store staff requires sequencing</li>
+<li><strong>Supply chain stability</strong>: DC operations must be stable before loading all stores</li>
+</ul>
+
+<hr>
+
+<h2>2. Implementation Phases</h2>
+
+<h3>Phase 0: Project Setup (Months 1–2)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Activity</th>
+<th>Duration</th>
+<th>Owner</th>
+</tr></thead><tbody>
+<td>ERP vendor contract & SOW</td>
+<td>4 weeks</td>
+<td>CFO + CIO</td>
+</tr>
+<td>Implementation partner selection</td>
+<td>4 weeks</td>
+<td>CIO + Procurement</td>
+</tr>
+<td>Project governance setup (steerco, PMO)</td>
+<td>2 weeks</td>
+<td>CIO</td>
+</tr>
+<td>Project team formation (core + extended)</td>
+<td>2 weeks</td>
+<td>CIO + Department Heads</td>
+</tr>
+<td>Project kickoff</td>
+<td>1 day</td>
+<td>All</td>
+</tr>
+<td>Detailed project plan refinement</td>
+<td>2 weeks</td>
+<td>PMO + Implementation Partner</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Deliverables</strong>: Signed SOW, project charter, governance framework, resource plan</p>
+
+<h3>Phase 1: Design & Configure (Months 3–6)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Activity</th>
+<th>Duration</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td>Business process workshops (BPML)</td>
+<td>4 weeks</td>
+<td>All modules; document current vs. future state</td>
+</tr>
+<td>Solution design document</td>
+<td>3 weeks</td>
+<td>Fit-gap confirmation; identify customizations</td>
+</tr>
+<td>System configuration (core modules)</td>
+<td>6 weeks</td>
+<td>Finance, inventory, procurement, HR</td>
+</tr>
+<td>POS configuration & integration design</td>
+<td>4 weeks</td>
+<td>Offline mode, payment devices, receipt format</td>
+</tr>
+<td>Ecommerce integration design</td>
+<td>2 weeks</td>
+<td>API mapping, inventory sync, BOPIS flow</td>
+</tr>
+<td>Data migration strategy & mapping</td>
+<td>3 weeks</td>
+<td>Legacy data extraction, transformation, load plan</td>
+</tr>
+<td>Integration architecture finalized</td>
+<td>2 weeks</td>
+<td>All touchpoints in <a href="../01-model-company/data-volumes-and-integrations.md#3-integration-detail-matrix">Data Volumes §3</a></td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Deliverables</strong>: Solution design document, configured sandbox, data migration plan</p>
+
+<h3>Phase 2: Build & Test (Months 7–9)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Activity</th>
+<th>Duration</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td>Customization / extension development</td>
+<td>6 weeks</td>
+<td>Minimize custom code; prefer configuration</td>
+</tr>
+<td>Integration development</td>
+<td>4 weeks</td>
+<td>POS, ecommerce, banks, BIR, statutory</td>
+</tr>
+<td>Data migration scripts & test loads</td>
+<td>3 weeks</td>
+<td>Run at least 3 test migrations</td>
+</tr>
+<td>POS hardware staging & imaging</td>
+<td>3 weeks</td>
+<td>25 terminals for pilot (5 stores × 5)</td>
+</tr>
+<td>WMS configuration & RF gun setup</td>
+<td>3 weeks</td>
+<td>DC1 (Davao) only for pilot</td>
+</tr>
+<td><strong>SIT (System Integration Testing)</strong></td>
+<td>3 weeks</td>
+<td>End-to-end process testing</td>
+</tr>
+<td><strong>UAT (User Acceptance Testing)</strong></td>
+<td>3 weeks</td>
+<td>Business users validate scenarios</td>
+</tr>
+<td>Performance / load testing</td>
+<td>2 weeks</td>
+<td>Simulate peak POS volumes</td>
+</tr>
+<td>Security & penetration testing</td>
+<td>1 week</td>
+<td>External security review</td>
+</tr>
+<td>Cutover rehearsal</td>
+<td>1 week</td>
+<td>Dry run of go-live weekend</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Deliverables</strong>: Tested system, signed-off UAT, performance test report</p>
+
+<h3>Phase 3: Pilot Go-Live (Months 10–11)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Activity</th>
+<th>Duration</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td>Pilot scope: 5 Davao stores + DC1 + HQ Finance</td>
+<td></td>
+<td></td>
+</tr>
+<td>Data migration (final load)</td>
+<td>Weekend</td>
+<td>Legacy → ERP cut-over</td>
+</tr>
+<td>POS hardware deployment (5 stores)</td>
+<td>1 week</td>
+<td>Install, test, train</td>
+</tr>
+<td>Hypercare / floor support</td>
+<td>4 weeks</td>
+<td>On-site support team at each pilot store</td>
+</tr>
+<td>Daily issue triage & resolution</td>
+<td>Ongoing</td>
+<td>PMO-led</td>
+</tr>
+<td>Pilot lessons learned</td>
+<td>1 week</td>
+<td>Document adjustments for Wave 1</td>
+</tr>
+</tbody></table></div>
+
+<p><strong>Pilot Success Criteria</strong>:</p>
+<ul>
+<li>All 5 stores processing transactions on new POS</li>
+<li>DC1 receiving, picking, and shipping on new WMS</li>
+<li>HQ finance posting entries and generating reports</li>
+<li>Inventory accuracy ≥ 95% at pilot stores</li>
+<li>POS transaction success rate ≥ 99.5%</li>
+<li>Zero critical (P1) open defects after Week 2</li>
+</ul>
+
+<h3>Phase 4: Wave Rollout (Months 12–22)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Wave</th>
+<th>Stores</th>
+<th>Region</th>
+<th>DC</th>
+<th>Timeline</th>
+</tr></thead><tbody>
+<td><strong>Wave 1</strong></td>
+<td>20</td>
+<td>Mindanao (remaining)</td>
+<td>—</td>
+<td>Month 12</td>
+</tr>
+<td><strong>Wave 2</strong></td>
+<td>25</td>
+<td>Visayas</td>
+<td>DC2 (Cebu)</td>
+<td>Month 14</td>
+</tr>
+<td><strong>Wave 3</strong></td>
+<td>25</td>
+<td>Visayas (remaining)</td>
+<td>—</td>
+<td>Month 15</td>
+</tr>
+<td><strong>Wave 4</strong></td>
+<td>30</td>
+<td>South Luzon + NCR</td>
+<td>DC3 (Laguna) + DC5 (Valenzuela)</td>
+<td>Month 17</td>
+</tr>
+<td><strong>Wave 5</strong></td>
+<td>30</td>
+<td>NCR + South Luzon</td>
+<td>—</td>
+<td>Month 18</td>
+</tr>
+<td><strong>Wave 6</strong></td>
+<td>25</td>
+<td>North/Central Luzon</td>
+<td>DC4 (Clark)</td>
+<td>Month 20</td>
+</tr>
+<td><strong>Wave 7</strong></td>
+<td>40</td>
+<td>Remaining stores</td>
+<td>—</td>
+<td>Month 22</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Note</strong>: Wave sizes may be adjusted based on pilot learnings. Each wave follows:</blockquote>
+<blockquote>1. Pre-wave training (2 weeks) → 2. Hardware deploy (1 week) → 3. Go-live weekend → 4. Hypercare (2 weeks)</blockquote>
+
+<h3>Phase 5: Optimization & BAU (Months 23–26)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Activity</th>
+<th>Duration</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td>Ecommerce full integration go-live</td>
+<td>—</td>
+<td>May launch earlier in pilot region</td>
+</tr>
+<td>Demand planning / forecasting activation</td>
+<td>4 weeks</td>
+<td>Requires 3–6 months of historical data in system</td>
+</tr>
+<td>Advanced analytics / BI dashboards</td>
+<td>4 weeks</td>
+<td>Executive and operational dashboards</td>
+</tr>
+<td>Loyalty program integration</td>
+<td>3 weeks</td>
+<td>Full points earn/redeem at POS and online</td>
+</tr>
+<td>Process optimization</td>
+<td>Ongoing</td>
+<td>Continuous improvement based on user feedback</td>
+</tr>
+<td>Knowledge transfer & BAU support model</td>
+<td>4 weeks</td>
+<td>Transition from implementation partner to internal IT</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>3. Data Migration Plan</h2>
+
+<h3>Legacy Systems to Migrate</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Source System</th>
+<th>Data to Migrate</th>
+<th>Strategy</th>
+</tr></thead><tbody>
+<td>Legacy accounting</td>
+<td>GL balances, open AP/AR, fixed assets</td>
+<td>Balances as of go-live date; open items migrated individually</td>
+</tr>
+<td>Standalone POS</td>
+<td>Historical sales (12 months)</td>
+<td>Summarized daily sales by store; detailed last 3 months only</td>
+</tr>
+<td>Spreadsheet purchasing</td>
+<td>Open POs, vendor master</td>
+<td>Active POs migrated; vendor master cleansed</td>
+</tr>
+<td>Payroll software</td>
+<td>Employee master, YTD earnings</td>
+<td>Full employee master + year-to-date for BIR reconciliation</td>
+</tr>
+<td>Custom ecommerce</td>
+<td>Customer accounts, order history</td>
+<td>Loyalty members migrated; order history last 6 months</td>
+</tr>
+<td>Manual inventory</td>
+<td>On-hand quantities per store/DC</td>
+<td>Full wall-to-wall physical count at go-live; counts loaded as opening balances</td>
+</tr>
+</tbody></table></div>
+
+<h3>Data Migration Principles</h3>
+<ol>
+<li><strong>Cleanse before migrating</strong>: De-duplicate vendors, customers, and items before load</li>
+</ol>
+<ol>
+<li><strong>Historical data</strong>: Minimum 12 months summarized; 3 years for financial reporting</li>
+</ol>
+<ol>
+<li><strong>Parallel run</strong>: Run legacy and new system simultaneously for 1 payroll cycle and 1 month-end close during pilot</li>
+</ol>
+<ol>
+<li><strong>Archived access</strong>: Legacy systems placed in read-only mode for 7 years (BIR retention)</li>
+</ol>
+
+<hr>
+
+<h2>4. Change Management & Training</h2>
+
+<h3>Training Approach</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Audience</th>
+<th>Training Method</th>
+<th>Duration</th>
+<th>Timing</th>
+</tr></thead><tbody>
+<td>Core project team (20)</td>
+<td>Vendor-led deep training</td>
+<td>2 weeks</td>
+<td>Phase 1</td>
+</tr>
+<td>Department super-users (50)</td>
+<td>Train-the-trainer</td>
+<td>1 week per module</td>
+<td>Phase 2</td>
+</tr>
+<td>HQ staff (300)</td>
+<td>Classroom + e-learning</td>
+<td>2–3 days per role</td>
+<td>Pre-pilot</td>
+</tr>
+<td>Store managers (200)</td>
+<td>Classroom + hands-on POS</td>
+<td>2 days</td>
+<td>Pre-wave</td>
+</tr>
+<td>Store staff (6,800)</td>
+<td>On-site training by super-users</td>
+<td>1 day</td>
+<td>Pre-wave (1 week before go-live)</td>
+</tr>
+<td>DC staff (750)</td>
+<td>Hands-on WMS + RF gun training</td>
+<td>2 days</td>
+<td>Pre-DC go-live</td>
+</tr>
+<td>Executives (10)</td>
+<td>Dashboard & report orientation</td>
+<td>Half day</td>
+<td>Post-pilot</td>
+</tr>
+</tbody></table></div>
+
+<h3>Change Management Activities</h3>
+<ul>
+<li>Executive sponsor communications (bi-weekly)</li>
+<li>Store manager town halls (pre-wave)</li>
+<li>"ERP Champions" program (1 per store; 200 total)</li>
+<li>Quick-reference cards at every POS and workstation</li>
+<li>Post-go-live help desk (first 30 days per wave)</li>
+</ul>
+
+<hr>
+
+<h2>5. Risk Mitigation</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Risk</th>
+<th>Likelihood</th>
+<th>Impact</th>
+<th>Mitigation</th>
+</tr></thead><tbody>
+<td>POS offline failure during go-live</td>
+<td>Medium</td>
+<td>Critical</td>
+<td>Pilot validates offline mode; fallback to manual selling procedures</td>
+</tr>
+<td>Data migration errors (inventory)</td>
+<td>High</td>
+<td>High</td>
+<td>Pre-migration physical count; reconciliation reports before go-live</td>
+</tr>
+<td>User resistance / low adoption</td>
+<td>Medium</td>
+<td>High</td>
+<td>Change management program; ERP champions; management KPI alignment</td>
+</tr>
+<td>Integration failure (POS ↔ ERP)</td>
+<td>Medium</td>
+<td>Critical</td>
+<td>SIT stress testing; fallback batch mode; monitoring alerts</td>
+</tr>
+<td>Philippine localization gaps</td>
+<td>Medium</td>
+<td>High</td>
+<td>Early validation of BIR/SSS compliance in Phase 1; partner assessment</td>
+</tr>
+<td>Scope creep</td>
+<td>High</td>
+<td>Medium</td>
+<td>Fixed scope per phase; change control board</td>
+</tr>
+<td>Implementation partner underperformance</td>
+<td>Medium</td>
+<td>High</td>
+<td>Milestone-based payments; contractual SLA; backup partner identified</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>6. Project Governance</h2>
+
+<pre><code>Steering Committee (meets monthly)
+├── Sponsor: CEO
+├── Members: CFO, COO, CIO, CMO, CHRO
+└── Decision authority: scope changes, budget, timeline
+
+Project Management Office (PMO)
+├── Project Director (internal)
+├── Project Manager (implementation partner)
+├── Weekly status reports → Steerco monthly
+└── Risk/issue escalation within 24 hours
+
+Workstreams
+├── Finance &amp; Accounting
+├── Supply Chain &amp; Inventory
+├── POS &amp; Retail Operations
+├── Ecommerce &amp; Digital
+├── HR &amp; Payroll
+├── Data Migration
+├── Infrastructure &amp; Security
+└── Training &amp; Change Management</code></pre>
+
+<hr>
+
+<h2>7. Timeline Summary</h2>
+
+<pre><code>Month:  1   2   3   4   5   6   7   8   9   10  11  12  ... 22  23  24  25  26
+        ├───────┤                                                   ├───────────┤
+Phase:  0:Setup     Phase 1:Design        Phase 5:Optimization &amp; BAU
+              ├───────────────────┤
+              Phase 2:Build &amp; Test
+                            ├───────────┤
+                            Phase 3:Pilot
+                                    ├───────────────────────────────┤
+                                    Phase 4:Wave Rollout (stores)</code></pre>
+
+<p><strong>Total Project Duration</strong>: ~26 months (Phase 0 through Phase 5)</p>
+
+<hr>
+
+<p><em>Document Version: 1.0 | Date: 2026-05-30</em></p>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

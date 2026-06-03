@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Company Profile — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub act"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🏗️</span><h2>Company Profile</h2></div><div class="cd mc"><h1>BuildRight Depot Corp. — Model Company Profile</h1>
+
+<blockquote>A theoretical hardware/DIY/home improvement big-box retail chain used as the reference</blockquote>
+<blockquote>model for ERP system design and architecture across different ERP platforms.</blockquote>
+
+<hr>
+
+<h2>1. Company Overview</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Attribute</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Legal Name</strong></td>
+<td>BuildRight Depot Corporation</td>
+</tr>
+<td><strong>Trade Name</strong></td>
+<td>BuildRight Depot</td>
+</tr>
+<td><strong>Industry</strong></td>
+<td>Retail — Hardware / DIY / Home Improvement (Big Box Format)</td>
+</tr>
+<td><strong>Country</strong></td>
+<td>Republic of the Philippines</td>
+</tr>
+<td><strong>Corporate HQ</strong></td>
+<td>Davao City, Philippines</td>
+</tr>
+<td><strong>Year Founded</strong></td>
+<td>Theoretical (assumed 15+ years in operation)</td>
+</tr>
+<td><strong>Ownership</strong></td>
+<td>Privately held, Filipino-owned family corporation</td>
+</tr>
+<td><strong>Corporate Structure</strong></td>
+<td>5 legal entities under a holding company</td>
+</tr>
+<td><strong>Store Format</strong></td>
+<td>Big-box warehouse-style retail (8,000–15,000 sqm selling area)</td>
+</tr>
+<td><strong>Tagline</strong></td>
+<td>"Your Home Building Partner"</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>2. Corporate Structure & Legal Entities</h2>
+
+<p>The company operates through <strong>5 legal entities</strong> organized as follows:</p>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Entity</th>
+<th>Purpose</th>
+<th>Registration</th>
+</tr></thead><tbody>
+<td><strong>BuildRight Holdings, Inc.</strong></td>
+<td>Parent / holding company</td>
+<td>SEC-registered, Davao City</td>
+</tr>
+<td><strong>BuildRight Depot, Inc.</strong></td>
+<td>Primary retail operations (stores & POS)</td>
+<td>SEC-registered, Davao City</td>
+</tr>
+<td><strong>BuildRight Logistics, Inc.</strong></td>
+<td>Distribution, warehousing, and inbound freight</td>
+<td>SEC-registered, Davao City</td>
+</tr>
+<td><strong>BuildRight Digital Commerce, Inc.</strong></td>
+<td>Ecommerce platform, BOPIS, digital channels</td>
+<td>SEC-registered, Davao City</td>
+</tr>
+<td><strong>BuildRight Property Management, Inc.</strong></td>
+<td>Real estate leasing (store sites, DCs, offices)</td>
+<td>SEC-registered, Davao City</td>
+</tr>
+</tbody></table></div>
+
+<h3>Intercompany Relationships</h3>
+<ul>
+<li>BuildRight Depot, Inc. leases store/distribution center sites from BuildRight Property Management, Inc.</li>
+<li>BuildRight Depot, Inc. <strong>owns all merchandise inventory</strong> throughout the supply chain (at DCs and in stores), even though DCs are operated by BuildRight Logistics, Inc.</li>
+<li>BuildRight Depot, Inc. pays warehousing/distribution fees to BuildRight Logistics, Inc. (monthly service fees, not per-transfer goods sales).</li>
+<li>BuildRight Digital Commerce, Inc. operates the ecommerce platform and collects online payments, but revenue is recognized by BuildRight Depot, Inc. at fulfillment (pickup or delivery). Digital Commerce Inc. charges Depot Inc. a per-order fulfillment fee and remits collected payments monthly.</li>
+<li>All intercompany transactions must be settled at arm's-length transfer pricing.</li>
+<li>Consolidated financial reporting required for the group.</li>
+</ul>
+
+<hr>
+
+<h2>3. Physical Footprint</h2>
+
+<h3>3.1 Retail Stores</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Total Stores</strong></td>
+<td>200</td>
+</tr>
+<td><strong>Growth Rate</strong></td>
+<td>~10–15 new stores/year</td>
+</tr>
+<td><strong>Store Format</strong></td>
+<td>Big-box warehouse (selling area: 8,000–15,000 sqm each)</td>
+</tr>
+<td><strong>Total Selling Area</strong></td>
+<td>~1.6M – 3.0M sqm aggregate</td>
+</tr>
+<td><strong>Store Staff</strong></td>
+<td>~30 employees per store</td>
+</tr>
+<td><strong>Total Store-Level Headcount</strong></td>
+<td>~6,000</td>
+</tr>
+</tbody></table></div>
+
+<h4>Store Location Distribution (Philippines)</h4>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Region</th>
+<th>No. of Stores</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td>Mindanao</td>
+<td>60</td>
+<td>HQ region; highest density in Davao City (8 stores)</td>
+</tr>
+<td>Visayas</td>
+<td>40</td>
+<td>Cebu, Iloilo, Bacolod hubs</td>
+</tr>
+<td>Luzon (outside Metro Manila)</td>
+<td>50</td>
+<td>CALABARZON, Central Luzon, Bicol</td>
+</tr>
+<td>Metro Manila</td>
+<td>30</td>
+<td>NCR concentration</td>
+</tr>
+<td>North/Central Luzon</td>
+<td>20</td>
+<td>Expanding region</td>
+</tr>
+<td><strong>Total</strong></td>
+<td><strong>200</strong></td>
+<td></td>
+</tr>
+</tbody></table></div>
+
+<h4>Per-Store Layout Zones</h4>
+<ul>
+<li><strong>Main Sales Floor</strong>: Shelved merchandise, power aisles</li>
+<li><strong>Lumber & Building Materials Yard</strong>: Outdoor/covered area</li>
+<li><strong>Tile & Flooring Gallery</strong>: Display area</li>
+<li><strong>Appliance Section</strong>: Appliances and fixtures</li>
+<li><strong>Tool & Hardware Wall</strong>: Fasteners, hand tools, power tools</li>
+<li><strong>Paint Mixing Station</strong>: Custom tinting</li>
+<li><strong>Checkout Area</strong>: 5 POS terminals</li>
+<li><strong>Receiving/Backroom</strong>: Inbound goods staging</li>
+<li><strong>Customer Service Counter</strong>: Returns, special orders, BOPIS pickup</li>
+</ul>
+
+<h3>3.2 Distribution Centers (DCs)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>DC</th>
+<th>Location</th>
+<th>Size (sqm)</th>
+<th>Role</th>
+</tr></thead><tbody>
+<td><strong>DC1 — Mindanao Hub</strong></td>
+<td>Davao City (near HQ)</td>
+<td>35,000</td>
+<td>Primary DC; serves Mindanao stores</td>
+</tr>
+<td><strong>DC2 — Visayas Hub</strong></td>
+<td>Cebu (Mandaue)</td>
+<td>30,000</td>
+<td>Serves Visayas stores</td>
+</tr>
+<td><strong>DC3 — South Luzon Hub</strong></td>
+<td>Calamba, Laguna</td>
+<td>40,000</td>
+<td>Serves South Luzon (CALABARZON, Bicol)</td>
+</tr>
+<td><strong>DC4 — North/Central Luzon Hub</strong></td>
+<td>Clark, Pampanga</td>
+<td>25,000</td>
+<td>Serves North/Central Luzon (20 stores); sized for growth to 40+ stores</td>
+</tr>
+<td><strong>DC5 — Metro Manila Hub</strong></td>
+<td>Metro Manila (Valenzuela)</td>
+<td>30,000</td>
+<td>Serves NCR (Metro Manila) stores</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Rationale</strong>: A dedicated Metro Manila DC relieves the South Luzon hub from serving</blockquote>
+<blockquote>the high-density 30-store NCR market, and the 5-DC footprint brings the DC-to-selling-area</blockquote>
+<blockquote>ratio closer to the 8–12% industry norm for big-box retail. DC4 (Clark) is proportionally</blockquote>
+<blockquote>oversized at 25,000 sqm for its current 20-store coverage; this is intentional to absorb</blockquote>
+<blockquote>planned expansion in North/Central Luzon and potentially serve as overflow for NCR.</blockquote>
+
+<h4>DC Operations</h4>
+<ul>
+<li>Cross-dock capable for fast-moving items</li>
+<li>Full warehouse management (pick/pack/ship) for slower movers</li>
+<li>Vendor managed inventory (VMI) for select suppliers</li>
+<li>Each DC serves ~40 stores on average (range: 20–60)</li>
+<li>Replenishment cycles: 2–3x per week per store</li>
+<li>DC headcount: ~150 per DC (~750 total)</li>
+<li>Special handling areas: lumber, tiles, paint/chemicals</li>
+</ul>
+
+<h3>3.3 Corporate Headquarters</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Location</strong></td>
+<td>Davao City, Philippines</td>
+</tr>
+<td><strong>Office Size</strong></td>
+<td>~3,000 sqm</td>
+</tr>
+<td><strong>HQ Headcount</strong></td>
+<td>~310</td>
+</tr>
+</tbody></table></div>
+
+<h4>HQ Departments</h4>
+<ul>
+<li><strong>Executive Office</strong>: CEO, CFO, COO, CIO, CMO</li>
+<li><strong>Merchandising & Buying</strong>: Category managers, buyers, pricing analysts (~40)</li>
+<li><strong>Finance & Accounting</strong>: GL, AP, AR, treasury, tax (~35)</li>
+<li><strong>Supply Chain & Logistics</strong>: Planning, DC ops, fleet, procurement (~31)</li>
+<li><strong>Information Technology</strong>: Infrastructure, applications, data, security, helpdesk (~28)</li>
+<li><strong>Human Resources</strong>: Recruitment, compensation, training, payroll (~16)</li>
+<li><strong>Marketing</strong>: Brand, promotions, ecommerce, digital, content (~23)</li>
+<li><strong>Store Operations</strong>: Regional managers, operations standards, facilities coordination (~23)</li>
+<li><strong>Legal & Compliance</strong>: Corporate secretary, regulatory, data protection officer (~7)</li>
+<li><strong>Internal Audit</strong>: (~5)</li>
+<li><strong>Customer Service / Call Center</strong>: (~30)</li>
+</ul>
+
+<hr>
+
+<h2>4. Total Headcount</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Category</th>
+<th>Count</th>
+</tr></thead><tbody>
+<td>Store Personnel</td>
+<td>6,000 (200 stores × 30)</td>
+</tr>
+<td>Distribution Center Personnel</td>
+<td>~750 (5 DCs × ~150)</td>
+</tr>
+<td>Corporate HQ Personnel</td>
+<td>~310 (expanding to ~320 with DPO and Regulatory Officer per W53/W54)</td>
+</tr>
+<td><strong>Total Company Headcount</strong></td>
+<td><strong>~7,060</strong> (baseline; ~7,070 with compliance expansion)</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Revenue per employee</strong>: ~PHP 8.8M/year (~PHP 62.3B ÷ ~7,060) — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (30 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further. HQ headcount of ~310 is the baseline; Legal & Compliance expands from ~5 to ~7 with the addition of a Data Protection Officer (W53) and Regulatory Officer (W54) required for Philippine regulatory compliance, bringing total HQ to ~320 and total company to ~7,070.</blockquote>
+
+<hr>
+
+<h2>5. Point-of-Sale (POS) Operations</h2>
+
+<h3>Per-Store POS Details</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>POS Terminals per Store</strong></td>
+<td>5</td>
+</tr>
+<td><strong>Total POS Terminals (all stores)</strong></td>
+<td>1,000</td>
+</tr>
+<td><strong>Monthly Transactions per Store</strong></td>
+<td>14,000</td>
+</tr>
+<td><strong>Total Monthly Transactions (all stores)</strong></td>
+<td>2,800,000</td>
+</tr>
+<td><strong>Total Annual Transactions</strong></td>
+<td>33,600,000</td>
+</tr>
+<td><strong>Avg Lines per Transaction</strong></td>
+<td>4</td>
+</tr>
+<td><strong>Total Monthly Line Items</strong></td>
+<td>11,200,000</td>
+</tr>
+<td><strong>Total Annual Line Items</strong></td>
+<td>134,400,000</td>
+</tr>
+</tbody></table></div>
+
+<h3>Transaction Types at POS</h3>
+<ul>
+<li><strong>Cash Sale</strong> (~42%)</li>
+<li><strong>Credit/Debit Card</strong> (~36%)</li>
+<li><strong>E-Wallet (GCash, Maya)</strong> (~15%)</li>
+<li><strong>Corporate / Charge Account</strong> (~5%)</li>
+<li><strong>Returns/Exchanges</strong> (~2% return rate)</li>
+</ul>
+
+<blockquote>Note: BOPIS orders are placed and paid online; the in-store pickup is a fulfillment</blockquote>
+<blockquote>confirmation rather than a POS tender transaction. BOPIS volume is tracked under</blockquote>
+<blockquote>ecommerce (see Section 8).</blockquote>
+
+<h3>POS Functional Requirements</h3>
+<ul>
+<li>Offline capability (must continue selling during network outage)</li>
+<li>Barcode scanning (1D + 2D)</li>
+<li>Customer-facing display</li>
+<li>Receipt printing (thermal)</li>
+<li>Cash drawer management</li>
+<li>Age-restricted product prompts (solvents, cutting tools)</li>
+<li>Price override with manager authorization</li>
+<li>Loyalty points earning/redemption</li>
+<li>Multi-tender support (split payment across cash + card + e-wallet)</li>
+<li>Real-time inventory sync to central system</li>
+<li>Support for weight-based items (sold by kg: nails, screws in bulk)</li>
+<li>Support for cut-to-length items (lumber, pipes, wire)</li>
+<li>Support for paint mixing (custom SKU generation)</li>
+</ul>
+
+<hr>
+
+<h2>6. Product & Merchandise</h2>
+
+<h3>6.1 SKU Portfolio</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Active SKUs (at any time)</strong></td>
+<td>35,000</td>
+</tr>
+<td><strong>Total SKU Master (including seasonal/discontinued)</strong></td>
+<td>~55,000</td>
+</tr>
+<td><strong>SKU growth rate</strong></td>
+<td>~5–8% annually</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Note</strong>: At 35,000 active SKUs across 8,000–15,000 sqm stores, the assortment density</blockquote>
+<blockquote>averages ~2.3–4.4 SKUs per sqm — in line with big-box home improvement retail benchmarks.</blockquote>
+<blockquote>This is leaner than Wilcon's 60,000+ SKU depth but reflects a curated assortment strategy</blockquote>
+<blockquote>focused on faster turn.</blockquote>
+
+<h3>6.2 Product Categories & Approximate SKU Distribution</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Category</th>
+<th>% of Active SKUs</th>
+<th>~SKU Count</th>
+<th>Examples</th>
+</tr></thead><tbody>
+<td><strong>Lumber & Building Materials</strong></td>
+<td>14%</td>
+<td>4,900</td>
+<td>Plywood, cement, rebar, hollow blocks, lumber</td>
+</tr>
+<td><strong>Tiles & Flooring</strong></td>
+<td>12%</td>
+<td>4,200</td>
+<td>Ceramic tiles, vinyl, granite, adhesives, grout</td>
+</tr>
+<td><strong>Plumbing</strong></td>
+<td>12%</td>
+<td>4,200</td>
+<td>Pipes, fittings, faucets, toilets, water tanks</td>
+</tr>
+<td><strong>Electrical</strong></td>
+<td>10%</td>
+<td>3,500</td>
+<td>Wires, switches, breakers, conduit, panels</td>
+</tr>
+<td><strong>Paint & Finishes</strong></td>
+<td>8%</td>
+<td>2,800</td>
+<td>Interior/exterior paint, stains, varnishes, thinners</td>
+</tr>
+<td><strong>Hand Tools</strong></td>
+<td>10%</td>
+<td>3,500</td>
+<td>Hammers, saws, screwdrivers, wrenches, pliers</td>
+</tr>
+<td><strong>Power Tools</strong></td>
+<td>5%</td>
+<td>1,750</td>
+<td>Drills, grinders, saws, sanders, compressors</td>
+</tr>
+<td><strong>Hardware & Fasteners</strong></td>
+<td>14%</td>
+<td>4,900</td>
+<td>Nails, screws, bolts, hinges, locks, padlocks</td>
+</tr>
+<td><strong>Home Appliances</strong></td>
+<td>5%</td>
+<td>1,750</td>
+<td>Fans, aircons, water heaters, kitchen appliances</td>
+</tr>
+<td><strong>Home Décor & Furniture</strong></td>
+<td>5%</td>
+<td>1,750</td>
+<td>Lighting fixtures, shelving, storage, blinds</td>
+</tr>
+<td><strong>Garden & Outdoor</strong></td>
+<td>3%</td>
+<td>1,050</td>
+<td>Plants, pots, hoses, sprinklers, outdoor furniture</td>
+</tr>
+<td><strong>Safety & PPE</strong></td>
+<td>2%</td>
+<td>700</td>
+<td>Hard hats, gloves, masks, goggles, harnesses</td>
+</tr>
+<td><strong>Seasonal / Promo Items</strong></td>
+<td>—</td>
+<td>~500</td>
+<td>Christmas lights, flood control items, etc.</td>
+</tr>
+</tbody></table></div>
+
+<h3>6.3 Inventory Valuation</h3>
+<ul>
+<li><strong>Method</strong>: Weighted Average Cost (WAC) — standard in Philippine retail</li>
+<li><strong>Physical Inventory</strong>: Full wall-to-wall count annually; cycle counting weekly</li>
+<li><strong>Inventory Accuracy Target</strong>: ≥ 97%</li>
+</ul>
+
+<h3>6.4 Item Types in ERP</h3>
+<div class="table-wrap"><table><thead><tr>
+<th>Item Type</th>
+<th>Description</th>
+<th>Examples</th>
+</tr></thead><tbody>
+<td><strong>Standard Stock</strong></td>
+<td>Regular replenishment items</td>
+<td>Cement, nails, paint, tools</td>
+</tr>
+<td><strong>Seasonal Stock</strong></td>
+<td>Seasonal procurement</td>
+<td>Christmas décor, flood control items</td>
+</tr>
+<td><strong>Consignment</strong></td>
+<td>Owned by supplier until sold</td>
+<td>Major appliances, select tiles</td>
+</tr>
+<td><strong>Non-Stock / Special Order</strong></td>
+<td>Ordered on demand for customer</td>
+<td>Custom fixtures, bulk special orders</td>
+</tr>
+<td><strong>Kit / Bundle</strong></td>
+<td>Pre-packaged combo</td>
+<td>Tool set, bathroom combo kit</td>
+</tr>
+<td><strong>Service Item</strong></td>
+<td>Labor/service charges</td>
+<td>Paint mixing, pipe cutting, delivery fee</td>
+</tr>
+<td><strong>Catch-Weight</strong></td>
+<td>Sold by variable weight/length</td>
+<td>Lumber (per board foot), wire (per meter), nails in bulk</td>
+</tr>
+</tbody></table></div>
+
+<h3>6.5 Supplier / Vendor Profile</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Active Vendors</strong></td>
+<td>~800–1,000</td>
+</tr>
+<td><strong>Local (Philippine) Vendors</strong></td>
+<td>~600 (60%)</td>
+</tr>
+<td><strong>International / Import Vendors</strong></td>
+<td>~400 (40%) — China, Taiwan, Indonesia, Malaysia, Japan, Europe</td>
+</tr>
+<td><strong>Top 20 Vendors</strong></td>
+<td>Account for ~45% of COGS</td>
+</tr>
+<td><strong>Vendor-Managed Inventory (VMI)</strong></td>
+<td>~300 SKUs from 12 key vendors</td>
+</tr>
+<td><strong>Monthly Trade Purchase Orders</strong></td>
+<td>~1,200 merchandise POs; ~1,400–1,600 total POs incl. blanket releases (W2C), imports (W2B), and non-merchandise (W7C)</td>
+</tr>
+<td><strong>Annual Purchase Orders</strong></td>
+<td>~14,400 merchandise; ~17,000–19,000 total</td>
+</tr>
+</tbody></table></div>
+
+<h3>6.6 Purchasing Parameters</h3>
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Lead Time (Local)</strong></td>
+<td>7–21 days</td>
+</tr>
+<td><strong>Lead Time (Import)</strong></td>
+<td>45–90 days</td>
+</tr>
+<td><strong>Reorder Point (ROP)</strong></td>
+<td>Calculated per SKU based on avg daily demand × lead time + safety stock</td>
+</tr>
+<td><strong>Safety Stock Policy</strong></td>
+<td>1–2 weeks of demand for A-items; 2–4 weeks for B-items; minimal for C-items</td>
+</tr>
+<td><strong>ABC Classification</strong></td>
+<td>A: top 20% SKUs = 80% revenue; B: next 30% = 15% revenue; C: bottom 50% = 5% revenue</td>
+</tr>
+<td><strong>Purchase Order Average Lines</strong></td>
+<td>~15 lines per PO</td>
+</tr>
+<td><strong>Monthly PO Lines</strong></td>
+<td>~18,000</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>7. Supply Chain & Logistics</h2>
+
+<h3>7.1 Inbound Logistics (Vendor → DC)</h3>
+<ul>
+<li>~70% of goods <strong>by value</strong> flow through DCs first (stocking items)</li>
+<li>~30% of goods <strong>by value</strong> are delivered direct-to-store (DSD) for bulky/fresh items (cement, lumber, sand, gravel); this represents ~500–600 DSD receipts/month (~8–10% of receipt count) but includes high-value and heavy items that are uneconomical to double-handle through DCs</li>
+<li>Import containers: ~400–600 TEUs/month across all import vendors</li>
+</ul>
+
+<blockquote><strong>TEU volume note</strong>: At ~40% of COGS from imports (~PHP 1.4B/month import value), the average value per TEU for home improvement goods ranges from PHP 1.5M (tiles, cement, steel — heavy, low value-to-weight) to PHP 5M (power tools, appliances — lighter, higher value). Blended average of ~PHP 2.5–3.5M/TEU yields ~400–600 TEUs/month. This is consistent with Philippine home improvement import volumes at this revenue scale.</blockquote>
+<ul>
+<li>Customs brokerage managed in-house for imports</li>
+<li>Payment terms: typically 30–60 days for local; LC/TT for imports</li>
+</ul>
+
+<h3>7.2 Outbound Logistics (DC → Store)</h3>
+<ul>
+<li><strong>Replenishment Frequency</strong>: 2–3 deliveries per store per week (each delivery may contain 2–3 replenishment orders combined for efficiency)</li>
+<li><strong>Fleet</strong>: Mix of owned (20%) and third-party (80%) trucks</li>
+<li><strong>Vehicle Types</strong>: 10-wheeler wing vans, 6-wheeler trucks, multi-drop routing</li>
+<li><strong>Delivery Lead Time</strong>: 1–3 days from DC order to store receipt</li>
+<li><strong>Store Replenishment Orders</strong>: ~4,500–5,500 per month (across all stores); each delivery truck typically fulfills 2–3 replenishment orders (grouped by category or priority into a single shipment), reconciling to 2–3 physical deliveries per store per week</li>
+</ul>
+
+<h3>7.3 Store Receiving</h3>
+<ul>
+<li>Each store receives 2–3 trucks per week</li>
+<li>Backroom inventory kept minimal (sell-from-shelf model)</li>
+<li>Goods Receipt processed on handheld/tablet at receiving dock</li>
+<li>Discrepancies flagged and resolved within 24 hours</li>
+</ul>
+
+<h3>7.4 Inter-DC Transfers</h3>
+<ul>
+<li>Occasional rebalancing transfers between DCs (~30–40/month)</li>
+<li>Transfer orders initiated by supply planning team</li>
+<li>In-transit inventory visibility required</li>
+</ul>
+
+<hr>
+
+<h2>8. Ecommerce & Digital</h2>
+
+<h3>8.1 Ecommerce Platform</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Channel</strong></td>
+<td>Web (responsive) + Mobile App (iOS & Android)</td>
+</tr>
+<td><strong>URL</strong></td>
+<td>buildright.com.ph (theoretical)</td>
+</tr>
+<td><strong>Catalog</strong></td>
+<td>Full 35,000 SKU catalog online</td>
+</tr>
+<td><strong>Product Content</strong></td>
+<td>Photos, specifications, dimensions, how-to guides</td>
+</tr>
+<td><strong>Search & Navigation</strong></td>
+<td>Category browse, keyword search, filter by specs</td>
+</tr>
+<td><strong>Customer Accounts</strong></td>
+<td>Optional registration; guest checkout available</td>
+</tr>
+<td><strong>Payment Methods</strong></td>
+<td>CC, GCash, Maya, bank transfer, COD</td>
+</tr>
+<td><strong>Fulfillment Options</strong></td>
+<td>BOPIS (store pickup), Home Delivery (from DC)</td>
+</tr>
+</tbody></table></div>
+
+<h3>8.2 BOPIS (Buy Online, Pick Up In Store)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Availability</strong></td>
+<td>All 200 stores</td>
+</tr>
+<td><strong>Process</strong></td>
+<td>Customer places order online → store receives pick list → staff picks & stages → customer arrives with ID → release at customer service counter</td>
+</tr>
+<td><strong>Pick SLA</strong></td>
+<td>Ready within 4 hours of order placement</td>
+</tr>
+<td><strong>Hold Period</strong></td>
+<td>5 days; auto-cancel and refund after</td>
+</tr>
+<td><strong>% of Total Sales</strong></td>
+<td>~1.9% within Year 1</td>
+</tr>
+</tbody></table></div>
+
+<h3>8.3 Home Delivery</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Fulfillment</strong></td>
+<td>Shipped from nearest DC or store</td>
+</tr>
+<td><strong>Coverage</strong></td>
+<td>Metro areas initially; nationwide within 2 years</td>
+</tr>
+<td><strong>Delivery Fee</strong></td>
+<td>Based on weight/distance; free above PHP 5,000</td>
+</tr>
+<td><strong>Delivery Partners</strong></td>
+<td>Third-party logistics (Lalamove, Transportify, own fleet for bulk)</td>
+</tr>
+<td><strong>Lead Time</strong></td>
+<td>2–5 business days</td>
+</tr>
+</tbody></table></div>
+
+<h3>8.4 Ecommerce Integration Requirements</h3>
+<ul>
+<li>Real-time inventory availability per store (aggregated)</li>
+<li>Real-time price sync (including ongoing promotions)</li>
+<li>Order push to store (BOPIS) or DC (delivery) for fulfillment</li>
+<li>Fulfillment status push back to ecommerce (tracking)</li>
+<li>Customer data sync to loyalty/CRM</li>
+<li>Returns initiated online; processed in-store</li>
+<li>Payment gateway integration (PayMongo, Dragonpay)</li>
+</ul>
+
+<h3>8.5 Projected Ecommerce Volume</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Monthly Estimate</th>
+</tr></thead><tbody>
+<td>Orders (BOPIS)</td>
+<td>~25,700</td>
+</tr>
+<td>Orders (Delivery)</td>
+<td>~17,200</td>
+</tr>
+<td>Total Ecommerce Orders</td>
+<td>~42,900</td>
+</tr>
+<td>Average Order Value</td>
+<td>PHP 3,500</td>
+</tr>
+<td>Ecommerce GMV</td>
+<td>~PHP 150M/month</td>
+</tr>
+</tbody></table></div>
+
+<h4>Ecommerce Penetration Targets</h4>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Year</th>
+<th>Target % of Revenue</th>
+<th>Projected Monthly GMV</th>
+</tr></thead><tbody>
+<td>Year 1</td>
+<td>~3%</td>
+<td>~PHP 150M</td>
+</tr>
+<td>Year 2</td>
+<td>~5%</td>
+<td>~PHP 250M</td>
+</tr>
+<td>Year 3</td>
+<td>~7%</td>
+<td>~PHP 350M</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Note</strong>: The volume table above is calibrated to ~PHP 150M/month (42,900 orders × PHP 3,500</blockquote>
+<blockquote>AOV), which represents ~2.9% of total monthly revenue (~PHP 5.19B), consistent with the Year 1 target of ~3%.</blockquote>
+<blockquote>Order counts are split 60/40 between BOPIS and delivery based on typical Philippine omnichannel</blockquote>
+<blockquote>retail patterns.</blockquote>
+
+<hr>
+
+<h2>9. Customers & Sales</h2>
+
+<h3>9.1 Customer Segments</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Segment</th>
+<th>% of Revenue</th>
+<th>Description</th>
+</tr></thead><tbody>
+<td><strong>Walk-in Retail (B2C)</strong></td>
+<td>55%</td>
+<td>Individual homeowners, DIYers, small contractors</td>
+</tr>
+<td><strong>Professional / Trade (B2B)</strong></td>
+<td>30%</td>
+<td>Contractors, builders, interior designers, architects</td>
+</tr>
+<td><strong>Corporate / Institutional (B2B)</strong></td>
+<td>10%</td>
+<td>Developers, government projects, large enterprises</td>
+</tr>
+<td><strong>Ecommerce</strong></td>
+<td>5%</td>
+<td>Online B2C & B2B</td>
+</tr>
+</tbody></table></div>
+
+<h3>9.2 Customer Data</h3>
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Registered Loyalty Members</strong></td>
+<td>~600,000</td>
+</tr>
+<td><strong>Trade Account Customers</strong></td>
+<td>~5,000</td>
+</tr>
+<td><strong>Corporate Account Customers</strong></td>
+<td>~200</td>
+</tr>
+<td><strong>Loyalty Program</strong></td>
+<td>Points-based (1 point per PHP 100 spent; redemption value: PHP 1.00 per point); tiers: Bronze, Silver, Gold, Platinum</td>
+</tr>
+</tbody></table></div>
+
+<h3>9.3 Pricing Structure</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Price Type</th>
+<th>Description</th>
+</tr></thead><tbody>
+<td><strong>Retail Price (SRP)</strong></td>
+<td>Standard shelf price for walk-in customers</td>
+</tr>
+<td><strong>Trade Price</strong></td>
+<td>5–15% discount for registered trade accounts</td>
+</tr>
+<td><strong>Corporate / Project Price</strong></td>
+<td>Negotiated contract pricing for large accounts</td>
+</tr>
+<td><strong>Promotional Price</strong></td>
+<td>Temporary markdowns (bi-monthly sale events)</td>
+</tr>
+<td><strong>Bundle Price</strong></td>
+<td>Discounted combo pricing for kits</td>
+</tr>
+<td><strong>Quantity Break Price</strong></td>
+<td>Tiered pricing per unit at POS (e.g., buy 10+ get 5% off)</td>
+</tr>
+</tbody></table></div>
+
+<h3>9.4 Estimated Revenue</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Estimate</th>
+</tr></thead><tbody>
+<td><strong>Average Transaction Value (ATV)</strong></td>
+<td>PHP 1,800</td>
+</tr>
+<td><strong>Monthly POS Transactions</strong></td>
+<td>2,800,000</td>
+</tr>
+<td><strong>Monthly In-Store Revenue</strong></td>
+<td>~PHP 5.04 Billion (97.1%)</td>
+</tr>
+<td><strong>Monthly Ecommerce Revenue</strong></td>
+<td>~PHP 150 Million (2.9%)</td>
+</tr>
+<td><strong>Monthly Gross Revenue (Total)</strong></td>
+<td>~PHP 5.19 Billion</td>
+</tr>
+<td><strong>Annual Gross Revenue</strong></td>
+<td>~PHP 62.3 Billion</td>
+</tr>
+<td><strong>Average Gross Margin</strong></td>
+<td>~28–32%</td>
+</tr>
+<td><strong>Annual COGS</strong></td>
+<td>~PHP 42–45 Billion</td>
+</tr>
+<td><strong>EBITDA Margin</strong></td>
+<td>~12–14%</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>EBITDA note</strong>: BuildRight's EBITDA is benchmarked below Wilcon Depot's ~14–16% and well below Home Depot's ~17–18%, reflecting higher logistics costs from a 5-DC provincial footprint, newer stores still ramping, and a lean staffing model. As the store base matures beyond 200 stores, EBITDA should approach 14–15%.</blockquote>
+
+<blockquote>Note: POS transactions (2,800,000 × PHP 1,800) = PHP 5.04B in-store revenue. Ecommerce adds PHP 150M. Total monthly revenue = PHP 5.19B. Ecommerce represents 2.9% of total, consistent with Year 1 penetration target of ~3%. Per-store monthly revenue of ~PHP 25.2M reflects in-store only (PHP 5.04B ÷ 200 stores). Per-store annual revenue of ~PHP 302M is ~90% of Wilcon Depot's estimated per-store revenue (PHP 330–350M), reflecting the more provincial footprint and leaner SKU assortment. Revenue figures assume all 200 stores are mature.</blockquote>
+
+<hr>
+
+<h2>10. Financial Operations</h2>
+
+<h3>10.1 Accounting Requirements</h3>
+<ul>
+<li><strong>Chart of Accounts</strong>: Multi-entity shared COA with entity-specific segments</li>
+<li><strong>Accounting Standard</strong>: PFRS (Philippine Financial Reporting Standards) / IFRS</li>
+<li><strong>Functional Currency</strong>: PHP (Philippine Peso)</li>
+<li><strong>Tax</strong>: VAT (12%), Withholding Tax, Percentage Tax, Local Business Tax</li>
+<li><strong>Fiscal Year</strong>: January 1 – December 31</li>
+<li><strong>Consolidation</strong>: Full consolidation of 5 entities with intercompany elimination</li>
+</ul>
+
+<h3>10.2 Accounts Payable</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Monthly Vendor Invoices</strong></td>
+<td>~6,500 merchandise (3-way match per W7); ~2,000–3,000 non-PO/recurring (2-way match per W7C); ~8,500–9,500 total</td>
+</tr>
+<td><strong>Payment Terms (Typical)</strong></td>
+<td>Net 30, Net 60</td>
+</tr>
+<td><strong>Payment Methods</strong></td>
+<td>Check, bank transfer, LC (imports)</td>
+</tr>
+<td><strong>3-Way Match</strong></td>
+<td>Required for all PO-based purchases (PO → GR → Invoice)</td>
+</tr>
+<td><strong>Aging Monitoring</strong></td>
+<td>Weekly AP aging review</td>
+</tr>
+</tbody></table></div>
+
+<h3>10.3 Accounts Receivable</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>AR Focus</strong></td>
+<td>Trade & Corporate accounts only (retail is cash/card at POS)</td>
+</tr>
+<td><strong>Active AR Accounts</strong></td>
+<td>~5,200</td>
+</tr>
+<td><strong>Credit Terms</strong></td>
+<td>Net 30 for trade; Net 60–90 for corporate projects</td>
+</tr>
+<td><strong>Credit Limit Policy</strong></td>
+<td>Per-account limit with periodic review</td>
+</tr>
+<td><strong>Collection</strong></td>
+<td>Monthly statement; 30/60/90 aging follow-up</td>
+</tr>
+<td><strong>Monthly AR Invoice Count</strong></td>
+<td>~3,500</td>
+</tr>
+</tbody></table></div>
+
+<h3>10.4 Cash & Treasury</h3>
+<ul>
+<li><strong>Bank Accounts</strong>: BDO, BPI, Metrobank, Chinabank — multi-entity</li>
+<li><strong>Petty Cash</strong>: Per store (PHP 20,000 float) and per DC (PHP 50,000 float)</li>
+<li><strong>Cash Management</strong>: Daily cash deposit from stores; central treasury sweeps</li>
+<li><strong>Foreign Currency</strong>: USD accounts for import payments</li>
+<li><strong>Capex Approval</strong>: Tiered approval matrix (store manager up to board level)</li>
+</ul>
+
+<h3>10.5 Tax Compliance (Philippines)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Tax Type</th>
+<th>Frequency</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td><strong>VAT (12%)</strong></td>
+<td>Monthly + Quarterly</td>
+<td>Input/output VAT; monthly VAT return (BIR Form 2550M)</td>
+</tr>
+<td><strong>Withholding Tax (Expanded)</strong></td>
+<td>Monthly</td>
+<td>1–10% on various vendor payments (BIR 1601-E)</td>
+</tr>
+<td><strong>Withholding Tax (Compensation)</strong></td>
+<td>Monthly</td>
+<td>Employee withholding (BIR 1601-C)</td>
+</tr>
+<td><strong>Percentage Tax</strong></td>
+<td>Monthly</td>
+<td>For entities below VAT threshold (if applicable)</td>
+</tr>
+<td><strong>Income Tax (Corporate)</strong></td>
+<td>Quarterly + Annual</td>
+<td>BIR 1702Q / 1702RT</td>
+</tr>
+<td><strong>Local Business Tax</strong></td>
+<td>Annual / Quarterly</td>
+<td>Paid to LGU where each store/DC operates</td>
+</tr>
+<td><strong>Documentary Stamp Tax</strong></td>
+<td>Per transaction</td>
+<td>On loans, leases, certain documents</td>
+</tr>
+<td><strong>PEZA/BOI Incentives</strong></td>
+<td>If applicable</td>
+<td>Possible tax holidays for specific operations</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>11. Human Resources & Payroll</h2>
+
+<h3>11.1 Organizational Structure</h3>
+
+<pre><code>BuildRight Holdings, Inc.
+├── CEO / President
+│   ├── CFO — Finance, Accounting, Treasury
+│   ├── COO — Store Operations, Supply Chain, DCs
+│   ├── CIO — IT, Digital, Data
+│   ├── CMO — Marketing, Ecommerce, Loyalty
+│   ├── CHRO — HR, Org Development
+│   └── VP Legal &amp; Compliance</code></pre>
+
+<h3>11.2 Payroll Parameters (Philippines)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Payroll Frequency</strong></td>
+<td>Semi-monthly (15th and 30th)</td>
+</tr>
+<td><strong>Total Employees</strong></td>
+<td>~7,050</td>
+</tr>
+<td><strong>Payroll Entities</strong></td>
+<td>5 (one per legal entity)</td>
+</tr>
+<td><strong>Statutory Benefits</strong></td>
+<td>SSS, PhilHealth, Pag-IBIG (HDMF)</td>
+</tr>
+<td><strong>13th Month Pay</strong></td>
+<td>Mandatory (1/12 of annual basic salary, paid by Dec 24)</td>
+</tr>
+<td><strong>Overtime</strong></td>
+<td>Per Philippine Labor Code (125%–200% premium)</td>
+</tr>
+<td><strong>Night Differential</strong></td>
+<td>10% premium for 10 PM–6 AM work</td>
+</tr>
+<td><strong>Holiday Pay</strong></td>
+<td>Regular holiday (200%), Special non-working (130%)</td>
+</tr>
+<td><strong>Minimum Wage</strong></td>
+<td>Varies by region; follow DOLE-mandated rates</td>
+</tr>
+<td><strong>Tax Table</strong></td>
+<td>TRAIN law graduated tax table (BIR)</td>
+</tr>
+</tbody></table></div>
+
+<h3>11.3 Time & Attendance</h3>
+<ul>
+<li><strong>System</strong>: Biometric (fingerprint) + RFID badge per store/DC</li>
+<li><strong>Scheduling</strong>: Shift-based for stores (2–3 shifts per day); flexible for HQ</li>
+<li><strong>Overtime Approval</strong>: Manager pre-approval required</li>
+<li><strong>Leave Types</strong>: VL, SL, Maternity (105 days expanded), Paternity (7 days), Solo Parent (7 days), Bereavement, etc.</li>
+</ul>
+
+<h3>11.4 Recruitment & Onboarding</h3>
+<ul>
+<li>~1,200–1,600 hires per year (including turnover replacement)</li>
+<li>Turnover rate: ~15–20% annually (retail industry standard)</li>
+<li>Onboarding includes POS training, safety orientation, product knowledge</li>
+</ul>
+
+<hr>
+
+<h2>12. Store Operations</h2>
+
+<h3>12.1 Store Staffing Model (30 per store)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Role</th>
+<th>Count</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td>Store Manager</td>
+<td>1</td>
+<td>Overall P&L responsibility</td>
+</tr>
+<td>Assistant Store Manager</td>
+<td>1</td>
+<td>Operations and compliance</td>
+</tr>
+<td>Department Supervisors</td>
+<td>4</td>
+<td>Lumber, Plumbing/Electrical, Tiles, Tools/Hardware</td>
+</tr>
+<td>Sales Associates</td>
+<td>11</td>
+<td>Floor coverage, customer assistance</td>
+</tr>
+<td>Cashiers</td>
+<td>6</td>
+<td>Covers 5 POS + 1 float/relief</td>
+</tr>
+<td>Receiving Clerk</td>
+<td>2</td>
+<td>Inbound goods processing</td>
+</tr>
+<td>Stockroom / Stock Associate</td>
+<td>3</td>
+<td>Replenishment, inventory counts</td>
+</tr>
+<td>Customer Service Rep</td>
+<td>1</td>
+<td>Returns, BOPIS pickup, special orders</td>
+</tr>
+<td>Maintenance / Utility</td>
+<td>1</td>
+<td>Store upkeep</td>
+</tr>
+</tbody></table></div>
+
+<h3>12.2 Store-Level Processes</h3>
+<ul>
+<li><strong>Opening Procedures</strong>: Cash float, system login, store walkthrough</li>
+<li><strong>Daily Operations</strong>: Replenishment from backroom, price checks, customer service</li>
+<li><strong>Receiving</strong>: Match PO → Delivery Receipt → Goods Receipt in system</li>
+<li><strong>Cycle Counting</strong>: Daily count of assigned sections (~700 SKUs/day rolling)</li>
+<li><strong>Price Management</strong>: Price changes applied centrally; RF guns for shelf label updates</li>
+<li><strong>Promotions</strong>: Managed centrally by merchandising; auto-applied at POS</li>
+<li><strong>Returns</strong>: Processed at customer service counter; restock or return-to-vendor</li>
+<li><strong>End-of-Day</strong>: Z-report, cash count reconciliation, deposit preparation, system close</li>
+<li><strong>Loss Prevention</strong>: CCTV, EAS tags on select high-value items, exception reporting</li>
+</ul>
+
+<h3>12.3 Store KPIs</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>KPI</th>
+<th>Target</th>
+</tr></thead><tbody>
+<td>Sales per Store per Month</td>
+<td>~PHP 25M</td>
+</tr>
+<td>Sales per Sqm per Year</td>
+<td>~PHP 22,000–28,000</td>
+</tr>
+<td>Gross Margin %</td>
+<td>28–32%</td>
+</tr>
+<td>Inventory Turns</td>
+<td>6–8x per year</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Inventory turns note</strong>: 6–8x is realistic for a Philippine big-box home improvement retailer with 35,000 curated SKUs. Home Depot (US) achieves ~5x with 30,000–40,000 SKUs, but faces less supply chain friction. Philippine island geography, port congestion, import lead times (45–90 days), and limited cold-chain/express logistics make 8–10x aspirational. The curated assortment (vs. Wilcon's 60,000+) and regional DC proximity to stores support the 6–8x target.</blockquote>
+<div class="table-wrap"><table><thead><tr>
+<th>Shrinkage / Loss</th>
+<th>< 1.5% of sales</th>
+</tr></thead><tbody>
+</tbody></table></div>
+
+<blockquote><strong>Shrinkage note</strong>: < 1.5% is aspirational for Philippine retail (industry average ~1.5–2.5%). Achieving this target requires mature loss prevention systems (exception-based reporting, CCTV integration, EAS tagging on high-value items) and sustained discipline across 200 stores. A realistic Year 1–3 range is 1.5–2.0%, trending toward < 1.5% as LP programs mature.</blockquote>
+<div class="table-wrap"><table><thead><tr>
+<th>Customer Satisfaction Score</th>
+<th>≥ 85%</th>
+</tr></thead><tbody>
+<td>On-time Replenishment</td>
+<td>≥ 95%</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Sales/sqm benchmark</strong>: At ~PHP 25,000/sqm/year, BuildRight aligns with Philippine</blockquote>
+<blockquote>big-box home improvement retail norms. The previously stated PHP 100,000/sqm would</blockquote>
+<blockquote>correspond to department store / mall formats, not warehouse retail.</blockquote>
+
+<hr>
+
+<h2>13. Merchandising & Category Management</h2>
+
+<h3>13.1 Buying Team Structure</h3>
+<ul>
+<li><strong>VP for Merchandising</strong></li>
+<li>5 Category Managers (each overseeing 2–3 product categories)</li>
+<li>10–12 Buyers</li>
+<li>3 Pricing Analysts</li>
+<li>2 Merchandise Planners</li>
+</ul>
+
+<h3>13.2 Seasonal Calendar (Philippines)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Period</th>
+<th>Event</th>
+<th>Merchandise Focus</th>
+</tr></thead><tbody>
+<td>Jan–Feb</td>
+<td>Post-holiday renovation</td>
+<td>Paint, tiles, tools</td>
+</tr>
+<td>Mar–Apr</td>
+<td>Summer / dry season</td>
+<td>Garden, outdoor, aircon, water tanks</td>
+</tr>
+<td>May</td>
+<td>School build-out</td>
+<td>Paint, electrical, plumbing for schools</td>
+</tr>
+<td>Jun–Aug</td>
+<td>Rainy season prep</td>
+<td>Waterproofing, flood control items, tarps</td>
+</tr>
+<td>Sep–Oct</td>
+<td>Ber-months home improvement</td>
+<td>Holiday décor, home furniture, lighting</td>
+</tr>
+<td>Nov–Dec</td>
+<td>Christmas peak</td>
+<td>Christmas lights, gift items, appliances</td>
+</tr>
+</tbody></table></div>
+
+<h3>13.3 Promotional Strategy</h3>
+<ul>
+<li><strong>Bi-monthly Sale Events</strong>: 6 major catalog-based promotions per year</li>
+<li><strong>Monthly Hot Deals</strong>: 10–20 items on deep discount to drive foot traffic</li>
+<li><strong>Bundle Offers</strong>: Contractor packages (e.g., bathroom complete set)</li>
+<li><strong>Loyalty Exclusive</strong>: Double points weekends, member-only pricing</li>
+<li><strong>Clearance</strong>: Seasonal items marked down at end-of-season</li>
+<li><strong>Vendor-Funded Promos</strong>: Co-op advertising, vendor rebates</li>
+</ul>
+
+<hr>
+
+<h2>14. IT Infrastructure & Systems</h2>
+
+<h3>14.1 Current State (Pre-ERP)</h3>
+<blockquote>Note: This describes the legacy landscape that the new ERP will replace/consolidate.</blockquote>
+
+<div class="table-wrap"><table><thead><tr>
+<th>System</th>
+<th>Function</th>
+<th>Pain Point</th>
+</tr></thead><tbody>
+<td>Legacy on-premise accounting</td>
+<td>GL, AP, AR</td>
+<td>Siloed per entity; no consolidation</td>
+</tr>
+<td>Standalone POS software</td>
+<td>In-store sales</td>
+<td>Not integrated with inventory</td>
+</tr>
+<td>Spreadsheet-based purchasing</td>
+<td>PO creation</td>
+<td>Manual, error-prone</td>
+</tr>
+<td>Manual inventory counts</td>
+<td>Stock management</td>
+<td>No real-time visibility</td>
+</tr>
+<td>Separate payroll software</td>
+<td>HR/Payroll</td>
+<td>Not linked to accounting</td>
+</tr>
+<td>Custom ecommerce site</td>
+<td>Online sales</td>
+<td>No inventory sync</td>
+</tr>
+<td>Email-based approvals</td>
+<td>Capex, PO approvals</td>
+<td>No audit trail</td>
+</tr>
+</tbody></table></div>
+
+<h3>14.2 Target ERP Requirements</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Functional Area</th>
+<th>Key Requirements</th>
+</tr></thead><tbody>
+<td><strong>Financials</strong></td>
+<td>Multi-entity GL, AP, AR, FA, consolidation, BIR-compliant tax</td>
+</tr>
+<td><strong>Inventory Management</strong></td>
+<td>Real-time perpetual inventory across all locations</td>
+</tr>
+<td><strong>Procurement</strong></td>
+<td>Automated PO generation, 3-way match, vendor portal</td>
+</tr>
+<td><strong>Warehouse Management</strong></td>
+<td>RF-directed putaway/pick, cycle count, lot/serial tracking</td>
+</tr>
+<td><strong>POS / Retail</strong></td>
+<td>1,000 terminals, offline capable, multi-tender, loyalty integration</td>
+</tr>
+<td><strong>Ecommerce</strong></td>
+<td>BOPIS + delivery, real-time inventory & price sync</td>
+</tr>
+<td><strong>Supply Chain Planning</strong></td>
+<td>Demand forecasting, ROP/EOQ, replenishment planning</td>
+</tr>
+<td><strong>HR & Payroll</strong></td>
+<td>Philippine statutory compliance (SSS, PhilHealth, Pag-IBIG, BIR)</td>
+</tr>
+<td><strong>CRM / Loyalty</strong></td>
+<td>Customer management, points engine, trade accounts</td>
+</tr>
+<td><strong>Analytics & BI</strong></td>
+<td>Dashboards, sales analytics, inventory reports, P&L by store</td>
+</tr>
+<td><strong>Intercompany</strong></td>
+<td>Automated IC elimination, transfer pricing, settlement</td>
+</tr>
+<td><strong>Approvals / Workflow</strong></td>
+<td>Configurable approval matrix for PO, capex, discounts</td>
+</tr>
+<td><strong>Mobile</strong></td>
+<td>Store manager app, receiving app, executive dashboard</td>
+</tr>
+</tbody></table></div>
+
+<h3>14.3 Integration Touchpoints</h3>
+
+<p>The following external systems must connect to the ERP. Each ERP implementation</p>
+<p>should propose its own integration architecture.</p>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Integration</th>
+<th>Direction</th>
+<th>Data Exchanged</th>
+</tr></thead><tbody>
+<td>POS ↔ ERP</td>
+<td>Bidirectional</td>
+<td>Sales transactions, prices, item master, promos, customer lookup</td>
+</tr>
+<td>Ecommerce ↔ ERP</td>
+<td>Bidirectional</td>
+<td>Orders, inventory levels, prices, catalog, fulfillment status, customer data</td>
+</tr>
+<td>Payment Gateway ↔ ERP</td>
+<td>Inbound</td>
+<td>Payment confirmations</td>
+</tr>
+<td>Bank ↔ ERP</td>
+<td>Bidirectional</td>
+<td>Payment files, bank statements</td>
+</tr>
+<td>BIR eFPS ↔ ERP</td>
+<td>Outbound</td>
+<td>Tax returns</td>
+</tr>
+<td>SSS / PhilHealth / Pag-IBIG ↔ ERP</td>
+<td>Outbound</td>
+<td>Contribution files</td>
+</tr>
+<td>Delivery Partners ↔ ERP</td>
+<td>Bidirectional</td>
+<td>Delivery orders, delivery status</td>
+</tr>
+<td>Loyalty Engine ↔ ERP</td>
+<td>Bidirectional</td>
+<td>Points earning/redemption</td>
+</tr>
+<td>WMS (RF Guns) ↔ ERP</td>
+<td>Bidirectional</td>
+<td>Transfer orders, pick/ship confirmations, inventory</td>
+</tr>
+<td>Supplier Portal ↔ ERP</td>
+<td>Bidirectional</td>
+<td>POs, ASN, invoices</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>15. Data Volumes & Performance Requirements</h2>
+
+<h3>15.1 Transactional Volumes</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Metric</th>
+<th>Monthly</th>
+<th>Annual</th>
+</tr></thead><tbody>
+<td>POS Transactions</td>
+<td>2,800,000</td>
+<td>33,600,000</td>
+</tr>
+<td>POS Line Items</td>
+<td>11,200,000</td>
+<td>134,400,000</td>
+</tr>
+<td>Purchase Orders (merchandise)</td>
+<td>1,200</td>
+<td>14,400</td>
+</tr>
+<td>Purchase Orders (all types)</td>
+<td>~1,400–1,600</td>
+<td>~17,000–19,000</td>
+</tr>
+<td>Purchase Order Lines</td>
+<td>18,000</td>
+<td>216,000</td>
+</tr>
+<td>Store Replenishment Orders</td>
+<td>~5,000</td>
+<td>~60,000</td>
+</tr>
+<td>Goods Receipts (Inbound)</td>
+<td>~6,000</td>
+<td>~72,000</td>
+</tr>
+<td>Ecommerce Orders</td>
+<td>~45,000</td>
+<td>~540,000</td>
+</tr>
+<td>AR Invoices</td>
+<td>~3,500</td>
+<td>~42,000</td>
+</tr>
+<td>AP Invoices</td>
+<td>~6,500</td>
+<td>~78,000</td>
+</tr>
+<td>Journal Entries (Auto)</td>
+<td>~12,000</td>
+<td>~144,000</td>
+</tr>
+<td>Payroll Runs</td>
+<td>10 (5 entities × 2)</td>
+<td>120</td>
+</tr>
+</tbody></table></div>
+
+<h3>15.2 Master Data</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Master</th>
+<th>Records</th>
+</tr></thead><tbody>
+<td>Items / SKUs</td>
+<td>55,000 (35,000 active)</td>
+</tr>
+<td>Customers (B2C Loyalty)</td>
+<td>600,000</td>
+</tr>
+<td>Customers (B2B Trade)</td>
+<td>5,000</td>
+</tr>
+<td>Customers (B2B Corporate)</td>
+<td>200</td>
+</tr>
+<td>Vendors / Suppliers</td>
+<td>1,000</td>
+</tr>
+<td>Locations (Stores + DCs + HQ)</td>
+<td>206</td>
+</tr>
+<td>Employees</td>
+<td>~7,050</td>
+</tr>
+<td>Chart of Accounts</td>
+<td>~500–800 per entity</td>
+</tr>
+<td>GL Accounts (consolidated)</td>
+<td>~2,000–3,000</td>
+</tr>
+</tbody></table></div>
+
+<h3>15.3 Performance Requirements</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Requirement</th>
+<th>Target</th>
+</tr></thead><tbody>
+<td>POS transaction processing</td>
+<td>< 3 seconds per transaction</td>
+</tr>
+<td>Inventory visibility (all stores)</td>
+<td>Real-time (< 30 sec delay)</td>
+</tr>
+<td>Report generation (standard)</td>
+<td>< 30 seconds</td>
+</tr>
+<td>Month-end close</td>
+<td>Within 5 working days</td>
+</tr>
+<td>System uptime (POS)</td>
+<td>99.9%</td>
+</tr>
+<td>System uptime (back office)</td>
+<td>99.5%</td>
+</tr>
+<td>Concurrent users (peak)</td>
+<td>~1,000–1,500</td>
+</tr>
+<td>Data retention</td>
+<td>7 years (BIR requirement)</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>16. Compliance & Regulatory (Philippines)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Regulation</th>
+<th>Impact on ERP</th>
+</tr></thead><tbody>
+<td><strong>BIR Revenue Regulations</strong></td>
+<td>Registered POS, e-invoicing readiness, CAS (Computerized Accounting System) registration</td>
+</tr>
+<td><strong>BIR Form Requirements</strong></td>
+<td>2550M/Q (VAT), 1601-E (EWT), 1601-C (CWT), 1702Q/RT (Income Tax), 1604-C/E (Annual)</td>
+</tr>
+<td><strong>SEC Financial Reporting</strong></td>
+<td>PFRS/IFRS compliant FS, consolidated reporting</td>
+</tr>
+<td><strong>DOLE Labor Standards</strong></td>
+<td>Payroll compliance, leave tracking, 13th month</td>
+</tr>
+<td><strong>SSS / PhilHealth / Pag-IBIG</strong></td>
+<td>Monthly contribution remittance, PRN generation</td>
+</tr>
+<td><strong>Local Government Unit (LGU)</strong></td>
+<td>Business permits per location, local business tax</td>
+</tr>
+<td><strong>Consumer Act (RA 7394)</strong></td>
+<td>Price tag display, return policy</td>
+</tr>
+<td><strong>Data Privacy Act (RA 10173)</strong></td>
+<td>NPC compliance, customer data handling, consent management</td>
+</tr>
+<td><strong>Build-Operate-Transfer (BOT)</strong></td>
+<td>If any government project sales</td>
+</tr>
+<td><strong>Customs / Tariff</strong></td>
+<td>Import duty calculations, customs brokerage integration</td>
+</tr>
+<td><strong>Anti-Red Tape Authority (ARTA)</strong></td>
+<td>Business permit renewal compliance</td>
+</tr>
+<td><strong>Bangko Sentral ng Pilipinas (BSP)</strong></td>
+<td>Foreign exchange, cross-border payments</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>17. Critical Success Factors for ERP Implementation</h2>
+
+<ol>
+<li><strong>Multi-entity, multi-location readiness</strong> out of the box</li>
+</ol>
+<ol>
+<li><strong>Philippine localization</strong>: BIR, SSS, PhilHealth, Pag-IBIG compliance</li>
+</ol>
+<ol>
+<li><strong>High-volume POS</strong>: 2.8M transactions/month across 1,000 terminals</li>
+</ol>
+<ol>
+<li><strong>Real-time inventory visibility</strong> across 200 stores + 5 DCs</li>
+</ol>
+<ol>
+<li><strong>Ecommerce integration</strong>: Seamless BOPIS + delivery fulfillment</li>
+</ol>
+<ol>
+<li><strong>Scalability</strong>: From 200 to potentially 300+ stores</li>
+</ol>
+<ol>
+<li><strong>Offline POS resilience</strong>: Stores must sell during outages</li>
+</ol>
+<ol>
+<li><strong>Intercompany automation</strong>: 5-entity consolidation</li>
+</ol>
+<ol>
+<li><strong>Supply chain optimization</strong>: Demand planning, auto-replenishment</li>
+</ol>
+<ol>
+<li><strong>User adoption</strong>: ~7,050 users across varying tech literacy levels</li>
+</ol>
+
+<hr>
+
+<h2>18. Glossary</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Term</th>
+<th>Definition</th>
+</tr></thead><tbody>
+<td><strong>ATV</strong></td>
+<td>Average Transaction Value</td>
+</tr>
+<td><strong>BOPIS</strong></td>
+<td>Buy Online, Pick Up In Store</td>
+</tr>
+<td><strong>COA</strong></td>
+<td>Chart of Accounts</td>
+</tr>
+<td><strong>DC</strong></td>
+<td>Distribution Center</td>
+</tr>
+<td><strong>DSD</strong></td>
+<td>Direct Store Delivery</td>
+</tr>
+<td><strong>EOQ</strong></td>
+<td>Economic Order Quantity</td>
+</tr>
+<td><strong>GMV</strong></td>
+<td>Gross Merchandise Value</td>
+</tr>
+<td><strong>IC</strong></td>
+<td>Intercompany</td>
+</tr>
+<td><strong>LGU</strong></td>
+<td>Local Government Unit</td>
+</tr>
+<td><strong>POS</strong></td>
+<td>Point of Sale</td>
+</tr>
+<td><strong>ROP</strong></td>
+<td>Reorder Point</td>
+</tr>
+<td><strong>SKU</strong></td>
+<td>Stock Keeping Unit</td>
+</tr>
+<td><strong>SRP</strong></td>
+<td>Suggested Retail Price</td>
+</tr>
+<td><strong>TEU</strong></td>
+<td>Twenty-foot Equivalent Unit (shipping container)</td>
+</tr>
+<td><strong>VMI</strong></td>
+<td>Vendor Managed Inventory</td>
+</tr>
+<td><strong>WAC</strong></td>
+<td>Weighted Average Cost</td>
+</tr>
+<td><strong>WMS</strong></td>
+<td>Warehouse Management System</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<p><em>Document Version: 2.11 | Date: 2026-06-03 | Store staffing reduced from 35 to 30 per store (6,000 total store staff); total headcount ~7,060–7,070; DC headcount unchanged at ~150/DC (~750 total)</em></p>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

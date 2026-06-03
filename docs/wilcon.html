@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wilcon Depot Benchmark — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub act"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🏪</span><h2>Wilcon Depot Benchmark</h2></div><div class="cd mc"><h1>Wilcon Depot — Real-World Benchmark Research</h1>
+
+<blockquote>Wilcon Depot (PSE: WLCON) is the largest home improvement and construction supply retail</blockquote>
+<blockquote>chain in the Philippines. This document compiles publicly available information about Wilcon</blockquote>
+<blockquote>to serve as a real-world reference for our model company ("BuildRight Depot Corp.").</blockquote>
+
+<hr>
+
+<h2>1. Company Overview</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Attribute</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Legal Name</strong></td>
+<td>Wilcon Depot, Inc.</td>
+</tr>
+<td><strong>PSE Ticker</strong></td>
+<td>WLCON</td>
+</tr>
+<td><strong>Industry</strong></td>
+<td>Retail — Home Improvement / Construction Supplies</td>
+</tr>
+<td><strong>Founded</strong></td>
+<td>1978 (as a small hardware store in Bacolod, Negros Occidental)</td>
+</tr>
+<td><strong>Founder</strong></td>
+<td>William T. Belo</td>
+</tr>
+<td><strong>Corporate HQ</strong></td>
+<td>Quezon City, Metro Manila, Philippines</td>
+</tr>
+<td><strong>Key Executives</strong></td>
+<td>Belo family (William Belo — founder; Lorraine Belo-Cincochan — President/CEO)</td>
+</tr>
+<td><strong>IPO</strong></td>
+<td>Listed on PSE in 2018</td>
+</tr>
+<td><strong>Public Float</strong></td>
+<td>~30%</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>2. Store Network</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Metric</th>
+<th>Value</th>
+</tr></thead><tbody>
+<td><strong>Total Stores (as of end-2024)</strong></td>
+<td>~100+</td>
+</tr>
+<td><strong>Store Formats</strong></td>
+<td>2 formats: <strong>Wilcon Depot</strong> (large) and <strong>Wilcon Depot Express</strong> (smaller)</td>
+</tr>
+<td><strong>Average Store Size (Depot)</strong></td>
+<td>~10,000–15,000 sqm</td>
+</tr>
+<td><strong>Average Store Size (Express)</strong></td>
+<td>~2,000–3,000 sqm</td>
+</tr>
+<td><strong>Geographic Coverage</strong></td>
+<td>Nationwide — Luzon, Visayas, Mindanao</td>
+</tr>
+<td><strong>Store Growth Rate</strong></td>
+<td>~10–15 new stores per year</td>
+</tr>
+<td><strong>Target</strong></td>
+<td>200+ stores in the long term</td>
+</tr>
+</tbody></table></div>
+
+<h3>Store Format Comparison</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Feature</th>
+<th>Wilcon Depot</th>
+<th>Wilcon Depot Express</th>
+</tr></thead><tbody>
+<td><strong>Size</strong></td>
+<td>10,000–15,000 sqm</td>
+<td>2,000–3,000 sqm</td>
+</tr>
+<td><strong>SKU Range</strong></td>
+<td>~60,000+</td>
+<td>~15,000–20,000</td>
+</tr>
+<td><strong>Target Market</strong></td>
+<td>Full home improvement</td>
+<td>Convenience/top-up, smaller communities</td>
+</tr>
+<td><strong>Format</strong></td>
+<td>Warehouse big-box</td>
+<td>Compact neighborhood store</td>
+</tr>
+<td><strong>Categories</strong></td>
+<td>Full range</td>
+<td>Curated essentials</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>3. Financial Performance (Public Filing Estimates)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Metric</th>
+<th>Approximate (est. FY2024)</th>
+</tr></thead><tbody>
+<td><strong>Annual Revenue</strong></td>
+<td>~PHP 32–35 Billion</td>
+</tr>
+<td><strong>Revenue per Store</strong></td>
+<td>~PHP 300–350M/year</td>
+</tr>
+<td><strong>Gross Margin</strong></td>
+<td>~30–33%</td>
+</tr>
+<td><strong>Net Income Margin</strong></td>
+<td>~7–9%</td>
+</tr>
+<td><strong>EBITDA Margin</strong></td>
+<td>~14–16%</td>
+</tr>
+<td><strong>Same-Store Sales Growth</strong></td>
+<td>~5–8% annually</td>
+</tr>
+<td><strong>Capex (Annual)</strong></td>
+<td>~PHP 3–4 Billion (new stores + renovations)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Historical Revenue Trajectory</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Year</th>
+<th>Revenue (PHP B)</th>
+<th>Stores</th>
+</tr></thead><tbody>
+<td>2018 (IPO year)</td>
+<td>~18</td>
+<td>~60</td>
+</tr>
+<td>2020 (COVID)</td>
+<td>~20</td>
+<td>~70</td>
+</tr>
+<td>2022</td>
+<td>~27</td>
+<td>~85</td>
+</tr>
+<td>2023</td>
+<td>~30</td>
+<td>~95</td>
+</tr>
+<td>2024 (est.)</td>
+<td>~33–35</td>
+<td>~100+</td>
+</tr>
+</tbody></table></div>
+
+<blockquote>Note: Exact figures vary by public filing period. Revenue figures are approximate based on</blockquote>
+<blockquote>disclosed financial statements and analyst estimates.</blockquote>
+
+<hr>
+
+<h2>4. Product & Merchandise</h2>
+
+<h3>Category Mix</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Category</th>
+<th>% of Sales</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td><strong>Building Materials</strong></td>
+<td>~25%</td>
+<td>Cement, steel, lumber, plywood, roofing</td>
+</tr>
+<td><strong>Tiles & Flooring</strong></td>
+<td>~20%</td>
+<td>Ceramic, porcelain, granite, vinyl; one of their strongest categories</td>
+</tr>
+<td><strong>Plumbing & Sanitary</strong></td>
+<td>~15%</td>
+<td>Toilets, faucets, pipes, water heaters, bathroom fixtures</td>
+</tr>
+<td><strong>Electrical & Lighting</strong></td>
+<td>~10%</td>
+<td>Wiring, switches, panels, LED lighting</td>
+</tr>
+<td><strong>Paint & Finishes</strong></td>
+<td>~10%</td>
+<td>Boysen, Davies, Nippon Paint partnerships</td>
+</tr>
+<td><strong>Tools & Hardware</strong></td>
+<td>~10%</td>
+<td>Power tools (Bosch, Makita), hand tools, fasteners</td>
+</tr>
+<td><strong>Appliances & Furniture</strong></td>
+<td>~10%</td>
+<td>Aircons, fans, kitchen appliances, home furniture</td>
+</tr>
+</tbody></table></div>
+
+<h3>Key Product Notes</h3>
+<ul>
+<li><strong>SKUs</strong>: Over 60,000 across the full Depot format; ~15,000–20,000 in Express</li>
+<li><strong>Private Label</strong>: Wilcon carries own-brand products in select categories (e.g., Wilcon Essentials)</li>
+<li><strong>Import Sourcing</strong>: Significant imports from China, Taiwan, Europe for tiles, tools, and fixtures</li>
+<li><strong>Key Brands Carried</strong>: Bosch, Makita, Stanley, Boysen, Nippon Paint, Meranti, Rheem, La Germania, Grohe, American Standard, Kohler, Philips, National, Akari</li>
+<li><strong>Category Depth</strong>: Extremely deep in tiles (thousands of designs) and plumbing fixtures</li>
+</ul>
+
+<hr>
+
+<h2>5. Supply Chain & Distribution</h2>
+
+<h3>Distribution Network</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Facility</th>
+<th>Location</th>
+<th>Role</th>
+</tr></thead><tbody>
+<td><strong>National Distribution Center</strong></td>
+<td>Cavite (General Trias)</td>
+<td>Main DC, serves Luzon</td>
+</tr>
+<td><strong>Visayas DC</strong></td>
+<td>Cebu (Mandaue City)</td>
+<td>Serves Visayas</td>
+</tr>
+<td><strong>Mindanao DC</strong></td>
+<td>Davao City</td>
+<td>Serves Mindanao</td>
+</tr>
+<td><strong>Additional facilities</strong></td>
+<td>Various</td>
+<td>Regional staging areas</td>
+</tr>
+</tbody></table></div>
+
+<h3>Logistics Characteristics</h3>
+<ul>
+<li>Centralized buying with DC-based distribution</li>
+<li>Mix of company-owned and third-party logistics for last-mile</li>
+<li>Direct-to-store delivery for bulky items (cement, lumber)</li>
+<li>Strong vendor relationships with both local manufacturers and importers</li>
+<li>Containerized imports flow through Manila, Cebu, and Davao ports</li>
+</ul>
+
+<hr>
+
+<h2>6. Digital & Ecommerce</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Feature</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Website</strong></td>
+<td>wilcon.com.ph</td>
+</tr>
+<td><strong>Ecommerce</strong></td>
+<td>Full online store with BOPIS ("Click & Collect") and delivery options</td>
+</tr>
+<td><strong>Mobile App</strong></td>
+<td>Available on iOS and Android</td>
+</tr>
+<td><strong>Product Catalog Online</strong></td>
+<td>Thousands of items browsable with real-time stock check per store</td>
+</tr>
+<td><strong>Loyalty Program</strong></td>
+<td>"Wilcon Loyalty" — points-based rewards program</td>
+</tr>
+<td><strong>Social Media</strong></td>
+<td>Very active — Facebook, Instagram, YouTube, TikTok</td>
+</tr>
+<td><strong>Content Marketing</strong></td>
+<td>"Wilcon How To" series — DIY tutorials, project guides</td>
+</tr>
+<td><strong>Project Consulting</strong></td>
+<td>In-store project consultation for home builds/renovations</td>
+</tr>
+</tbody></table></div>
+
+<h3>Digital Strategy Highlights</h3>
+<ul>
+<li>Strong focus on omnichannel integration</li>
+<li>Store pickup (BOPIS) available at all stores</li>
+<li>Delivery options with real-time tracking</li>
+<li>Virtual room design tools on website</li>
+<li>Integration with GCash and other e-wallets</li>
+</ul>
+
+<hr>
+
+<h2>7. Corporate Structure</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Entity</th>
+<th>Role</th>
+</tr></thead><tbody>
+<td><strong>Wilcon Depot, Inc.</strong></td>
+<td>Publicly listed operating company</td>
+</tr>
+<td><strong>Subsidiaries / Related entities</strong></td>
+<td>Property holding, logistics, import/export entities</td>
+</tr>
+</tbody></table></div>
+
+<h3>Key Corporate Facts</h3>
+<ul>
+<li>Family-controlled with professional management</li>
+<li>Belo family holds majority stake (~70%)</li>
+<li>Board includes independent directors (PSE requirement)</li>
+<li>Internal audit and risk management functions</li>
+<li>Listed company compliance (SEC, PSE reporting obligations)</li>
+</ul>
+
+<h3>IT & Systems (Publicly Known)</h3>
+<ul>
+<li>Wilcon has invested significantly in digital transformation in recent years</li>
+<li>Their ecommerce platform (wilcon.com.ph) appears to be a custom-built solution with real-time inventory integration</li>
+<li>POS systems across stores are networked for centralized data collection</li>
+<li>SAP has been mentioned in Philippine IT industry circles as a potential enterprise platform for large Philippine retailers; however, Wilcon's specific ERP vendor has not been publicly disclosed</li>
+<li>Strong investment in omnichannel technology (BOPIS, mobile app, real-time stock check) suggests a mid-to-upper-tier ERP backbone</li>
+<li>The company's digital investments are a key pillar of their growth strategy per annual report commentary</li>
+</ul>
+
+<hr>
+
+<h2>8. Human Resources</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Metric</th>
+<th>Estimate</th>
+</tr></thead><tbody>
+<td><strong>Total Employees</strong></td>
+<td>~5,000–6,000</td>
+</tr>
+<td><strong>Store Staff per Depot</strong></td>
+<td>~30–50</td>
+</tr>
+<td><strong>Store Staff per Express</strong></td>
+<td>~12–18</td>
+</tr>
+<td><strong>Corporate HQ Staff</strong></td>
+<td>~300–400</td>
+</tr>
+<td><strong>Key HR Programs</strong></td>
+<td>Training academy, product knowledge, safety programs</td>
+</tr>
+</tbody></table></div>
+
+<h3>Workforce Characteristics</h3>
+<ul>
+<li>Store-level workforce includes sales associates, cashiers, receiving, and department specialists</li>
+<li>Technical product knowledge is critical (tiles, plumbing, electrical)</li>
+<li>Annual hiring needs driven by new store openings</li>
+<li>Company invests in product training and customer service programs</li>
+</ul>
+
+<hr>
+
+<h2>9. Competitive Landscape</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Competitor</th>
+<th>Format</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<td><strong>CW Home Depot</strong></td>
+<td>Similar big-box</td>
+<td>Arch. Augusto Villalon; strong in Cebu; ~15-20 stores</td>
+</tr>
+<td><strong>Handyman (Robinsons)</strong></td>
+<td>Do It Best format</td>
+<td>Within Robinsons malls; smaller format</td>
+</tr>
+<td><strong>ACE Hardware (SM)</strong></td>
+<td>SM Retail subsidiary</td>
+<td>More hardware-focused; ~200+ stores</td>
+</tr>
+<td><strong>CitiHardware</strong></td>
+<td>DIY/hardware</td>
+<td>Growing chain; mostly VisMin</td>
+</tr>
+<td><strong>Home Along (Aboitiz)</strong></td>
+<td>Home improvement</td>
+<td>Newer entrant, growing</td>
+</tr>
+<td><strong>MR. DIY</strong></td>
+<td>Small hardware/DIY</td>
+<td>Over 500 stores; lower price point</td>
+</tr>
+<td><strong>Local Independent Hardware</strong></td>
+<td>Neighborhood stores</td>
+<td>Very fragmented market</td>
+</tr>
+</tbody></table></div>
+
+<h3>Wilcon's Competitive Advantages</h3>
+<ol>
+<li><strong>Scale</strong>: Largest dedicated home improvement retailer in the Philippines</li>
+</ol>
+<ol>
+<li><strong>Assortment Depth</strong>: Unmatched in tiles, plumbing, and building materials</li>
+</ol>
+<ol>
+<li><strong>Store Experience</strong>: Destination shopping for home building/renovation projects</li>
+</ol>
+<ol>
+<li><strong>Brand Trust</strong>: 45+ years of brand recognition</li>
+</ol>
+<ol>
+<li><strong>Omnichannel</strong>: Integrated digital + physical presence</li>
+</ol>
+<ol>
+<li><strong>Supplier Relationships</strong>: Direct import relationships, exclusive brand partnerships</li>
+</ol>
+<ol>
+<li><strong>Geographic Reach</strong>: Nationwide coverage including underserved VisMin markets</li>
+</ol>
+
+<hr>
+
+<h2>10. Key Comparisons: Wilcon vs. Model Company (BuildRight Depot)</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Parameter</th>
+<th>Wilcon Depot (Real)</th>
+<th>BuildRight Depot (Model)</th>
+</tr></thead><tbody>
+<td><strong>Stores</strong></td>
+<td>~100+</td>
+<td>200 (theoretical)</td>
+</tr>
+<td><strong>Store Format</strong></td>
+<td>Depot + Express (2 formats)</td>
+<td>Big-box only (1 format)</td>
+</tr>
+<td><strong>HQ</strong></td>
+<td>Quezon City, Metro Manila</td>
+<td>Davao City</td>
+</tr>
+<td><strong>Legal Entities</strong></td>
+<td>1 main (public) + subsidiaries</td>
+<td>5 legal entities</td>
+</tr>
+<td><strong>Active SKUs</strong></td>
+<td>~60,000+ (Depot format)</td>
+<td>35,000</td>
+</tr>
+<td><strong>Annual Revenue</strong></td>
+<td>~PHP 33–35B</td>
+<td>~PHP 62.3B (projected at 200 stores)</td>
+</tr>
+<td><strong>Monthly POS Transactions</strong></td>
+<td>~1.5M (estimated)</td>
+<td>2.8M</td>
+</tr>
+<td><strong>Distribution Centers</strong></td>
+<td>3+</td>
+<td>5</td>
+</tr>
+<td><strong>Ecommerce</strong></td>
+<td>Full (BOPIS + delivery)</td>
+<td>Full (BOPIS + delivery)</td>
+</tr>
+<td><strong>Loyalty Program</strong></td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<td><strong>Employees</strong></td>
+<td>~5,000–6,000</td>
+<td>~7,050</td>
+</tr>
+<td><strong>Monthly Trade POs</strong></td>
+<td>~500–800 (estimated)</td>
+<td>1,200</td>
+</tr>
+<td><strong>Import Vendors</strong></td>
+<td>~40%</td>
+<td>~40%</td>
+</tr>
+</tbody></table></div>
+
+<h3>Key Differences for ERP Planning</h3>
+<ol>
+<li><strong>Model Company is larger</strong> (200 stores vs ~100) — tests scalability</li>
+</ol>
+<ol>
+<li><strong>Model Company has 5 legal entities</strong> — tests multi-entity/intercompany capabilities</li>
+</ol>
+<ol>
+<li><strong>Model Company is based in Davao</strong> — tests provincial/regional operations focus</li>
+</ol>
+<ol>
+<li><strong>Model Company has fewer SKUs but more stores</strong> (35K vs 60K+) — tests high-volume, multi-location inventory with a curated assortment</li>
+</ol>
+<ol>
+<li><strong>Model Company is a clean-sheet design</strong> — no legacy system constraints</li>
+</ol>
+<ol>
+<li><strong>Model Company has 5 DCs</strong> (vs Wilcon's 3+) — higher DC-to-store ratio reflects larger store count and provincial coverage</li>
+</ol>
+
+<hr>
+
+<h2>11. Lessons from Wilcon for ERP Design</h2>
+
+<h3>What Wilcon Does Well (to emulate)</h3>
+<ol>
+<li><strong>Omnichannel maturity</strong>: Seamless online-offline integration</li>
+</ol>
+<ol>
+<li><strong>Category management</strong>: Deep expertise in tiles, plumbing, building materials</li>
+</ol>
+<ol>
+<li><strong>Store format flexibility</strong>: Different formats for different markets</li>
+</ol>
+<ol>
+<li><strong>Supplier partnerships</strong>: Direct imports, exclusive arrangements</li>
+</ol>
+<ol>
+<li><strong>Customer experience</strong>: In-store consultation, project advice, installation services</li>
+</ol>
+<ol>
+<li><strong>Digital content</strong>: How-to content drives both foot traffic and online engagement</li>
+</ol>
+
+<h3>What an ERP Must Handle for This Type of Business</h3>
+<ol>
+<li><strong>Massive SKU counts</strong> (20,000–60,000+)</li>
+</ol>
+<ol>
+<li><strong>Complex product attributes</strong> (tiles: size, material, finish, color; lumber: species, dimensions)</li>
+</ol>
+<ol>
+<li><strong>Import management</strong> (LC tracking, customs, landed cost calculation)</li>
+</ol>
+<ol>
+<li><strong>Multi-format retail</strong> (potentially different price lists/inventory per format)</li>
+</ol>
+<ol>
+<li><strong>Heavy DC-to-store replenishment</strong> (high frequency, complex routing)</li>
+</ol>
+<ol>
+<li><strong>BOPIS orchestration</strong> (order routing, store-level fulfillment, pickup confirmation)</li>
+</ol>
+<ol>
+<li><strong>Project-based selling</strong> (B2B customers buying for construction projects)</li>
+</ol>
+<ol>
+<li><strong>Catch-weight / variable measurement items</strong></li>
+</ol>
+<ol>
+<li><strong>Consignment inventory management</strong></li>
+</ol>
+<ol>
+<li><strong>Philippine tax and regulatory compliance</strong></li>
+</ol>
+
+<hr>
+
+<h2>12. Sources & References</h2>
+
+<ul>
+<li>Wilcon Depot, Inc. — Annual Reports and SEC Filings (PSE EDGE)</li>
+<li>Philippine Stock Exchange (PSE) — WLCON stock information</li>
+<li>Wilcon Depot Official Website — wilcon.com.ph</li>
+<li>Various Philippine business news sources (Inquirer, Philippine Star, BusinessWorld)</li>
+<li>Industry reports on Philippine retail and home improvement sector</li>
+</ul>
+
+<blockquote><strong>Disclaimer</strong>: This document compiles publicly available information and estimates for</blockquote>
+<blockquote>educational and planning purposes. Some figures are approximations based on public filings</blockquote>
+<blockquote>and industry knowledge. No confidential or insider information is included.</blockquote>
+
+<hr>
+
+<p><em>Document Version: 1.0 | Date: 2026-05-29</em></p>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

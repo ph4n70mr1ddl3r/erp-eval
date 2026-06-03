@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer — BuildRight Depot ERP Comparison</title>
+<style>:root{--oracle:#c74634;--oracle-l:#fdeae8;--msft:#0078d4;--msft-l:#e6f4ff;--sap:#0faaff;--sap-l:#e6f5ff;--bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;--border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;--green:#16a34a;--amber:#d97706;--red:#dc2626;--r:10px;--nav-w:260px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+/* SIDEBAR */
+.sb{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;overflow-y:auto;overflow-x:hidden;z-index:1000;transition:transform .3s}
+.sb .logo{padding:16px 14px 6px;display:block;text-decoration:none;color:#fff}
+.sb .logo b{font-size:16px;display:block}
+.sb .logo small{font-size:10px;color:#8b8fa3;display:block;margin-top:2px}
+.ns{padding:10px 14px 3px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;border-top:1px solid #2a2a42;margin-top:2px}
+.ns:first-child{border-top:none;margin-top:6px}
+.sb nav a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:#a0a4b8;text-decoration:none;font-size:12.5px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb nav a:hover,.sb nav a.act{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sb nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sb nav a.sub{font-size:11.5px;padding-left:28px}
+/* HAMBURGER */
+.ham{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.15)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+.ov.show{display:block}
+/* MAIN */
+.mn{margin-left:var(--nav-w);padding:24px;min-height:100vh}
+/* CARDS */
+.cd{background:var(--card);border-radius:var(--r);box-shadow:0 1px 3px rgba(0,0,0,.08);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.cd h2{font-size:18px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+/* KPI */
+.kr{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kp{background:var(--card);border-radius:var(--r);padding:14px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:1px solid var(--border);text-align:center}
+.kp .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:3px}
+.kp .vl{font-size:22px;font-weight:800}
+.kp .sb2{font-size:10px;color:var(--text2);margin-top:2px}
+/* TABLES */
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{width:100%;border-collapse:collapse;font-size:12px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:9px 11px;font-size:10.5px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:7px 11px;border-bottom:1px solid var(--border);vertical-align:top;font-size:12.5px}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+tr.ct td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+/* STARS & RISK */
+.st{color:#f59e0b;letter-spacing:1px}
+.rl{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rm{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.rh{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.08);border:2px solid transparent;margin-bottom:14px}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 4px;font-size:15px}
+.vc .tg{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:6px}
+.vc.oracle .tg{background:var(--oracle)}.vc.msft .tg{background:var(--msft)}.vc.sap .tg{background:var(--sap)}
+.vc ul{list-style:none;font-size:12.5px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+/* BAR */
+.br{display:flex;align-items:center;margin-bottom:5px;gap:8px}
+.bl{width:70px;font-size:10.5px;font-weight:600;text-align:right;flex-shrink:0}
+.bt{flex:1;height:20px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bf{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:9.5px;font-weight:700}
+.bf.o{background:var(--oracle)}.bf.m{background:var(--msft)}.bf.s{background:var(--sap)}
+/* MD CONTENT */
+.mc h1{font-size:22px;margin:18px 0 10px;padding-bottom:6px;border-bottom:2px solid var(--border)}
+.mc h2{font-size:18px;margin:16px 0 8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
+.mc h3{font-size:15px;margin:12px 0 6px;color:var(--text2)}
+.mc h4{font-size:14px;margin:10px 0 4px;color:var(--text2)}
+.mc p{margin:6px 0}
+.mc ul,.mc ol{margin:6px 0 6px 18px}
+.mc li{margin:2px 0}
+.mc blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 14px;margin:10px 0;border-radius:0 var(--r) var(--r) 0;font-size:13px}
+.mc pre{background:#1a1a2e;color:#e0e0e0;padding:14px;border-radius:var(--r);overflow-x:auto;margin:10px 0;font-size:12px}
+.mc code{background:#f0f1f3;padding:1px 5px;border-radius:4px;font-size:11.5px}
+.mc pre code{background:none;padding:0}
+.mc hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.mc table{margin:10px 0}
+.mc strong{color:var(--text)}
+/* SECTION TITLE */
+.stl{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.stl .ic{font-size:20px}.stl h2{font-size:18px;margin:0;border:none;padding:0}
+/* GRID */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:16px}
+/* FOOTER */
+.ft{text-align:center;padding:20px 14px;color:var(--text2);font-size:10px;margin-top:24px;border-top:1px solid var(--border)}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .ham{display:flex;align-items:center;justify-content:center}
+  .mn{margin-left:0;padding:52px 10px 14px}
+  .kr{grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+  .kp .vl{font-size:17px}table{font-size:10.5px}th,td{padding:5px 6px}
+  .bl{width:55px;font-size:9.5px}.vc ul{font-size:11.5px}
+}
+@media(max-width:480px){.mn{padding:48px 6px 10px}.cd{padding:12px}.kr{grid-template-columns:1fr 1fr}}
+@media print{.sb,.ham,.ov{display:none!important}.mn{margin:0;padding:8px}}
+</style>
+</head>
+<body>
+<button class="ham" onclick="document.getElementById('sb').classList.toggle('open');document.getElementById('ov').classList.toggle('show')" aria-label="Menu">☰</button>
+<div class="ov" id="ov" onclick="this.classList.remove('show');document.getElementById('sb').classList.remove('open')"></div>
+<aside class="sb" id="sb">
+<a href="index.html" class="logo"><b>🏗️ BuildRight Depot</b><small>ERP Vendor Comparison</small></a>
+<nav><div class="ns">Comparison</div><a href="index.html" class=""><span class="ic">📊</span>Executive Dashboard</a><a href="vendors.html" class=""><span class="ic">🏢</span>Vendor Profiles</a><a href="products.html" class=""><span class="ic">📦</span>Products in Scope</a><a href="pricing.html" class=""><span class="ic">💲</span>License Pricing</a><a href="annual.html" class=""><span class="ic">📅</span>Annual Cost Model</a><a href="implementation.html" class=""><span class="ic">⚙️</span>Implementation Costs</a><a href="training.html" class=""><span class="ic">🎓</span>Training Costs</a><a href="tco.html" class=""><span class="ic">📈</span>5-Year TCO</a><a href="capabilities.html" class=""><span class="ic">⭐</span>Capability Comparison</a><a href="reqfit.html" class=""><span class="ic">✅</span>Requirements Fit</a><a href="risks.html" class=""><span class="ic">⚠️</span>Risk Assessment</a><a href="recommendation.html" class=""><span class="ic">🏆</span>Final Recommendation</a><div class="ns">Detailed Evaluation</div><a href="eval-matrix.html" class="sub"><span class="ic">📋</span>ERP Evaluation Matrix</a><a href="vendor-stack.html" class="sub"><span class="ic">🔧</span>Vendor Stack (Full)</a><a href="cost-capability.html" class="sub"><span class="ic">💰</span>Cost & Capability Detail</a><a href="full-comparison.html" class="sub"><span class="ic">📄</span>Complete Comparison Table</a><a href="vendor-sap.html" class="sub"><span class="ic">🏢</span>SAP S/4HANA Evaluation</a><a href="vendor-oracle.html" class="sub"><span class="ic">🏢</span>Oracle Fusion Evaluation</a><a href="vendor-msft.html" class="sub"><span class="ic">🏢</span>Microsoft D365 Evaluation</a><a href="vendor-odoo.html" class="sub"><span class="ic">🏢</span>Odoo Evaluation</a><div class="ns">Model Company</div><a href="company.html" class="sub"><span class="ic">🏗️</span>Company Profile</a><a href="executive.html" class="sub"><span class="ic">📋</span>Executive Summary</a><a href="requirements.html" class="sub"><span class="ic">✅</span>ERP Requirements (178 Must)</a><a href="data-volumes.html" class="sub"><span class="ic">📊</span>Data Volumes & Integrations</a><a href="internal-controls.html" class="sub"><span class="ic">🔒</span>Internal Controls Matrix</a><a href="req-workflow-matrix.html" class="sub"><span class="ic">🔗</span>Req ↔ Workflow Matrix</a><a href="assumptions.html" class="sub"><span class="ic">📝</span>Assumptions & Decisions</a><a href="mobile-strategy.html" class="sub"><span class="ic">📱</span>Mobile App Strategy</a><a href="data-migration.html" class="sub"><span class="ic">🗂️</span>Data Migration Mapping</a><a href="wilcon.html" class="sub"><span class="ic">🏪</span>Wilcon Depot Benchmark</a><div class="ns">Workflows (276)</div><a href="workflows.html" class="sub"><span class="ic">🔄</span>Workflow Index</a><a href="WF-finance.html" class="sub"><span class="ic">💰</span>Finance</a><a href="WF-store-operations.html" class="sub"><span class="ic">🏪</span>Store Operations</a><a href="WF-procurement.html" class="sub"><span class="ic">🛒</span>Procurement</a><a href="WF-merchandising.html" class="sub"><span class="ic">🏷️</span>Merchandising</a><a href="WF-inventory.html" class="sub"><span class="ic">📦</span>Inventory</a><a href="WF-warehouse.html" class="sub"><span class="ic">🏭</span>Warehouse</a><a href="WF-ecommerce.html" class="sub"><span class="ic">🌐</span>Ecommerce</a><a href="WF-hr.html" class="sub"><span class="ic">👥</span>HR & Payroll</a><a href="WF-customer.html" class="sub act"><span class="ic">🤝</span>Customer</a><a href="WF-compliance.html" class="sub"><span class="ic">📜</span>Compliance</a><a href="WF-supply-chain.html" class="sub"><span class="ic">🚛</span>Supply Chain</a><a href="WF-marketing.html" class="sub"><span class="ic">📣</span>Marketing</a><a href="WF-it-operations.html" class="sub"><span class="ic">💻</span>IT Operations</a><a href="WF-services.html" class="sub"><span class="ic">🔧</span>Services</a><a href="WF-governance.html" class="sub"><span class="ic">🏛️</span>Governance</a><a href="WF-project-sales.html" class="sub"><span class="ic">📐</span>Project Sales</a><a href="WF-audit.html" class="sub"><span class="ic">🔍</span>Audit</a><a href="WF-health-safety.html" class="sub"><span class="ic">⛑️</span>Health & Safety</a><a href="WF-property.html" class="sub"><span class="ic">🏠</span>Property</a><a href="WF-engineering-construction.html" class="sub"><span class="ic">🏗️</span>Eng. & Construction</a><a href="WF-logistics-fleet.html" class="sub"><span class="ic">🚚</span>Logistics & Fleet</a><a href="WF-treasury.html" class="sub"><span class="ic">🏦</span>Treasury</a><a href="WF-innovation.html" class="sub"><span class="ic">💡</span>Innovation</a><a href="WF-esg.html" class="sub"><span class="ic">🌱</span>ESG</a><a href="WF-hazmat.html" class="sub"><span class="ic">☣️</span>Hazmat</a><a href="WF-master-data.html" class="sub"><span class="ic">📋</span>Master Data</a><a href="WF-wholesale.html" class="sub"><span class="ic">📦</span>Wholesale</a><a href="WF-non-store-maintenance.html" class="sub"><span class="ic">🧹</span>Non-Store Maint.</a><a href="WF-document-management.html" class="sub"><span class="ic">📄</span>Document Mgmt</a><a href="touchpoint-map.html" class="sub"><span class="ic">🗺️</span>System Touchpoint Map</a><div class="ns">Methodology</div><a href="methodology.html" class="sub"><span class="ic">📐</span>Scoring Methodology</a><a href="roadmap.html" class="sub"><span class="ic">🗺️</span>Implementation Roadmap</a><a href="tech-guidelines.html" class="sub"><span class="ic">💡</span>Technical Guidelines</a></nav>
+</aside>
+<div class="mn">
+<div class="stl"><span class="ic">🤝</span><h2>Customer</h2></div><div class="cd mc"><h1>Customer Experience Workflows</h1>
+
+<blockquote>Complaint resolution, corporate/project accounts, price matching, satisfaction measurement, account reactivation, feedback-to-action loop, trade sales pipeline & territory management, trade counter / pro desk operations, customer data platform, omni-channel customer ticketing & support, call center daily operations, and loyalty member enrollment & onboarding.</blockquote>
+<blockquote></blockquote>
+<blockquote>Back to <a href="README.md">Workflow Index</a></blockquote>
+
+<hr>
+
+<h2>Workflows in This Domain</h2>
+
+<ul>
+<li><a href="#customer-complaint-resolution">W41. Customer Complaint Resolution</a></li>
+<li><a href="#corporate-project-account-management">W58. Corporate / Project Account Management</a></li>
+<li><a href="#competitor-price-match-process">W61. Competitor Price Match Process</a></li>
+<li><a href="#customer-satisfaction-measurement">W65. Customer Satisfaction Measurement</a></li>
+<li><a href="#customer-account-reactivation">W84. Customer Account Reactivation</a></li>
+<li><a href="#customer-feedback-to-action-loop">W87. Customer Feedback-to-Action Loop</a></li>
+<li><a href="#trade-sales-pipeline-territory-management">W103. Trade Sales Pipeline & Territory Management</a></li>
+<li><a href="#trade-counter--pro-desk-operations">W112. Trade Counter / Pro Desk Operations</a></li>
+<li><a href="#customer-data-platform-cdp--hyper-personalization">W156. Customer Data Platform (CDP) & Hyper-Personalization</a></li>
+<li><a href="#omni-channel-customer-ticketing--support-management">W258. Omni-channel Customer Ticketing & Support Management</a></li>
+<li><a href="#call-center-daily-operations--queue-management">W259. Call Center Daily Operations & Queue Management</a></li>
+<li><a href="#loyalty-member-enrollment--onboarding-journey">W263. Loyalty Member Enrollment & Onboarding Journey</a></li>
+<li><strong><a href="./WF-project-sales.md">Project-Based B2B & Trade Sales Workflows (W162–W166)</a></strong></li>
+</ul>
+
+<hr>
+
+<h2>W41. Customer Complaint Resolution</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Customer submits complaint in-store, by phone (call center), by email/chat, or on website/app</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~2,000–3,000 complaints/month chain-wide; ~10–15 per store per month</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Categories: product quality (30%), delivery issues (20%), staff behavior (15%), pricing/charging errors (15%), out-of-stock (10%), others (10%)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Customer Service Rep (Tier 1) / Customer Service Manager (Tier 2)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CSR, CS Manager, Department Supervisor, Store Manager, Buyer, Call Center Agent, Logistics</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Customer submits complaint via any channel: in-store (CSR counter), phone (call center), email/chat, or website/app form</td>
+<td>Customer</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<td>2</td>
+<td>System creates complaint ticket: unique ticket number, channel, customer info (loyalty lookup or guest), category, description, priority (auto-assessed by category)</td>
+<td>CSR / Call Center Agent</td>
+<td>CS Manager</td>
+<td>5 min</td>
+</tr>
+<td>3</td>
+<td><strong>Tier 1 Resolution</strong> (CSR or Call Center Agent): attempt immediate resolution — (a) product issue: offer exchange (W12), warranty claim (W33), or store credit; (b) pricing error: verify and issue refund; (c) delivery issue: check status, arrange redelivery</td>
+<td>CSR / Call Center Agent</td>
+<td>CS Manager</td>
+<td>5–15 min</td>
+</tr>
+<td>4</td>
+<td>If resolved at Tier 1: CSR closes ticket with resolution code and customer satisfaction rating (if provided)</td>
+<td>CSR / Call Center Agent</td>
+<td>—</td>
+<td>2 min</td>
+</tr>
+<td>5</td>
+<td>If unresolved at Tier 1: ticket escalated to Tier 2 (CS Manager or Store Manager); system reassigns ticket and starts SLA timer</td>
+<td>System</td>
+<td>CS Manager</td>
+<td>Automated</td>
+</tr>
+<td>6</td>
+<td><strong>Tier 2 Resolution</strong> (CS Manager / Store Manager): investigates root cause; coordinates with relevant department (Buyer for product issues, Logistics for delivery, HR for staff complaints)</td>
+<td>CS Manager / Store Manager</td>
+<td>Store Ops Director</td>
+<td>30–60 min</td>
+</tr>
+<td>7</td>
+<td>CS Manager proposes resolution to customer: refund, exchange, discount voucher, written apology, corrective action commitment</td>
+<td>CS Manager</td>
+<td>Store Ops Director</td>
+<td>15 min</td>
+</tr>
+<td>8</td>
+<td>If customer accepts: ticket closed with resolution; system triggers any financial actions (refund, voucher issuance)</td>
+<td>CS Manager</td>
+<td>—</td>
+<td>5 min</td>
+</tr>
+<td>9</td>
+<td>If customer rejects or complaint involves legal/regulatory risk: escalate to Store Ops Director or Legal; system logs escalation</td>
+<td>CS Manager</td>
+<td>Store Ops Director</td>
+<td>15 min</td>
+</tr>
+<td>10</td>
+<td>SLA enforcement: Tier 1 must respond within 4 hours; Tier 2 must resolve within 48 hours; if exceeded, system escalates to Store Ops Director</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>11</td>
+<td>Monthly: CS Manager generates complaint analytics report: volume by category, by store, resolution rate, SLA compliance, top recurring issues</td>
+<td>CS Manager</td>
+<td>Store Ops Director</td>
+<td>2 hours/month</td>
+</tr>
+<td>12</td>
+<td>Monthly: Store Ops Director reviews complaint trends with Department Heads; assigns corrective actions for recurring root causes</td>
+<td>Store Ops Director</td>
+<td>COO</td>
+<td>1 hour/month</td>
+</tr>
+<td>13</td>
+<td>Quarterly: top complaint root causes feed into operational improvement initiatives (training, process changes, vendor quality requirements)</td>
+<td>Store Ops Director</td>
+<td>COO</td>
+<td>Quarterly review</td>
+</tr>
+</tbody></table></div>
+
+<h3>Ecommerce Order Issue Resolution</h3>
+
+<p>For ecommerce-specific order issues (W11 BOPIS, W19 Home Delivery) — the primary workload for the 30-person call center team (~2,100–4,300 issue tickets/month at 5–10% issue rate on 42,900 orders/month):</p>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>E1</td>
+<td>Customer contacts call center (phone, chat, email) or submits issue via self-service portal/online form: order not received, wrong item received, item damaged in transit, wants to change delivery address, wants to cancel order, didn't receive BOPIS pickup notification</td>
+<td>Customer / CSR</td>
+<td>CS Manager</td>
+<td>3 min</td>
+</tr>
+<td>E2</td>
+<td>System creates issue ticket linked to original order number; displays full order lifecycle (placement, payment, fulfillment status, carrier tracking)</td>
+<td>CSR / System</td>
+<td>CS Manager</td>
+<td>2 min</td>
+</tr>
+<td>E3</td>
+<td>CSR resolves per issue type: (a) cancel-and-refund: system cancels unfulfilled order, initiates refund to original payment method (Dr. Revenue / Cr. Cash); (b) redelivery: system reschedules carrier pickup via 3PL integration (W19); (c) wrong/damaged item: initiates W12B return process and arranges replacement; (d) address change: updates delivery address if order not yet shipped; (e) BOPIS pickup issue: confirms correct store, resends notification, or extends hold period</td>
+<td>CSR</td>
+<td>CS Manager</td>
+<td>5–15 min</td>
+</tr>
+<td>E4</td>
+<td>For partial refunds (damaged but usable item): CSR issues partial refund with CS Manager approval (Dr. Revenue / Cr. Cash); system logs partial refund with reason code and photo evidence if available</td>
+<td>CSR / CS Manager</td>
+<td>CS Manager</td>
+<td>10 min</td>
+</tr>
+<td>E5</td>
+<td>System tracks issue SLA: target resolution within 24 hours for delivery issues, 48 hours for damaged/wrong items; escalated to CS Manager if SLA breached</td>
+<td>System</td>
+<td>CS Manager</td>
+<td>Automated</td>
+</tr>
+<td>E6</td>
+<td>Automated customer notifications at each status change: issue acknowledged, resolution proposed, refund processed, redelivery scheduled</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Multi-channel complaint ticket creation (in-store, phone, email, chat, web) (W41.1–2)</li>
+<li>Ticket categorization with auto-priority assignment (W41.2)</li>
+<li>Tiered escalation workflow with SLA timers (W41.5, W41.10)</li>
+<li>Resolution code tracking and financial action triggers (refund, voucher) (W41.4, W41.8)</li>
+<li>Customer satisfaction capture at resolution (W41.4)</li>
+<li>Data Subject Access Request (DSAR) handling per RA 10173: system logs DSAR requests (access, correction, deletion, consent withdrawal) with 72-hour acknowledgment and 30-day resolution tracking; supports data anonymization for deactivated accounts after retention period; customer consent preferences viewable and editable via self-service portal (W41.2, W17.2)</li>
+<li>Complaint analytics dashboard: volume, category, store, resolution rate, SLA compliance (W41.11)</li>
+<li>Root cause analysis reporting (W41.12–13)</li>
+<li>Ecommerce order issue resolution: ticket creation linked to original order number with full order lifecycle visibility (placement, payment, fulfillment, carrier tracking); issue type routing (cancel-and-refund, redelivery, partial refund, address change, BOPIS pickup issue); financial adjustment posting (refund, partial refund) with GL entries; carrier rescheduling via 3PL integration (W19); automated customer notification at each status change; SLA tracking with escalation (24-hour delivery issues, 48-hour damaged/wrong items) (W41.E1–E6)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>CSRs (stores)</strong>: 10–15 complaints/store/month × ~10 min each = ~2–3 hours/store/month. Absorbed within existing CSR role.</li>
+<li><strong>Call Center (30 people)</strong>: Handles phone, email, chat, and web complaints. ~1,000–1,500 complaints/month via call center ÷ 30 agents = ~50 complaints/agent/month ÷ 20 working days = ~2.5/day. Each takes ~10–15 min. Manageable; call center also handles inbound inquiries, order tracking, and general support.</li>
+<li><strong>CS Manager (HQ or regional)</strong>: 1 CS Manager oversees complaint analytics and Tier 2 escalations. May be a regional role (4 Regional CS Managers) or 1 centralized with store managers handling Tier 2 locally.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W58. Corporate / Project Account Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Corporate account activated (W24) or new project added to existing corporate account</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~200 active corporate accounts; ~50–100 active projects at any time</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>10% of revenue (~PHP 6.2B/year); average project value PHP 1M–50M</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Sales Rep (Trade & Corporate)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Sales Rep, AR Supervisor, Category Manager, Supply Planner, Store Manager, Finance Manager</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Sales Rep onboards new corporate account post-credit approval (W24): assigns dedicated Sales Rep, default store for pickup, delivery preferences, billing contact, and project delivery schedule</td>
+<td>Sales Rep</td>
+<td>AR Supervisor</td>
+<td>2 hours/account</td>
+</tr>
+<td>1a</td>
+<td><strong>Customer project quotation</strong>: when a trade or corporate customer (existing or prospect) requests a materials quotation — (a) Sales Rep receives customer's materials list (bill of materials, project specifications, or verbal requirements) via email, site visit, or walk-in; (b) Sales Rep creates Quotation in system — selects SKUs, enters quantities, and selects pricing basis: standard SRP, trade discount tier, or project-specific pricing (to be negotiated); (c) system calculates line totals, applies current pricing, and shows margin per line and total; (d) Sales Prop adds delivery cost estimate using carrier rate card per delivery zone (W5D/W19); (e) Sales Rep submits quotation for Category Manager approval if discounted below standard trade discount; (f) system generates quotation document (PDF) with BuildRight letterhead, validity period (typically 30 days), quotation number, customer details, line items, pricing, delivery terms, and payment terms; (g) Sales Rep sends quotation to customer via email or provides printed copy; (h) system tracks quotation lifecycle: Draft → Submitted → Accepted → Converted to Sales Order / Expired / Rejected; (i) if customer accepts: Sales Rep converts Quotation to Sales Order with one click — system carries all line items, quantities, pricing, and delivery details to the order; if customer negotiates changes, Sales Rep creates revised quotation (versioned) and re-submits; (j) expired quotations (beyond validity period) flagged for Sales Rep follow-up or archival; (k) monthly: Sales Rep reviews quotation conversion report — win rate by customer, category, and average quotation-to-order cycle time</td>
+<td>Sales Rep / Category Manager</td>
+<td>VP Merchandising</td>
+<td>30–60 min/quotation</td>
+</tr>
+<td>2</td>
+<td>For project-based accounts: Sales Rep creates project record in system — project name, location, estimated total material requirement, project timeline (start date, phases, completion date), project manager contact, billing milestones</td>
+<td>Sales Rep</td>
+<td>Finance Manager</td>
+<td>1 hour/project</td>
+</tr>
+<td>3</td>
+<td>Category Manager sets up project-specific pricing (if negotiated): discounted price list per SKU category, validity period aligned with project timeline, minimum commitment quantity (if any)</td>
+<td>Category Manager / Pricing Analyst</td>
+<td>VP Merchandising</td>
+<td>2–4 hours/project</td>
+</tr>
+<td>4</td>
+<td>Sales Rep creates material requirement plan per project phase: estimated SKU quantities by month; system generates forward demand signal for Supply Planner to pre-position stock at the serving DC/store</td>
+<td>Sales Rep</td>
+<td>Supply Planner</td>
+<td>2–4 hours/project</td>
+</tr>
+<td>5</td>
+<td>During project: Sales Rep takes orders from corporate customer via phone, email, or site visit; creates Sales Order in system linked to project; applies project-specific pricing; arranges pickup at designated store or scheduled delivery (W19 or own fleet)</td>
+<td>Sales Rep</td>
+<td>Store Manager</td>
+<td>15–30 min/order</td>
+</tr>
+<td>6</td>
+<td>System tracks cumulative project spending vs. approved credit limit; alerts Sales Rep and AR Supervisor at 80% and 95% of project budget or credit limit</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>7</td>
+<td>Monthly: Sales Rep generates project billing summary for customer: all orders delivered, quantities, amounts, remaining project budget; customer reconciles and processes payment per terms (Net 60–90)</td>
+<td>Sales Rep</td>
+<td>AR Supervisor</td>
+<td>1 hour/project/month</td>
+</tr>
+<td>8</td>
+<td>Monthly: AR Supervisor reviews corporate account aging; project accounts with payments > 60 days overdue escalated to Finance Manager for collection action per W8.7–8</td>
+<td>AR Supervisor</td>
+<td>Finance Manager</td>
+<td>Part of W8</td>
+</tr>
+<td>9</td>
+<td>Upon project completion: Sales Rep closes project record; system generates final project summary (total revenue, margin, items purchased, variance from initial estimate); AR Supervisor confirms all invoices settled</td>
+<td>Sales Rep / AR Supervisor</td>
+<td>Finance Manager</td>
+<td>1 hour/project</td>
+</tr>
+<td>10</td>
+<td>Quarterly: Sales Rep and Category Manager review corporate account portfolio: account profitability, project win rate, competitive positioning, upsell opportunities</td>
+<td>Sales Rep + Category Manager</td>
+<td>VP Merchandising</td>
+<td>4 hours/quarter</td>
+</tr>
+</tbody></table></div>
+
+<blockquote><strong>Billing model note</strong>: the workflow above uses monthly billing summaries as the standard billing method for corporate/project accounts, which is a deliberate simplification aligned with BuildRight's retail-oriented billing cycle. For large construction projects where customers require milestone-based or progress billing (e.g., foundation, framing, finishing phases), Sales Rep structures the project into billing milestones during W58 step 2 — each milestone has a target date and estimated value; system generates a milestone invoice when Sales Rep confirms milestone completion; retention amounts (standard 10% in Philippine construction practice) may be configured per project if contractually required — system tracks retained amount separately from invoiced amount and releases retention upon project completion sign-off; architect/engineer progress certification, if required, is captured as an approval step before milestone invoice generation; project change orders are processed as adjustments to the project record with Category Manager approval, updating the material requirement plan and billing milestones accordingly</blockquote>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Corporate account master with project sub-accounts, project-specific pricing, and delivery preferences (W58.1–3)</li>
+<li>Quotation management: quotation creation with SKU selection and pricing; margin visibility per line; Category Manager approval for below-standard pricing; quotation document generation (PDF) with validity period; quotation lifecycle tracking (Draft → Submitted → Accepted → Converted / Expired / Rejected); one-click conversion from Quotation to Sales Order; versioned revisions; quotation conversion analytics (win rate, cycle time, by customer and category) (W58.1a)</li>
+<li>Project record with timeline, material requirements, and billing milestones (W58.2)</li>
+<li>Project-specific pricing linked to POS (W5B.4c) and Sales Order entry (W58.3, 5)</li>
+<li>Cumulative project spending and budget tracking with automated alerts (W58.6)</li>
+<li>Project billing summary generation (W58.7)</li>
+<li>Project close-out with financial summary (W58.9)</li>
+<li>Corporate account portfolio analytics (W58.10)</li>
+<li>Integration with W5B.4c (corporate pricing at POS), W8 (AR and collections), W19 (delivery), W24 (credit application), W56 (backorder priority for corporate accounts)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>3–4 Sales Reps (Trade & Corporate)</strong>: 200 corporate accounts ÷ 3–4 reps = ~50–70 accounts each. With ~50–100 active projects, each rep manages ~15–25 active projects. At ~4–6 hours/project/month for order management and billing = ~60–150 hours/month. 3–4 dedicated trade/corporate Sales Reps can manage this within the Store Operations team or as a separate B2B sales team under the CMO.</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W61. Competitor Price Match Process</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Customer requests price match at POS based on competitor's current advertised price</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~50–100 price match requests/day chain-wide; ~2–5 per store per week</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Primarily on high-visibility items (power tools, paint, appliances, tiles) where customers actively compare prices</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Cashier (execution); Store Manager (authorization)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Cashier, Store Manager, Pricing Analyst (review)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Price Match Policy Rules</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Rule</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Eligible competitors</strong></td>
+<td>Named competitors with physical stores or authorized online retailers within the same city/province; excludes marketplace sellers (Shopee, Lazada individual sellers), auction sites, and clearance/closeout sales</td>
+</tr>
+<td><strong>Proof required</strong></td>
+<td>Current printed advertisement, competitor website screenshot (with date visible), or competitor physical catalog; Cashier visually verifies proof</td>
+</tr>
+<td><strong>Matching scope</strong></td>
+<td>Match applies to identical item (same brand, model, size, color); does not apply to bundles, limited-quantity offers, or membership-only pricing</td>
+</tr>
+<td><strong>Price match limit</strong></td>
+<td>Price matched to competitor's price; will not go below BuildRight's cost (WAC) unless authorized by Category Manager</td>
+</tr>
+<td><strong>Frequency limit</strong></td>
+<td>Max 3 identical items per price match request per customer per day</td>
+</tr>
+<td><strong>Exclusions</strong></td>
+<td>Installation services, delivery fees, gift cards, special orders (W38), clearance items (W13.9a)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Customer requests price match at checkout; presents competitor price proof (ad, screenshot, catalog)</td>
+<td>Customer</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<td>2</td>
+<td>Cashier verifies eligibility per policy rules: (a) competitor is on eligible list, (b) item is identical (brand, model, size), (c) proof is current (within 7 days), (d) quantity within limit</td>
+<td>Cashier</td>
+<td>—</td>
+<td>2 min</td>
+</tr>
+<td>3</td>
+<td>Cashier enters price override in POS with reason code "Competitor Price Match"; system prompts for competitor name and matched price; if override > 10% or > PHP 500: manager authorization required per W5B.4a</td>
+<td>Cashier</td>
+<td>Store Manager</td>
+<td>1 min</td>
+</tr>
+<td>4</td>
+<td>If matched price is below BuildRight's cost (WAC): system blocks override and alerts Store Manager; Store Manager contacts Category Manager for authorization; Category Manager may approve as strategic decision (customer retention, competitive response) with written justification in system</td>
+<td>Store Manager / Category Manager</td>
+<td>VP Merchandising</td>
+<td>5–10 min</td>
+</tr>
+<td>5</td>
+<td>System records price match transaction: original price, matched price, competitor name, cashier ID, authorizer ID, item, quantity, and reason code (W5B.4a audit trail)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>6</td>
+<td>Weekly: Pricing Analyst reviews price match report: frequency by SKU, competitor, and store; identifies items with high price match frequency (> 5 requests/week) for potential SRP adjustment (W40) or competitive response strategy</td>
+<td>Pricing Analyst</td>
+<td>Category Manager</td>
+<td>1 hour/week</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Price match reason code in POS price override workflow with competitor name capture (W61.3, W5B.4a)</li>
+<li>System enforces WAC floor price — blocks price match below cost without Category Manager override (W61.4)</li>
+<li>Price match analytics: frequency by SKU, competitor, store, and margin impact (W61.6)</li>
+<li>Eligible competitor list maintained by Pricing Analyst in system (configurable per region if needed) (W61 policy rules)</li>
+<li>Integration with W5B.4a (price override), W40 (potential SRP adjustment triggered by price match frequency)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li>No incremental headcount. Price match adds ~2 min to occasional POS transactions. Weekly review by Pricing Analyst adds ~1 hour/week — absorbed within existing Pricing Analyst duties (team of 3).</li>
+</ul>
+
+<hr>
+
+
+
+<hr>
+
+<h2>W65. Customer Satisfaction Measurement</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Ongoing measurement program; continuous collection and periodic review</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Continuous survey collection; monthly reporting; quarterly deep analysis</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>Target: ~5,000–10,000 survey responses/month (from ~2.8M POS transactions ≈ 0.2–0.4% response rate)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Marketing — CS Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CS Manager, Store Ops Director, Store Managers, BI Analyst</td>
+</tr>
+</tbody></table></div>
+
+<h3>Measurement Methods</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Method</th>
+<th>Frequency</th>
+<th>Sample</th>
+<th>Channel</th>
+</tr></thead><tbody>
+<td><strong>POS receipt survey</strong></td>
+<td>Continuous</td>
+<td>Every transaction (opt-in)</td>
+<td>QR code printed on every receipt linking to 3-question mobile survey; incentivized with 50 loyalty points per completed survey</td>
+</tr>
+<td><strong>Post-visit email</strong></td>
+<td>Continuous</td>
+<td>Loyalty members who made a purchase</td>
+<td>Automated email 24 hours after purchase with 5-question NPS-style survey</td>
+</tr>
+<td><strong>Ecommerce post-order survey</strong></td>
+<td>Continuous</td>
+<td>All completed ecommerce orders</td>
+<td>Automated email after delivery confirmation with product and delivery satisfaction rating</td>
+</tr>
+<td><strong>Mystery shopping</strong></td>
+<td>Quarterly</td>
+<td>20–30 stores per quarter (rotating)</td>
+<td>External mystery shopping agency evaluates store experience against standardized checklist (greeting, product knowledge, wait time, checkout, store cleanliness)</td>
+</tr>
+<td><strong>Annual customer survey</strong></td>
+<td>Annual</td>
+<td>10,000–20,000 loyalty members</td>
+<td>Comprehensive brand perception and satisfaction survey via email/app notification</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>CS Manager configures survey instruments in system: POS receipt QR code generation, post-visit email templates with survey link, ecommerce post-order trigger</td>
+<td>CS Manager</td>
+<td>CMO</td>
+<td>4 hours (setup) + 1 hour/quarter (maintenance)</td>
+</tr>
+<td>2</td>
+<td>System collects survey responses continuously: POS receipt scans, email click-throughs, ecommerce ratings; all responses linked to transaction and store (where applicable)</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td>System calculates monthly CSAT score (1–5 scale) and NPS (0–10 scale → % Promoters − % Detractors) per store and chain-wide</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td>Monthly: CS Manager generates CSAT/NPS dashboard: scores by store, by department, trend vs. prior month and vs. target (≥ 85% CSAT per profile §12.3); flags stores below threshold for Store Manager attention</td>
+<td>CS Manager</td>
+<td>Store Ops Director</td>
+<td>1 hour/month</td>
+</tr>
+<td>5</td>
+<td>Monthly: Store Ops Director reviews CSAT/NPS scores in management committee meeting (W35 step 14); bottom 10 stores flagged for improvement action plans</td>
+<td>Store Ops Director</td>
+<td>COO</td>
+<td>30 min/month</td>
+</tr>
+<td>6</td>
+<td>Quarterly: CS Manager presents comprehensive satisfaction analysis: trends, root causes of low scores, complaint correlation (W41), mystery shopping findings; recommends specific improvement actions</td>
+<td>CS Manager</td>
+<td>CMO</td>
+<td>2 hours/quarter</td>
+</tr>
+<td>7</td>
+<td>Mystery shopping results: CS Manager shares individual store reports with Store Managers; Store Manager develops corrective action for identified gaps; results factored into Store Manager performance evaluation</td>
+<td>CS Manager / Store Manager</td>
+<td>Store Ops Director</td>
+<td>Per quarter</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Survey platform integration: POS receipt QR code, email survey, ecommerce post-order survey; all feeding into centralized CSAT/NPS dashboard (W65.2)</li>
+<li>Survey response linked to transaction number, store, and customer account (where identifiable) for drill-down analysis (W65.2)</li>
+<li>CSAT/NPS calculation and trending per store, region, and chain-wide (W65.3–4)</li>
+<li>Mystery shopping results entry and reporting (W65.7)</li>
+<li>Integration with W5B (POS receipt printing — QR code), W17 (loyalty points incentive for survey completion), W35 (management reporting), W41 (complaint correlation — low CSAT stores often correlate with high complaint volume)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li>No incremental headcount. Survey management adds ~2–3 hours/month to CS Manager duties. Mystery shopping costs ~PHP 100–150K/quarter (external agency) — budgeted within Marketing operations.</li>
+<li><strong>BI Analyst</strong>: adds ~1 hour/month for CSAT/NPS data analysis and dashboard maintenance. Absorbed.</li>
+</ul>
+
+<hr>
+
+<h2>W84. Customer Account Reactivation</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Former customer (dormant, closed, or written-off) requests to resume business; or Sales Rep identifies reactivation opportunity during prospecting</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~20–40 reactivation requests/month; peaks during construction season (October–March)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~5,200 active accounts; ~300–500 dormant/inactive accounts at any time; ~10–20 written-off accounts per year potentially recoverable</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>AR Supervisor</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Sales Rep, AR Clerk, AR Supervisor, Finance Manager, Credit Committee (if large account)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>Customer accounts may become dormant (no transactions for 6+ months, per W8), closed (per W8 step 12), or written off (per W81). When these customers wish to resume business — often driven by new construction projects, change of ownership, or settlement of prior obligations — a formal reactivation process ensures appropriate risk assessment while avoiding unnecessary friction. This workflow covers all reactivation scenarios.</p>
+
+<h3>Reactivation Scenarios</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Scenario</th>
+<th>Prior Status</th>
+<th>Risk Level</th>
+<th>Reactivation Path</th>
+</tr></thead><tbody>
+<td><strong>Dormant reactivation</strong></td>
+<td>Inactive (credit limit reduced to PHP 0)</td>
+<td>Low</td>
+<td>Abbreviated credit review</td>
+</tr>
+<td><strong>Voluntarily closed → reopen</strong></td>
+<td>Closed by customer request</td>
+<td>Low–Medium</td>
+<td>Standard W24 credit application</td>
+</tr>
+<td><strong>Written-off → repayment & reactivate</strong></td>
+<td>Written off per W81</td>
+<td>High</td>
+<td>Enhanced credit review + approval</td>
+</tr>
+<td><strong>Written-off → new entity</strong></td>
+<td>New company formed by same principal</td>
+<td>High</td>
+<td>Full W24 + legal review</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Customer or Sales Rep initiates reactivation request: provides customer name or prior account number, reason for reactivation, and current business status</td>
+<td>Customer / Sales Rep</td>
+<td>AR Clerk</td>
+<td>10 min</td>
+</tr>
+<td>2</td>
+<td>AR Clerk retrieves prior account record from system; reviews account history: (a) prior credit limit and payment history, (b) reason for dormancy/closure/write-off, (c) outstanding balance (if any), (d) any pending disputes or unresolved issues</td>
+<td>AR Clerk</td>
+<td>AR Supervisor</td>
+<td>15 min</td>
+</tr>
+<td>3</td>
+<td><strong>Dormant reactivation</strong> (no write-off, reactivation within 12 months): (a) AR Clerk contacts customer to confirm business is active and update contact details, (b) if prior credit assessment is < 12 months old, AR Clerk reactivates account with prior credit limit (AR Supervisor approval required), (c) if prior credit assessment is > 12 months old, process abbreviated W24 credit review — updated financial statements + trade references, (d) system changes account status from "Inactive" to "Active"; restores credit limit per approval</td>
+<td>AR Clerk / AR Supervisor</td>
+<td>AR Supervisor</td>
+<td>30 min–1 hour</td>
+</tr>
+<td>4</td>
+<td><strong>Voluntarily closed → reopen</strong> (customer previously closed account per W8.12 with zero balance): (a) AR Clerk processes standard W24 credit application with updated business documents, (b) if closed within 12 months and prior payment history was good (no > 60-day overdue), AR Supervisor may approve with prior credit limit, (c) if closed > 12 months ago or prior payment issues, full W24 credit assessment required</td>
+<td>AR Clerk / AR Supervisor</td>
+<td>Finance Manager</td>
+<td>Per W24</td>
+</tr>
+<td>5</td>
+<td><strong>Written-off account reactivation</strong> (customer previously written off per W81 and now wishes to resume): (a) AR Clerk confirms prior written-off balance has been fully settled (payment, settlement agreement per W81.11, or court-approved compromise) — no reactivation while prior balance is outstanding, (b) customer must provide: updated business registration, current financial statements, and explanation of circumstances leading to prior write-off (e.g., ownership change, resolved dispute, business recovery), (c) AR Clerk processes enhanced credit review: full W24 credit assessment + additional trade reference checks + external credit bureau inquiry (if available), (d) mandatory Finance Manager review regardless of amount, (e) Credit Committee approval (CFO + Finance Manager + AR Supervisor) required for reactivated credit limit > PHP 200,000, (f) initial credit limit set conservatively (typically 50% of prior limit) with 6-month probationary period — system flags all transactions on reactivated accounts for first 6 months</td>
+<td>AR Clerk / Finance Manager / Credit Committee</td>
+<td>CFO</td>
+<td>2–4 hours</td>
+</tr>
+<td>5a</td>
+<td><strong>New entity with same principal</strong> (customer formed new company after prior entity was written off): (a) AR Clerk and Legal review relationship between new entity and prior written-off entity — shared directors, officers, or beneficial owners per SEC records, (b) if affiliation confirmed: prior written-off balance must be settled or covered by a payment plan before new account is considered, (c) full W24 credit assessment required for new entity with no credit history reuse, (d) Credit Committee approval mandatory regardless of requested credit limit, (e) system links new entity record to prior entity for ongoing risk monitoring</td>
+<td>AR Clerk / Legal / Credit Committee</td>
+<td>CFO</td>
+<td>4–8 hours</td>
+</tr>
+<td>6</td>
+<td>System reactivates account: (a) status changed from "Inactive"/"Closed"/"Written Off" to "Active — Reactivated", (b) credit limit set per approved amount, (c) payment terms assigned per approval, (d) reactivation date and approver logged in audit trail, (e) if probationary period applies, system schedules automatic review at 6-month mark</td>
+<td>System / AR Clerk</td>
+<td>AR Supervisor</td>
+<td>10 min</td>
+</tr>
+<td>7</td>
+<td>AR Clerk notifies customer and assigned Sales Rep of reactivation: approved credit limit, payment terms, and any probationary conditions</td>
+<td>AR Clerk</td>
+<td>—</td>
+<td>10 min</td>
+</tr>
+<td>8</td>
+<td><strong>6-month probationary review</strong> (for written-off reactivations): AR Supervisor reviews reactivated account payment history at 6 months — (a) if all payments on time and no credit limit breaches: AR Supervisor recommends standard account status with potential credit limit increase per W24 annual review, (b) if any payment delays > 30 days: extend probationary period 6 months with credit limit review, (c) if payment defaults: Finance Manager decides between continued probation with reduced limit or account closure</td>
+<td>AR Supervisor</td>
+<td>Finance Manager</td>
+<td>30 min/account</td>
+</tr>
+<td>9</td>
+<td>Monthly: AR Supervisor generates reactivation report — number of reactivations by scenario, approval tier utilization, probationary account performance, recovered revenue from reactivated accounts; includes in monthly AR aging review</td>
+<td>AR Supervisor</td>
+<td>Finance Manager</td>
+<td>30 min/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Account reactivation workflow with scenario-based routing (dormant, closed, written-off, new entity) (W84.3–5a)</li>
+<li>Prior account history retrieval with write-off/dormancy reason display (W84.2)</li>
+<li>Enhanced credit review flag for written-off account reactivation (W84.5)</li>
+<li>Probationary account status with 6-month automatic review scheduling (W84.6, 8)</li>
+<li>Entity linkage: new entity linked to prior written-off entity for risk monitoring (W84.5a)</li>
+<li>Reactivation analytics: volume by scenario, approval tier, probationary performance, recovered revenue (W84.9)</li>
+<li>Integration with W8 (AR management — dormant account management, account closure), W24 (credit application), W58 (corporate account management), W81 (bad debt write-off — settlement confirmation)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>AR Clerk</strong>: ~20–40 reactivations/month × 30 min average = ~10–20 hours/month. Absorbed within existing AR team.</li>
+<li><strong>AR Supervisor</strong>: review and approval adds ~5 hours/month. Absorbed.</li>
+<li><strong>Finance Manager</strong>: Credit Committee participation for written-off reactivations adds ~2–4 hours/month. Absorbed.</li>
+<li><strong>No incremental headcount.</strong></li>
+</ul>
+
+<hr>
+
+<h2>W87. Customer Feedback-to-Action Loop</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Monthly complaint analytics review (W41.11); or quarterly CSAT/NPS deep analysis (W65.6); or recurring pattern identified by BI Analyst</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Monthly review; quarterly action planning; annual strategic review</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~2,000–3,000 complaints/month + ~5,000–10,000 survey responses/month feeding into the loop</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>CS Manager (operational); Store Ops Director (store-level actions); CMO (strategic)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CS Manager, Store Ops Director, Regional Managers, Category Managers, Training Officer, BI Analyst, CMO</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>BuildRight collects rich customer feedback through multiple channels: complaint tickets (W41), CSAT/NPS surveys (W65), loyalty program data (W17), mystery shopping results (W65), and social media monitoring. However, there is no formal workflow for systematically converting this feedback into operational improvements, product changes, or service enhancements. This workflow closes the loop — ensuring that customer insights drive continuous improvement rather than remaining as reports.</p>
+
+<h3>Monthly Feedback Review (by day 15 of each month, after W41 and W65 reporting)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>CS Manager compiles monthly feedback synthesis from: (a) W41 complaint analytics — top 5 complaint categories, top 10 stores by complaint volume, recurring root causes, unresolved escalations, (b) W65 CSAT/NPS scores — stores below threshold (< 85% CSAT), trending decline, specific department-level issues from survey comments, (c) W17 loyalty data — points redemption patterns, tier movement, enrollment drop-offs, loyalty program feedback, (d) social media sentiment — review of mentions, reviews, and direct messages aggregated by social media monitoring tool, (e) W58 corporate account feedback — Sales Rep reports of customer dissatisfaction with pricing, delivery, or service</td>
+<td>CS Manager</td>
+<td>CMO</td>
+<td>4 hours/month</td>
+</tr>
+<td>2</td>
+<td>CS Manager categorizes feedback into actionable themes: (a) <strong>Quick wins</strong> — individual issues resolvable by a single department within 1 week (e.g., specific store cleanliness issue, individual staff behavior, specific SKU pricing error), (b) <strong>Process improvements</strong> — recurring issues requiring process or procedure changes across multiple locations (e.g., BOPIS pickup SLA not met consistently, DSD receiving causing customer wait times, returns policy confusion), (c) <strong>Training needs</strong> — patterns indicating skill or knowledge gaps (e.g., product knowledge complaints in specific departments, POS error rates by store), (d) <strong>Product/service changes</strong> — feedback suggesting product assortment gaps, new service needs, or pricing concerns, (e) <strong>Strategic themes</strong> — fundamental customer experience shifts (e.g., channel preference changes, competitive threats, brand perception issues)</td>
+<td>CS Manager</td>
+<td>CMO</td>
+<td>2 hours/month</td>
+</tr>
+<td>3</td>
+<td>CS Manager assigns quick wins to responsible department with specific action items and 1-week resolution SLA: (a) store-level issues → Regional Manager → Store Manager, (b) product issues → Category Manager, (c) pricing issues → Pricing Analyst, (d) delivery issues → DC Dispatch / Fleet Manager, (e) website/app issues → Ecom Team</td>
+<td>CS Manager</td>
+<td>Department Head</td>
+<td>1 hour/month</td>
+</tr>
+<td>4</td>
+<td>CS Manager follows up on prior month's quick win resolution status; reports completion rate to CMO; unresolved items escalated to department head</td>
+<td>CS Manager</td>
+<td>CMO</td>
+<td>30 min/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>Quarterly Action Planning (aligned with W35 quarterly management review)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>5</td>
+<td>CS Manager prepares quarterly customer experience improvement report: (a) complaint trend analysis — month-over-month volume, resolution rate, SLA compliance trend, (b) CSAT/NPS trend with store heat map, (c) top 5 recurring root causes with frequency and business impact (estimated revenue at risk from unresolved issues), (d) process improvement recommendations — specific process changes with expected impact, (e) training recommendations — specific programs with target audience, (f) product/service change recommendations — new products, discontinued products, service enhancements based on customer demand</td>
+<td>CS Manager</td>
+<td>CMO</td>
+<td>8 hours/quarter</td>
+</tr>
+<td>6</td>
+<td>CS Manager presents quarterly report to cross-functional customer experience review meeting — attended by Store Ops Director, VP Merchandising, Training Officer, BI Analyst, and CMO; meeting reviews each recommendation and assigns owners, deadlines, and success metrics</td>
+<td>CS Manager / CMO</td>
+<td>COO</td>
+<td>2 hours/quarter</td>
+</tr>
+<td>7</td>
+<td><strong>Process improvements</strong>: Store Ops Director (for operational changes), VP Merchandising (for product/pricing changes), or CIO (for system changes) implements approved process improvements; changes documented in system with expected completion date; CS Manager tracks implementation status</td>
+<td>Department Head</td>
+<td>COO</td>
+<td>Varies</td>
+</tr>
+<td>8</td>
+<td><strong>Training needs</strong>: Training Officer incorporates approved training recommendations into W51 training calendar — develops targeted training materials for identified gaps (e.g., product knowledge for specific departments, returns handling refresher for CSRs, delivery communication for ecommerce team); training completion tracked and reported to CS Manager</td>
+<td>Training Officer</td>
+<td>HR Head</td>
+<td>Per W51</td>
+</tr>
+<td>9</td>
+<td><strong>Product/service changes</strong>: Category Managers review product feedback recommendations during next W1 quarterly assortment review; CMO reviews service enhancement proposals for feasibility and budget; approved changes implemented through existing workflows (W1, W13, W40, W58)</td>
+<td>Category Manager / CMO</td>
+<td>VP Merchandising / COO</td>
+<td>Per existing workflows</td>
+</tr>
+<td>10</td>
+<td>CS Manager tracks all quarterly action items to completion; reports status at next quarterly review; closed action items archived with outcome measurement (did the action reduce complaints or improve CSAT?)</td>
+<td>CS Manager</td>
+<td>CMO</td>
+<td>2 hours/quarter</td>
+</tr>
+</tbody></table></div>
+
+<h3>Annual Strategic Review (aligned with W26 annual budget cycle)</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>11</td>
+<td>CMO and CS Manager prepare annual customer experience strategic review: (a) year-over-year CSAT/NPS trend, (b) complaint volume and resolution efficiency trend, (c) customer retention rate (loyalty member active rate, trade account retention), (d) voice-of-customer themes for the year, (e) competitive customer experience benchmarking (where available), (f) investment recommendations — technology, staffing, training, or service enhancements to improve customer experience, (g) proposed customer experience KPIs for next year</td>
+<td>CMO / CS Manager</td>
+<td>CEO</td>
+<td>8 hours/year</td>
+</tr>
+<td>12</td>
+<td>CMO presents annual CX review to CEO and management committee; approved investments included in next year's budget (W26)</td>
+<td>CMO</td>
+<td>CEO</td>
+<td>1 hour/year</td>
+</tr>
+</tbody></table></div>
+
+<h3>Feedback Loop Tracking Dashboard</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Metric</th>
+<th>Source</th>
+<th>Frequency</th>
+<th>Target</th>
+</tr></thead><tbody>
+<td>Quick win resolution rate</td>
+<td>W87.4</td>
+<td>Monthly</td>
+<td>≥ 90% within 1-week SLA</td>
+</tr>
+<td>Process improvement implementation rate</td>
+<td>W87.7</td>
+<td>Quarterly</td>
+<td>≥ 80% of approved improvements implemented on schedule</td>
+</tr>
+<td>Training completion rate for CX-targeted programs</td>
+<td>W87.8</td>
+<td>Quarterly</td>
+<td>100% completion by target date</td>
+</tr>
+<td>CSAT/NPS improvement vs. prior quarter</td>
+<td>W65</td>
+<td>Quarterly</td>
+<td>Positive trend in bottom 10 stores</td>
+</tr>
+<td>Complaint reduction in top 5 root causes</td>
+<td>W41</td>
+<td>Quarterly</td>
+<td>≥ 15% reduction per quarter</td>
+</tr>
+<td>Revenue at risk from unresolved feedback</td>
+<td>W87.5c</td>
+<td>Quarterly</td>
+<td>Decreasing trend</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Feedback synthesis dashboard: aggregates W41 complaint data, W65 CSAT/NPS scores, W17 loyalty insights, social media sentiment, and W58 corporate account feedback into a single view (W87.1)</li>
+<li>Action item tracking: assigns ownership, deadline, and success metrics per recommendation; tracks completion status (W87.3–4, 6–10)</li>
+<li>Quarterly improvement report generation with trend analysis and store heat map (W87.5)</li>
+<li>Annual CX strategic review archive with year-over-year comparison (W87.11)</li>
+<li>Integration with W1 (assortment changes from product feedback), W13 (promotional adjustments), W41 (complaint data source), W51 (training improvements), W65 (CSAT/NPS data source), W67 (store performance review — CX action items in store scorecard), W83 (marketing campaign feedback)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>CS Manager</strong>: adds ~8 hours/month for feedback synthesis and action tracking + ~10 hours/quarter for quarterly planning = ~130 hours/year. Absorbed within existing CS Manager role.</li>
+<li><strong>BI Analyst</strong>: adds ~2 hours/month for feedback data analysis and dashboard support. Absorbed.</li>
+<li><strong>No incremental headcount.</strong> Cross-functional action execution is absorbed by respective departments.</li>
+</ul>
+
+<hr>
+
+
+
+<h2>W103. Trade Sales Pipeline & Territory Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Monthly sales review calendar; new lead qualification; territory rebalancing decision</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Weekly pipeline review; monthly territory performance review; quarterly territory rebalancing</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~5,000 trade accounts + 200 corporate accounts generating 30% of revenue (~PHP 18.7B/year); managed by ~10–12 Sales Reps</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Sales Rep (pipeline); Sales Manager / AR Supervisor (territory)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Sales Rep, Sales Manager, AR Supervisor, Category Manager, VP Merchandising, Store Manager</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>W58 (Corporate/Project Account Management) covers the operational management of existing corporate accounts — quoting, ordering, delivery, and billing. However, there is no workflow governing the sales pipeline itself: how new trade/corporate leads are qualified, how the sales team manages their pipeline from prospect to closed account, how territories are assigned and balanced, and how sales targets are tracked and reviewed. With B2B trade and corporate accounts representing 30% of total revenue (PHP 18.7B/year), this is a significant operational gap.</p>
+
+<h3>Steps</h3>
+
+<h3>Weekly Pipeline Review</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td>Sales Rep updates CRM pipeline: for each active prospect/lead — (a) company name, contact person, estimated annual potential (based on project size or trade volume), (b) pipeline stage: Prospect → Qualified → Quotation Sent → Negotiation → Won/Lost, (c) next action and target close date, (d) probability weighting (Prospect 10%, Qualified 25%, Quotation 50%, Negotiation 75%), (e) competitive situation (which competitor currently supplies, switching barriers)</td>
+<td>Sales Rep</td>
+<td>Sales Manager</td>
+<td>30 min/week</td>
+</tr>
+<td>2</td>
+<td>Sales Manager reviews pipeline dashboard: (a) total weighted pipeline value per Sales Rep, (b) pipeline stage distribution (healthy pipeline has 3× quota in qualified+ stages), (c) stalled opportunities — no activity in 14 days flagged for Sales Rep action, (d) upcoming target close dates at risk, (e) win/loss ratio for the quarter</td>
+<td>Sales Manager</td>
+<td>VP Merchandising</td>
+<td>1 hour/week</td>
+</tr>
+<td>3</td>
+<td>Sales Manager conducts weekly 15-min pipeline coaching call with each Sales Rep (10–12 calls = ~3 hours/week): review top 5 opportunities, discuss strategy for stalled deals, provide coaching on competitive positioning</td>
+<td>Sales Manager</td>
+<td>VP Merchandising</td>
+<td>15 min/Sales Rep</td>
+</tr>
+<td>4</td>
+<td><strong>New lead qualification</strong>: Sources of new trade/corporate leads — (a) walk-in contractor/builder at store referred by Sales Associate or CSR, (b) inbound inquiry via website/phone, (c) Sales Rep proactive prospecting (construction site visits, industry events, referrals from existing accounts), (d) marketing campaign response (W83), (e) new business permit filings in trade area (public data); Sales Rep qualifies lead: (i) Is the prospect a legitimate business? (DTI/SEC registration, TIN), (ii) Estimated annual material spend in BuildRight categories?, (iii) Geographic fit — does the prospect operate within a store's trade area?, (iv) Competitive incumbent — is there an opportunity to displace?, (v) Payment capability — will they qualify for trade credit per W24?</td>
+<td>Sales Rep</td>
+<td>Sales Manager</td>
+<td>30 min/lead</td>
+</tr>
+</tbody></table></div>
+
+<h3>Monthly Territory Performance Review</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>5</td>
+<td>System generates monthly territory performance report per Sales Rep: (a) total revenue from trade/corporate accounts in territory vs. target, (b) new account openings vs. target, (c) active account count and revenue per account (identify top 10 and dormant accounts), (d) average order value and order frequency per account, (e) credit utilization (outstanding AR as % of total credit limits in territory), (f) win rate on quotations submitted (W58.1a), (g) average quotation-to-close cycle time</td>
+<td>System</td>
+<td>—</td>
+<td>Automated</td>
+</tr>
+<td>6</td>
+<td>Sales Manager reviews territory performance with each Sales Rep: (a) revenue vs. target — on track, ahead, or behind, (b) new account acquisition — sufficient pipeline to meet annual target?, (c) dormant account reactivation — identify accounts with no orders in 90+ days for W84 reactivation outreach, (d) high-value account deepening — top accounts with potential for increased share-of-wallet, (e) territory issues — competitive pressure, geographic coverage gaps, account conflicts with neighboring Sales Reps</td>
+<td>Sales Manager / Sales Rep</td>
+<td>VP Merchandising</td>
+<td>30 min/Sales Rep</td>
+</tr>
+<td>7</td>
+<td>Sales Manager and Sales Rep agree on monthly action plan: top 5 accounts to grow, top 5 prospects to close, top 5 dormant accounts to reactivate; system tracks action items</td>
+<td>Sales Manager</td>
+<td>VP Merchandising</td>
+<td>10 min/Sales Rep</td>
+</tr>
+</tbody></table></div>
+
+<h3>Quarterly Territory Rebalancing</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>8</td>
+<td>Sales Manager reviews territory balance: (a) revenue per territory — flag imbalances > 20% from average, (b) account count per territory, (c) geographic coverage — are new store trade areas adequately covered?, (d) account-to-revenue ratio — are some Sales Reps overburdened with small accounts?</td>
+<td>Sales Manager</td>
+<td>VP Merchandising</td>
+<td>2 hours/quarter</td>
+</tr>
+<td>9</td>
+<td>If rebalancing needed: Sales Manager proposes territory realignment — reassigns accounts between Sales Reps based on geographic proximity, account size fit, and Sales Rep capability; VP Merchandising approves; system updates account assignments; affected Sales Reps briefed; customers notified of new contact if relationship changes</td>
+<td>Sales Manager</td>
+<td>VP Merchandising</td>
+<td>1 hour/rebalancing</td>
+</tr>
+<td>10</td>
+<td>Annual: VP Merchandising and Sales Manager set territory revenue targets for next year based on: (a) prior year actual by territory, (b) known project pipeline in each territory, (c) new store openings (W16) creating new trade areas, (d) market growth assumptions, (e) competitive landscape; targets feed into W26 annual budget</td>
+<td>VP Merchandising / Sales Manager</td>
+<td>CEO</td>
+<td>4 hours/year</td>
+</tr>
+</tbody></table></div>
+
+<h3>Territory Assignment Rules</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Territory Dimension</th>
+<th>Assignment Logic</th>
+</tr></thead><tbody>
+<td><strong>Geographic</strong></td>
+<td>Each Sales Rep assigned a primary region (Mindanao, Visayas, Luzon-South, Luzon-North, Metro Manila) with defined store coverage</td>
+</tr>
+<td><strong>Account size</strong></td>
+<td>Corporate accounts (> PHP 5M annual) may have dedicated Sales Rep; trade accounts shared within region</td>
+</tr>
+<td><strong>Industry vertical</strong></td>
+<td>Sales Reps may specialize: construction contractors, interior designers, government/institutional (W78), property developers</td>
+</tr>
+<td><strong>Account conflicts</strong></td>
+<td>If customer operates across territories, primary Sales Rep assigned based on customer HQ location; cross-territory orders credited to primary Sales Rep with secondary credit to fulfilling store</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>CRM pipeline management with stage tracking, probability weighting, and activity logging (W103.1)</li>
+<li>Pipeline dashboard: weighted value, stage distribution, stalled opportunities, win/loss ratio (W103.2)</li>
+<li>Territory performance reporting: revenue vs. target, new accounts, dormant accounts, credit utilization (W103.5)</li>
+<li>Territory assignment master data with geographic, account size, and vertical dimensions (W103 territory table)</li>
+<li>Account-to-Sales-Rep assignment with change history and approval trail (W103.9)</li>
+<li>Integration with W24 (credit application — new accounts enter pipeline), W41 (complaints — can trigger at-risk account review), W58 (corporate account operations — won pipeline accounts transition to W58 management), W84 (account reactivation — dormant accounts identified in territory review), W26 (annual budget — sales targets feed budget)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>10–12 Sales Reps</strong> (Trade & Corporate): already assumed within the model company's ~310 HQ headcount; this workflow formalizes their operating cadence. Weekly pipeline maintenance (~30 min) + monthly territory review (~30 min) = ~4 hours/month per Sales Rep. This is core sales activity.</li>
+<li><strong>1 Sales Manager</strong>: manages 10–12 Sales Reps. Weekly pipeline review (~3 hours) + monthly territory reviews (~6 hours) + quarterly rebalancing (~3 hours) = ~12 hours/month. This is a full-time management role.</li>
+<li><strong>No incremental headcount</strong> — these roles are implied by the 30% B2B revenue but were not formalized in a workflow.</li>
+</ul>
+
+<hr>
+
+<h2>W112. Trade Counter / Pro Desk Operations</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Professional trade customer (contractor, builder, architect, interior designer, electrician, plumber) arrives at store or contacts Sales Rep for project-level assistance</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~15–25 trade counter interactions per store per week; ~3,000–5,000/week chain-wide</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>30% of revenue from professional/trade B2B customers (~PHP 18.7B/year); avg trade transaction value ~PHP 5,000–25,000</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Sales Associate (trade counter); Sales Rep (field/pro desk)</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Sales Associate, Sales Rep, Department Supervisor, Store Manager, Customer (trade professional)</td>
+</tr>
+</tbody></table></div>
+
+<h3>Background</h3>
+
+<p>Big-box home improvement retailers globally operate dedicated trade counters or "pro desks" — specialized service points where professional customers (contractors, builders, tradespeople) receive tailored service: bulk pricing, project estimation, job site delivery coordination, account management, and credit access. BuildRight's trade customers represent 30% of revenue (~PHP 18.7B/year) across ~5,000 trade accounts, yet there is no workflow defining how trade counter service operates in-store. While W58 covers corporate/project account management and W103 covers sales pipeline, this workflow addresses the daily in-store operational process for serving trade customers at the pro desk — the physical touchpoint where most trade revenue is captured.</p>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Customer check-in</strong>: Trade customer arrives at store and proceeds to trade counter / pro desk (designated area near customer service counter with dedicated Sales Associate); Sales Associate identifies customer: (a) scans loyalty card or enters mobile number — system loads customer profile, trade account status, credit limit, and purchase history; (b) if not yet a trade account holder: Sales Associate provides W24 credit application form and explains trade account benefits (trade pricing, credit terms, bulk ordering); (c) system displays customer's open orders (W56 backorders, W38 special orders), recent purchases, and any account alerts (credit limit approaching, overdue balance)</td>
+<td>Sales Associate</td>
+<td>Department Supervisor</td>
+<td>2 min</td>
+</tr>
+<td>2</td>
+<td><strong>Needs assessment</strong>: Sales Associate conducts needs assessment: (a) <strong>Project-based</strong> — customer describes project (e.g., "building a 2-story residential, 150 sqm floor area, 3 bathrooms"); Sales Associate helps estimate material requirements using system's project estimation tool (pre-built project templates per project type: residential build, bathroom renovation, kitchen remodel, electrical wiring for a house); (b) <strong>Replenishment</strong> — customer provides material list (paper, digital, or photo); Sales Associate enters items in system for availability check and pricing; (c) <strong>Emergency / same-day</strong> — customer needs specific items immediately; Sales Associate checks real-time inventory and provides immediate availability</td>
+<td>Sales Associate</td>
+<td>Department Supervisor</td>
+<td>5–15 min</td>
+</tr>
+<td>3</td>
+<td><strong>Material list and quotation</strong>: (a) Sales Associate builds material list in system — adds items, quantities, checks real-time inventory at this store and nearby stores; (b) system applies trade account pricing (trade discount tier per W5B.4c); (c) for project-based orders: Sales Associate applies project-specific price list if customer has negotiated project pricing (W58); (d) system calculates total with trade discount, quantity breaks (W40.15–19), and VAT; (e) Sales Associate presents quotation to customer — printed or emailed; (f) for large projects (estimated > PHP 100,000): Sales Associate involves Sales Rep for on-site visit and detailed project estimation per W103</td>
+<td>Sales Associate / Sales Rep</td>
+<td>Department Supervisor</td>
+<td>10–20 min</td>
+</tr>
+<td>4</td>
+<td><strong>Order placement</strong>: Customer confirms order: (a) <strong>Immediate in-store purchase</strong>: items in stock at this store — customer collects items or Sales Associate arranges store pickup staging; processed as standard POS transaction with trade account pricing (W5B.4c); (b) <strong>Bulk delivery order</strong>: items to be delivered to job site — Sales Associate creates Sales Order with delivery address, delivery date, and delivery instructions; delivery processed per W5D (in-store delivery scheduling) or W19 (home delivery) depending on item size and distance; (c) <strong>Backorder / special order</strong>: items not in stock — Sales Associate creates backorder per W56 or special order per W38; (d) <strong>Project billing</strong>: for corporate/project accounts — order charged to project account with project code; billing per W58 milestone/progress billing</td>
+<td>Sales Associate</td>
+<td>Store Manager</td>
+<td>5–10 min</td>
+</tr>
+<td>5</td>
+<td><strong>Delivery coordination for trade orders</strong>: For orders requiring job site delivery: (a) Sales Associate coordinates delivery date and time with customer (contractors often need early morning delivery before work starts); (b) system creates delivery order with job site address, contact person, special instructions (e.g., "deliver to 3rd floor under construction", "call 30 min before arrival"); (c) for recurring delivery orders (multi-phase construction project): Sales Associate sets up recurring delivery schedule in system — customer calls or emails when next batch of materials is needed; system retains project material list for easy reorder</td>
+<td>Sales Associate</td>
+<td>Store Manager</td>
+<td>5 min</td>
+</tr>
+<td>6</td>
+<td><strong>Trade customer relationship management</strong>: (a) Sales Associate or Sales Rep documents interaction in CRM: project type, estimated project value, competing supplier information, customer satisfaction; (b) for active construction projects: Sales Rep schedules periodic follow-up calls/visits to check material needs for next project phase; (c) Sales Associate tracks trade customer visit frequency and purchase pattern — alerts Sales Rep if regular trade customer hasn't visited in > 30 days (may have switched to competitor); (d) system tracks lifetime trade customer value (total spend, frequency, margin contribution) for loyalty tier and account management decisions</td>
+<td>Sales Associate / Sales Rep</td>
+<td>Sales Manager</td>
+<td>5 min/interaction</td>
+</tr>
+<td>7</td>
+<td><strong>Trade account statement and payment</strong>: (a) Trade customers on credit terms receive monthly statement per W8; (b) walk-in trade customers (COD/cash) can pay at trade counter via cash, card, or e-wallet; (c) Sales Associate can pull up customer's AR statement on request — outstanding balance, available credit, payment due dates; (d) for overdue accounts: Sales Associate informs customer of credit hold status and directs to AR for resolution per W108</td>
+<td>Sales Associate</td>
+<td>Department Supervisor</td>
+<td>2 min</td>
+</tr>
+<td>8</td>
+<td><strong>Weekly trade counter performance</strong>: Store Manager reviews weekly trade counter metrics: (a) trade counter transactions — count and value, (b) average trade transaction value, (c) trade customer visit frequency and retention, (d) top 10 trade customers by spend (store-level), (e) conversion rate — quotations generated vs. orders placed, (f) material list completion rate — how often were all items on the customer's list available?</td>
+<td>Store Manager</td>
+<td>Regional Manager</td>
+<td>30 min/week</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Trade customer identification via loyalty card or mobile number with account profile and purchase history (W112.1)</li>
+<li>Project estimation tool with pre-built templates per project type (residential build, bathroom renovation, electrical wiring) (W112.2)</li>
+<li>Material list builder with real-time inventory check, trade pricing application, and quantity break auto-calculation (W112.3)</li>
+<li>Quotation generation (print or email) with trade account pricing and VAT (W112.3)</li>
+<li>Sales Order creation with delivery scheduling and job site address (W112.4)</li>
+<li>Recurring delivery order setup for multi-phase construction projects (W112.5)</li>
+<li>CRM interaction logging with project type, estimated value, and follow-up scheduling (W112.6)</li>
+<li>Trade customer visit frequency tracking with inactivity alerting (W112.6)</li>
+<li>AR statement access at trade counter for account balance and credit status (W112.7)</li>
+<li>Weekly trade counter performance dashboard (W112.8)</li>
+<li>Integration with W5B (POS selling — trade account pricing), W5D (in-store delivery scheduling), W8 (AR — credit limit check, statement), W12 (returns — trade customer returns), W17 (loyalty — trade customer points), W24 (credit application — new trade customer signup), W38 (special orders — non-stock items for trade), W56 (backorders — stock items not available), W58 (corporate/project accounts — project billing), W61 (price matching — trade customers may request), W103 (sales pipeline — trade counter is a primary lead source), W108 (collections — overdue trade accounts)</li>
+</ul>
+
+<h3>Staffing Implication</h3>
+<ul>
+<li><strong>1 dedicated Sales Associate per store</strong> at the trade counter / pro desk during operating hours: handles ~15–25 trade interactions/week × 20 min average = ~5–8 hours/week; remainder of time on floor coverage, special order follow-up, and delivery coordination. This is a specialized role within the existing 16 Sales Associates per store — not incremental headcount but a designated assignment.</li>
+<li><strong>Sales Reps</strong> (10–12 at HQ): support large project quotes and on-site visits triggered from trade counter. Absorbed within existing W103 pipeline management.</li>
+<li><strong>No incremental headcount.</strong></li>
+</ul>
+
+<hr>
+
+<hr>
+
+<h2>W156. Customer Data Platform (CDP) & Hyper-Personalization</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Real-time customer interaction (web visit, POS sale, app notification)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Continuous</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>600,000+ member profiles</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Digital Marketing Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Data Analyst, CRM Team, IT, CMO</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Data Ingestion</strong>: Aggregate data from POS (W5), Ecommerce (W11), and Loyalty (W17) into a unified "Golden Record"</td>
+<td>System</td>
+<td>IT Mgr</td>
+<td>Real-time</td>
+</tr>
+<td>2</td>
+<td><strong>Segmentation</strong>: System auto-assigns segments based on behavior: "DIY Hobbyist," "Professional Contractor," "Lapsed Buyer"</td>
+<td>Data Analyst</td>
+<td>Digital Mktg Mgr</td>
+<td>Weekly</td>
+</tr>
+<td>3</td>
+<td><strong>Triggered Journeys</strong>: Auto-trigger email/SMS based on events: "Abandoned Cart," "Project Follow-up," or "Refill Reminder" (for paint/consumables)</td>
+<td>CRM Team</td>
+<td>Digital Mktg Mgr</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td><strong>Personalized Offers</strong>: Push unique promo codes to the Mobile App based on individual purchase history</td>
+<td>Digital Mktg Mgr</td>
+<td>CMO</td>
+<td>1 hour</td>
+</tr>
+</tbody></table></div>
+
+<hr>
+
+<h2>W258. Omni-channel Customer Ticketing & Support Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Trigger</strong></td>
+<td>Customer reaches out via email, social media, phone, or live chat for inquiries, order status, or support</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Continuous</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~3,000 - 5,000 tickets/month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>Customer Service Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CS Agents, Store Managers, DC Operations, Delivery Partners</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Ticket Creation</strong>: System automatically consolidates omnichannel inputs (social, email, chat) into a single CRM ticketing queue</td>
+<td>System</td>
+<td>CS Manager</td>
+<td>Automated</td>
+</tr>
+<td>2</td>
+<td><strong>Triage & Assignment</strong>: Auto-assign ticket to specific agent or queue (e.g., "Ecommerce Delivery", "Product Inquiry", "Store Feedback") based on keywords and customer tier</td>
+<td>System</td>
+<td>CS Manager</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td><strong>Resolution</strong>: CS Agent reviews customer 360-degree profile (W156), accesses ERP for order status/inventory, and provides resolution or update</td>
+<td>CS Agent</td>
+<td>CS Manager</td>
+<td>10-15 min</td>
+</tr>
+<td>4</td>
+<td><strong>Escalation</strong>: If issue requires store action (e.g., missing BOPIS item) or logistics action (e.g., lost package), agent escalates ticket to respective department</td>
+<td>CS Agent</td>
+<td>CS Manager</td>
+<td>5 min</td>
+</tr>
+<td>5</td>
+<td><strong>Closure & CSAT</strong>: Ticket resolved; system automatically sends CSAT/NPS survey to customer (W65) to measure satisfaction with support</td>
+<td>System</td>
+<td>CS Manager</td>
+<td>Automated</td>
+</tr>
+</tbody></table></div>
+<hr>
+
+<h2>W259. Call Center Daily Operations & Queue Management</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Workflow ID</strong></td>
+<td>W259</td>
+</tr>
+<td><strong>Name</strong></td>
+<td>Call Center Daily Operations & Queue Management</td>
+</tr>
+<td><strong>Trigger</strong></td>
+<td>Shift start (daily)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>Daily (2 shifts, 7 AM–10 PM)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~400–600 inbound contacts/day (calls 60%, chat 25%, email 10%, social 5%)</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>CS Manager</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>CS Agent (~30), CS Supervisor (3), CS Manager (1)</td>
+</tr>
+<td><strong>Time Estimate</strong></td>
+<td>8–12 min average per interaction</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Shift Start</strong>: CS Agents log into unified communications platform (telephony, chat, email, social queue); system loads agent profile with skill-based routing assignments; CS Supervisor reviews overnight queue backlog and distributes priority tickets</td>
+<td>CS Agent / CS Supervisor</td>
+<td>CS Manager</td>
+<td>10 min</td>
+</tr>
+<td>2</td>
+<td><strong>Queue Management</strong>: System routes inbound contacts based on: (a) customer tier (Platinum/Gold → priority queue; Silver/Bronze → standard), (b) issue type (order status → general; complaint → senior agent; credit/billing → finance-trained agent), (c) language preference (English, Filipino, Visayan/Bisaya for Mindanao/Visayas customers), (d) agent availability and skill set</td>
+<td>System</td>
+<td>CS Manager</td>
+<td>Automated</td>
+</tr>
+<td>3</td>
+<td><strong>IVR Self-Service</strong>: For calls, IVR handles routine inquiries without agent: (a) order status (system reads tracking via ECOM-005), (b) store hours and locations (MDM-006), (c) loyalty points balance (CRM-001), (d) return policy information; estimated 25–30% of calls resolved by IVR</td>
+<td>System</td>
+<td>CS Manager</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td><strong>Live Interaction</strong>: Agent handles customer inquiry using unified workspace: (a) customer 360 view (W156) with purchase history, loyalty tier, open orders, recent tickets, account alerts; (b) ERP access for real-time inventory check (ECOM-001), order status, delivery tracking; (c) knowledge base for product info, return policies, warranty terms</td>
+<td>CS Agent</td>
+<td>CS Supervisor</td>
+<td>8–12 min avg</td>
+</tr>
+<td>5</td>
+<td><strong>Callback Queue</strong>: During peak periods (sale events, holidays), if wait time exceeds 3 minutes, system offers callback option; callback queue managed with estimated wait time; callback scheduled within 2 hours; customer receives SMS confirmation with callback window</td>
+<td>System / CS Agent</td>
+<td>CS Manager</td>
+<td>2 min setup</td>
+</tr>
+<td>6</td>
+<td><strong>Real-Time Monitoring</strong>: CS Supervisor monitors agent dashboard with live metrics: queue depth, average wait time, average handle time, abandonment rate, CSAT rolling average; flags agents needing assistance; rebalances queue assignments during volume spikes</td>
+<td>CS Supervisor</td>
+<td>CS Manager</td>
+<td>Continuous</td>
+</tr>
+<td>7</td>
+<td><strong>Escalation Handling</strong>: For issues requiring other departments: (a) store-level issues → routed to Store Manager via ticket (W258), (b) billing/credit disputes → routed to AR (W108), (c) product quality/safety → routed to Quality (W110) and LP (W37), (d) data privacy → routed to DPO (W53); agent retains ownership for follow-up</td>
+<td>CS Agent</td>
+<td>CS Manager</td>
+<td>5 min</td>
+</tr>
+<td>8</td>
+<td><strong>Shift End</strong>: CS Agent wraps open tickets, logs after-call work, reviews personal CSAT and handle time metrics; CS Supervisor generates end-of-shift report: total contacts handled, queue clearance rate, SLA compliance (80% of calls answered within 60 seconds, 90% of chats within 90 seconds, emails within 24 hours), top issue categories</td>
+<td>CS Agent / CS Supervisor</td>
+<td>CS Manager</td>
+<td>15 min</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>Unified Communications Platform with omnichannel queue management (telephony, chat, email, social)</li>
+<li>IVR system with ERP data integration (order status, inventory, loyalty balance)</li>
+<li>Customer 360 workspace (W156) embedded in agent console</li>
+<li>Real-time agent monitoring dashboard with SLA tracking</li>
+<li>Knowledge base with product info, policies, and decision trees</li>
+<li>Callback scheduling engine with SMS notification integration</li>
+<li>Workforce management integration for agent scheduling (W34)</li>
+</ul>
+
+<h3>Pain Points / Risks</h3>
+<ul>
+<li><strong>Peak volume spikes</strong>: Sale events (6x/year per §13.3) can triple call volume; need temporary staffing surge plan</li>
+<li><strong>Language coverage</strong>: Visayan/Bisaya-speaking agents needed for Mindanao/Visayas customers; limited pool</li>
+<li><strong>System fragmentation</strong>: If agent console doesn't fully integrate ERP data, agents toggle between systems, increasing handle time</li>
+<li><strong>Agent burnout</strong>: Repetitive complaint handling (delivery issues, returns) leads to turnover; rotation and training programs needed</li>
+<li><strong>SLA breaches</strong>: Abandonment rate target < 5%; requires real-time monitoring and dynamic queue rebalancing</li>
+</ul>
+
+<h2>W263. Loyalty Member Enrollment & Onboarding Journey</h2>
+
+<div class="table-wrap"><table><thead><tr>
+<th>Field</th>
+<th>Detail</th>
+</tr></thead><tbody>
+<td><strong>Workflow ID</strong></td>
+<td>W263</td>
+</tr>
+<td><strong>Name</strong></td>
+<td>Loyalty Member Enrollment & Onboarding Journey</td>
+</tr>
+<td><strong>Trigger</strong></td>
+<td>Customer requests loyalty membership (in-store or online)</td>
+</tr>
+<td><strong>Frequency</strong></td>
+<td>~500–800 new enrollments/day (target: grow from 600K to 800K members in Year 1)</td>
+</tr>
+<td><strong>Volume</strong></td>
+<td>~15,000–24,000 new enrollments/month</td>
+</tr>
+<td><strong>Owner</strong></td>
+<td>CS Agent / Sales Associate</td>
+</tr>
+<td><strong>Participants</strong></td>
+<td>Sales Associate (store), CS Agent (online/call center), CS Supervisor (1), Marketing Team (data quality)</td>
+</tr>
+<td><strong>Time Estimate</strong></td>
+<td>3–5 min per enrollment</td>
+</tr>
+</tbody></table></div>
+
+<h3>Steps</h3>
+
+<div class="table-wrap"><table><thead><tr>
+<th>#</th>
+<th>Activity</th>
+<th>Role (R)</th>
+<th>Role (A)</th>
+<th>Duration</th>
+</tr></thead><tbody>
+<td>1</td>
+<td><strong>Enrollment Trigger</strong>: Customer initiates enrollment via: (a) <strong>in-store</strong>: Sales Associate or Customer Service Rep offers enrollment during checkout or at dedicated enrollment kiosk; (b) <strong>online</strong>: customer self-registers on ecommerce website or mobile app during account creation; (c) <strong>call center</strong>: CS Agent assists enrollment during inbound call; (d) <strong>event</strong>: DIY workshop (W147) or store event registration includes loyalty opt-in</td>
+<td>Sales Associate / CS Agent / Customer</td>
+<td>CS Supervisor</td>
+<td>1 min</td>
+</tr>
+<td>2</td>
+<td><strong>Data Capture</strong>: Customer provides enrollment data: (a) full name (first, last), (b) mobile number (primary identifier for PH consumers), (c) email address, (d) birthday (optional, for birthday promo targeting), (e) home store preference (optional); for in-store: Sales Associate enters data into POS enrollment screen; for online: customer fills form on website/app; system validates: mobile number format (+63), email format, minimum age (18+)</td>
+<td>Sales Associate / Customer</td>
+<td>CS Supervisor</td>
+<td>2 min</td>
+</tr>
+<td>3</td>
+<td><strong>Deduplication Check</strong>: System performs real-time deduplication: (a) matches against existing loyalty database by mobile number (primary key), email, or name + birthday combination; (b) if existing member found: system retrieves existing account, alerts associate/customer, and offers account recovery (reset PIN, update email) instead of new enrollment; (c) if duplicate prevented, logs attempt for fraud monitoring (W37); (d) deduplication prevents inflated member counts and ensures CRM-002 data quality per W253</td>
+<td>System</td>
+<td>CS Supervisor</td>
+<td>Automated</td>
+</tr>
+<td>4</td>
+<td><strong>Consent Management</strong>: System presents Data Privacy consent per RA 10173: (a) customer reads privacy notice (digital on screen or printed copy in-store); (b) customer explicitly consents to: (i) collection and processing of personal data for loyalty program, (ii) receiving promotional communications (SMS, email, push — with granular opt-in per channel), (iii) sharing data with partnered merchants (if applicable); (c) consent recorded with timestamp, consent version, and channel; (d) customer can modify consent at any time via app, website, or in-store</td>
+<td>System / Customer</td>
+<td>CS Supervisor / DPO</td>
+<td>1 min</td>
+</tr>
+<td>5</td>
+<td><strong>Account Creation</strong>: System creates loyalty account: (a) assigns unique loyalty ID (numeric or alphanumeric); (b) generates digital loyalty card in mobile app (QR code + barcode for POS scanning per POS-005); (c) sets initial tier to Bronze per CRM-005; (d) opens points balance at 0; (e) creates customer master record per MDM-003; (f) for in-store: prints temporary physical card or provides QR code printout until app download</td>
+<td>System</td>
+<td>CS Supervisor</td>
+<td>Automated</td>
+</tr>
+<td>6</td>
+<td><strong>Welcome Communication</strong>: System triggers automated welcome sequence: (a) immediate: SMS confirmation with loyalty ID, welcome message, and app download link; (b) within 1 hour: welcome email with program overview (tier benefits, points earning rates, redemption options, partner discounts); (c) within 24 hours: push notification (if app downloaded) with first-purchase incentive coupon (e.g., "Earn 2x points on your first purchase within 7 days!"); (d) welcome communications tracked in customer 360 profile (W156)</td>
+<td>System / Marketing Team</td>
+<td>CS Supervisor</td>
+<td>Automated</td>
+</tr>
+<td>7</td>
+<td><strong>First Purchase Incentive Tracking</strong>: System tracks enrollment-to-first-purchase conversion: (a) monitors whether new member makes first qualifying purchase within 7 days (welcome coupon validity); (b) if no purchase within 7 days: triggers reminder SMS/push on day 5; (c) if no purchase within 14 days: triggers re-engagement email with curated product recommendations; (d) first-purchase conversion rate tracked as enrollment KPI for Marketing and Store Ops</td>
+<td>System / Marketing Team</td>
+<td>CS Manager</td>
+<td>Automated</td>
+</tr>
+<td>8</td>
+<td><strong>Monthly Enrollment Quality Review</strong>: CS Supervisor and Marketing review enrollment metrics: (a) total new enrollments per channel (in-store vs. online vs. call center vs. event); (b) enrollment-to-first-purchase conversion rate (target: 70% within 14 days); (c) data quality metrics: % complete profiles (all fields filled), % email verified, % app downloaded; (d) deduplication rate (% of enrollment attempts blocked as duplicates — target: < 5%); (e) consent rate (% opting into all communication channels); (f) per-store enrollment leaderboard for Store Manager incentives</td>
+<td>CS Supervisor / Marketing</td>
+<td>CS Manager</td>
+<td>2 hours/month</td>
+</tr>
+</tbody></table></div>
+
+<h3>System Touchpoints</h3>
+<ul>
+<li>POS enrollment screen with real-time deduplication (CRM-002, MDM-003)</li>
+<li>Ecommerce / mobile app self-registration flow with RA 10173 consent management</li>
+<li>Loyalty ID generation and digital card creation (CRM-001, CRM-005)</li>
+<li>Automated welcome communication engine (SMS, email, push) integrated with CDP (W156)</li>
+<li>First-purchase incentive coupon system with expiration tracking</li>
+<li>Enrollment analytics dashboard per channel and per store</li>
+<li>Deduplication engine (W253) with real-time matching</li>
+</ul>
+
+<h3>Pain Points / Risks</h3>
+<ul>
+<li><strong>Data quality at store level</strong>: Sales Associates may rush enrollment, entering incomplete or incorrect data; degrades CRM-002 quality and impacts personalization effectiveness</li>
+<li><strong>Duplicate suppression resistance</strong>: Some customers deliberately create multiple accounts for welcome bonuses; need fraud detection logic (same mobile, same device)</li>
+<li><strong>Low app download conversion</strong>: In-store customers may enroll but not download app, reducing engagement channel; need in-store app download prompts (QR codes at checkout, store WiFi landing page)</li>
+<li><strong>Consent fatigue</strong>: Lengthy consent forms reduce enrollment completion; balance RA 10173 compliance with conversion-friendly UX</li>
+<li><strong>Enrollment staff incentives</strong>: If Sales Associates are incentivized per enrollment, risk of fake or low-quality enrollments; quality metrics must accompany volume targets</li>
+</ul>
+</div>
+<div class="ft"><strong>BuildRight Depot Corp.</strong> — ERP Vendor Comparison · June 2026<br>
+Oracle pricing from official Global Price List (April 2026) · Microsoft &amp; SAP from public sources<br>
+<em>All costs are estimates. Actual pricing subject to vendor negotiation.</em></div>
+</div>
+</body></html>

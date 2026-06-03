@@ -181,7 +181,7 @@
 | POS-023 | Store-Level Delivery Scheduling | Should | 🔧 Custom delivery scheduling | ⚙️ Delivery scheduling in D365 Commerce | 🔧 Custom delivery scheduling |
 | POS-028 | POS Hardware Maintenance | Should | 🔧 ITSM via SAP Solution Manager | 🔧 ITSM via Power App / ServiceNow | 🔧 ITSM via custom extension |
 
-**POS Summary**: **D365 Commerce is the clear POS leader** — native retail POS with offline CSU, multi-tender, loyalty, and gift cards. SAP Customer Checkout is adequate but immature for 1,000-terminal big-box retail. **Oracle Fusion has no native POS** — a major gap requiring a third-party POS (e.g., LS Retail, Oracle Retail Xstore) with integration overhead.
+**POS Summary**: **D365 Commerce is the clear POS leader** — native retail POS with offline CSU, multi-tender, loyalty, and gift cards. SAP Customer Checkout is adequate but immature for 600-terminal big-box retail. **Oracle Fusion has no native POS** — a major gap requiring a third-party POS (e.g., LS Retail, Oracle Retail Xstore) with integration overhead.
 
 ---
 

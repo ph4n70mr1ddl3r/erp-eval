@@ -254,7 +254,7 @@ The following pricing is sourced directly from Oracle's published Global Price L
 | User Type | Count | Description |
 |---|---|---|
 | **Full ERP Users** (Finance, SCM, Procurement) | 250 | Back-office finance, purchasing, supply chain |
-| **Commerce/POS Users** | 1,000 | Store managers, cashiers (POS terminals) |
+| **Commerce/POS Users** | 600 | Store managers, cashiers (POS terminals) |
 | **Warehouse Users** | 150 | WMS operators, RF device users |
 | **HR / HCM Users** | 30 | HR staff, recruiters, payroll admin |
 | **Sales / CRM Users** | 50 | Sales reps, account managers |
@@ -270,7 +270,7 @@ The following pricing is sourced directly from Oracle's published Global Price L
 | User Type | Count | Products Needed | Price/User/Month | Annual Cost |
 |---|---|---|---|---|
 | Full ERP Users | 250 | Fusion ERP + Procurement + SCM + Analytics | $625 + $625 + $875 + $180 = ~$2,305 | $6,915,000 |
-| Commerce/POS (Xstore — separate) | 1,000 | Oracle Retail Xstore + Commerce | ~$200 (est.) | $2,400,000 |
+| Commerce/POS (Xstore — separate) | 600 | Oracle Retail Xstore + Commerce | ~$200 (est.) | $1,440,000 |
 | Warehouse Users | 150 | WMS Cloud | $2,500/env + ~$100/user (est.) | $630,000 |
 | HR Users | 30 | Fusion HCM Pillar + Analytics | $450 + $450 = $900 | $324,000 |
 | Sales/CRM Users | 50 | Fusion Sales + Service Enterprise | $150 + $200 = $350 | $210,000 |
@@ -293,7 +293,7 @@ The following pricing is sourced directly from Oracle's published Global Price L
 | User Type | Count | Products Needed | Price/User/Month | Annual Cost |
 |---|---|---|---|---|
 | Full ERP Users | 250 | D365 Finance + SCM (attached) | $175 + $100 = $275 | $825,000 |
-| Commerce/POS Users | 1,000 | D365 Commerce | $175 | $2,100,000 |
+| Commerce/POS Users | 600 | D365 Commerce | $175 | $1,260,000 |
 | Warehouse Users | 150 | D365 SCM (included in Finance+SCM) | $175 (shared) | $315,000 |
 | HR Users | 30 | D365 Human Resources | $120 | $43,200 |
 | Sales/CRM Users | 50 | D365 Sales + Customer Service | $95 + $95 = $190 | $114,000 |
@@ -318,7 +318,7 @@ The following pricing is sourced directly from Oracle's published Global Price L
 | User Type | Count | Products Needed | Price/User/Month | Annual Cost |
 |---|---|---|---|---|
 | Full ERP Users | 250 | S/4HANA Cloud Professional | $210 | $630,000 |
-| Commerce/POS (CCO) | 1,000 | SAP Customer Checkout | $75/terminal | $900,000 |
+| Commerce/POS (CCO) | 600 | SAP Customer Checkout | $75/terminal | $540,000 |
 | Ecommerce | — | SAP Commerce Cloud | ~$350K/year | $350,000 |
 | Warehouse Users | 150 | S/4HANA Cloud + EWM | $210 + $90 = $300 | $540,000 |
 | HR Users | 30 | SuccessFactors (EC + Payroll + Talent + Time) | $40 + $8 + $12 + $4 = $64 | $23,040 |
@@ -474,7 +474,7 @@ The following pricing is sourced directly from Oracle's published Global Price L
 | | Positive | Negative |
 |---|---|---|
 | **Strengths** | • Most comprehensive functional coverage (~109 Must Have met) | • High TCO ($47–58M), second most expensive |
-| | • Best supply chain planning (IBP) | • POS (Customer Checkout) immature for 1,000-terminal retail |
+| | • Best supply chain planning (IBP) | • POS (Customer Checkout) immature for 600-terminal retail |
 | | • Best WMS (EWM embedded) | • Longest implementation timeline |
 | | • Best master data governance (MDG) | • 22% support fee is highest |
 | | • Strongest partner ecosystem globally | • Complex licensing across multiple cloud products |

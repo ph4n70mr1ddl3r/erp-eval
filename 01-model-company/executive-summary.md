@@ -18,7 +18,7 @@
 | Annual Revenue | ~PHP 62.3 Billion |
 | Employees | ~6,510 |
 | Active SKUs | 35,000 |
-| POS Terminals | 1,000 (3 per store) |
+| POS Terminals | 600 (3 per store) |
 | Monthly Transactions | 2.8 million |
 | Ecommerce | Yes — BOPIS + Home Delivery |
 | Loyalty Members | ~600,000 |

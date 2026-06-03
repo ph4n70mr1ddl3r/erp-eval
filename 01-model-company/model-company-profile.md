@@ -147,7 +147,7 @@ The company operates through **5 legal entities** organized as follows:
 | Parameter | Value |
 |---|---|
 | **POS Terminals per Store** | 5 |
-| **Total POS Terminals (all stores)** | 1,000 |
+| **Total POS Terminals (all stores)** | 600 |
 | **Monthly Transactions per Store** | 14,000 |
 | **Total Monthly Transactions (all stores)** | 2,800,000 |
 | **Total Annual Transactions** | 33,600,000 |

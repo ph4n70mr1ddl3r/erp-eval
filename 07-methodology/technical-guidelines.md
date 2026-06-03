@@ -29,11 +29,11 @@ confirm their POS solution supports equivalent or better specifications.
 
 | Item | Unit Cost (PHP) | Qty | Total (PHP) |
 |---|---|---|---|
-| POS Terminal (all-in-one) | ~20,000 | 1,000 | 20,000,000 |
-| Barcode Scanner (handheld) | ~5,000 | 1,000 | 5,000,000 |
-| Receipt Printer | ~8,000 | 1,000 | 8,000,000 |
-| Cash Drawer | ~5,000 | 1,000 | 5,000,000 |
-| Payment PIN Pad | ~15,000 | 1,000 | 15,000,000 |
+| POS Terminal (all-in-one) | ~20,000 | 600 | 12,000,000 |
+| Barcode Scanner (handheld) | ~5,000 | 600 | 3,000,000 |
+| Receipt Printer | ~8,000 | 600 | 4,800,000 |
+| Cash Drawer | ~5,000 | 600 | 3,000,000 |
+| Payment PIN Pad | ~15,000 | 600 | 9,000,000 |
 | **Per-Store Total (5 terminals)** | | | **~PHP 265,000** |
 | **All 200 Stores** | | | **~PHP 53,000,000** |
 

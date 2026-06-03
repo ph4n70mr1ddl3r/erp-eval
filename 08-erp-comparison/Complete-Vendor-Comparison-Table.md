@@ -90,7 +90,7 @@
 | User Segment | Users | Oracle Fusion Cloud (Net) | Microsoft D365 (Net) | SAP S/4HANA Cloud (Net) |
 |---|---|---|---|---|
 | **Full ERP Users** (Finance, SCM, Procurement) | 250 | $625×250×12 × 0.65 = **$1,218,750** | $275×250×12 × 0.80 = **$660,000** | $210×250×12 × 0.75 = **$472,500** |
-| **Commerce / POS Users** | 1,000 | ~$200×1,000×12 × 0.65 = **$1,560,000** | $175×1,000×12 × 0.80 = **$1,680,000** | $75×1,000×12 × 0.75 = **$675,000** |
+| **Commerce / POS Users** | 600 | ~$200×600×12 × 0.65 = **$936,000** | $175×600×12 × 0.80 = **$1,008,000** | $75×600×12 × 0.75 = **$405,000** |
 | **Warehouse Users** | 150 | ~$100×150×12 × 0.65 = **$117,000** | $175×150×12 × 0.80 = **$252,000** | $300×150×12 × 0.75 = **$405,000** |
 | **HR / Payroll Admin** | 30 | $450×30×12 × 0.65 = **$105,300** | $120×30×12 × 0.80 = **$34,560** | $64×30×12 × 0.75 = **$17,280** |
 | **Sales / CRM Users** | 50 | $350×50×12 × 0.65 = **$136,500** | $190×50×12 × 0.80 = **$91,200** | $280×50×12 × 0.75 = **$126,000** |
@@ -189,7 +189,7 @@
 | — Instructor-led training (classroom/virtual) | 8 sessions × $5K = **$40K** | 6 sessions × $4K = **$24K** | 8 sessions × $5K = **$40K** |
 | — E-learning / LMS platform | $15K–$25K | $10K–$15K | $15K–$25K |
 | — Quick reference guides & job aids | $10K–$15K | $8K–$12K | $10K–$15K |
-| **End-User Training — POS / Retail (1,000 users)** | | | |
+| **End-User Training — POS / Retail (600 users)** | | | |
 | — POS operator training (cashiers) | 40 sessions × $3K = **$120K** (includes Xstore training) | 30 sessions × $2.5K = **$75K** (D365 Commerce POS) | 40 sessions × $3K = **$120K** (CCO training) |
 | — Store manager training | 10 sessions × $4K = **$40K** | 8 sessions × $3K = **$24K** | 10 sessions × $4K = **$40K** |
 | — POS training materials & videos | $15K–$25K | $10K–$15K | $15K–$25K |
@@ -320,7 +320,7 @@
 
 | Risk Factor | Oracle Fusion Cloud | Microsoft Dynamics 365 | SAP S/4HANA Cloud |
 |---|---|---|---|
-| **POS — 1,000 Terminals** | ⚠️ HIGH RISK — Xstore must integrate with Fusion via OIC; unproven at this scale for Fusion-Xstore combo | ✅ LOW RISK — D365 Commerce POS proven at 600+ terminals (Walmart, retailers) | ⚠️ MEDIUM RISK — CCO is maturing; needs validation at 600 terminals |
+| **POS — 600 Terminals** | ⚠️ HIGH RISK — Xstore must integrate with Fusion via OIC; unproven at this scale for Fusion-Xstore combo | ✅ LOW RISK — D365 Commerce POS proven at 600+ terminals (Walmart, retailers) | ⚠️ MEDIUM RISK — CCO is maturing; needs validation at 600 terminals |
 | **POS — Offline Mode (8+ hours)** | ⚠️ MEDIUM RISK — Xstore has offline mode; sync-to-Fusion on reconnect needs testing | ✅ LOW RISK — CSU offline proven; full capability offline; auto-sync | ⚠️ MEDIUM-HIGH RISK — CCO offline limited; needs load testing |
 | **PH Payroll (SSS, PhilHealth, Pag-IBIG, BIR)** | ⚠️ MEDIUM RISK — Oracle HCM PH payroll growing; needs partner validation | ❌ HIGH RISK — No native PH payroll; full ISV dependency | ⚠️ MEDIUM RISK — SuccessFactors PH payroll growing; needs partner |
 | **BIR Tax Compliance** | ⚠️ HIGH RISK — Partner needed for BIR forms, eFPS, CAS | ⚠️ HIGH RISK — ISV needed for BIR forms, eFPS, CAS | ⚠️ HIGH RISK — Partner needed for BIR forms, eFPS, CAS |

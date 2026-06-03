@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BuildRight Depot — ERP Vendor Comparison</title>
+<style>
+:root{
+  --oracle:#c74634;--oracle-l:#fdeae8;
+  --msft:#0078d4;--msft-l:#e6f4ff;
+  --sap:#0faaff;--sap-l:#e6f5ff;
+  --bg:#f5f6f8;--card:#fff;--text:#1a1a2e;--text2:#666;
+  --border:#e2e5ea;--accent:#4f46e5;--accent-l:#eef2ff;
+  --green:#16a34a;--amber:#d97706;--red:#dc2626;
+  --sh:0 1px 3px rgba(0,0,0,.08);--sh2:0 4px 14px rgba(0,0,0,.1);
+  --r:10px;--nav-w:270px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+
+/* SIDEBAR */
+.sidebar{position:fixed;top:0;left:0;width:var(--nav-w);height:100vh;background:#1a1a2e;color:#c5c8d8;z-index:1000;overflow-y:auto;overflow-x:hidden;transition:transform .3s}
+.sidebar.closed{transform:translateX(-100%)}
+.sidebar .logo{padding:18px 16px 8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#8b8fa3}
+.sidebar .logo b{display:block;font-size:17px;letter-spacing:0;color:#fff;margin:2px 0}
+.sidebar .logo small{font-size:10px;color:#8b8fa3;font-weight:400}
+
+/* NAV SECTIONS */
+.nav-section{padding:10px 0 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#6b7094;margin:0 16px;border-top:1px solid #2a2a42}
+.nav-section:first-child{border-top:none;margin-top:4px}
+.sidebar nav a{display:flex;align-items:center;gap:8px;padding:7px 16px 7px 28px;color:#a0a4b8;text-decoration:none;font-size:13px;font-weight:500;border-left:3px solid transparent;transition:.15s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sidebar nav a:hover,.sidebar nav a.active{background:rgba(255,255,255,.06);color:#fff;border-left-color:var(--accent)}
+.sidebar nav a .ic{width:16px;text-align:center;flex-shrink:0;font-size:13px}
+.sidebar nav a.parent-link{padding-left:16px;font-weight:600;color:#d0d3e0}
+.sidebar nav a.child-link{font-size:12px;padding-left:36px}
+.sidebar nav a.child-link::before{content:'·';margin-right:4px;color:#555}
+
+/* HAMBURGER */
+.hamburger{display:none;position:fixed;top:10px;left:10px;z-index:1100;width:40px;height:40px;border-radius:var(--r);border:none;background:#1a1a2e;color:#fff;font-size:20px;cursor:pointer;box-shadow:var(--sh2)}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:999}
+
+/* MAIN */
+.main{margin-left:var(--nav-w);padding:28px;min-height:100vh}
+.page{display:none;animation:fadeIn .25s}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* CARDS */
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--sh);padding:22px;margin-bottom:18px;border:1px solid var(--border)}
+.card h2{font-size:19px;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+
+/* KPI ROW */
+.kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.kpi{background:var(--card);border-radius:var(--r);padding:16px;box-shadow:var(--sh);border:1px solid var(--border);text-align:center}
+.kpi .label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.4px;color:var(--text2);margin-bottom:4px}
+.kpi .value{font-size:24px;font-weight:800}
+.kpi .sub{font-size:11px;color:var(--text2);margin-top:2px}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;margin:0 -4px;padding:0 4px;-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;font-size:12.5px;background:var(--card);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh)}
+th{background:#1a1a2e;color:#fff;font-weight:600;text-align:left;padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.3px;position:sticky;top:0;z-index:1}
+td{padding:8px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:hover td{background:#f7f8fc}
+th.o,td.o{border-left:3px solid var(--oracle)}
+th.m,td.m{border-left:3px solid var(--msft)}
+th.s,td.s{border-left:3px solid var(--sap)}
+.cat td{background:var(--accent-l);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.3px}
+
+/* STARS & RISK */
+.stars{color:#f59e0b;letter-spacing:1px}
+.risk-l{display:inline-block;background:#dcfce7;color:var(--green);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.risk-m{display:inline-block;background:#fef3c7;color:var(--amber);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+.risk-h{display:inline-block;background:#fee2e2;color:var(--red);padding:2px 8px;border-radius:6px;font-size:10px;font-weight:700}
+
+/* VENDOR CARDS */
+.vc{border-radius:var(--r);padding:20px;box-shadow:var(--sh);border:2px solid transparent}
+.vc.oracle{background:var(--oracle-l);border-color:var(--oracle)}
+.vc.msft{background:var(--msft-l);border-color:var(--msft)}
+.vc.sap{background:var(--sap-l);border-color:var(--sap)}
+.vc h3{margin:0 0 6px;font-size:16px}
+.vc .tag{display:inline-block;padding:2px 10px;border-radius:6px;font-size:10px;font-weight:700;color:#fff;margin-bottom:8px}
+.vc.oracle .tag{background:var(--oracle)}.vc.msft .tag{background:var(--msft)}.vc.sap .tag{background:var(--sap)}
+.vc ul{list-style:none;font-size:13px}.vc li{padding:2px 0}.vc li::before{content:'→ ';font-weight:700}
+
+/* BAR CHARTS */
+.bar-row{display:flex;align-items:center;margin-bottom:6px;gap:8px}
+.bar-label{width:80px;font-size:11px;font-weight:600;text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:22px;background:#e5e7eb;border-radius:5px;overflow:hidden}
+.bar-fill{height:100%;border-radius:5px;display:flex;align-items:center;padding-left:8px;color:#fff;font-size:10px;font-weight:700}
+.bar-fill.o{background:var(--oracle)}.bar-fill.m{background:var(--msft)}.bar-fill.s{background:var(--sap)}
+
+/* RENDERED MD CONTENT */
+.md-content h1{font-size:24px;margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--border)}
+.md-content h2{font-size:20px;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.md-content h3{font-size:17px;margin:16px 0 8px;color:var(--text2)}
+.md-content h4{font-size:15px;margin:14px 0 6px;color:var(--text2)}
+.md-content p{margin:8px 0}
+.md-content ul,.md-content ol{margin:8px 0 8px 20px}
+.md-content li{margin:3px 0}
+.md-content blockquote{border-left:4px solid var(--accent);background:var(--accent-l);padding:10px 16px;margin:12px 0;border-radius:0 var(--r) var(--r) 0;font-size:14px}
+.md-content pre{background:#1a1a2e;color:#e0e0e0;padding:16px;border-radius:var(--r);overflow-x:auto;margin:12px 0;font-size:13px}
+.md-content code{background:#f0f1f3;padding:2px 6px;border-radius:4px;font-size:12px}
+.md-content pre code{background:none;padding:0}
+.md-content hr{border:none;border-top:1px solid var(--border);margin:20px 0}
+.md-content table{margin:12px 0}
+.md-content strong{color:var(--text)}
+.md-content em{color:var(--text2)}
+.md-content img{max-width:100%;border-radius:var(--r)}
+
+/* SECTION TITLE */
+.stitle{display:flex;align-items:center;gap:10px;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid var(--border)}
+.stitle .ic{font-size:22px}.stitle h2{font-size:20px;margin:0;border:none;padding:0}
+
+/* BACK BTN */
+.back-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:8px;background:var(--accent-l);color:var(--accent);text-decoration:none;font-size:13px;font-weight:600;margin-bottom:14px;cursor:pointer;border:none;cursor:pointer}
+.back-btn:hover{background:var(--accent);color:#fff}
+
+/* FOOTER */
+.footer{text-align:center;padding:24px 16px;color:var(--text2);font-size:11px;margin-top:30px;border-top:1px solid var(--border)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:flex;align-items:center;justify-content:center}
+  .overlay.show{display:block}
+  .main{margin-left:0;padding:56px 12px 16px}
+  .kpi-row{grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+  .kpi .value{font-size:18px}
+  table{font-size:11px}th,td{padding:6px 7px}
+  .bar-label{width:60px;font-size:10px}
+  .vc ul{font-size:12px}
+}
+@media(max-width:480px){
+  .main{padding:52px 6px 12px}
+  .card{padding:14px}
+  .kpi-row{grid-template-columns:1fr 1fr}
+}
+@media print{
+  .sidebar,.hamburger,.overlay{display:none!important}
+  .main{margin:0;padding:10px}
+  .page{display:block!important;page-break-before:always}
+  .page:first-child{page-break-before:auto}
+}
+</style>
+</head>
+<body>
+
+<button class="hamburger" id="ham" aria-label="Menu">☰</button>
+<div class="overlay" id="ov"></div>
+
+<aside class="sidebar" id="sb">
+  <div class="logo"><b>🏗️ BuildRight Depot</b>ERP Vendor Comparison<small>52 pages · All content loaded</small></div>
+  <nav id="nav"></nav>
+</aside>
+
+<div class="main" id="mc">
+  <!-- Pages rendered dynamically -->
+</div>
+
+<script>
+// ── SITE CONFIG ──
+// The comparison dashboard (hand-crafted) + all MD-derived pages
+// Navigation structure
+const NAV = [
+  { id:'dashboard', title:'Executive Dashboard', icon:'📊', section:'Comparison' },
+  { id:'vendors', title:'Vendor Profiles', icon:'🏢', section:'Comparison' },
+  { id:'products', title:'Products in Scope', icon:'📦', section:'Comparison' },
+  { id:'pricing', title:'License Pricing', icon:'💲', section:'Comparison' },
+  { id:'annual', title:'Annual Cost Model', icon:'📅', section:'Comparison' },
+  { id:'implementation', title:'Implementation Costs', icon:'⚙️', section:'Comparison' },
+  { id:'training', title:'Training Costs', icon:'🎓', section:'Comparison' },
+  { id:'tco', title:'5-Year TCO', icon:'📈', section:'Comparison' },
+  { id:'capabilities', title:'Capability Comparison', icon:'⭐', section:'Comparison' },
+  { id:'reqfit', title:'Requirements Fit', icon:'✅', section:'Comparison' },
+  { id:'risks', title:'Risk Assessment', icon:'⚠️', section:'Comparison' },
+  { id:'recommendation', title:'Final Recommendation', icon:'🏆', section:'Comparison' },
+  { section:'Detailed Evaluation' },
+  { id:'eval-matrix', title:'ERP Evaluation Matrix', icon:'📋', parent:'comparison' },
+  { id:'vendor-stack', title:'Vendor Stack (Full)', icon:'🔧', parent:'comparison' },
+  { id:'cost-capability', title:'Cost & Capability Detail', icon:'💰', parent:'comparison' },
+  { id:'full-comparison', title:'Complete Comparison Table', icon:'📄', parent:'comparison' },
+  { id:'vendor-sap', title:'SAP S/4HANA Evaluation', icon:'🏢', parent:'vendors' },
+  { id:'vendor-oracle', title:'Oracle Fusion Evaluation', icon:'🏢', parent:'vendors' },
+  { id:'vendor-msft', title:'Microsoft D365 Evaluation', icon:'🏢', parent:'vendors' },
+  { id:'vendor-odoo', title:'Odoo Evaluation', icon:'🏢', parent:'vendors' },
+  { section:'Model Company' },
+  { id:'company', title:'Company Profile', icon:'🏗️', parent:'model' },
+  { id:'executive', title:'Executive Summary', icon:'📋', parent:'model' },
+  { id:'requirements', title:'ERP Requirements (178 Must)', icon:'✅', parent:'model' },
+  { id:'data-volumes', title:'Data Volumes & Integrations', icon:'📊', parent:'model' },
+  { id:'internal-controls', title:'Internal Controls Matrix', icon:'🔒', parent:'model' },
+  { id:'req-workflow-matrix', title:'Req ↔ Workflow Matrix', icon:'🔗', parent:'model' },
+  { id:'assumptions', title:'Assumptions & Decisions', icon:'📝', parent:'model' },
+  { id:'mobile-strategy', title:'Mobile App Strategy', icon:'📱', parent:'model' },
+  { id:'data-migration', title:'Data Migration Mapping', icon:'🗂️', parent:'model' },
+  { id:'wilcon', title:'Wilcon Depot Benchmark', icon:'🏪', parent:'model' },
+  { section:'Workflows (276)' },
+  { id:'workflows', title:'Workflow Index', icon:'🔄', parent:'wf' },
+  { id:'WF-finance', title:'Finance', icon:'💰', parent:'wf' },
+  { id:'WF-store-operations', title:'Store Operations', icon:'🏪', parent:'wf' },
+  { id:'WF-procurement', title:'Procurement', icon:'🛒', parent:'wf' },
+  { id:'WF-merchandising', title:'Merchandising', icon:'🏷️', parent:'wf' },
+  { id:'WF-inventory', title:'Inventory', icon:'📦', parent:'wf' },
+  { id:'WF-warehouse', title:'Warehouse', icon:'🏭', parent:'wf' },
+  { id:'WF-ecommerce', title:'Ecommerce', icon:'🌐', parent:'wf' },
+  { id:'WF-hr', title:'HR & Payroll', icon:'👥', parent:'wf' },
+  { id:'WF-customer', title:'Customer', icon:'🤝', parent:'wf' },
+  { id:'WF-compliance', title:'Compliance', icon:'📜', parent:'wf' },
+  { id:'WF-supply-chain', title:'Supply Chain', icon:'🚛', parent:'wf' },
+  { id:'WF-marketing', title:'Marketing', icon:'📣', parent:'wf' },
+  { id:'WF-it-operations', title:'IT Operations', icon:'💻', parent:'wf' },
+  { id:'WF-services', title:'Services', icon:'🔧', parent:'wf' },
+  { id:'WF-governance', title:'Governance', icon:'🏛️', parent:'wf' },
+  { id:'WF-project-sales', title:'Project Sales', icon:'📐', parent:'wf' },
+  { id:'WF-audit', title:'Audit', icon:'🔍', parent:'wf' },
+  { id:'WF-health-safety', title:'Health & Safety', icon:'⛑️', parent:'wf' },
+  { id:'WF-property', title:'Property', icon:'🏠', parent:'wf' },
+  { id:'WF-engineering-construction', title:'Eng. & Construction', icon:'🏗️', parent:'wf' },
+  { id:'WF-logistics-fleet', title:'Logistics & Fleet', icon:'🚚', parent:'wf' },
+  { id:'WF-treasury', title:'Treasury', icon:'🏦', parent:'wf' },
+  { id:'WF-innovation', title:'Innovation', icon:'💡', parent:'wf' },
+  { id:'WF-esg', title:'ESG', icon:'🌱', parent:'wf' },
+  { id:'WF-hazmat', title:'Hazmat', icon:'☣️', parent:'wf' },
+  { id:'WF-master-data', title:'Master Data', icon:'📋', parent:'wf' },
+  { id:'WF-wholesale', title:'Wholesale', icon:'(box)', parent:'wf' },
+  { id:'WF-non-store-maintenance', title:'Non-Store Maint.', icon:'🧹', parent:'wf' },
+  { id:'WF-document-management', title:'Document Mgmt', icon:'📄', parent:'wf' },
+  { id:'touchpoint-map', title:'System Touchpoint Map', icon:'🗺️', parent:'wf' },
+  { section:'Methodology' },
+  { id:'methodology', title:'Scoring Methodology', icon:'📐', parent:'meth' },
+  { id:'roadmap', title:'Implementation Roadmap', icon:'🗺️', parent:'meth' },
+  { id:'tech-guidelines', title:'Technical Guidelines', icon:'💡', parent:'meth' },
+];
+
+// ── BUILD NAV ──
+const navEl = document.getElementById('nav');
+let curSection = '';
+NAV.forEach(item => {
+  if (item.section) {
+    curSection = item.section;
+    const div = document.createElement('div');
+    div.className = 'nav-section';
+    div.textContent = item.section;
+    navEl.appendChild(div);
+    return;
+  }
+  const a = document.createElement('a');
+  a.href = '#' + item.id;
+  a.dataset.page = item.id;
+  a.innerHTML = `<span class="ic">${item.icon}</span>${item.title}`;
+  if (item.parent) a.classList.add('child-link');
+  else a.classList.add('parent-link');
+  navEl.appendChild(a);
+});
+
+// ── MD CONTENT STORE ──
+let MD = {};
+let mdLoaded = false;
+
+async function loadMD() {
+  try {
+    const r = await fetch('data.json');
+    MD = await r.json();
+    mdLoaded = true;
+    console.log('Loaded', Object.keys(MD).length, 'MD pages');
+  } catch(e) {
+    console.warn('data.json not found — MD pages unavailable', e);
+  }
+}
+loadMD();
+
+// ── BUILT-IN COMPARISON PAGES (from original dashboard) ──
+const BUILTIN = {};
+
+BUILTIN.dashboard = () => `
+<div class="stitle"><span class="ic">📊</span><h2>Executive Dashboard</h2></div>
+<div style="text-align:center;padding:20px 0 16px">
+  <h1 style="font-size:26px;font-weight:800">🏗️ BuildRight Depot Corp.</h1>
+  <p style="color:var(--text2);max-width:600px;margin:8px auto;font-size:14px">ERP vendor comparison for a 200-store, 7,050-employee home improvement retail chain in the Philippines.</p>
+</div>
+<div class="kpi-row">
+  <div class="kpi"><div class="label">Microsoft D365 TCO</div><div class="value" style="color:var(--msft)">$32.9–37.1M</div><div class="sub">✓ Lowest 5-Year</div></div>
+  <div class="kpi"><div class="label">Oracle Fusion TCO</div><div class="value" style="color:var(--oracle)">$48.2–56.7M</div><div class="sub">3rd — Highest Integ. Risk</div></div>
+  <div class="kpi"><div class="label">SAP S/4HANA TCO</div><div class="value" style="color:var(--sap)">$55.6–63.2M</div><div class="sub">2nd — Strongest ERP</div></div>
+  <div class="kpi"><div class="label">Total Users</div><div class="value">7,050</div><div class="sub">200 stores + 5 DCs</div></div>
+  <div class="kpi"><div class="label">Must Have Reqs</div><div class="value">~178</div><div class="sub">14 categories</div></div>
+</div>
+<div class="card"><h2>5-Year TCO Comparison</h2>
+  <div class="bar-row"><div class="bar-label">Microsoft</div><div class="bar-track"><div class="bar-fill m" style="width:56%">$32.9–37.1M</div></div></div>
+  <div class="bar-row"><div class="bar-label">Oracle</div><div class="bar-track"><div class="bar-fill o" style="width:84%">$48.2–56.7M</div></div></div>
+  <div class="bar-row"><div class="bar-label">SAP</div><div class="bar-track"><div class="bar-fill s" style="width:100%">$55.6–63.2M</div></div></div>
+</div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:18px">
+  <div class="vc oracle"><h3>Oracle Fusion Cloud</h3><span class="tag">CONDITIONAL</span><ul>
+    <li><b>TCO:</b> $48.2–56.7M</li><li><b>Score:</b> 3.73/5</li><li><b>Reqs Met:</b> ~141/178</li>
+    <li><b>POS:</b> ❌ No native POS</li><li><b>Risk:</b> 10+ integration flows</li></ul></div>
+  <div class="vc msft"><h3>Microsoft Dynamics 365</h3><span class="tag">✅ RECOMMENDED</span><ul>
+    <li><b>TCO:</b> $32.9–37.1M ✓ Best</li><li><b>Score:</b> 4.62/5 ✓ Best</li><li><b>Reqs Met:</b> ~148/178</li>
+    <li><b>POS:</b> ✅ Native retail POS</li><li><b>Risk:</b> ISV payroll dependency</li></ul></div>
+  <div class="vc sap"><h3>SAP S/4HANA Cloud</h3><span class="tag">CONDITIONAL</span><ul>
+    <li><b>TCO:</b> $55.6–63.2M</li><li><b>Score:</b> 4.25/5</li><li><b>Reqs Met:</b> ~149/178 ✓ Most</li>
+    <li><b>POS:</b> ⚠️ CCO immature</li><li><b>Risk:</b> Highest cost + POS gap</li></ul></div>
+</div>
+<div class="card"><h2>Capability Scorecard</h2><div class="table-wrap"><table>
+<thead><tr><th>Dimension</th><th>Wt</th><th class="o">Oracle</th><th class="m">Microsoft</th><th class="s">SAP</th><th>Winner</th></tr></thead>
+<tbody>
+<tr><td>Financial Management</td><td>15%</td><td class="o"><span class="stars">★★★★★</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★★</span></td><td>SAP (slight)</td></tr>
+<tr><td>Inventory & Warehouse</td><td>10%</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>POS & Retail</td><td>15%</td><td class="o"><span class="stars">★★☆☆☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★☆☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>Ecommerce</td><td>8%</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>Supply Chain Planning</td><td>5%</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>HR & Payroll</td><td>8%</td><td class="o"><span class="stars">★★★★★</span></td><td class="m"><span class="stars">★★★☆☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td>Oracle / SAP</td></tr>
+<tr><td>CRM & Loyalty</td><td>5%</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>Analytics & BI</td><td>5%</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>AI & Innovation</td><td>4%</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>Low-Code / Extension</td><td>4%</td><td class="o"><span class="stars">★★★☆☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★☆☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>PH Localization</td><td>5%</td><td class="o"><span class="stars">★★☆☆☆</span></td><td class="m"><span class="stars">★★★☆☆</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>Impl. Risk</td><td>7%</td><td class="o"><span class="stars">★★☆☆☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★☆☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr style="font-weight:800;background:var(--accent-l)"><td><b>WEIGHTED TOTAL</b></td><td>100%</td><td class="o">3.73</td><td class="m" style="color:var(--green)">4.62</td><td class="s">4.25</td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+</tbody></table></div></div>`;
+
+BUILTIN.vendors = () => {
+  const rows = [
+    ['Headquarters','Austin, Texas, USA','Redmond, Washington, USA','Walldorf, Germany'],
+    ['Cloud Platform','Oracle Cloud Infra (OCI)','Microsoft Azure','SAP BTP (AWS/Azure/GCP)'],
+    ['Core ERP','Fusion Cloud ERP','D365 Finance + SCM','S/4HANA Cloud'],
+    ['Licensing','Per-user/month (Named/Employee)','Per-user/month (tiered by app)','Per-user/month (Prof/Limited/Employee)'],
+    ['Contract Term','3-year minimum','1–3 years (EA typically 3)','3–5 years (RISE with SAP)'],
+    ['Release Cycle','Quarterly','Semi-annual waves','Quarterly'],
+    ['Implementation','18–30 months','12–18 months','18–36 months'],
+    ['Target Market','Large enterprises (1K+ emp)','Mid-to-large (200–50K+)','Large enterprises (1K+)'],
+    ['Gartner MQ','Leader','Leader','Leader'],
+    ['PH Presence','Limited — smaller ecosystem','Growing — MS PH + ISV','Established — Accenture/Deloitte/IBM'],
+  ];
+  return `<div class="stitle"><span class="ic">🏢</span><h2>Vendor Profiles</h2></div>
+  <div class="card"><div class="table-wrap"><table>
+  <thead><tr><th>Dimension</th><th class="o">Oracle Fusion</th><th class="m">Microsoft D365</th><th class="s">SAP S/4HANA</th></tr></thead>
+  <tbody>${rows.map(r=>`<tr><td><strong>${r[0]}</strong></td><td class="o">${r[1]}</td><td class="m">${r[2]}</td><td class="s">${r[3]}</td></tr>`).join('')}</tbody>
+  </table></div></div>`;
+};
+
+// Helper: comparison table row
+const R = (label,oracle,msft,sap,winner='') => `<tr><td><strong>${label}</strong></td><td class="o">${oracle}</td><td class="m">${msft}</td><td class="s">${sap}</td>${winner?`<td style="color:var(--green);font-weight:700">${winner}</td>`:''}</tr>`;
+
+BUILTIN.products = () => `<div class="stitle"><span class="ic">📦</span><h2>Products in Scope (Full Stack)</h2></div>
+<div class="card"><div class="table-wrap"><table>
+<thead><tr><th>Functional Area</th><th class="o">Oracle Fusion</th><th class="m">Microsoft D365</th><th class="s">SAP S/4HANA</th></tr></thead>
+<tbody>
+<tr class="cat"><td colspan="4">Core Business Operations</td></tr>
+${R('Core Financials','Fusion Cloud ERP','D365 Finance','S/4HANA Cloud (FI, CO)')}
+${R('Procurement','Fusion Procurement','D365 SCM — Procurement','S/4HANA MM + Ariba')}
+${R('Inventory','Fusion SCM — Inventory','D365 SCM — Inventory','S/4HANA MM + EWM')}
+${R('Warehouse','⚠️ WMS Cloud (LogFire) — <em>separate</em>','✅ D365 SCM — WMS <em>(native)</em>','✅ SAP EWM <em>(embedded)</em>')}
+${R('Supply Chain Planning','Fusion Supply + Demand Planning','D365 Planning Optimization','SAP IBP')}
+${R('Order Management','Fusion Order Management','D365 SCM — Sales','S/4HANA SD + OMS')}
+<tr class="cat"><td colspan="4">Retail & Commerce</td></tr>
+${R('POS / Retail','⚠️ Oracle Retail Xstore <em>(separate)</em>','✅ D365 Commerce POS <em>(native)</em>','SAP Customer Checkout')}
+${R('Ecommerce','Oracle Commerce Cloud','D365 Commerce — e-commerce','SAP Commerce Cloud')}
+${R('Retail Merchandising','Oracle Retail (RMS, RPM, RI)','D365 Commerce (native)','SAP Retail + CAR')}
+<tr class="cat"><td colspan="4">Human Capital Management</td></tr>
+${R('Core HR','Fusion HCM — Global HR','D365 Human Resources','SuccessFactors EC')}
+${R('Payroll','Fusion HCM Payroll','⚠️ ISV Partner required','SuccessFactors Payroll')}
+${R('Talent / Recruiting','Fusion Talent + Recruiting','D365 HR + LinkedIn','SuccessFactors Talent')}
+${R('Time & Labor','Fusion Time & Labor','D365 HR + 3rd party','SuccessFactors Time')}
+${R('Learning','Fusion Learning Cloud','LinkedIn Learning','SuccessFactors Learning')}
+<tr class="cat"><td colspan="4">Customer Experience</td></tr>
+${R('CRM / Sales','Fusion CX — Sales','D365 Sales','SAP Sales Cloud')}
+${R('Customer Service','Fusion CX — Service','D365 Customer Service','SAP Service Cloud')}
+${R('Loyalty','CrowdTwist Loyalty','✅ D365 Commerce <em>(native)</em>','SAP Loyalty Management')}
+${R('Marketing','Fusion CX — Marketing','CI – Journeys','SAP Emarsys')}
+${R('CDP','CX Unity','Customer Insights','SAP Customer Data Platform')}
+<tr class="cat"><td colspan="4">Analytics & Platform</td></tr>
+${R('Analytics / BI','Oracle Analytics + OTBI','✅ Power BI','SAP Analytics Cloud')}
+${R('Data Warehouse','Autonomous DW','Azure Synapse','SAP Datasphere')}
+${R('Integration','Oracle Integration Cloud','Azure APIM + Logic Apps','SAP BTP Integration Suite')}
+${R('Low-Code','Visual Builder (VBCS)','✅ Power Apps + Automate','SAP BTP (CF/ABAP)')}
+${R('Document Mgmt','WebCenter','✅ SharePoint <em>(native)</em>','ArchiveLink + ILM')}
+${R('Master Data Gov.','Product Hub + CDM','Dataverse (basic)','✅ SAP MDG <em>(gold std)</em>')}
+<tr class="cat"><td colspan="4">AI & Innovation</td></tr>
+${R('AI / ML','OCI AI + Custom AI Agents','✅ Azure AI + Copilot','SAP Business AI')}
+${R('IoT','Oracle IoT Cloud','Azure IoT Hub','SAP IoT (BTP)')}
+</tbody></table></div></div>
+<p style="font-size:13px;color:var(--text2);margin-bottom:18px">📌 See the <a href="#vendor-stack" style="color:var(--accent)">Vendor Stack Evaluation</a> for detailed gap resolution analysis.</p>`;
+
+BUILTIN.pricing = () => `<div class="stitle"><span class="ic">💲</span><h2>Per-User Monthly License Pricing</h2></div>
+<div class="card"><p style="margin-bottom:10px;font-size:13px;color:var(--text2)">Oracle from official Global Price List (April 2026). Microsoft & SAP from public sources. Enterprise discounts applied.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>User Role</th><th class="o">Oracle Fusion</th><th class="m">Microsoft D365</th><th class="s">SAP S/4HANA</th></tr></thead>
+<tbody>
+${R('Full ERP User','$2,125/mo ($625+$625+$875)','$275/mo ($175+$100 att.)','$210/mo (Professional)')}
+${R('Commerce / POS','~$200/mo (Xstore est.)','$175/mo (D365 Commerce)','$75/terminal/mo (CCO)')}
+${R('Warehouse User','~$100/mo (WMS Cloud est.)','$175/mo (D365 SCM)','$300/mo (S/4HANA + EWM)')}
+${R('HR Admin','$450/mo (HCM Pillar)','$120/mo (D365 HR)','$64/mo (SF EC+Pay+Talent+Time)')}
+${R('Sales / CRM','$350/mo ($150+$200)','$190/mo ($95+$95)','$280/mo ($140+$140)')}
+${R('Executive / Analytics','$680/mo ($180+$500 EPM)','$185/mo ($175+$10 PBI)','$246/mo ($210+$36 SAC)')}
+${R('Employee Self-Service','$20/mo ($15+$5)','$8/mo (Team Member)','$47/mo ($35+$12)')}
+${R('Light / Read-Only','$20/mo','$8/mo','$70–100/mo')}
+${R('Integration Platform','$1,200/mo per 1M msgs','$150–2,800/mo (APIM)','$3,000–10,000/mo (BTP)')}
+${R('AI Agents','$2.50–50/user/mo','$30/user/mo (Copilot)','Consumption-based')}
+${R('Typical Discount','<strong>30–40%</strong> off list','<strong>15–25%</strong> off (EA)','<strong>20–30%</strong> off list')}
+</tbody></table></div></div>`;
+
+BUILTIN.annual = () => `<div class="stitle"><span class="ic">📅</span><h2>Annual License Cost Model (7,050 Users)</h2></div>
+<div class="card"><div class="table-wrap"><table>
+<thead><tr><th>User Segment</th><th>Users</th><th class="o">Oracle (Net/yr)</th><th class="m">Microsoft (Net/yr)</th><th class="s">SAP (Net/yr)</th></tr></thead>
+<tbody>
+${R('Full ERP',250,'$1,218,750','$660,000','$472,500')}
+${R('Commerce / POS',1000,'$1,560,000','$1,680,000','$675,000')}
+${R('Warehouse',150,'$117,000','$252,000','$405,000')}
+${R('HR / Payroll',30,'$105,300','$34,560','$17,280')}
+${R('Sales / CRM',50,'$136,500','$91,200','$126,000')}
+${R('Executive / Analytics',20,'$106,080','$35,520','$44,280')}
+${R('Employee Self-Service',5500,'$858,000','$422,400','$2,326,500')}
+${R('Integration / Platform','—','$175,000','$144,000','$156,000')}
+${R('Add-on Products','—','$1,850,000','$738,000','$2,400,000')}
+<tr style="font-weight:700;background:#f0f4ff"><td><b>Subtotal Net License</b></td><td>7,050</td><td class="o"><b>$6,126,630</b></td><td class="m"><b>$4,057,680</b></td><td class="s"><b>$6,622,560</b></td></tr>
+${R('Support & Maintenance','—','$612,663 (10%)','$730,382 (18%)','$1,456,963 (22%)')}
+<tr style="font-weight:800;background:#e8edff"><td><b>Total Annual + Support</b></td><td>7,050</td><td class="o"><b>$6,739,293</b></td><td class="m" style="color:var(--green)"><b>$4,788,062</b></td><td class="s"><b>$8,079,523</b></td></tr>
+</tbody></table></div></div>
+<div class="kpi-row"><div class="kpi"><div class="label">Oracle / User / Month</div><div class="value" style="color:var(--oracle)">$79.58</div></div><div class="kpi"><div class="label">Microsoft / User / Month</div><div class="value" style="color:var(--msft)">$56.57 ✓ Best</div></div><div class="kpi"><div class="label">SAP / User / Month</div><div class="value" style="color:var(--sap)">$95.60</div></div></div>`;
+
+BUILTIN.implementation = () => `<div class="stitle"><span class="ic">⚙️</span><h2>Implementation Cost Breakdown</h2></div>
+<div class="card"><div class="table-wrap"><table>
+<thead><tr><th>Phase</th><th class="o">Oracle Fusion</th><th class="m">Microsoft D365</th><th class="s">SAP S/4HANA</th></tr></thead>
+<tbody>
+<tr class="cat"><td colspan="4">Planning & Design</td></tr>
+${R('Project Planning','$200K–350K','$150K–250K','$250K–400K')}
+${R('Architecture & Design','$300K–500K','$200K–350K','$400K–600K')}
+<tr class="cat"><td colspan="4">System Configuration</td></tr>
+${R('Core Financials','$200K–300K','$150K–200K','$250K–350K')}
+${R('Supply Chain & Inventory','$150K–250K','$100K–200K','$200K–300K')}
+${R('Procurement','$100K–150K','$80K–120K','$100K–150K')}
+${R('Warehouse Mgmt','$150K–200K','$80K–120K','$150K–250K')}
+${R('POS / Retail Commerce','$200K–300K (Xstore)','$90K–160K (native)','$200K–450K (CCO)')}
+${R('HR / HCM / Payroll','$100K–150K','$60K–100K (ISV)','$80K–120K')}
+${R('Ecommerce','$100K–150K','$50K–80K','$100K–150K')}
+${R('Analytics / BI / EPM','$100K–150K','$50K–80K','$80K–120K')}
+<tr class="cat"><td colspan="4">Data Migration</td></tr>
+${R('Master data (55K SKUs, 800 vendors, 600K customers)','$200K–350K','$120K–200K','$200K–350K')}
+${R('Transaction history','$150K–250K','$80K–150K','$150K–250K')}
+${R('Opening balances','$150K–200K','$100K–150K','$150K–200K')}
+<tr class="cat"><td colspan="4">Integration Development</td></tr>
+${R('POS ↔ ERP','$300K–500K (via OIC)','$50K–100K (native)','$200K–300K (via CPI)')}
+${R('Ecommerce ↔ ERP','$200K–300K','$50K–100K (native)','$150K–250K')}
+${R('WMS ↔ ERP','$200K–300K (via OIC)','— (native)','— (embedded)')}
+${R('PH-specific (BIR, eFPS, GCash)','$300K–500K','$200K–350K','$250K–400K')}
+${R('Other integrations','$400K–700K','$230K–360K','$360K–550K')}
+<tr class="cat"><td colspan="4">Custom Development & Extensions</td></tr>
+${R('PH regulatory','$200K–350K (VBCS+OIC)','$150K–250K (Power Apps)','$200K–350K (BTP)')}
+${R('Catch-weight at POS','$150K–250K','$100K–150K','$150K–250K')}
+${R('Other custom extensions','$330K–630K','$180K–370K','$330K–580K')}
+<tr class="cat"><td colspan="4">Testing, Localization & Go-Live</td></tr>
+${R('Testing & QA','$500K–1,000K','$300K–500K','$500K–800K')}
+${R('PH Localization','$500K–1,000K','$300K–700K','$400K–800K')}
+${R('Go-Live & Hypercare','$500K–850K','$350K–600K','$500K–850K')}
+<tr style="font-weight:800;background:#e8edff"><td><b>TOTAL IMPLEMENTATION</b></td><td class="o"><b>$5.0M–8.5M</b></td><td class="m" style="color:var(--green)"><b>$2.8M–4.5M</b></td><td class="s"><b>$5.5M–9.0M</b></td></tr>
+<tr style="font-weight:700"><td><b>Duration</b></td><td class="o">18–30 months</td><td class="m">12–18 months</td><td class="s">18–36 months</td></tr>
+</tbody></table></div></div>`;
+
+BUILTIN.training = () => `<div class="stitle"><span class="ic">🎓</span><h2>Training Cost Breakdown</h2></div>
+<div class="card"><div class="table-wrap"><table>
+<thead><tr><th>Training Category</th><th class="o">Oracle Fusion</th><th class="m">Microsoft D365</th><th class="s">SAP S/4HANA</th></tr></thead>
+<tbody>
+<tr class="cat"><td colspan="4">End-User Training</td></tr>
+${R('Finance (250 users)','$65K–90K','$42K–52K','$65K–90K')}
+${R('POS / Retail (1,000 users)','$195K–275K','$124K–174K','$195K–275K')}
+${R('Warehouse (150 users)','$24K','15K$','24K')}
+${R('HR + Employee Self-Service','27K–37K','$16K–21K','$27K–37K')}
+${R('Sales / CRM (50 users)','$9K','$5K','$9K')}
+<tr class="cat"><td colspan="4">Technical Team Training</td></tr>
+${R('Admin + Integration + BI + Extension','$60K–105K','$43K–72K','$60K–105K')}
+<tr class="cat"><td colspan="4">Executive & Leadership</td></tr>
+${R('Dashboard + Change Mgmt','$15K–30K','$13K–23K','$15K–30K')}
+<tr class="cat"><td colspan="4">Materials & Ongoing</td></tr>
+${R('Custom e-learning, videos, docs + translation','$60K–100K','$46K–77K','$60K–100K')}
+${R('Ongoing training (per year, Yrs 2–5)','$115K–195K/yr','$75K–130K/yr','$115K–195K/yr')}
+<tr style="font-weight:700;background:#f0f4ff"><td><b>Year 1 Total</b></td><td class="o"><b>$480K–750K</b></td><td class="m"><b>$310K–500K</b></td><td class="s"><b>$490K–770K</b></td></tr>
+<tr style="font-weight:800;background:#e8edff"><td><b>5-Year Training Total</b></td><td class="o"><b>$940K–1,530K</b></td><td class="m" style="color:var(--green)"><b>$610K–1,020K</b></td><td class="s"><b>$950K–1,550K</b></td></tr>
+</tbody></table></div></div>`;
+
+BUILTIN.tco = () => `<div class="stitle"><span class="ic">📈</span><h2>5-Year Total Cost of Ownership (TCO)</h2></div>
+<div class="card"><div class="table-wrap"><table>
+<thead><tr><th>Cost Category</th><th class="o">Oracle Fusion</th><th class="m">Microsoft D365</th><th class="s">SAP S/4HANA</th></tr></thead>
+<tbody>
+<tr class="cat"><td colspan="4">One-Time Costs</td></tr>
+${R('Implementation','$5,000K–8,500K','$2,800K–4,500K','$5,500K–9,000K')}
+${R('Training — Year 1','$480K–750K','$310K–500K','$490K–770K')}
+${R('Internal Project Team','$1,000K–1,800K','$800K–1,200K','$1,000K–1,800K')}
+${R('Third-Party POS Setup','$300K–500K (Xstore)','— (native)','$100K–200K (CCO)')}
+<tr style="background:#f0f4ff"><td><b>Subtotal One-Time</b></td><td class="o"><b>$6,780K–11,550K</b></td><td class="m"><b>$3,910K–6,200K</b></td><td class="s"><b>$7,090K–11,770K</b></td></tr>
+<tr class="cat"><td colspan="4">Recurring Annual Costs</td></tr>
+${R('Software Licensing','$6,127K/yr','$4,058K/yr','$6,623K/yr')}
+${R('Support & Maintenance','$613K/yr','$730K/yr','$1,457K/yr')}
+${R('Cloud Infrastructure','$120K/yr','$120K/yr','$156K/yr')}
+${R('Ongoing Training','$115K–195K/yr','$75K–130K/yr','$115K–195K/yr')}
+${R('Custom Enhancements','$200K–400K/yr','$100K–200K/yr','$200K–300K/yr')}
+${R('ISV / Partner / Environments / Support','$235K–650K/yr','$110K–300K/yr','$235K–650K/yr')}
+<tr class="cat"><td colspan="4">5-Year Total</td></tr>
+${R('One-Time Costs','$6,780K–11,550K','$3,910K–6,200K','$7,090K–11,770K')}
+${R('Recurring × 5 Years','$37,000K–40,025K','$25,965K–27,540K','$43,430K–45,655K')}
+${R('Contingency (10%)','$4,378K–5,158K','$2,988K–3,374K','$5,052K–5,743K')}
+<tr style="font-weight:800;font-size:14px;background:#e8edff"><td><b>TOTAL 5-YEAR TCO</b></td><td class="o"><b>$48.2M–56.7M</b></td><td class="m" style="color:var(--green)"><b>$32.9M–37.1M</b></td><td class="s"><b>$55.6M–63.2M</b></td></tr>
+</tbody></table></div></div>
+<div class="kpi-row"><div class="kpi"><div class="label">Oracle / User / Month</div><div class="value" style="color:var(--oracle)">$114–134</div></div><div class="kpi"><div class="label">Microsoft / User / Month</div><div class="value" style="color:var(--msft)">$78–88 ✓ Best</div></div><div class="kpi"><div class="label">SAP / User / Month</div><div class="value" style="color:var(--sap)">$131–149</div></div></div>
+<p style="font-size:13px;color:var(--text2)">📌 See the <a href="#full-comparison" style="color:var(--accent)">Complete Comparison Table</a> for the full breakdown with all line items.</p>`;
+
+BUILTIN.capabilities = () => `<div class="stitle"><span class="ic">⭐</span><h2>Capability Comparison (20 Modules)</h2></div>
+<div class="card"><div class="table-wrap"><table>
+<thead><tr><th>#</th><th>Module</th><th class="o">Oracle</th><th class="m">Microsoft</th><th class="s">SAP</th><th>Winner</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Financial Management</td><td class="o"><span class="stars">★★★★★</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★★</span></td><td>SAP (slight)</td></tr>
+<tr><td>2</td><td>Inventory Management</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>3</td><td>Procurement</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>4</td><td>Warehouse Management</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>5</td><td>POS & Retail Operations</td><td class="o"><span class="stars">★★☆☆☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★☆☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>6</td><td>Ecommerce / Omnichannel</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>7</td><td>Supply Chain Planning</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>8</td><td>HR & Payroll</td><td class="o"><span class="stars">★★★★★</span></td><td class="m"><span class="stars">★★★☆☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td>Oracle / SAP</td></tr>
+<tr><td>9</td><td>CRM & Loyalty</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>10</td><td>Analytics & BI</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>11</td><td>Intercompany</td><td class="o"><span class="stars">★★★★★</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★★</span></td><td>SAP (slight)</td></tr>
+<tr><td>12</td><td>Document Management</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>13</td><td>Master Data Governance</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>14</td><td>AI / Machine Learning</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>15</td><td>Low-Code / Extension</td><td class="o"><span class="stars">★★★☆☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★☆☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>16</td><td>Non-Functional / Scalability</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>17</td><td>Quality Management</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★☆☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>18</td><td>Field Service</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★★</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">Microsoft</td></tr>
+<tr><td>19</td><td>Expense Management</td><td class="o"><span class="stars">★★★★☆</span></td><td class="m"><span class="stars">★★★★☆</span></td><td class="s"><span class="stars">★★★★★</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+<tr><td>20</td><td>PH Localization Readiness</td><td class="o"><span class="stars">★★☆☆☆</span></td><td class="m"><span class="stars">★★★☆☆</span></td><td class="s"><span class="stars">★★★★☆</span></td><td style="color:var(--green);font-weight:700">SAP</td></tr>
+</tbody></table></div></div>`;
+
+BUILTIN.reqfit = () => `<div class="stitle"><span class="ic">✅</span><h2>Must-Have Requirements Fit Summary</h2></div>
+<div class="card"><p style="margin-bottom:12px;color:var(--text2);font-size:14px">~178 Must Have requirements across 14 categories. ✅ = Native/Configured, ⚙️ = Needs config, 🔧 = Custom/3rd-party.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Category</th><th>Must</th><th class="o">Oracle Met</th><th class="m">MS Met</th><th class="s">SAP Met</th><th class="o">Oracle Gaps</th><th class="m">MS Gaps</th><th class="s">SAP Gaps</th></tr></thead>
+<tbody>
+${R('R1. Financial Mgmt',22,20,20,21)}<td class="o">2 🔧</td><td class="m">2 🔧</td><td class="s">1 🔧</td></tr>
+<tr><td>R2. Inventory</td><td>12</td><td class="o">10</td><td class="m">10</td><td class="s">12</td><td class="o">2 ⚙️</td><td class="m">2 ⚙️</td><td class="s">0</td></tr>
+<tr><td>R3. Procurement</td><td>12</td><td class="o">10</td><td class="m">10</td><td class="s">11</td><td class="o">2 ⚙️</td><td class="m">2 ⚙️</td><td class="s">1 ⚙️</td></tr>
+<tr><td>R4. Warehouse</td><td>5</td><td class="o">4</td><td class="m">4</td><td class="s">5</td><td class="o">1 ⚙️</td><td class="m">1 ⚙️</td><td class="s">0</td></tr>
+<tr><td>R5. POS & Retail</td><td>17</td><td class="o">9</td><td class="m">13</td><td class="s">8</td><td class="o">6⚙️ 2🔧</td><td class="m">4 ⚙️</td><td class="s">6⚙️ 3🔧</td></tr>
+<tr><td>R6. Ecommerce</td><td>9</td><td class="o">7</td><td class="m">8</td><td class="s">7</td><td class="o">2 ⚙️</td><td class="m">1 ⚙️</td><td class="s">2 ⚙️</td></tr>
+<tr><td>R7. Supply Chain</td><td>7</td><td class="o">6</td><td class="m">6</td><td class="s">7</td><td class="o">1 ⚙️</td><td class="m">1 ⚙️</td><td class="s">0</td></tr>
+<tr><td>R8. HR & Payroll</td><td>17</td><td class="o">14</td><td class="m">10</td><td class="s">14</td><td class="o">2⚙️ 1🔧</td><td class="m">4⚙️ 3🔧</td><td class="s">2⚙️ 1🔧</td></tr>
+<tr><td>R9. CRM & Loyalty</td><td>16</td><td class="o">12</td><td class="m">14</td><td class="s">12</td><td class="o">3⚙️ 1🔧</td><td class="m">2 ⚙️</td><td class="s">3⚙️ 1🔧</td></tr>
+<tr><td>R10. Analytics</td><td>12</td><td class="o">10</td><td class="m">12</td><td class="s">11</td><td class="o">2 🔧</td><td class="m">0</td><td class="s">1 🔧</td></tr>
+<tr><td>R11. Intercompany</td><td>5</td><td class="o">5</td><td class="m">5</td><td class="s">5</td><td class="o">0</td><td class="m">0</td><td class="s">0</td></tr>
+<tr><td>R12. Document Mgmt</td><td>8</td><td class="o">6</td><td class="m">6</td><td class="s">6</td><td class="o">2 ⚙️</td><td class="m">2 ⚙️</td><td class="s">2 ⚙️</td></tr>
+<tr><td>R13. Master Data</td><td>8</td><td class="o">6</td><td class="m">6</td><td class="s">8</td><td class="o">2 ⚙️</td><td class="m">2 ⚙️</td><td class="s">0</td></tr>
+<tr><td>R14. Non-Functional</td><td>28</td><td class="o">22</td><td class="m">24</td><td class="s">22</td><td class="o">4⚙️ 2🔧</td><td class="m">3⚙️ 1🔧</td><td class="s">4⚙️ 2🔧</td></tr>
+<tr style="font-weight:800;background:#e8edff"><td><b>TOTAL</b></td><td><b>~178</b></td><td class="o"><b>~141</b></td><td class="m" style="color:var(--green)"><b>~148</b></td><td class="s"><b>~149</b></td><td class="o"><b>~10 gaps</b></td><td class="m"><b>~7 gaps</b></td><td class="s"><b>~8 gaps</b></td></tr>
+</tbody></table></div></div>
+<p style="font-size:13px;color:var(--text2)">📌 See the <a href="#eval-matrix" style="color:var(--accent)">Detailed ERP Evaluation Matrix</a> for requirement-by-requirement scoring.</p>`;
+
+BUILTIN.risks = () => `<div class="stitle"><span class="ic">⚠️</span><h2>Risk Assessment</h2></div>
+<div class="card"><div class="table-wrap"><table>
+<thead><tr><th>Risk Factor</th><th class="o">Oracle Fusion</th><th class="m">Microsoft D365</th><th class="s">SAP S/4HANA</th></tr></thead>
+<tbody>
+<tr><td><strong>POS — 1,000 Terminals</strong></td><td class="o"><span class="risk-h">⚠️ HIGH</span> Xstore via OIC</td><td class="m"><span class="risk-l">✅ LOW</span> Proven at 1K+</td><td class="s"><span class="risk-m">⚠️ MED</span> CCO maturing</td></tr>
+<tr><td><strong>POS — Offline 8+ hours</strong></td><td class="o"><span class="risk-m">⚠️ MED</span> Xstore; sync testing needed</td><td class="m"><span class="risk-l">✅ LOW</span> CSU proven</td><td class="s"><span class="risk-m">⚠️ MED-HIGH</span> CCO limited</td></tr>
+<tr><td><strong>PH Payroll</strong></td><td class="o"><span class="risk-m">⚠️ MED</span> Oracle HCM growing</td><td class="m"><span class="risk-h">❌ HIGH</span> Full ISV dependency</td><td class="s"><span class="risk-m">⚠️ MED</span> SF Payroll growing</td></tr>
+<tr><td><strong>BIR Tax Compliance</strong></td><td class="o"><span class="risk-h">⚠️ HIGH</span> Partner needed</td><td class="m"><span class="risk-h">⚠️ HIGH</span> ISV needed</td><td class="s"><span class="risk-h">⚠️ HIGH</span> Partner needed</td></tr>
+<tr><td><strong>Integration Complexity</strong></td><td class="o"><span class="risk-h">❌ HIGHEST</span> 10+ flows</td><td class="m"><span class="risk-l">✅ LOWEST</span> 4 flows, native</td><td class="s"><span class="risk-m">⚠️ HIGH</span> 8 flows</td></tr>
+<tr><td><strong>Catch-Weight</strong></td><td class="o"><span class="risk-m">⚠️ MED</span></td><td class="m"><span class="risk-m">⚠️ MED</span></td><td class="s"><span class="risk-l">✅ LOW-MED</span> EWM best</td></tr>
+<tr><td><strong>2.8M POS Txns/Month</strong></td><td class="o"><span class="risk-m">⚠️ MED</span> OIC latency</td><td class="m"><span class="risk-l">✅ LOW</span> Azure handles</td><td class="s"><span class="risk-l">✅ LOW</span> HANA handles</td></tr>
+<tr><td><strong>5-Entity Consolidation</strong></td><td class="o"><span class="risk-l">✅ LOW</span></td><td class="m"><span class="risk-l">✅ LOW</span></td><td class="s"><span class="risk-l">✅ LOW</span></td></tr>
+<tr><td><strong>Impl. Timeline Risk</strong></td><td class="o"><span class="risk-h">⚠️ HIGH</span> 18–30 mo</td><td class="m"><span class="risk-l">✅ LOW</span> 12–18 mo</td><td class="s"><span class="risk-m">⚠️ HIGH</span> 18–36 mo</td></tr>
+<tr><td><strong>PH Partner Ecosystem</strong></td><td class="o"><span class="risk-h">⚠️ LIMITED</span></td><td class="m"><span class="risk-m">⚠️ GROWING</span></td><td class="s"><span class="risk-l">✅ STRONGEST</span></td></tr>
+<tr style="font-weight:800;background:#e8edff"><td><b>OVERALL RISK</b></td><td class="o"><span class="risk-h">HIGH</span></td><td class="m"><span class="risk-l">LOW</span></td><td class="s"><span class="risk-m">MEDIUM-HIGH</span></td></tr>
+</tbody></table></div></div>`;
+
+BUILTIN.recommendation = () => `
+<div class="stitle"><span class="ic">🏆</span><h2>Final Recommendation</h2></div>
+<div class="card" style="border-left:4px solid var(--msft);background:#f0f9ff">
+  <h2 style="color:var(--msft);border:none">✅ Microsoft Dynamics 365 — RECOMMENDED</h2>
+  <p>Best overall fit for BuildRight Depot: lowest TCO, strongest retail POS, fastest implementation.</p>
+  <div class="kpi-row">
+    <div class="kpi"><div class="label">5-Year TCO</div><div class="value" style="color:var(--msft)">$32.9–37.1M</div></div>
+    <div class="kpi"><div class="label">Capability</div><div class="value" style="color:var(--msft)">4.62/5</div></div>
+    <div class="kpi"><div class="label">Impl. Time</div><div class="value" style="color:var(--msft)">12–18 mo</div></div>
+    <div class="kpi"><div class="label">Cost/User/Mo</div><div class="value" style="color:var(--msft)">$78–88</div></div>
+  </div>
+  <h3>Key Strengths</h3><ul style="margin-left:18px"><li><b>Native retail POS</b> with offline CSU — proven at 1K+ terminals</li><li><b>Lowest 5-year TCO</b> — $16–19M less than Oracle, $23–26M less than SAP</li><li><b>Tightest integration</b> — only 4 major flows vs. 8–10+</li><li><b>Power Platform</b> — strongest low-code ecosystem</li><li><b>Fastest implementation</b> — 12–18 months</li></ul>
+  <h3>Key Risks</h3><ul style="margin-left:18px"><li>⚠️ <b>PH Payroll</b> — requires ISV partner</li><li>⚠️ Supply chain planning less mature than SAP IBP</li><li>⚠️ Catch-weight requires product variant config</li></ul>
+</div>
+<div class="card" style="border-left:4px solid var(--sap);margin-top:14px">
+  <h2 style="color:var(--sap);border:none">⚠️ SAP S/4HANA Cloud — CONDITIONAL</h2>
+  <p>Strongest ERP breadth but highest cost and POS weakness.</p>
+  <h3>Strengths:</h3><ul style="margin-left:18px;margin-bottom:8px"><li>Most Must Have met (~149/178)</li><li>SAP IBP gold standard for supply chain</li><li>SAP EWM most comprehensive WMS</li><li>Strongest PH partner network</li></ul>
+  <h3>Risks:</h3><ul style="margin-left:18px"><li>❌ Highest cost ($23–26M more than Microsoft)</li><li>⚠️ CCO immature for 1K-terminal retail</li><li>⚠️ 22% support fee</li></ul>
+</div>
+<div class="card" style="border-left:4px solid var(--oracle);margin-top:14px">
+  <h2 style="color:var(--oracle);border:none">⚠️ Oracle Fusion Cloud — CONDITIONAL</h2>
+  <p>Strong enterprise ERP but no native POS and highest integration complexity.</p>
+  <h3>Strengths:</h3><ul style="margin-left:18px;margin-bottom:8px"><li>EPM best-in-class consolidation</li><li>Comprehensive HCM suite</li><li>New AI Agents ($2.50–50/user)</li></ul>
+  <h3>Risks:</h3><ul style="margin-left:18px"><li>❌ No native POS — Xstore is separate</li><li>❌ 10+ integration flows between modules</li><li>⚠️ Smallest PH partner ecosystem</li></ul>
+</div>
+<div class="card" style="background:#fefce8;border-color:#eab308"><h2>📋 Next Steps</h2><ol style="margin-left:18px;line-height:2">
+  <li>Request vendor demos with BuildRight scenarios</li><li>Issue RFP to all three vendors</li><li>Engage PH implementation partners</li><li>Conduct POS proof-of-concept (50 terminals)</li><li>Validate ISV payroll capability</li><li>Finalize scoring with partner input</li></ol></div>`;
+
+// ── ROUTING ──
+function showPage(id) {
+  // Update nav
+  document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('active', a.dataset.page === id));
+  // Close mobile nav
+  sb.classList.remove('open'); ov.classList.remove('show');
+  
+  const mc = document.getElementById('mc');
+  let html = '';
+  
+  if (BUILTIN[id]) {
+    html = `<div class="page active">${BUILTIN[id]()}</div>`;
+  } else if (MD[id]) {
+    const pg = MD[id];
+    const parentNav = findParentNav(id);
+    let backBtn = '';
+    if (parentNav) {
+      backBtn = `<button class="back-btn" onclick="showPage('${parentNav.id}')">← Back to ${parentNav.title}</button>`;
+    }
+    html = `<div class="page active">${backBtn}<div class="stitle"><span class="ic">${pg.icon || '📄'}</span><h2>${pg.title}</h2></div><div class="card md-content">${pg.content}</div></div>`;
+  } else {
+    html = `<div class="page active"><div class="card"><h2>Page Not Found</h2><p>The page "${id}" is not available. Please select a page from the navigation.</p></div></div>`;
+  }
+  
+  mc.innerHTML = html;
+  window.scrollTo(0, 0);
+  window.location.hash = id;
+}
+
+function findParentNav(id) {
+  const item = NAV.find(n => n.id === id);
+  if (!item || !item.parent) return null;
+  // Find the section header or parent
+  const idx = NAV.indexOf(item);
+  for (let i = idx - 1; i >= 0; i--) {
+    if (NAV[i].id) return NAV[i];
+  }
+  return null;
+}
+
+// ── EVENT LISTENERS ──
+const sb = document.getElementById('sb');
+const ov = document.getElementById('ov');
+document.getElementById('ham').addEventListener('click', () => {
+  sb.classList.toggle('open'); ov.classList.toggle('show');
+});
+ov.addEventListener('click', () => { sb.classList.remove('open'); ov.classList.remove('show'); });
+
+navEl.addEventListener('click', e => {
+  const a = e.target.closest('a');
+  if (!a) return;
+  e.preventDefault();
+  showPage(a.dataset.page);
+});
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { sb.classList.remove('open'); ov.classList.remove('show'); }
+});
+
+// Touch swipe to close
+let touchX = 0;
+sb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+sb.addEventListener('touchend', e => {
+  if (touchX - e.changedTouches[0].clientX > 50) { sb.classList.remove('open'); ov.classList.remove('show'); }
+});
+
+// Handle hash navigation
+function handleHash() {
+  const id = window.location.hash.slice(1) || 'dashboard';
+  showPage(id);
+}
+window.addEventListener('hashchange', handleHash);
+
+// Initial load — wait for MD data then render
+(async () => {
+  await loadMD();
+  handleHash();
+})();
+</script>
+</body>
+</html>

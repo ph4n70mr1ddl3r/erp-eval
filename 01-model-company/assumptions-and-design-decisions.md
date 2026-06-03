@@ -22,7 +22,7 @@
 | ID | Assumption | Value | Rationale | Source |
 |---|---|---|---|---|
 | A2.1 | Single format (big-box only) | No Express/small format | Simplifies the model; tests one format thoroughly vs. two superficially | Profile §2 |
-| A2.2 | Store staffing: 35 per store | Lean model | Viable with 35K curated SKUs (vs. Wilcon's 60K+); fewer departments to cover | Profile §12.1 |
+| A2.2 | Store staffing: 30 per store | Lean model | Viable with 35K curated SKUs (vs. Wilcon's 60K+); fewer departments to cover | Profile §12.1 |
 | A2.3 | HQ in Davao City | Provincial HQ | Deliberately non-Manila to test provincial operations and connectivity | Profile §2 |
 | A2.4 | 5 legal entities | Separate Holdings, Depot, Logistics, Digital Commerce, Property Mgmt | Tests multi-entity/intercompany capability; each entity has a distinct role | Profile §2 |
 | A2.5 | Depot Inc. owns all inventory | Even though Logistics Inc. operates DCs | Simplifies inventory accounting; Logistics Inc. charges service fees, not goods transfer | Profile §2, W14 |

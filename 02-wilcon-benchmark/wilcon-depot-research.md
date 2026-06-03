@@ -217,7 +217,7 @@
 | **Distribution Centers** | 3+ | 5 |
 | **Ecommerce** | Full (BOPIS + delivery) | Full (BOPIS + delivery) |
 | **Loyalty Program** | Yes | Yes |
-| **Employees** | ~5,000–6,000 | ~8,050 |
+| **Employees** | ~5,000–6,000 | ~7,050 |
 | **Monthly Trade POs** | ~500–800 (estimated) | 1,200 |
 | **Import Vendors** | ~40% | ~40% |
 

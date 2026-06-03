@@ -27,7 +27,7 @@
 |---|---|
 | **Trigger** | User reports issue (phone, email, self-service portal); system generates automated alert; scheduled change window |
 | **Frequency** | Continuous; ~800–1,200 support tickets/month across all locations |
-| **Volume** | ~8,050 users; 1,000 POS terminals; 5 WMS systems; ~500 RF devices; 200+ network locations |
+| **Volume** | ~7,050 users; 1,000 POS terminals; 5 WMS systems; ~500 RF devices; 200+ network locations |
 | **Owner** | IT Helpdesk Lead |
 | **Participants** | IT Helpdesk, IT Infrastructure, IT Applications, end users, external vendors |
 
@@ -104,7 +104,7 @@
 
 ### Background
 
-Under RA 10173 and its Implementing Rules and Regulations (IRR), BuildRight Depot (as a PIC — Personal Information Controller) must: (a) notify the National Privacy Commission within 72 hours of discovering a breach involving sensitive personal information affecting 100+ data subjects, (b) notify affected data subjects within a reasonable time, (c) document all breaches regardless of size. BuildRight holds personal data for ~600,000 loyalty members, ~5,200 trade accounts, ~200 corporate accounts, ~8,050 employees, and ~1,000 vendors.
+Under RA 10173 and its Implementing Rules and Regulations (IRR), BuildRight Depot (as a PIC — Personal Information Controller) must: (a) notify the National Privacy Commission within 72 hours of discovering a breach involving sensitive personal information affecting 100+ data subjects, (b) notify affected data subjects within a reasonable time, (c) document all breaches regardless of size. BuildRight holds personal data for ~600,000 loyalty members, ~5,200 trade accounts, ~200 corporate accounts, ~7,050 employees, and ~1,000 vendors.
 
 ### Steps
 
@@ -148,7 +148,7 @@ Under RA 10173 and its Implementing Rules and Regulations (IRR), BuildRight Depo
 |---|---|
 | **Trigger** | Core ERP system failure exceeding RTO (4 hours per NFR-013), data center outage, cloud service disruption, or cyber attack causing system unavailability |
 | **Frequency** | Rare; estimated 0–2 DR events/year requiring failover |
-| **Volume** | Affects all 8,050 users; 1,000 POS terminals; 200 stores; 5 DCs |
+| **Volume** | Affects all 7,050 users; 1,000 POS terminals; 200 stores; 5 DCs |
 | **Owner** | CIO |
 | **Participants** | CIO, IT Infrastructure team, IT Helpdesk, Store Ops Director, CFO, external DR service provider |
 
@@ -201,7 +201,7 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 |---|---|
 | **Trigger** | Implementation roadmap Phase 2 (data migration) and Phase 3 (pilot go-live with parallel run) per Implementation Roadmap |
 | **Frequency** | Once per implementation; validation cycles repeated per migration iteration |
-| **Volume** | All master data (55,000 SKUs, 1,000 vendors, 600,000+ customers, 8,050 employees, 205 locations) + open transaction data (open POs, open AR/AP, inventory balances, fixed assets) |
+| **Volume** | All master data (55,000 SKUs, 1,000 vendors, 600,000+ customers, 7,050 employees, 205 locations) + open transaction data (open POs, open AR/AP, inventory balances, fixed assets) |
 | **Owner** | Implementation Project Manager (overall); Department Heads (validation per domain) |
 | **Participants** | Store Managers, Cashiers, AP/AR Clerks, Category Managers, Buyers, Cost Accountant, IT, external implementation partner |
 
@@ -252,7 +252,7 @@ This workflow covers the IT system recovery process, distinct from W49 (typhoon/
 |---|---|
 | **Trigger** | Monthly BI governance review; ad-hoc report request; dashboard lifecycle milestone; or data quality issue identified |
 | **Frequency** | Monthly governance review; continuous report request management; quarterly dashboard lifecycle review |
-| **Volume** | ~50–100 ad-hoc report requests/month from across the organization; ~20–30 active dashboards at any time; ~8,060 potential users across 14 requirement categories |
+| **Volume** | ~50–100 ad-hoc report requests/month from across the organization; ~20–30 active dashboards at any time; ~7,060 potential users across 14 requirement categories |
 | **Owner** | BI Manager / Data Analyst |
 | **Participants** | BI Manager, Data Analysts, IT Manager, Department Heads, Controller, CIO |
 

@@ -20,7 +20,7 @@
 ### Why Phased Rollout?
 - **De-risk POS**: 2.8M monthly transactions cannot be cut over in one event
 - **Learn and adjust**: Pilot stores reveal process gaps before scale
-- **Resource management**: Training 7,000 store staff requires sequencing
+- **Resource management**: Training 6,000 store staff requires sequencing
 - **Supply chain stability**: DC operations must be stable before loading all stores
 
 ---

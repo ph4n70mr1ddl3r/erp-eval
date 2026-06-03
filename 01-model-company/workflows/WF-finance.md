@@ -757,7 +757,7 @@ For each goods-based IC transfer: system creates IC Sales Order (selling entity)
 |---|---|
 | **Trigger** | Asset reaches end of useful life, becomes uneconomic to maintain, or is replaced by new asset |
 | **Frequency** | ~50–100 asset disposals/year; peaks during store renovations and IT refresh cycles |
-| **Volume** | ~8,050 fixed assets across all entities (POS terminals, forklifts, vehicles, fixtures, IT servers, office equipment) |
+| **Volume** | ~7,050 fixed assets across all entities (POS terminals, forklifts, vehicles, fixtures, IT servers, office equipment) |
 | **Owner** | Cost Accountant |
 | **Participants** | Cost Accountant, Requestor (dept), CFO, IT (for IT assets), Procurement (if resale), Legal (if land/building) |
 

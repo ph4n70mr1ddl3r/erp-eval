@@ -38,9 +38,11 @@ erpplans/
 ├── 02-wilcon-benchmark/         ← Real-world Wilcon Depot research & comparison
 ├── 03-sap/                      ← SAP S/4HANA evaluation (placeholder)
 ├── 04-oracle-netsuite/          ← Oracle NetSuite evaluation (placeholder)
+├── 04-oracle-fusion/            ← Oracle Fusion Cloud evaluation (placeholder)
 ├── 05-microsoft-d365/           ← Microsoft Dynamics 365 evaluation (placeholder)
 ├── 06-odoo/                     ← Odoo evaluation (placeholder)
 ├── 07-methodology/              ← Scoring methodology, implementation roadmap, technical guidelines
+├── 08-erp-comparison/           ← Side-by-side ERP comparison matrix
 ```
 
 ## The Model Company at a Glance
@@ -55,11 +57,11 @@ erpplans/
 | POS Machines per Store | 5 |
 | Monthly POS Transactions per Store | 14,000 |
 | Avg Lines per Transaction | 4 |
-| Staff per Store | ~35 |
+| Staff per Store | ~30 |
 | Active SKUs | 35,000 |
 | Monthly Trade Purchase Orders | ~1,200 merchandise; ~1,400–1,600 total |
 | Legal Entities | 5 |
-| Total Headcount | ~8,060 (200 stores × 35 + ~750 DC + ~310 HQ) |
+| Total Headcount | ~7,060 (200 stores × 30 + ~750 DC + ~310 HQ) |
 | Ecommerce | Yes (with BOPIS) |
 | Country | Philippines |
 

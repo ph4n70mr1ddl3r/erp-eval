@@ -54,8 +54,8 @@ The company operates through **5 legal entities** organized as follows:
 | **Growth Rate** | ~10–15 new stores/year |
 | **Store Format** | Big-box warehouse (selling area: 8,000–15,000 sqm each) |
 | **Total Selling Area** | ~1.6M – 3.0M sqm aggregate |
-| **Store Staff** | ~35 employees per store |
-| **Total Store-Level Headcount** | ~7,000 |
+| **Store Staff** | ~30 employees per store |
+| **Total Store-Level Headcount** | ~6,000 |
 
 #### Store Location Distribution (Philippines)
 
@@ -131,12 +131,12 @@ The company operates through **5 legal entities** organized as follows:
 
 | Category | Count |
 |---|---|
-| Store Personnel | 7,000 (200 stores × 35) |
+| Store Personnel | 6,000 (200 stores × 30) |
 | Distribution Center Personnel | ~750 (5 DCs × ~150) |
 | Corporate HQ Personnel | ~310 (expanding to ~320 with DPO and Regulatory Officer per W53/W54) |
-| **Total Company Headcount** | **~8,060** (baseline; ~8,070 with compliance expansion) |
+| **Total Company Headcount** | **~7,060** (baseline; ~7,070 with compliance expansion) |
 
-> **Revenue per employee**: ~PHP 7.7M/year (~PHP 62.3B ÷ ~8,060) — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (35 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further. HQ headcount of ~310 is the baseline; Legal & Compliance expands from ~5 to ~7 with the addition of a Data Protection Officer (W53) and Regulatory Officer (W54) required for Philippine regulatory compliance, bringing total HQ to ~320 and total company to ~8,070.
+> **Revenue per employee**: ~PHP 8.8M/year (~PHP 62.3B ÷ ~7,060) — higher than Wilcon's ~PHP 5.2M due to BuildRight's lean store staffing model (30 vs. Wilcon's average of ~55 per store including both Depot and Express formats). The lower headcount per store is viable because (a) BuildRight carries a curated 35,000 SKUs vs. Wilcon's 60,000+ — less floor coverage needed, and (b) the single big-box format eliminates the need for Express-format staff allocation. As the chain grows to 300+ stores, HQ and DC headcount will scale more slowly, improving the ratio further. HQ headcount of ~310 is the baseline; Legal & Compliance expands from ~5 to ~7 with the addition of a Data Protection Officer (W53) and Regulatory Officer (W54) required for Philippine regulatory compliance, bringing total HQ to ~320 and total company to ~7,070.
 
 ---
 
@@ -480,7 +480,7 @@ BuildRight Holdings, Inc.
 | Parameter | Value |
 |---|---|
 | **Payroll Frequency** | Semi-monthly (15th and 30th) |
-| **Total Employees** | ~8,050 |
+| **Total Employees** | ~7,050 |
 | **Payroll Entities** | 5 (one per legal entity) |
 | **Statutory Benefits** | SSS, PhilHealth, Pag-IBIG (HDMF) |
 | **13th Month Pay** | Mandatory (1/12 of annual basic salary, paid by Dec 24) |
@@ -505,14 +505,14 @@ BuildRight Holdings, Inc.
 
 ## 12. Store Operations
 
-### 12.1 Store Staffing Model (35 per store)
+### 12.1 Store Staffing Model (30 per store)
 
 | Role | Count | Notes |
 |---|---|---|
 | Store Manager | 1 | Overall P&L responsibility |
 | Assistant Store Manager | 1 | Operations and compliance |
 | Department Supervisors | 4 | Lumber, Plumbing/Electrical, Tiles, Tools/Hardware |
-| Sales Associates | 16 | Floor coverage, customer assistance |
+| Sales Associates | 11 | Floor coverage, customer assistance |
 | Cashiers | 6 | Covers 5 POS + 1 float/relief |
 | Receiving Clerk | 2 | Inbound goods processing |
 | Stockroom / Stock Associate | 3 | Replenishment, inventory counts |
@@ -664,7 +664,7 @@ should propose its own integration architecture.
 | Customers (B2B Corporate) | 200 |
 | Vendors / Suppliers | 1,000 |
 | Locations (Stores + DCs + HQ) | 206 |
-| Employees | ~8,050 |
+| Employees | ~7,050 |
 | Chart of Accounts | ~500–800 per entity |
 | GL Accounts (consolidated) | ~2,000–3,000 |
 
@@ -713,7 +713,7 @@ should propose its own integration architecture.
 7. **Offline POS resilience**: Stores must sell during outages
 8. **Intercompany automation**: 5-entity consolidation
 9. **Supply chain optimization**: Demand planning, auto-replenishment
-10. **User adoption**: ~8,050 users across varying tech literacy levels
+10. **User adoption**: ~7,050 users across varying tech literacy levels
 
 ---
 
@@ -741,4 +741,4 @@ should propose its own integration architecture.
 
 ---
 
-*Document Version: 2.10 | Date: 2026-06-02 | Reconciled DC headcount (~150/DC, ~750 total), HQ headcount (~310 baseline, ~320 with compliance roles), total ~8,060–8,070; clarified AP invoice volume breakdown*
+*Document Version: 2.11 | Date: 2026-06-03 | Store staffing reduced from 35 to 30 per store (6,000 total store staff); total headcount ~7,060–7,070; DC headcount unchanged at ~150/DC (~750 total)*

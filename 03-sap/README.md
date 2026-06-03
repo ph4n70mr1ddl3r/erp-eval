@@ -31,7 +31,7 @@
 2. How mature is the Philippine localization (BIR forms, VAT, statutory deductions)?
 3. What is the offline POS strategy (SAP Customer Checkout offline mode)?
 4. How does the 5-entity intercompany consolidation work in S/4HANA Cloud?
-5. What is the total cost for 1,000 POS users + 8,050 total users?
+5. What is the total cost for 1,000 POS users + 7,050 total users?
 
 ---
 

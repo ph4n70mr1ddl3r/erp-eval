@@ -29,7 +29,7 @@
 |---|---|
 | **Trigger** | Semi-monthly payroll calendar (14th and 28th/30th) |
 | **Frequency** | 10 payroll runs/month (5 entities × 2) |
-| **Volume** | ~8,050 employees total |
+| **Volume** | ~7,050 employees total |
 | **Owner** | Payroll Manager |
 | **Participants** | Payroll Officer, HR Assistant, Department Heads (OT/leave approval), Finance (bank file) |
 
@@ -143,7 +143,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 |---|---|
 | **Trigger** | Weekly schedule creation cycle |
 | **Frequency** | Weekly per store; published 1 week in advance |
-| **Volume** | 35 staff × 200 stores = 7,000 weekly shift assignments; 2–3 shifts per day (opening: 7 AM–2 PM, mid: 10 AM–6 PM, closing: 2 PM–10 PM) |
+| **Volume** | 30 staff × 200 stores = 6,000 weekly shift assignments; 2–3 shifts per day (opening: 7 AM–2 PM, mid: 10 AM–6 PM, closing: 2 PM–10 PM) |
 | **Owner** | Store Manager |
 | **Participants** | Store Manager, Assistant Store Manager, Department Supervisors, HR Assistant |
 
@@ -246,7 +246,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 |---|---|
 | **Trigger** | New hire onboarding (W15), new system rollout, compliance requirement, periodic schedule, performance review finding |
 | **Frequency** | Continuous; formal training sessions monthly per store; compliance training quarterly |
-| **Volume** | ~8,050 employees; ~1,200–1,600 new hires/year requiring onboarding training; all employees require periodic refresher |
+| **Volume** | ~7,050 employees; ~1,200–1,600 new hires/year requiring onboarding training; all employees require periodic refresher |
 | **Owner** | HR — Training Officer |
 | **Participants** | Training Officer, Department Supervisors, Store Managers, Category Managers (product knowledge), IT (system training), external trainers |
 
@@ -256,7 +256,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 |---|---|---|---|---|
 | 1 | Training Officer maintains annual training calendar: (a) new hire onboarding (W15 step 10 — continuous), (b) quarterly compliance refreshers (safety, BIR procedures, data privacy), (c) semi-annual product knowledge updates (aligned with W1 assortment review and W32 seasonal planning), (d) annual system refresher (POS, ERP updates), (e) leadership development for supervisors and managers | Training Officer | HR Head | 4 hours/quarter (planning) |
 | 2 | Training Officer develops or sources training materials per category: (a) creates in-house materials for company-specific processes (POS operations, returns handling, safety procedures, customer service standards), (b) sources external content for compliance topics (fire safety, first aid, hazmat handling for paint/chemicals), (c) coordinates with Category Managers for product knowledge content (new product features, seasonal items) | Training Officer | HR Head | Ongoing |
-| 3 | Training delivery methods by audience: (a) **Store staff (7,000)**: monthly 30-minute department huddles led by Department Supervisors using provided materials; quarterly 2-hour group sessions at store level; (b) **DC staff (~750)**: quarterly safety and equipment training at DC; (c) **HQ staff (~300)**: quarterly system and process training at HQ; (d) **New hires**: W15 onboarding program (2–3 days); (e) **Managers and supervisors**: semi-annual leadership and management skills workshops | Training Officer / Dept. Supervisors / External Trainers | HR Head | Per schedule |
+| 3 | Training delivery methods by audience: (a) **Store staff (6,000)**: monthly 30-minute department huddles led by Department Supervisors using provided materials; quarterly 2-hour group sessions at store level; (b) **DC staff (~750)**: quarterly safety and equipment training at DC; (c) **HQ staff (~300)**: quarterly system and process training at HQ; (d) **New hires**: W15 onboarding program (2–3 days); (e) **Managers and supervisors**: semi-annual leadership and management skills workshops | Training Officer / Dept. Supervisors / External Trainers | HR Head | Per schedule |
 | 4 | System tracks training completion per employee: attendance recording, quiz/assessment scores (where applicable), certification status and expiry dates | System / HR Assistant | Training Officer | Automated + 15 min/session |
 | 5 | Training Officer generates compliance dashboard: completion rates by training type, overdue trainings by location, certification expiries (e.g., forklift license, fire safety) | Training Officer | HR Head | 1 hour/month |
 | 6 | Department Supervisors and Store Managers identify training needs from performance observations (W34 schedule adherence, W37 exception patterns, W41 complaint root causes) and submit training requests to Training Officer | Dept. Supervisor / Store Manager | HR Head | As needed |
@@ -286,7 +286,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 - Employee self-service portal: system provides a web-based or mobile-accessible self-service portal for employees with the following capabilities — (a) **payslip viewing**: employees view and download current and historical payslips (secure, accessible only by the employee); (b) **leave management**: employees submit leave requests (VL, SL, maternity, paternity, etc.) with automatic routing to Department Supervisor / Store Manager for approval; view leave balance and approval status; (c) **personal information update**: employees update contact information (address, phone, emergency contact), bank account details for payroll crediting, and dependent information; changes require HR Assistant verification before updating the payroll master; (d) **tax document access**: employees view and download BIR Form 2316 (Certificate of Compensation Payment/Tax Withheld) annually; (e) **benefits inquiry**: view SSS, PhilHealth, Pag-IBIG contribution history and loan balances (linked to agency portals or displayed from payroll data); (f) **training enrollment**: browse and enroll in available training sessions from the W51 training calendar; view training history and certification status; (g) **announcement board**: HR and management post company announcements, policy updates, and employee engagement content; portal access is role-based (employees see their own data only; managers see additional team-level information such as team leave calendar); mobile-responsive design for access from smartphones; requirement priority: Should Have (not all features needed at go-live — payslips and leave management are highest priority)
 
 ### Staffing Implication
-- **1 Training Officer** (within HR team): manages training calendar, develops materials, coordinates external trainers, and monitors compliance. With 8,050 employees across 200+ locations, this is a full-time role.
+- **1 Training Officer** (within HR team): manages training calendar, develops materials, coordinates external trainers, and monitors compliance. With 7,050 employees across 200+ locations, this is a full-time role.
 - **Department Supervisors (per store)**: deliver monthly department huddles (30 min/month) — absorbed into existing duties.
 - **HR Assistants (2)**: support attendance recording and logistics — absorbed into existing duties.
 - **External trainers**: engaged for specialized topics (fire safety, hazmat, first aid, forklift certification, leadership) on a per-event basis.
@@ -303,7 +303,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 |---|---|
 | **Trigger** | Annual performance review cycle; or periodic performance improvement need |
 | **Frequency** | Annual formal review; quarterly check-in; ongoing performance coaching |
-| **Volume** | ~8,050 employees; all employees reviewed annually |
+| **Volume** | ~7,050 employees; all employees reviewed annually |
 | **Owner** | Department Head (for direct reports); Store Manager (for store staff) |
 | **Participants** | Store Manager, Department Supervisors, Department Heads, HR Head, employees |
 
@@ -332,7 +332,7 @@ The following table shows all recurring statutory remittance deadlines per entit
 - Integration with W10 (merit increase in payroll), W15 (onboarding — initial goal-setting during first 90 days), W43 (PIP failure may lead to separation), W51 (training completion feeds into performance assessment), W67 (store performance KPIs inform goal-setting for store staff)
 
 ### Staffing Implication
-- **No incremental headcount.** Performance reviews are distributed across ~230 managers (Store Managers, Dept. Supervisors, Dept. Heads). Annual cycle adds ~45 min/employee/year for ~8,050 employees = ~6,000 hours total effort, distributed across the management team.
+- **No incremental headcount.** Performance reviews are distributed across ~230 managers (Store Managers, Dept. Supervisors, Dept. Heads). Annual cycle adds ~45 min/employee/year for ~7,050 employees = ~5,300 hours total effort, distributed across the management team.
 - **HR Head**: adds ~8 hours/year for calibration and rating distribution approval. Absorbed.
 
 ---
@@ -535,7 +535,7 @@ With over 8,000 employees in retail and distribution, maintaining a consistent p
 |---|---|
 | **Trigger** | Employee sickness event, maternity event, or application for SSS/Pag-IBIG statutory loan |
 | **Frequency** | Continuous; daily processing of claims and semi-monthly reconciliation |
-| **Volume** | ~8,060 employee base; average ~120–180 sickness claims/month, ~40–60 maternity leaves/month, and ~250–350 loan applications/month |
+| **Volume** | ~7,060 employee base; average ~120–180 sickness claims/month, ~40–60 maternity leaves/month, and ~250–350 loan applications/month |
 | **Owner** | HR Benefits Specialist |
 | **Participants** | Employee, HR Benefits Specialist, Payroll Specialist, Finance (Treasury) |
 

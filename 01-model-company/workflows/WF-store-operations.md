@@ -423,7 +423,7 @@ During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per
 | 5 | Merchandising assigns SKU assortment to new store; sets initial order quantities | Category Manager | VP Merchandising | 1 week |
 | 6 | Supply Chain plans initial fill: DC generates transfer orders for opening stock | Supply Planner | Supply Chain Manager | 1 week |
 | 7 | DC picks, packs, and ships opening inventory to new store | DC Team | DC Manager | 1–2 weeks |
-| 8 | HR recruits store staff (~35 people); assigns Store Manager first | Recruitment Officer | CHRO | 4–6 weeks |
+| 8 | HR recruits store staff (~30 people); assigns Store Manager first | Recruitment Officer | CHRO | 4–6 weeks |
 | 9 | Store Manager + staff training (POS, processes, safety, product knowledge) | Store Ops + HR | Store Ops Director | 1–2 weeks |
 | 9a | IT and Store Ops execute go-live readiness checklist: verify POS terminal connectivity and offline mode, test price file sync, confirm location master and GL segments, validate tax registration per LGU, perform test transaction and void, verify Z-report generation | IT Team + Store Ops Director | CIO | 1–2 days |
 | 10 | Receiving and stocking: new team receives goods and merchandises store floor | New Store Staff | Store Manager | 3–5 days |
@@ -438,7 +438,7 @@ During a prolonged system outage (back-office ERP down beyond RTO of 4 hours per
 - Tax registration per LGU (W16.4)
 - SKU assortment assignment per store (W16.5)
 - Initial stock transfer order generation (W16.6)
-- Employee onboarding batch for ~35 staff (W16.8)
+- Employee onboarding batch for ~30 staff (W16.8)
 - POS terminal provisioning and store activation (W16.3–4)
 - Go-live readiness checklist: automated validation of POS connectivity, price sync, location master, GL segments, tax registration, test transaction, Z-report (W16.9a)
 - New store capex project tracking: each store opening tracked as a capex project in the system; all related POs, invoices, and expenses tagged to a project code; Cost Accountant tracks actual vs. budgeted cost per project (construction, fixtures, IT equipment, POS terminals, signage, pre-opening marketing, training, initial staffing); post-opening review (W16 step 13) includes cost variance analysis; project closed and total cost capitalized as fixed assets per W21.7
@@ -775,7 +775,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 | 3 | Property Mgmt Inc. negotiates lease termination with landlord; settles any penalties or early termination fees | Property Mgmt Inc. | CFO | 2–4 weeks |
 | 4 | Supply Planner creates mass inventory redistribution plan: system generates transfer orders from closing store to nearest stores and serving DC; prioritizes by item velocity and destination need | Supply Planner | Supply Planning Manager | 1 week |
 | 5 | DC and receiving stores process inbound transfers per standard receiving (W22, W3); closing store picks and ships inventory in waves over 1–2 weeks | Closing Store Staff | DC Supervisor / Store Manager | 1–2 weeks |
-| 6 | HR initiates employee action: (a) redeploy high-performers to nearby stores (transfer, not separation), (b) offer voluntary separation to others, (c) process separations per W43 for staff not redeployed; peak: up to 35 separations per store | HR Assistant / HR Head | CHRO | 2–4 weeks |
+| 6 | HR initiates employee action: (a) redeploy high-performers to nearby stores (transfer, not separation), (b) offer voluntary separation to others, (c) process separations per W43 for staff not redeployed; peak: up to 30 separations per store | HR Assistant / HR Head | CHRO | 2–4 weeks |
 | 7 | Marketing executes customer communication plan: notify loyalty members of closure, redirect to nearest store, offer relocation promotion (e.g., extra loyalty points at new nearest store), update store locator on website/app | Marketing | CMO | 2 weeks |
 | 8 | Customer Service handles inbound inquiries from trade/corporate accounts; reassigns accounts to nearest store's Sales Rep or Regional Manager | CS Manager / Sales Rep | Store Ops Director | 1 week |
 | 9 | AR Clerk reviews and collects any outstanding trade/corporate account balances specific to closing store location | AR Clerk | AR Supervisor | 2 weeks |
@@ -966,7 +966,7 @@ The following hour-by-hour plan covers the system activation sequence on the day
 |---|---|
 | **Trigger** | Daily security operations; alarm events; periodic access audits; security incidents |
 | **Frequency** | Continuous; daily guard operations; monthly access reviews; quarterly security audits |
-| **Volume** | 200 stores × 24/7 security; 5 DCs × 24/7 security; ~8,050 active access credentials |
+| **Volume** | 200 stores × 24/7 security; 5 DCs × 24/7 security; ~7,050 active access credentials |
 | **Owner** | Store Manager (store-level); DC Manager (DC-level); Facilities Coordinator (oversight) |
 | **Participants** | Security guards (contracted), Store Manager, DC Manager, Facilities Coordinator, HR, IT, Loss Prevention Officer |
 
@@ -1267,7 +1267,7 @@ W3 covers DC receiving in detail — barcode-directed putaway, quality inspectio
 - Integration with W4 (replenishment — the orders being received), W18 (DSD — vendor delivery receiving), W22 (transfers — inter-store receiving), W42 (physical inventory — receiving affects count accuracy), W47 (facility — receiving dock maintenance), W86 (planogram — shelf placement guidance), W91 (damage handling), W106 (DC dispatch — proof of delivery loop), W63 (shelf labels — new items may need labels)
 
 ### Staffing Implication
-- **2 Receiving Clerks per store**: already in staffing model (35/store). Each handles ~3–5 deliveries/week × 2 hours = ~6–10 hours/week. Remainder of time on backroom management, BOPIS staging, and other duties.
+- **2 Receiving Clerks per store**: already in staffing model (30/store). Each handles ~3–5 deliveries/week × 2 hours = ~6–10 hours/week. Remainder of time on backroom management, BOPIS staging, and other duties.
 - **3 Stock Associates per store**: putaway adds ~1–1.5 hours per delivery event × ~6–10 events/week = ~6–15 hours/week. Balanced with daily shelf replenishment (W5A.7), cycle counting (W6), and damage handling (W91).
 - **No incremental headcount.**
 
@@ -1472,7 +1472,7 @@ Philippine law (RA 9994 and RA 10754) mandates a 20% discount and 12% VAT exempt
 |---|---|
 | **Trigger** | Employee wishes to purchase merchandise for personal use |
 | **Frequency** | Daily; ~1,000 transactions/month across group |
-| **Volume** | Covers all 8,060+ employees |
+| **Volume** | Covers all 7,060+ employees |
 | **Owner** | Store Manager / HR Manager |
 | **Participants** | Employee (Buyer), Cashier, HR (for eligibility) |
 
